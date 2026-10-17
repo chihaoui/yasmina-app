@@ -6,15 +6,15 @@ Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 5 | 22,5 | 22 % |
+| A0 | 6,5 | 22,5 | 29 % |
 | A1 | 0 | 88,5 | 0 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **5** | **343** | **1,5 %** |
+| **Total** | **6,5** | **343** | **1,9 %** |
 
-- **Avancement global : 1,5 %** (5 j-h faits sur 343)
+- **Avancement global : 1,9 %** (6,5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -50,7 +50,7 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
   - [x] Première étape `ar-1-t1-u1-e01` (T01 et T02), validée par `flutter test`
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
 - [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
-- [ ] A0-10 Langue de l'interface et Directionality (1,5 j-h)
+- [x] A0-10 Langue de l'interface et Directionality (1,5 j-h)
 - [ ] A0-11 Profils enfants (5 max) et base drift (2 j-h)
 - [ ] A0-12 Menu développeur (1,5 j-h)
 - [ ] A0-13 Lecteur d'exercice générique (4 j-h)
@@ -141,6 +141,9 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
   - Android : warning sur le Kotlin Gradle Plugin (KGP) appliqué par le plugin. Même risque : à surveiller à chaque montée de version de Flutter ou d'AGP, mettre à jour `flutter_tts` ou chercher une alternative si le warning devient une erreur.
 - Contrainte : `package:test` ne peut pas entrer dans le workspace (le `test_api` épinglé par Flutter et l'`analyzer` exigé par `build_runner` 2.16.2 sont incompatibles). Les tests du package `schema` utilisent donc `flutter_test`. À revoir quand `build_runner` sera relâché.
 
+- Risque à suivre (aperçu web) : nos polices sont embarquées, mais le moteur web de Flutter charge encore par défaut CanvasKit et ses polices de secours depuis les CDN de Google (`gstatic.com`). À traiter avec la tâche A0-15 (`--no-web-resources-cdn` et thème de l'aperçu) si l'aperçu doit marcher hors ligne.
+- Taille : les polices ajoutent environ 2,1 Mo à l'app (Andika fait 1,3 Mo à elle seule, car elle couvre beaucoup d'écritures). Un sous-ensemble pourra être produit avant la publication.
+
 ## Journal
 | Date | Session | Fait | Suite |
 |---|---|---|---|
@@ -151,3 +154,4 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 | 17 oct. 2026 | A0 schéma et validateur (Claude Code) | Schéma `schema/edu-content-1.0.schema.json` (draft 2020-12, T01, T02 et T05 détaillés, consigne et feedbacks genrés, id stables), compilé sans avertissement par ajv 8. Package Dart pur `edu_content` dans `schema/` : validateur (messages en français, chemin JSON Pointer), règles métier, 27 tests sur la VM et dans Chrome. Première étape embarquée `ar-1-t1-u1-e01` (brouillon), validée par `flutter test` côté mobile. `tool/verifier.sh` étendu au package schema. Maquettes `docs/reference/` ajoutées. Dépendances ajoutées : json_schema 5.2.2 (entraîne http, quiver, uri), en dev dans schema : flutter_test et flutter_lints 6.0.0, en dev dans apps/mobile : edu_content (workspace) | Relire les harakat de `ar-1-t1-u1-e01`, installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | Relecture du contenu (Lamjed et Claude Code) | Lamjed a relu les textes arabes de `ar-1-t1-u1-e01` et fixé 2 conventions : alif de liaison avec kasra en début de phrase, alif suscrit simplifié (aucun U+0670). Consigne de x02 corrigée (هٰذِهِ devient هَذِهِ, seul U+0670 remplacé par U+064E), x01 et x02 en statut valide, empreinte de x02 recalculée. Avertissement `alif_suscrit` ajouté au validateur (30 tests). `docs/conventions-arabe.md` créé. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | Suivi (Claude Code) | Bloc « Avancement » ajouté en tête de PROGRESS.md (% par phase, % global pondéré par les semaines, types jouables), la ligne des types jouables quitte « État global » pour éviter un doublon. Conventions arabes imposées dans CLAUDE.md §5. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
+| 17 oct. 2026 | A0 langue de l'interface (Claude Code) | Avancement passé en jours-homme (`docs/estimations-taches.md`, listes de PROGRESS.md réécrites, `tool/avancement.dart` vérifié par `verifier.sh`). Langue de l'interface : première langue arabe ou française de l'appareil, sinon arabe, enregistrée au premier lancement, modifiable dans les réglages (Riverpod, shared_preferences). Textes en ARB via gen-l10n (ar, fr), `CFBundleLocalizations` iOS. `LangueExercice` dans le moteur : sens, locale et police de l'exercice indépendants de l'interface. Accueil et réglages (go_router). Polices embarquées : Noto Naskh Arabic (exercices), Baloo Bhaijaan 2 (interface arabe), Andika (français). Goldens de l'accueil en ar et en fr. Dépendance ajoutée : shared_preferences 2.5.6 (fontTools 4.55.3 utilisé hors dépôt pour produire les polices statiques) | Installer l'APK sur Android, puis profils enfants et base drift (A0-11) |
