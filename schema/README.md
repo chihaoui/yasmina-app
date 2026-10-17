@@ -61,6 +61,7 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `exercice_orphelin` | exercice cité dans aucune séquence | avertissement |
 | `sequences_nombre` | l'étape n'a pas 4 séquences | avertissement |
 | `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année | avertissement |
+| `alif_suscrit` | texte avec un alif suscrit U+0670 (convention B de `docs/conventions-arabe.md`) | avertissement |
 
 Les textes ne sont jamais normalisés (pas de NFC ni de NFD, qui réordonneraient shadda et fatha).
 

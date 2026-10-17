@@ -247,6 +247,39 @@ void main() {
     });
   });
 
+  group('conventions d\'écriture de l\'arabe', () {
+    test('alif suscrit (U+0670) : avertissement avec le chemin exact', () {
+      final r = valider(
+        (d) => d['exercices'][1]['consigne']['texte'] =
+            'هَلْ هٰذِهِ الْجُمْلَةُ صَحِيحَةٌ؟',
+      );
+      expect(r.estValide, isTrue);
+      final alif = r.avertissements.where((a) => a.code == 'alif_suscrit');
+      expect(
+        alif.single,
+        probleme('/exercices/1/consigne/texte', 'alif_suscrit'),
+      );
+      expect(alif.single.message, contains('convention B'));
+      expect(alif.single.message, contains('هَذِهِ'));
+    });
+
+    test('alif suscrit dans une variante genrée et dans un exercice seul', () {
+      final ex = exemple()['exercices'][0];
+      ex['feedbacks']['indice']['feminin'] =
+          'اِسْتَمِعِي إِلَى هٰذِهِ الْكَلِمَةِ.';
+      final r = validerExercice(ex);
+      expect(r.estValide, isTrue);
+      expect(
+        r.avertissements.single,
+        probleme('/feedbacks/indice/feminin', 'alif_suscrit'),
+      );
+    });
+
+    test("l'exemple validé ne contient aucun U+0670", () {
+      expect(etapeExemple.runes, isNot(contains(0x0670)));
+    });
+  });
+
   group('exercice seul (aperçu web)', () {
     test("un exercice de l'exemple est valide seul", () {
       final r = validerExercice(exemple()['exercices'][0]);

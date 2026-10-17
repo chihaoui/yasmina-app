@@ -218,18 +218,21 @@ List<ProblemeValidation> reglesEtape(Map<String, dynamic> racine) {
     problemes.addAll(reglesExercice(ex, chemin));
   }
 
+  // Conventions d'écriture de l'arabe (docs/conventions-arabe.md).
+  final textes = <(String, String)>[
+    ('/etape/titre', etape['titre'] as String),
+    for (var i = 0; i < sequences.length; i++)
+      ('/etape/sequences/$i/titre', sequences[i]['titre'] as String),
+  ];
+  for (var i = 0; i < exercices.length; i++) {
+    _collecterTextes(exercices[i], '/exercices/$i', textes);
+  }
+  problemes.addAll(_alifSuscrit(textes));
+
   // Harakat en 1re et 2e année d'arabe (ou de maths et d'éveil, en arabe).
   final niveau = etape['niveau'] as int;
   if (langue == 'ar' && niveau <= 2) {
     final annee = niveau == 1 ? '1re' : '${niveau}e';
-    final textes = <(String, String)>[
-      ('/etape/titre', etape['titre'] as String),
-      for (var i = 0; i < sequences.length; i++)
-        ('/etape/sequences/$i/titre', sequences[i]['titre'] as String),
-    ];
-    for (var i = 0; i < exercices.length; i++) {
-      _collecterTextes(exercices[i], '/exercices/$i', textes);
-    }
     for (final (chemin, texte) in textes) {
       if (_contientLettreArabe(texte) && !_contientHaraka(texte)) {
         avertissement(
@@ -314,9 +317,27 @@ List<ProblemeValidation> reglesExercice(
             'pas ${ex['langue']}.',
       );
     }
+    final textes = <(String, String)>[];
+    _collecterTextes(ex, chemin, textes);
+    problemes.addAll(_alifSuscrit(textes));
   }
   return problemes;
 }
+
+/// Convention B : alif suscrit simplifié (هَذِهِ, jamais هٰذِهِ), donc aucun
+/// U+0670 dans les textes.
+List<ProblemeValidation> _alifSuscrit(List<(String, String)> textes) => [
+  for (final (chemin, texte) in textes)
+    if (texte.runes.contains(0x0670))
+      ProblemeValidation(
+        chemin: chemin,
+        code: 'alif_suscrit',
+        message:
+            'alif suscrit (U+0670) interdit par la convention B : écrire '
+            'هَذِهِ et non هٰذِهِ (docs/conventions-arabe.md). Texte : « $texte ».',
+        gravite: Gravite.avertissement,
+      ),
+];
 
 bool _dateExiste(String date) {
   final parties = date.split('-').map(int.parse).toList();
