@@ -71,13 +71,13 @@ String? texteDe(WidgetTester tester, String cle) =>
 Future<void> chargerPolices() async {
   const dossier = '../../packages/moteur_exercices/fonts';
   const familles = {
-    'packages/moteur_exercices/NotoNaskhArabic': 'NotoNaskhArabic',
-    'packages/moteur_exercices/BalooBhaijaan2': 'BalooBhaijaan2',
-    'packages/moteur_exercices/Andika': 'Andika',
+    'NotoNaskhArabic': ['Regular', 'SemiBold', 'Bold'],
+    'BalooBhaijaan2': ['Regular', 'SemiBold', 'Bold', 'ExtraBold'],
+    'Andika': ['Regular', 'Bold'],
   };
-  for (final MapEntry(key: famille, value: fichier) in familles.entries) {
-    final chargeur = FontLoader(famille);
-    for (final style in ['Regular', 'Bold']) {
+  for (final MapEntry(key: fichier, value: styles) in familles.entries) {
+    final chargeur = FontLoader('packages/moteur_exercices/$fichier');
+    for (final style in styles) {
       chargeur.addFont(_lire('$dossier/$fichier-$style.ttf'));
     }
     await chargeur.load();

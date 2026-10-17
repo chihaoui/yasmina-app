@@ -10,6 +10,6 @@ Toutes sous licence SIL Open Font License 1.1 (fichiers `OFL-*.txt`), embarquée
 
 Téléchargées le 17 octobre 2026 depuis la branche `main` de https://github.com/google/fonts.
 
-Noto Naskh Arabic et Baloo Bhaijaan 2 n'y existent qu'en police variable. Les fichiers Regular (400) et Bold (700) sont des instances statiques produites avec fontTools 4.55.3 (`fontTools.varLib.instancer.instantiateVariableFont`, `updateFontNames=True`), pour que `FontWeight` fonctionne de la même façon sur toutes les plateformes. Andika est utilisée telle quelle (nom réservé « Andika », fichiers non modifiés).
+Noto Naskh Arabic et Baloo Bhaijaan 2 n'y existent qu'en police variable. Les fichiers Regular (400), SemiBold (600), Bold (700) et, pour Baloo Bhaijaan 2, ExtraBold (800) sont des instances statiques produites avec fontTools 4.55.3 (`fontTools.varLib.instancer.instantiateVariableFont`, `updateFontNames=True`), pour que `FontWeight` fonctionne de la même façon sur toutes les plateformes. Les graisses 600 et 800 (ajoutées le 17 oct. 2026, depuis les mêmes fichiers variables) sont celles des styles de `docs/design-system/tokens.json` : Noto Naskh Arabic s'arrête à 700. Andika est utilisée telle quelle (nom réservé « Andika », fichiers non modifiés).
 
 Les licences sont affichées dans l'écran des licences de Flutter via `enregistrerLicencesPolices()`.
