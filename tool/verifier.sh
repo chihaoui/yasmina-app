@@ -25,6 +25,9 @@ if grep -rn "package:flutter/" schema/lib; then
 fi
 echo "OK"
 
+etape "Design : aucune valeur en dur"
+dart run tool/garde_design.dart
+
 etape "Avancement de PROGRESS.md à jour"
 dart run tool/avancement.dart --verifier
 

@@ -73,6 +73,7 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
 - Avant chaque commit : `flutter analyze` sans erreur, `flutter test` vert et `flutter build web` de `apps/apercu_web` réussi.
 - Un test de widget par moteur, avec un cas en arabe (droite à gauche) et un cas en français.
 - Tests golden sur les écrans clés en arabe et en français.
+- Design : aucune couleur, taille de texte, rayon, espacement ni épaisseur en dur hors `packages/moteur_exercices/lib/src/theme/` (jetons générés depuis `docs/design-system/tokens.json` par `tool/generer_theme.dart`). Contrôlé par `tool/garde_design.dart` dans `verifier.sh`. Exception nommée sur la ligne : `// design-ok : raison`.
 - Petits commits, message en français, un sujet par commit.
 - Ne pas ajouter de dépendance sans le noter dans le journal de `PROGRESS.md`.
 
