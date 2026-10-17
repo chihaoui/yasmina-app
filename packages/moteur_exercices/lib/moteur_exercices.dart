@@ -6,3 +6,4 @@ export 'src/forme_adresse.dart';
 export 'src/langue_exercice.dart';
 export 'src/polices.dart';
 export 'src/theme/jetons_yasmina.g.dart';
+export 'src/theme/theme_yasmina.dart';
