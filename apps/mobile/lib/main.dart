@@ -1,8 +1,11 @@
+import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 import 'app/routeur.dart';
+import 'donnees/base_yasmina.dart';
+import 'donnees/providers.dart';
 import 'l10n/app_localizations.dart';
 import 'reglages/langue_interface.dart';
 import 'reglages/stockage_reglages.dart';
@@ -11,9 +14,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   enregistrerLicencesPolices();
   final stockage = await StockageSharedPreferences.ouvrir();
+  // SQLite embarqué par les build hooks de sqlite3 (iOS et Android).
+  final base = BaseYasmina(driftDatabase(name: 'yasmina'));
   runApp(
     ProviderScope(
-      overrides: [stockageReglagesProvider.overrideWithValue(stockage)],
+      overrides: [
+        stockageReglagesProvider.overrideWithValue(stockage),
+        baseYasminaProvider.overrideWithValue(base),
+      ],
       child: const YasminaApp(),
     ),
   );

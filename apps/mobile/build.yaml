@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          # Dates en texte ISO 8601, lisibles dans le menu développeur.
+          store_date_time_values_as_text: true
+          # Pour `dart run drift_dev make-migrations`.
+          databases:
+            base_yasmina: lib/donnees/base_yasmina.dart
+          schema_dir: drift_schemas/
+          test_dir: test/drift/

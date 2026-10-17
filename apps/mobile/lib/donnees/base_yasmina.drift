@@ -1,0 +1,37 @@
+import 'package:moteur_exercices/moteur_exercices.dart';
+import '../profils/avatar.dart';
+
+-- Profils enfants : 5 au maximum par appareil (déclencheur limite_cinq_profils).
+-- Aucune autre donnée personnelle que le prénom ou pseudo.
+CREATE TABLE profils (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  prenom TEXT NOT NULL COLLATE NOCASE UNIQUE
+    CHECK (length(prenom) BETWEEN 1 AND 20 AND prenom = trim(prenom)),
+  niveau INTEGER NOT NULL CHECK (niveau BETWEEN 1 AND 6),
+  avatar ENUMNAME(Avatar) NOT NULL,
+  forme_adresse ENUMNAME(FormeAdresse) NOT NULL,
+  cree_le DATETIME NOT NULL,
+  modifie_le DATETIME NOT NULL
+) AS ProfilEnfant;
+
+-- Une ligne par période passée dans un niveau. fin est NULL pour le niveau
+-- en cours. Supprimée avec le profil.
+CREATE TABLE historique_niveaux (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  profil_id INTEGER NOT NULL REFERENCES profils (id) ON DELETE CASCADE,
+  niveau INTEGER NOT NULL CHECK (niveau BETWEEN 1 AND 6),
+  debut DATETIME NOT NULL,
+  fin DATETIME
+) AS PeriodeNiveau;
+
+CREATE INDEX historique_profil ON historique_niveaux (profil_id);
+
+-- Un seul niveau en cours par profil.
+CREATE UNIQUE INDEX historique_un_seul_en_cours
+  ON historique_niveaux (profil_id) WHERE fin IS NULL;
+
+CREATE TRIGGER limite_cinq_profils BEFORE INSERT ON profils
+  WHEN (SELECT COUNT(*) FROM profils) >= 5
+BEGIN
+  SELECT RAISE(ABORT, 'limite_profils');
+END;
