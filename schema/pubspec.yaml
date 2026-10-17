@@ -1,0 +1,20 @@
+name: edu_content
+description: Schéma edu-content/1.0 et son validateur, en Dart pur (VM et web).
+version: 0.1.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+
+# Dart pur et compatible web : ni Flutter ni dart:io dans lib/
+# (dart:io reste autorisé dans tool/ et test/).
+dependencies:
+  json_schema: ^5.2.2
+
+# flutter_test plutôt que package:test : test est incompatible avec le
+# test_api épinglé par Flutter et l'analyzer exigé par build_runner 2.16.2.
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
