@@ -25,6 +25,9 @@ if grep -rn "package:flutter/" schema/lib; then
 fi
 echo "OK"
 
+etape "Avancement de PROGRESS.md à jour"
+dart run tool/avancement.dart --verifier
+
 etape "Formatage"
 dart format --output=none --set-exit-if-changed .
 

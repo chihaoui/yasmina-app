@@ -1,21 +1,23 @@
 # PROGRESS.md : suivi du développement
 
+<!-- avancement:debut -->
 ## Avancement
-Au 17 oct. 2026.
+Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modifier à la main.
 
-| Phase | Semaines | Cases faites | Total | % |
-|---|---|---|---|---|
-| A0 | 2 | 8 | 17 | 47 % |
-| A1 | 8,5 | 0 | 16 | 0 % |
-| A2 | 8 | 0 | 9 | 0 % |
-| B | 8,7 | 0 | 1 | 0 % |
-| C | 8,7 | 0 | 1 | 0 % |
-| D | 11 | 0 | 1 | 0 % |
-| **Total** | **46,9** | **8** | **45** | |
+| Phase | j-h faits | j-h total | % |
+|---|---|---|---|
+| A0 | 5 | 22,5 | 22 % |
+| A1 | 0 | 88,5 | 0 % |
+| A2 | 0 | 61 | 0 % |
+| B | 0 | 78,5 | 0 % |
+| C | 0 | 59,5 | 0 % |
+| D | 0 | 33 | 0 % |
+| **Total** | **5** | **343** | **1,5 %** |
 
-- **Avancement global : 2,0 %**
+- **Avancement global : 1,5 %** (5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
-- Méthode : % de phase = cases cochées ÷ total des cases de la phase. Seules les cases de premier niveau comptent (les sous-cases indentées détaillent une tâche), et une tâche en cours compte 0. % global = moyenne des % de phase pondérée par leur durée en semaines (A0 2, A1 8,5, A2 8, B 8,7, C 8,7, D 11, total 46,9). Bloc mis à jour à chaque session.
+- Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
+<!-- avancement:fin -->
 
 Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par le mentor. Les dates suivent le plan de développement du 17 octobre 2026.
 
@@ -37,66 +39,100 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 | Lancement | 15 sept. 2027 | Rentrée scolaire | À venir |
 
 ## A0 : mise en place (19 oct. au 1er nov. 2026)
-- [x] Dépôt GitHub privé créé
-- [x] Structure `packages/moteur_exercices`, `apps/mobile`, `apps/apercu_web`, `schema`, `docs` (pub workspace, un seul `pubspec.lock`)
-- [x] Script de vérification unique `./tool/verifier.sh` (pub get, garde `dart:io` du moteur, formatage, analyze, tests des 3 membres, build web de l'aperçu)
-- [x] CLAUDE.md et PROGRESS.md à la racine
-- [x] Maquettes HTML de référence dans `docs/reference/` (référence visuelle, exclues de l'analyse)
-- [x] Projet Flutter créé (Android et iOS, `tn.forgia.yasmina`), dépendances de base (Riverpod, go_router, freezed, json_serializable, drift, flutter_tts, flutter_localizations)
-- [x] Schéma edu-content/1.0 et validateur, test qui échoue sur un JSON invalide (`schema/`, package Dart pur `edu_content`, tests VM et Chrome)
-- [ ] JSON embarqués : un exemple par type (53) et le parcours d'arabe 1re de la démo
+- [x] A0-01 Dépôt GitHub privé (0,25 j-h)
+- [x] A0-02 Structure pub workspace (0,5 j-h)
+- [x] A0-03 Script tool/verifier.sh (0,5 j-h)
+- [x] A0-04 CLAUDE.md et PROGRESS.md (0,25 j-h)
+- [x] A0-05 Maquettes HTML de référence (0,5 j-h)
+- [x] A0-06 Projet Flutter et dépendances (0,5 j-h)
+- [x] A0-07 Schéma edu-content/1.0 et validateur (2 j-h)
+- [ ] A0-08 JSON embarqués (53 types et parcours arabe 1re) (3 j-h)
   - [x] Première étape `ar-1-t1-u1-e01` (T01 et T02), validée par `flutter test`
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
-- [x] Conventions d'écriture de l'arabe dans `docs/conventions-arabe.md`, avertissement `alif_suscrit` dans le validateur
-- [ ] Langue de l'interface (appareil, sinon arabe), bascule arabe et français, `Directionality` par écran
-- [ ] Profils enfants (5 max), création manuelle
-- [ ] Menu développeur : profils de test Lina et Yassine, réinitialisation, statut d'abonnement simulé, tout débloquer, JSON de l'exercice, atelier
-- [ ] Lecteur d'exercice générique dans `packages/moteur_exercices` : en-tête avec Yasmina, consigne, réécoute, zone du moteur, bouton Vérifier, feedback en 3 temps, modes enfant, aperçu et édition
-- [ ] Interfaces de plateforme injectées (audio, vibration, assets) avec implémentations mobile et web
-- [ ] `apps/apercu_web` : joue un exercice à partir d'un JSON (fichier ou postMessage) dans un cadre de téléphone, `flutter build web` vérifié
-- [ ] Yasmina en placeholder (3 humeurs : neutre, bravo, encouragement)
-- [ ] Build de test installé sur le téléphone de Lamjed (Android et iPhone)
+- [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
+- [ ] A0-10 Langue de l'interface et Directionality (1,5 j-h)
+- [ ] A0-11 Profils enfants (5 max) et base drift (2 j-h)
+- [ ] A0-12 Menu développeur (1,5 j-h)
+- [ ] A0-13 Lecteur d'exercice générique (4 j-h)
+- [ ] A0-14 Interfaces de plateforme injectées (1,5 j-h)
+- [ ] A0-15 Aperçu web (apps/apercu_web) (1,5 j-h)
+- [ ] A0-16 Yasmina en placeholder (0,5 j-h)
+- [ ] A0-17 Build de test sur téléphone (iPhone fait, Android à installer) (1 j-h)
   - [x] iPhone : build iOS réussi, app installée le 17 oct. 2026
   - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
+- [ ] A0-18 Pilotage A0 (1 j-h)
 
-## A1 : lot 1 des moteurs (2 nov. au 13 déc. 2026)
-Moteurs et types :
-- [ ] Choix : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61
-- [ ] Glisser-déposer (avec toucher-toucher) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62
-- [ ] Texte : T07, T17
-- [ ] Tracé (non noté) : T20
-- [ ] Saisie numérique (base) : T22, T48
-- [ ] Manipulables (base) : T25, T27, T51
-- [ ] Scène image (base) : T08, T47
-- [ ] Révision et jeux (notés) : T36, T37, T38
+## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
+- [ ] A1-01 Moteur Choix (13 types) : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (8 j-h)
+- [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (12 j-h)
+- [ ] A1-03 Moteur Texte (T07, T17) (4 j-h)
+- [ ] A1-04 Moteur Tracé (T20) (3 j-h)
+- [ ] A1-05 Moteur Saisie numérique, base (T22, T48) (4 j-h)
+- [ ] A1-06 Moteur Manipulables, base (T25, T27, T51) (6 j-h)
+- [ ] A1-07 Moteur Scène image, base (T08, T47) (3 j-h)
+- [ ] A1-08 Moteur Révision et jeux (T36 à T38) (5 j-h)
+- [ ] A1-09 Vérification du framework sur le prototype (glisser-déposer arabe, harakat, Rive, Android 2 Go) (4 j-h)
+- [ ] A1-10 Choix de l'enfant et de la matière, carte du trimestre (4 j-h)
+- [ ] A1-11 Intro d'étape, séquences, écran de résultat (4 j-h)
+- [ ] A1-12 Progression locale (2,5 j-h)
+- [ ] A1-13 Espace parent local (5 j-h)
+- [ ] A1-14 Simulation essai et abonnement (1 j-h)
+- [ ] A1-15 Tests de parité et golden (2 j-h)
+- [ ] A1-16 Build distribué aux familles (TestFlight, Play) (1 j-h)
+- [ ] A1-17 Grille d'observation et questionnaire parent (1 j-h)
+- [ ] A1-18 Synthèse des retours, tour 1 (1 j-h)
+- [ ] A1-19 Design system et maquettes, partie 1 (designer) (10 j-h)
+- [ ] A1-20 Yasmina : brief et 6 états (illustrateur) (5 j-h)
+- [ ] A1-21 Pilotage A1 (3 j-h)
 
-Parcours et couche jeu :
-- [ ] Choix de l'enfant, choix de la matière, carte du trimestre (unités, étapes, étoiles, verrous)
-- [ ] Intro d'étape, 4 séquences, écran de résultat, rejouer avec une nouvelle série
-- [ ] Progression locale (avancement et maîtrise par unité, lettre et compétence)
-- [ ] Espace parent local derrière le contrôle parental (semaine, année, trimestre, à revoir, badges)
-- [ ] Simulation essai, essai terminé, abonné
+## A2 : lot 2 des moteurs et retours familles, tour 2 (4 janv. au 28 févr. 2027)
+- [ ] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (4 j-h)
+- [ ] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (6 j-h)
+- [ ] A2-03 Moteur Mesure et temps (T28, T30) (5 j-h)
+- [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (7 j-h)
+- [ ] A2-05 Moteur Scène image avec audio (T53, T54) (3 j-h)
+- [ ] A2-06 Moteur Simulateur (T34, T57) (6 j-h)
+- [ ] A2-07 Moteur Récit (T35) (3 j-h)
+- [ ] A2-08 Corrections issues du tour 1 (2 j-h)
+- [ ] A2-09 Retours familles, tour 2 (2 j-h)
+- [ ] A2-10 Design system et maquettes, partie 2 (designer) (10 j-h)
+- [ ] A2-11 Yasmina : animations Rive (illustrateur) (10 j-h)
+- [ ] A2-12 Pilotage A2 (3 j-h)
 
-Retours familles, tour 1 (14 au 31 déc. 2026) :
-- [ ] Build distribué (TestFlight et test interne Play) à 5 à 10 familles
-- [ ] Grille d'observation et questionnaire parent prêts
-- [ ] Synthèse des retours dans `docs/retours-tour-1.md`
+## B : back-end, back-office et pilote de contenu (mars et avril 2027)
+- [ ] B-01 Back-end : schéma Supabase et RLS (6 j-h)
+- [ ] B-02 Back-end : Edge Functions (OTP, droits, clés) (7 j-h)
+- [ ] B-03 Connexion par code simulée en développement (3 j-h)
+- [ ] B-04 Téléchargement à priorités et journal persistant (8 j-h)
+- [ ] B-05 Packs chiffrés et synchronisation (6 j-h)
+- [ ] B-06 Back-office : base, comptes, droits (8 j-h)
+- [ ] B-07 Back-office : écran de relecture et formulaire par gabarit (10 j-h)
+- [ ] B-08 Back-office : publication et construction des packs (5 j-h)
+- [ ] B-09 Pipeline dans le Projet Claude (registre anti-doublon, HTML de validation, GitHub) (8 j-h)
+- [ ] B-10 Outil de validation pour le LLM (edu_content:valider) (1 j-h)
+- [ ] B-11 Médias et packs du pipeline (6,5 j-h)
+- [ ] B-12 Pilote de contenu arabe 1re T1 (go ou no-go) (4 j-h)
+- [ ] B-13 Relecture du pilote (3 j-h)
+- [ ] B-14 Pilotage B (3 j-h)
 
-## A2 : lot 2 des moteurs (4 janv. au 14 févr. 2027)
-- [ ] Saisie numérique avancée : T49, T50, T63
-- [ ] Manipulables avancés : T26, T29, T52
-- [ ] Mesure et temps : T28, T30
-- [ ] Grille et graphiques : T31, T32, T33, T60
-- [ ] Scène image avec audio : T53, T54
-- [ ] Simulateur : T34, T57
-- [ ] Récit : T35
-- [ ] Corrections issues du tour 1
-- [ ] Retours familles, tour 2 (15 au 28 févr. 2027), synthèse dans `docs/retours-tour-2.md`
+## C : bêta et paiements (mai et juin 2027)
+- [ ] C-01 Couche jeu complète (pièces, avatar, compagnon, album) (6 j-h)
+- [ ] C-02 Temps d'écran et paramètres parent (4 j-h)
+- [ ] C-03 Paiements (Konnect, Flouci, D17, RevenueCat, codes prépayés, parrainage) (12 j-h)
+- [ ] C-04 Site web (landing, paiement, activation) (6 j-h)
+- [ ] C-05 n8n et WhatsApp (OTP, workflow d'essai, rapports) (8 j-h)
+- [ ] C-06 Analytics internes, Sentry, tableaux de bord (3 j-h)
+- [ ] C-07 Bêta auprès de 150 familles (6 j-h)
+- [ ] C-08 Relecture du contenu de la bêta (7 j-h)
+- [ ] C-09 Ajustements UX après la bêta (designer) (5 j-h)
+- [ ] C-10 Pilotage C (2,5 j-h)
 
-## Phases suivantes (après G2)
-- [ ] B, mars et avril 2027 : back-end Supabase (connexion simulée en dev, droits, packs chiffrés), téléchargement à priorités et journal, back-office avec écran de relecture, pipeline dans le Projet Claude, pilote de contenu arabe 1re T1 (go ou no-go)
-- [ ] C, mai et juin 2027 : contenu de la bêta, bêta auprès de 150 familles, paiements
-- [ ] D, juillet et août 2027 : contenu T1 des 26 combinaisons, publication sur les stores, campagne
+## D : contenu T1 et lancement (juillet et août 2027)
+- [ ] D-01 Contenu T1 des 26 combinaisons (8 j-h)
+- [ ] D-02 Relecture du contenu T1 (15 j-h)
+- [ ] D-03 Publication stores, conformité, déclaration INPDP (4 j-h)
+- [ ] D-04 Recette finale avant lancement (3,5 j-h)
+- [ ] D-05 Pilotage D (2,5 j-h)
 
 ## Blocages
 - Résolu le 17 oct. 2026 : build Android bloqué par le disque plein. Espace libéré, `flutter build apk --debug` réussi.
