@@ -1,0 +1,24 @@
+name: moteur_exercices
+description: Moteurs et gabarits d'exercices Yasmina, partagés par l'app mobile et l'aperçu web.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+
+# Compatible web : pas de dart:io, pas de plugin sans support web.
+dependencies:
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: 2.16.2
+  freezed: ^4.0.2
+  json_serializable: ^6.14.1

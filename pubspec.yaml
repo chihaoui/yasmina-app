@@ -1,0 +1,14 @@
+name: yasmina_workspace
+description: Racine du workspace pub de l'app Yasmina (aucun code ici).
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+workspace:
+  - packages/moteur_exercices
+
+dev_dependencies:
+  # 2.17.1 exige build 5, pas encore supporté par freezed, json_serializable
+  # et drift_dev. 2.17.0 est retiré. À relâcher quand ils suivront.
+  build_runner: 2.16.2
