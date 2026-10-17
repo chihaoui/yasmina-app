@@ -73,7 +73,7 @@
         "explication": "الْكَلِمَةُ الصَّحِيحَةُ هِيَ «بَابٌ»: أَوَّلُ حَرْفٍ فِيهَا الْبَاءُ."
       },
       "empreinte": "sha256:c95ff8d173e8f25ced8216e3fef9b9319fd7a7a4db2da093ab49aa18ff7992b8",
-      "statut": "brouillon",
+      "statut": "valide",
       "version": 1
     },
     {
@@ -85,7 +85,7 @@
       "niveau_critere": "minimal",
       "langue": "ar",
       "consigne": {
-        "texte": "هَلْ هٰذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
+        "texte": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
       },
       "donnees": {
         "affirmation": "كَلِمَةُ «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
@@ -104,8 +104,8 @@
         },
         "explication": "الْجُمْلَةُ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
       },
-      "empreinte": "sha256:b3d6981016eeebf0f21029de7ccd09ff6e81343ae6a3559c8c4c3f5dcbf726ce",
-      "statut": "brouillon",
+      "empreinte": "sha256:c056f6b567aaaeb3e3bb48b12e06761637d047a14abbf7bf8c1d65f373286642",
+      "statut": "valide",
       "version": 1
     }
   ]
