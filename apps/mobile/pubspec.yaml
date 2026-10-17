@@ -1,0 +1,37 @@
+name: yasmina
+description: App mobile Yasmina (prototype, contenu JSON embarqué).
+publish_to: none
+version: 0.1.0+1
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  moteur_exercices:
+    path: ../../packages/moteur_exercices
+  flutter_riverpod: ^3.4.3
+  go_router: ^18.1.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+  drift: ^2.35.2
+  drift_flutter: ^0.3.1
+  flutter_tts: ^4.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: 2.16.2
+  freezed: ^4.0.2
+  json_serializable: ^6.14.1
+  drift_dev: ^2.35.1
+
+flutter:
+  uses-material-design: true

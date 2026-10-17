@@ -7,6 +7,7 @@ environment:
 
 workspace:
   - packages/moteur_exercices
+  - apps/mobile
 
 dev_dependencies:
   # 2.17.1 exige build 5, pas encore supporté par freezed, json_serializable
