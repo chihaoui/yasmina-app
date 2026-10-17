@@ -187,6 +187,174 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Nuage'**
   String get avatarNuage;
+
+  /// Titre de l'écran de choix du profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Qui joue ?'**
+  String get profilsTitre;
+
+  /// Bouton de création d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un enfant'**
+  String get profilsAjouter;
+
+  /// Message affiché à la place du bouton quand 5 profils existent.
+  ///
+  /// In fr, this message translates to:
+  /// **'5 profils au maximum sur cet appareil'**
+  String get profilsLimite;
+
+  /// Infobulle du bouton crayon sur une carte de profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le profil de {prenom}'**
+  String profilModifierInfobulle(String prenom);
+
+  /// Titre du formulaire de création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau profil'**
+  String get profilNouveauTitre;
+
+  /// Titre du formulaire de modification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le profil'**
+  String get profilModifierTitre;
+
+  /// Libellé du champ prénom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prénom ou pseudo'**
+  String get profilPrenom;
+
+  /// Erreur : prénom vide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il faut un prénom ou un pseudo.'**
+  String get profilPrenomVide;
+
+  /// Erreur : prénom déjà porté par un autre profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce prénom est déjà utilisé sur cet appareil.'**
+  String get profilPrenomExiste;
+
+  /// Titre du choix du niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Année scolaire'**
+  String get profilNiveau;
+
+  /// Niveau 1.
+  ///
+  /// In fr, this message translates to:
+  /// **'1re année'**
+  String get niveau1;
+
+  /// Niveau 2.
+  ///
+  /// In fr, this message translates to:
+  /// **'2e année'**
+  String get niveau2;
+
+  /// Niveau 3.
+  ///
+  /// In fr, this message translates to:
+  /// **'3e année'**
+  String get niveau3;
+
+  /// Niveau 4.
+  ///
+  /// In fr, this message translates to:
+  /// **'4e année'**
+  String get niveau4;
+
+  /// Niveau 5.
+  ///
+  /// In fr, this message translates to:
+  /// **'5e année'**
+  String get niveau5;
+
+  /// Niveau 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'6e année'**
+  String get niveau6;
+
+  /// Aide sous le choix du niveau, en modification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer d\'année garde la trace des années précédentes.'**
+  String get profilNiveauAide;
+
+  /// Titre du choix de l'avatar.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avatar'**
+  String get profilAvatar;
+
+  /// Titre du choix de la forme d'adresse (accord des messages).
+  ///
+  /// In fr, this message translates to:
+  /// **'On s\'adresse à l\'enfant'**
+  String get profilFormeAdresse;
+
+  /// Forme d'adresse masculine.
+  ///
+  /// In fr, this message translates to:
+  /// **'au masculin'**
+  String get formeMasculin;
+
+  /// Forme d'adresse féminine.
+  ///
+  /// In fr, this message translates to:
+  /// **'au féminin'**
+  String get formeFeminin;
+
+  /// Bouton du formulaire de profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get profilEnregistrer;
+
+  /// Bouton de suppression, en modification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le profil'**
+  String get profilSupprimer;
+
+  /// Question du dialogue de confirmation de suppression.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer définitivement le profil de {prenom} ? Toutes ses données seront effacées.'**
+  String profilSupprimerQuestion(String prenom);
+
+  /// Bouton d'annulation d'un dialogue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get annuler;
+
+  /// Bouton de confirmation de suppression.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get supprimer;
+
+  /// Salutation de l'enfant sur l'accueil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonjour {prenom} !'**
+  String accueilBonjour(String prenom);
+
+  /// Bouton de l'accueil qui ramène au choix du profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer d\'enfant'**
+  String get profilChanger;
 }
 
 class _AppLocalizationsDelegate

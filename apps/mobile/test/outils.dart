@@ -3,20 +3,59 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:drift/drift.dart' show DatabaseConnection;
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moteur_exercices/moteur_exercices.dart';
+import 'package:yasmina/donnees/base_yasmina.dart';
+import 'package:yasmina/donnees/providers.dart';
 import 'package:yasmina/main.dart';
+import 'package:yasmina/profils/avatar.dart';
+import 'package:yasmina/profils/depot_profils.dart';
 import 'package:yasmina/reglages/stockage_reglages.dart';
 
-/// Lance l'app avec un stockage en mémoire. Les langues de l'appareil se
-/// règlent avec `tester.platformDispatcher.localesTestValue`.
-Future<void> lancerApp(WidgetTester tester, StockageReglages stockage) async {
+/// Lance l'app avec un stockage et une base en mémoire, après avoir créé
+/// [profils] (un seul profil par défaut : l'accueil s'ouvre directement).
+/// Les langues de l'appareil se règlent avec
+/// `tester.platformDispatcher.localesTestValue`.
+Future<DepotProfils> lancerApp(
+  WidgetTester tester,
+  StockageReglages stockage, {
+  List<String> profils = const ['Lina'],
+}) async {
+  // closeStreamsSynchronously : sinon drift laisse un timer en attente à la
+  // fermeture des flux, que le temps simulé de testWidgets ne déclenche pas.
+  final base = BaseYasmina(
+    DatabaseConnection(
+      NativeDatabase.memory(),
+      closeStreamsSynchronously: true,
+    ),
+  );
+  addTearDown(() async {
+    // Démonter l'arbre avant de fermer la base (flux drift en cours).
+    await tester.pumpWidget(const SizedBox());
+    await base.close();
+  });
+  final depot = DepotProfils(base);
+  for (final prenom in profils) {
+    await depot.creer(
+      prenom: prenom,
+      niveau: 1,
+      avatar: Avatar.fleur,
+      formeAdresse: FormeAdresse.feminin,
+    );
+  }
   await tester.pumpWidget(
     ProviderScope(
-      overrides: [stockageReglagesProvider.overrideWithValue(stockage)],
+      overrides: [
+        stockageReglagesProvider.overrideWithValue(stockage),
+        baseYasminaProvider.overrideWithValue(base),
+      ],
       child: const YasminaApp(),
     ),
   );
   await tester.pumpAndSettle();
+  return depot;
 }
 
 /// Sens d'écriture effectif du widget qui porte [cle].

@@ -35,6 +35,8 @@ migrate_working_dir/
 .pub/
 build/
 coverage/
+# Images produites par un test golden en échec
+**/test/**/failures/
 **/generated_plugin_registrant.dart
 
 # Android

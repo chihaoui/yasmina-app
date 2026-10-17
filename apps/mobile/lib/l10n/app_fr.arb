@@ -59,5 +59,132 @@
   "avatarNuage": "Nuage",
   "@avatarNuage": {
     "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "profilsTitre": "Qui joue ?",
+  "@profilsTitre": {
+    "description": "Titre de l'écran de choix du profil."
+  },
+  "profilsAjouter": "Ajouter un enfant",
+  "@profilsAjouter": {
+    "description": "Bouton de création d'un profil."
+  },
+  "profilsLimite": "5 profils au maximum sur cet appareil",
+  "@profilsLimite": {
+    "description": "Message affiché à la place du bouton quand 5 profils existent."
+  },
+  "profilModifierInfobulle": "Modifier le profil de {prenom}",
+  "@profilModifierInfobulle": {
+    "description": "Infobulle du bouton crayon sur une carte de profil.",
+    "placeholders": {
+      "prenom": {
+        "type": "String"
+      }
+    }
+  },
+  "profilNouveauTitre": "Nouveau profil",
+  "@profilNouveauTitre": {
+    "description": "Titre du formulaire de création."
+  },
+  "profilModifierTitre": "Modifier le profil",
+  "@profilModifierTitre": {
+    "description": "Titre du formulaire de modification."
+  },
+  "profilPrenom": "Prénom ou pseudo",
+  "@profilPrenom": {
+    "description": "Libellé du champ prénom."
+  },
+  "profilPrenomVide": "Il faut un prénom ou un pseudo.",
+  "@profilPrenomVide": {
+    "description": "Erreur : prénom vide."
+  },
+  "profilPrenomExiste": "Ce prénom est déjà utilisé sur cet appareil.",
+  "@profilPrenomExiste": {
+    "description": "Erreur : prénom déjà porté par un autre profil."
+  },
+  "profilNiveau": "Année scolaire",
+  "@profilNiveau": {
+    "description": "Titre du choix du niveau."
+  },
+  "niveau1": "1re année",
+  "@niveau1": {
+    "description": "Niveau 1."
+  },
+  "niveau2": "2e année",
+  "@niveau2": {
+    "description": "Niveau 2."
+  },
+  "niveau3": "3e année",
+  "@niveau3": {
+    "description": "Niveau 3."
+  },
+  "niveau4": "4e année",
+  "@niveau4": {
+    "description": "Niveau 4."
+  },
+  "niveau5": "5e année",
+  "@niveau5": {
+    "description": "Niveau 5."
+  },
+  "niveau6": "6e année",
+  "@niveau6": {
+    "description": "Niveau 6."
+  },
+  "profilNiveauAide": "Changer d'année garde la trace des années précédentes.",
+  "@profilNiveauAide": {
+    "description": "Aide sous le choix du niveau, en modification."
+  },
+  "profilAvatar": "Avatar",
+  "@profilAvatar": {
+    "description": "Titre du choix de l'avatar."
+  },
+  "profilFormeAdresse": "On s'adresse à l'enfant",
+  "@profilFormeAdresse": {
+    "description": "Titre du choix de la forme d'adresse (accord des messages)."
+  },
+  "formeMasculin": "au masculin",
+  "@formeMasculin": {
+    "description": "Forme d'adresse masculine."
+  },
+  "formeFeminin": "au féminin",
+  "@formeFeminin": {
+    "description": "Forme d'adresse féminine."
+  },
+  "profilEnregistrer": "Enregistrer",
+  "@profilEnregistrer": {
+    "description": "Bouton du formulaire de profil."
+  },
+  "profilSupprimer": "Supprimer le profil",
+  "@profilSupprimer": {
+    "description": "Bouton de suppression, en modification."
+  },
+  "profilSupprimerQuestion": "Supprimer définitivement le profil de {prenom} ? Toutes ses données seront effacées.",
+  "@profilSupprimerQuestion": {
+    "description": "Question du dialogue de confirmation de suppression.",
+    "placeholders": {
+      "prenom": {
+        "type": "String"
+      }
+    }
+  },
+  "annuler": "Annuler",
+  "@annuler": {
+    "description": "Bouton d'annulation d'un dialogue."
+  },
+  "supprimer": "Supprimer",
+  "@supprimer": {
+    "description": "Bouton de confirmation de suppression."
+  },
+  "accueilBonjour": "Bonjour {prenom} !",
+  "@accueilBonjour": {
+    "description": "Salutation de l'enfant sur l'accueil.",
+    "placeholders": {
+      "prenom": {
+        "type": "String"
+      }
+    }
+  },
+  "profilChanger": "Changer d'enfant",
+  "@profilChanger": {
+    "description": "Bouton de l'accueil qui ramène au choix du profil."
   }
 }

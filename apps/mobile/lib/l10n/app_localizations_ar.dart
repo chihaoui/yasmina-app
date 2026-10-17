@@ -53,4 +53,96 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get avatarNuage => 'سَحَابَةٌ';
+
+  @override
+  String get profilsTitre => 'مَنْ يَلْعَبُ؟';
+
+  @override
+  String get profilsAjouter => 'إِضَافَةُ طِفْلٍ';
+
+  @override
+  String get profilsLimite =>
+      'خَمْسَةُ مَلَفَّاتٍ عَلَى الْأَكْثَرِ فِي هَذَا الْجِهَازِ';
+
+  @override
+  String profilModifierInfobulle(String prenom) {
+    return 'تَعْدِيلُ مَلَفِّ $prenom';
+  }
+
+  @override
+  String get profilNouveauTitre => 'مَلَفٌّ جَدِيدٌ';
+
+  @override
+  String get profilModifierTitre => 'تَعْدِيلُ الْمَلَفِّ';
+
+  @override
+  String get profilPrenom => 'اِسْمُ الطِّفْلِ أَوْ لَقَبُهُ';
+
+  @override
+  String get profilPrenomVide => 'يَجِبُ كِتَابَةُ اسْمٍ.';
+
+  @override
+  String get profilPrenomExiste => 'هَذَا الِاسْمُ مُسْتَعْمَلٌ مِنْ قَبْلُ.';
+
+  @override
+  String get profilNiveau => 'السَّنَةُ الدِّرَاسِيَّةُ';
+
+  @override
+  String get niveau1 => 'السَّنَةُ الْأُولَى';
+
+  @override
+  String get niveau2 => 'السَّنَةُ الثَّانِيَةُ';
+
+  @override
+  String get niveau3 => 'السَّنَةُ الثَّالِثَةُ';
+
+  @override
+  String get niveau4 => 'السَّنَةُ الرَّابِعَةُ';
+
+  @override
+  String get niveau5 => 'السَّنَةُ الْخَامِسَةُ';
+
+  @override
+  String get niveau6 => 'السَّنَةُ السَّادِسَةُ';
+
+  @override
+  String get profilNiveauAide =>
+      'يُحْفَظُ سِجِلُّ السَّنَوَاتِ السَّابِقَةِ عِنْدَ تَغْيِيرِ السَّنَةِ.';
+
+  @override
+  String get profilAvatar => 'الصُّورَةُ الرَّمْزِيَّةُ';
+
+  @override
+  String get profilFormeAdresse => 'نُخَاطِبُ الطِّفْلَ';
+
+  @override
+  String get formeMasculin => 'بِصِيغَةِ الْمُذَكَّرِ';
+
+  @override
+  String get formeFeminin => 'بِصِيغَةِ الْمُؤَنَّثِ';
+
+  @override
+  String get profilEnregistrer => 'حِفْظٌ';
+
+  @override
+  String get profilSupprimer => 'حَذْفُ الْمَلَفِّ';
+
+  @override
+  String profilSupprimerQuestion(String prenom) {
+    return 'حَذْفُ مَلَفِّ $prenom نِهَائِيًّا؟ سَتُمْحَى كُلُّ بَيَانَاتِهِ.';
+  }
+
+  @override
+  String get annuler => 'إِلْغَاءٌ';
+
+  @override
+  String get supprimer => 'حَذْفٌ';
+
+  @override
+  String accueilBonjour(String prenom) {
+    return 'مَرْحَبًا يَا $prenom!';
+  }
+
+  @override
+  String get profilChanger => 'تَغْيِيرُ الطِّفْلِ';
 }
