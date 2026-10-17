@@ -6,15 +6,15 @@ Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 6,5 | 22,5 | 29 % |
+| A0 | 8,5 | 22,5 | 38 % |
 | A1 | 0 | 88,5 | 0 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **6,5** | **343** | **1,9 %** |
+| **Total** | **8,5** | **343** | **2,5 %** |
 
-- **Avancement global : 1,9 %** (6,5 j-h faits sur 343)
+- **Avancement global : 2,5 %** (8,5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -51,7 +51,7 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
 - [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
 - [x] A0-10 Langue de l'interface et Directionality (1,5 j-h)
-- [ ] A0-11 Profils enfants (5 max) et base drift (2 j-h)
+- [x] A0-11 Profils enfants (5 max) et base drift (2 j-h)
 - [ ] A0-12 Menu développeur (1,5 j-h)
 - [ ] A0-13 Lecteur d'exercice générique (4 j-h)
 - [ ] A0-14 Interfaces de plateforme injectées (1,5 j-h)
@@ -143,6 +143,8 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 
 - Risque à suivre (aperçu web) : nos polices sont embarquées, mais le moteur web de Flutter charge encore par défaut CanvasKit et ses polices de secours depuis les CDN de Google (`gstatic.com`). À traiter avec la tâche A0-15 (`--no-web-resources-cdn` et thème de l'aperçu) si l'aperçu doit marcher hors ligne.
 - Taille : les polices ajoutent environ 2,1 Mo à l'app (Andika fait 1,3 Mo à elle seule, car elle couvre beaucoup d'écritures). Un sous-ensemble pourra être produit avant la publication.
+- Point UX à trancher : l'accueil dit deux fois bonjour (« Bonjour Lina ! » puis « Bonjour ! On apprend ensemble. »). Proposition : remplacer le second texte par « On apprend ensemble. », à faire relire en arabe.
+- Goldens générés sur macOS : ils peuvent différer sur une autre machine ou une CI Linux (polices et rendu). À régénérer sur la machine de référence si besoin.
 
 ## Journal
 | Date | Session | Fait | Suite |
@@ -155,3 +157,4 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 | 17 oct. 2026 | Relecture du contenu (Lamjed et Claude Code) | Lamjed a relu les textes arabes de `ar-1-t1-u1-e01` et fixé 2 conventions : alif de liaison avec kasra en début de phrase, alif suscrit simplifié (aucun U+0670). Consigne de x02 corrigée (هٰذِهِ devient هَذِهِ, seul U+0670 remplacé par U+064E), x01 et x02 en statut valide, empreinte de x02 recalculée. Avertissement `alif_suscrit` ajouté au validateur (30 tests). `docs/conventions-arabe.md` créé. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | Suivi (Claude Code) | Bloc « Avancement » ajouté en tête de PROGRESS.md (% par phase, % global pondéré par les semaines, types jouables), la ligne des types jouables quitte « État global » pour éviter un doublon. Conventions arabes imposées dans CLAUDE.md §5. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | A0 langue de l'interface (Claude Code) | Avancement passé en jours-homme (`docs/estimations-taches.md`, listes de PROGRESS.md réécrites, `tool/avancement.dart` vérifié par `verifier.sh`). Langue de l'interface : première langue arabe ou française de l'appareil, sinon arabe, enregistrée au premier lancement, modifiable dans les réglages (Riverpod, shared_preferences). Textes en ARB via gen-l10n (ar, fr), `CFBundleLocalizations` iOS. `LangueExercice` dans le moteur : sens, locale et police de l'exercice indépendants de l'interface. Accueil et réglages (go_router). Polices embarquées : Noto Naskh Arabic (exercices), Baloo Bhaijaan 2 (interface arabe), Andika (français). Goldens de l'accueil en ar et en fr. Dépendance ajoutée : shared_preferences 2.5.6 (fontTools 4.55.3 utilisé hors dépôt pour produire les polices statiques) | Installer l'APK sur Android, puis profils enfants et base drift (A0-11) |
+| 17 oct. 2026 | A0 profils enfants (Claude Code) | Harakat de l'interface corrigées (الْإِعْدَادَاتُ, الْعَرَبِيَّةُ), convention C (soukoun sur le lam devant une lettre lunaire, kasra devant un alif de liaison) dans docs et CLAUDE.md, avertissement `lam_sans_soukoun` au validateur et au test des ARB. `FormeAdresse` dans le moteur. Base drift v1 (`base_yasmina.drift` : profils, historique des niveaux, index partiel, déclencheur des 5 profils, clés étrangères, instantané de migration et test). Dépôt des profils (limite, historique daté, persistance testée). 8 avatars placeholder (icônes Material, nuage à la place de l'oiseau). Écrans : création directe sans profil, accueil direct avec un profil, choix à partir de deux, formulaire de création et modification, suppression confirmée. Goldens du choix et de l'accueil. `flutter build apk --debug` et build iOS réussis, SQLite embarqué par les hooks de sqlite3. Aucune dépendance ajoutée | Relire « سَحَابَةٌ » (avatar nuage), installer l'APK sur Android, puis menu développeur (A0-12) |
