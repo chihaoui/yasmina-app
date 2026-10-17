@@ -29,4 +29,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reglageLangueAide => 'تَبْقَى التَّمَارِينُ بِلُغَةِ مَادَّتِهَا.';
+
+  @override
+  String get avatarFleur => 'زَهْرَةٌ';
+
+  @override
+  String get avatarSoleil => 'شَمْسٌ';
+
+  @override
+  String get avatarLune => 'قَمَرٌ';
+
+  @override
+  String get avatarEtoile => 'نَجْمَةٌ';
+
+  @override
+  String get avatarArbre => 'شَجَرَةٌ';
+
+  @override
+  String get avatarBateau => 'قَارِبٌ';
+
+  @override
+  String get avatarChat => 'قِطٌّ';
+
+  @override
+  String get avatarNuage => 'سَحَابَةٌ';
 }

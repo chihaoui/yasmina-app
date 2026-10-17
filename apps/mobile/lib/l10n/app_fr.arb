@@ -27,5 +27,37 @@
   "reglageLangueAide": "Les exercices gardent la langue de leur matière.",
   "@reglageLangueAide": {
     "description": "Aide sous le réglage de la langue."
+  },
+  "avatarFleur": "Fleur",
+  "@avatarFleur": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarSoleil": "Soleil",
+  "@avatarSoleil": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarLune": "Lune",
+  "@avatarLune": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarEtoile": "Étoile",
+  "@avatarEtoile": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarArbre": "Arbre",
+  "@avatarArbre": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarBateau": "Bateau",
+  "@avatarBateau": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarChat": "Chat",
+  "@avatarChat": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
+  },
+  "avatarNuage": "Nuage",
+  "@avatarNuage": {
+    "description": "Nom d'un avatar, lu par les lecteurs d'écran."
   }
 }

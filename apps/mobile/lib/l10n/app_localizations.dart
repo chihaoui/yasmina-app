@@ -139,6 +139,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Les exercices gardent la langue de leur matière.'**
   String get reglageLangueAide;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fleur'**
+  String get avatarFleur;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Soleil'**
+  String get avatarSoleil;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lune'**
+  String get avatarLune;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étoile'**
+  String get avatarEtoile;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arbre'**
+  String get avatarArbre;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bateau'**
+  String get avatarBateau;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chat'**
+  String get avatarChat;
+
+  /// Nom d'un avatar, lu par les lecteurs d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nuage'**
+  String get avatarNuage;
 }
 
 class _AppLocalizationsDelegate

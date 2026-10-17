@@ -30,4 +30,28 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get reglageLangueAide =>
       'Les exercices gardent la langue de leur matière.';
+
+  @override
+  String get avatarFleur => 'Fleur';
+
+  @override
+  String get avatarSoleil => 'Soleil';
+
+  @override
+  String get avatarLune => 'Lune';
+
+  @override
+  String get avatarEtoile => 'Étoile';
+
+  @override
+  String get avatarArbre => 'Arbre';
+
+  @override
+  String get avatarBateau => 'Bateau';
+
+  @override
+  String get avatarChat => 'Chat';
+
+  @override
+  String get avatarNuage => 'Nuage';
 }
