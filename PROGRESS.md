@@ -36,6 +36,8 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - [ ] `apps/apercu_web` : joue un exercice à partir d'un JSON (fichier ou postMessage) dans un cadre de téléphone, `flutter build web` vérifié
 - [ ] Yasmina en placeholder (3 humeurs : neutre, bravo, encouragement)
 - [ ] Build de test installé sur le téléphone de Lamjed (Android et iPhone)
+  - [x] iPhone : build iOS réussi, app installée le 17 oct. 2026
+  - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
 
 ## A1 : lot 1 des moteurs (2 nov. au 13 déc. 2026)
 Moteurs et types :
@@ -77,8 +79,10 @@ Retours familles, tour 1 (14 au 31 déc. 2026) :
 - [ ] D, juillet et août 2027 : contenu T1 des 26 combinaisons, publication sur les stores, campagne
 
 ## Blocages
-- **Build Android impossible pour l'instant : disque plein** (569 Mo libres). `flutter build apk --debug` échoue en installant le NDK 28.2 (« No space left on device »). Libérer au moins 5 Go (par exemple `~/Library/Developer/Xcode/DerivedData`, 13 Go, régénéré par Xcode), puis relancer `flutter build apk --debug` dans `apps/mobile`.
-- Risque à suivre : `flutter_tts` ne supporte pas encore Swift Package Manager sur iOS (CocoaPods utilisé). Flutter annonce que cela deviendra une erreur dans une version future.
+- Résolu le 17 oct. 2026 : build Android bloqué par le disque plein. Espace libéré, `flutter build apk --debug` réussi.
+- Risques à suivre sur `flutter_tts` (warnings au build, pas bloquants aujourd'hui) :
+  - iOS : pas encore de support Swift Package Manager (CocoaPods utilisé). Flutter annonce que cela deviendra une erreur dans une version future.
+  - Android : warning sur le Kotlin Gradle Plugin (KGP) appliqué par le plugin. Même risque : à surveiller à chaque montée de version de Flutter ou d'AGP, mettre à jour `flutter_tts` ou chercher une alternative si le warning devient une erreur.
 
 ## Journal
 | Date | Session | Fait | Suite |
@@ -86,3 +90,4 @@ Retours familles, tour 1 (14 au 31 déc. 2026) :
 | 17 oct. 2026 | Cadrage (mentor) | Plan mis à jour pour prioriser le prototype mobile, CLAUDE.md et PROGRESS.md créés. Règle : même moteur pour l'app et l'aperçu du back-office dès A0 | A0 : vérifier le poste, créer le dépôt et le projet Flutter |
 | 17 oct. 2026 | Mise en place (Lamjed) | Flutter 3.47.7 installé, licences Android acceptées, dépôt yasmina-app créé, CLAUDE.md et PROGRESS.md ajoutés | A0 : créer le projet Flutter et la structure avec Claude Code |
 | 17 oct. 2026 | A0 structure (Claude Code) | Pub workspace (moteur_exercices, apps/mobile `tn.forgia.yasmina`, apps/apercu_web), widget CarteDemo partagé avec tests arabe et français, dossiers schema et docs, `tool/verifier.sh` vert, build iOS debug OK. Dépendances ajoutées : flutter_riverpod 3.4.3, go_router 18.1.0, freezed 4.0.2, freezed_annotation 3.1.0, json_serializable 6.14.1, json_annotation 4.12.0, drift 2.35.2, drift_flutter 0.3.1, drift_dev 2.35.1, flutter_tts 4.2.5, flutter_localizations et intl 0.20.3, flutter_lints 6.0.0, build_runner épinglé en 2.16.2 (2.17.1 exige build 5, pas encore suivi par freezed, json_serializable, drift_dev). `.gitignore` remplacé (l'ancien ignorait pubspec.lock). Build Android bloqué par le disque plein | Libérer de l'espace et relancer le build Android, puis schéma edu-content/1.0 et validateur |
+| 17 oct. 2026 | Builds de test (Lamjed et Claude Code) | Espace disque libéré, build Android debug réussi (APK construit, pas encore installé), build iOS réussi et app installée sur l'iPhone de Lamjed. Warning KGP de `flutter_tts` côté Android ajouté aux risques. Xcode a mis à jour le format de `project.pbxproj` (objectVersion 60) | Installer l'APK sur un téléphone Android, puis schéma edu-content/1.0 et validateur |
