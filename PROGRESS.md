@@ -22,9 +22,10 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 
 ## A0 : mise en place (19 oct. au 1er nov. 2026)
 - [x] Dépôt GitHub privé créé
-- [ ] Structure `packages/moteur_exercices`, `apps/mobile`, `schema`, `docs`
+- [x] Structure `packages/moteur_exercices`, `apps/mobile`, `apps/apercu_web`, `schema`, `docs` (pub workspace, un seul `pubspec.lock`)
+- [x] Script de vérification unique `./tool/verifier.sh` (pub get, garde `dart:io` du moteur, formatage, analyze, tests des 3 membres, build web de l'aperçu)
 - [x] CLAUDE.md et PROGRESS.md à la racine
-- [ ] Projet Flutter créé (Android et iOS), dépendances de base (Riverpod, go_router, freezed, json_serializable, drift, flutter_tts, flutter_localizations)
+- [x] Projet Flutter créé (Android et iOS, `tn.forgia.yasmina`), dépendances de base (Riverpod, go_router, freezed, json_serializable, drift, flutter_tts, flutter_localizations)
 - [ ] Schéma edu-content/1.0 et validateur, test qui échoue sur un JSON invalide
 - [ ] JSON embarqués : un exemple par type (53) et le parcours d'arabe 1re de la démo
 - [ ] Langue de l'interface (appareil, sinon arabe), bascule arabe et français, `Directionality` par écran
@@ -76,10 +77,12 @@ Retours familles, tour 1 (14 au 31 déc. 2026) :
 - [ ] D, juillet et août 2027 : contenu T1 des 26 combinaisons, publication sur les stores, campagne
 
 ## Blocages
-Aucun pour l'instant.
+- **Build Android impossible pour l'instant : disque plein** (569 Mo libres). `flutter build apk --debug` échoue en installant le NDK 28.2 (« No space left on device »). Libérer au moins 5 Go (par exemple `~/Library/Developer/Xcode/DerivedData`, 13 Go, régénéré par Xcode), puis relancer `flutter build apk --debug` dans `apps/mobile`.
+- Risque à suivre : `flutter_tts` ne supporte pas encore Swift Package Manager sur iOS (CocoaPods utilisé). Flutter annonce que cela deviendra une erreur dans une version future.
 
 ## Journal
 | Date | Session | Fait | Suite |
 |---|---|---|---|
 | 17 oct. 2026 | Cadrage (mentor) | Plan mis à jour pour prioriser le prototype mobile, CLAUDE.md et PROGRESS.md créés. Règle : même moteur pour l'app et l'aperçu du back-office dès A0 | A0 : vérifier le poste, créer le dépôt et le projet Flutter |
 | 17 oct. 2026 | Mise en place (Lamjed) | Flutter 3.47.7 installé, licences Android acceptées, dépôt yasmina-app créé, CLAUDE.md et PROGRESS.md ajoutés | A0 : créer le projet Flutter et la structure avec Claude Code |
+| 17 oct. 2026 | A0 structure (Claude Code) | Pub workspace (moteur_exercices, apps/mobile `tn.forgia.yasmina`, apps/apercu_web), widget CarteDemo partagé avec tests arabe et français, dossiers schema et docs, `tool/verifier.sh` vert, build iOS debug OK. Dépendances ajoutées : flutter_riverpod 3.4.3, go_router 18.1.0, freezed 4.0.2, freezed_annotation 3.1.0, json_serializable 6.14.1, json_annotation 4.12.0, drift 2.35.2, drift_flutter 0.3.1, drift_dev 2.35.1, flutter_tts 4.2.5, flutter_localizations et intl 0.20.3, flutter_lints 6.0.0, build_runner épinglé en 2.16.2 (2.17.1 exige build 5, pas encore suivi par freezed, json_serializable, drift_dev). `.gitignore` remplacé (l'ancien ignorait pubspec.lock). Build Android bloqué par le disque plein | Libérer de l'espace et relancer le build Android, puis schéma edu-content/1.0 et validateur |
