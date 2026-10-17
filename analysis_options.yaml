@@ -5,3 +5,5 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/build/**"
+    # Maquettes HTML de référence, jamais du code de l'app.
+    - "docs/reference/**"

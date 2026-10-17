@@ -1,0 +1,1017 @@
+<title>Catalogue des types v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: header + expert summary, overview table, filters, then families of "app screens", one card per exercise type */
+:root{
+  --bg:#eef3f8;--surface:#ffffff;--screen:#f6fbff;--ink:#16243a;--muted:#5a6b82;--line:#d5dfeb;
+  --blue:#1f5fa8;--blue-soft:#e3eefb;--olive:#5b8a2f;--olive-soft:#e9f3df;--amber:#b7791f;--amber-soft:#fdf3df;
+  --coral:#c4472f;--coral-soft:#fbe8e3;--tile:#ffffff;--water:#cfe6f7;
+  --shadow:0 1px 2px rgba(22,36,58,.06),0 6px 18px rgba(22,36,58,.06);
+  --f-kid:"Baloo Bhaijaan 2","Rubik","Segoe UI",Tahoma,sans-serif;
+  --f-ui:"Rubik","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1622;--surface:#172131;--screen:#1b2739;--ink:#e8eef7;--muted:#9aabc2;--line:#2c3a50;--blue:#6ea6ec;--blue-soft:#1f3150;
+  --olive:#8fc25d;--olive-soft:#21321a;--amber:#e3ad5a;--amber-soft:#3a2d17;--coral:#f08a74;--coral-soft:#3d221d;--tile:#223047;--water:#1d3a55;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1622;--surface:#172131;--screen:#1b2739;--ink:#e8eef7;--muted:#9aabc2;--line:#2c3a50;--blue:#6ea6ec;--blue-soft:#1f3150;
+  --olive:#8fc25d;--olive-soft:#21321a;--amber:#e3ad5a;--amber-soft:#3a2d17;--coral:#f08a74;--coral-soft:#3d221d;--tile:#223047;--water:#1d3a55;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 56px}
+header.top{display:grid;gap:10px;max-width:780px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:600}
+h1{font-family:var(--f-kid);font-weight:800;font-size:clamp(30px,4.4vw,44px);line-height:1.05;margin:0;text-wrap:balance}
+h2.fam{font-family:var(--f-kid);font-size:26px;margin:34px 0 4px;text-wrap:balance}
+p.famdesc{margin:0 0 14px;color:var(--muted);max-width:70ch}
+.lead{color:var(--muted);margin:0;max-width:68ch}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:8px;font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.dot{width:10px;height:10px;border-radius:50%}
+.panel{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:12px}
+.panel h3{margin:0;font-size:15px}
+.counts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.count{font-size:13px;border-radius:999px;padding:4px 12px;border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.count.keep{background:var(--olive-soft)}.count.revise{background:var(--amber-soft)}.count.drop{background:var(--coral-soft)}
+.copyout{width:100%;min-height:120px;font:13px/1.4 var(--f-ui);border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);color:var(--ink)}
+details.overview{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+details.overview summary{cursor:pointer;font-weight:600}
+.tablewrap{overflow-x:auto;margin-top:10px}
+table.cat{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+table.cat th,table.cat td{text-align:start;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cat th{color:var(--muted);font-weight:500}
+table.cat td.num{font-variant-numeric:tabular-nums;font-weight:600}
+.filters{display:grid;gap:8px;margin-block:22px 4px}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.frow .lbl{font-size:12px;color:var(--muted);min-width:70px}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr));gap:20px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.meta{display:grid;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.meta .r1{display:flex;align-items:baseline;gap:8px}
+.tid{font-weight:600;font-size:13px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.tname{font-weight:600;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11.5px;border-radius:6px;padding:2px 8px;background:var(--blue-soft);color:var(--blue);font-weight:500}
+.tag.grey{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.tag.st-MVP{background:var(--olive-soft);color:var(--olive)}
+.tag.st-V2{background:var(--amber-soft);color:var(--amber)}
+.tag.st-Récompense{background:var(--coral-soft);color:var(--coral)}
+.tag.st-Plus{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.screen{background:var(--screen);padding:16px;display:grid;gap:14px;font-family:var(--f-kid);min-height:280px;align-content:start}
+.head{display:flex;align-items:flex-start;gap:10px}
+.prompt{font-size:20px;font-weight:700;line-height:1.35;flex:1;min-width:0}
+[dir="rtl"] .prompt{font-size:21px}
+.speak{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--blue);display:grid;place-items:center;cursor:pointer}
+.speak svg{width:20px;height:20px}
+.mascot{flex:none;width:50px;height:50px}
+.mascot svg{width:100%;height:100%;overflow:visible}
+.mascot .m-happy,.mascot .m-think{display:none}
+.mascot[data-mood="happy"] .m-idle,.mascot[data-mood="think"] .m-idle{display:none}
+.mascot[data-mood="happy"] .m-happy{display:inline}
+.mascot[data-mood="think"] .m-think{display:inline}
+.mascot[data-mood="happy"] svg{animation:hop .5s ease 2}
+.mascot[data-mood="think"] svg{transform:rotate(-8deg);transition:transform .2s}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.body{display:grid;gap:12px}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.opt{font:inherit;font-size:18px;font-weight:600;background:var(--tile);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:10px 8px;min-height:60px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.opt .pic{font-size:32px;line-height:1.1}
+.opt[aria-pressed="true"],.sel{border-color:var(--blue)!important;background:var(--blue-soft)!important}
+.good{border-color:var(--olive)!important;background:var(--olive-soft)!important}
+.bad{border-color:var(--coral)!important;background:var(--coral-soft)!important}
+.inline{line-height:2.4;font-size:21px;font-weight:600}
+.word-tok{font:inherit;border:2px solid transparent;background:transparent;color:var(--ink);border-radius:8px;padding:0 4px;cursor:pointer}
+.word-tok[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue)}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tilebtn{font:inherit;font-size:20px;font-weight:700;min-width:50px;min-height:50px;padding:6px 12px;border-radius:12px;border:2px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.tilebtn small{font-size:12px;font-weight:600}
+.tilebtn.big{font-size:34px;min-width:66px}
+.wordbtn{font-size:40px;border:none;background:none}
+.answer-row{min-height:64px;border:2px dashed var(--line);border-radius:14px;padding:6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.answer-row.okrow{border-color:var(--olive);border-style:solid}
+.answer-row.word{font-size:40px;font-weight:800}
+.ph{color:var(--muted);font-size:14px;font-family:var(--f-ui);font-weight:400}
+.pair-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair-cols .col{display:grid;gap:8px}
+.pair-cols .opt{min-height:54px;flex-direction:row;gap:8px}
+.pairmark{font-family:var(--f-ui);font-size:12px;border-radius:999px;width:20px;height:20px;display:inline-grid;place-items:center;color:#fff;visibility:hidden}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bin{border:2px dashed var(--line);border-radius:14px;padding:8px;min-height:110px;display:flex;flex-direction:column;gap:6px;cursor:pointer;text-align:center}
+.bintitle{font-weight:700;font-size:16px}
+.bincontent{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chipitem{font:inherit;font-size:15px;font-weight:600;border:2px solid var(--line);background:var(--tile);color:var(--ink);border-radius:12px;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.chipitem .pic{font-size:22px}
+.sentence{font-size:20px;font-weight:600;line-height:2}
+.gap{display:inline-block;min-width:80px;border-bottom:3px solid var(--blue);text-align:center;color:var(--blue);padding-inline:6px}
+.bigdisplay{font-size:40px;font-weight:800;text-align:center;direction:ltr;font-variant-numeric:tabular-nums}
+.numdisplay{font-size:36px;font-weight:800;text-align:center;border:2px solid var(--line);border-radius:14px;background:var(--tile);padding:2px;min-height:60px;font-variant-numeric:tabular-nums;direction:ltr}
+.keypad{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;direction:ltr}
+.keypad button{font:inherit;font-size:20px;font-weight:700;height:48px;border-radius:12px;border:2px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer}
+.textin{font:inherit;font-size:24px;font-weight:700;text-align:center;border:2px solid var(--line);border-radius:14px;background:var(--tile);color:var(--ink);padding:8px;width:100%}
+.genbadge{font-family:var(--f-ui);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.linkbtn{font:inherit;font-size:12px;color:var(--blue);background:none;border:none;padding:0;cursor:pointer;text-decoration:underline}
+svg.fig{direction:ltr;width:100%;max-width:100%;height:auto;color:var(--ink)}
+svg.fig.click{cursor:pointer;touch-action:manipulation}
+.coins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.coin{font:inherit;width:70px;height:70px;border-radius:50%;border:3px solid #a8892c;background:radial-gradient(circle at 35% 30%,#f7e7a6,#d8b64e);color:#3b2f0b;font-weight:800;font-size:13px;line-height:1.1;cursor:pointer;display:grid;place-items:center;text-align:center}
+.coin.silver{border-color:#8a96a6;background:radial-gradient(circle at 35% 30%,#f2f5f9,#b6c0cd);color:#222}
+.coin.small{width:52px;height:52px;font-size:11px}
+.blocks{display:flex;gap:6px;align-items:flex-end;justify-content:center;min-height:120px;flex-wrap:wrap;direction:ltr}
+.rod{width:16px;height:110px;background:repeating-linear-gradient(to bottom,var(--blue) 0 10px,#fff8 10px 11px);border-radius:3px;border:1px solid var(--blue)}
+.cube{width:16px;height:16px;background:var(--amber);border-radius:3px;border:1px solid var(--amber)}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;direction:ltr}
+.ctrls button{font:inherit;font-size:15px;font-weight:700;border-radius:12px;border:2px solid var(--line);background:var(--tile);color:var(--ink);padding:8px 12px;cursor:pointer}
+.tank{position:relative;height:150px;border-radius:14px;background:linear-gradient(to bottom,transparent 0 30%,var(--water) 30%);border:2px solid var(--line);overflow:hidden;direction:ltr}
+.tank .obj{position:absolute;top:8px;font-size:34px;transition:top 1s ease}
+.tank .obj.float{top:28px}.tank .obj.sink{top:104px}
+.rowq{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rowq .pic{font-size:30px}
+.rowq .nm{flex:1;font-size:18px;font-weight:700;min-width:80px}
+.seg{display:flex;gap:6px}
+.seg button{font:inherit;font-size:15px;font-weight:700;border-radius:10px;border:2px solid var(--line);background:var(--tile);color:var(--ink);padding:4px 10px;cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.flash{border:2px solid var(--line);border-radius:18px;background:var(--tile);min-height:150px;display:grid;place-items:center;font-size:60px;cursor:pointer;text-align:center}
+.flash .w{font-size:34px;font-weight:800}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mem button{font:inherit;aspect-ratio:1;border-radius:12px;border:2px solid var(--line);background:var(--blue);color:#fff;font-size:20px;font-weight:700;cursor:pointer;max-width:100%}
+.mem button.up{background:var(--tile);color:var(--ink);font-size:28px}
+.mem button.done{background:var(--olive-soft);color:var(--ink);border-color:var(--olive);font-size:28px}
+.ws{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;direction:ltr}
+.ws button{font:inherit;aspect-ratio:1;border-radius:8px;border:1px solid var(--line);background:var(--tile);color:var(--ink);font-size:18px;font-weight:800;cursor:pointer}
+.ws button.sel{background:var(--blue-soft);border-color:var(--blue)}
+.ws button.found{background:var(--olive-soft);border-color:var(--olive)}
+.wlist{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:16px;font-weight:700}
+.wlist span.found{text-decoration:line-through;color:var(--olive)}
+.gridsym{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;direction:ltr;max-width:320px;margin:0 auto;width:100%}
+.gridsym button{aspect-ratio:1;border:1px solid var(--line);background:var(--tile);cursor:pointer;padding:0}
+.gridsym button.on{background:var(--blue)}
+.gridsym button.fixed{background:var(--muted);cursor:default}
+.gridsym button.axis{box-shadow:inset -3px 0 0 var(--coral)}
+.trace-forms{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.trace-forms button{font:inherit;font-size:22px;font-weight:700;min-width:56px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer}
+.trace-forms button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.trace-forms small{display:block;font-size:10px;font-family:var(--f-ui);font-weight:400;color:var(--muted);line-height:1}
+canvas.trace{width:100%;max-width:100%;aspect-ratio:3/2;border-radius:14px;background:var(--tile);border:2px solid var(--line);touch-action:none;cursor:crosshair}
+.story{font-size:19px;font-weight:600;line-height:1.5}
+.story .scene{font-size:46px;text-align:center}
+.actions{display:flex;gap:10px;padding:12px 14px;border-top:1px solid var(--line);align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:15px;border-radius:12px;padding:9px 16px;border:none;cursor:pointer}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.stars{margin-inline-start:auto;font-size:18px;color:var(--amber);letter-spacing:2px;min-height:1em}
+.fb{margin:0 14px 12px;border-radius:12px;padding:10px 12px;font-size:14px;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--olive-soft);border-inline-start:4px solid var(--olive)}
+.fb.hint{background:var(--amber-soft);border-inline-start:4px solid var(--amber)}
+.fb.explain{background:var(--coral-soft);border-inline-start:4px solid var(--coral)}
+.fb b{display:block;margin-bottom:2px}
+.fb .ar{font-family:var(--f-kid);font-size:17px}
+.note{font-size:12px;color:var(--muted);padding:0 14px 12px;margin:0}
+.review{border-top:1px solid var(--line);padding:10px 14px 14px;display:grid;gap:8px;background:var(--bg)}
+.review .rh{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rv-btns{display:flex;gap:6px;flex-wrap:wrap}
+.rv-btns button{font:inherit;font-size:13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 12px;cursor:pointer}
+.rv-btns button[aria-pressed="true"][data-s="keep"]{background:var(--olive);border-color:var(--olive);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="revise"]{background:var(--amber);border-color:var(--amber);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="drop"]{background:var(--coral);border-color:var(--coral);color:#fff}
+.review textarea{font:13px/1.4 var(--f-ui);border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--surface);color:var(--ink);resize:vertical;min-height:38px;width:100%}
+.card.catonly .screen{min-height:0}
+.catdesc{font-family:var(--f-ui);font-size:14px;color:var(--ink)}
+.catdesc .why{color:var(--muted);font-size:13px;margin-top:6px;display:block}
+footer.foot{margin-top:36px;color:var(--muted);font-size:13px;max-width:72ch}
+button:focus-visible,.bin:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tag.p-mvp{background:var(--olive-soft);color:var(--olive)}
+.tag.p-v2{background:var(--amber-soft);color:var(--amber)}
+.tag.p-later{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.tag.p-merge{background:var(--blue-soft);color:var(--blue)}
+.tag.p-drop{background:var(--coral-soft);color:var(--coral)}
+.pnote{font-size:12px;color:var(--muted)}
+.rv-btns button.prop{border-style:dashed;border-color:var(--ink)}
+.rv-btns button[aria-pressed="true"][data-s="mvp"]{background:var(--olive);border-color:var(--olive);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="v2"]{background:var(--amber);border-color:var(--amber);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="later"]{background:var(--muted);border-color:var(--muted);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="merge"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.rv-btns button[aria-pressed="true"][data-s="drop"]{background:var(--coral);border-color:var(--coral);color:#fff}
+.count.mvp{background:var(--olive-soft)}.count.v2{background:var(--amber-soft)}.count.merge{background:var(--blue-soft)}.count.drop{background:var(--coral-soft)}
+.card.decided{border-color:var(--ink)}
+.strike .opt[aria-pressed="true"]{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--coral)}
+.readtext{font-size:17px;line-height:1.6;background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.partlbl{font-size:15px;font-weight:700;color:var(--muted)}
+.dd{position:relative;display:inline-block}
+.ddbtn{font:inherit;font-weight:700;color:var(--blue);background:var(--blue-soft);border:2px solid var(--blue);border-radius:10px;padding:0 10px;cursor:pointer}
+.ddmenu{position:absolute;top:110%;inset-inline-start:0;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);display:grid;min-width:140px}
+.ddmenu[hidden]{display:none}
+.ddmenu button{font:inherit;font-size:17px;text-align:start;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);padding:6px 12px;cursor:pointer}
+.scene2{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"on next" "table next" "under next";gap:6px;direction:ltr}
+.scene2 .zone{border:2px dashed var(--line);border-radius:12px;min-height:46px;display:grid;place-items:center;cursor:pointer;font-family:var(--f-ui);font-size:14px;color:var(--muted)}
+.z-on{grid-area:on}.z-under{grid-area:under}.z-next{grid-area:next}.tablepic{grid-area:table;text-align:center;font-size:22px}
+.swatch{width:46px;height:46px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 2px var(--line);cursor:pointer}
+.swatch.sel{box-shadow:0 0 0 3px var(--ink)}
+.colobj{font:inherit;border:2px solid var(--line);border-radius:14px;background:var(--tile);color:var(--ink);padding:6px 12px;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.colobj small{font-size:12px}
+.labelwrap{position:relative;direction:ltr}
+.lzone{position:absolute;transform:translate(-50%,-50%);font:inherit;font-size:14px;font-weight:700;min-width:64px;min-height:30px;border:2px dashed var(--blue);border-radius:10px;background:var(--surface);color:var(--blue);cursor:pointer;padding:0 6px}
+.lzone.filled{border-style:solid;color:var(--ink)}
+.colcalc{display:grid;gap:4px;justify-content:center;direction:ltr;font-size:34px;font-weight:800;font-variant-numeric:tabular-nums}
+.colcalc .r{display:grid;grid-template-columns:repeat(4,46px);text-align:center}
+.colcalc .res{border-top:3px solid var(--ink);padding-top:4px}
+.colcalc input{font:inherit;width:42px;text-align:center;border:2px solid var(--line);border-radius:10px;background:var(--tile);color:var(--ink)}
+.frac{display:grid;justify-content:center;gap:4px;direction:ltr}
+.frac input{font:inherit;font-size:28px;font-weight:800;width:80px;text-align:center;border:2px solid var(--line);border-radius:10px;background:var(--tile);color:var(--ink)}
+.frac hr{border:0;border-top:3px solid var(--ink);margin:0;width:80px}
+.tenframe{display:grid;grid-template-columns:repeat(5,52px);gap:4px;justify-content:center;direction:ltr}
+.tenframe button{height:52px;border:2px solid var(--line);border-radius:8px;background:var(--tile);cursor:pointer}
+.tenframe button.tok{background:radial-gradient(circle,var(--coral) 0 38%,var(--tile) 40%)}
+.tenframe.good button{border-color:var(--olive)}
+.cgrid{display:grid;grid-template-columns:repeat(5,44px);gap:3px;justify-content:center;direction:ltr}
+.cgrid span{height:44px;border:1px solid var(--line);border-radius:6px;background:var(--tile);display:grid;place-items:center;font-size:24px}
+.circuit{display:flex;align-items:center;justify-content:center;gap:4px;font-size:22px}
+.circuit .slot{border:2px dashed var(--line);border-radius:8px;min-width:44px;text-align:center}
+.circuit .bulb{filter:grayscale(1);opacity:.5}.circuit .bulb.lit{filter:none;opacity:1;text-shadow:0 0 14px #ffd54a}
+.selfcheck{display:grid;gap:6px;font-family:var(--f-ui);font-size:15px}
+.selfcheck input{width:18px;height:18px;vertical-align:-3px}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">App éducative · catalogue v3 · séance de décision</div>
+    <h1>63 types d’exercices à trancher</h1>
+    <p class="lead">Tous les types connus à ce jour : les 43 du catalogue initial et les 20 ajoutés par les deux recherches (T44 à T63). Chaque carte affiche la proposition v3 (bordure pointillée sur le bouton proposé) et se joue avec Yasmina. Pour chaque type, choisis : MVP, V2, Plus tard, Fusionner ou Écarter. Tes choix restent dans ce navigateur et se copient en un clic.</p>
+    <div class="legend" aria-label="Feedback en 3 temps">
+      <span><i class="dot" style="background:var(--olive)"></i>Bonne réponse : validation centrée sur la tâche</span>
+      <span><i class="dot" style="background:var(--amber)"></i>1re erreur : indice et nouvel essai</span>
+      <span><i class="dot" style="background:var(--coral)"></i>2e erreur : explication et bonne réponse</span>
+    </div>
+  </header>
+
+  <section class="panel" aria-label="Mes décisions">
+    <h3>Mes décisions</h3>
+    <div class="counts" id="counts"></div>
+    <div class="frow">
+      <button class="btn primary" id="applyBtn" type="button">Appliquer la proposition v3 aux types sans décision</button>
+      <button class="btn primary" id="copyBtn" type="button">Copier mes décisions</button>
+      <button class="btn ghost" id="clearBtn" type="button">Effacer toutes les décisions</button>
+      <span class="ph" id="copyMsg" aria-live="polite"></span>
+    </div>
+    <textarea class="copyout" id="copyOut" readonly hidden></textarea>
+  </section>
+
+  <details class="overview">
+    <summary>Vue tableau des 63 types</summary>
+    <div class="tablewrap"><table class="cat" id="catTable"><thead><tr><th>N°</th><th>Type</th><th>Famille</th><th>Exemple</th><th>Proposition v3</th><th>Ma décision</th></tr></thead><tbody></tbody></table></div>
+  </details>
+
+  <nav class="filters" aria-label="Filtres">
+    <div class="frow" id="fSubject"><span class="lbl">Matière</span>
+      <button class="chip" data-f="all" aria-pressed="true">Toutes</button>
+      <button class="chip" data-f="ar" aria-pressed="false">Arabe</button>
+      <button class="chip" data-f="fr" aria-pressed="false">Français</button>
+      <button class="chip" data-f="en" aria-pressed="false">Anglais</button>
+      <button class="chip" data-f="math" aria-pressed="false">Maths</button>
+      <button class="chip" data-f="sci" aria-pressed="false">Éveil scientifique</button>
+      <button class="chip" data-f="all-sub" aria-pressed="false">Toutes matières</button>
+    </div>
+    <div class="frow" id="fStatus"><span class="lbl">Proposition</span>
+      <button class="chip" data-f="all" aria-pressed="true">Toutes</button>
+      <button class="chip" data-f="mvp" aria-pressed="false">MVP</button>
+      <button class="chip" data-f="v2" aria-pressed="false">V2</button>
+      <button class="chip" data-f="later" aria-pressed="false">Plus tard</button>
+      <button class="chip" data-f="merge" aria-pressed="false">Fusionné</button>
+      <button class="chip" data-f="drop" aria-pressed="false">Archivé</button>
+    </div>
+    <div class="frow" id="fDec"><span class="lbl">Décision</span>
+      <button class="chip" data-f="all" aria-pressed="true">Toutes</button>
+      <button class="chip" data-f="none" aria-pressed="false">Sans décision</button>
+      <button class="chip" data-f="diff" aria-pressed="false">Différente de la proposition</button>
+    </div>
+  </nav>
+
+  <main id="main"></main>
+
+  <footer class="foot">
+    Proposition v3 : consolidation des deux rapports de recherche (17 octobre 2026). Fusionné = même moteur qu’un autre type, l’identifiant reste comme variante. Archivé = retiré du catalogue actif. Audio : synthèse vocale du navigateur, l’arabe n’est pas disponible partout. Images : emoji provisoires. Contenus d’exemple non relus par un enseignant. Dans l’app : vrai glisser-déposer avec toucher-toucher en secours.
+  </footer>
+</div>
+
+<template id="mascot-tpl">
+  <svg viewBox="0 0 200 200" aria-hidden="true">
+    <ellipse cx="62" cy="182" rx="30" ry="12" fill="#4F9A5A" transform="rotate(-25 62 182)"/><ellipse cx="140" cy="182" rx="30" ry="12" fill="#4F9A5A" transform="rotate(25 140 182)"/>
+    <ellipse cx="100" cy="52" rx="28" ry="40" fill="#FFFFFF" stroke="#E2DACB" stroke-width="3" transform="rotate(0 100 104)"/><ellipse cx="100" cy="52" rx="28" ry="40" fill="#FFFFFF" stroke="#E2DACB" stroke-width="3" transform="rotate(72 100 104)"/><ellipse cx="100" cy="52" rx="28" ry="40" fill="#FFFFFF" stroke="#E2DACB" stroke-width="3" transform="rotate(144 100 104)"/><ellipse cx="100" cy="52" rx="28" ry="40" fill="#FFFFFF" stroke="#E2DACB" stroke-width="3" transform="rotate(216 100 104)"/><ellipse cx="100" cy="52" rx="28" ry="40" fill="#FFFFFF" stroke="#E2DACB" stroke-width="3" transform="rotate(288 100 104)"/>
+    <circle cx="100" cy="104" r="36" fill="#FFD978"/>
+    <circle cx="87" cy="98" r="6.5" fill="#22252B"/><circle cx="113" cy="98" r="6.5" fill="#22252B"/><circle cx="89" cy="95" r="2.4" fill="#fff"/><circle cx="115" cy="95" r="2.4" fill="#fff"/>
+    <ellipse cx="75" cy="110" rx="6" ry="4" fill="#F48FA0" opacity=".6"/><ellipse cx="125" cy="110" rx="6" ry="4" fill="#F48FA0" opacity=".6"/>
+    <path class="m-idle" d="M90 116Q100 125 110 116" stroke="#22252B" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path class="m-happy" d="M88 114Q100 134 112 114Z" fill="#7A2430"/>
+    <path class="m-think" d="M93 120Q100 125 107 120" stroke="#22252B" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </svg>
+</template>
+<script>
+(function(){
+const SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const SUBJ={ar:'Arabe',fr:'Français',en:'Anglais',math:'Maths',sci:'Éveil scientifique','all-sub':'Toutes matières'};
+const FAMILIES=[
+  {k:'A',t:'Choisir et reconnaître',d:'L’enfant identifie la bonne réponse parmi des propositions. Formats rapides, idéaux pour la découverte d’une notion.'},
+  {k:'B',t:'Associer et classer',d:'L’enfant met en relation ou range des éléments. Le glisser ou toucher-placer reflète mieux la compétence que le simple toucher chez les 6-8 ans.'},
+  {k:'C',t:'Ordonner et construire',d:'L’enfant produit une réponse en assemblant des éléments : phrase, séquence, mot.'},
+  {k:'D',t:'Spécifique à l’arabe',d:'Formes des lettres, harakat, tracé et lecture. Contenu relu à 100 % par un enseignant.'},
+  {k:'E',t:'Mathématiques visuelles',d:'Nombres tirés et réponses calculées par le code. Le LLM ne rédige que l’habillage.'},
+  {k:'F',t:'Éveil et récits',d:'Prédire, expérimenter, choisir dans une petite histoire.'},
+  {k:'G',t:'Révision et récompense',d:'Formats de pause ou de révision. La recherche ne les classe pas parmi les formats de pratique principaux.'},
+  {k:'H',t:'Décrits, non démontrés',d:'Types du catalogue à faire valider avant tout prototype.'}
+];
+const ALL=[];
+const main=document.getElementById('main');
+const famGrids={};
+FAMILIES.forEach(f=>{const h=el('h2',{class:'fam',id:'fam-'+f.k},f.k+'. '+f.t);const p=el('p',{class:'famdesc'},f.d);const g=el('div',{class:'grid'});main.append(h,p,g);famGrids[f.k]={h,p,g}});
+
+function el(tag,attrs,html){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='class')e.className=attrs[k];else e.setAttribute(k,attrs[k])}if(html!==undefined)e.innerHTML=html;return e}
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const SVGNS='http://www.w3.org/2000/svg';
+function svg(w,h,inner,cls){const s=document.createElementNS(SVGNS,'svg');s.setAttribute('viewBox','0 0 '+w+' '+h);s.setAttribute('class','fig'+(cls?' '+cls:''));s.innerHTML=inner;return s}
+function speak(text,lang){try{const s=window.speechSynthesis;if(!s)return;s.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=.9;const v=s.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith(lang.slice(0,2)));if(v)u.voice=v;s.speak(u)}catch(e){}}
+
+
+const PROP={};
+[['mvp','T01 T02 T03 T04 T06 T07 T09 T11 T13 T15 T16 T17 T18 T19 T20 T22 T23 T24 T25 T27 T44 T45 T46 T47 T48 T51 T55 T58'],
+ ['v2','T08 T26 T28 T29 T30 T31 T32 T33 T36 T49 T50 T52 T53 T54 T56 T57 T59 T63'],
+ ['later','T21 T35 T37 T40 T43 T60 T61 T62'],['merge','T05 T12 T14 T34 T39'],['drop','T10 T38 T41 T42']].forEach(([s,l])=>l.split(' ').forEach(id=>PROP[id]={s}));
+const PNOTE={T01:'Inclut l’option plusieurs réponses (ex T05)',T05:'Fusionné dans T01 (option de QCM)',T06:'Inclut plusieurs trous (ex T39)',T07:'Étendu au marquage grammatical',T08:'Moteur « scène image » commun avec T47, T53, T54',
+ T10:'Archivé : une seule langue par exercice',T11:'Inclut le tableau de tri (ex T12)',T12:'Fusionné dans T11',T13:'Inclut séquence d’images (ex T14) et blocs de phrase',T14:'Fusionné dans T13',
+ T17:'Étiquettes avec audio au MVP (1re-3e), clavier en V2',T19:'Surtout 1re-3e',T20:'MVP en entraînement non noté',T21:'Remplacée par T58 au MVP',T22:'Nombres et réponse calculés par le code',T25:'Sens de lecture à valider avec les manuels',
+ T34:'Fusionné dans T57 (simulateur générique)',T36:'Mode de révision espacée, hors score',T37:'Révision optionnelle, hors score',T38:'Archivé : faible valeur didactique',T39:'Fusionné dans T06',T40:'5e-6e, révision',
+ T41:'Archivé : aucune compétence scolaire',T42:'Archivé : la ludification reste dans la progression',T44:'Coût faible, conjugaison et accords',T45:'Consigne tunisienne typique',T46:'Critère officiel « justification »',T48:'À confirmer sur les manuels de maths',
+ T51:'Cœur de la numération en 1re',T55:'Sons difficiles pour les arabophones',T58:'MVP allégé, sans score',T63:'Apport du second rapport'};
+const PL={mvp:'MVP',v2:'V2',later:'Plus tard',merge:'Fusionné',drop:'Archivé'};
+const DL={mvp:'MVP',v2:'V2',later:'Plus tard',merge:'Fusionner',drop:'Écarter'};
+let REV={};try{REV=JSON.parse(localStorage.getItem('cat-v3-decisions')||'{}')||{}}catch(e){REV={}}
+function saveRev(){try{localStorage.setItem('cat-v3-decisions',JSON.stringify(REV))}catch(e){}updateCounts()}
+function updateCounts(){const c={mvp:0,v2:0,later:0,merge:0,drop:0};Object.keys(REV).forEach(k=>{const r=REV[k];if(r&&c[r.s]!==undefined)c[r.s]++});const n=ALL.length;const none=n-Object.values(c).reduce((a,b)=>a+b,0);
+  document.getElementById('counts').innerHTML=Object.keys(c).map(k=>'<span class="count '+k+'">'+DL[k]+' : '+c[k]+'</span>').join('')+'<span class="count">Sans décision : '+none+' sur '+n+'</span>';
+  document.querySelectorAll('.card').forEach(el2=>{const id=el2.id.slice(5);el2.classList.toggle('decided',!!(REV[id]&&REV[id].s))});
+  const tb=document.querySelector('#catTable tbody');if(tb)tb.querySelectorAll('tr').forEach(tr=>{const id=tr.dataset.id;tr.lastChild.textContent=REV[id]&&REV[id].s?DL[REV[id].s]:'–'})}
+function reviewPanel(meta){
+  const r=el('div',{class:'review'});r.append(el('div',{class:'rh'},'Ma décision'));
+  const bt=el('div',{class:'rv-btns'});const cur=REV[meta.id]||{};const pr=(PROP[meta.id]||{}).s;
+  Object.keys(DL).forEach(s=>{const b=el('button',{type:'button','data-s':s,class:s===pr?'prop':'','aria-pressed':cur.s===s?'true':'false',title:s===pr?'Proposition v3':''},DL[s]);b.onclick=()=>{const o=REV[meta.id]||{};o.s=o.s===s?undefined:s;REV[meta.id]=o;bt.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.s===o.s?'true':'false'));saveRev();applyF()};bt.append(b)});
+  const ta=el('textarea',{id:'note-'+meta.id,placeholder:'Remarque (variante, niveau, matière…)','aria-label':'Remarque pour '+meta.id});ta.value=cur.note||'';ta.oninput=()=>{const o=REV[meta.id]||{};o.note=ta.value;REV[meta.id]=o;saveRev()};
+  r.append(bt,ta);return r;
+}
+function metaBlock(m){
+  const d=el('div',{class:'meta'});const r1=el('div',{class:'r1'});r1.append(el('span',{class:'tid'},m.id),el('span',{class:'tname'},m.name));
+  const tags=el('div',{class:'tags'});const p=(PROP[m.id]||{s:'later'}).s;
+  tags.append(el('span',{class:'tag p-'+p},'Proposition v3 : '+PL[p]),el('span',{class:'tag'},SUBJ[m.subject]),el('span',{class:'tag grey'},m.grade),el('span',{class:'tag grey'},'Production : '+m.gen));
+  if(+m.id.slice(1)>=44)tags.append(el('span',{class:'tag grey'},'Nouveau'));
+  d.append(r1,tags);if(PNOTE[m.id])d.append(el('div',{class:'pnote'},PNOTE[m.id]));return d;
+}
+
+/* Card with the 3-step feedback logic */
+function card(cfg){
+  ALL.push(cfg);
+  const c=el('article',{class:'card','data-subject':cfg.subject,'data-status':cfg.status,id:'card-'+cfg.id});
+  const scr=el('div',{class:'screen',dir:cfg.dir||'ltr',lang:cfg.lang});
+  const head=el('div',{class:'head'});const masc=el('div',{class:'mascot','data-mood':'idle'});masc.append(document.getElementById('mascot-tpl').content.cloneNode(true));
+  const pr=el('div',{class:'prompt'},cfg.prompt);head.append(masc,pr);
+  if(cfg.say){const b=el('button',{class:'speak','aria-label':'Écouter la consigne',type:'button'},SPK);b.onclick=()=>speak(typeof cfg.say==='function'?cfg.say():cfg.say,cfg.voice||'fr-FR');head.append(b)}
+  const body=el('div',{class:'body'});scr.append(head,body);
+  const act=el('div',{class:'actions'});const check=el('button',{class:'btn primary',type:'button'},'Vérifier');const reset=el('button',{class:'btn ghost',type:'button'},'Recommencer');const stars=el('span',{class:'stars','aria-live':'polite'});
+  if(!cfg.free)act.append(check);act.append(reset,stars);
+  const fb=el('div',{class:'fb','aria-live':'polite'});
+  c.append(metaBlock(cfg),scr,act,fb);
+  if(cfg.note)c.append(el('p',{class:'note'},cfg.note));
+  c.append(reviewPanel(cfg));
+  famGrids[cfg.fam].g.append(c);
+  let tries=0,done=false;
+  const isAr=cfg.lang==='ar';
+  function setFb(kind,title,text){fb.className='fb show '+kind;fb.innerHTML='<b>'+title+'</b><span class="'+(isAr?'ar':'')+'" dir="'+(cfg.dir||'ltr')+'">'+(text||'')+'</span>'}
+  const okTitle=isAr?'أَحْسَنْتَ !':(cfg.lang==='en'?'Well done!':'Bravo !');
+  const ctx={pr,speak,win:(t)=>{masc.dataset.mood='happy';stars.textContent='★★★';setFb('ok',okTitle,t||cfg.okText||'')},
+    say:(kind,t)=>{masc.dataset.mood=kind==='ok'?'happy':'think';setFb(kind,kind==='hint'?'Indice':(kind==='explain'?'Explication':okTitle),t)}};
+  const ex=cfg.build(body,ctx);
+  const val=v=>typeof v==='function'?v():v;
+  check.onclick=()=>{
+    if(done){doReset();return}
+    const r=ex.check();
+    if(r===null){setFb('hint',isAr?'إِجابَةٌ ناقِصَةٌ':'Il manque une réponse',isAr?'أَكْمِلِ الإِجابَةَ أَوَّلًا.':(cfg.lang==='en'?'Finish your answer first.':'Termine ta réponse d’abord.'));return}
+    if(r){masc.dataset.mood='happy';stars.textContent=tries===0?'★★★':'★★☆';setFb('ok',okTitle,val(cfg.okText)||'');done=true;check.textContent='Continuer';ex.lock&&ex.lock(true);ex.after&&ex.after(true);return}
+    tries++;masc.dataset.mood='think';
+    if(tries===1){setFb('hint','Indice',val(cfg.hint));ex.wrong&&ex.wrong()}
+    else{setFb('explain','Explication',val(cfg.explain));ex.reveal&&ex.reveal();stars.textContent='★☆☆';done=true;check.textContent='Continuer';ex.lock&&ex.lock(true)}
+  };
+  function doReset(){tries=0;done=false;masc.dataset.mood='idle';stars.textContent='';fb.className='fb';check.textContent='Vérifier';ex.reset();ex.lock&&ex.lock(false)}
+  reset.onclick=doReset;
+}
+function catOnly(cfg){
+  ALL.push(cfg);
+  const c=el('article',{class:'card catonly','data-subject':cfg.subject,'data-status':cfg.status,id:'card-'+cfg.id});
+  const scr=el('div',{class:'screen'});scr.append(el('div',{class:'catdesc'},cfg.desc+'<span class="why">'+cfg.why+'</span>'));
+  c.append(metaBlock(cfg),scr,reviewPanel(cfg));famGrids[cfg.fam].g.append(c);
+}
+
+/* ===== Engines ===== */
+function single(body,options,answer,render,cls){
+  const box=el('div',{class:cls||'opts'});let sel=null,btns=[],locked=false;
+  function draw(){box.innerHTML='';btns=[];sel=null;shuffle(options).forEach(o=>{const b=el('button',{class:'opt',type:'button','aria-pressed':'false'},render(o));b.dataset.v=o.v;b.onclick=()=>{if(locked)return;btns.forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');sel=o.v;api.onpick&&api.onpick(o.v)};btns.push(b);box.append(b)})}
+  draw();body.append(box);
+  const api={check:()=>sel===null?null:sel===(typeof answer==='function'?answer():answer),
+    wrong:()=>btns.forEach(b=>b.classList.toggle('bad',b.dataset.v===sel)),
+    reveal:()=>{const a=typeof answer==='function'?answer():answer;btns.forEach(b=>{b.classList.remove('bad');if(b.dataset.v===a)b.classList.add('good')});api.onpick&&api.onpick(a)},
+    reset:()=>draw(),lock:on=>locked=on};
+  return api;
+}
+function multi(body,options,answers,render,inline){
+  const box=el('div',{class:inline?'inline':'opts'});let sel=new Set(),btns=[],locked=false;
+  function draw(){box.innerHTML='';btns=[];sel=new Set();(inline?options:shuffle(options)).forEach(o=>{const b=el('button',{class:inline?'word-tok':'opt',type:'button','aria-pressed':'false'},render(o));b.dataset.v=o.v;b.onclick=()=>{if(locked)return;if(sel.has(o.v)){sel.delete(o.v);b.setAttribute('aria-pressed','false')}else{sel.add(o.v);b.setAttribute('aria-pressed','true')}};btns.push(b);box.append(b);if(inline)box.append(document.createTextNode(' '))})}
+  draw();body.append(box);
+  return{check:()=>sel.size===0?null:(sel.size===answers.length&&answers.every(a=>sel.has(a))),
+    wrong:()=>btns.forEach(b=>b.classList.toggle('bad',sel.has(b.dataset.v)&&!answers.includes(b.dataset.v))),
+    reveal:()=>btns.forEach(b=>{b.classList.remove('bad');if(answers.includes(b.dataset.v))b.classList.add('good')}),
+    reset:()=>draw(),lock:on=>locked=on};
+}
+function pairs(body,words,leftHtml,rightHtml){
+  const colors=['var(--blue)','var(--olive)','var(--amber)','var(--coral)','#7b5ea7'];
+  const wrap=el('div',{class:'pair-cols'});const L=el('div',{class:'col'}),R=el('div',{class:'col'});wrap.append(L,R);body.append(wrap);
+  let P={},pick=null,locked=false;const lb={},rb={};
+  function paint(){words.forEach(w=>{lb[w.v].querySelector('.pairmark').style.visibility='hidden';rb[w.v].querySelector('.pairmark').style.visibility='hidden';lb[w.v].classList.toggle('sel',pick===w.v)});
+    Object.keys(P).forEach((k,i)=>{const col=colors[i%5];[lb[k].querySelector('.pairmark'),rb[P[k]].querySelector('.pairmark')].forEach(m=>{m.style.visibility='visible';m.style.background=col;m.textContent=i+1})})}
+  function draw(){L.innerHTML='';R.innerHTML='';P={};pick=null;
+    shuffle(words).forEach(w=>{const x=el('button',{class:'opt',type:'button'},'<span class="pairmark"></span>'+leftHtml(w));x.onclick=()=>{if(locked)return;if(P[w.v])delete P[w.v];else pick=w.v;paint()};lb[w.v]=x;L.append(x)});
+    shuffle(words).forEach(w=>{const x=el('button',{class:'opt',type:'button'},'<span class="pairmark"></span>'+rightHtml(w));x.onclick=()=>{if(locked)return;const owner=Object.keys(P).find(k=>P[k]===w.v);if(owner){delete P[owner];paint();return}if(!pick)return;P[pick]=w.v;pick=null;paint()};rb[w.v]=x;R.append(x)});paint()}
+  draw();
+  return{check:()=>Object.keys(P).length<words.length?null:Object.keys(P).every(k=>P[k]===k),
+    wrong:()=>Object.keys(P).forEach(k=>lb[k].classList.toggle('bad',P[k]!==k)),
+    reveal:()=>{P={};words.forEach(w=>{P[w.v]=w.v;lb[w.v].classList.remove('bad');lb[w.v].classList.add('good');rb[w.v].classList.add('good')});paint()},
+    reset:draw,lock:on=>locked=on};
+}
+function bins(body,binsDef,items,itemHtml){
+  const pool=el('div',{class:'tiles'});const bw=el('div',{class:'bins'});body.append(pool,bw);
+  const B={};binsDef.forEach(d=>{const bn=el('div',{class:'bin',role:'button',tabindex:'0'});bn.append(el('div',{class:'bintitle'},d.t),el('div',{class:'bincontent'}));B[d.k]=bn;bw.append(bn)});
+  let place={},sel=null,locked=false;const btn={};
+  function render(){pool.innerHTML='';Object.values(B).forEach(bn=>bn.lastChild.innerHTML='');items.forEach(it=>{const x=btn[it.v];x.classList.toggle('sel',sel===it.v);(place[it.v]?B[place[it.v]].lastChild:pool).append(x)})}
+  function draw(){place={};sel=null;shuffle(items).forEach(it=>{const x=el('button',{class:'chipitem',type:'button'},itemHtml(it));x.onclick=e=>{e.stopPropagation();if(locked)return;if(place[it.v]){delete place[it.v];sel=null}else sel=sel===it.v?null:it.v;render()};btn[it.v]=x});render()}
+  Object.keys(B).forEach(k=>{const bn=B[k];const go=()=>{if(locked||!sel)return;place[sel]=k;sel=null;render()};bn.onclick=go;bn.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+  draw();
+  return{check:()=>Object.keys(place).length<items.length?null:items.every(it=>place[it.v]===it.c),
+    wrong:()=>items.forEach(it=>btn[it.v].classList.toggle('bad',place[it.v]!==it.c)),
+    reveal:()=>{items.forEach(it=>{place[it.v]=it.c;btn[it.v].classList.remove('bad');btn[it.v].classList.add('good')});render()},
+    reset:draw,lock:on=>locked=on};
+}
+function order(body,items,target,o){
+  o=o||{};const ans=el('div',{class:'answer-row'+(o.word?' word':'')});const pool=el('div',{class:'tiles'});body.append(ans,pool);
+  let seq=[],locked=false,mix=shuffle(items);const cls='tilebtn'+(o.big?' big':'');
+  function render(){ans.innerHTML='';pool.innerHTML='';
+    if(!seq.length)ans.append(el('span',{class:'ph'},o.ph||'…'));
+    else if(o.word){const w=el('button',{class:'tilebtn wordbtn',type:'button','aria-label':'Retirer le dernier élément'},seq.map(s=>s.t).join(o.join||''));w.onclick=()=>{if(locked)return;seq.pop();render()};ans.append(w)}
+    else seq.forEach((s,i)=>{const x=el('button',{class:cls,type:'button'},s.h||s.t);x.onclick=()=>{if(locked)return;seq.splice(i,1);render()};ans.append(x)});
+    mix.filter(m=>!seq.includes(m)).forEach(m=>{const x=el('button',{class:cls,type:'button'},m.h||m.t);x.onclick=()=>{if(locked)return;seq.push(m);render()};pool.append(x)})}
+  render();
+  return{check:()=>seq.length<target.length?null:seq.map(s=>s.v).join('|')===target.join('|'),
+    reveal:()=>{seq=target.map(v=>mix.find(m=>m.v===v));render();ans.classList.add('okrow')},
+    reset:()=>{seq=[];mix=shuffle(items);ans.classList.remove('okrow');render()},lock:on=>locked=on};
+}
+function keypad(body,answerFn,maxLen){
+  const disp=el('div',{class:'numdisplay'},'');const kp=el('div',{class:'keypad'});let v='',locked=false;
+  [1,2,3,4,5,6,7,8,9,0].forEach(n=>{const k=el('button',{type:'button'},String(n));k.onclick=()=>{if(locked||v.length>=(maxLen||3))return;v+=n;disp.textContent=v};kp.append(k)});
+  const del=el('button',{type:'button','aria-label':'Effacer'},'⌫');del.onclick=()=>{if(locked)return;v=v.slice(0,-1);disp.textContent=v};kp.append(del);
+  body.append(disp,kp);
+  return{check:()=>v===''?null:Number(v)===answerFn(),reveal:()=>{v=String(answerFn());disp.textContent=v;disp.classList.add('good')},
+    reset:()=>{v='';disp.textContent='';disp.classList.remove('good')},lock:on=>locked=on};
+}
+
+/* ===== A. Choisir et reconnaître ===== */
+card({id:'T01',name:'QCM',fam:'A',subject:'sci',grade:'4e année',age:'6-12',gen:'LLM',status:'MVP',spec:'G01',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Quel animal est un mammifère ?',
+  prompt:'أَيُّ هٰذِهِ الحَيَواناتِ مِنَ الثَّدْيِيّاتِ؟',say:'أَيُّ هٰذِهِ الحَيَواناتِ مِنَ الثَّدْيِيّاتِ؟',
+  hint:'الثَّدْيِيّاتُ تُرْضِعُ صِغارَها.',explain:'الدُّلْفينُ يَعيشُ في الماءِ، لٰكِنَّهُ يَتَنَفَّسُ الهَواءَ وَيُرْضِعُ صِغارَهُ.',okText:'الدُّلْفينُ يُرْضِعُ صِغارَهُ.',
+  build:b=>single(b,[{v:'d',p:'🐬',t:'الدُّلْفينُ'},{v:'f',p:'🐟',t:'السَّمَكَةُ'},{v:'p',p:'🐔',t:'الدَّجاجَةُ'},{v:'g',p:'🐸',t:'الضِّفْدَعُ'}],'d',o=>'<span class="pic">'+o.p+'</span>'+o.t)});
+
+card({id:'T02',name:'Vrai ou faux',fam:'A',subject:'en',grade:'6e année',age:'6-12',gen:'LLM',status:'MVP',spec:'G01',lang:'en',voice:'en-GB',ex:'The Sun is a star.',
+  prompt:'True or false? The Sun is a star.',say:'True or false? The Sun is a star.',
+  hint:'Stars make their own light and heat.',explain:'True. The Sun is the closest star to Earth.',okText:'The Sun is the closest star to Earth.',
+  build:b=>single(b,[{v:'t',p:'✅',t:'True'},{v:'f',p:'❌',t:'False'}],'t',o=>'<span class="pic">'+o.p+'</span>'+o.t)});
+
+card({id:'T03',name:'Écoute et choisis',fam:'A',subject:'en',grade:'4e année',age:'6-9',gen:'LLM + voix',status:'MVP',spec:'G02',lang:'en',voice:'en-GB',ex:'Entendre « banana », toucher l’image',
+  prompt:'Listen and tap the right picture.',say:'Banana',hint:'Listen again. It is a long yellow fruit.',explain:'Banana = 🍌',okText:'Banana!',
+  note:'Touche le haut-parleur pour entendre le mot.',
+  build:b=>single(b,[{v:'apple',p:'🍎'},{v:'banana',p:'🍌'},{v:'grapes',p:'🍇'},{v:'orange',p:'🍊'}],'banana',o=>'<span class="pic" style="font-size:44px">'+o.p+'</span>')});
+
+card({id:'T04',name:'Trouve l’intrus',fam:'A',subject:'en',grade:'5e année',age:'6-12',gen:'LLM',status:'V2',spec:'G01',lang:'en',voice:'en-GB',ex:'Which one is not a fruit?',
+  prompt:'Which one is not a fruit?',say:'Which one is not a fruit?',hint:'Three of them grow on trees or plants as fruits. One is a vegetable.',explain:'The carrot is a vegetable. Apple, banana and grapes are fruits.',okText:'A carrot is a vegetable.',
+  build:b=>single(b,[{v:'apple',p:'🍎',t:'apple'},{v:'banana',p:'🍌',t:'banana'},{v:'carrot',p:'🥕',t:'carrot'},{v:'grapes',p:'🍇',t:'grapes'}],'carrot',o=>'<span class="pic">'+o.p+'</span>'+o.t)});
+
+card({id:'T05',name:'Choix multiple (plusieurs réponses)',fam:'A',subject:'fr',grade:'4e année',age:'8-12',gen:'LLM',status:'V2',lang:'fr',voice:'fr-FR',ex:'Touche tous les verbes',
+  prompt:'Touche tous les verbes.',say:'Touche tous les verbes.',hint:'Un verbe dit ce que l’on fait. Essaie de dire « je … ».',explain:'Les verbes sont : manger, courir, lire. « Table », « rouge » et « chaise » ne sont pas des verbes.',okText:'manger, courir, lire',
+  build:b=>multi(b,[{v:'manger'},{v:'table'},{v:'courir'},{v:'rouge'},{v:'lire'},{v:'chaise'}],['manger','courir','lire'],o=>o.v)});
+
+card({id:'T06',name:'Texte à trous (étiquettes)',fam:'A',subject:'fr',grade:'4e année',age:'8-12',gen:'LLM',status:'MVP',spec:'G07',lang:'fr',voice:'fr-FR',ex:'Le chat … du lait',
+  prompt:'Choisis le bon mot pour compléter la phrase.',say:'Choisis le bon mot pour compléter la phrase.',
+  hint:'Le sujet est « le chat ». C’est comme « il ».',explain:'Avec il, elle ou le chat, le verbe boire s’écrit « boit ».',okText:'Le chat boit du lait tous les matins.',
+  build:b=>{const s=el('div',{class:'sentence'},'Le chat <span class="gap">?</span> du lait tous les matins.');b.append(s);const gap=s.querySelector('.gap');
+    const api=single(b,[{v:'boit'},{v:'bois'},{v:'boivent'},{v:'boire'}],'boit',o=>o.v);api.onpick=v=>gap.textContent=v;const r=api.reset;api.reset=()=>{gap.textContent='?';r()};return api}});
+
+card({id:'T07',name:'Hot text : touche les mots',fam:'A',subject:'fr',grade:'5e année',age:'9-12',gen:'LLM',status:'V2',lang:'fr',voice:'fr-FR',ex:'Touche le groupe sujet',
+  prompt:'Touche tous les mots du groupe sujet.',say:'Touche tous les mots du groupe sujet.',
+  hint:'Pose la question « Qui est-ce qui dort ? »',explain:'« Le petit chat » est le groupe sujet : c’est lui qui dort.',okText:'Le petit chat',
+  build:b=>multi(b,[{v:'w1',t:'Le'},{v:'w2',t:'petit'},{v:'w3',t:'chat'},{v:'w4',t:'dort'},{v:'w5',t:'sur'},{v:'w6',t:'le'},{v:'w7',t:'tapis.'}],['w1','w2','w3'],o=>o.t,true)});
+
+card({id:'T08',name:'Hot spot sur une image',fam:'A',subject:'sci',grade:'3e année',age:'6-12',gen:'Main + LLM',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Touche les racines de la plante',
+  prompt:'أَيْنَ الجُذورُ؟ اِلْمَسِ الصّورَةَ.',say:'أَيْنَ الجُذورُ؟',hint:'الجُذورُ تَكونُ تَحْتَ التُّرابِ.',explain:'الجُذورُ تَحْتَ التُّرابِ، تَمْتَصُّ الماءَ مِنَ الأَرْضِ.',okText:'الجُذورُ تَمْتَصُّ الماءَ.',
+  build:b=>{
+    const s=svg(300,230,
+      '<rect x="0" y="150" width="300" height="80" fill="#a77b4f" opacity=".55"/>'+
+      '<g data-v="roots" style="cursor:pointer"><rect x="100" y="150" width="100" height="70" fill="transparent"/><path d="M150 150 L150 205 M150 165 L125 195 M150 165 L175 195 M150 185 L132 215 M150 185 L168 215" stroke="#6b4a2b" stroke-width="5" stroke-linecap="round" fill="none"/></g>'+
+      '<g data-v="stem" style="cursor:pointer"><rect x="138" y="70" width="24" height="80" fill="transparent"/><rect x="146" y="70" width="8" height="80" fill="#4f8a2f"/></g>'+
+      '<g data-v="leaf" style="cursor:pointer"><ellipse cx="190" cy="110" rx="34" ry="14" fill="#6fb23f" transform="rotate(-25 190 110)"/><ellipse cx="110" cy="120" rx="30" ry="12" fill="#6fb23f" transform="rotate(25 110 120)"/></g>'+
+      '<g data-v="flower" style="cursor:pointer"><circle cx="150" cy="50" r="30" fill="transparent"/><circle cx="150" cy="30" r="13" fill="#f2a7c3"/><circle cx="170" cy="48" r="13" fill="#f2a7c3"/><circle cx="130" cy="48" r="13" fill="#f2a7c3"/><circle cx="150" cy="66" r="13" fill="#f2a7c3"/><circle cx="150" cy="48" r="10" fill="#f5c542"/></g>'+
+      '<circle id="hsmark" r="16" fill="none" stroke-width="4" style="display:none"/>','click');
+    s.setAttribute('role','img');s.setAttribute('aria-label','Plante avec fleur, tige, feuilles et racines');b.append(s);
+    const mk=s.querySelector('#hsmark');const C={roots:[150,190],stem:[150,100],leaf:[190,110],flower:[150,48]};let sel=null,locked=false;
+    const mark=(v,col)=>{sel=v;mk.style.display='';mk.setAttribute('cx',C[v][0]);mk.setAttribute('cy',C[v][1]);mk.setAttribute('stroke',col||'var(--blue)')};
+    s.querySelectorAll('g[data-v]').forEach(g=>g.addEventListener('click',()=>{if(!locked)mark(g.dataset.v)}));
+    return{check:()=>sel===null?null:sel==='roots',wrong:()=>mark(sel,'var(--coral)'),reveal:()=>mark('roots','var(--olive)'),reset:()=>{sel=null;mk.style.display='none'},lock:on=>locked=on};
+  }});
+
+/* ===== B. Associer et classer ===== */
+card({id:'T09',name:'Association (paires)',fam:'B',subject:'fr',grade:'3e année',age:'6-12',gen:'LLM',status:'MVP',spec:'G03',lang:'fr',voice:'fr-FR',ex:'Relier mot et image',
+  prompt:'Relie chaque mot à son image.',say:'Relie chaque mot à son image.',hint:'Lis chaque mot à voix haute, puis cherche l’objet.',explain:'chat = 🐱, maison = 🏠, soleil = ☀️, livre = 📖',okText:'Tous les mots sont bien reliés.',
+  note:'Touche un mot, puis son image. Touche une paire pour la défaire.',
+  build:b=>pairs(b,[{v:'chat',p:'🐱'},{v:'maison',p:'🏠'},{v:'soleil',p:'☀️'},{v:'livre',p:'📖'}],w=>w.v,w=>'<span class="pic">'+w.p+'</span>')});
+
+card({id:'T10',name:'Association bilingue',fam:'B',subject:'all-sub',grade:'4e année',age:'8-12',gen:'LLM',status:'MVP',spec:'G03',lang:'fr',voice:'fr-FR',ex:'Relier mots arabes et français',
+  prompt:'Relie chaque mot arabe à sa traduction en français.',say:'Relie chaque mot arabe à sa traduction en français.',hint:'Cherche d’abord les mots que tu connais bien.',explain:'مَدْرَسَةٌ = école, كِتابٌ = livre, بَيْتٌ = maison, شَمْسٌ = soleil',okText:'Bravo, tu passes d’une langue à l’autre.',
+  note:'Arabe à droite de gauche et français dans le même écran : exigence clé pour le choix du framework.',
+  build:b=>pairs(b,[{v:'ecole',a:'مَدْرَسَةٌ',f:'école'},{v:'livre',a:'كِتابٌ',f:'livre'},{v:'maison',a:'بَيْتٌ',f:'maison'},{v:'soleil',a:'شَمْسٌ',f:'soleil'}],w=>'<span dir="rtl" lang="ar">'+w.a+'</span>',w=>w.f)});
+
+card({id:'T11',name:'Tri en catégories',fam:'B',subject:'sci',grade:'2e année',age:'6-12',gen:'LLM',status:'MVP',spec:'G04',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Animaux de l’eau ou de la terre',
+  prompt:'صَنِّفِ الحَيَواناتِ حَسَبَ مَكانِ عَيْشِها.',say:'صَنِّفِ الحَيَواناتِ حَسَبَ مَكانِ عَيْشِها.',hint:'هَلْ يَسْتَطيعُ الحَيَوانُ أَنْ يَعيشَ خارِجَ الماءِ؟',explain:'في الماءِ: السَّمَكَةُ، الأُخْطُبوطُ، الدُّلْفينُ. عَلى اليابِسَةِ: الجَمَلُ، الأَرْنَبُ، الفيلُ.',okText:'كُلُّ الحَيَواناتِ في مَكانِها.',
+  note:'Touche un animal, puis la bonne case. Dans l’app : glisser-déposer.',
+  build:b=>bins(b,[{k:'w',t:'🌊 في الماءِ'},{k:'l',t:'🌳 عَلى اليابِسَةِ'}],[{v:'fish',p:'🐟',t:'السَّمَكَةُ',c:'w'},{v:'camel',p:'🐪',t:'الجَمَلُ',c:'l'},{v:'octo',p:'🐙',t:'الأُخْطُبوطُ',c:'w'},{v:'rabbit',p:'🐇',t:'الأَرْنَبُ',c:'l'},{v:'dolphin',p:'🐬',t:'الدُّلْفينُ',c:'w'},{v:'eleph',p:'🐘',t:'الفيلُ',c:'l'}],it=>'<span class="pic">'+it.p+'</span>'+it.t)});
+
+card({id:'T12',name:'Tableau de tri (règle de langue)',fam:'B',subject:'ar',grade:'3e année',age:'8-12',gen:'LLM',status:'MVP',spec:'G04',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Lam solaire ou lunaire',
+  prompt:'صَنِّفِ الكَلِماتِ: اللّامُ الشَّمْسِيَّةُ أَمِ اللّامُ القَمَرِيَّةُ؟',say:'صَنِّفِ الكَلِماتِ: اللّامُ الشَّمْسِيَّةُ أَمِ اللّامُ القَمَرِيَّةُ؟',
+  hint:'اللّامُ الشَّمْسِيَّةُ لا تُنْطَقُ، وَبَعْدَها حَرْفٌ عَلَيْهِ شَدَّةٌ.',explain:'شَمْسِيَّةٌ: الشَّمْسُ، النَّهْرُ، السَّمَكَةُ. قَمَرِيَّةٌ: القَمَرُ، البابُ، الكِتابُ.',okText:'أَحْسَنْتَ التَّصْنيفَ.',
+  build:b=>bins(b,[{k:'s',t:'☀️ لامٌ شَمْسِيَّةٌ'},{k:'q',t:'🌙 لامٌ قَمَرِيَّةٌ'}],[{v:'1',t:'الشَّمْسُ',c:'s'},{v:'2',t:'القَمَرُ',c:'q'},{v:'3',t:'النَّهْرُ',c:'s'},{v:'4',t:'البابُ',c:'q'},{v:'5',t:'السَّمَكَةُ',c:'s'},{v:'6',t:'الكِتابُ',c:'q'}],it=>it.t)});
+
+/* ===== C. Ordonner et construire ===== */
+card({id:'T13',name:'Remise en ordre (phrase)',fam:'C',subject:'en',grade:'5e année',age:'7-12',gen:'LLM',status:'MVP',spec:'G05',lang:'en',voice:'en-GB',ex:'I go to school every day',
+  prompt:'Put the words in the right order.',say:'Put the words in the right order.',hint:'An English sentence starts with the subject. Here it is “I”.',explain:'I go to school every day.',okText:'I go to school every day.',
+  build:b=>order(b,['I','go','to','school','every day'].map(t=>({v:t,t})),['I','go','to','school','every day'],{ph:'Tap the words in order'})});
+
+card({id:'T14',name:'Séquence d’images',fam:'C',subject:'sci',grade:'2e année',age:'6-12',gen:'LLM + images',status:'MVP',spec:'G05',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Les étapes de la croissance d’une plante',
+  prompt:'رَتِّبْ مَراحِلَ نُمُوِّ النَّبْتَةِ.',say:'رَتِّبْ مَراحِلَ نُمُوِّ النَّبْتَةِ.',hint:'كُلُّ نَبْتَةٍ تَبْدَأُ بِبِذْرَةٍ.',explain:'بِذْرَةٌ، ثُمَّ بُرْعُمٌ، ثُمَّ نَبْتَةٌ، ثُمَّ زَهْرَةٌ.',okText:'هٰكَذا تَنْمو النَّبْتَةُ.',
+  build:b=>order(b,[{v:'1',h:'🌰<small>بِذْرَةٌ</small>'},{v:'2',h:'🌱<small>بُرْعُمٌ</small>'},{v:'3',h:'🌿<small>نَبْتَةٌ</small>'},{v:'4',h:'🌻<small>زَهْرَةٌ</small>'}],['1','2','3','4'],{big:true,ph:'المَراحِلُ بِالتَّرْتيبِ'})});
+
+card({id:'T15',name:'Construire un mot (lettres)',fam:'C',subject:'ar',grade:'1re année',age:'6-8',gen:'LLM + relecture',status:'MVP',spec:'G06',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Écrire قلم avec des lettres',
+  prompt:'✏️ اِسْمَعْ وَرَكِّبِ الكَلِمَةَ.',say:'قَلَمٌ',hint:'الكَلِمَةُ تَبْدَأُ بِحَرْفِ القافِ.',explain:'قَلَمٌ = ق + ل + م',okText:'قَلَمٌ',
+  note:'Les lettres se lient automatiquement comme à l’écrit. Touche le mot pour retirer la dernière lettre.',
+  build:b=>order(b,['ق','ل','م','ب','ن'].map(t=>({v:t,t})),['ق','ل','م'],{word:true,ph:'المَسِ الحُروفَ'})});
+
+card({id:'T16',name:'Construire un mot (syllabes)',fam:'C',subject:'fr',grade:'2e année',age:'6-8',gen:'LLM',status:'MVP',spec:'G06',lang:'fr',voice:'fr-FR',ex:'pa + pil + lon',
+  prompt:'🦋 Écoute et construis le mot avec les syllabes.',say:'papillon',hint:'Le mot commence par « pa ».',explain:'pa + pil + lon = papillon',okText:'papillon',
+  build:b=>order(b,['pa','pil','lon','ra','mi'].map(t=>({v:t,t})),['pa','pil','lon'],{word:true,ph:'Touche les syllabes'})});
+
+card({id:'T17',name:'Dictée au clavier',fam:'C',subject:'fr',grade:'4e année',age:'8-12',gen:'LLM + voix',status:'V2',spec:'G06 (dictée par tuiles)',lang:'fr',voice:'fr-FR',ex:'Écrire « école » entendu',
+  prompt:'Écoute le mot et écris-le.',say:'école',hint:'N’oublie pas l’accent sur la première lettre.',explain:'On écrit « école », avec un accent aigu sur le é.',okText:'école',
+  note:'Pour les 6-8 ans, la dictée se fait avec des tuiles (T15, T16).',
+  build:b=>{const i=el('input',{class:'textin',id:'dictee-T17',type:'text',autocomplete:'off',autocapitalize:'off',spellcheck:'false','aria-label':'Ta réponse'});b.append(i);let locked=false;
+    const norm=s=>s.trim().toLowerCase();
+    return{check:()=>i.value.trim()===''?null:norm(i.value)==='école',reveal:()=>{i.value='école';i.classList.add('good')},reset:()=>{i.value='';i.classList.remove('good')},lock:on=>{locked=on;i.readOnly=on}}}});
+
+/* ===== D. Arabe ===== */
+card({id:'T18',name:'Forme de la lettre',fam:'D',subject:'ar',grade:'1re année',age:'6-8',gen:'LLM',status:'MVP',spec:'G01',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Forme de ع au milieu d’un mot',
+  prompt:'اِخْتَرْ شَكْلَ حَرْفِ العَيْنِ في وَسَطِ كَلِمَةِ «سَعيدٌ».',say:'اِخْتَرْ شَكْلَ حَرْفِ العَيْنِ في وَسَطِ كَلِمَةِ سَعيدٌ',hint:'في وَسَطِ الكَلِمَةِ، الحَرْفُ يَتَّصِلُ مِنَ الجِهَتَيْنِ.',explain:'في الوَسَطِ نَكْتُبُ: ـعـ ، مِثْلَ: سَعيدٌ.',okText:'سَـعـيدٌ',
+  build:b=>single(b,[{v:'1',t:'ع'},{v:'2',t:'عـ'},{v:'3',t:'ـعـ'},{v:'4',t:'ـع'}],'3',o=>'<span style="font-size:36px">'+o.t+'</span>')});
+
+card({id:'T19',name:'Choisir la haraka',fam:'D',subject:'ar',grade:'2e année',age:'7-10',gen:'LLM + relecture 100 %',status:'MVP',spec:'G01',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Haraka sur le ت de كَتَبَ',
+  prompt:'اِخْتَرِ الحَرَكَةَ المُناسِبَةَ لِحَرْفِ التّاءِ.',say:'كَتَبَ',hint:'اِسْمَعِ الكَلِمَةَ: «كَتَبَ».',explain:'نَقولُ «كَتَبَ»: عَلى التّاءِ فَتْحَةٌ.',okText:'كَتَبَ',
+  build:b=>{const w=el('div',{class:'bigdisplay',dir:'rtl',lang:'ar'});b.append(w);const show=h=>{w.innerHTML='كَ<span style="color:var(--blue)">ت'+(h||'')+'</span>بَ'};show('');
+    const H={fat:'َ',dam:'ُ',kas:'ِ',suk:'ْ'};const N={fat:'فَتْحَةٌ',dam:'ضَمَّةٌ',kas:'كَسْرَةٌ',suk:'سُكونٌ'};
+    const api=single(b,['fat','dam','kas','suk'].map(v=>({v})),'fat',o=>'<span style="font-size:30px">◌'+H[o.v]+'</span><small style="font-size:13px">'+N[o.v]+'</small>');api.onpick=v=>show(H[v]);const r=api.reset;api.reset=()=>{show('');r()};return api}});
+
+card({id:'T20',name:'Tracé de lettre',fam:'D',subject:'ar',grade:'1re année',age:'6-8',gen:'Main (chemins de tracé)',status:'MVP',spec:'G11',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Tracer ب dans ses 4 formes',
+  prompt:'اُرْسُمْ حَرْفَ الباءِ.',say:'باء',hint:'اُرْسُمْ فَوْقَ الحَرْفِ الرَّمادِيِّ وَلا تَنْسَ النُّقْطَةَ.',explain:'الباءُ: خَطٌّ مُنْحَنٍ وَنُقْطَةٌ واحِدَةٌ تَحْتَهُ.',okText:'خَطٌّ جَميلٌ !',
+  note:'Prototype : le tracé est jugé sur sa couverture de la lettre. Dans l’app : ordre et sens des traits faits main.',
+  build:b=>{
+    const forms=[{g:'ب',n:'مُنْفَصِلَةٌ'},{g:'بـ',n:'في البِدايَةِ'},{g:'ـبـ',n:'في الوَسَطِ'},{g:'ـب',n:'في النِّهايَةِ'}];
+    const fbar=el('div',{class:'trace-forms'});const cv=el('canvas',{class:'trace',width:'600',height:'400','aria-label':'Zone de tracé'});b.append(fbar,cv);
+    const ctx=cv.getContext('2d');let cur=forms[0],ink=null,drawing=false,last=null,locked=false;
+    const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim()||'#888';
+    const FONT='800 260px "Baloo Bhaijaan 2", Tahoma, sans-serif';
+    function mask(w){const m=document.createElement('canvas');m.width=600;m.height=400;const c=m.getContext('2d');c.font=FONT;c.textAlign='center';c.textBaseline='middle';if(w){c.lineWidth=w;c.lineJoin='round';c.strokeStyle='#000';c.strokeText(cur.g,300,190)}c.fillStyle='#000';c.fillText(cur.g,300,190);return c.getImageData(0,0,600,400).data}
+    function redraw(col){ctx.clearRect(0,0,600,400);ctx.font=FONT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=col||css('--line');ctx.fillText(cur.g,300,190);if(ink)ctx.drawImage(ink,0,0)}
+    function newInk(){ink=document.createElement('canvas');ink.width=600;ink.height=400}
+    forms.forEach((f,i)=>{const x=el('button',{type:'button','aria-pressed':i?'false':'true'},f.g+'<small>'+f.n+'</small>');x.onclick=()=>{if(locked)return;fbar.querySelectorAll('button').forEach(y=>y.setAttribute('aria-pressed','false'));x.setAttribute('aria-pressed','true');cur=f;newInk();redraw()};fbar.append(x)});
+    const pos=e=>{const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*600,y:(e.clientY-r.top)/r.height*400}};
+    function dot(p){const c=ink.getContext('2d');c.fillStyle=css('--blue');c.beginPath();c.arc(p.x,p.y,13,0,7);c.fill();redraw()}
+    cv.addEventListener('pointerdown',e=>{if(locked)return;drawing=true;try{cv.setPointerCapture(e.pointerId)}catch(_){}last=pos(e);dot(last)});
+    cv.addEventListener('pointermove',e=>{if(!drawing)return;const p=pos(e);const c=ink.getContext('2d');c.strokeStyle=css('--blue');c.lineWidth=26;c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(last.x,last.y);c.lineTo(p.x,p.y);c.stroke();last=p;redraw()});
+    const stop=()=>{drawing=false};cv.addEventListener('pointerup',stop);cv.addEventListener('pointercancel',stop);
+    newInk();(document.fonts&&document.fonts.load?document.fonts.load('800 60px "Baloo Bhaijaan 2"','ب'):Promise.resolve()).then(()=>redraw(),()=>redraw());
+    return{check:()=>{const d=ink.getContext('2d').getImageData(0,0,600,400).data;let inked=0;for(let i=3;i<d.length;i+=16)if(d[i]>0)inked++;if(inked<40)return null;
+        const g=mask(0),tol=mask(34);let gp=0,cov=0,spill=0;for(let i=3;i<d.length;i+=16){const ig=g[i]>0,it=tol[i]>0,ik=d[i]>0;if(ig){gp++;if(ik)cov++}if(ik&&!it)spill++}
+        return gp>0&&cov/gp>.55&&spill/inked<.35},
+      reveal:()=>{newInk();redraw(css('--olive'))},reset:()=>{newInk();redraw()},lock:on=>locked=on};
+  }});
+
+card({id:'T21',name:'Lecture à voix haute',fam:'D',subject:'ar',grade:'2e année',age:'6-12',gen:'LLM + reconnaissance vocale',status:'Plus tard',dir:'rtl',lang:'ar',voice:'ar-SA',free:true,ex:'Lire une phrase, auto-évaluation',
+  prompt:'اِسْتَمِعْ ثُمَّ اقْرَأْ بِصَوْتٍ عالٍ.',say:'ذَهَبَ سامي إِلى المَدْرَسَةِ',
+  note:'La reconnaissance vocale de l’enfant arabophone n’est pas encore fiable : ici, auto-évaluation comme chez Lalilo. Le micro n’est pas disponible dans ce prototype.',
+  build:(b,ctx)=>{const s=el('div',{class:'bigdisplay',style:'font-size:30px;direction:rtl'},'ذَهَبَ سامي إِلى المَدْرَسَةِ');const c=el('div',{class:'ctrls'});
+    const ok=el('button',{type:'button'},'قَرَأْتُ جَيِّدًا 👍');const again=el('button',{type:'button'},'أُعيدُ المُحاوَلَةَ 🔁');
+    ok.onclick=()=>ctx.win('سَأُخْبِرُ والِدَيْكَ أَنَّكَ قَرَأْتَ الجُمْلَةَ.');again.onclick=()=>{speak('ذَهَبَ سامي إِلى المَدْرَسَةِ','ar-SA');ctx.say('hint','اِسْتَمِعْ مَرَّةً أُخْرى ثُمَّ اقْرَأْ بِبُطْءٍ.')};
+    c.append(ok,again);b.append(s,c);return{reset:()=>{}}}});
+
+/* ===== E. Maths ===== */
+(function(){let a,bb;const gen=()=>{a=rnd(5,9)*10+rnd(0,4);bb=rnd(1,Math.floor(a/10)-2)*10+rnd(5,9)};gen();
+  const ph=()=>'مَعَ سامي <bdi>'+a+'</bdi> دينارًا. اِشْتَرى كِتابًا بِـ <bdi>'+bb+'</bdi> دينارًا. كَمْ بَقِيَ مَعَهُ؟';
+  card({id:'T22',name:'Saisie numérique (problème)',fam:'E',subject:'math',grade:'3e année',age:'6-12',gen:'Hybride (code + LLM)',status:'MVP',spec:'G08',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Problème de soustraction en dinars',
+    prompt:ph(),say:()=>'مَعَ سامي '+a+' دينارًا. اِشْتَرى كِتابًا بِـ '+bb+' دينارًا. كَمْ بَقِيَ مَعَهُ؟',
+    hint:()=>'اِطْرَحْ: <bdi>'+a+' − '+bb+'</bdi>',explain:()=>'<bdi>'+a+' − '+bb+' = '+(a-bb)+'</bdi>',okText:()=>'<bdi>'+a+' − '+bb+' = '+(a-bb)+'</bdi>',
+    note:'Nombres tirés et réponse calculée par le code, nouvelle variante à chaque partie.',
+    build:(b,ctx)=>{const k=keypad(b,()=>a-bb,3);const r=k.reset;k.reset=()=>{gen();ctx.pr.innerHTML=ph();r()};return k}});
+})();
+
+(function(){let x,y;const gen=()=>{x=rnd(10,99);y=Math.random()<.2?x:rnd(10,99)};gen();
+  card({id:'T23',name:'Comparer (<, =, >)',fam:'E',subject:'math',grade:'1re année',age:'6-10',gen:'Code',status:'MVP',spec:'G08',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Comparer deux nombres',
+    prompt:'قارِنْ بَيْنَ العَدَدَيْنِ.',say:'قارِنْ بَيْنَ العَدَدَيْنِ',hint:'قارِنْ أَوَّلًا رَقْمَ العَشَراتِ.',explain:()=>'<bdi>'+x+' '+(x<y?'<':x>y?'>':'=')+' '+y+'</bdi>',okText:()=>'<bdi>'+x+' '+(x<y?'<':x>y?'>':'=')+' '+y+'</bdi>',
+    note:'À valider par l’expert : sens d’écriture des symboles dans les manuels tunisiens.',
+    build:b=>{const d=el('div',{class:'bigdisplay'});b.append(d);const show=s=>{d.innerHTML=x+' <span style="color:var(--blue)">'+(s||'?')+'</span> '+y};show();
+      const api=single(b,[{v:'<'},{v:'='},{v:'>'}],()=>x<y?'<':x>y?'>':'=',o=>'<span style="font-size:34px">'+o.v+'</span>','opts three');api.onpick=v=>show(v);const r=api.reset;api.reset=()=>{gen();show();r()};return api}});
+})();
+
+card({id:'T24',name:'Suites et motifs',fam:'E',subject:'math',grade:'1re année',age:'6-10',gen:'Code',status:'MVP',spec:'G01',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Compléter une suite de formes',
+  prompt:'ما الشَّكْلُ الَّذي يَأْتي بَعْدُ؟',say:'ما الشَّكْلُ الَّذي يَأْتي بَعْدُ؟',hint:'اُنْظُرْ: الأَشْكالُ تَتَكَرَّرُ.',explain:'المِثْلَثُ ثُمَّ الدّائِرَةُ ثُمَّ المُرَبَّعُ، وَنُعيدُ.',okText:'🔺',
+  build:b=>{b.append(el('div',{class:'bigdisplay',style:'font-size:32px;letter-spacing:4px'},'🔺🔵🟩🔺🔵🟩 ❓'));return single(b,[{v:'t',p:'🔺'},{v:'c',p:'🔵'},{v:'s',p:'🟩'}],'t',o=>'<span class="pic">'+o.p+'</span>','opts three')}});
+
+(function(){let target=rnd(2,9);
+  card({id:'T25',name:'Droite numérique',fam:'E',subject:'math',grade:'1re année',age:'6-12',gen:'Code',status:'MVP',spec:'G09',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Placer un nombre sur la droite',
+    prompt:'ضَعِ العَدَدَ <bdi class="tg">'+target+'</bdi> عَلى المُسْتَقيمِ.',say:()=>'ضَعِ العَدَدَ '+target+' عَلى المُسْتَقيمِ',hint:'عُدَّ الخُطُواتِ اِنْطِلاقًا مِنَ الصِّفْرِ.',explain:()=>'العَدَدُ <bdi>'+target+'</bdi> يَبْعُدُ <bdi>'+target+'</bdi> خُطُواتٍ عَنِ الصِّفْرِ.',
+    build:(b,ctx)=>{const W=340,x0=20,x1=320,st=(x1-x0)/10;let t='<line x1="'+x0+'" y1="50" x2="'+x1+'" y2="50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>';
+      for(let i=0;i<=10;i++){const x=x0+i*st;t+='<line x1="'+x+'" y1="'+(i%5?42:38)+'" x2="'+x+'" y2="'+(i%5?58:62)+'" stroke="currentColor" stroke-width="2"/>';if(i%5===0)t+='<text x="'+x+'" y="82" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">'+i+'</text>'}
+      t+='<g class="mk" style="display:none"><circle r="11" cy="50"/><path d="M0 20 L0 36" stroke-width="3"/></g>';
+      const s=svg(W,96,t,'click');s.setAttribute('role','img');s.setAttribute('aria-label','Droite graduée de 0 à 10');b.append(s);const mk=s.querySelector('.mk');let v=null,locked=false;
+      const put=(n,c)=>{v=n;mk.style.display='';mk.setAttribute('transform','translate('+(x0+n*st)+',0)');mk.querySelector('circle').setAttribute('fill',c||'var(--blue)');mk.querySelector('path').setAttribute('stroke',c||'var(--blue)')};
+      s.addEventListener('pointerdown',e=>{if(locked)return;const r=s.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*W;put(Math.max(0,Math.min(10,Math.round((x-x0)/st))))});
+      return{check:()=>v===null?null:v===target,reveal:()=>put(target,'var(--olive)'),reset:()=>{v=null;mk.style.display='none';target=rnd(2,9);ctx.pr.querySelector('.tg').textContent=target},lock:on=>locked=on}}});
+})();
+
+card({id:'T26',name:'Manipulatifs : monnaie',fam:'E',subject:'math',grade:'3e année',age:'6-12',gen:'Code',status:'MVP',spec:'G10',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Former 2 dinars et 700 millimes',
+  prompt:'كَوِّنْ مَبْلَغَ <bdi>2</bdi> دينار وَ <bdi>700</bdi> مَليمٍ.',say:'كَوِّنْ مَبْلَغَ دينارَيْنِ وَسَبْعِمِئَةِ مَليمٍ',hint:'اِبْدَأْ بِالدَّنانيرِ. 1 دينار = 1000 مَليمٍ.',explain:'دينار + دينار + 500 مَليمٍ + 200 مَليمٍ.',okText:'2 دينار وَ 700 مَليمٍ',
+  note:'Touche une pièce pour l’ajouter, touche-la dans le porte-monnaie pour la retirer.',
+  build:b=>{const T=[{v:1000,l:'1<br>دينار',k:'coin'},{v:500,l:'500<br>مليم',k:'coin silver'},{v:200,l:'200<br>مليم',k:'coin silver small'},{v:100,l:'100<br>مليم',k:'coin small'}];
+    const bank=el('div',{class:'coins'});const tray=el('div',{class:'answer-row'});const tot=el('div',{class:'genbadge',dir:'ltr'});b.append(tray,bank,tot);let inT=[],locked=false;
+    T.forEach(t=>{const c=el('button',{class:t.k,type:'button'},t.l);c.onclick=()=>{if(locked)return;inT.push(t);render()};bank.append(c)});
+    function render(){tray.innerHTML='';tot.textContent='';if(!inT.length)tray.append(el('span',{class:'ph'},'Porte-monnaie'));inT.forEach((t,i)=>{const c=el('button',{class:t.k,type:'button'},t.l);c.onclick=()=>{if(locked)return;inT.splice(i,1);render()};tray.append(c)})}
+    render();const sum=()=>inT.reduce((s,t)=>s+t.v,0);const show=()=>{const s=sum();tot.textContent='Total : '+Math.floor(s/1000)+' dinar(s) et '+(s%1000)+' millimes'};
+    return{check:()=>{if(!inT.length)return null;show();return sum()===2700},reveal:()=>{inT=[T[0],T[0],T[1],T[2]];render();show()},reset:()=>{inT=[];render()},lock:on=>locked=on}}});
+
+(function(){let target=rnd(12,59);
+  card({id:'T27',name:'Manipulatifs : blocs base 10',fam:'E',subject:'math',grade:'2e année',age:'6-9',gen:'Code',status:'MVP',spec:'G10',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Représenter 34 en dizaines et unités',
+    prompt:'مَثِّلِ العَدَدَ <bdi class="tg">'+target+'</bdi> بِالعَشَراتِ وَالوَحَداتِ.',say:()=>'مَثِّلِ العَدَدَ '+target,hint:()=>'<bdi>'+target+'</bdi> = '+Math.floor(target/10)+' عَشَراتٍ وَ '+(target%10)+' وَحَداتٍ.',explain:()=>'<bdi>'+target+' = '+Math.floor(target/10)+' × 10 + '+(target%10)+'</bdi>',
+    build:(b,ctx)=>{const area=el('div',{class:'blocks','aria-live':'polite'});const c=el('div',{class:'ctrls'});let t=0,u=0,locked=false;
+      const mk=(l,f)=>{const x=el('button',{type:'button'},l);x.onclick=()=>{if(!locked){f();render()}};c.append(x)};
+      mk('+ عَشَرَةٌ',()=>{if(t<9)t++});mk('− عَشَرَةٌ',()=>{if(t>0)t--});mk('+ وَحْدَةٌ',()=>{if(u<9)u++});mk('− وَحْدَةٌ',()=>{if(u>0)u--});
+      function render(){area.innerHTML='';for(let i=0;i<t;i++)area.append(el('div',{class:'rod',title:'10'}));const cubes=el('div',{style:'display:grid;grid-template-columns:repeat(3,16px);gap:3px'});for(let i=0;i<u;i++)cubes.append(el('div',{class:'cube'}));area.append(cubes);if(!t&&!u)area.append(el('span',{class:'ph'},'Ajoute des barres et des cubes'))}
+      render();b.append(area,c);
+      return{check:()=>t+u===0?null:t*10+u===target,reveal:()=>{t=Math.floor(target/10);u=target%10;render()},reset:()=>{t=0;u=0;target=rnd(12,59);ctx.pr.querySelector('.tg').textContent=target;render()},lock:on=>locked=on}}});
+})();
+
+(function(){const SET=[[3,0],[6,30],[9,0],[1,30],[4,30],[11,0]];let tg=SET[rnd(0,5)];
+  const lbl=t=>t[0]+':'+(t[1]?'30':'00');
+  card({id:'T28',name:'Horloge',fam:'E',subject:'math',grade:'2e année',age:'7-10',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Régler l’horloge sur 6h30',
+    prompt:'اِضْبِطِ السّاعَةَ عَلى <bdi class="tg">'+lbl(tg)+'</bdi>',say:()=>'اِضْبِطِ السّاعَةَ',hint:'العَقْرَبُ القَصيرُ لِلسّاعاتِ، وَالطَّويلُ لِلدَّقائِقِ.',explain:()=>'في <bdi>'+lbl(tg)+'</bdi>: العَقْرَبُ الطَّويلُ عَلى '+(tg[1]?'6':'12')+'.',
+    build:(b,ctx)=>{let h=12,m=0,locked=false;let ticks='';for(let i=1;i<=12;i++){const a=i*Math.PI/6;ticks+='<text x="'+(100+72*Math.sin(a))+'" y="'+(106-72*Math.cos(a))+'" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">'+i+'</text>'}
+      const s=svg(200,200,'<circle cx="100" cy="100" r="92" fill="var(--tile)" stroke="currentColor" stroke-width="4"/>'+ticks+'<line class="hh" x1="100" y1="100" x2="100" y2="58" stroke="var(--coral)" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="34" stroke="var(--blue)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="6" fill="currentColor"/>');
+      s.style.maxWidth='220px';s.style.margin='0 auto';s.style.display='block';s.setAttribute('role','img');s.setAttribute('aria-label','Horloge');
+      const c=el('div',{class:'ctrls'});const draw=()=>{const ha=((h%12)+m/60)*30,ma=m*6;s.querySelector('.hh').setAttribute('transform','rotate('+ha+' 100 100)');s.querySelector('.mm').setAttribute('transform','rotate('+ma+' 100 100)')};
+      const mk=(l,f)=>{const x=el('button',{type:'button'},l);x.onclick=()=>{if(!locked){f();draw()}};c.append(x)};
+      mk('− ساعَةٌ',()=>{h=h===1?12:h-1});mk('+ ساعَةٌ',()=>{h=h===12?1:h+1});mk('+ 30 دَقيقَةً',()=>{if(m===30){m=0;h=h===12?1:h+1}else m=30});
+      draw();b.append(s,c);
+      return{check:()=>h===tg[0]&&m===tg[1],reveal:()=>{h=tg[0];m=tg[1];draw()},reset:()=>{h=12;m=0;tg=SET[rnd(0,5)];ctx.pr.querySelector('.tg').textContent=lbl(tg);draw()},lock:on=>locked=on}}});
+})();
+
+(function(){const SET=[[3,4],[1,2],[2,3],[5,8],[3,6]];let tg=SET[rnd(0,4)];
+  card({id:'T29',name:'Fractions : colorier',fam:'E',subject:'math',grade:'5e année',age:'9-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Colorier 3/4 du disque',
+    prompt:'لَوِّنْ <bdi class="tg">'+tg[0]+'/'+tg[1]+'</bdi> مِنَ القُرْصِ.',say:()=>'لَوِّنْ '+tg[0]+' مِنْ '+tg[1],hint:()=>'القُرْصُ مُقَسَّمٌ إِلى <bdi>'+tg[1]+'</bdi> أَجْزاءٍ. لَوِّنْ <bdi>'+tg[0]+'</bdi> مِنْها.',explain:()=>'المَقامُ <bdi>'+tg[1]+'</bdi> = عَدَدُ الأَجْزاءِ، وَالبَسْطُ <bdi>'+tg[0]+'</bdi> = الأَجْزاءُ المُلَوَّنَةُ.',
+    build:(b,ctx)=>{const wrap=el('div');b.append(wrap);let on=new Set(),locked=false;
+      function draw(){wrap.innerHTML='';const n=tg[1];let p='';for(let i=0;i<n;i++){const a0=i/n*2*Math.PI-Math.PI/2,a1=(i+1)/n*2*Math.PI-Math.PI/2;const x0=100+90*Math.cos(a0),y0=100+90*Math.sin(a0),x1=100+90*Math.cos(a1),y1=100+90*Math.sin(a1);
+        p+='<path data-i="'+i+'" d="M100 100 L'+x0+' '+y0+' A90 90 0 '+(1/n>.5?1:0)+' 1 '+x1+' '+y1+' Z" fill="'+(on.has(i)?'var(--blue)':'var(--tile)')+'" stroke="currentColor" stroke-width="3" style="cursor:pointer"/>'}
+        const s=svg(200,200,p,'click');s.style.maxWidth='220px';s.style.display='block';s.style.margin='0 auto';s.setAttribute('role','img');s.setAttribute('aria-label','Disque partagé en '+n+' parts');
+        s.querySelectorAll('path').forEach(pt=>pt.addEventListener('click',()=>{if(locked)return;const i=+pt.dataset.i;on.has(i)?on.delete(i):on.add(i);draw()}));wrap.append(s)}
+      draw();
+      return{check:()=>on.size===0?null:on.size===tg[0],reveal:()=>{on=new Set([...Array(tg[0]).keys()]);draw()},reset:()=>{on=new Set();tg=SET[rnd(0,4)];ctx.pr.querySelector('.tg').textContent=tg[0]+'/'+tg[1];draw()},lock:o=>locked=o}}});
+})();
+
+(function(){let L=rnd(3,9);
+  card({id:'T30',name:'Mesurer avec une règle',fam:'E',subject:'math',grade:'3e année',age:'7-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Mesurer un crayon en cm',
+    prompt:'ما طولُ القَلَمِ بِالصَّنْتيمِتْرِ؟',say:'ما طولُ القَلَمِ بِالصَّنْتيمِتْرِ؟',hint:'اِبْدَأِ القِراءَةَ مِنَ الصِّفْرِ.',explain:()=>'القَلَمُ يَبْدَأُ عِنْدَ 0 وَيَنْتَهي عِنْدَ <bdi>'+L+'</bdi>: طولُهُ <bdi>'+L+'</bdi> صم.',
+    build:b=>{const wrap=el('div');b.append(wrap);const draw=()=>{const u=30;let r='<rect x="10" y="60" width="'+(u*10+10)+'" height="40" rx="4" fill="#f3d27a" stroke="#a8892c"/>';
+        for(let i=0;i<=10;i++){r+='<line x1="'+(15+i*u)+'" y1="60" x2="'+(15+i*u)+'" y2="76" stroke="#3b2f0b" stroke-width="2"/><text x="'+(15+i*u)+'" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#3b2f0b">'+i+'</text>';if(i<10)r+='<line x1="'+(15+i*u+u/2)+'" y1="60" x2="'+(15+i*u+u/2)+'" y2="70" stroke="#3b2f0b"/>'}
+        r+='<rect x="15" y="26" width="'+(L*u-14)+'" height="20" fill="#f5c542" stroke="#8a6a12"/><path d="M'+(15+L*u-14)+' 26 L'+(15+L*u)+' 36 L'+(15+L*u-14)+' 46 Z" fill="#e7b98a" stroke="#8a6a12"/><rect x="15" y="26" width="10" height="20" fill="#e88a8a"/>';
+        wrap.innerHTML='';const s=svg(330,110,r);s.setAttribute('role','img');s.setAttribute('aria-label','Crayon posé sur une règle graduée');wrap.append(s)};draw();
+      const k=keypad(b,()=>L,2);const rs=k.reset;k.reset=()=>{L=rnd(3,9);draw();rs()};return k}});
+})();
+
+card({id:'T31',name:'Lire un graphique',fam:'E',subject:'math',grade:'4e année',age:'9-12',gen:'Code + LLM',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Quel fruit est le plus choisi ?',
+  prompt:'اِخْتارَ التَّلاميذُ فاكِهَتَهُمُ المُفَضَّلَةَ. ما الفاكِهَةُ الأَكْثَرُ اخْتِيارًا؟',say:'ما الفاكِهَةُ الأَكْثَرُ اخْتِيارًا؟',hint:'اِبْحَثْ عَنِ العَمودِ الأَطْوَلِ.',explain:'المَوْزُ: 9 تَلاميذَ، وَهُوَ العَمودُ الأَطْوَلُ.',okText:'المَوْزُ: 9 تَلاميذَ.',
+  build:b=>{const D=[['🍎',6],['🍌',9],['🍊',4],['🍇',7]];let g='';for(let i=0;i<=10;i+=2)g+='<line x1="30" x2="310" y1="'+(170-i*14)+'" y2="'+(170-i*14)+'" stroke="currentColor" opacity=".15"/><text x="22" y="'+(174-i*14)+'" text-anchor="end" font-size="11" fill="currentColor">'+i+'</text>';
+    D.forEach((d,i)=>{const x=50+i*68;g+='<rect x="'+x+'" y="'+(170-d[1]*14)+'" width="40" height="'+(d[1]*14)+'" rx="4" fill="var(--blue)" opacity=".85"/><text x="'+(x+20)+'" y="195" text-anchor="middle" font-size="20">'+d[0]+'</text>'});
+    const s=svg(320,205,g);s.setAttribute('role','img');s.setAttribute('aria-label','Diagramme en barres : pomme 6, banane 9, orange 4, raisin 7');b.append(s);
+    return single(b,[{v:'a',t:'🍎 التُّفّاحُ'},{v:'b',t:'🍌 المَوْزُ'},{v:'o',t:'🍊 البُرْتُقالُ'},{v:'g',t:'🍇 العِنَبُ'}],'b',o=>o.t)}});
+
+card({id:'T32',name:'Construire un graphique',fam:'E',subject:'math',grade:'4e année',age:'9-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Tracer les barres d’un tableau',
+  prompt:'اُرْسُمِ الأَعْمِدَةَ حَسَبَ الجَدْوَلِ: 🍎 <bdi>3</bdi> ، 🍌 <bdi>5</bdi> ، 🍊 <bdi>2</bdi>',say:'اُرْسُمِ الأَعْمِدَةَ حَسَبَ الجَدْوَلِ',hint:'كُلُّ مُرَبَّعٍ يُساوي تِلْميذًا واحِدًا.',explain:'التُّفّاحُ 3، المَوْزُ 5، البُرْتُقالُ 2.',okText:'الرَّسْمُ البَيانِيُّ صَحيحٌ.',
+  build:b=>{const T=[['🍎',3],['🍌',5],['🍊',2]];let v=[0,0,0],locked=false;const wrap=el('div');const c=el('div',{class:'ctrls'});b.append(wrap,c);
+    function draw(col){let g='';for(let i=0;i<=6;i++)g+='<line x1="30" x2="300" y1="'+(160-i*22)+'" y2="'+(160-i*22)+'" stroke="currentColor" opacity=".15"/><text x="22" y="'+(164-i*22)+'" text-anchor="end" font-size="11" fill="currentColor">'+i+'</text>';
+      T.forEach((t,i)=>{const x=60+i*85;g+='<rect x="'+x+'" y="'+(160-v[i]*22)+'" width="44" height="'+(v[i]*22)+'" rx="4" fill="'+(col||'var(--blue)')+'"/><text x="'+(x+22)+'" y="186" text-anchor="middle" font-size="20">'+t[0]+'</text>'});
+      wrap.innerHTML='';const s=svg(310,195,g);s.setAttribute('role','img');s.setAttribute('aria-label','Graphique à construire');wrap.append(s)}
+    T.forEach((t,i)=>{const m=el('button',{type:'button'},t[0]+' −');m.onclick=()=>{if(!locked&&v[i]>0){v[i]--;draw()}};const p=el('button',{type:'button'},t[0]+' +');p.onclick=()=>{if(!locked&&v[i]<6){v[i]++;draw()}};c.append(m,p)});
+    draw();return{check:()=>v.every(x=>x===0)?null:v.every((x,i)=>x===T[i][1]),reveal:()=>{v=T.map(t=>t[1]);draw('var(--olive)')},reset:()=>{v=[0,0,0];draw()},lock:on=>locked=on}}});
+
+card({id:'T33',name:'Géométrie : symétrie sur quadrillage',fam:'E',subject:'math',grade:'4e année',age:'9-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Compléter une figure par symétrie',
+  prompt:'أَكْمِلِ الشَّكْلَ بِالتَّناظُرِ بِالنِّسْبَةِ إِلى المِحْوَرِ الأَحْمَرِ.',say:'أَكْمِلِ الشَّكْلَ بِالتَّناظُرِ',hint:'كُلُّ مُرَبَّعٍ مُلَوَّنٍ لَهُ مُرَبَّعٌ مُقابِلٌ عَلى نَفْسِ البُعْدِ مِنَ المِحْوَرِ.',explain:'الشَّكْلُ المُتَناظِرُ هُوَ صورَةُ المِرْآةِ لِلنِّصْفِ الأَيْسَرِ.',okText:'الشَّكْلُ مُتَناظِرٌ.',
+  note:'Les cases grises sont données, colorie les cases de droite.',
+  build:b=>{const R=6,C=8;const fixed=new Set(['1,3','2,2','2,3','3,1','3,2','3,3','4,2','4,3']);const target=new Set([...fixed].map(k=>{const[r,c]=k.split(',').map(Number);return r+','+(C-1-c)}));
+    const g=el('div',{class:'gridsym',role:'grid','aria-label':'Quadrillage 6 sur 8'});b.append(g);let on=new Set(),locked=false;
+    function draw(rev){g.innerHTML='';for(let r=0;r<R;r++)for(let c=0;c<C;c++){const k=r+','+c;const x=el('button',{type:'button','aria-label':'Case '+(r+1)+'-'+(c+1)});if(c===3)x.classList.add('axis');
+      if(fixed.has(k))x.classList.add('fixed');else if(c>=4){if(on.has(k)||(rev&&target.has(k)))x.classList.add('on');x.onclick=()=>{if(locked)return;on.has(k)?on.delete(k):on.add(k);draw()}}g.append(x)}}
+    draw();return{check:()=>on.size===0?null:(on.size===target.size&&[...target].every(k=>on.has(k))),reveal:()=>{on=new Set(target);draw(true)},reset:()=>{on=new Set();draw()},lock:o=>locked=o}}});
+
+/* ===== F. Éveil et récits ===== */
+card({id:'T34',name:'Simulation : flotte ou coule',fam:'F',subject:'sci',grade:'3e année',age:'6-12',gen:'Main',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Prédire puis observer',
+  prompt:'تَوَقَّعْ: هَلْ يَطْفو الشَّيْءُ أَمْ يَغْرَقُ؟',say:'هَلْ يَطْفو الشَّيْءُ أَمْ يَغْرَقُ؟',hint:'الأَشْياءُ الخَفيفَةُ أَوِ المَصْنوعَةُ مِنَ الخَشَبِ تَطْفو غالِبًا.',explain:'الخَشَبُ وَالتُّفّاحَةُ يَطْفُوانِ. الحَجَرُ وَالمِفْتاحُ يَغْرَقانِ.',okText:'تَوَقُّعاتُكَ صَحيحَةٌ !',
+  build:b=>{const O=[{v:'wood',p:'🪵',t:'خَشَبٌ',a:'f'},{v:'stone',p:'🪨',t:'حَجَرٌ',a:'s'},{v:'key',p:'🔑',t:'مِفْتاحٌ',a:'s'},{v:'apple',p:'🍎',t:'تُفّاحَةٌ',a:'f'}];
+    let ans={},locked=false;const rows=el('div',{style:'display:grid;gap:8px'});const tank=el('div',{class:'tank','aria-hidden':'true'});b.append(rows,tank);
+    O.forEach((o,i)=>{const sp=el('span',{class:'obj'},o.p);sp.style.left=(14+i*24)+'%';sp.dataset.v=o.v;tank.append(sp)});
+    function draw(){rows.innerHTML='';O.forEach(o=>{const r=el('div',{class:'rowq'});r.append(el('span',{class:'pic'},o.p),el('span',{class:'nm'},o.t));const sg=el('div',{class:'seg'});
+      [['f','يَطْفو'],['s','يَغْرَقُ']].forEach(([k,l])=>{const x=el('button',{type:'button','aria-pressed':ans[o.v]===k?'true':'false'},l);x.onclick=()=>{if(locked)return;ans[o.v]=k;draw()};sg.append(x)});r.append(sg);r.dataset.v=o.v;rows.append(r)})}
+    const drop=()=>tank.querySelectorAll('.obj').forEach(s=>{const o=O.find(x=>x.v===s.dataset.v);s.className='obj '+(o.a==='f'?'float':'sink')});
+    draw();return{check:()=>Object.keys(ans).length<O.length?null:O.every(o=>ans[o.v]===o.a),
+      wrong:()=>{drop();rows.querySelectorAll('.rowq').forEach(r=>{const o=O.find(x=>x.v===r.dataset.v);r.querySelector('.seg').querySelectorAll('button').forEach(x=>x.classList.toggle('bad',x.getAttribute('aria-pressed')==='true'&&ans[o.v]!==o.a))})},
+      after:()=>drop(),reveal:()=>{O.forEach(o=>ans[o.v]=o.a);draw();drop()},reset:()=>{ans={};draw();tank.querySelectorAll('.obj').forEach(s=>s.className='obj')},lock:on=>locked=on}}});
+
+card({id:'T35',name:'Histoire à choix',fam:'F',subject:'fr',grade:'2e année',age:'6-12',gen:'LLM + validation',status:'V2',free:true,lang:'fr',voice:'fr-FR',ex:'Traverser la rue en sécurité',
+  prompt:'Aide Nour à aller à l’école en sécurité.',say:'Aide Nour à aller à l’école en sécurité.',
+  build:(b,ctx)=>{const box=el('div',{class:'story'});b.append(box);
+    const S=[{scene:'🏠 ➜ 🛣️ ➜ 🏫',t:'Nour doit traverser la rue. Que fait-elle ?',c:[{t:'Elle court vite sans regarder.',ok:false,why:'Courir sans regarder est dangereux : une voiture peut arriver.'},{t:'Elle va au passage piéton et regarde à gauche et à droite.',ok:true}]},
+      {scene:'🚦',t:'Le petit bonhomme du feu est rouge. Que fait Nour ?',c:[{t:'Elle attend que le bonhomme passe au vert.',ok:true},{t:'Elle traverse s’il n’y a pas de voiture.',ok:false,why:'Au rouge, on attend toujours, même si la rue semble vide.'}]}];
+    let i=0;function draw(){box.innerHTML='';if(i>=S.length){box.append(el('div',{class:'scene'},'🏫🎉'));ctx.win('Nour est arrivée à l’école en sécurité.');return}
+      const s=S[i];box.append(el('div',{class:'scene'},s.scene),el('p',null,s.t));const o=el('div',{style:'display:grid;gap:8px'});
+      s.c.forEach(ch=>{const x=el('button',{class:'opt',type:'button',style:'font-size:16px;text-align:center'},ch.t);x.onclick=()=>{if(ch.ok){i++;ctx.say('ok','Bon choix !');setTimeout(draw,500)}else{x.classList.add('bad');ctx.say('hint',ch.why)}};o.append(x)});box.append(o)}
+    draw();return{reset:()=>{i=0;draw()}}}});
+
+/* ===== G. Révision et récompense ===== */
+card({id:'T36',name:'Cartes mémoire (flashcards)',fam:'G',subject:'en',grade:'4e année',age:'8-12',gen:'LLM',status:'V2',free:true,lang:'en',voice:'en-GB',ex:'Réviser le vocabulaire',
+  prompt:'Do you know the word? Tap the card to check.',say:'Do you know the word?',
+  note:'Révision espacée : les cartes « À revoir » reviennent plus souvent.',
+  build:(b,ctx)=>{const W=[['🐱','cat'],['🏠','house'],['☀️','sun'],['📖','book']];let i=0,up=false,known=0;const f=el('button',{class:'flash',type:'button'});const c=el('div',{class:'ctrls'});b.append(f,c);
+    const y=el('button',{type:'button'},'Je savais ✓');const n=el('button',{type:'button'},'À revoir ↻');c.append(y,n);
+    function draw(){if(i>=W.length){f.innerHTML='<span class="w">'+known+' / '+W.length+'</span>';ctx.win(known+' mots sur '+W.length+' connus.');return}f.innerHTML=up?'<span><span class="w">'+W[i][1]+'</span></span>':W[i][0]}
+    f.onclick=()=>{if(i>=W.length)return;up=!up;if(up)speak(W[i][1],'en-GB');draw()};y.onclick=()=>{if(i<W.length){known++;i++;up=false;draw()}};n.onclick=()=>{if(i<W.length){i++;up=false;draw()}};
+    draw();return{reset:()=>{i=0;up=false;known=0;draw()}}}});
+
+card({id:'T37',name:'Memory',fam:'G',subject:'en',grade:'3e année',age:'6-12',gen:'Code (contenu injecté)',status:'Récompense',free:true,lang:'en',voice:'en-GB',ex:'Retrouver les paires mot et image',
+  prompt:'Find the pairs: word and picture.',say:'Find the pairs.',
+  build:(b,ctx)=>{const P=[['cat','🐱'],['sun','☀️'],['book','📖'],['fish','🐟']];const g=el('div',{class:'mem'});b.append(g);let cards,open=[],done=0,busy=false;
+    function draw(){g.innerHTML='';cards.forEach((c,i)=>{const x=el('button',{type:'button',class:c.done?'done':(open.includes(i)?'up':''),'aria-label':'Carte '+(i+1)},(c.done||open.includes(i))?c.face:'?');x.onclick=()=>{if(busy||c.done||open.includes(i))return;open.push(i);draw();
+      if(open.length===2){const[a,bb]=open.map(k=>cards[k]);if(a.k===bb.k){a.done=bb.done=true;open=[];done++;draw();if(done===P.length)ctx.win('All pairs found!')}else{busy=true;setTimeout(()=>{open=[];busy=false;draw()},800)}}};g.append(x)})}
+    function init(){cards=shuffle(P.flatMap(p=>[{k:p[0],face:'<span style="font-size:16px">'+p[0]+'</span>'},{k:p[0],face:p[1]}]));open=[];done=0;draw()}
+    init();return{reset:init}}});
+
+card({id:'T38',name:'Mots mêlés',fam:'G',subject:'fr',grade:'3e année',age:'7-12',gen:'Code (contenu injecté)',status:'Récompense',free:true,lang:'fr',voice:'fr-FR',ex:'Trouver 3 mots cachés',
+  prompt:'Trouve les 3 mots cachés. Touche les lettres dans l’ordre.',say:'Trouve les trois mots cachés.',
+  build:(b,ctx)=>{const G=['CHATXB','LUNEPO','AMIRUS','BSOLEI','EURMAX','TRAINZ'];const words=['CHAT','LUNE','TRAIN'];
+    const wl=el('div',{class:'wlist'});const g=el('div',{class:'ws'});const clr=el('button',{class:'linkbtn',type:'button'},'Effacer la sélection');b.append(wl,g,clr);
+    let sel=[],found=new Set(),fc=new Set();
+    function draw(){wl.innerHTML='';words.forEach(w=>wl.append(el('span',{class:found.has(w)?'found':''},w)));g.innerHTML='';
+      G.forEach((row,r)=>row.split('').forEach((ch,c)=>{const k=r+','+c;const x=el('button',{type:'button',class:fc.has(k)?'found':(sel.includes(k)?'sel':''),'aria-label':ch},ch);x.onclick=()=>{if(sel.includes(k))return;sel.push(k);
+        const s=sel.map(q=>{const[a,bb]=q.split(',');return G[a][bb]}).join('');const w=words.find(w=>w===s);if(w&&!found.has(w)){found.add(w);sel.forEach(q=>fc.add(q));sel=[];if(found.size===words.length)ctx.win('Tu as trouvé tous les mots !')}else if(!words.some(w=>w.startsWith(s)))sel=[k].filter(()=>words.some(w=>w.startsWith(ch)));draw()};g.append(x)}))}
+    clr.onclick=()=>{sel=[];draw()};draw();return{reset:()=>{sel=[];found=new Set();fc=new Set();draw()}}}});
+
+/* ===== H. Décrits seulement ===== */
+catOnly({id:'T39',name:'Glisser des mots dans un texte',fam:'H',subject:'all-sub',grade:'4e à 6e année',age:'9-12',gen:'LLM',status:'V2',ex:'Compléter un paragraphe à plusieurs trous',
+  desc:'Un court texte avec 3 à 5 trous et une banque de mots à glisser (format « gap match » de H5P et QTI). Variante enrichie de T06.',why:'Utile en compréhension de lecture et en grammaire. Plus long à corriger : feedback mot par mot.'});
+catOnly({id:'T40',name:'Mots croisés',fam:'H',subject:'all-sub',grade:'3e à 6e année',age:'8-12',gen:'Code (contenu injecté)',status:'Récompense',ex:'Vocabulaire d’un thème',
+  desc:'Grille de 4 à 6 mots avec définitions courtes ou images. Saisie lettre par lettre.',why:'La recherche ne le classe pas parmi les formats de pratique : plutôt révision ou défi bonus. Difficile en arabe (formes des lettres en grille).'});
+catOnly({id:'T41',name:'Puzzle',fam:'H',subject:'all-sub',grade:'1re à 3e année',age:'6-9',gen:'Code',status:'Récompense',ex:'Reconstituer une image gagnée',
+  desc:'Image de récompense (autocollant, carte de Tunisie, animal) découpée en 6 à 12 pièces à replacer.',why:'Pure récompense, aucun objectif scolaire direct. Peut servir de pause après une étape.'});
+catOnly({id:'T42',name:'Mini-jeu d’arcade',fam:'H',subject:'all-sub',grade:'Tous',age:'6-12',gen:'Main (Flame)',status:'Récompense',ex:'Attraper les bonnes lettres ou les bons résultats',
+  desc:'Mini-jeu court (runner, attrape-objets) où l’on attrape les éléments qui répondent à une consigne, débloqué avec des pièces.',why:'Effort de développement élevé, à limiter dans le temps pour respecter les règles de temps d’écran.'});
+catOnly({id:'T43',name:'Vidéo interactive avec questions',fam:'H',subject:'sci',grade:'4e à 6e année',age:'9-12',gen:'Main + LLM',status:'Plus tard',ex:'Courte vidéo d’éveil avec pauses questions',
+  desc:'Vidéo de 1 à 2 minutes qui s’arrête pour poser une question (format H5P Interactive Video).',why:'Coût de production vidéo élevé et poids des packs. À envisager après le lancement.'});
+
+/* ===== Nouveaux types v3 (T44 à T63) ===== */
+card({id:'T44',name:'Liste déroulante dans le texte',fam:'A',subject:'fr',grade:'4e année',age:'8-12',gen:'LLM',status:'MVP',lang:'fr',voice:'fr-FR',ex:'Choisir la bonne forme du verbe dans la phrase',
+  prompt:'Touche le mot souligné et choisis la bonne forme.',say:'Touche le mot souligné et choisis la bonne forme.',
+  hint:'Qui chante ? Les oiseaux : c’est un sujet pluriel.',explain:'Avec « les oiseaux » (ils), on écrit « chantent ».',okText:'Les oiseaux chantent dans l’arbre.',
+  build:b=>{const s=el('div',{class:'sentence'},'Les oiseaux <span class="dd"><button type="button" class="ddbtn">▾ choisir</button><span class="ddmenu" hidden></span></span> dans l’arbre.');b.append(s);
+    const btn=s.querySelector('.ddbtn'),menu=s.querySelector('.ddmenu');let v=null,locked=false;const O=['chante','chantent','chantes'];
+    function fill(){menu.innerHTML='';shuffle(O).forEach(o=>{const x=el('button',{type:'button'},o);x.onclick=()=>{v=o;btn.textContent=o;menu.hidden=true};menu.append(x)})}
+    fill();btn.onclick=()=>{if(!locked)menu.hidden=!menu.hidden};
+    return{check:()=>v===null?null:v==='chantent',wrong:()=>btn.classList.add('bad'),reveal:()=>{v='chantent';btn.textContent=v;btn.classList.remove('bad');btn.classList.add('good')},
+      reset:()=>{v=null;btn.textContent='▾ choisir';btn.className='ddbtn';menu.hidden=true;fill()},lock:on=>{locked=on;menu.hidden=true}}}});
+
+card({id:'T45',name:'Barrer l’élément faux',fam:'A',subject:'fr',grade:'4e année',age:'8-12',gen:'LLM',status:'MVP',lang:'fr',voice:'fr-FR',ex:'Barrer les affirmations fausses après un court texte',
+  prompt:'Lis le texte, puis barre les deux phrases fausses.',say:'Lis le texte, puis barre les deux phrases fausses.',
+  hint:'Relis le texte : de quelle couleur est le chat ? Où joue-t-il ?',explain:'Le chat est noir et il joue dans le jardin. Les phrases « Le chat est blanc » et « Il joue dans la cuisine » sont fausses.',okText:'Tu as barré les deux phrases fausses.',
+  note:'Consigne typique des cahiers tunisiens (« barre », « barrer le verbe incorrect »). Même moteur que T07, rendu « trait ».',
+  build:b=>{b.append(el('div',{class:'readtext'},'Sami a un petit chat noir. Chaque après-midi, le chat joue dans le jardin avec une balle.'));
+    const api=multi(b,[{v:'a',t:'Le chat est blanc.'},{v:'b',t:'Le chat appartient à Sami.'},{v:'c',t:'Il joue dans la cuisine.'},{v:'d',t:'Le chat joue avec une balle.'}],['a','c'],o=>o.t);
+    b.querySelector('.opts').classList.add('strike');return api}});
+
+card({id:'T46',name:'Réponse puis justification',fam:'A',subject:'fr',grade:'5e année',age:'9-12',gen:'LLM',status:'MVP',lang:'fr',voice:'fr-FR',ex:'Répondre, puis toucher la phrase du texte qui le prouve',
+  prompt:'A. Réponds. B. Touche la phrase du texte qui le prouve.',say:'Réponds, puis touche la phrase du texte qui le prouve.',
+  hint:'Cherche dans le texte ce que fait Lina quand elle voit le paquet.',explain:'Lina est contente : « Elle saute de joie en ouvrant le paquet. »',okText:'Réponse et preuve correctes.',
+  note:'Aligné sur le critère officiel « justification des réponses ». Toucher la phrase remplace « recopie la phrase », ce qui rend l’item auto-corrigé.',
+  build:b=>{b.append(el('div',{class:'partlbl'},'A. Lina est-elle contente ?'));const a=single(b,[{v:'y',t:'Oui'},{v:'n',t:'Non'}],'y',o=>o.t);
+    b.append(el('div',{class:'partlbl'},'B. La preuve dans le texte :'));
+    const p=multi(b,[{v:'s1',t:'C’est l’anniversaire de Lina.'},{v:'s2',t:'Son oncle lui apporte un paquet.'},{v:'s3',t:'Elle saute de joie en ouvrant le paquet.'}],['s3'],o=>o.t,true);
+    return{check:()=>{const x=a.check(),y=p.check();return x===null||y===null?null:x&&y},wrong:()=>{a.wrong();p.wrong()},reveal:()=>{a.reveal();p.reveal()},reset:()=>{a.reset();p.reset()},lock:on=>{a.lock(on);p.lock(on)}}}});
+
+card({id:'T53',name:'Écoute et place',fam:'A',subject:'en',grade:'4e année',age:'8-11',gen:'LLM + voix',status:'V2',lang:'en',voice:'en-GB',ex:'Put the cat under the table',
+  prompt:'Listen. Tap the cat, then tap the right place.',say:'Put the cat under the table.',
+  hint:'Listen again: under means below.',explain:'Under the table = below the table.',okText:'The cat is under the table.',
+  note:'Format de l’épreuve Cambridge Starters. Moteur « scène image » commun avec T08, T47, T54.',
+  build:b=>{const sc=el('div',{class:'scene2'});sc.innerHTML='<div class="zone z-on" data-z="on">on</div><div class="tablepic">🪑▬▬▬▬🪑</div><div class="zone z-under" data-z="under">under</div><div class="zone z-next" data-z="next">next to</div>';
+    const cat=el('button',{type:'button',class:'chipitem'},'<span class="pic">🐱</span>');b.append(cat,sc);let picked=false,pos=null,locked=false;
+    cat.onclick=()=>{if(!locked){picked=!picked;cat.classList.toggle('sel',picked)}};
+    sc.querySelectorAll('.zone').forEach(z=>z.onclick=()=>{if(locked||!picked)return;pos=z.dataset.z;sc.querySelectorAll('.zone').forEach(y=>y.innerHTML=y.dataset.z==='next'?'next to':y.dataset.z);z.innerHTML='🐱';picked=false;cat.classList.remove('sel')});
+    const show=z=>{sc.querySelectorAll('.zone').forEach(y=>{y.innerHTML=y.dataset.z==='next'?'next to':y.dataset.z;y.classList.remove('good','bad')});const t=sc.querySelector('[data-z="'+z+'"]');t.innerHTML='🐱';return t};
+    return{check:()=>pos===null?null:pos==='under',wrong:()=>sc.querySelector('[data-z="'+pos+'"]').classList.add('bad'),reveal:()=>{pos='under';show('under').classList.add('good')},
+      reset:()=>{pos=null;picked=false;cat.classList.remove('sel');sc.querySelectorAll('.zone').forEach(y=>{y.innerHTML=y.dataset.z==='next'?'next to':y.dataset.z;y.classList.remove('good','bad')})},lock:on=>locked=on}}});
+
+card({id:'T54',name:'Écoute et colorie',fam:'A',subject:'en',grade:'4e année',age:'8-11',gen:'LLM + voix',status:'V2',lang:'en',voice:'en-GB',ex:'Colour the ball red',
+  prompt:'Listen. Tap a colour, then tap the object.',say:'Colour the ball red.',
+  hint:'Listen again: which object? which colour?',explain:'The ball must be red.',okText:'Red ball!',
+  build:b=>{const cols={red:'#E5484D',blue:'#3B82F6',green:'#22A35A'};let cur=null,paint={},locked=false;
+    const pal=el('div',{class:'tiles'});Object.keys(cols).forEach(c=>{const x=el('button',{type:'button',class:'swatch',style:'background:'+cols[c],'aria-label':c});x.onclick=()=>{if(locked)return;cur=c;pal.querySelectorAll('.swatch').forEach(y=>y.classList.toggle('sel',y===x))};pal.append(x)});
+    const objs=el('div',{class:'tiles'});const O={ball:'⚽',kite:'🪁',hat:'🎩'};
+    function draw(){objs.innerHTML='';Object.keys(O).forEach(k=>{const x=el('button',{type:'button',class:'colobj',style:paint[k]?'background:'+cols[paint[k]]:''},'<span class="pic">'+O[k]+'</span><small>'+k+'</small>');x.onclick=()=>{if(locked||!cur)return;paint[k]=cur;draw()};objs.append(x)})}
+    draw();b.append(pal,objs);
+    return{check:()=>!paint.ball?null:paint.ball==='red',reveal:()=>{paint={ball:'red'};draw()},reset:()=>{paint={};cur=null;pal.querySelectorAll('.swatch').forEach(y=>y.classList.remove('sel'));draw()},lock:on=>locked=on}}});
+
+card({id:'T55',name:'Paires minimales sonores',fam:'A',subject:'fr',grade:'3e année',age:'7-11',gen:'LLM + voix',status:'MVP',lang:'fr',voice:'fr-FR',ex:'Entendre « poisson » et choisir entre poisson et boisson',
+  prompt:'Écoute bien et touche le bon mot.',say:'poisson',
+  hint:'Écoute le premier son : « p » ou « b » ? Pose ta main devant ta bouche.',explain:'On entend « poisson » 🐟. « Boisson » commence par « b ».',okText:'poisson 🐟',
+  note:'Cible les sons difficiles pour les enfants arabophones : p et b, u et ou, i et é, les voyelles nasales. En arabe standard : ث ذ ظ ض ق.',
+  build:b=>single(b,[{v:'p',p:'🐟',t:'poisson'},{v:'b',p:'🥤',t:'boisson'}],'p',o=>'<span class="pic">'+o.p+'</span>'+o.t)});
+
+card({id:'T47',name:'Étiqueter un schéma',fam:'B',subject:'sci',grade:'2e année',age:'6-12',gen:'LLM + image',status:'MVP',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Placer les noms des parties de la plante',
+  prompt:'ضَعْ كُلَّ اسْمٍ فِي مَكَانِهِ عَلَى الصُّورَةِ.',say:'ضَعْ كُلَّ اسْمٍ فِي مَكَانِهِ عَلَى الصُّورَةِ.',
+  hint:'الجُذُورُ تَحْتَ التُّرَابِ، وَالزَّهْرَةُ فِي الأَعْلَى.',explain:'مِنَ الأَعْلَى: الزَّهْرَةُ، الأَوْرَاقُ، السَّاقُ، ثُمَّ الجُذُورُ.',okText:'كُلُّ الأَسْمَاءِ فِي مَكَانِهَا.',
+  note:'Touche un nom, puis sa case sur le dessin. Dans l’app : glisser-déposer.',
+  build:b=>{const L=[{v:'f',t:'الزَّهْرَةُ'},{v:'l',t:'الأَوْرَاقُ'},{v:'s',t:'السَّاقُ'},{v:'r',t:'الجُذُورُ'}];const Z={f:[150,40],l:[205,105],s:[150,140],r:[150,200]};
+    const wrap=el('div',{class:'labelwrap'});wrap.append(svg(300,230,'<rect x="0" y="165" width="300" height="65" fill="#a77b4f" opacity=".5"/><path d="M150 165 L150 210 M150 175 L128 205 M150 175 L172 205" stroke="#6b4a2b" stroke-width="5" stroke-linecap="round" fill="none"/><rect x="146" y="60" width="8" height="105" fill="#4f8a2f"/><ellipse cx="185" cy="105" rx="30" ry="12" fill="#6fb23f" transform="rotate(-20 185 105)"/><ellipse cx="117" cy="115" rx="28" ry="11" fill="#6fb23f" transform="rotate(20 117 115)"/><circle cx="150" cy="30" r="12" fill="#f2a7c3"/><circle cx="168" cy="44" r="12" fill="#f2a7c3"/><circle cx="132" cy="44" r="12" fill="#f2a7c3"/><circle cx="150" cy="44" r="9" fill="#f5c542"/>'));
+    const pool=el('div',{class:'tiles'});let sel=null,place={},locked=false;const zb={};
+    Object.keys(Z).forEach(k=>{const x=el('button',{type:'button',class:'lzone',style:'left:'+(Z[k][0]/300*100)+'%;top:'+(Z[k][1]/230*100)+'%'},'?');x.onclick=()=>{if(locked||!sel)return;Object.keys(place).forEach(q=>{if(place[q]===k)delete place[q]});place[sel]=k;sel=null;draw()};zb[k]=x;wrap.append(x)});
+    function draw(){pool.innerHTML='';Object.keys(zb).forEach(k=>{const who=Object.keys(place).find(q=>place[q]===k);zb[k].textContent=who?L.find(l=>l.v===who).t:'?';zb[k].classList.toggle('filled',!!who)});
+      L.filter(l=>!place[l.v]).forEach(l=>{const x=el('button',{type:'button',class:'chipitem'+(sel===l.v?' sel':'')},l.t);x.onclick=()=>{if(!locked){sel=sel===l.v?null:l.v;draw()}};pool.append(x)})}
+    b.append(pool,wrap);draw();
+    return{check:()=>Object.keys(place).length<L.length?null:L.every(l=>place[l.v]===l.v),wrong:()=>L.forEach(l=>{if(place[l.v]&&place[l.v]!==l.v)zb[place[l.v]].classList.add('bad')}),
+      reveal:()=>{L.forEach(l=>place[l.v]=l.v);Object.values(zb).forEach(z=>{z.classList.remove('bad');z.classList.add('good')});draw()},reset:()=>{place={};sel=null;Object.values(zb).forEach(z=>z.classList.remove('bad','good'));draw()},lock:on=>locked=on}}});
+
+card({id:'T56',name:'Racine et schème',fam:'B',subject:'ar',grade:'4e année',age:'9-12',gen:'LLM + relecture 100 %',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Classer des mots selon leur racine',
+  prompt:'صَنِّفِ الكَلِمَاتِ حَسَبَ جَذْرِهَا.',say:'صَنِّفِ الكَلِمَاتِ حَسَبَ جَذْرِهَا.',
+  hint:'اِبْحَثْ عَنِ الحُرُوفِ الأَصْلِيَّةِ الثَّلَاثَةِ فِي كُلِّ كَلِمَةٍ.',explain:'ك ت ب: كَاتِبٌ، مَكْتَبٌ، كِتَابٌ. ل ع ب: لَاعِبٌ، مَلْعَبٌ، لُعْبَةٌ.',okText:'أَحْسَنْتَ التَّصْنِيفَ.',
+  note:'Morphologie arabe (racine et schème), prédictive de la lecture à partir de la 4e. Variante V2 : associer chaque mot à son schème (فَاعِل، مَفْعَل).',
+  build:b=>bins(b,[{k:'k',t:'ك ت ب'},{k:'l',t:'ل ع ب'}],[{v:'1',t:'كَاتِبٌ',c:'k'},{v:'2',t:'مَلْعَبٌ',c:'l'},{v:'3',t:'كِتَابٌ',c:'k'},{v:'4',t:'لَاعِبٌ',c:'l'},{v:'5',t:'مَكْتَبٌ',c:'k'},{v:'6',t:'لُعْبَةٌ',c:'l'}],it=>it.t)});
+
+card({id:'T61',name:'Résumé par sélection',fam:'C',subject:'fr',grade:'5e année',age:'10-12',gen:'LLM',status:'Plus tard',lang:'fr',voice:'fr-FR',ex:'Choisir les 3 phrases qui résument le texte',
+  prompt:'Choisis les trois phrases qui résument le mieux l’histoire.',say:'Choisis les trois phrases qui résument le mieux l’histoire.',
+  hint:'Un résumé garde le début, le problème et la fin. Les détails ne comptent pas.',explain:'Résumé : Rami perd son chien. Il le cherche dans tout le quartier. Il le retrouve chez la voisine.',okText:'Bon résumé !',
+  build:b=>multi(b,[{v:'1',t:'Rami perd son chien.'},{v:'2',t:'Le chien a un collier rouge.'},{v:'3',t:'Il le cherche dans tout le quartier.'},{v:'4',t:'Il fait beau ce jour-là.'},{v:'5',t:'Il le retrouve chez la voisine.'},{v:'6',t:'La voisine a un jardin.'}],['1','3','5'],o=>o.t)});
+
+card({id:'T62',name:'Frise chronologique',fam:'C',subject:'fr',grade:'3e année',age:'7-10',gen:'LLM',status:'Plus tard',lang:'fr',voice:'fr-FR',ex:'Placer les moments de la journée sur une frise',
+  prompt:'Place les moments de la journée dans l’ordre sur la frise.',say:'Place les moments de la journée dans l’ordre.',
+  hint:'La journée commence quand le soleil se lève.',explain:'Le matin, le midi, l’après-midi, le soir.',okText:'Frise complète.',
+  note:'Proche de T13 (remise en ordre) avec un rendu en frise. Faible priorité.',
+  build:b=>order(b,[{v:'1',h:'🌅<small>matin</small>'},{v:'2',h:'☀️<small>midi</small>'},{v:'3',h:'🌤️<small>après-midi</small>'},{v:'4',h:'🌙<small>soir</small>'}],['1','2','3','4'],{big:true,ph:'Touche dans l’ordre'})});
+
+card({id:'T48',name:'Calcul posé',fam:'E',subject:'math',grade:'3e année',age:'8-12',gen:'Code',status:'MVP',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Addition en colonnes avec retenue',
+  prompt:'أُنْجِزُ عَمَلِيَّةَ الجَمْعِ.',say:'أُنْجِزُ عَمَلِيَّةَ الجَمْعِ',
+  hint:'اِبْدَأْ بِالآحَادِ: 7 + 5 = 12، أَكْتُبُ 2 وَأَحْتَفِظُ بِـ 1.',explain:'<bdi>347 + 285 = 632</bdi>',okText:'<bdi>347 + 285 = 632</bdi>',
+  note:'Nombres tirés et réponse calculée par le code. Saisie chiffre par chiffre, de droite à gauche, avec case de retenue.',
+  build:b=>{const g=el('div',{class:'colcalc'});g.innerHTML='<div class="r"><span></span><span>3</span><span>4</span><span>7</span></div><div class="r"><span>+</span><span>2</span><span>8</span><span>5</span></div>';
+    const r=el('div',{class:'r res'});r.append(el('span'));const ins=[0,1,2].map(i=>{const x=el('input',{type:'text',inputmode:'numeric',maxlength:'1',id:'t48-'+i,'aria-label':'Chiffre '+(i+1)});r.append(x);return x});g.append(r);b.append(g);
+    return{check:()=>ins.some(i=>i.value==='')?null:ins.map(i=>i.value).join('')==='632',wrong:()=>ins.forEach((x,i)=>x.classList.toggle('bad',x.value!=='632'[i])),reveal:()=>ins.forEach((x,i)=>{x.value='632'[i];x.classList.remove('bad');x.classList.add('good')}),
+      reset:()=>ins.forEach(x=>{x.value='';x.classList.remove('good','bad')}),lock:on=>ins.forEach(x=>x.readOnly=on)}}});
+
+card({id:'T49',name:'Saisie de fraction',fam:'E',subject:'math',grade:'5e année',age:'9-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Calculer 1/4 + 2/4 et écrire la fraction',
+  prompt:'أَحْسُبُ وَأَكْتُبُ النَّتِيجَةَ فِي شَكْلِ كَسْرٍ: <bdi>1/4 + 2/4</bdi>',say:'أَحْسُبُ وَأَكْتُبُ النَّتِيجَةَ فِي شَكْلِ كَسْرٍ',
+  hint:'المَقَامُ نَفْسُهُ: نَجْمَعُ البُسُوطَ فَقَطْ.',explain:'<bdi>1/4 + 2/4 = 3/4</bdi>',okText:'<bdi>3/4</bdi>',
+  note:'Une fraction équivalente est acceptée (6/8). Clavier dédié numérateur et dénominateur.',
+  build:b=>{const f=el('div',{class:'frac'});const n=el('input',{type:'text',inputmode:'numeric',id:'t49n','aria-label':'Numérateur'}),d=el('input',{type:'text',inputmode:'numeric',id:'t49d','aria-label':'Dénominateur'});f.append(n,el('hr'),d);b.append(f);
+    return{check:()=>n.value===''||d.value===''?null:Number(d.value)>0&&Number(n.value)*4===3*Number(d.value),reveal:()=>{n.value='3';d.value='4';f.classList.add('good')},reset:()=>{n.value='';d.value='';f.classList.remove('good')},lock:on=>{n.readOnly=d.readOnly=on}}}});
+
+card({id:'T50',name:'Fluidité chronométrée (bats ton record)',fam:'E',subject:'math',grade:'1re année',age:'6-12',gen:'Code',status:'V2',free:true,dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Compléments à 10 en 30 secondes',
+  prompt:'أُكْمِلُ إِلَى <bdi>10</bdi> بِأَسْرَعِ مَا يُمْكِنُ.',say:'أُكْمِلُ إِلَى عَشَرَةٍ بِأَسْرَعِ مَا يُمْكِنُ',
+  note:'30 secondes, comparaison à son propre record uniquement, jamais aux autres enfants. Chronomètre désactivable.',
+  build:(b,ctx)=>{const d=el('div',{class:'bigdisplay'});const st=el('div',{class:'ctrls'});const go=el('button',{type:'button'},'▶ اِبْدَأْ');st.append(go);const opts=el('div',{class:'opts three'});b.append(d,opts,st);
+    let a=0,score=0,t=0,timer=null,best=0;
+    function q(){a=rnd(1,9);d.innerHTML='<bdi>'+a+' + ? = 10</bdi> <small style="font-size:16px">⏱ '+t+' · ★ '+score+'</small>';opts.innerHTML='';shuffle([10-a,(10-a)%9+1,(10-a+2)%9+1].filter((v,i,arr)=>arr.indexOf(v)===i)).forEach(v=>{const x=el('button',{class:'opt',type:'button'},String(v));x.onclick=()=>{if(!timer)return;if(v===10-a)score++;q()};opts.append(x)})}
+    go.onclick=()=>{if(timer)return;score=0;t=30;q();timer=setInterval(()=>{t--;if(t<=0){clearInterval(timer);timer=null;best=Math.max(best,score);opts.innerHTML='';d.innerHTML='<bdi>★ '+score+'</bdi>';ctx.win('Score : '+score+' · record : '+best)}else d.querySelector('small').textContent='⏱ '+t+' · ★ '+score},1000)};
+    d.innerHTML='<bdi>? + ? = 10</bdi>';return{reset:()=>{clearInterval(timer);timer=null;d.innerHTML='<bdi>? + ? = 10</bdi>';opts.innerHTML=''}}}});
+
+(function(){let target=rnd(5,9);
+card({id:'T51',name:'Cadre de 10',fam:'E',subject:'math',grade:'1re année',age:'6-8',gen:'Code',status:'MVP',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Placer 7 jetons dans un cadre de 10',
+  prompt:'ضَعْ <bdi class="tg">'+target+'</bdi> قِطَعٍ فِي الإِطَارِ.',say:()=>'ضَعْ '+target+' قِطَعٍ فِي الإِطَارِ',
+  hint:()=>'عُدَّ القِطَعَ وَاحِدَةً وَاحِدَةً حَتَّى <bdi>'+target+'</bdi>.',explain:()=>'<bdi>'+target+'</bdi> قِطَعٍ، وَيَبْقَى <bdi>'+(10-target)+'</bdi> لِلْوُصُولِ إِلَى <bdi>10</bdi>.',okText:()=>'<bdi>'+target+' + '+(10-target)+' = 10</bdi>',
+  note:'Toucher une case pose ou retire un jeton. Dans l’app : glisser les jetons. Variante : combien manque-t-il pour faire 10 ?',
+  build:(b,ctx)=>{const g=el('div',{class:'tenframe'});let on=new Set(),locked=false;const cells=[];for(let i=0;i<10;i++){const x=el('button',{type:'button','aria-label':'Case '+(i+1)});x.onclick=()=>{if(locked)return;on.has(i)?on.delete(i):on.add(i);draw()};cells.push(x);g.append(x)}
+    function draw(){cells.forEach((c,i)=>c.classList.toggle('tok',on.has(i)))}b.append(g);draw();
+    return{check:()=>on.size===0?null:on.size===target,reveal:()=>{on=new Set([...Array(target).keys()]);draw();g.classList.add('good')},reset:()=>{on=new Set();g.classList.remove('good');target=rnd(5,9);const t=ctx.pr.querySelector('.tg');if(t)t.textContent=target;draw()},lock:on2=>locked=on2}}});
+})();
+
+card({id:'T52',name:'Modèle en barres',fam:'E',subject:'math',grade:'3e année',age:'8-12',gen:'Code + LLM',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Choisir le schéma en barres, puis résoudre',
+  prompt:'مَعَ سَامِي <bdi>23</bdi> قَلَمًا، وَمَعَ رِيمَ <bdi>12</bdi> قَلَمًا أَكْثَرَ مِنْهُ. كَمْ قَلَمًا مَعَ رِيمَ؟',say:'مَعَ سَامِي ثَلَاثَةٌ وَعِشْرُونَ قَلَمًا، وَمَعَ رِيمَ اثْنَا عَشَرَ قَلَمًا أَكْثَرَ مِنْهُ. كَمْ قَلَمًا مَعَ رِيمَ؟',
+  hint:'شَرِيطُ رِيمَ أَطْوَلُ: هُوَ شَرِيطُ سَامِي وَ <bdi>12</bdi> زِيَادَةً.',explain:'<bdi>23 + 12 = 35</bdi>',okText:'<bdi>35</bdi>',
+  note:'Étape 1 : choisir le bon schéma. Étape 2 : calculer. Méthode de Singapour, utile pour les problèmes du concours de 6e.',
+  build:b=>{const bar=(a,c)=>'<svg viewBox="0 0 160 60" class="fig"><rect x="'+(160-a)+'" y="6" width="'+a+'" height="18" rx="3" fill="#5BA4E6"/><rect x="'+(160-c)+'" y="34" width="'+c+'" height="18" rx="3" fill="#F2B544"/></svg>';
+    b.append(el('div',{class:'partlbl'},'١. أَيُّ مُخَطَّطٍ يُنَاسِبُ المَسْأَلَةَ؟'));const s=single(b,[{v:'a',h:bar(80,130)},{v:'b',h:bar(130,80)},{v:'c',h:bar(100,100)}],'a',o=>o.h,'opts three');
+    b.append(el('div',{class:'partlbl'},'٢. أَكْتُبُ النَّتِيجَةَ.'));const k=keypad(b,()=>35,3);
+    return{check:()=>{const x=s.check(),y=k.check();return x===null||y===null?null:x&&y},wrong:()=>s.wrong(),reveal:()=>{s.reveal();k.reveal()},reset:()=>{s.reset();k.reset()},lock:on=>{s.lock(on);k.lock(on)}}}});
+
+card({id:'T63',name:'Balance d’équivalence',fam:'E',subject:'math',grade:'4e année',age:'9-12',gen:'Code',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Trouver la masse du sac pour équilibrer la balance',
+  prompt:'مَا وَزْنُ الكِيسِ لِكَيْ تَتَوَازَنَ الكِفَّتَانِ؟',say:'مَا وَزْنُ الكِيسِ لِكَيْ تَتَوَازَنَ الكِفَّتَانِ؟',
+  hint:'فِي اليَمِينِ <bdi>3 + 3 + 3 = 9</bdi>. فِي اليَسَارِ الكِيسُ وَ <bdi>2 + 2</bdi>.',explain:'<bdi>9 − 4 = 5</bdi>: وَزْنُ الكِيسِ <bdi>5</bdi>.',okText:'<bdi>5</bdi>',
+  note:'Apport du second rapport. Prépare le sens de l’égalité (pré-algèbre). La balance penche selon la valeur saisie.',
+  build:b=>{const box=el('div',{style:'direction:ltr'});b.append(box);const draw=v=>{const L=(v===''?0:Number(v))+4,R=9;const ang=Math.max(-12,Math.min(12,(R-L)*3));
+      box.innerHTML='<svg viewBox="0 0 300 150" class="fig"><polygon points="140,140 160,140 150,70" fill="currentColor" opacity=".5"/><g transform="rotate('+ang+' 150 70)"><line x1="40" y1="70" x2="260" y2="70" stroke="currentColor" stroke-width="5"/><text x="70" y="58" font-size="20" text-anchor="middle">👜 ?</text><text x="105" y="58" font-size="15" text-anchor="middle">2 2</text><text x="225" y="58" font-size="15" text-anchor="middle">3 3 3</text></g></svg>'};
+    draw('');const k=keypad(b,()=>5,2);const disp=b.querySelector('.numdisplay');new MutationObserver(()=>draw(disp.textContent)).observe(disp,{childList:true,characterData:true,subtree:true});return k}});
+
+card({id:'T60',name:'Codage de déplacement',fam:'E',subject:'math',grade:'3e année',age:'7-10',gen:'Code',status:'Plus tard',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Programmer le chemin jusqu’au puits',
+  prompt:'أَوْصِلِ الزَّهْرَةَ إِلَى البِئْرِ بِالأَسْهُمِ.',say:'أَوْصِلِ الزَّهْرَةَ إِلَى البِئْرِ بِالأَسْهُمِ',
+  hint:'البِئْرُ فِي الأَعْلَى إِلَى اليَمِينِ.',explain:'↑ ↑ → → →',okText:'وَصَلَتِ الزَّهْرَةُ!',
+  note:'Présence au programme tunisien à vérifier.',
+  build:b=>{const N=5;let prog=[],pos=[0,4],locked=false;const goal=[3,2];const g=el('div',{class:'cgrid'});const seq=el('div',{class:'answer-row',style:'direction:ltr'});const ctl=el('div',{class:'ctrls'});
+    function run(p){let x=0,y=4;p.forEach(m=>{if(m==='↑')y=Math.max(0,y-1);if(m==='↓')y=Math.min(N-1,y+1);if(m==='←')x=Math.max(0,x-1);if(m==='→')x=Math.min(N-1,x+1)});return[x,y]}
+    function draw(){g.innerHTML='';for(let y=0;y<N;y++)for(let x=0;x<N;x++)g.append(el('span',null,x===pos[0]&&y===pos[1]?'🌼':(x===goal[0]&&y===goal[1]?'🪣':'')));seq.textContent=prog.length?prog.join(' '):'…'}
+    ['↑','↓','←','→'].forEach(a=>{const x=el('button',{type:'button'},a);x.onclick=()=>{if(locked||prog.length>8)return;prog.push(a);draw()};ctl.append(x)});
+    const undo=el('button',{type:'button'},'⌫');undo.onclick=()=>{if(!locked){prog.pop();draw()}};ctl.append(undo);b.append(g,seq,ctl);draw();
+    return{check:()=>{if(!prog.length)return null;pos=run(prog);draw();return pos[0]===goal[0]&&pos[1]===goal[1]},reveal:()=>{prog=['↑','↑','→','→','→'];pos=goal.slice();draw()},reset:()=>{prog=[];pos=[0,4];draw()},lock:on=>locked=on}}});
+
+card({id:'T57',name:'Simulateur d’expérience (prédire, observer, expliquer)',fam:'F',subject:'sci',grade:'4e année',age:'8-12',gen:'Main + LLM',status:'V2',dir:'rtl',lang:'ar',voice:'ar-SA',ex:'Tester des matériaux dans un circuit électrique',
+  prompt:'ضَعْ كُلَّ مَادَّةٍ فِي الدَّارَةِ، ثُمَّ اخْتَرِ المَوَادَّ النَّاقِلَةَ لِلْكَهْرَبَاءِ.',say:'ضَعْ كُلَّ مَادَّةٍ فِي الدَّارَةِ، ثُمَّ اخْتَرِ المَوَادَّ النَّاقِلَةَ لِلْكَهْرَبَاءِ.',
+  hint:'جَرِّبْ كُلَّ مَادَّةٍ: هَلْ يُضِيءُ المِصْبَاحُ؟',explain:'النُّحَاسُ وَالحَدِيدُ يَنْقُلَانِ الكَهْرَبَاءَ. الخَشَبُ وَالبْلَاسْتِيكُ عَازِلَانِ.',okText:'النُّحَاسُ وَالحَدِيدُ نَاقِلَانِ.',
+  note:'Moteur générique paramétré par JSON : conductivité, flottaison (ex T34), chaleur, germination.',
+  build:b=>{const M=[{v:'cu',t:'نُحَاسٌ',p:'🟠',c:1},{v:'wd',t:'خَشَبٌ',p:'🪵',c:0},{v:'pl',t:'بْلَاسْتِيكٌ',p:'🧴',c:0},{v:'fe',t:'حَدِيدٌ',p:'🔩',c:1}];
+    const circ=el('div',{class:'circuit',style:'direction:ltr'});const test=el('div',{class:'tiles'});b.append(circ,test);
+    const show=m=>{circ.innerHTML='<span class="pic">🔋</span><span class="wire">━━</span><span class="slot">'+(m?m.p:'□')+'</span><span class="wire">━━</span><span class="pic bulb'+(m&&m.c?' lit':'')+'">💡</span>'};show(null);
+    M.forEach(m=>{const x=el('button',{type:'button',class:'chipitem'},'<span class="pic">'+m.p+'</span>'+m.t);x.onclick=()=>show(m);test.append(x)});
+    b.append(el('div',{class:'partlbl'},'المَوَادُّ النَّاقِلَةُ:'));return multi(b,M.map(m=>({v:m.v,t:m.t,p:m.p})),['cu','fe'],o=>'<span class="pic">'+o.p+'</span>'+o.t)}});
+
+card({id:'T58',name:'S’enregistrer et s’autoévaluer',fam:'F',subject:'fr',grade:'3e année',age:'6-12',gen:'LLM (consigne)',status:'MVP',free:true,lang:'fr',voice:'fr-FR',ex:'Se présenter en trois phrases',
+  prompt:'Présente-toi en trois phrases. Enregistre-toi, réécoute-toi, puis coche ce que tu as réussi.',say:'Présente-toi en trois phrases.',
+  note:'Pas de score automatique. Le micro n’est pas disponible dans cette maquette : l’enregistrement est simulé. Validation par le parent en V2.',
+  build:(b,ctx)=>{const c=el('div',{class:'ctrls'});const rec=el('button',{type:'button'},'🎙️ Enregistrer');const play=el('button',{type:'button',disabled:''},'▶ Réécouter');c.append(rec,play);b.append(c);
+    let st=0;rec.onclick=()=>{st=st?0:1;rec.textContent=st?'⏹ Arrêter (simulé)':'🎙️ Recommencer';if(!st)play.disabled=false};
+    const ck=el('div',{class:'selfcheck'});['J’ai dit mon prénom.','J’ai dit mon âge.','J’ai fait trois phrases.'].forEach((t,i)=>{const id='t58-'+i;ck.append(el('label',{for:id},'<input type="checkbox" id="'+id+'"> '+t))});b.append(ck);
+    const ok=el('button',{type:'button',class:'opt',style:'font-size:16px'},'J’ai fini 🙂');ok.onclick=()=>ctx.win('Bravo ! Ton parent pourra écouter ton enregistrement.');b.append(ok);
+    return{reset:()=>{st=0;rec.textContent='🎙️ Enregistrer';play.disabled=true;ck.querySelectorAll('input').forEach(x=>x.checked=false)}}}});
+
+card({id:'T59',name:'Production écrite guidée par images',fam:'F',subject:'fr',grade:'5e année',age:'10-12',gen:'LLM',status:'V2',lang:'fr',voice:'fr-FR',ex:'Écrire une phrase par image avec une banque de mots',
+  prompt:'Écris une phrase pour chaque image. Utilise un mot de la banque dans chaque phrase.',say:'Écris une phrase pour chaque image.',
+  hint:'Chaque phrase commence par une majuscule, finit par un point et contient un mot de la banque.',explain:'Exemple : Le matin, il pleut. Lina prend son parapluie. Elle rentre à la maison.',okText:'Ta production respecte les consignes. Le sens sera relu par ton parent.',
+  note:'Correction partielle : le code vérifie les contraintes (mot imposé, majuscule, point). Le sens reste à l’autoévaluation ou au parent.',
+  build:b=>{const bank=['pleut','parapluie','maison'];b.append(el('div',{class:'wlist'},bank.map(w=>'<span>'+w+'</span>').join('')));const ins=['🌧️','☂️','🏠'].map((p,i)=>{const r=el('div',{class:'rowq'});const x=el('input',{class:'textin',type:'text',id:'t59-'+i,style:'font-size:16px;text-align:start','aria-label':'Phrase '+(i+1)});r.append(el('span',{class:'pic'},p),x);b.append(r);return x});
+    const okp=s=>{s=s.trim();return/^[A-ZÀ-Ý]/.test(s)&&/[.!?]$/.test(s)&&bank.some(w=>s.toLowerCase().includes(w))};
+    return{check:()=>ins.some(x=>x.value.trim()==='')?null:ins.every(x=>okp(x.value)),wrong:()=>ins.forEach(x=>x.classList.toggle('bad',!okp(x.value))),reveal:()=>{['Le matin, il pleut.','Lina prend son parapluie.','Elle rentre à la maison.'].forEach((t,i)=>{ins[i].value=t;ins[i].classList.remove('bad')})},
+      reset:()=>ins.forEach(x=>{x.value='';x.classList.remove('bad')}),lock:on=>ins.forEach(x=>x.readOnly=on)}}});
+
+
+/* Overview table */
+const tb=document.querySelector('#catTable tbody');
+ALL.slice().sort((a,b)=>a.id.localeCompare(b.id)).forEach(m=>{const tr=document.createElement('tr');tr.dataset.id=m.id;const fam=FAMILIES.find(f=>f.k===m.fam);const p=(PROP[m.id]||{}).s;
+  [m.id,m.name,fam.k+'. '+fam.t,(m.ex||'')+' ('+SUBJ[m.subject]+')',PL[p]||'',''].forEach((v,i)=>{const td=document.createElement('td');if(i===0){td.className='num';td.append(el('a',{href:'#card-'+m.id},v))}else td.textContent=v;tr.append(td)});tb.append(tr)});
+document.querySelector('h1').textContent=ALL.length+' types d’exercices à trancher';
+document.querySelector('details.overview summary').textContent='Vue tableau des '+ALL.length+' types';
+document.querySelectorAll('.card').forEach(c=>{const id=c.id.slice(5);c.dataset.prop=(PROP[id]||{}).s||''});
+/* Filters */
+let fSub='all',fSt='all',fDec='all';
+function applyF(){document.querySelectorAll('.card').forEach(c=>{const id=c.id.slice(5);const d=(REV[id]||{}).s;
+    const okD=fDec==='all'||(fDec==='none'&&!d)||(fDec==='diff'&&d&&d!==c.dataset.prop);
+    c.hidden=!((fSub==='all'||c.dataset.subject===fSub)&&(fSt==='all'||c.dataset.prop===fSt)&&okD)});
+  FAMILIES.forEach(f=>{const any=[...famGrids[f.k].g.children].some(c=>!c.hidden);famGrids[f.k].h.hidden=!any;famGrids[f.k].p.hidden=!any;famGrids[f.k].g.hidden=!any})}
+[['fSubject',v=>fSub=v],['fStatus',v=>fSt=v],['fDec',v=>fDec=v]].forEach(([id,set])=>document.querySelectorAll('#'+id+' .chip').forEach(ch=>ch.onclick=()=>{document.querySelectorAll('#'+id+' .chip').forEach(x=>x.setAttribute('aria-pressed','false'));ch.setAttribute('aria-pressed','true');set(ch.dataset.f);applyF()}));
+/* Apply proposals */
+document.getElementById('applyBtn').onclick=()=>{ALL.forEach(m=>{const o=REV[m.id]||{};if(!o.s){o.s=(PROP[m.id]||{}).s;REV[m.id]=o}});saveRev();
+  document.querySelectorAll('.review').forEach(r=>{const id=r.closest('.card').id.slice(5);r.querySelectorAll('.rv-btns button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.s===(REV[id]||{}).s?'true':'false'))});applyF()};
+/* Summary copy */
+function summary(){const lines=['Décisions sur le catalogue des types d’exercices (v3)',''];['mvp','v2','later','merge','drop',undefined].forEach(s=>{const items=ALL.filter(m=>(REV[m.id]||{}).s===s).sort((a,b)=>a.id.localeCompare(b.id));if(!items.length)return;
+  lines.push((s?DL[s]:'Sans décision')+' ('+items.length+')');items.forEach(m=>{const r=REV[m.id]||{};const p=(PROP[m.id]||{}).s;const n=r.note;lines.push('- '+m.id+' '+m.name+(s&&p&&s!==p?' [proposition v3 : '+PL[p]+']':'')+(n?' : '+n.replace(/\s+/g,' ').trim():''))});lines.push('')});return lines.join('\n')}
+document.getElementById('copyBtn').onclick=()=>{const t=summary();const out=document.getElementById('copyOut');const msg=document.getElementById('copyMsg');
+  const fallback=()=>{out.hidden=false;out.value=t;out.focus();out.select();msg.textContent='Sélectionne le texte ci-dessous et copie-le.'};
+  try{navigator.clipboard.writeText(t).then(()=>{msg.textContent='Décisions copiées. Colle-les dans la conversation.';out.hidden=false;out.value=t},fallback)}catch(e){fallback()}};
+let armed=false;document.getElementById('clearBtn').onclick=e=>{const b=e.currentTarget;if(!armed){armed=true;b.textContent='Confirmer l’effacement';setTimeout(()=>{armed=false;b.textContent='Effacer toutes les décisions'},4000);return}
+  REV={};saveRev();document.querySelectorAll('.rv-btns button').forEach(x=>x.setAttribute('aria-pressed','false'));document.querySelectorAll('.review textarea').forEach(t=>t.value='');armed=false;b.textContent='Effacer toutes les décisions';applyF()};
+updateCounts();
+try{window.speechSynthesis&&window.speechSynthesis.getVoices()}catch(e){}
+})();
+</script>
