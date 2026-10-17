@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moteur_exercices/moteur_exercices.dart';
 import 'package:yasmina/reglages/stockage_reglages.dart';
 
 import '../outils.dart';
@@ -55,7 +56,7 @@ void main() {
       await lancerApp(tester, StockageMemoire('fr'), profils: []);
       await tester.enterText(cle('champ_prenom'), 'Lina');
       await tester.pump();
-      final bouton = tester.widget<FilledButton>(cle('profil_enregistrer'));
+      final bouton = tester.widget<BoutonYasmina>(cle('profil_enregistrer'));
       expect(bouton.onPressed, isNull);
     });
   });

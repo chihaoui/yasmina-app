@@ -11,10 +11,7 @@ void main() {
   ) async {
     await lancerApp(tester, StockageMemoire('ar'));
     expect(texteDe(tester, 'accueil_titre'), 'يَاسْمِينَة');
-    expect(
-      texteDe(tester, 'accueil_bienvenue'),
-      'مَرْحَبًا! هَيَّا نَتَعَلَّمُ مَعًا.',
-    );
+    expect(texteDe(tester, 'accueil_bienvenue'), 'هَيَّا نَتَعَلَّمُ مَعًا.');
     expect(sensDe(tester, 'accueil_titre'), TextDirection.rtl);
     expect(sensDe(tester, 'accueil_bienvenue'), TextDirection.rtl);
   });
@@ -24,10 +21,7 @@ void main() {
   ) async {
     await lancerApp(tester, StockageMemoire('fr'));
     expect(texteDe(tester, 'accueil_titre'), 'Yasmina');
-    expect(
-      texteDe(tester, 'accueil_bienvenue'),
-      'Bonjour ! On apprend ensemble.',
-    );
+    expect(texteDe(tester, 'accueil_bienvenue'), 'On apprend ensemble.');
     expect(sensDe(tester, 'accueil_titre'), TextDirection.ltr);
   });
 
@@ -66,6 +60,22 @@ void main() {
       Theme.of(titre).textTheme.titleLarge!.fontFamily,
       PolicesYasmina.latin,
     );
+  });
+
+  testWidgets("l'app suit le thème sombre de l'appareil, sans relance", (
+    tester,
+  ) async {
+    await lancerApp(tester, StockageMemoire('fr'));
+    BuildContext titre() =>
+        tester.element(find.byKey(const ValueKey('accueil_titre')));
+    expect(Theme.of(titre()).brightness, Brightness.light);
+    expect(titre().couleurs, CouleursYasmina.clair);
+
+    tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
+    addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
+    await tester.pumpAndSettle();
+    expect(Theme.of(titre()).brightness, Brightness.dark);
+    expect(titre().couleurs, CouleursYasmina.sombre);
   });
 
   group('premier lancement selon les langues de l\'appareil', () {

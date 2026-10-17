@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 import '../l10n/app_localizations.dart';
-import '../profils/avatar.dart';
 import '../profils/depot_profils.dart';
 import '../profils/profil_actif.dart';
 import 'commun.dart';
@@ -27,41 +26,23 @@ class AccueilEcran extends ConsumerWidget {
         actions: const [BoutonReglages()],
       ),
       body: ListView(
-        padding: const EdgeInsetsDirectional.all(16),
+        padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
         children: [
-          Row(
-            children: [
-              AvatarVisuel(profil.avatar, taille: 56),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  textes.accueilBonjour(profil.prenom),
-                  key: const ValueKey('accueil_bonjour'),
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-            ],
+          YasminaBulle(
+            texte: textes.accueilBonjour(profil.prenom),
+            cleTexte: const ValueKey('accueil_bonjour'),
           ),
-          // Toujours visible, même avec un seul profil.
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: TextButton.icon(
-              key: const ValueKey('profil_changer'),
-              icon: const Icon(Icons.switch_account),
-              label: Text(textes.profilChanger),
-              onPressed: () => context.go('/'),
-            ),
-          ),
-          const SizedBox(height: 8),
+          const SizedBox(height: EspacesYasmina.space4),
           Text(
             textes.accueilBienvenue,
             key: const ValueKey('accueil_bienvenue'),
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: EspacesYasmina.space8),
           Card(
             child: Padding(
-              padding: const EdgeInsetsDirectional.all(16),
+              padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -69,13 +50,22 @@ class AccueilEcran extends ConsumerWidget {
                     textes.accueilExempleExercice,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: EspacesYasmina.space6),
                   // Exemple d'exercice d'arabe : il reste en arabe et de
                   // droite à gauche, même dans une interface en français.
                   const Center(child: CarteDemo(langue: 'ar')),
                 ],
               ),
             ),
+          ),
+          const SizedBox(height: EspacesYasmina.space8),
+          // Toujours visible, même avec un seul profil.
+          BoutonYasmina(
+            key: const ValueKey('profil_changer'),
+            libelle: textes.profilChanger,
+            icone: Icons.switch_account_rounded,
+            variante: VarianteBouton.alt,
+            onPressed: () => context.go('/'),
           ),
         ],
       ),

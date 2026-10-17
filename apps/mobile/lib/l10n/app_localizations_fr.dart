@@ -13,7 +13,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appTitre => 'Yasmina';
 
   @override
-  String get accueilBienvenue => 'Bonjour ! On apprend ensemble.';
+  String get accueilBienvenue => 'On apprend ensemble.';
 
   @override
   String get accueilExempleExercice => 'Exemple d\'exercice';

@@ -104,10 +104,10 @@ abstract class AppLocalizations {
   /// **'Yasmina'**
   String get appTitre;
 
-  /// Message d'accueil de Yasmina sur l'écran d'accueil (interface enfant).
+  /// Ligne sous la bulle de Yasmina sur l'accueil (interface enfant). La bulle porte déjà le bonjour.
   ///
   /// In fr, this message translates to:
-  /// **'Bonjour ! On apprend ensemble.'**
+  /// **'On apprend ensemble.'**
   String get accueilBienvenue;
 
   /// Titre de la carte qui montre un exercice dans la langue de sa matière.

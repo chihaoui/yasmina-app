@@ -38,23 +38,19 @@ class YasminaApp extends ConsumerWidget {
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitre,
       debugShowCheckedModeBanner: false,
       locale: langue.locale,
-      theme: themeInterface(langue),
+      // Le thème sombre suit le réglage de l'appareil, sans relance.
+      theme: ThemeYasmina.theme(
+        langue: langue.name,
+        luminosite: Brightness.light,
+      ),
+      darkTheme: ThemeYasmina.theme(
+        langue: langue.name,
+        luminosite: Brightness.dark,
+      ),
+      themeMode: ThemeMode.system,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       routerConfig: ref.watch(routeurProvider),
     );
   }
-}
-
-/// Thème de l'interface : Baloo Bhaijaan 2 en arabe, Andika en français,
-/// l'autre écriture en secours. Les exercices gardent leur propre police
-/// (LangueExercice).
-ThemeData themeInterface(LangueInterface langue) {
-  final arabe = langue == LangueInterface.ar;
-  return ThemeData(
-    fontFamily: arabe ? PolicesYasmina.interfaceArabe : PolicesYasmina.latin,
-    fontFamilyFallback: [
-      arabe ? PolicesYasmina.latin : PolicesYasmina.interfaceArabe,
-    ],
-  );
 }

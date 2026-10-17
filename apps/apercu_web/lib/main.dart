@@ -12,20 +12,27 @@ class ApercuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    // Même thème que l'app mobile, clair ou sombre selon le système.
+    return MaterialApp(
       title: 'Aperçu Yasmina',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xFFE0E0E0),
-        body: Center(
-          child: CadreTelephone(child: CarteDemo(langue: 'ar')),
+      theme: ThemeYasmina.theme(langue: 'ar', luminosite: Brightness.light),
+      darkTheme: ThemeYasmina.theme(langue: 'ar', luminosite: Brightness.dark),
+      themeMode: ThemeMode.system,
+      home: Builder(
+        builder: (context) => Scaffold(
+          backgroundColor: context.couleurs.bg,
+          body: const Center(
+            child: CadreTelephone(child: CarteDemo(langue: 'ar')),
+          ),
         ),
       ),
     );
   }
 }
 
-/// Cadre de téléphone simple autour de l'exercice joué.
+/// Cadre de téléphone autour de l'exercice joué : un écran de
+/// frame-width × frame-height sur fond screen.
 class CadreTelephone extends StatelessWidget {
   const CadreTelephone({super.key, required this.child});
 
@@ -33,19 +40,22 @@ class CadreTelephone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.couleurs;
     return Container(
-      width: 360,
-      height: 740,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(EspacesYasmina.space4),
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(40),
+        color: c.frame,
+        borderRadius: BorderRadius.circular(RayonsYasmina.radiusFrameOuter),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(RayonsYasmina.radiusFrameInner),
         child: ColoredBox(
-          color: Colors.white,
-          child: Center(child: child),
+          color: c.screen,
+          child: SizedBox(
+            width: TaillesYasmina.frameWidth,
+            height: TaillesYasmina.frameHeight,
+            child: Center(child: child),
+          ),
         ),
       ),
     );

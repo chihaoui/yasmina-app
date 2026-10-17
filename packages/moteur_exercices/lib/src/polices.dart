@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'theme/jetons_yasmina.g.dart';
+
 /// Polices embarquées dans le moteur (licence OFL, voir fonts/README.md).
 abstract final class PolicesYasmina {
   /// Contenu des exercices en arabe : naskh, le style enseigné à l'école.
@@ -14,9 +16,15 @@ abstract final class PolicesYasmina {
   static const latin = 'packages/moteur_exercices/Andika';
 
   /// Style de base d'un exercice selon sa langue, avec l'autre écriture en
-  /// secours pour les textes mixtes.
+  /// secours pour les textes mixtes. En arabe, interligne large
+  /// (content-option) pour que les harakat empilées ne touchent pas la ligne
+  /// voisine.
   static TextStyle styleExercice(String langue) => langue == 'ar'
-      ? const TextStyle(fontFamily: contenuArabe, fontFamilyFallback: [latin])
+      ? TextStyle(
+          fontFamily: contenuArabe,
+          fontFamilyFallback: const [latin],
+          height: StylesYasmina.contentOption.height,
+        )
       : const TextStyle(fontFamily: latin, fontFamilyFallback: [contenuArabe]);
 }
 

@@ -4,9 +4,9 @@
   "@appTitre": {
     "description": "Nom de l'app et de la mascotte."
   },
-  "accueilBienvenue": "Bonjour ! On apprend ensemble.",
+  "accueilBienvenue": "On apprend ensemble.",
   "@accueilBienvenue": {
-    "description": "Message d'accueil de Yasmina sur l'écran d'accueil (interface enfant)."
+    "description": "Ligne sous la bulle de Yasmina sur l'accueil (interface enfant). La bulle porte déjà le bonjour."
   },
   "accueilExempleExercice": "Exemple d'exercice",
   "@accueilExempleExercice": {

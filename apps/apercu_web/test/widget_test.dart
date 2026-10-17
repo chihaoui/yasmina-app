@@ -14,5 +14,16 @@ void main() {
     expect(find.byType(CadreTelephone), findsOneWidget);
     expect(find.byType(CarteDemo), findsOneWidget);
     expect(find.text('يَاسْمِينَة'), findsOneWidget);
+    // L'écran du cadre fait frame-width × frame-height.
+    final ecran = tester.getSize(
+      find.descendant(
+        of: find.byType(CadreTelephone),
+        matching: find.byType(ColoredBox),
+      ),
+    );
+    expect(
+      ecran,
+      const Size(TaillesYasmina.frameWidth, TaillesYasmina.frameHeight),
+    );
   });
 }

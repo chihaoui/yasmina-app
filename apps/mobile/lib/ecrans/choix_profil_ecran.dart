@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../composants/carte_profil.dart';
 import '../donnees/base_yasmina.dart';
 import '../l10n/app_localizations.dart';
-import '../profils/avatar.dart';
 import '../profils/depot_profils.dart';
+import '../profils/libelles.dart';
 import '../profils/profil_actif.dart';
 import 'commun.dart';
 import 'profil_formulaire_ecran.dart';
@@ -28,13 +30,13 @@ class ChoixProfilEcran extends ConsumerWidget {
   }
 }
 
-class _Choix extends StatelessWidget {
+class _Choix extends ConsumerWidget {
   const _Choix(this.profils);
 
   final List<ProfilEnfant> profils;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textes = AppLocalizations.of(context);
     final limiteAtteinte = profils.length >= DepotProfils.maxProfils;
     return Scaffold(
@@ -43,76 +45,82 @@ class _Choix extends StatelessWidget {
         actions: const [BoutonReglages()],
       ),
       body: ListView(
-        padding: const EdgeInsetsDirectional.all(16),
+        padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
         children: [
-          Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            children: [for (final p in profils) _CarteProfil(p)],
+          _Grille(
+            enfants: [
+              for (final p in profils)
+                CarteProfil(
+                  key: ValueKey('profil_${p.id}'),
+                  prenom: p.prenom,
+                  niveau: libelleNiveau(textes, p.niveau),
+                  avatar: p.avatar,
+                  onTap: () {
+                    ref.read(profilActifProvider.notifier).choisir(p.id);
+                    context.go('/accueil');
+                  },
+                  action: BoutonIcone(
+                    key: ValueKey('profil_modifier_${p.id}'),
+                    icone: Icons.edit_rounded,
+                    libelle: textes.profilModifierInfobulle(p.prenom),
+                    onPressed: () => context.push('/profils/${p.id}'),
+                  ),
+                ),
+              if (!limiteAtteinte)
+                CarteAjoutProfil(
+                  key: const ValueKey('profils_ajouter'),
+                  libelle: textes.profilsAjouter,
+                  onTap: () => context.push('/profils/nouveau'),
+                ),
+            ],
           ),
-          const SizedBox(height: 32),
-          if (limiteAtteinte)
+          if (limiteAtteinte) ...[
+            const SizedBox(height: EspacesYasmina.space8),
             Text(
               textes.profilsLimite,
               key: const ValueKey('profils_limite'),
               textAlign: TextAlign.center,
-            )
-          else
-            Center(
-              child: FilledButton.icon(
-                key: const ValueKey('profils_ajouter'),
-                icon: const Icon(Icons.add),
-                label: Text(textes.profilsAjouter),
-                onPressed: () => context.push('/profils/nouveau'),
-              ),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
+          ],
         ],
       ),
     );
   }
 }
 
-class _CarteProfil extends ConsumerWidget {
-  const _CarteProfil(this.profil);
+/// Grille de 3 colonnes dont chaque ligne prend la hauteur de sa plus haute
+/// carte.
+class _Grille extends StatelessWidget {
+  const _Grille({required this.enfants});
 
-  final ProfilEnfant profil;
+  static const _colonnes = 3;
+
+  final List<Widget> enfants;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final textes = AppLocalizations.of(context);
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        key: ValueKey('profil_${profil.id}'),
-        onTap: () {
-          ref.read(profilActifProvider.notifier).choisir(profil.id);
-          context.go('/accueil');
-        },
-        child: SizedBox(
-          width: 140,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12, 16, 12, 4),
-            child: Column(
+  Widget build(BuildContext context) {
+    final lignes = [
+      for (var i = 0; i < enfants.length; i += _colonnes)
+        enfants.sublist(i, (i + _colonnes).clamp(0, enfants.length)),
+    ];
+    return Column(
+      spacing: EspacesYasmina.space3,
+      children: [
+        for (final ligne in lignes)
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: EspacesYasmina.space3,
               children: [
-                AvatarVisuel(profil.avatar, taille: 72),
-                const SizedBox(height: 8),
-                Text(
-                  profil.prenom,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                IconButton(
-                  key: ValueKey('profil_modifier_${profil.id}'),
-                  icon: const Icon(Icons.edit),
-                  tooltip: textes.profilModifierInfobulle(profil.prenom),
-                  onPressed: () => context.push('/profils/${profil.id}'),
-                ),
+                for (var i = 0; i < _colonnes; i++)
+                  Expanded(
+                    child: i < ligne.length ? ligne[i] : const SizedBox(),
+                  ),
               ],
             ),
           ),
-        ),
-      ),
+      ],
     );
   }
 }

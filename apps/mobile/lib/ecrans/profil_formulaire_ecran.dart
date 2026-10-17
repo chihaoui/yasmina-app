@@ -141,9 +141,13 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
     if (!_charge) return const EcranChargement();
     final nombre = ref.watch(profilsProvider).value?.length ?? 0;
     final theme = Theme.of(context);
+    final c = context.couleurs;
 
     Widget titreSection(String texte) => Padding(
-      padding: const EdgeInsetsDirectional.only(top: 24, bottom: 8),
+      padding: const EdgeInsetsDirectional.only(
+        top: EspacesYasmina.space8,
+        bottom: EspacesYasmina.space2,
+      ),
       child: Text(texte, style: theme.textTheme.titleMedium),
     );
 
@@ -165,7 +169,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
           // Formulaire court : tous les champs sont construits (tests et
           // lecteurs d'écran), contrairement à un ListView.
           : SingleChildScrollView(
-              padding: const EdgeInsetsDirectional.all(16),
+              padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -181,8 +185,8 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                   ),
                   titreSection(textes.profilNiveau),
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: EspacesYasmina.space2,
+                    runSpacing: EspacesYasmina.space2,
                     children: [
                       for (var n = 1; n <= 6; n++)
                         ChoiceChip(
@@ -195,7 +199,9 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                   ),
                   if (!_creation)
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(top: 8),
+                      padding: const EdgeInsetsDirectional.only(
+                        top: EspacesYasmina.space2,
+                      ),
                       child: Text(
                         textes.profilNiveauAide,
                         style: theme.textTheme.bodySmall,
@@ -203,8 +209,8 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                     ),
                   titreSection(textes.profilAvatar),
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: EspacesYasmina.space2,
+                    runSpacing: EspacesYasmina.space2,
                     children: [
                       for (final avatar in Avatar.values)
                         Semantics(
@@ -214,18 +220,21 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                             key: ValueKey('avatar_${avatar.name}'),
                             customBorder: const CircleBorder(),
                             onTap: () => setState(() => _avatar = avatar),
+                            // Sélection : anneau blue, comme le focus.
                             child: Container(
-                              padding: const EdgeInsets.all(3),
+                              padding: const EdgeInsets.all(
+                                TraitsYasmina.focusOffset,
+                              ),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  width: 3,
+                                  width: TraitsYasmina.focusRing,
                                   color: avatar == _avatar
-                                      ? theme.colorScheme.primary
+                                      ? c.blue
                                       : Colors.transparent,
                                 ),
                               ),
-                              child: AvatarVisuel(avatar, taille: 56),
+                              child: AvatarVisuel(avatar),
                             ),
                           ),
                         ),
@@ -250,21 +259,19 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  FilledButton(
+                  const SizedBox(height: EspacesYasmina.space8),
+                  BoutonYasmina(
                     key: const ValueKey('profil_enregistrer'),
+                    libelle: textes.profilEnregistrer,
                     onPressed: _peutEnregistrer ? _enregistrer : null,
-                    child: Text(textes.profilEnregistrer),
                   ),
                   if (!_creation) ...[
-                    const SizedBox(height: 16),
-                    OutlinedButton.icon(
+                    const SizedBox(height: EspacesYasmina.space6),
+                    TextButton.icon(
                       key: const ValueKey('profil_supprimer'),
-                      icon: const Icon(Icons.delete_outline),
+                      icon: const Icon(Icons.delete_outline_rounded),
                       label: Text(textes.profilSupprimer),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: theme.colorScheme.error,
-                      ),
+                      style: TextButton.styleFrom(foregroundColor: c.coralText),
                       onPressed: _supprimer,
                     ),
                   ],

@@ -13,7 +13,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitre => 'يَاسْمِينَة';
 
   @override
-  String get accueilBienvenue => 'مَرْحَبًا! هَيَّا نَتَعَلَّمُ مَعًا.';
+  String get accueilBienvenue => 'هَيَّا نَتَعَلَّمُ مَعًا.';
 
   @override
   String get accueilExempleExercice => 'مِثَالُ تَمْرِينٍ';

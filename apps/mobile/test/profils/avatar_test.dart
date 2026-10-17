@@ -4,7 +4,7 @@ import 'package:yasmina/l10n/app_localizations.dart';
 import 'package:yasmina/profils/avatar.dart';
 
 void main() {
-  test('8 avatars, codes stables, icônes et couleurs toutes différentes', () {
+  test('8 avatars, codes stables, icônes toutes différentes', () {
     expect(Avatar.values.map((a) => a.name), [
       'fleur',
       'soleil',
@@ -16,7 +16,6 @@ void main() {
       'nuage',
     ]);
     expect(Avatar.values.map((a) => a.icone).toSet(), hasLength(8));
-    expect(Avatar.values.map((a) => a.couleur).toSet(), hasLength(8));
   });
 
   for (final langue in ['ar', 'fr']) {

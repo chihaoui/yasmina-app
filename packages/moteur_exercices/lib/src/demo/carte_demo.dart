@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../langue_exercice.dart';
+import '../theme/jetons_yasmina.g.dart';
 
 /// Widget de démonstration : vérifie que le même code s'affiche
 /// dans l'app mobile et dans l'aperçu web.
@@ -21,6 +22,7 @@ class CarteDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textes = _textes[langue] ?? _textes['ar']!;
+    final arabe = langue == 'ar';
     return LangueExercice(
       langue: langue,
       child: Column(
@@ -29,13 +31,18 @@ class CarteDemo extends StatelessWidget {
           Text(
             textes.nom,
             key: const ValueKey('carte_demo_nom'),
-            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            style: arabe
+                ? StylesYasmina.contentWord
+                : StylesYasmina.latinPrompt,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: EspacesYasmina.space2),
           Text(
             textes.message,
             key: const ValueKey('carte_demo_message'),
-            style: const TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+            style: arabe
+                ? StylesYasmina.contentSentence
+                : StylesYasmina.latinBody,
           ),
         ],
       ),
