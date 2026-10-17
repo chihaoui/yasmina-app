@@ -13,6 +13,6 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: ApercuApp()));
     expect(find.byType(CadreTelephone), findsOneWidget);
     expect(find.byType(CarteDemo), findsOneWidget);
-    expect(find.text('ياسمينة'), findsOneWidget);
+    expect(find.text('يَاسْمِينَة'), findsOneWidget);
   });
 }

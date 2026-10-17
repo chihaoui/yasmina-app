@@ -20,7 +20,7 @@ void main() {
 
   testWidgets('arabe : texte arabe, de droite à gauche', (tester) async {
     await afficher(tester, 'ar');
-    expect(find.text('ياسمينة'), findsOneWidget);
+    expect(find.text('يَاسْمِينَة'), findsOneWidget);
     expect(directionDu(tester), TextDirection.rtl);
   });
 

@@ -1,9 +1,12 @@
 import 'package:flutter/widgets.dart';
 
+import '../langue_exercice.dart';
+
 /// Widget de démonstration : vérifie que le même code s'affiche
 /// dans l'app mobile et dans l'aperçu web.
 ///
-/// Tout le contenu suit la langue reçue, sens d'écriture compris.
+/// Tout le contenu suit la langue reçue, sens d'écriture compris (via
+/// [LangueExercice]).
 class CarteDemo extends StatelessWidget {
   const CarteDemo({super.key, required this.langue});
 
@@ -11,17 +14,15 @@ class CarteDemo extends StatelessWidget {
   final String langue;
 
   static const _textes = {
-    'ar': (nom: 'ياسمينة', message: 'مرحبا! هيا نتعلم معا.'),
+    'ar': (nom: 'يَاسْمِينَة', message: 'مَرْحَبًا! هَيَّا نَتَعَلَّمُ مَعًا.'),
     'fr': (nom: 'Yasmina', message: 'Bonjour ! On apprend ensemble.'),
   };
-
-  bool get _estArabe => langue == 'ar';
 
   @override
   Widget build(BuildContext context) {
     final textes = _textes[langue] ?? _textes['ar']!;
-    return Directionality(
-      textDirection: _estArabe ? TextDirection.rtl : TextDirection.ltr,
+    return LangueExercice(
+      langue: langue,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

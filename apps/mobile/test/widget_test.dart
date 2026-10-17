@@ -15,6 +15,6 @@ void main() {
       ),
     );
     expect(find.byType(CarteDemo), findsOneWidget);
-    expect(find.text('ياسمينة'), findsOneWidget);
+    expect(find.text('يَاسْمِينَة'), findsOneWidget);
   });
 }
