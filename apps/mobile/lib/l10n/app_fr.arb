@@ -1,0 +1,31 @@
+{
+  "@@locale": "fr",
+  "appTitre": "Yasmina",
+  "@appTitre": {
+    "description": "Nom de l'app et de la mascotte."
+  },
+  "accueilBienvenue": "Bonjour ! On apprend ensemble.",
+  "@accueilBienvenue": {
+    "description": "Message d'accueil de Yasmina sur l'écran d'accueil (interface enfant)."
+  },
+  "accueilExempleExercice": "Exemple d'exercice",
+  "@accueilExempleExercice": {
+    "description": "Titre de la carte qui montre un exercice dans la langue de sa matière."
+  },
+  "reglagesTitre": "Réglages",
+  "@reglagesTitre": {
+    "description": "Titre de l'écran des réglages."
+  },
+  "reglagesOuvrir": "Ouvrir les réglages",
+  "@reglagesOuvrir": {
+    "description": "Infobulle et libellé d'accessibilité du bouton des réglages."
+  },
+  "reglageLangue": "Langue de l'application",
+  "@reglageLangue": {
+    "description": "Titre du réglage de la langue de l'interface."
+  },
+  "reglageLangueAide": "Les exercices gardent la langue de leur matière.",
+  "@reglageLangueAide": {
+    "description": "Aide sous le réglage de la langue."
+  }
+}

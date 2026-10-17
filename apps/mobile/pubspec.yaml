@@ -38,6 +38,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  # Textes de l'interface : lib/l10n/*.arb, générés par gen-l10n (l10n.yaml).
+  generate: true
   # Contenu embarqué (edu-content/1.0), validé par test/contenu_embarque_test.dart.
   # Flutter ne parcourt pas les sous-dossiers : déclarer chaque dossier.
   assets:

@@ -1,0 +1,10 @@
+{
+  "@@locale": "ar",
+  "appTitre": "يَاسْمِينَة",
+  "accueilBienvenue": "مَرْحَبًا! هَيَّا نَتَعَلَّمُ مَعًا.",
+  "accueilExempleExercice": "مِثَالُ تَمْرِينٍ",
+  "reglagesTitre": "الإِعْدَادَاتُ",
+  "reglagesOuvrir": "اِفْتَحِ الإِعْدَادَاتِ",
+  "reglageLangue": "لُغَةُ التَّطْبِيقِ",
+  "reglageLangueAide": "تَبْقَى التَّمَارِينُ بِلُغَةِ مَادَّتِهَا."
+}
