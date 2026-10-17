@@ -5,7 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 /// Règles des textes de l'interface (CLAUDE.md §5, docs/conventions-arabe.md) :
 /// mêmes clés en arabe et en français, pas de tiret cadratin ni de
-/// point-virgule en français, aucun alif suscrit (U+0670) en arabe, harakat
+/// point-virgule en français, aucun alif suscrit (U+0670) en arabe, convention
+/// C (soukoun sur le lam devant une lettre lunaire), harakat
 /// complètes dans l'interface enfant et aucune dans l'espace parent (clés
 /// préfixées par `parent`).
 void main() {
@@ -39,6 +40,18 @@ void main() {
   test('aucun alif suscrit (U+0670) en arabe', () {
     for (final MapEntry(:key, :value) in ar.entries) {
       expect(value.runes, isNot(contains(0x0670)), reason: key);
+    }
+  });
+
+  test('convention C : soukoun sur le lam devant une lettre lunaire', () {
+    final lamNu = RegExp(
+      '\u0627\u0644[\u0621\u0623\u0625\u0622\u0628\u062C\u062D\u062E'
+      '\u0639\u063A\u0641\u0642\u0643\u0645\u0647\u0648\u064A]',
+    );
+    for (final MapEntry(:key, :value) in ar.entries) {
+      if (contientHaraka(value)) {
+        expect(lamNu.hasMatch(value), isFalse, reason: key);
+      }
     }
   });
 

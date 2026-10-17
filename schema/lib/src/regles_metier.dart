@@ -227,7 +227,9 @@ List<ProblemeValidation> reglesEtape(Map<String, dynamic> racine) {
   for (var i = 0; i < exercices.length; i++) {
     _collecterTextes(exercices[i], '/exercices/$i', textes);
   }
-  problemes.addAll(_alifSuscrit(textes));
+  problemes
+    ..addAll(_alifSuscrit(textes))
+    ..addAll(_lamSansSoukoun(textes));
 
   // Harakat en 1re et 2e année d'arabe (ou de maths et d'éveil, en arabe).
   final niveau = etape['niveau'] as int;
@@ -319,7 +321,9 @@ List<ProblemeValidation> reglesExercice(
     }
     final textes = <(String, String)>[];
     _collecterTextes(ex, chemin, textes);
-    problemes.addAll(_alifSuscrit(textes));
+    problemes
+      ..addAll(_alifSuscrit(textes))
+      ..addAll(_lamSansSoukoun(textes));
   }
   return problemes;
 }
@@ -335,6 +339,29 @@ List<ProblemeValidation> _alifSuscrit(List<(String, String)> textes) => [
         message:
             'alif suscrit (U+0670) interdit par la convention B : écrire '
             'هَذِهِ et non هٰذِهِ (docs/conventions-arabe.md). Texte : « $texte ».',
+        gravite: Gravite.avertissement,
+      ),
+];
+
+/// Convention C : le lam de l'article porte un soukoun devant une lettre
+/// lunaire, hamza comprise (الْكَلِمَةُ, الْإِعْدَادَاتُ). Seuls les textes
+/// vocalisés sont contrôlés. Un lam avec kasra (الِاسْمُ) ou suivi d'une
+/// lettre solaire (الصَّحِيحَةُ) n'est pas signalé.
+final _lamNuDevantLunaire = RegExp(
+  '\u0627\u0644[\u0621\u0623\u0625\u0622\u0628\u062C\u062D\u062E'
+  '\u0639\u063A\u0641\u0642\u0643\u0645\u0647\u0648\u064A]',
+);
+
+List<ProblemeValidation> _lamSansSoukoun(List<(String, String)> textes) => [
+  for (final (chemin, texte) in textes)
+    if (_contientHaraka(texte) && _lamNuDevantLunaire.hasMatch(texte))
+      ProblemeValidation(
+        chemin: chemin,
+        code: 'lam_sans_soukoun',
+        message:
+            "lam de l'article sans soukoun devant une lettre lunaire "
+            '(convention C) : écrire الْ, par exemple الْكَلِمَةُ '
+            '(docs/conventions-arabe.md). Texte : « $texte ».',
         gravite: Gravite.avertissement,
       ),
 ];

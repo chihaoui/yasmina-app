@@ -275,6 +275,27 @@ void main() {
       );
     });
 
+    test('lam sans soukoun devant une lettre lunaire : avertissement', () {
+      final r = valider(
+        (d) => d['exercices'][0]['consigne']['texte'] =
+            'أَيُّ كَلِمَةٍ تَبْدَأُ بِحَرْفِ البَاءِ؟',
+      );
+      expect(r.estValide, isTrue);
+      expect(
+        r.avertissements.where((a) => a.code == 'lam_sans_soukoun').single,
+        probleme('/exercices/0/consigne/texte', 'lam_sans_soukoun'),
+      );
+    });
+
+    test('lettre solaire, alif de liaison et texte non vocalisé : rien', () {
+      final ex = exemple()['exercices'][0];
+      ex['feedbacks']['indice'] = 'الصَّحِيحَةُ هِيَ الْكَلِمَةُ الْأُولَى.';
+      ex['feedbacks']['explication'] = 'هَذَا الِاسْمُ جَمِيلٌ.';
+      ex['feedbacks']['reussite'] = 'الكلمة الصحيحة';
+      final r = validerExercice(ex);
+      expect(r.avertissements, isEmpty, reason: '$r');
+    });
+
     test("l'exemple validé ne contient aucun U+0670", () {
       expect(etapeExemple.runes, isNot(contains(0x0670)));
     });

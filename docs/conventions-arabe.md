@@ -31,6 +31,8 @@ Le lam de l'article porte toujours un soukoun devant une lettre lunaire, hamza c
 | Lettre solaire | الصَّحِيحَةُ | الْصَّحِيحَةُ |
 | Alif de liaison | الِاسْمُ | الْاسْمُ |
 
+Le validateur et le test des textes de l'interface signalent un lam sans soukoun devant une lettre lunaire (dans un texte vocalisé) par l'avertissement `lam_sans_soukoun`.
+
 ## Jamais de NFC ni de NFD sur les textes stockés
 
 Les textes sont stockés exactement comme ils ont été écrits et relus. Aucun outil (app, validateur, back-office, pipeline) ne leur applique de normalisation Unicode NFC ou NFD.
