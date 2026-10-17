@@ -1,0 +1,43 @@
+{
+  "id": "fr-3-t1-u2-e02-x01",
+  "type": "T55",
+  "gabarit": "paire-minimale",
+  "competence": "fr-phonologie-p-b",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Écoute bien et touche le mot que tu entends."
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "bain"
+    },
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "pain",
+        "image": "images/fr/pain.png"
+      },
+      {
+        "id": "c2",
+        "texte": "bain",
+        "image": "images/fr/bain.png"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c2"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui, on entend « bain » : le mot commence par le son « b ».",
+    "indice": "Écoute le premier son : « p » ou « b » ?",
+    "explication": "On entend « bain », avec « b ». « Pain » commence par « p »."
+  },
+  "empreinte": "sha256:e7b1fa00d125a8ed62e95eaefdc1c385f25e849b2240866b30b5577d14800a94",
+  "statut": "brouillon",
+  "version": 1
+}

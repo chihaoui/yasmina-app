@@ -1,0 +1,33 @@
+{
+  "id": "ma-1-t1-u4-e01-x01",
+  "type": "T23",
+  "gabarit": "comparer-nombres",
+  "competence": "ma-comparer-nombres",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "قَارِنْ بَيْنَ الْعَدَدَيْنِ."
+  },
+  "donnees": {
+    "a": 14,
+    "b": 9
+  },
+  "reponse": {
+    "signe": ">"
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 14 أَكْبَرُ مِنْ 9.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 14 أَكْبَرُ مِنْ 9."
+    },
+    "indice": {
+      "masculin": "قَارِنْ أَوَّلًا عَدَدَ الْأَرْقَامِ: فِي 14 رَقْمَانِ، وَفِي 9 رَقْمٌ وَاحِدٌ.",
+      "feminin": "قَارِنِي أَوَّلًا عَدَدَ الْأَرْقَامِ: فِي 14 رَقْمَانِ، وَفِي 9 رَقْمٌ وَاحِدٌ."
+    },
+    "explication": "الْعَدَدُ 14 أَكْبَرُ مِنَ الْعَدَدِ 9."
+  },
+  "empreinte": "sha256:ae04521bd52e6d14585306db076125b5dc4a539b3d7ef47a0e1d27e49eb7d2fc",
+  "statut": "brouillon",
+  "version": 1
+}
