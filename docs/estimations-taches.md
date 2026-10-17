@@ -6,7 +6,7 @@ Méthode : une tâche compte seulement quand elle est faite. Avancement d'une ph
 
 Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, partie 1) passent en A0 (A0-19 design system Yasmina, A0-20 ThemeYasmina). Total inchangé.
 
-## Phase A0 (24,5 j-h, 9,5 faits)
+## Phase A0 (24,5 j-h, 10,5 faits)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
@@ -29,7 +29,7 @@ Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, pa
 | A0-17 | L00 | Build de test sur téléphone (iPhone fait, Android à installer) | 1 | en cours |
 | A0-18 | L17 | Pilotage A0 | 1 | en cours |
 | A0-19 | L01 | Design system Yasmina (artefact, depuis la démo) | 1 | fait |
-| A0-20 | L01 | ThemeYasmina appliqué à l'app et à l'aperçu web | 1 | à faire |
+| A0-20 | L01 | ThemeYasmina appliqué à l'app et à l'aperçu web | 1 | fait |
 
 ## Phase A1 (86,5 j-h, 0 faits)
 

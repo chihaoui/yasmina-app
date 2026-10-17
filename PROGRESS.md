@@ -6,15 +6,15 @@ Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 9,5 | 24,5 | 39 % |
+| A0 | 10,5 | 24,5 | 43 % |
 | A1 | 0 | 86,5 | 0 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **9,5** | **343** | **2,8 %** |
+| **Total** | **10,5** | **343** | **3,1 %** |
 
-- **Avancement global : 2,8 %** (9,5 j-h faits sur 343)
+- **Avancement global : 3,1 %** (10,5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -62,7 +62,7 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
   - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
 - [ ] A0-18 Pilotage A0 (1 j-h)
 - [x] A0-19 Design system Yasmina (artefact, depuis la démo) (1 j-h)
-- [ ] A0-20 ThemeYasmina appliqué à l'app et à l'aperçu web (1 j-h)
+- [x] A0-20 ThemeYasmina appliqué à l'app et à l'aperçu web (1 j-h)
 
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
 - [ ] A1-01 Moteur Choix (13 types) : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (8 j-h)
@@ -145,7 +145,10 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 
 - Risque à suivre (aperçu web) : nos polices sont embarquées, mais le moteur web de Flutter charge encore par défaut CanvasKit et ses polices de secours depuis les CDN de Google (`gstatic.com`). À traiter avec la tâche A0-15 (`--no-web-resources-cdn` et thème de l'aperçu) si l'aperçu doit marcher hors ligne.
 - Taille : les polices ajoutent environ 2,1 Mo à l'app (Andika fait 1,3 Mo à elle seule, car elle couvre beaucoup d'écritures). Un sous-ensemble pourra être produit avant la publication.
-- Point UX à trancher : l'accueil dit deux fois bonjour (« Bonjour Lina ! » puis « Bonjour ! On apprend ensemble. »). Proposition : remplacer le second texte par « On apprend ensemble. », à faire relire en arabe.
+- Résolu le 17 oct. 2026 : double bonjour de l'accueil. La bulle de Yasmina porte le bonjour, la ligne du dessous devient « هَيَّا نَتَعَلَّمُ مَعًا. » ou « On apprend ensemble. » (textes validés par Lamjed).
+- Point de design à trancher (tokens.json) : en thème sombre, `ink` devient clair et ne fait que 1,4:1 sur `sun` (étape ouverte de la carte). La démo écrit les étapes et les cartes de matière en #16243A fixe, absent des jetons. Proposition : un jeton `ink-fixed` (ou `on-pastel`) identique dans les deux thèmes, à ajouter à l'artefact avant la carte du trimestre (A1-10).
+- À noter : `on-accent` sur `olive` ne fait que 4,05:1 en clair. Acceptable en grand texte gras (bouton Continuer en 22 gras, testé à 3:1), jamais en petit texte.
+- Contrôle visuel de l'aperçu web dans Chrome (clair et sombre) pas fait par Claude Code (Chrome non utilisé à la demande de Lamjed) : à faire par Lamjed.
 - Goldens générés sur macOS : ils peuvent différer sur une autre machine ou une CI Linux (polices et rendu). À régénérer sur la machine de référence si besoin.
 
 ## Journal
@@ -160,3 +163,4 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 | 17 oct. 2026 | Suivi (Claude Code) | Bloc « Avancement » ajouté en tête de PROGRESS.md (% par phase, % global pondéré par les semaines, types jouables), la ligne des types jouables quitte « État global » pour éviter un doublon. Conventions arabes imposées dans CLAUDE.md §5. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | A0 langue de l'interface (Claude Code) | Avancement passé en jours-homme (`docs/estimations-taches.md`, listes de PROGRESS.md réécrites, `tool/avancement.dart` vérifié par `verifier.sh`). Langue de l'interface : première langue arabe ou française de l'appareil, sinon arabe, enregistrée au premier lancement, modifiable dans les réglages (Riverpod, shared_preferences). Textes en ARB via gen-l10n (ar, fr), `CFBundleLocalizations` iOS. `LangueExercice` dans le moteur : sens, locale et police de l'exercice indépendants de l'interface. Accueil et réglages (go_router). Polices embarquées : Noto Naskh Arabic (exercices), Baloo Bhaijaan 2 (interface arabe), Andika (français). Goldens de l'accueil en ar et en fr. Dépendance ajoutée : shared_preferences 2.5.6 (fontTools 4.55.3 utilisé hors dépôt pour produire les polices statiques) | Installer l'APK sur Android, puis profils enfants et base drift (A0-11) |
 | 17 oct. 2026 | A0 profils enfants (Claude Code) | Harakat de l'interface corrigées (الْإِعْدَادَاتُ, الْعَرَبِيَّةُ), convention C (soukoun sur le lam devant une lettre lunaire, kasra devant un alif de liaison) dans docs et CLAUDE.md, avertissement `lam_sans_soukoun` au validateur et au test des ARB. `FormeAdresse` dans le moteur. Base drift v1 (`base_yasmina.drift` : profils, historique des niveaux, index partiel, déclencheur des 5 profils, clés étrangères, instantané de migration et test). Dépôt des profils (limite, historique daté, persistance testée). 8 avatars placeholder (icônes Material, nuage à la place de l'oiseau). Écrans : création directe sans profil, accueil direct avec un profil, choix à partir de deux, formulaire de création et modification, suppression confirmée. Goldens du choix et de l'accueil. `flutter build apk --debug` et build iOS réussis, SQLite embarqué par les hooks de sqlite3. Aucune dépendance ajoutée | Relire « سَحَابَةٌ » (avatar nuage), installer l'APK sur Android, puis menu développeur (A0-12) |
+| 17 oct. 2026 | A0 ThemeYasmina (Claude Code) | `docs/design-system/` commité (sans le zip, supprimé). PROGRESS.md aligné sur les estimations de 19 h (A0-19, A0-20, A1-19 à 8 j-h), `tool/avancement.dart` contrôle chaque tâche (id et j-h). Graisses 600 et 800 des polices arabes. `tool/generer_theme.dart` génère les jetons depuis `tokens.json` (couleurs clair et sombre, styles, espacements, rayons, traits, tailles, ombres) et copie les SVG de Yasmina, test de synchro. `ThemeYasmina` clair et sombre (suit l'appareil), tests de contraste. Composants du moteur : `BoutonYasmina`, `BoutonIcone`, `Yasmina` et `YasminaBulle` (statiques, A0-16 reste ouverte pour les animations avec le lecteur). App : accueil avec Yasmina, grille de `CarteProfil` et carte d'ajout pointillée, avatars au style de la démo, formulaire thémé. Aperçu web thémé (cadre en jetons). Garde-fou `tool/garde_design.dart` dans `verifier.sh` (aucune valeur en dur, exception `// design-ok`). 8 goldens (ar, fr, clair, sombre). `flutter build apk --debug`, build iOS et build web réussis. Dépendances ajoutées : flutter_svg 2.3.0 dans le moteur (entraîne vector_graphics, vector_graphics_codec, vector_graphics_compiler, xml, path_parsing, petitparser), flutter_localizations en dev dans le moteur (tests en arabe) | Contrôle visuel de l'aperçu web par Lamjed, jeton `ink-fixed` à trancher, installer l'APK sur Android, puis menu développeur (A0-12) |
