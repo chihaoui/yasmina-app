@@ -23,7 +23,7 @@ const String texteSchemaEduContent = r'''
   "$defs": {
     "texteNonVide": { "type": "string", "minLength": 1 },
     "texteGenre": {
-      "description": "Texte simple, ou deux variantes accordées au genre du profil.",
+      "description": "Attendu : un texte non vide, ou un objet avec deux textes non vides masculin et feminin (accord selon le genre du profil).",
       "oneOf": [
         { "$ref": "#/$defs/texteNonVide" },
         {
@@ -238,6 +238,7 @@ const String texteSchemaEduContent = r'''
           "minItems": 2,
           "maxItems": 6,
           "items": {
+            "description": "Attendu : un choix avec un id et au moins un texte ou une image.",
             "type": "object",
             "required": ["id"],
             "additionalProperties": false,

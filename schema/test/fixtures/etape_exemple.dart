@@ -1,0 +1,118 @@
+// Exemple valide : étape d'arabe 1re avec un T01 et un T02 (contenu original,
+// statut brouillon tant que les harakat ne sont pas relues).
+// Constante Dart plutôt que fichier .json pour que les tests tournent aussi
+// dans Chrome, sans dart:io.
+const String etapeExemple = r'''
+{
+  "generation": {
+    "id": "gen-ar-1-t1-u1-e01-20261017-01",
+    "schema": "edu-content/1.0",
+    "date": "2026-10-17",
+    "modele": "manuel",
+    "version_prompt": "aucun",
+    "auteur": "Lamjed CHIHAOUI"
+  },
+  "etape": {
+    "id": "ar-1-t1-u1-e01",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 1,
+    "langue": "ar",
+    "titre": "حَرْفُ الْبَاءِ",
+    "sequences": [
+      {
+        "id": "ar-1-t1-u1-e01-s1",
+        "titre": "أَتَعَرَّفُ عَلَى الْبَاءِ",
+        "exercices": [
+          "ar-1-t1-u1-e01-x01",
+          "ar-1-t1-u1-e01-x02"
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": "ar-1-t1-u1-e01-x01",
+      "type": "T01",
+      "gabarit": "qcm-texte",
+      "competence": "ar-lecture-son-initial",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "أَيُّ كَلِمَةٍ تَبْدَأُ بِحَرْفِ الْبَاءِ؟"
+      },
+      "donnees": {
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "بَابٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "قَمَرٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "شَمْسٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كَلِمَةُ «بَابٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كَلِمَةُ «بَابٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى أَوَّلِ صَوْتٍ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِسْتَمِعِي إِلَى أَوَّلِ صَوْتٍ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "الْكَلِمَةُ الصَّحِيحَةُ هِيَ «بَابٌ»: أَوَّلُ حَرْفٍ فِيهَا الْبَاءُ."
+      },
+      "empreinte": "sha256:c95ff8d173e8f25ced8216e3fef9b9319fd7a7a4db2da093ab49aa18ff7992b8",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e01-x02",
+      "type": "T02",
+      "gabarit": "vrai-faux-texte",
+      "competence": "ar-lecture-son-initial",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "هَلْ هٰذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
+      },
+      "donnees": {
+        "affirmation": "كَلِمَةُ «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+      },
+      "reponse": {
+        "valeur": true
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+        },
+        "indice": {
+          "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+          "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+        },
+        "explication": "الْجُمْلَةُ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+      },
+      "empreinte": "sha256:b3d6981016eeebf0f21029de7ccd09ff6e81343ae6a3559c8c4c3f5dcbf726ce",
+      "statut": "brouillon",
+      "version": 1
+    }
+  ]
+}
+''';
