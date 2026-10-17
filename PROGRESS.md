@@ -1,5 +1,22 @@
 # PROGRESS.md : suivi du développement
 
+## Avancement
+Au 17 oct. 2026.
+
+| Phase | Semaines | Cases faites | Total | % |
+|---|---|---|---|---|
+| A0 | 2 | 8 | 17 | 47 % |
+| A1 | 8,5 | 0 | 16 | 0 % |
+| A2 | 8 | 0 | 9 | 0 % |
+| B | 8,7 | 0 | 1 | 0 % |
+| C | 8,7 | 0 | 1 | 0 % |
+| D | 11 | 0 | 1 | 0 % |
+| **Total** | **46,9** | **8** | **45** | |
+
+- **Avancement global : 2,0 %**
+- **Types jouables : 0 sur 53**
+- Méthode : % de phase = cases cochées ÷ total des cases de la phase. Seules les cases de premier niveau comptent (les sous-cases indentées détaillent une tâche), et une tâche en cours compte 0. % global = moyenne des % de phase pondérée par leur durée en semaines (A0 2, A1 8,5, A2 8, B 8,7, C 8,7, D 11, total 46,9). Bloc mis à jour à chaque session.
+
 Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par le mentor. Les dates suivent le plan de développement du 17 octobre 2026.
 
 ## État global
@@ -7,7 +24,6 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - Prochain point de décision : **R1, 15 novembre 2026** (vitesse réelle avec Claude Code, décision sur le renfort freelance)
 - Framework : **Flutter 3.47.7** (décidé le 17 octobre 2026), poste vérifié par `flutter doctor` sans erreur
 - Dépôt : https://github.com/chihaoui/yasmina-app (privé), dossier local `/Users/chihaoui/Documents/Forgia/Yasmina`
-- Types d'exercices jouables : **0 sur 53**
 
 ## Jalons
 | Jalon | Date | Critère | État |
@@ -98,3 +114,4 @@ Retours familles, tour 1 (14 au 31 déc. 2026) :
 | 17 oct. 2026 | Builds de test (Lamjed et Claude Code) | Espace disque libéré, build Android debug réussi (APK construit, pas encore installé), build iOS réussi et app installée sur l'iPhone de Lamjed. Warning KGP de `flutter_tts` côté Android ajouté aux risques. Xcode a mis à jour le format de `project.pbxproj` (objectVersion 60) | Installer l'APK sur un téléphone Android, puis schéma edu-content/1.0 et validateur |
 | 17 oct. 2026 | A0 schéma et validateur (Claude Code) | Schéma `schema/edu-content-1.0.schema.json` (draft 2020-12, T01, T02 et T05 détaillés, consigne et feedbacks genrés, id stables), compilé sans avertissement par ajv 8. Package Dart pur `edu_content` dans `schema/` : validateur (messages en français, chemin JSON Pointer), règles métier, 27 tests sur la VM et dans Chrome. Première étape embarquée `ar-1-t1-u1-e01` (brouillon), validée par `flutter test` côté mobile. `tool/verifier.sh` étendu au package schema. Maquettes `docs/reference/` ajoutées. Dépendances ajoutées : json_schema 5.2.2 (entraîne http, quiver, uri), en dev dans schema : flutter_test et flutter_lints 6.0.0, en dev dans apps/mobile : edu_content (workspace) | Relire les harakat de `ar-1-t1-u1-e01`, installer l'APK sur Android, puis langue de l'interface et `Directionality` |
 | 17 oct. 2026 | Relecture du contenu (Lamjed et Claude Code) | Lamjed a relu les textes arabes de `ar-1-t1-u1-e01` et fixé 2 conventions : alif de liaison avec kasra en début de phrase, alif suscrit simplifié (aucun U+0670). Consigne de x02 corrigée (هٰذِهِ devient هَذِهِ, seul U+0670 remplacé par U+064E), x01 et x02 en statut valide, empreinte de x02 recalculée. Avertissement `alif_suscrit` ajouté au validateur (30 tests). `docs/conventions-arabe.md` créé. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
+| 17 oct. 2026 | Suivi (Claude Code) | Bloc « Avancement » ajouté en tête de PROGRESS.md (% par phase, % global pondéré par les semaines, types jouables), la ligne des types jouables quitte « État global » pour éviter un doublon. Conventions arabes imposées dans CLAUDE.md §5. Aucune dépendance ajoutée | Installer l'APK sur Android, puis langue de l'interface et `Directionality` |
