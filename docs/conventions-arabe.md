@@ -20,6 +20,17 @@ On écrit la forme simplifiée avec une fatha, jamais l'alif suscrit (U+0670, AR
 
 Même règle pour هَذَا, ذَلِكَ, لَكِنَّ. Le validateur signale tout U+0670 par l'avertissement `alif_suscrit`, avec le chemin exact du texte.
 
+## C. Article : soukoun sur le lam devant une lettre lunaire
+
+Le lam de l'article porte toujours un soukoun devant une lettre lunaire, hamza comprise. Devant une lettre solaire, il ne porte rien et la lettre suivante prend une shadda. Devant un alif de liaison, le lam porte une kasra.
+
+| Cas | Correct | À éviter |
+|---|---|---|
+| Lettre lunaire | الْكَلِمَةُ | الكَلِمَةُ |
+| Hamza (lunaire) | الْإِعْدَادَاتُ | الإِعْدَادَاتُ |
+| Lettre solaire | الصَّحِيحَةُ | الْصَّحِيحَةُ |
+| Alif de liaison | الِاسْمُ | الْاسْمُ |
+
 ## Jamais de NFC ni de NFD sur les textes stockés
 
 Les textes sont stockés exactement comme ils ont été écrits et relus. Aucun outil (app, validateur, back-office, pipeline) ne leur applique de normalisation Unicode NFC ou NFD.

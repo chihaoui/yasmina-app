@@ -50,7 +50,7 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
 - Tracé (T20) non noté, sans sous-titres sous les boutons.
 - Profils : 5 enfants maximum.
 - Harakat : ne jamais les supprimer ni les réordonner dans les textes. Comparaisons de réponses avec normalisation explicite et testée.
-- Conventions d'écriture de l'arabe (`docs/conventions-arabe.md`), imposées dès l'écriture de tout texte arabe (contenu, tests, exemples, prompts du pipeline) : A. alif de liaison en début de phrase avec kasra (اِسْتَمِعْ). B. alif suscrit simplifié : هَذِهِ, jamais d'alif suscrit (aucun caractère U+0670).
+- Conventions d'écriture de l'arabe (`docs/conventions-arabe.md`), imposées dès l'écriture de tout texte arabe (contenu, tests, exemples, prompts du pipeline) : A. alif de liaison en début de phrase avec kasra (اِسْتَمِعْ). B. alif suscrit simplifié : هَذِهِ, jamais d'alif suscrit (aucun caractère U+0670). C. lam de l'article avec soukoun devant une lettre lunaire, hamza comprise (الْإِعْدَادَاتُ, الْكَلِمَةُ), avec kasra devant un alif de liaison (الِاسْمُ).
 - Textes français de l'interface : pas de tiret cadratin ni de point-virgule.
 - Aucun contenu recopié des manuels scolaires.
 

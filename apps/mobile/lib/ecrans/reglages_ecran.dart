@@ -7,7 +7,7 @@ import '../reglages/langue_interface.dart';
 /// Noms des langues, chacun écrit dans sa propre langue quelle que soit la
 /// langue affichée.
 const _nomsLangues = {
-  LangueInterface.ar: ('الْعَرَبِيَّة', TextDirection.rtl),
+  LangueInterface.ar: ('الْعَرَبِيَّةُ', TextDirection.rtl),
   LangueInterface.fr: ('Français', TextDirection.ltr),
 };
 

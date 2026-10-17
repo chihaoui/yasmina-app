@@ -19,10 +19,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accueilExempleExercice => 'مِثَالُ تَمْرِينٍ';
 
   @override
-  String get reglagesTitre => 'الإِعْدَادَاتُ';
+  String get reglagesTitre => 'الْإِعْدَادَاتُ';
 
   @override
-  String get reglagesOuvrir => 'اِفْتَحِ الإِعْدَادَاتِ';
+  String get reglagesOuvrir => 'اِفْتَحِ الْإِعْدَادَاتِ';
 
   @override
   String get reglageLangue => 'لُغَةُ التَّطْبِيقِ';

@@ -11,12 +11,12 @@ void main() {
     final stockage = StockageMemoire('ar');
     await lancerApp(tester, stockage);
 
-    await tester.tap(find.byTooltip('اِفْتَحِ الإِعْدَادَاتِ'));
+    await tester.tap(find.byTooltip('اِفْتَحِ الْإِعْدَادَاتِ'));
     await tester.pumpAndSettle();
-    expect(find.text('الإِعْدَادَاتُ'), findsOneWidget);
+    expect(find.text('الْإِعْدَادَاتُ'), findsOneWidget);
     // Les noms des langues restent dans leur propre langue.
     expect(find.text('Français'), findsOneWidget);
-    expect(find.text('الْعَرَبِيَّة'), findsOneWidget);
+    expect(find.text('الْعَرَبِيَّةُ'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('langue_fr')));
     await tester.pumpAndSettle();
