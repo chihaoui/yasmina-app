@@ -236,7 +236,9 @@ List<ProblemeValidation> reglesEtape(Map<String, dynamic> racine) {
   if (langue == 'ar' && niveau <= 2) {
     final annee = niveau == 1 ? '1re' : '${niveau}e';
     for (final (chemin, texte) in textes) {
-      if (_contientLettreArabe(texte) && !_contientHaraka(texte)) {
+      if (_contientLettreArabe(texte) &&
+          !_contientHaraka(texte) &&
+          !_formeDeLettre(texte)) {
         avertissement(
           chemin,
           'harakat_manquantes',
@@ -263,48 +265,16 @@ List<ProblemeValidation> reglesExercice(
   );
 
   final type = ex['type'] as String;
-  if (type == 'T01' || type == 'T05') {
-    final choix = ((ex['donnees'] as Map<String, dynamic>)['choix'] as List)
-        .cast<Map<String, dynamic>>();
-    final ids = <String>{};
-    final textes = <String>{};
-    for (var k = 0; k < choix.length; k++) {
-      final id = choix[k]['id'] as String;
-      if (!ids.add(id)) {
-        erreur(
-          '$chemin/donnees/choix/$k/id',
-          'choix_duplique',
-          'deux choix ont le même id « $id ».',
-        );
-      }
-      final texte = choix[k]['texte'];
-      if (texte is String && !textes.add(texte)) {
-        erreur(
-          '$chemin/donnees/choix/$k/texte',
-          'choix_duplique',
-          'deux choix ont le même texte « $texte ».',
-        );
-      }
-    }
-    final bons = ((ex['reponse'] as Map<String, dynamic>)['choix'] as List)
-        .cast<String>();
-    for (var k = 0; k < bons.length; k++) {
-      if (!ids.contains(bons[k])) {
-        erreur(
-          '$chemin/reponse/choix/$k',
-          'reponse_choix_inconnu',
-          'la réponse désigne le choix « ${bons[k]} », absent de donnees.choix.',
-        );
-      }
-    }
-    if (type == 'T01' && bons.length != 1) {
-      erreur(
-        '$chemin/reponse/choix',
-        'reponse_t01_unique',
-        'un T01 a exactement une bonne réponse (ici ${bons.length}). '
-            'Pour plusieurs bonnes réponses, utiliser T05.',
-      );
-    }
+  if (_typesChoix.contains(type)) {
+    problemes.addAll(
+      _reglesChoix(
+        type,
+        ex['langue'] as String,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
   }
 
   if (seul) {
@@ -327,6 +297,281 @@ List<ProblemeValidation> reglesExercice(
   }
   return problemes;
 }
+
+/// Les 13 types du moteur Choix (docs/moteurs/choix.md).
+const _typesChoix = {
+  'T01',
+  'T02',
+  'T03',
+  'T04',
+  'T05',
+  'T18',
+  'T19',
+  'T23',
+  'T24',
+  'T45',
+  'T46',
+  'T55',
+  'T61',
+};
+
+/// Types à une seule bonne réponse dans `reponse.choix`.
+const _typesReponseUnique = {'T01', 'T03', 'T04', 'T18', 'T24', 'T55'};
+
+/// Types où toutes les propositions ne peuvent pas être justes (sinon il
+/// suffit de tout toucher).
+const _typesJamaisTousLesChoix = {'T05', 'T45', 'T61'};
+
+/// Types propres à l'écriture arabe.
+const _typesArabes = {'T18', 'T19'};
+
+/// Caractère de chaque haraka de T19.
+const _signesHaraka = {
+  'fatha': 'َ',
+  'damma': 'ُ',
+  'kasra': 'ِ',
+  'soukoun': 'ْ',
+};
+
+/// Règles des types du moteur Choix. Le schéma garantit déjà la forme de
+/// `donnees` et de `reponse` pour chaque type.
+List<ProblemeValidation> _reglesChoix(
+  String type,
+  String langue,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+
+  if (_typesArabes.contains(type) && langue != 'ar') {
+    erreur(
+      '$chemin/langue',
+      'type_langue',
+      'un $type porte sur l\'écriture arabe : langue ar attendue, pas $langue.',
+    );
+  }
+
+  // Propositions : id et textes uniques, réponses existantes.
+  Set<String> verifierListe(String champ) {
+    final liste = (donnees[champ] as List).cast<Map<String, dynamic>>();
+    final ids = <String>{};
+    final textes = <String>{};
+    for (var k = 0; k < liste.length; k++) {
+      final id = liste[k]['id'] as String;
+      if (!ids.add(id)) {
+        erreur(
+          '$chemin/donnees/$champ/$k/id',
+          'choix_duplique',
+          'deux éléments de $champ ont le même id « $id ».',
+        );
+      }
+      final texte = liste[k]['texte'];
+      if (texte is String && !textes.add(texte)) {
+        erreur(
+          '$chemin/donnees/$champ/$k/texte',
+          'choix_duplique',
+          'deux éléments de $champ ont le même texte « $texte ».',
+        );
+      }
+    }
+    final bons = (reponse[champ] as List).cast<String>();
+    for (var k = 0; k < bons.length; k++) {
+      if (!ids.contains(bons[k])) {
+        erreur(
+          '$chemin/reponse/$champ/$k',
+          'reponse_choix_inconnu',
+          'la réponse désigne « ${bons[k]} », absent de donnees.$champ.',
+        );
+      }
+    }
+    return ids;
+  }
+
+  final avecChoix = donnees['choix'] is List && reponse['choix'] is List;
+  final ids = avecChoix ? verifierListe('choix') : <String>{};
+  if (type == 'T46') verifierListe('preuves');
+  final bons = avecChoix
+      ? (reponse['choix'] as List).cast<String>()
+      : const <String>[];
+
+  if (_typesReponseUnique.contains(type) && bons.length != 1) {
+    erreur(
+      '$chemin/reponse/choix',
+      'reponse_unique',
+      'un $type a exactement une bonne réponse (ici ${bons.length}).'
+          '${type == 'T01' ? ' Pour plusieurs bonnes réponses, utiliser T05.' : ''}',
+    );
+  }
+  if (_typesJamaisTousLesChoix.contains(type) &&
+      ids.isNotEmpty &&
+      bons.toSet().containsAll(ids)) {
+    erreur(
+      '$chemin/reponse/choix',
+      'reponse_tous_les_choix',
+      'toutes les propositions sont dans la réponse : il suffirait de tout '
+          'toucher. Ajouter au moins une proposition fausse.',
+    );
+  }
+  if (type == 'T61' && bons.length < 2) {
+    erreur(
+      '$chemin/reponse/choix',
+      'reponse_trop_peu',
+      'un résumé (T61) garde au moins 2 phrases (ici ${bons.length}).',
+    );
+  }
+  if (type == 'T04' && ids.length < 3) {
+    erreur(
+      '$chemin/donnees/choix',
+      'choix_trop_peu',
+      'un intrus (T04) se cherche parmi 3 propositions au moins '
+          '(ici ${ids.length}).',
+    );
+  }
+
+  switch (type) {
+    case 'T18':
+      final lettre = donnees['lettre'] as String;
+      final choix = (donnees['choix'] as List).cast<Map<String, dynamic>>();
+      for (var k = 0; k < choix.length; k++) {
+        final texte = choix[k]['texte'] as String;
+        if (!texte.contains(lettre)) {
+          erreur(
+            '$chemin/donnees/choix/$k/texte',
+            'forme_sans_lettre',
+            'la forme « $texte » ne contient pas la lettre « $lettre ».',
+          );
+        }
+      }
+      final mot = donnees['mot'];
+      if (mot is String && !mot.contains(lettre)) {
+        erreur(
+          '$chemin/donnees/mot',
+          'forme_sans_lettre',
+          'le mot « $mot » ne contient pas la lettre « $lettre ».',
+        );
+      }
+    case 'T19':
+      final apres = donnees['apres'] as String;
+      if (apres.isNotEmpty && _estHaraka(apres.runes.first)) {
+        erreur(
+          '$chemin/donnees/apres',
+          'haraka_deja_presente',
+          'apres commence par une haraka : la lettre aurait déjà la sienne.',
+        );
+      }
+      final haraka = reponse['haraka'] as String;
+      final proposees = (donnees['harakat'] as List).cast<String>();
+      if (!proposees.contains(haraka)) {
+        erreur(
+          '$chemin/reponse/haraka',
+          'reponse_haraka_inconnue',
+          'la réponse « $haraka » ne fait pas partie des harakat proposées '
+              '(${proposees.join(', ')}).',
+        );
+      }
+      final ecoute = donnees['ecoute'] as Map<String, dynamic>?;
+      final mot =
+          '${donnees['avant']}${donnees['lettre']}'
+          '${_signesHaraka[haraka]}$apres';
+      if (ecoute != null && ecoute['texte'] != mot) {
+        erreur(
+          '$chemin/donnees/ecoute/texte',
+          'ecoute_differente_reponse',
+          'le mot entendu « ${ecoute['texte']} » doit être le mot complet '
+              'avec la bonne haraka : « $mot ».',
+        );
+      }
+    case 'T23':
+      final a = donnees['a'] as num;
+      final b = donnees['b'] as num;
+      final attendu = a < b ? '<' : (a == b ? '=' : '>');
+      if (reponse['signe'] != attendu) {
+        erreur(
+          '$chemin/reponse/signe',
+          'reponse_comparaison_fausse',
+          'la réponse « $a ${reponse['signe']} $b » est fausse : '
+              'attendu « $a $attendu $b ».',
+        );
+      }
+    case 'T24':
+      final suite = (donnees['suite'] as List).cast<Map<String, dynamic>>();
+      final attendu = _suivantDeLaSuite(suite);
+      final choix = (donnees['choix'] as List).cast<Map<String, dynamic>>();
+      final bon = choix.where((c) => bons.contains(c['id'])).firstOrNull;
+      if (attendu != null && bon != null && _cleElement(bon) != attendu) {
+        erreur(
+          '$chemin/reponse/choix',
+          'suite_reponse_incoherente',
+          'la suite appelle « ${attendu.replaceAll('|', ' ').trim()} », '
+              'pas le choix « ${bon['id']} ».',
+        );
+      }
+    case 'T46':
+      final texte = donnees['texte'] as String;
+      final preuves = (donnees['preuves'] as List).cast<Map<String, dynamic>>();
+      for (var k = 0; k < preuves.length; k++) {
+        final phrase = preuves[k]['texte'] as String;
+        if (!texte.contains(phrase)) {
+          erreur(
+            '$chemin/donnees/preuves/$k/texte',
+            'preuve_absente_du_texte',
+            'la preuve « $phrase » doit être recopiée telle quelle du texte.',
+          );
+        }
+      }
+    case 'T55':
+      final ecoute = (donnees['ecoute'] as Map<String, dynamic>)['texte'];
+      final choix = (donnees['choix'] as List).cast<Map<String, dynamic>>();
+      final bon = choix.where((c) => bons.contains(c['id'])).firstOrNull;
+      if (bons.length == 1 && bon != null && bon['texte'] != ecoute) {
+        erreur(
+          '$chemin/donnees/ecoute/texte',
+          'ecoute_differente_reponse',
+          'le mot entendu « $ecoute » doit être le texte du bon choix '
+              '« ${bon['texte'] ?? bon['id']} ».',
+        );
+      }
+  }
+  return problemes;
+}
+
+/// Clé de comparaison d'un élément de suite ou d'un choix (texte et image).
+String _cleElement(Map<String, dynamic> e) =>
+    '${e['texte'] ?? ''}|${e['image'] ?? ''}';
+
+/// Élément attendu après [suite] : motif répété au moins deux fois
+/// (triangle, cercle, triangle, cercle), ou suite arithmétique d'entiers
+/// (2, 4, 6). `null` si aucune des deux règles ne s'applique : la réponse
+/// n'est alors pas contrôlée.
+String? _suivantDeLaSuite(List<Map<String, dynamic>> suite) {
+  final cles = suite.map(_cleElement).toList();
+  for (var p = 1; p * 2 <= cles.length; p++) {
+    var periodique = true;
+    for (var i = p; i < cles.length && periodique; i++) {
+      periodique = cles[i] == cles[i - p];
+    }
+    if (periodique) return cles[cles.length - p];
+  }
+  final nombres = [
+    for (final e in suite)
+      if (e['image'] == null) int.tryParse('${e['texte']}'),
+  ];
+  if (nombres.length == suite.length && !nombres.contains(null)) {
+    final pas = nombres[1]! - nombres[0]!;
+    var arithmetique = true;
+    for (var i = 2; i < nombres.length && arithmetique; i++) {
+      arithmetique = nombres[i]! - nombres[i - 1]! == pas;
+    }
+    if (arithmetique) return '${nombres.last! + pas}|';
+  }
+  return null;
+}
+
+bool _estHaraka(int r) => r >= 0x064B && r <= 0x0652;
 
 /// Convention B : alif suscrit simplifié (هَذِهِ, jamais هٰذِهِ), donc aucun
 /// U+0670 dans les textes.
@@ -388,6 +633,13 @@ void _collecterTextes(
       _collecterTextes(valeur[i], '$chemin/$i', textes);
     }
   }
+}
+
+// Une lettre arabe seule, avec ou sans tatweel (ـجـ) : forme de lettre des
+// T18 et lettre cible des T19, qui ne portent pas de haraka.
+bool _formeDeLettre(String texte) {
+  final runes = texte.runes.where((r) => r != 0x0640).toList();
+  return runes.length == 1 && runes.single >= 0x0621 && runes.single <= 0x064A;
 }
 
 // Lettres arabes de base (hamza à yā').

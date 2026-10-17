@@ -9,7 +9,7 @@ Schéma JSON `edu-content/1.0` des exercices et son validateur.
 ## Choix du schéma
 
 - Sous-ensemble prudent du draft 2020-12 : `type`, `enum`, `const`, `pattern`, `required`, `additionalProperties: false`, `$defs` et `$ref`, `oneOf`, `anyOf`, `if` et `then`. Pas de `unevaluatedProperties` ni de `$dynamicRef`, pour rester compatible avec le validateur Dart, avec ajv et avec les sorties structurées d'un LLM.
-- `donnees` et `reponse` sont détaillées pour T01 (QCM, une seule bonne réponse), T05 (choix multiple) et T02 (vrai ou faux). Les autres types ont un `donnees` générique, précisé moteur par moteur pendant A1.
+- `donnees` et `reponse` sont détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61, voir `docs/moteurs/choix.md`). Les autres types ont un `donnees` générique, précisé moteur par moteur pendant A1. Un exemple valide par type : `schema/exemples/choix/`.
 - Les textes destinés à l'enfant (consigne, feedbacks) sont un texte simple ou `{ "masculin", "feminin" }`.
 - `normalisation` s'applique uniquement au moment de comparer une réponse, jamais au texte stocké. Les harakat ne sont jamais supprimées ni réordonnées.
 
@@ -55,12 +55,23 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `competence_matiere` | la compétence commence par le code matière de l'étape | erreur |
 | `langue_competence` | exercice seul : la langue suit le code matière de la compétence | erreur |
 | `date_invalide` | la date de génération existe | erreur |
-| `choix_duplique` | T01 et T05 : pas d'id ni de texte de choix en double | erreur |
-| `reponse_choix_inconnu` | T01 et T05 : la réponse désigne des choix existants | erreur |
-| `reponse_t01_unique` | T01 : exactement une bonne réponse | erreur |
+| `choix_duplique` | moteur Choix : pas d'id ni de texte en double dans `choix` (et `preuves` pour T46) | erreur |
+| `reponse_choix_inconnu` | moteur Choix : la réponse désigne des choix (ou des preuves) existants | erreur |
+| `reponse_unique` | T01, T03, T04, T18, T24, T55 : exactement une bonne réponse | erreur |
+| `reponse_tous_les_choix` | T05, T45, T61 : la réponse ne contient jamais toutes les propositions | erreur |
+| `reponse_trop_peu` | T61 : au moins 2 phrases dans le résumé | erreur |
+| `choix_trop_peu` | T04 : au moins 3 propositions | erreur |
+| `type_langue` | T18 et T19 : exercice en arabe | erreur |
+| `forme_sans_lettre` | T18 : chaque forme et le mot contiennent la lettre | erreur |
+| `haraka_deja_presente` | T19 : `apres` ne commence pas par une haraka | erreur |
+| `reponse_haraka_inconnue` | T19 : la réponse fait partie des harakat proposées | erreur |
+| `ecoute_differente_reponse` | T55 : le mot entendu est le texte du bon choix. T19 : le mot entendu est le mot complet avec la bonne haraka | erreur |
+| `reponse_comparaison_fausse` | T23 : le signe correspond aux deux nombres | erreur |
+| `suite_reponse_incoherente` | T24 : la réponse suit le motif répété ou la suite arithmétique d'entiers (non contrôlée si aucun des deux n'est reconnu) | erreur |
+| `preuve_absente_du_texte` | T46 : chaque preuve est recopiée telle quelle du texte | erreur |
 | `exercice_orphelin` | exercice cité dans aucune séquence | avertissement |
 | `sequences_nombre` | l'étape n'a pas 4 séquences | avertissement |
-| `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année | avertissement |
+| `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année (sauf une lettre seule, avec ou sans tatweel : formes de T18, lettre de T19) | avertissement |
 | `lam_sans_soukoun` | texte vocalisé avec un lam d'article sans soukoun devant une lettre lunaire (convention C) | avertissement |
 | `alif_suscrit` | texte avec un alif suscrit U+0670 (convention B de `docs/conventions-arabe.md`) | avertissement |
 
