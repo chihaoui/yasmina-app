@@ -1,10 +1,12 @@
-# Estimations des tâches (17 octobre 2026)
+# Estimations des tâches (mis à jour le 17 octobre 2026, 19 h)
 
-Découpage des 343 jours-homme du plan de développement (lots L00 à L18) en tâches par phase. Préparé par le mentor, à valider par Lamjed, recalé au point R1 (15 nov. 2026). Source du tableau de bord « Avancement Yasmina » et des estimations à reporter dans PROGRESS.md (décision 26).
+Découpage des 343 jours-homme du plan de développement (lots L00 à L18) en tâches par phase. Préparé par le mentor, à valider par Lamjed, recalé au point R1 (15 nov. 2026). Source du tableau de bord « Avancement Yasmina » et des estimations reportées dans PROGRESS.md (décision 26).
 
 Méthode : une tâche compte seulement quand elle est faite. Avancement d'une phase = j-h faits ÷ j-h de la phase. Global = j-h faits ÷ 343.
 
-## Phase A0 (22,5 j-h, 5 faits)
+Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, partie 1) passent en A0 (A0-19 design system Yasmina, A0-20 ThemeYasmina). Total inchangé.
+
+## Phase A0 (24,5 j-h, 9,5 faits)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
@@ -17,8 +19,8 @@ Méthode : une tâche compte seulement quand elle est faite. Avancement d'une ph
 | A0-07 | L11 | Schéma edu-content/1.0 et validateur | 2 | fait |
 | A0-08 | L18 | JSON embarqués (53 types et parcours arabe 1re) | 3 | en cours |
 | A0-09 | L11 | Conventions d'écriture de l'arabe | 0,5 | fait |
-| A0-10 | L03 | Langue de l'interface et Directionality | 1,5 | à faire |
-| A0-11 | L03 | Profils enfants (5 max) et base drift | 2 | à faire |
+| A0-10 | L03 | Langue de l'interface et Directionality | 1,5 | fait |
+| A0-11 | L03 | Profils enfants (5 max) et base drift | 2 | fait |
 | A0-12 | L03 | Menu développeur | 1,5 | à faire |
 | A0-13 | L04 | Lecteur d'exercice générique | 4 | à faire |
 | A0-14 | L04 | Interfaces de plateforme injectées | 1,5 | à faire |
@@ -26,8 +28,10 @@ Méthode : une tâche compte seulement quand elle est faite. Avancement d'une ph
 | A0-16 | L04 | Yasmina en placeholder | 0,5 | à faire |
 | A0-17 | L00 | Build de test sur téléphone (iPhone fait, Android à installer) | 1 | en cours |
 | A0-18 | L17 | Pilotage A0 | 1 | en cours |
+| A0-19 | L01 | Design system Yasmina (artefact, depuis la démo) | 1 | fait |
+| A0-20 | L01 | ThemeYasmina appliqué à l'app et à l'aperçu web | 1 | à faire |
 
-## Phase A1 (88,5 j-h, 0 faits)
+## Phase A1 (86,5 j-h, 0 faits)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
@@ -49,7 +53,7 @@ Méthode : une tâche compte seulement quand elle est faite. Avancement d'une ph
 | A1-16 | L14 | Build distribué aux familles (TestFlight, Play) | 1 | à faire |
 | A1-17 | L14 | Grille d'observation et questionnaire parent | 1 | à faire |
 | A1-18 | L14 | Synthèse des retours, tour 1 | 1 | à faire |
-| A1-19 | L01 | Design system et maquettes, partie 1 (designer) | 10 | à faire |
+| A1-19 | L01 | Design system et maquettes, partie 1 (designer, part du système Yasmina) | 8 | à faire |
 | A1-20 | L02 | Yasmina : brief et 6 états (illustrateur) | 5 | à faire |
 | A1-21 | L17 | Pilotage A1 | 3 | à faire |
 

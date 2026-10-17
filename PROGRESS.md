@@ -6,15 +6,15 @@ Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 8,5 | 22,5 | 38 % |
-| A1 | 0 | 88,5 | 0 % |
+| A0 | 9,5 | 24,5 | 39 % |
+| A1 | 0 | 86,5 | 0 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **8,5** | **343** | **2,5 %** |
+| **Total** | **9,5** | **343** | **2,8 %** |
 
-- **Avancement global : 2,5 %** (8,5 j-h faits sur 343)
+- **Avancement global : 2,8 %** (9,5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -61,6 +61,8 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
   - [x] iPhone : build iOS réussi, app installée le 17 oct. 2026
   - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
 - [ ] A0-18 Pilotage A0 (1 j-h)
+- [x] A0-19 Design system Yasmina (artefact, depuis la démo) (1 j-h)
+- [ ] A0-20 ThemeYasmina appliqué à l'app et à l'aperçu web (1 j-h)
 
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
 - [ ] A1-01 Moteur Choix (13 types) : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (8 j-h)
@@ -81,7 +83,7 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - [ ] A1-16 Build distribué aux familles (TestFlight, Play) (1 j-h)
 - [ ] A1-17 Grille d'observation et questionnaire parent (1 j-h)
 - [ ] A1-18 Synthèse des retours, tour 1 (1 j-h)
-- [ ] A1-19 Design system et maquettes, partie 1 (designer) (10 j-h)
+- [ ] A1-19 Design system et maquettes, partie 1 (designer, part du système Yasmina) (8 j-h)
 - [ ] A1-20 Yasmina : brief et 6 états (illustrateur) (5 j-h)
 - [ ] A1-21 Pilotage A1 (3 j-h)
 

@@ -5,8 +5,8 @@
 //   dart run tool/avancement.dart              réécrit le bloc
 //   dart run tool/avancement.dart --verifier   échoue si le bloc n'est pas à jour
 //
-// Échoue aussi si les j-h de PROGRESS.md ne correspondent pas à ceux de
-// docs/estimations-taches.md.
+// Échoue aussi si une tâche de PROGRESS.md (id et j-h) diffère de
+// docs/estimations-taches.md, ou si l'une des deux listes en a une de plus.
 import 'dart:io';
 
 const _phases = ['A0', 'A1', 'A2', 'B', 'C', 'D'];
@@ -23,8 +23,9 @@ final _casePremierNiveau = RegExp(r'^- \[([ x])\] (.*)$');
 final _sousCase = RegExp(r'^\s+- \[([ x])\] (.*)$');
 final _estimation = RegExp(r'\((\d+(?:,\d+)?) j-h\)$');
 final _ligneEstimation = RegExp(
-  r'^\| ((?:A0|A1|A2|B|C|D))-\d\d \| L\d\d \| .+? \| (\d+(?:,\d+)?) \| [^|]+ \|$',
+  r'^\| ((?:A0|A1|A2|B|C|D)-\d\d) \| L\d\d \| .+? \| (\d+(?:,\d+)?) \| [^|]+ \|$',
 );
+final _idTache = RegExp(r'^((?:A0|A1|A2|B|C|D)-\d\d) ');
 final _dateJournal = RegExp(r'^\| (\d{1,2} [^|]+ \d{4}) \|');
 final _plageTypes = RegExp(r'T(\d\d) à T(\d\d)');
 final _type = RegExp(r'T(\d\d)');
@@ -70,6 +71,7 @@ String calculerBloc(String progres, String estimations) {
   final totaux = {for (final p in _phases) p: 0.0};
   final typesFaits = <String>{};
   final typesTotal = <String>{};
+  final taches = <String, double>{};
   String? phase;
   String? date;
 
@@ -96,6 +98,12 @@ String calculerBloc(String progres, String estimations) {
         throw FormatException('case de $phase sans « (X j-h) » : $ligne');
       }
       final valeur = _nombre(jh.group(1)!);
+      final id = _idTache.firstMatch(principale.group(2)!)?.group(1);
+      if (id == null || !id.startsWith('$phase-')) {
+        throw FormatException('case de $phase sans id « $phase-NN » : $ligne');
+      }
+      if (taches.containsKey(id)) throw FormatException('$id en double.');
+      taches[id] = valeur;
       totaux[phase] = totaux[phase]! + valeur;
       if (cochee) faits[phase] = faits[phase]! + valeur;
     }
@@ -106,28 +114,28 @@ String calculerBloc(String progres, String estimations) {
     }
   }
 
-  // Contrôle par rapport à docs/estimations-taches.md.
-  final attendus = {for (final p in _phases) p: 0.0};
+  // Contrôle tâche par tâche par rapport à docs/estimations-taches.md.
+  final attendues = <String, double>{};
   for (final ligne in estimations.split('\n')) {
     final m = _ligneEstimation.firstMatch(ligne);
-    if (m != null) {
-      attendus[m.group(1)!] = attendus[m.group(1)!]! + _nombre(m.group(2)!);
-    }
+    if (m != null) attendues[m.group(1)!] = _nombre(m.group(2)!);
   }
-  final total = totaux.values.reduce((a, b) => a + b);
-  final totalAttendu = attendus.values.reduce((a, b) => a + b);
-  if (total != totalAttendu) {
-    final ecarts = [
-      for (final p in _phases)
-        if (totaux[p] != attendus[p])
-          '$p : ${_jh(totaux[p]!)} au lieu de ${_jh(attendus[p]!)}',
-    ];
+  final ecarts = [
+    for (final MapEntry(key: id, value: jh) in taches.entries)
+      if (!attendues.containsKey(id))
+        '$id absente de docs/estimations-taches.md'
+      else if (attendues[id] != jh)
+        '$id : ${_jh(jh)} j-h au lieu de ${_jh(attendues[id]!)}',
+    for (final id in attendues.keys)
+      if (!taches.containsKey(id)) '$id absente de PROGRESS.md',
+  ];
+  if (ecarts.isNotEmpty) {
     throw FormatException(
-      'total de PROGRESS.md ${_jh(total)} j-h, '
-      'docs/estimations-taches.md ${_jh(totalAttendu)} j-h '
-      '(${ecarts.join(', ')}).',
+      'PROGRESS.md et docs/estimations-taches.md diffèrent : '
+      '${ecarts.join(', ')}.',
     );
   }
+  final total = totaux.values.reduce((a, b) => a + b);
   if (typesTotal.length != _typesAttendus) {
     throw FormatException(
       '${typesTotal.length} types trouvés dans A1 et A2 au lieu de '
