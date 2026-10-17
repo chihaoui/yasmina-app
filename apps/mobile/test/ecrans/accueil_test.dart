@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:moteur_exercices/moteur_exercices.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yasmina/reglages/stockage_reglages.dart';
 
@@ -37,6 +38,34 @@ void main() {
     expect(sensDe(tester, 'accueil_titre'), TextDirection.ltr);
     expect(sensDe(tester, 'carte_demo_nom'), TextDirection.rtl);
     expect(texteDe(tester, 'carte_demo_nom'), 'يَاسْمِينَة');
+  });
+
+  testWidgets(
+    "polices : Baloo pour l'interface arabe, Noto Naskh pour l'exercice",
+    (tester) async {
+      await lancerApp(tester, StockageMemoire('ar'));
+      final titre = tester.element(find.byKey(const ValueKey('accueil_titre')));
+      expect(
+        Theme.of(titre).textTheme.titleLarge!.fontFamily,
+        PolicesYasmina.interfaceArabe,
+      );
+      final exercice = tester.element(
+        find.byKey(const ValueKey('carte_demo_nom')),
+      );
+      expect(
+        DefaultTextStyle.of(exercice).style.fontFamily,
+        PolicesYasmina.contenuArabe,
+      );
+    },
+  );
+
+  testWidgets("polices : Andika pour l'interface française", (tester) async {
+    await lancerApp(tester, StockageMemoire('fr'));
+    final titre = tester.element(find.byKey(const ValueKey('accueil_titre')));
+    expect(
+      Theme.of(titre).textTheme.titleLarge!.fontFamily,
+      PolicesYasmina.latin,
+    );
   });
 
   group('premier lancement selon les langues de l\'appareil', () {

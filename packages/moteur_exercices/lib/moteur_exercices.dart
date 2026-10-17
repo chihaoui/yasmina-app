@@ -3,3 +3,4 @@ library;
 
 export 'src/demo/carte_demo.dart';
 export 'src/langue_exercice.dart';
+export 'src/polices.dart';

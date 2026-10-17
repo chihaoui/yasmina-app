@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 void main() {
+  enregistrerLicencesPolices();
   runApp(const ProviderScope(child: ApercuApp()));
 }
 

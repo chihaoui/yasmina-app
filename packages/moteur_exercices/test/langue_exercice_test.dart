@@ -54,6 +54,21 @@ void main() {
     expect(Localizations.localeOf(contexte(tester)), const Locale('en'));
   });
 
+  testWidgets("la police suit la langue de l'exercice, pas l'interface", (
+    tester,
+  ) async {
+    await afficher(tester, langueInterface: 'fr', langueExercice: 'ar');
+    expect(
+      DefaultTextStyle.of(contexte(tester)).style.fontFamily,
+      PolicesYasmina.contenuArabe,
+    );
+    await afficher(tester, langueInterface: 'ar', langueExercice: 'fr');
+    expect(
+      DefaultTextStyle.of(contexte(tester)).style.fontFamily,
+      PolicesYasmina.latin,
+    );
+  });
+
   testWidgets('sans Localizations au-dessus : le sens suit quand même', (
     tester,
   ) async {

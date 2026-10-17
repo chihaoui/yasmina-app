@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moteur_exercices/moteur_exercices.dart';
 
 import 'app/routeur.dart';
 import 'l10n/app_localizations.dart';
@@ -8,6 +9,7 @@ import 'reglages/stockage_reglages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  enregistrerLicencesPolices();
   final stockage = await StockageSharedPreferences.ouvrir();
   runApp(
     ProviderScope(
@@ -28,9 +30,23 @@ class YasminaApp extends ConsumerWidget {
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitre,
       debugShowCheckedModeBanner: false,
       locale: langue.locale,
+      theme: themeInterface(langue),
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       routerConfig: ref.watch(routeurProvider),
     );
   }
+}
+
+/// Thème de l'interface : Baloo Bhaijaan 2 en arabe, Andika en français,
+/// l'autre écriture en secours. Les exercices gardent leur propre police
+/// (LangueExercice).
+ThemeData themeInterface(LangueInterface langue) {
+  final arabe = langue == LangueInterface.ar;
+  return ThemeData(
+    fontFamily: arabe ? PolicesYasmina.interfaceArabe : PolicesYasmina.latin,
+    fontFamilyFallback: [
+      arabe ? PolicesYasmina.latin : PolicesYasmina.interfaceArabe,
+    ],
+  );
 }
