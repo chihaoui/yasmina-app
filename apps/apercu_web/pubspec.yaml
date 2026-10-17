@@ -1,0 +1,24 @@
+name: apercu_web
+description: Aperçu web des exercices Yasmina (rejoue le même moteur que l'app).
+publish_to: none
+version: 0.1.0
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  moteur_exercices:
+    path: ../../packages/moteur_exercices
+  flutter_riverpod: ^3.4.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
