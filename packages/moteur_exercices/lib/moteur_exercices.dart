@@ -5,3 +5,4 @@ export 'src/demo/carte_demo.dart';
 export 'src/forme_adresse.dart';
 export 'src/langue_exercice.dart';
 export 'src/polices.dart';
+export 'src/theme/jetons_yasmina.g.dart';

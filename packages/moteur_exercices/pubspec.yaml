@@ -29,6 +29,8 @@ flutter:
     - fonts/OFL-NotoNaskhArabic.txt
     - fonts/OFL-BalooBhaijaan2.txt
     - fonts/OFL-Andika.txt
+    # Mascotte, copiée de docs/design-system/yasmina par tool/generer_theme.dart.
+    - assets/yasmina/
   # Polices embarquées (voir fonts/README.md), utilisées avec le préfixe
   # packages/moteur_exercices/ (constantes de PolicesYasmina).
   fonts:
