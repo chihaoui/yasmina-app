@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../polices.dart';
 import 'jetons_yasmina.g.dart';
 
 /// Thème Material de l'app et de l'aperçu web, construit uniquement à partir
@@ -240,10 +239,7 @@ abstract final class ThemeYasmina {
         bodySmall: discret(StylesYasmina.option),
       );
     }
-    final bulleLatine = StylesYasmina.bubble.copyWith(
-      fontFamily: StylesYasmina.latinPrompt.fontFamily,
-      fontFamilyFallback: StylesYasmina.latinPrompt.fontFamilyFallback,
-    );
+    final bulleLatine = pourLangue(StylesYasmina.bubble, langue);
     return base.copyWith(
       headlineSmall: encre(bulleLatine),
       titleLarge: encre(StylesYasmina.latinPrompt),
@@ -255,14 +251,19 @@ abstract final class ThemeYasmina {
     );
   }
 
-  /// Style du bouton principal ([StylesYasmina.buttonCta]) dans la famille de
-  /// [langue] : kid en arabe, latin sinon.
-  static TextStyle styleBouton(String langue) => langue == 'ar'
-      ? StylesYasmina.buttonCta
-      : StylesYasmina.buttonCta.copyWith(
-          fontFamily: PolicesYasmina.latin,
-          fontFamilyFallback: [PolicesYasmina.interfaceArabe],
+  /// [style] dans la famille de [langue] : inchangé en arabe (kid ou
+  /// content), famille latin sinon (français, anglais).
+  static TextStyle pourLangue(TextStyle style, String langue) => langue == 'ar'
+      ? style
+      : style.copyWith(
+          fontFamily: StylesYasmina.latinBody.fontFamily,
+          fontFamilyFallback: StylesYasmina.latinBody.fontFamilyFallback,
         );
+
+  /// Langue du texte à cet endroit de l'arbre : celle de l'exercice sous un
+  /// LangueExercice, sinon celle de l'interface (arabe par défaut).
+  static String langueDe(BuildContext context) =>
+      Localizations.maybeLocaleOf(context)?.languageCode ?? 'ar';
 }
 
 /// Accès court aux couleurs du thème : `context.couleurs.blue`.
