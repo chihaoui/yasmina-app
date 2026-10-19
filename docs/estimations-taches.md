@@ -8,7 +8,7 @@ Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, pa
 
 Changement du 19 oct. (décision 34, ordre « atelier d'abord ») : A1-01 Moteur Choix (8 j-h) est découpée en A1-01a schéma, exemples et fiche (1 j-h, fait) et A1-01b moteur (7 j-h). Total inchangé.
 
-## Phase A0 (24,5 j-h, 10,5 faits)
+## Phase A0 (24,5 j-h, 12 faits)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
@@ -23,7 +23,7 @@ Changement du 19 oct. (décision 34, ordre « atelier d'abord ») : A1-01 Moteur
 | A0-09 | L11 | Conventions d'écriture de l'arabe | 0,5 | fait |
 | A0-10 | L03 | Langue de l'interface et Directionality | 1,5 | fait |
 | A0-11 | L03 | Profils enfants (5 max) et base drift | 2 | fait |
-| A0-12 | L03 | Menu développeur | 1,5 | à faire |
+| A0-12 | L03 | Menu développeur | 1,5 | fait |
 | A0-13 | L04 | Lecteur d'exercice générique | 4 | à faire |
 | A0-14 | L04 | Interfaces de plateforme injectées | 1,5 | à faire |
 | A0-15 | L04 | Aperçu web (apps/apercu_web) | 1,5 | à faire |
