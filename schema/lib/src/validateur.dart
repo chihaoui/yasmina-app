@@ -107,8 +107,9 @@ class _Validateur {
   ) {
     final exercice = lireChemin(donnees, cheminExercice);
     final type = exercice is Map ? exercice['type'] : null;
+    final gabarit = exercice is Map ? exercice['gabarit'] : null;
     final problemes = <ProblemeValidation>[];
-    for (final (champ, definition) in _definitionsDuType(type)) {
+    for (final (champ, definition) in _definitionsDuType(type, gabarit)) {
       problemes.addAll(
         erreursSchema(
           sousSchema(definition),
@@ -129,15 +130,21 @@ class _Validateur {
     return problemes;
   }
 
-  /// Lit dans `$defs/exercice/allOf` les définitions imposées au type :
-  /// par exemple `(donnees, donneesChoix)` et `(reponse, reponseChoix)`.
-  List<(String, String)> _definitionsDuType(Object? type) {
+  /// Lit dans `$defs/exercice/allOf` les définitions imposées au type (et,
+  /// pour T19, au gabarit) : par exemple `(donnees, donneesChoix)` et
+  /// `(reponse, reponseChoix)`.
+  List<(String, String)> _definitionsDuType(Object? type, Object? gabarit) {
     final resultat = <(String, String)>[];
     final allOf = racine[r'$defs']['exercice']['allOf'] as List;
     for (final branche in allOf.cast<Map<String, dynamic>>()) {
-      final condition = branche['if']['properties']['type'] as Map;
+      final conditions = branche['if']['properties'] as Map;
+      final condition = conditions['type'] as Map;
       final types = condition['enum'] ?? [condition['const']];
       if (!(types as List).contains(type)) continue;
+      final surGabarit = conditions['gabarit'] as Map?;
+      if (surGabarit != null && !_gabaritCorrespond(surGabarit, gabarit)) {
+        continue;
+      }
       final champs = branche['then']['properties'] as Map<String, dynamic>;
       for (final MapEntry(:key, :value) in champs.entries) {
         final ref = (value as Map)[r'$ref'] as String;
@@ -145,5 +152,13 @@ class _Validateur {
       }
     }
     return resultat;
+  }
+
+  /// Condition `{ "const": g }` ou `{ "not": { "const": g } }` sur le gabarit.
+  bool _gabaritCorrespond(Map condition, Object? gabarit) {
+    if (condition.containsKey('const')) return gabarit == condition['const'];
+    final non = condition['not'];
+    if (non is Map && non.containsKey('const')) return gabarit != non['const'];
+    return true;
   }
 }

@@ -501,4 +501,211 @@ void main() {
       );
     });
   });
+
+  group('T19, gabarit lettre-vocalisee', () {
+    Map<String, dynamic> lettreVocalisee() => exercice(
+      'T19',
+      {
+        'haraka': 'fatha',
+        'choix': choix(['بَ', 'بُ', 'بِ', 'بْ']),
+      },
+      bons(['c1']),
+      langue: 'ar',
+    )..['gabarit'] = 'lettre-vocalisee';
+
+    List<ProblemeValidation> erreursLv(
+      void Function(Map<String, dynamic> ex) modifier,
+    ) {
+      final ex = lettreVocalisee();
+      modifier(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    test('valide, sans avertissement', () {
+      final r = validerExercice(lettreVocalisee());
+      expect(r.erreurs, isEmpty, reason: '$r');
+      expect(r.avertissements, isEmpty, reason: '$r');
+    });
+
+    test('choix sans haraka ou avec deux signes', () {
+      final r = erreursLv((ex) {
+        ex['donnees']['choix'][1]['texte'] = 'ب';
+        ex['donnees']['choix'][2]['texte'] = 'بِّ';
+      });
+      expect(
+        r,
+        unorderedEquals([
+          probleme('/donnees/choix/1/texte', 'lettre_vocalisee_invalide'),
+          probleme('/donnees/choix/2/texte', 'lettre_vocalisee_invalide'),
+        ]),
+      );
+    });
+
+    test('la bonne réponse ne porte pas la haraka demandée', () {
+      final r = erreursLv((ex) => ex['reponse'] = bons(['c2']));
+      expect(
+        r,
+        unorderedEquals([
+          probleme('/donnees/choix/0/texte', 'reponse_haraka_incoherente'),
+          probleme('/reponse/choix', 'reponse_haraka_incoherente'),
+        ]),
+      );
+    });
+
+    test('un autre choix porte aussi la haraka demandée', () {
+      final r = erreursLv((ex) => ex['donnees']['choix'][3]['texte'] = 'تَ');
+      expect(
+        r.single,
+        probleme('/donnees/choix/3/texte', 'reponse_haraka_incoherente'),
+      );
+    });
+
+    test('une seule bonne réponse et 4 choix au plus', () {
+      expect(
+        erreursLv((ex) => ex['reponse'] = bons(['c1', 'c2'])),
+        contains(probleme('/reponse/choix', 'reponse_unique')),
+      );
+      expect(
+        erreursLv(
+          (ex) =>
+              (ex['donnees']['choix'] as List).add({'id': 'c5', 'texte': 'تُ'}),
+        ).single,
+        probleme('/donnees/choix', 'liste_trop_longue'),
+      );
+    });
+
+    test('uniquement en arabe', () {
+      final r = erreursLv((ex) {
+        ex['langue'] = 'fr';
+        ex['competence'] = 'fr-essai';
+      });
+      expect(r, contains(probleme('/langue', 'type_langue')));
+    });
+
+    test('forme mot avec le gabarit lettre-vocalisee : chemins précis', () {
+      final r = erreurs('T19', (ex) => ex['gabarit'] = 'lettre-vocalisee');
+      expect(r, isNotEmpty);
+      expect(r.map((e) => e.code), isNot(contains('donnees_type')));
+      expect(
+        r.every(
+          (e) => e.chemin.startsWith('/donnees') || e.chemin == '/reponse',
+        ),
+        isTrue,
+        reason: '$r',
+      );
+      expect(r, contains(probleme('/donnees', 'obligatoire')));
+    });
+
+    test('lettres vocalisées avec un autre gabarit : forme mot attendue', () {
+      final ex = lettreVocalisee()..['gabarit'] = 'haraka';
+      final r = validerExercice(ex).erreurs;
+      expect(r, contains(probleme('/donnees', 'obligatoire')));
+      expect(r.map((e) => e.code), isNot(contains('donnees_type')));
+    });
+  });
+
+  group('emoji et support', () {
+    test('T01 : support avec texte sur deux lignes, emoji et écoute', () {
+      final r = erreurs('T01', (ex) {
+        ex['donnees']['support'] = {
+          'texte': 'Une ligne.\nUne autre ligne.',
+          'emoji': '🌳',
+          'ecoute': {'texte': 'arbre'},
+        };
+      });
+      expect(r, isEmpty);
+    });
+
+    test('choix, suite et affirmation en emoji', () {
+      expect(
+        erreurs('T03', (ex) {
+          ex['donnees']['choix'] = [
+            {'id': 'c1', 'emoji': '🐱'},
+            {'id': 'c2', 'emoji': '🐶'},
+          ];
+        }),
+        isEmpty,
+      );
+      expect(
+        erreurs('T24', (ex) {
+          ex['donnees'] = {
+            'suite': [
+              for (final e in ['🔺', '🔵', '🔺', '🔵']) {'emoji': e},
+            ],
+            'choix': [
+              {'id': 'c1', 'emoji': '🔵'},
+              {'id': 'c2', 'emoji': '🔺'},
+            ],
+          };
+          ex['reponse'] = bons(['c2']);
+        }),
+        isEmpty,
+      );
+      expect(erreurs('T02', (ex) => ex['donnees']['emoji'] = '☁️'), isEmpty);
+    });
+
+    test('T24 : motif en emoji contredit par la réponse', () {
+      final r = erreurs('T24', (ex) {
+        ex['donnees'] = {
+          'suite': [
+            for (final e in ['🔺', '🔵', '🔺', '🔵']) {'emoji': e},
+          ],
+          'choix': [
+            {'id': 'c1', 'emoji': '🔵'},
+            {'id': 'c2', 'emoji': '🔺'},
+          ],
+        };
+        ex['reponse'] = bons(['c1']);
+      });
+      expect(r.single, probleme('/reponse/choix', 'suite_reponse_incoherente'));
+      expect(r.single.message, contains('🔺'));
+    });
+
+    test('image et emoji ensemble : refusé (choix, support, affirmation)', () {
+      expect(
+        erreurs(
+          'T03',
+          (ex) => ex['donnees']['choix'][0]['emoji'] = '🐱',
+        ).single,
+        probleme('/donnees/choix/0', 'proprietes_exclusives'),
+      );
+      final support = erreurs('T01', (ex) {
+        ex['donnees']['support'] = {'image': 'images/a.png', 'emoji': '🌳'};
+      });
+      expect(
+        support.single,
+        probleme('/donnees/support', 'proprietes_exclusives'),
+      );
+      expect(support.single.message, contains('« image » et « emoji »'));
+      expect(
+        erreurs('T02', (ex) {
+          ex['donnees']['image'] = 'images/a.png';
+          ex['donnees']['emoji'] = '☁️';
+        }).single,
+        probleme('/donnees', 'proprietes_exclusives'),
+      );
+    });
+
+    test('choix sans texte, image ni emoji : refusé', () {
+      final r = erreurs(
+        'T01',
+        (ex) => (ex['donnees']['choix'][0] as Map).remove('texte'),
+      );
+      expect(r.single, probleme('/donnees/choix/0', 'forme_incorrecte'));
+    });
+  });
+
+  test('T18 : 2 formes suffisent pour une lettre qui ne s\'attache pas à '
+      'gauche (ر)', () {
+    final r = erreurs('T18', (ex) {
+      ex['donnees'] = {
+        'lettre': 'ر',
+        'position': 'fin',
+        'mot': 'قَمَرٌ',
+        'choix': choix(['ر', 'ـر']),
+      };
+      ex['reponse'] = bons(['c2']);
+    });
+    expect(r, isEmpty);
+  });
 }

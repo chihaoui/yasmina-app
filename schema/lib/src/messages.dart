@@ -120,6 +120,13 @@ ProblemeValidation traduireErreurSchema(
         : '';
     return probleme('forme_incorrecte', 'forme incorrecte.$aide');
   }
+  if (m.endsWith('not violated') && noeud is Map && noeud['required'] is List) {
+    final noms = (noeud['required'] as List).map((n) => '« $n »').join(' et ');
+    return probleme(
+      'proprietes_exclusives',
+      'propriétés incompatibles : $noms ne vont pas ensemble.',
+    );
+  }
   if (m.endsWith('not violated')) {
     return probleme('valeur_interdite', 'valeur « $valeur » interdite.');
   }

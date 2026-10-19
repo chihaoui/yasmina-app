@@ -269,6 +269,7 @@ List<ProblemeValidation> reglesExercice(
     problemes.addAll(
       _reglesChoix(
         type,
+        ex['gabarit'] as String,
         ex['langue'] as String,
         ex['donnees'] as Map<String, dynamic>,
         ex['reponse'] as Map<String, dynamic>,
@@ -315,8 +316,12 @@ const _typesChoix = {
   'T61',
 };
 
-/// Types à une seule bonne réponse dans `reponse.choix`.
+/// Types à une seule bonne réponse dans `reponse.choix` (et T19 au gabarit
+/// lettre-vocalisee).
 const _typesReponseUnique = {'T01', 'T03', 'T04', 'T18', 'T24', 'T55'};
+
+/// Gabarit de la 2e forme de T19 : lettres vocalisées en choix.
+const gabaritLettreVocalisee = 'lettre-vocalisee';
 
 /// Types où toutes les propositions ne peuvent pas être justes (sinon il
 /// suffit de tout toucher).
@@ -337,6 +342,7 @@ const _signesHaraka = {
 /// `donnees` et de `reponse` pour chaque type.
 List<ProblemeValidation> _reglesChoix(
   String type,
+  String gabarit,
   String langue,
   Map<String, dynamic> donnees,
   Map<String, dynamic> reponse,
@@ -398,7 +404,9 @@ List<ProblemeValidation> _reglesChoix(
       ? (reponse['choix'] as List).cast<String>()
       : const <String>[];
 
-  if (_typesReponseUnique.contains(type) && bons.length != 1) {
+  final lettreVocalisee = type == 'T19' && gabarit == gabaritLettreVocalisee;
+  if ((_typesReponseUnique.contains(type) || lettreVocalisee) &&
+      bons.length != 1) {
     erreur(
       '$chemin/reponse/choix',
       'reponse_unique',
@@ -454,6 +462,45 @@ List<ProblemeValidation> _reglesChoix(
           'le mot « $mot » ne contient pas la lettre « $lettre ».',
         );
       }
+    case 'T19' when lettreVocalisee:
+      final signe = _signesHaraka[donnees['haraka']]!;
+      final choix = (donnees['choix'] as List).cast<Map<String, dynamic>>();
+      for (var k = 0; k < choix.length; k++) {
+        final texte = choix[k]['texte'] as String;
+        final runes = texte.runes.toList();
+        final valide =
+            runes.length == 2 &&
+            runes[0] >= 0x0621 &&
+            runes[0] <= 0x064A &&
+            runes[0] != 0x0640 &&
+            _signesHaraka.values.contains(String.fromCharCode(runes[1]));
+        if (!valide) {
+          erreur(
+            '$chemin/donnees/choix/$k/texte',
+            'lettre_vocalisee_invalide',
+            '« $texte » doit être une seule lettre arabe suivie d\'une seule '
+                'haraka (fatha, damma, kasra ou soukoun).',
+          );
+        }
+        final porte = texte.contains(signe);
+        final estBon = bons.contains(choix[k]['id']);
+        if (porte && !estBon) {
+          erreur(
+            '$chemin/donnees/choix/$k/texte',
+            'reponse_haraka_incoherente',
+            '« $texte » porte la haraka demandée (${donnees['haraka']}) mais '
+                'n\'est pas la bonne réponse : un seul choix doit la porter.',
+          );
+        }
+        if (!porte && estBon) {
+          erreur(
+            '$chemin/reponse/choix',
+            'reponse_haraka_incoherente',
+            'la bonne réponse « $texte » ne porte pas la haraka demandée '
+                '(${donnees['haraka']}).',
+          );
+        }
+      }
     case 'T19':
       final apres = donnees['apres'] as String;
       if (apres.isNotEmpty && _estHaraka(apres.runes.first)) {
@@ -506,7 +553,7 @@ List<ProblemeValidation> _reglesChoix(
         erreur(
           '$chemin/reponse/choix',
           'suite_reponse_incoherente',
-          'la suite appelle « ${attendu.replaceAll('|', ' ').trim()} », '
+          'la suite appelle « ${attendu.split('|').where((p) => p.isNotEmpty).join(' ')} », '
               'pas le choix « ${bon['id']} ».',
         );
       }
@@ -539,9 +586,10 @@ List<ProblemeValidation> _reglesChoix(
   return problemes;
 }
 
-/// Clé de comparaison d'un élément de suite ou d'un choix (texte et image).
+/// Clé de comparaison d'un élément de suite ou d'un choix (texte, image et
+/// emoji).
 String _cleElement(Map<String, dynamic> e) =>
-    '${e['texte'] ?? ''}|${e['image'] ?? ''}';
+    '${e['texte'] ?? ''}|${e['image'] ?? ''}|${e['emoji'] ?? ''}';
 
 /// Élément attendu après [suite] : motif répété au moins deux fois
 /// (triangle, cercle, triangle, cercle), ou suite arithmétique d'entiers
@@ -558,7 +606,8 @@ String? _suivantDeLaSuite(List<Map<String, dynamic>> suite) {
   }
   final nombres = [
     for (final e in suite)
-      if (e['image'] == null) int.tryParse('${e['texte']}'),
+      if (e['image'] == null && e['emoji'] == null)
+        int.tryParse('${e['texte']}'),
   ];
   if (nombres.length == suite.length && !nombres.contains(null)) {
     final pas = nombres[1]! - nombres[0]!;
@@ -566,7 +615,7 @@ String? _suivantDeLaSuite(List<Map<String, dynamic>> suite) {
     for (var i = 2; i < nombres.length && arithmetique; i++) {
       arithmetique = nombres[i]! - nombres[i - 1]! == pas;
     }
-    if (arithmetique) return '${nombres.last! + pas}|';
+    if (arithmetique) return '${nombres.last! + pas}||';
   }
   return null;
 }

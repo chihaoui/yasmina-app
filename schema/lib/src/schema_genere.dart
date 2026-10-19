@@ -42,6 +42,11 @@ const String texteSchemaEduContent = r'''
       "type": "string",
       "minLength": 1
     },
+    "emoji": {
+      "description": "Un ou quelques emoji, affichés à la place d'une image (toutes les images du prototype sont des emoji).",
+      "type": "string",
+      "minLength": 1
+    },
     "langue": { "enum": ["ar", "fr", "en"] },
     "idEtape": {
       "description": "<matiere>-<niveau>-t<trimestre>-u<unite>-e<ordre sur 2 chiffres>, par exemple ar-1-t1-u1-e01.",
@@ -244,11 +249,29 @@ const String texteSchemaEduContent = r'''
           }
         },
         {
-          "if": { "required": ["type"], "properties": { "type": { "const": "T19" } } },
+          "if": {
+            "required": ["type", "gabarit"],
+            "properties": {
+              "type": { "const": "T19" },
+              "gabarit": { "not": { "const": "lettre-vocalisee" } }
+            }
+          },
           "then": {
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesHaraka" },
               "reponse": { "$ref": "#/$defs/reponseHaraka" }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type", "gabarit"],
+            "properties": { "type": { "const": "T19" }, "gabarit": { "const": "lettre-vocalisee" } }
+          },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesLettreVocalisee" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
             }
           }
         },
@@ -292,15 +315,17 @@ const String texteSchemaEduContent = r'''
     },
 
     "choix": {
-      "description": "Attendu : un choix avec un id et au moins un texte ou une image.",
+      "description": "Attendu : un choix avec un id et au moins un texte, une image ou un emoji (jamais une image et un emoji ensemble).",
       "type": "object",
       "required": ["id"],
       "additionalProperties": false,
-      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }],
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
       "properties": {
         "id": { "$ref": "#/$defs/idChoix" },
         "texte": { "$ref": "#/$defs/texteNonVide" },
         "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
         "audio": { "$ref": "#/$defs/cheminMedia" }
       }
     },
@@ -322,14 +347,21 @@ const String texteSchemaEduContent = r'''
       "items": { "$ref": "#/$defs/choix" }
     },
     "support": {
-      "description": "Attendu : un support affiché au-dessus des choix, avec au moins un texte, une image ou un audio.",
+      "description": "Attendu : un support affiché au-dessus des choix, avec au moins un texte (une ou plusieurs lignes), une image ou un emoji, ou une écoute. Tous combinables, sauf une image et un emoji ensemble.",
       "type": "object",
       "additionalProperties": false,
-      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["audio"] }],
+      "anyOf": [
+        { "required": ["texte"] },
+        { "required": ["image"] },
+        { "required": ["emoji"] },
+        { "required": ["ecoute"] }
+      ],
+      "not": { "required": ["image", "emoji"] },
       "properties": {
         "texte": { "$ref": "#/$defs/texteNonVide" },
         "image": { "$ref": "#/$defs/cheminMedia" },
-        "audio": { "$ref": "#/$defs/cheminMedia" }
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
       }
     },
     "ecoute": {
@@ -354,7 +386,7 @@ const String texteSchemaEduContent = r'''
       }
     },
     "reponseChoix": {
-      "description": "Id des bons choix (T45 : des éléments à barrer). Nombre contrôlé par le validateur Dart : exactement 1 pour T01, T03, T04, T18, T24 et T55, au moins 1 pour T05 et T45, au moins 2 pour T61, jamais tous les choix pour T05, T45 et T61.",
+      "description": "Id des bons choix (T45 : des éléments à barrer). Nombre contrôlé par le validateur Dart : exactement 1 pour T01, T03, T04, T18, T19 (lettre-vocalisee), T24 et T55, au moins 1 pour T05 et T45, au moins 2 pour T61, jamais tous les choix pour T05, T45 et T61.",
       "type": "object",
       "required": ["choix"],
       "additionalProperties": false,
@@ -373,9 +405,11 @@ const String texteSchemaEduContent = r'''
       "type": "object",
       "required": ["affirmation"],
       "additionalProperties": false,
+      "not": { "required": ["image", "emoji"] },
       "properties": {
         "affirmation": { "$ref": "#/$defs/texteNonVide" },
         "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
         "audio": { "$ref": "#/$defs/cheminMedia" }
       }
     },
@@ -423,7 +457,7 @@ const String texteSchemaEduContent = r'''
       }
     },
     "donneesHaraka": {
-      "description": "T19 (arabe) : choisir la haraka d'une lettre. Le mot complet vaut avant + lettre + haraka de la réponse + apres.",
+      "description": "T19 (arabe), tout gabarit sauf lettre-vocalisee : choisir la haraka d'une lettre. Le mot complet vaut avant + lettre + haraka de la réponse + apres.",
       "type": "object",
       "required": ["avant", "lettre", "apres", "harakat"],
       "additionalProperties": false,
@@ -459,6 +493,23 @@ const String texteSchemaEduContent = r'''
       "additionalProperties": false,
       "properties": { "haraka": { "$ref": "#/$defs/haraka" } }
     },
+    "donneesLettreVocalisee": {
+      "description": "T19, gabarit lettre-vocalisee : trouver la lettre qui porte la haraka demandée parmi des lettres vocalisées (بَ بُ بِ بْ). Seul le bon choix porte cette haraka.",
+      "type": "object",
+      "required": ["haraka", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "haraka": { "$ref": "#/$defs/haraka" },
+        "choix": {
+          "description": "Lettres vocalisées : une lettre arabe suivie d'une seule haraka.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/choixTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
     "donneesComparer": {
       "description": "T23 : comparer deux nombres. La réponse se lit « a signe b » en notation mathématique (de gauche à droite, isolée du sens de la phrase).",
       "type": "object",
@@ -473,13 +524,15 @@ const String texteSchemaEduContent = r'''
       "properties": { "signe": { "enum": ["<", "=", ">"] } }
     },
     "elementSuite": {
-      "description": "Attendu : un élément de suite avec au moins un texte ou une image.",
+      "description": "Attendu : un élément de suite avec au moins un texte, une image ou un emoji (jamais une image et un emoji ensemble).",
       "type": "object",
       "additionalProperties": false,
-      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }],
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
       "properties": {
         "texte": { "$ref": "#/$defs/texteNonVide" },
-        "image": { "$ref": "#/$defs/cheminMedia" }
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" }
       }
     },
     "donneesSuite": {
