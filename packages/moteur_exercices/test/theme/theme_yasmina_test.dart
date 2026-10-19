@@ -45,11 +45,34 @@ void main() {
       test('on-accent sur olive : 3:1 au minimum (grand texte gras)', () {
         expect(contraste(c.onAccent, c.olive), greaterThanOrEqualTo(3));
       });
+
+      test('ink-fixed sur les pastels fixes : 4,5:1 au minimum', () {
+        final pastels = {
+          'sun': c.sun,
+          'node-done': c.nodeDone,
+          'subject-ar': c.subjectAr,
+          'subject-ma': c.subjectMa,
+          'subject-ev': c.subjectEv,
+          'seq-1': c.seq1,
+          'seq-2': c.seq2,
+          'seq-3': c.seq3,
+          'seq-4': c.seq4,
+          'seq-defi': c.seqDefi,
+        };
+        pastels.forEach((nom, fond) {
+          expect(
+            contraste(c.inkFixed, fond),
+            greaterThanOrEqualTo(4.5),
+            reason: nom,
+          );
+        });
+      });
     });
   });
 
-  test('la mascotte et les matières ne changent pas en sombre', () {
+  test('ink-fixed, la mascotte et les matières ne changent pas en sombre', () {
     final (clair, sombre) = (CouleursYasmina.clair, CouleursYasmina.sombre);
+    expect(sombre.inkFixed, clair.inkFixed);
     expect(sombre.yasminaPetal, clair.yasminaPetal);
     expect(sombre.yasminaInk, clair.yasminaInk);
     expect(sombre.yasminaCheek, clair.yasminaCheek);

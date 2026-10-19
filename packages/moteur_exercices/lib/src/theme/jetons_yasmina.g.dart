@@ -14,6 +14,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
     required this.tile,
     required this.ink,
     required this.muted,
+    required this.inkFixed,
     required this.line,
     required this.blue,
     required this.blueSoft,
@@ -65,6 +66,9 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
   /// Texte secondaire : sous-titres en français, légendes, aides, placeholders. Sur surface, screen et bg (4,7:1 au minimum).
   final Color muted;
 
+  /// Texte posé sur un fond pastel fixe (sun, node-done, subject-ar, subject-ma, subject-ev, seq-*), identique dans les deux thèmes (9:1 et plus). Ne jamais utiliser ink sur ces fonds : en sombre, ink devient clair (1,4:1 sur sun).
+  final Color inkFixed;
+
   /// Bordure des cartes et des choix au repos, séparateurs. Contraste 1,35:1 sur surface : décoratif seulement, l'état sélectionné passe par blue.
   final Color line;
 
@@ -74,7 +78,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
   /// Fond d'un choix sélectionné, d'un bouton de trimestre actif, d'une case sélectionnée.
   final Color blueSoft;
 
-  /// Texte et icône posés sur blue ou olive pleins (boutons). En sombre, blue et olive s'éclaircissent : le texte devient sombre (blanc ne ferait que 2,5:1).
+  /// Texte et icône posés sur blue ou olive pleins (boutons). En sombre, blue et olive s'éclaircissent : le texte devient sombre (blanc ne ferait que 2,5:1). Sur olive en clair : 4,05:1, réservé au grand texte gras (bouton principal en 22 px), jamais au petit texte.
   final Color onAccent;
 
   /// Réussite : bordure d'un choix juste, bouton Continuer, feedback de validation, maîtrise 80 % et plus. Bouton plein : texte on-accent en corps 22 gras (4:1 en clair).
@@ -104,10 +108,10 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
   /// Texte corail de petite taille (pastille Essai terminé, bouton Réinitialiser) sur coral-soft et surface (5,3:1).
   final Color coralText;
 
-  /// Cœur de Yasmina, étape ouverte sur la carte (texte ink, 9:1 et plus).
+  /// Cœur de Yasmina, étape ouverte sur la carte (texte ink-fixed, 9,5:1 en sombre, 11:1 en clair).
   final Color sun;
 
-  /// Étape terminée sur la carte, texte ink.
+  /// Étape terminée sur la carte, texte ink-fixed.
   final Color nodeDone;
 
   /// Fond de la carte du trimestre.
@@ -125,13 +129,13 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
   /// Cadre de téléphone de l'aperçu web et du back-office.
   final Color frame;
 
-  /// Carte de la matière arabe sur l'écran des matières, texte ink clair (12:1).
+  /// Carte de la matière arabe sur l'écran des matières, texte ink-fixed (12:1).
   final Color subjectAr;
 
-  /// Carte de la matière maths, texte ink clair.
+  /// Carte de la matière maths, texte ink-fixed.
   final Color subjectMa;
 
-  /// Carte de la matière éveil scientifique, texte ink clair.
+  /// Carte de la matière éveil scientifique, texte ink-fixed.
   final Color subjectEv;
 
   /// Barre de progression : séquence 1, Découvrir.
@@ -165,6 +169,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
     tile: Color(0xFFFFFFFF),
     ink: Color(0xFF16243A),
     muted: Color(0xFF5A6B82),
+    inkFixed: Color(0xFF16243A),
     line: Color(0xFFD5DFEB),
     blue: Color(0xFF1F5FA8),
     blueSoft: Color(0xFFE3EEFB),
@@ -205,6 +210,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
     tile: Color(0xFF223047),
     ink: Color(0xFFE8EEF7),
     muted: Color(0xFF9AABC2),
+    inkFixed: Color(0xFF16243A),
     line: Color(0xFF2C3A50),
     blue: Color(0xFF6EA6EC),
     blueSoft: Color(0xFF1F3150),
@@ -246,6 +252,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
     Color? tile,
     Color? ink,
     Color? muted,
+    Color? inkFixed,
     Color? line,
     Color? blue,
     Color? blueSoft,
@@ -284,6 +291,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
     tile: tile ?? this.tile,
     ink: ink ?? this.ink,
     muted: muted ?? this.muted,
+    inkFixed: inkFixed ?? this.inkFixed,
     line: line ?? this.line,
     blue: blue ?? this.blue,
     blueSoft: blueSoft ?? this.blueSoft,
@@ -327,6 +335,7 @@ class CouleursYasmina extends ThemeExtension<CouleursYasmina> {
       tile: Color.lerp(tile, other.tile, t)!,
       ink: Color.lerp(ink, other.ink, t)!,
       muted: Color.lerp(muted, other.muted, t)!,
+      inkFixed: Color.lerp(inkFixed, other.inkFixed, t)!,
       line: Color.lerp(line, other.line, t)!,
       blue: Color.lerp(blue, other.blue, t)!,
       blueSoft: Color.lerp(blueSoft, other.blueSoft, t)!,
@@ -416,6 +425,24 @@ abstract final class StylesYasmina {
     fontSize: 18,
     height: 1.3,
     fontWeight: FontWeight.w600,
+  );
+
+  /// Texte du bandeau Feedback (validation, indice, explication). Le libellé au-dessus reste en latin-label ou kid selon la langue. Famille kid.
+  static const feedback = TextStyle(
+    fontFamily: PolicesYasmina.interfaceArabe,
+    fontFamilyFallback: [PolicesYasmina.contenuArabe],
+    fontSize: 19,
+    height: 1.35,
+    fontWeight: FontWeight.w700,
+  );
+
+  /// Libellé du grand bouton Écouter (IconButton variante listen, T03 et T55). Famille kid.
+  static const listen = TextStyle(
+    fontFamily: PolicesYasmina.interfaceArabe,
+    fontFamilyFallback: [PolicesYasmina.contenuArabe],
+    fontSize: 20,
+    height: 1.2,
+    fontWeight: FontWeight.w700,
   );
 
   /// Mot isolé à lire, construire ou repérer. Famille content.
@@ -519,6 +546,15 @@ abstract final class EspacesYasmina {
 
   /// Marge interne horizontale de la bulle de Yasmina.
   static const double padBubbleX = 16;
+
+  /// Marge interne verticale du bouton Écouter (variante listen).
+  static const double padListenY = 10;
+
+  /// Marge interne horizontale du bouton Écouter (variante listen).
+  static const double padListenX = 22;
+
+  /// Marge interne horizontale du bandeau Feedback (verticale : pad-bubble-y).
+  static const double padFeedbackX = 12;
 }
 
 /// Rayons des coins (px).
@@ -588,6 +624,12 @@ abstract final class TaillesYasmina {
 
   /// Hauteur de l'écran dans le cadre de téléphone de l'aperçu web.
   static const double frameHeight = 740;
+
+  /// Icône d'un IconButton (retour, réécoute de la consigne).
+  static const double iconMd = 22;
+
+  /// Icône du bouton Écouter (variante listen).
+  static const double iconListen = 26;
 }
 
 /// Ombres fonctionnelles (relief de touche).
