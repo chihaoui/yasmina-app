@@ -1,8 +1,10 @@
 /// Moteur d'exercices Yasmina, partagé par l'app mobile et l'aperçu web.
 library;
 
+export 'src/composants/bandeau_feedback.dart';
 export 'src/composants/bouton_icone.dart';
 export 'src/composants/bouton_yasmina.dart';
+export 'src/composants/tuile_choix.dart';
 export 'src/composants/yasmina_bulle.dart';
 export 'src/demo/carte_demo.dart';
 export 'src/forme_adresse.dart';
