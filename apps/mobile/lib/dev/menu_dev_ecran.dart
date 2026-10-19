@@ -82,6 +82,16 @@ class MenuDevEcran extends ConsumerWidget {
             ),
             body: ListView(
               children: [
+                ListTile(
+                  key: const ValueKey('dev_atelier'),
+                  leading: const Icon(Icons.widgets_rounded),
+                  title: const Text('Atelier'),
+                  subtitle: const Text(
+                    'Les 53 types, chacun ouvrable seul : exemples validés, '
+                    'JSON et lecteur.',
+                  ),
+                  onTap: () => context.push('/dev/atelier'),
+                ),
                 titre('Profils et données'),
                 ListTile(
                   key: const ValueKey('dev_profils_test'),

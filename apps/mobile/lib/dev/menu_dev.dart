@@ -64,3 +64,9 @@ Future<String> creerProfilsDeTest(DepotProfils depot) async {
   };
   return [bilan, ...remarques].join(' ');
 }
+
+/// Exemples de schema/exemples/, lus et validés au premier accès. Surchargé
+/// dans les tests par des exemples en erreur.
+final catalogueExemplesProvider = Provider<CatalogueExemples>(
+  (ref) => CatalogueExemples(),
+);

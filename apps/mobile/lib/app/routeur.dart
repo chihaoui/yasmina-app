@@ -1,12 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../dev/atelier_ecran.dart';
+import '../dev/atelier_exemple_ecran.dart';
+import '../dev/atelier_type_ecran.dart';
+import '../dev/menu_dev.dart';
+import '../dev/menu_dev_ecran.dart';
 import '../ecrans/accueil_ecran.dart';
 import '../ecrans/choix_profil_ecran.dart';
 import '../ecrans/demarrage_ecran.dart';
 import '../ecrans/profil_formulaire_ecran.dart';
-import '../dev/menu_dev.dart';
-import '../dev/menu_dev_ecran.dart';
 import '../ecrans/reglages_ecran.dart';
 import '../profils/profil_actif.dart';
 
@@ -54,6 +57,28 @@ final routeurProvider = Provider<GoRouter>((ref) {
         GoRoute(
           path: '/dev',
           builder: (context, state) => const MenuDevEcran(),
+          routes: [
+            GoRoute(
+              path: 'atelier',
+              builder: (context, state) => const AtelierEcran(),
+              routes: [
+                GoRoute(
+                  path: ':type',
+                  builder: (context, state) =>
+                      AtelierTypeEcran(idType: state.pathParameters['type']!),
+                  routes: [
+                    GoRoute(
+                      path: ':exemple',
+                      builder: (context, state) => AtelierExempleEcran(
+                        idType: state.pathParameters['type']!,
+                        fichier: state.pathParameters['exemple']!,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
     ],
   );
