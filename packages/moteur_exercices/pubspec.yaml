@@ -12,6 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Schéma edu-content/1.0 et exemples (Dart pur, compatible web).
+  edu_content:
+    path: ../../schema
   flutter_svg: ^2.3.0
   freezed_annotation: ^3.1.0
   json_annotation: ^4.12.0
