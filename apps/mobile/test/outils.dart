@@ -11,6 +11,7 @@ import 'package:moteur_exercices/moteur_exercices.dart';
 import 'package:yasmina/donnees/base_yasmina.dart';
 import 'package:yasmina/donnees/providers.dart';
 import 'package:yasmina/main.dart';
+import 'package:yasmina/plateforme/services_plateforme.dart';
 import 'package:yasmina/profils/avatar.dart';
 import 'package:yasmina/profils/depot_profils.dart';
 import 'package:yasmina/reglages/stockage_reglages.dart';
@@ -18,13 +19,15 @@ import 'package:yasmina/reglages/stockage_reglages.dart';
 /// Lance l'app avec un stockage et une base en mémoire, après avoir créé
 /// [profils] (un seul profil par défaut : l'accueil s'ouvre directement).
 /// Les langues de l'appareil se règlent avec
-/// `tester.platformDispatcher.localesTestValue`. [surcharges] s'ajoute aux
-/// providers surchargés (menu développeur, catalogue des exemples...).
+/// `tester.platformDispatcher.localesTestValue`. Les services de plateforme
+/// sont factices ([services] pour en fournir d'autres). [surcharges] s'ajoute aux providers surchargés (menu
+/// développeur, catalogue des exemples, services...).
 Future<DepotProfils> lancerApp(
   WidgetTester tester,
   StockageReglages stockage, {
   List<String> profils = const ['Lina'],
   List<Override> surcharges = const [],
+  ServicesExercice? services,
 }) async {
   // closeStreamsSynchronously : sinon drift laisse un timer en attente à la
   // fermeture des flux, que le temps simulé de testWidgets ne déclenche pas.
@@ -53,6 +56,10 @@ Future<DepotProfils> lancerApp(
       overrides: [
         stockageReglagesProvider.overrideWithValue(stockage),
         baseYasminaProvider.overrideWithValue(base),
+        // Jamais de plugin en test : services factices par défaut.
+        servicesExerciceProvider.overrideWithValue(
+          services ?? ServicesFactices(),
+        ),
         ...surcharges,
       ],
       child: const YasminaApp(),
