@@ -10,7 +10,8 @@ import '../../registre/registre_types.dart';
 import '../../theme/jetons_yasmina.g.dart';
 import '../../theme/theme_yasmina.dart';
 
-/// T02 Vrai ou faux (moteur Choix) : une affirmation, un emoji facultatif,
+/// T02 Vrai ou faux (moteur Choix) : une affirmation (content-sentence en
+/// arabe, latin-prompt sinon), un emoji facultatif,
 /// deux tuiles Vrai et Faux en ordre fixe, libellés du lecteur dans la
 /// langue de l'exercice (صَحِيحٌ et خَطَأٌ en arabe).
 class GabaritVraiFaux implements GabaritReponse {
@@ -139,9 +140,11 @@ class _ZoneVraiFaux extends StatelessWidget {
               key: const ValueKey('vrai_faux_affirmation'),
               textAlign: TextAlign.center,
               style: ThemeYasmina.pourLangue(
+                // Texte court lu par l'enfant : latin-prompt en français et
+                // en anglais (choix.md §9).
                 config.langue == 'ar'
                     ? StylesYasmina.contentSentence
-                    : StylesYasmina.latinBody,
+                    : StylesYasmina.latinPrompt,
                 config.langue,
               ).copyWith(color: c.ink),
             ),

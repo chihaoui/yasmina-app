@@ -81,10 +81,13 @@ class TuileChoix extends StatelessWidget {
                     Text(
                       texte!,
                       textAlign: TextAlign.center,
-                      style: ThemeYasmina.pourLangue(
-                        StylesYasmina.contentOption,
-                        langue,
-                      ).copyWith(color: c.ink),
+                      // content-option en arabe, latin-prompt en français et
+                      // en anglais (texte court lu par l'enfant).
+                      style:
+                          (langue == 'ar'
+                                  ? StylesYasmina.contentOption
+                                  : StylesYasmina.latinPrompt)
+                              .copyWith(color: c.ink),
                     ),
                   if (motEtat != null)
                     Text(

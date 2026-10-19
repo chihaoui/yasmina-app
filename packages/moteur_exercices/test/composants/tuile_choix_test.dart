@@ -86,4 +86,19 @@ void main() {
     expect(find.text('juste'), findsOneWidget);
     poignee.dispose();
   });
+
+  testWidgets(
+    'texte en latin-prompt en français (texte court lu par l\'enfant)',
+    (tester) async {
+      await afficher(
+        tester,
+        'fr',
+        const TuileChoix(etat: EtatTuile.repos, texte: 'Vrai'),
+      );
+      final texte = tester.widget<Text>(find.text('Vrai'));
+      expect(texte.style!.fontFamily, PolicesYasmina.latin);
+      expect(texte.style!.fontSize, StylesYasmina.latinPrompt.fontSize);
+      expect(texte.style!.fontWeight, StylesYasmina.latinPrompt.fontWeight);
+    },
+  );
 }

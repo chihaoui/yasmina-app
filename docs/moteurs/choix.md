@@ -62,7 +62,7 @@ Particularités par type :
 | T23 | « a ? b » en grand, isolé du sens de la phrase (toujours de gauche à droite). 3 tuiles <, =, > en ordre fixe. Le signe choisi remplace le « ? » |
 | T24 | La suite sur une ligne, suivie d'une case « ? ». L'élément choisi s'affiche dans la case |
 | T45 | Tuiles de phrase pleine largeur. Une tuile touchée est barrée (trait sur le texte), en plus de l'état sélectionné |
-| T46 | Le texte en content-sentence ou latin-body, puis la partie A (question et réponses), puis la partie B (les phrases du texte, une par tuile) |
+| T46 | Le texte en content-sentence ou latin-body, puis la partie A (question en latin-prompt et réponses), puis la partie B (les phrases du texte, une par tuile) |
 | T61 | Le texte, puis les phrases en tuiles pleine largeur |
 
 ## 4. Données JSON
@@ -166,7 +166,7 @@ Modes :
 ## 9. Cas arabe et cas français
 
 - **Sens** : tout l'exercice suit `langue` par `LangueExercice`. En arabe, la grille se remplit de droite à gauche, Yasmina et la consigne sont en miroir, la flèche de réécoute suit le sens.
-- **Polices** : en arabe, propositions en `content-option` (Noto Naskh, interligne 1,6), mots isolés en `content-word`, textes en `content-sentence`. En français et en anglais, `latin-prompt` pour la consigne et `latin-body` pour les textes.
+- **Polices** : en arabe, propositions en `content-option` (Noto Naskh, interligne 1,6), mots isolés en `content-word`, textes en `content-sentence`. En français et en anglais, **tout texte court lu par l'enfant est en `latin-prompt` (20 px)** : consigne, affirmation de T02, texte des propositions (tuiles), question de T46. `latin-body` ne sert qu'aux textes longs à lire (support de T45, texte de T46 et de T61). Décision de Lamjed du 20 oct. 2026.
 - **Nombres** : chiffres occidentaux (4, 10) dans les textes arabes, comme les exemples. T23 affiche « a ? b » isolé (`Directionality` de gauche à droite) pour que < et > ne soient jamais retournés par l'algorithme bidirectionnel. Les feedbacks arabes évitent les signes et écrivent « 14 أَكْبَرُ مِنْ 9 ».
 - **Arabe seulement** : T18 et T19. Les harakat des propositions ne sont jamais supprimées ni réordonnées (pas de NFC ni de NFD).
 - **Exemples** :
@@ -191,7 +191,7 @@ Toutes les valeurs viennent de `tokens.json` (version 7), il n'en reste aucune h
 
 | Composant (design system) | Dans le moteur | Statut | Usage ici |
 |---|---|---|---|
-| ChoiceTile | `TuileChoix` | existe (variante barrée de T45 à ajouter) | Toutes les propositions. États repos (`tile`, bordure `line`), sélectionné (`blue-soft`, `blue`), juste (`olive-soft`, `olive`), faux (`coral-soft`, `coral`). Bordure `border-thick`, rayon `radius-lg`, hauteur `choice-min-height`. Emoji en grand au-dessus du texte. Variante barrée pour T45 |
+| ChoiceTile | `TuileChoix` | existe (variante barrée de T45 à ajouter) | Toutes les propositions. États repos (`tile`, bordure `line`), sélectionné (`blue-soft`, `blue`), juste (`olive-soft`, `olive`), faux (`coral-soft`, `coral`). Bordure `border-thick`, rayon `radius-lg`, hauteur `choice-min-height`. Emoji en grand au-dessus du texte. Texte en `content-option` en arabe, `latin-prompt` en français et en anglais. Variante barrée pour T45 |
 | Feedback | `BandeauFeedback` | existe | Validation, indice, explication. Bord de début de ligne `border-feedback`, rayon `radius-lg`, marges `pad-feedback-x` et `pad-bubble-y`, libellé en `latin-label` ou kid, texte en style `feedback` (kid, 19 px, gras) |
 | Button | `BoutonYasmina` | existe | Vérifier (bleu), Continuer (vert), Rejouer en aperçu (alt) |
 | YasminaBubble | `Yasmina` et `YasminaBulle` | existent | Yasmina 58 px (`yasmina-reader`) à côté de la consigne, humeur neutre, bravo ou encourage |

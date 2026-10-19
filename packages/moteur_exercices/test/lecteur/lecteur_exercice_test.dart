@@ -231,4 +231,15 @@ void main() {
     expect(cle('lecteur_feedback_validation'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('anglais : affirmation et tuiles en latin-prompt', (
+    tester,
+  ) async {
+    await jouer(tester, t02Anglais());
+    for (final texte in ['An elephant is a small animal.', 'True', 'False']) {
+      final style = tester.widget<Text>(find.text(texte)).style!;
+      expect(style.fontSize, StylesYasmina.latinPrompt.fontSize, reason: texte);
+      expect(style.fontFamily, PolicesYasmina.latin, reason: texte);
+    }
+  });
 }

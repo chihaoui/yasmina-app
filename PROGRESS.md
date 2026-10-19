@@ -151,7 +151,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 
 ## Blocages
 - À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A1-12). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
-- Point UX à trancher (moteur Choix) : l'affirmation de T02 en français et en anglais suit choix.md §9 (`latin-body`, 15 px), petit pour un enfant de 6 ans. Proposition : `latin-prompt` (20 px) pour tout texte que l'enfant lit dans un exercice, `latin-body` réservé à l'espace parent.
+- Résolu le 20 oct. 2026 (moteur Choix) : tout texte court lu par l'enfant en français ou en anglais (affirmation, texte des propositions) passe en `latin-prompt` (20 px). `latin-body` reste pour les textes longs à lire (T45, T46, T61), choix.md §9 mis à jour.
 - À savoir : dans les tests et les goldens, les emoji s'affichent en carré (le moteur de test n'a pas de police emoji). Sur l'appareil et dans le navigateur, ils s'affichent normalement.
 - Aperçu web : services factices (aucune voix) jusqu'à l'implémentation web des services (A0-15).
 - Résolu le 17 oct. 2026 : build Android bloqué par le disque plein. Espace libéré, `flutter build apk --debug` réussi.
