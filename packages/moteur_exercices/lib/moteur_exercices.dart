@@ -15,6 +15,7 @@ export 'src/lecteur/deroule_exercice.dart';
 export 'src/lecteur/evenements.dart';
 export 'src/lecteur/lecteur_exercice.dart';
 export 'src/lecteur/libelles_lecteur.dart';
+export 'src/moteurs/choix/gabarit_vrai_faux.dart';
 export 'src/moteurs/gabarits.dart';
 export 'src/plateforme/services.dart';
 export 'src/plateforme/services_factices.dart';

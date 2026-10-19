@@ -168,9 +168,7 @@ class _LecteurExerciceState extends State<LecteurExercice> {
         controleur.montrer(AffichageReponse.faux);
         _minuterieFaux = Timer(MouvementsYasmina.dureeFaux, () {
           if (!mounted || _controleur != controleur) return;
-          controleur
-            ..vider()
-            ..montrer(AffichageReponse.saisie);
+          _viderSansEvenement(controleur);
         });
       case PhaseExercice.saisie || PhaseExercice.termine:
         break;
@@ -198,10 +196,16 @@ class _LecteurExerciceState extends State<LecteurExercice> {
   void _rejouer() {
     _minuterieFaux?.cancel();
     _deroule.rejouer();
-    _controleur
-      ?..vider()
-      ..montrer(AffichageReponse.saisie);
+    if (_controleur case final controleur?) _viderSansEvenement(controleur);
     setState(() {});
+  }
+
+  /// Vide la réponse et rend la main à l'enfant. Ce vidage vient du
+  /// lecteur, pas de l'enfant : aucun reponseDonnee.
+  void _viderSansEvenement(ControleurReponse controleur) {
+    controleur.vider();
+    _derniereReponse = jsonEncode(controleur.reponse);
+    controleur.montrer(AffichageReponse.saisie);
   }
 
   void _afficherReponse(bool afficher) {

@@ -52,9 +52,23 @@ void main() {
     expect(Moteur.values.skip(premierLot2).any(aDuLot1), isFalse);
   });
 
-  test('tous les types sont à venir pour l\'instant', () {
-    expect(typesExercices.every((t) => t.etat == EtatType.aVenir), isTrue);
+  test('T02 est le seul type jouable pour l\'instant', () {
+    expect(
+      typesExercices.where((t) => t.etat == EtatType.jouable).map((t) => t.id),
+      ['T02'],
+    );
     expect(typeParId('T19')!.nom, 'Choisir la haraka');
     expect(typeParId('T99'), isNull);
+  });
+
+  test('un type est jouable si et seulement s\'il a un gabarit', () {
+    for (final type in typesExercices) {
+      expect(
+        gabaritPour(type.id) != null,
+        type.etat == EtatType.jouable,
+        reason: type.id,
+      );
+    }
+    expect(gabaritsJouables.keys.every((id) => typeParId(id) != null), isTrue);
   });
 }
