@@ -1,10 +1,12 @@
-# Estimations des tâches (mis à jour le 17 octobre 2026, 19 h)
+# Estimations des tâches (mis à jour le 19 octobre 2026)
 
 Découpage des 343 jours-homme du plan de développement (lots L00 à L18) en tâches par phase. Préparé par le mentor, à valider par Lamjed, recalé au point R1 (15 nov. 2026). Source du tableau de bord « Avancement Yasmina » et des estimations reportées dans PROGRESS.md (décision 26).
 
 Méthode : une tâche compte seulement quand elle est faite. Avancement d'une phase = j-h faits ÷ j-h de la phase. Global = j-h faits ÷ 343.
 
 Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, partie 1) passent en A0 (A0-19 design system Yasmina, A0-20 ThemeYasmina). Total inchangé.
+
+Changement du 19 oct. (décision 34, ordre « atelier d'abord ») : A1-01 Moteur Choix (8 j-h) est découpée en A1-01a schéma, exemples et fiche (1 j-h, fait) et A1-01b moteur (7 j-h). Total inchangé.
 
 ## Phase A0 (24,5 j-h, 10,5 faits)
 
@@ -31,11 +33,12 @@ Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, pa
 | A0-19 | L01 | Design system Yasmina (artefact, depuis la démo) | 1 | fait |
 | A0-20 | L01 | ThemeYasmina appliqué à l'app et à l'aperçu web | 1 | fait |
 
-## Phase A1 (86,5 j-h, 0 faits)
+## Phase A1 (86,5 j-h, 1 fait)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
-| A1-01 | L04 | Moteur Choix (13 types) | 8 | à faire |
+| A1-01a | L04 | Moteur Choix : schéma, exemples et fiche | 1 | fait |
+| A1-01b | L04 | Moteur Choix (13 types) : moteur | 7 | à faire |
 | A1-02 | L04 | Moteur Glisser-déposer (10 types) | 12 | à faire |
 | A1-03 | L04 | Moteur Texte (T07, T17) | 4 | à faire |
 | A1-04 | L04 | Moteur Tracé (T20) | 3 | à faire |

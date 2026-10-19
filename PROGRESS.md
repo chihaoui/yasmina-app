@@ -2,19 +2,19 @@
 
 <!-- avancement:debut -->
 ## Avancement
-Au 17 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modifier à la main.
+Au 19 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modifier à la main.
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
 | A0 | 10,5 | 24,5 | 43 % |
-| A1 | 0 | 86,5 | 0 % |
+| A1 | 1 | 86,5 | 1 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **10,5** | **343** | **3,1 %** |
+| **Total** | **11,5** | **343** | **3,4 %** |
 
-- **Avancement global : 3,1 %** (10,5 j-h faits sur 343)
+- **Avancement global : 3,4 %** (11,5 j-h faits sur 343)
 - **Types jouables : 0 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -26,6 +26,17 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - Prochain point de décision : **R1, 15 novembre 2026** (vitesse réelle avec Claude Code, décision sur le renfort freelance)
 - Framework : **Flutter 3.47.7** (décidé le 17 octobre 2026), poste vérifié par `flutter doctor` sans erreur
 - Dépôt : https://github.com/chihaoui/yasmina-app (privé), dossier local `/Users/chihaoui/Documents/Forgia/Yasmina`
+
+## Ordre de développement (décision 34, 19 oct. 2026)
+**Atelier d'abord.** Les 12 moteurs et les 53 types du MVP sont développés et validés dans l'atelier du menu développeur (chaque type jouable seul, contenu statique) avant le parcours. Ordre des moteurs :
+1. Choix (A1-01b)
+2. Glisser-déposer (A1-02)
+3. Tracé (A1-04)
+4. Manipulables (A1-06)
+5. Autres moteurs du lot 1 (Texte, Saisie numérique, Scène image, Révision et jeux)
+6. Lot 2 (phase A2)
+
+Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat) et l'espace parent viennent après le 53e type validé.
 
 ## Jalons
 | Jalon | Date | Critère | État |
@@ -65,7 +76,8 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - [x] A0-20 ThemeYasmina appliqué à l'app et à l'aperçu web (1 j-h)
 
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
-- [ ] A1-01 Moteur Choix (13 types) : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (8 j-h)
+- [x] A1-01a Moteur Choix : schéma, exemples et fiche (1 j-h)
+- [ ] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (7 j-h)
 - [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (12 j-h)
 - [ ] A1-03 Moteur Texte (T07, T17) (4 j-h)
 - [ ] A1-04 Moteur Tracé (T20) (3 j-h)
@@ -164,3 +176,4 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 | 17 oct. 2026 | A0 langue de l'interface (Claude Code) | Avancement passé en jours-homme (`docs/estimations-taches.md`, listes de PROGRESS.md réécrites, `tool/avancement.dart` vérifié par `verifier.sh`). Langue de l'interface : première langue arabe ou française de l'appareil, sinon arabe, enregistrée au premier lancement, modifiable dans les réglages (Riverpod, shared_preferences). Textes en ARB via gen-l10n (ar, fr), `CFBundleLocalizations` iOS. `LangueExercice` dans le moteur : sens, locale et police de l'exercice indépendants de l'interface. Accueil et réglages (go_router). Polices embarquées : Noto Naskh Arabic (exercices), Baloo Bhaijaan 2 (interface arabe), Andika (français). Goldens de l'accueil en ar et en fr. Dépendance ajoutée : shared_preferences 2.5.6 (fontTools 4.55.3 utilisé hors dépôt pour produire les polices statiques) | Installer l'APK sur Android, puis profils enfants et base drift (A0-11) |
 | 17 oct. 2026 | A0 profils enfants (Claude Code) | Harakat de l'interface corrigées (الْإِعْدَادَاتُ, الْعَرَبِيَّةُ), convention C (soukoun sur le lam devant une lettre lunaire, kasra devant un alif de liaison) dans docs et CLAUDE.md, avertissement `lam_sans_soukoun` au validateur et au test des ARB. `FormeAdresse` dans le moteur. Base drift v1 (`base_yasmina.drift` : profils, historique des niveaux, index partiel, déclencheur des 5 profils, clés étrangères, instantané de migration et test). Dépôt des profils (limite, historique daté, persistance testée). 8 avatars placeholder (icônes Material, nuage à la place de l'oiseau). Écrans : création directe sans profil, accueil direct avec un profil, choix à partir de deux, formulaire de création et modification, suppression confirmée. Goldens du choix et de l'accueil. `flutter build apk --debug` et build iOS réussis, SQLite embarqué par les hooks de sqlite3. Aucune dépendance ajoutée | Relire « سَحَابَةٌ » (avatar nuage), installer l'APK sur Android, puis menu développeur (A0-12) |
 | 17 oct. 2026 | A0 ThemeYasmina (Claude Code) | `docs/design-system/` commité (sans le zip, supprimé). PROGRESS.md aligné sur les estimations de 19 h (A0-19, A0-20, A1-19 à 8 j-h), `tool/avancement.dart` contrôle chaque tâche (id et j-h). Graisses 600 et 800 des polices arabes. `tool/generer_theme.dart` génère les jetons depuis `tokens.json` (couleurs clair et sombre, styles, espacements, rayons, traits, tailles, ombres) et copie les SVG de Yasmina, test de synchro. `ThemeYasmina` clair et sombre (suit l'appareil), tests de contraste. Composants du moteur : `BoutonYasmina`, `BoutonIcone`, `Yasmina` et `YasminaBulle` (statiques, A0-16 reste ouverte pour les animations avec le lecteur). App : accueil avec Yasmina, grille de `CarteProfil` et carte d'ajout pointillée, avatars au style de la démo, formulaire thémé. Aperçu web thémé (cadre en jetons). Garde-fou `tool/garde_design.dart` dans `verifier.sh` (aucune valeur en dur, exception `// design-ok`). 8 goldens (ar, fr, clair, sombre). `flutter build apk --debug`, build iOS et build web réussis. Dépendances ajoutées : flutter_svg 2.3.0 dans le moteur (entraîne vector_graphics, vector_graphics_codec, vector_graphics_compiler, xml, path_parsing, petitparser), flutter_localizations en dev dans le moteur (tests en arabe) | Contrôle visuel de l'aperçu web par Lamjed, jeton `ink-fixed` à trancher, installer l'APK sur Android, puis menu développeur (A0-12) |
+| 19 oct. 2026 | A1-01a moteur Choix, préparation (Claude Code) | Jetons régénérés depuis tokens.json v7 (ink-fixed, styles feedback et listen, marges listen et feedback, icon-md, icon-listen), test de contraste de ink-fixed. Branche `proposition/moteur-choix` : schéma edu-content/1.0 détaillé pour les 13 types du moteur Choix (emoji à côté de image, support complet de T01, T19 en deux formes dont `lettre-vocalisee`), règles du validateur et tests, 17 exemples en emoji dans `schema/exemples/choix/`, fiche `docs/moteurs/choix.md` validée et réponses de Lamjed dans `choix-questions.md`. A1-01 découpée en A1-01a (fait) et A1-01b, ordre « atelier d'abord » inscrit (décision 34), `tool/avancement.dart` accepte les id à lettre (A1-01a). Branche fusionnée dans main. Aucune dépendance ajoutée | Menu développeur et atelier (A0-12), puis moteur Choix (A1-01b) |
