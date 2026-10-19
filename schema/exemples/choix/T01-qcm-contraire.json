@@ -1,0 +1,51 @@
+{
+  "id": "ar-2-t1-u4-e01-x01",
+  "type": "T01",
+  "gabarit": "qcm-contraire",
+  "competence": "ar-vocabulaire-contraires",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "مَا عَكْسُ كَلِمَةِ «كَبِيرٌ»؟"
+  },
+  "donnees": {
+    "support": {
+      "texte": "كَبِيرٌ"
+    },
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "صَغِيرٌ"
+      },
+      {
+        "id": "c2",
+        "texte": "طَوِيلٌ"
+      },
+      {
+        "id": "c3",
+        "texte": "جَمِيلٌ"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c1"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ».",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ»."
+    },
+    "indice": {
+      "masculin": "تَخَيَّلْ فِيلًا وَنَمْلَةً: الْفِيلُ كَبِيرٌ، وَالنَّمْلَةُ...؟",
+      "feminin": "تَخَيَّلِي فِيلًا وَنَمْلَةً: الْفِيلُ كَبِيرٌ، وَالنَّمْلَةُ...؟"
+    },
+    "explication": "عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ»: الْفِيلُ كَبِيرٌ، وَالنَّمْلَةُ صَغِيرَةٌ."
+  },
+  "empreinte": "sha256:59c554ab236ea9f998d108b224592da297c67ed3bcc248ef2ad1fe4aa1debf8c",
+  "statut": "brouillon",
+  "version": 1
+}

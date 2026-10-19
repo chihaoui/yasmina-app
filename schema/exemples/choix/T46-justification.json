@@ -1,0 +1,57 @@
+{
+  "id": "fr-5-t1-u1-e03-x01",
+  "type": "T46",
+  "gabarit": "reponse-justification",
+  "competence": "fr-comprehension-justifier",
+  "critere": "C3",
+  "niveau_critere": "perfectionnement",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Réponds à la question, puis touche la phrase du texte qui le prouve."
+  },
+  "donnees": {
+    "texte": "Ce matin, Adam a oublié son parapluie. À midi, la pluie tombe très fort. Il rentre à la maison les vêtements trempés.",
+    "question": "Adam est-il resté au sec ?",
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "Oui"
+      },
+      {
+        "id": "c2",
+        "texte": "Non"
+      }
+    ],
+    "preuves": [
+      {
+        "id": "p1",
+        "texte": "Ce matin, Adam a oublié son parapluie."
+      },
+      {
+        "id": "p2",
+        "texte": "À midi, la pluie tombe très fort."
+      },
+      {
+        "id": "p3",
+        "texte": "Il rentre à la maison les vêtements trempés."
+      }
+    ],
+    "melanger": false
+  },
+  "reponse": {
+    "choix": [
+      "c2"
+    ],
+    "preuves": [
+      "p3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Bonne réponse et bonne preuve : Adam rentre les vêtements trempés, il n'est donc pas resté au sec.",
+    "indice": "Cherche dans le texte comment sont les vêtements d'Adam quand il rentre.",
+    "explication": "Adam n'est pas resté au sec. La preuve : « Il rentre à la maison les vêtements trempés. »"
+  },
+  "empreinte": "sha256:d0e8ac78962e60c6abaadb324a78a6e46c149d010c565fb033317f5a3c7477e1",
+  "statut": "brouillon",
+  "version": 1
+}

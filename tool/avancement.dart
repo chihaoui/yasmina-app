@@ -23,9 +23,9 @@ final _casePremierNiveau = RegExp(r'^- \[([ x])\] (.*)$');
 final _sousCase = RegExp(r'^\s+- \[([ x])\] (.*)$');
 final _estimation = RegExp(r'\((\d+(?:,\d+)?) j-h\)$');
 final _ligneEstimation = RegExp(
-  r'^\| ((?:A0|A1|A2|B|C|D)-\d\d) \| L\d\d \| .+? \| (\d+(?:,\d+)?) \| [^|]+ \|$',
+  r'^\| ((?:A0|A1|A2|B|C|D)-\d\d[a-z]?) \| L\d\d \| .+? \| (\d+(?:,\d+)?) \| [^|]+ \|$',
 );
-final _idTache = RegExp(r'^((?:A0|A1|A2|B|C|D)-\d\d) ');
+final _idTache = RegExp(r'^((?:A0|A1|A2|B|C|D)-\d\d[a-z]?) ');
 final _dateJournal = RegExp(r'^\| (\d{1,2} [^|]+ \d{4}) \|');
 final _plageTypes = RegExp(r'T(\d\d) à T(\d\d)');
 final _type = RegExp(r'T(\d\d)');

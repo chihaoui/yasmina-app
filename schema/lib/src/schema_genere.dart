@@ -42,6 +42,11 @@ const String texteSchemaEduContent = r'''
       "type": "string",
       "minLength": 1
     },
+    "emoji": {
+      "description": "Un ou quelques emoji, affichés à la place d'une image (toutes les images du prototype sont des emoji).",
+      "type": "string",
+      "minLength": 1
+    },
     "langue": { "enum": ["ar", "fr", "en"] },
     "idEtape": {
       "description": "<matiere>-<niveau>-t<trimestre>-u<unite>-e<ordre sur 2 chiffres>, par exemple ar-1-t1-u1-e01.",
@@ -59,6 +64,7 @@ const String texteSchemaEduContent = r'''
       "pattern": "^(ar|fr|en|ma|ev)-[1-6]-t[1-3]-u([1-9]|[1-9][0-9])-e(0[1-9]|[1-9][0-9])-x(0[1-9]|[1-9][0-9])$"
     },
     "idChoix": { "type": "string", "pattern": "^c[1-9]$" },
+    "idPreuve": { "type": "string", "pattern": "^p[1-9]$" },
 
     "generation": {
       "type": "object",
@@ -159,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour T01, T02 et T05, génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -203,7 +209,7 @@ const String texteSchemaEduContent = r'''
         {
           "if": {
             "required": ["type"],
-            "properties": { "type": { "enum": ["T01", "T05"] } }
+            "properties": { "type": { "enum": ["T01", "T04", "T05", "T45"] } }
           },
           "then": {
             "properties": {
@@ -223,39 +229,164 @@ const String texteSchemaEduContent = r'''
               "reponse": { "$ref": "#/$defs/reponseVraiFaux" }
             }
           }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "enum": ["T03", "T55"] } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesEcoute" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T18" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesFormeLettre" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type", "gabarit"],
+            "properties": {
+              "type": { "const": "T19" },
+              "gabarit": { "not": { "const": "lettre-vocalisee" } }
+            }
+          },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesHaraka" },
+              "reponse": { "$ref": "#/$defs/reponseHaraka" }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["type", "gabarit"],
+            "properties": { "type": { "const": "T19" }, "gabarit": { "const": "lettre-vocalisee" } }
+          },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesLettreVocalisee" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T23" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesComparer" },
+              "reponse": { "$ref": "#/$defs/reponseComparer" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T24" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesSuite" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T46" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesJustification" },
+              "reponse": { "$ref": "#/$defs/reponseJustification" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T61" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesResume" },
+              "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
         }
       ]
     },
 
+    "choix": {
+      "description": "Attendu : un choix avec un id et au moins un texte, une image ou un emoji (jamais une image et un emoji ensemble).",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
+      "properties": {
+        "id": { "$ref": "#/$defs/idChoix" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "audio": { "$ref": "#/$defs/cheminMedia" }
+      }
+    },
+    "choixTexte": {
+      "description": "Choix avec un texte obligatoire (phrase, forme de lettre, preuve).",
+      "type": "object",
+      "required": ["id", "texte"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idChoix" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "audio": { "$ref": "#/$defs/cheminMedia" }
+      }
+    },
+    "listeChoix": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/choix" }
+    },
+    "support": {
+      "description": "Attendu : un support affiché au-dessus des choix, avec au moins un texte (une ou plusieurs lignes), une image ou un emoji, ou une écoute. Tous combinables, sauf une image et un emoji ensemble.",
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["texte"] },
+        { "required": ["image"] },
+        { "required": ["emoji"] },
+        { "required": ["ecoute"] }
+      ],
+      "not": { "required": ["image", "emoji"] },
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
+      }
+    },
+    "ecoute": {
+      "description": "Ce que l'enfant entend. texte : dit par la synthèse vocale du prototype et relu par l'humain, jamais affiché. audio : fichier pré-généré, plus tard.",
+      "type": "object",
+      "required": ["texte"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "audio": { "$ref": "#/$defs/cheminMedia" }
+      }
+    },
     "donneesChoix": {
-      "description": "T01 (QCM, une seule bonne réponse) et T05 (choix multiple).",
+      "description": "T01 (QCM, une bonne réponse), T04 (trouve l'intrus, une bonne réponse, 3 choix au moins), T05 (choix multiple) et T45 (barrer les éléments faux).",
       "type": "object",
       "required": ["choix"],
       "additionalProperties": false,
       "properties": {
-        "choix": {
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 6,
-          "items": {
-            "description": "Attendu : un choix avec un id et au moins un texte ou une image.",
-            "type": "object",
-            "required": ["id"],
-            "additionalProperties": false,
-            "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }],
-            "properties": {
-              "id": { "$ref": "#/$defs/idChoix" },
-              "texte": { "$ref": "#/$defs/texteNonVide" },
-              "image": { "$ref": "#/$defs/cheminMedia" },
-              "audio": { "$ref": "#/$defs/cheminMedia" }
-            }
-          }
-        },
+        "support": { "$ref": "#/$defs/support" },
+        "choix": { "$ref": "#/$defs/listeChoix" },
         "melanger": { "type": "boolean", "default": true }
       }
     },
     "reponseChoix": {
-      "description": "Id des bons choix. T01 : exactement 1 (règle Dart). T05 : au moins 1.",
+      "description": "Id des bons choix (T45 : des éléments à barrer). Nombre contrôlé par le validateur Dart : exactement 1 pour T01, T03, T04, T18, T19 (lettre-vocalisee), T24 et T55, au moins 1 pour T05 et T45, au moins 2 pour T61, jamais tous les choix pour T05, T45 et T61.",
       "type": "object",
       "required": ["choix"],
       "additionalProperties": false,
@@ -274,9 +405,11 @@ const String texteSchemaEduContent = r'''
       "type": "object",
       "required": ["affirmation"],
       "additionalProperties": false,
+      "not": { "required": ["image", "emoji"] },
       "properties": {
         "affirmation": { "$ref": "#/$defs/texteNonVide" },
         "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
         "audio": { "$ref": "#/$defs/cheminMedia" }
       }
     },
@@ -285,6 +418,206 @@ const String texteSchemaEduContent = r'''
       "required": ["valeur"],
       "additionalProperties": false,
       "properties": { "valeur": { "type": "boolean" } }
+    },
+
+    "donneesEcoute": {
+      "description": "T03 (écoute et choisis, souvent des images) et T55 (paires minimales sonores : le texte entendu est celui du bon choix).",
+      "type": "object",
+      "required": ["ecoute", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "ecoute": { "$ref": "#/$defs/ecoute" },
+        "choix": { "$ref": "#/$defs/listeChoix" },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "donneesFormeLettre": {
+      "description": "T18 (arabe) : choisir la forme d'une lettre selon sa position dans le mot. Chaque choix contient la lettre.",
+      "type": "object",
+      "required": ["lettre", "position", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "lettre": {
+          "description": "Une seule lettre arabe, sans haraka.",
+          "type": "string",
+          "pattern": "^[\u0621-\u064A]$"
+        },
+        "position": { "enum": ["isolee", "debut", "milieu", "fin"] },
+        "mot": {
+          "description": "Mot vocalisé où la lettre occupe cette position.",
+          "$ref": "#/$defs/texteNonVide"
+        },
+        "choix": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/choixTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "donneesHaraka": {
+      "description": "T19 (arabe), tout gabarit sauf lettre-vocalisee : choisir la haraka d'une lettre. Le mot complet vaut avant + lettre + haraka de la réponse + apres.",
+      "type": "object",
+      "required": ["avant", "lettre", "apres", "harakat"],
+      "additionalProperties": false,
+      "properties": {
+        "avant": {
+          "description": "Début du mot, vocalisé, avant la lettre (peut être vide).",
+          "type": "string"
+        },
+        "lettre": {
+          "description": "La lettre dont on cherche la haraka : une seule lettre arabe, sans haraka.",
+          "type": "string",
+          "pattern": "^[\u0621-\u064A]$"
+        },
+        "apres": {
+          "description": "Fin du mot, vocalisée, après la lettre (peut être vide).",
+          "type": "string"
+        },
+        "harakat": {
+          "description": "Harakat proposées, dans l'ordre d'affichage.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/haraka" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
+      }
+    },
+    "haraka": { "enum": ["fatha", "damma", "kasra", "soukoun"] },
+    "reponseHaraka": {
+      "type": "object",
+      "required": ["haraka"],
+      "additionalProperties": false,
+      "properties": { "haraka": { "$ref": "#/$defs/haraka" } }
+    },
+    "donneesLettreVocalisee": {
+      "description": "T19, gabarit lettre-vocalisee : trouver la lettre qui porte la haraka demandée parmi des lettres vocalisées (بَ بُ بِ بْ). Seul le bon choix porte cette haraka.",
+      "type": "object",
+      "required": ["haraka", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "haraka": { "$ref": "#/$defs/haraka" },
+        "choix": {
+          "description": "Lettres vocalisées : une lettre arabe suivie d'une seule haraka.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/choixTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "donneesComparer": {
+      "description": "T23 : comparer deux nombres. La réponse se lit « a signe b » en notation mathématique (de gauche à droite, isolée du sens de la phrase).",
+      "type": "object",
+      "required": ["a", "b"],
+      "additionalProperties": false,
+      "properties": { "a": { "type": "number" }, "b": { "type": "number" } }
+    },
+    "reponseComparer": {
+      "type": "object",
+      "required": ["signe"],
+      "additionalProperties": false,
+      "properties": { "signe": { "enum": ["<", "=", ">"] } }
+    },
+    "elementSuite": {
+      "description": "Attendu : un élément de suite avec au moins un texte, une image ou un emoji (jamais une image et un emoji ensemble).",
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" }
+      }
+    },
+    "donneesSuite": {
+      "description": "T24 : suites et motifs. L'élément à trouver vient juste après le dernier élément de la suite.",
+      "type": "object",
+      "required": ["suite", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "suite": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 12,
+          "items": { "$ref": "#/$defs/elementSuite" }
+        },
+        "choix": { "$ref": "#/$defs/listeChoix" },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "donneesJustification": {
+      "description": "T46 : répondre (A), puis toucher la phrase du texte qui le prouve (B). Chaque preuve est une phrase copiée du texte.",
+      "type": "object",
+      "required": ["texte", "question", "choix", "preuves"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "question": { "$ref": "#/$defs/texteNonVide" },
+        "choix": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/choixTexte" }
+        },
+        "preuves": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/preuve" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "preuve": {
+      "type": "object",
+      "required": ["id", "texte"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idPreuve" },
+        "texte": { "$ref": "#/$defs/texteNonVide" }
+      }
+    },
+    "reponseJustification": {
+      "description": "Exactement une bonne réponse et une preuve (règles Dart).",
+      "type": "object",
+      "required": ["choix", "preuves"],
+      "additionalProperties": false,
+      "properties": {
+        "choix": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": { "$ref": "#/$defs/idChoix" }
+        },
+        "preuves": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": { "$ref": "#/$defs/idPreuve" }
+        }
+      }
+    },
+    "donneesResume": {
+      "description": "T61 : choisir les phrases qui résument le texte (au moins 2 bonnes réponses, jamais toutes).",
+      "type": "object",
+      "required": ["texte", "choix"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "choix": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/choixTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
     }
   }
 }

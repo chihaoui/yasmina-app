@@ -1,0 +1,49 @@
+{
+  "id": "en-4-t1-u1-e02-x01",
+  "type": "T03",
+  "gabarit": "ecoute-image",
+  "competence": "en-listening-words",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "en",
+  "consigne": {
+    "texte": "Listen and tap the right picture."
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "cat"
+    },
+    "choix": [
+      {
+        "id": "c1",
+        "emoji": "🐶"
+      },
+      {
+        "id": "c2",
+        "emoji": "🐱"
+      },
+      {
+        "id": "c3",
+        "emoji": "🐦"
+      },
+      {
+        "id": "c4",
+        "emoji": "🐟"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c2"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Right: you heard \"cat\" and you tapped the cat.",
+    "indice": "Listen again. This animal says meow.",
+    "explication": "The word is \"cat\". This is the picture of the cat."
+  },
+  "empreinte": "sha256:b5486acf50ba7a36b39ddd8d91bff030bfb72fea5c2ce023aba46dc1ce472446",
+  "statut": "brouillon",
+  "version": 1
+}

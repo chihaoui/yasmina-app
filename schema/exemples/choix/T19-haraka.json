@@ -1,0 +1,43 @@
+{
+  "id": "ar-2-t1-u2-e03-x01",
+  "type": "T19",
+  "gabarit": "haraka",
+  "competence": "ar-lecture-harakat",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "اِخْتَرِ الْحَرَكَةَ الْمُنَاسِبَةَ لِحَرْفِ التَّاءِ."
+  },
+  "donnees": {
+    "avant": "كُ",
+    "lettre": "ت",
+    "apres": "بٌ",
+    "harakat": [
+      "fatha",
+      "damma",
+      "kasra",
+      "soukoun"
+    ],
+    "ecoute": {
+      "texte": "كُتُبٌ"
+    }
+  },
+  "reponse": {
+    "haraka": "damma"
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَقُولُ «كُتُبٌ»، وَعَلَى التَّاءِ ضَمَّةٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَقُولُ «كُتُبٌ»، وَعَلَى التَّاءِ ضَمَّةٌ."
+    },
+    "indice": {
+      "masculin": "اِسْمَعِ الْكَلِمَةَ مَرَّةً أُخْرَى: «كُتُبٌ».",
+      "feminin": "اِسْمَعِي الْكَلِمَةَ مَرَّةً أُخْرَى: «كُتُبٌ»."
+    },
+    "explication": "نَقُولُ «كُتُبٌ»: عَلَى التَّاءِ ضَمَّةٌ."
+  },
+  "empreinte": "sha256:d80d5370a1f5e3722d0e32d2cab716b9a6c0fcb618adad731f09c56f8174acd9",
+  "statut": "brouillon",
+  "version": 1
+}

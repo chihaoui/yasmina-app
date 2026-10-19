@@ -1,0 +1,52 @@
+{
+  "id": "ar-1-t1-u3-e02-x01",
+  "type": "T18",
+  "gabarit": "forme-lettre",
+  "competence": "ar-ecriture-formes-lettre",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "اِخْتَرْ شَكْلَ حَرْفِ الْجِيمِ فِي وَسَطِ كَلِمَةِ «نَجْمَةٌ»."
+  },
+  "donnees": {
+    "lettre": "ج",
+    "position": "milieu",
+    "mot": "نَجْمَةٌ",
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "ج"
+      },
+      {
+        "id": "c2",
+        "texte": "جـ"
+      },
+      {
+        "id": "c3",
+        "texte": "ـجـ"
+      },
+      {
+        "id": "c4",
+        "texte": "ـج"
+      }
+    ],
+    "melanger": false
+  },
+  "reponse": {
+    "choix": [
+      "c3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي وَسَطِ الْكَلِمَةِ نَكْتُبُ الْجِيمَ هَكَذَا: ـجـ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي وَسَطِ الْكَلِمَةِ نَكْتُبُ الْجِيمَ هَكَذَا: ـجـ."
+    },
+    "indice": "فِي وَسَطِ الْكَلِمَةِ، يَتَّصِلُ الْحَرْفُ بِمَا قَبْلَهُ وَبِمَا بَعْدَهُ.",
+    "explication": "فِي كَلِمَةِ «نَجْمَةٌ» يَأْتِي الْجِيمُ فِي الْوَسَطِ، فَنَكْتُبُهُ هَكَذَا: ـجـ."
+  },
+  "empreinte": "sha256:8ba1b05f5529b000429243f69cd4ce4130a4ecccaf0a52211fd07d2e10d69901",
+  "statut": "brouillon",
+  "version": 1
+}

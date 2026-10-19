@@ -1,0 +1,50 @@
+{
+  "id": "fr-4-t1-u2-e01-x01",
+  "type": "T45",
+  "gabarit": "barrer-phrases",
+  "competence": "fr-comprehension-ecrit",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Lis le texte, puis barre les phrases fausses."
+  },
+  "donnees": {
+    "support": {
+      "texte": "Nour arrose les fleurs du balcon chaque matin. Ensuite, elle prend son vélo pour aller à l'école."
+    },
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "Nour arrose les fleurs le soir."
+      },
+      {
+        "id": "c2",
+        "texte": "Les fleurs sont sur le balcon."
+      },
+      {
+        "id": "c3",
+        "texte": "Nour va à l'école à pied."
+      },
+      {
+        "id": "c4",
+        "texte": "Nour arrose les fleurs chaque matin."
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c1",
+      "c3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : Nour arrose les fleurs le matin et elle va à l'école à vélo.",
+    "indice": "Relis le texte : à quel moment Nour arrose-t-elle les fleurs ? Comment va-t-elle à l'école ?",
+    "explication": "Les phrases fausses sont « Nour arrose les fleurs le soir » et « Nour va à l'école à pied ». Dans le texte, elle arrose les fleurs le matin et elle prend son vélo."
+  },
+  "empreinte": "sha256:b2c71fc9853615f65d5e29be6a98fb63f293a388afe12bbc26199fdad58543e6",
+  "statut": "brouillon",
+  "version": 1
+}

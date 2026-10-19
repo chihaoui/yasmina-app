@@ -1,0 +1,53 @@
+{
+  "id": "fr-5-t1-u3-e01-x01",
+  "type": "T61",
+  "gabarit": "resume-selection",
+  "competence": "fr-comprehension-resumer",
+  "critere": "C3",
+  "niveau_critere": "perfectionnement",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Choisis les trois phrases qui résument le mieux l'histoire."
+  },
+  "donnees": {
+    "texte": "Inès trouve un petit oiseau tombé du nid dans la cour. Elle le pose doucement dans une boîte avec du coton. Son grand-père l'aide à remettre l'oiseau dans son nid. Le soir, Inès entend l'oiseau chanter près de la fenêtre.",
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "Inès trouve un oiseau tombé du nid."
+      },
+      {
+        "id": "c2",
+        "texte": "La boîte contient du coton."
+      },
+      {
+        "id": "c3",
+        "texte": "Avec son grand-père, elle remet l'oiseau dans son nid."
+      },
+      {
+        "id": "c4",
+        "texte": "L'oiseau est petit."
+      },
+      {
+        "id": "c5",
+        "texte": "Le soir, l'oiseau chante près de la fenêtre."
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c1",
+      "c3",
+      "c5"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : ces trois phrases racontent le début, le milieu et la fin de l'histoire.",
+    "indice": "Un résumé garde les moments importants. Les petits détails ne comptent pas.",
+    "explication": "Le résumé : Inès trouve un oiseau tombé du nid. Avec son grand-père, elle remet l'oiseau dans son nid. Le soir, l'oiseau chante près de la fenêtre."
+  },
+  "empreinte": "sha256:c40bc07cc445726e510c370257ef094795300f664ec5e178454560d6f2f7f553",
+  "statut": "brouillon",
+  "version": 1
+}

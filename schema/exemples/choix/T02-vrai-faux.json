@@ -1,0 +1,27 @@
+{
+  "id": "en-4-t1-u1-e01-x01",
+  "type": "T02",
+  "gabarit": "vrai-faux-texte",
+  "competence": "en-vocabulary-animals",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "en",
+  "consigne": {
+    "texte": "True or false?"
+  },
+  "donnees": {
+    "affirmation": "An elephant is a small animal.",
+    "emoji": "🐘"
+  },
+  "reponse": {
+    "valeur": false
+  },
+  "feedbacks": {
+    "reussite": "Right: the sentence is false. An elephant is a very big animal.",
+    "indice": "Think about the size of an elephant next to a cat.",
+    "explication": "False. An elephant is one of the biggest animals on land."
+  },
+  "empreinte": "sha256:bdab343a46404f4795a7c86fba02c30d46672988ef3413a29982004e1557a844",
+  "statut": "brouillon",
+  "version": 1
+}

@@ -1,0 +1,46 @@
+{
+  "id": "fr-3-t1-u1-e01-x01",
+  "type": "T04",
+  "gabarit": "intrus-texte",
+  "competence": "fr-vocabulaire-categories",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Touche le mot qui n'est pas un fruit."
+  },
+  "donnees": {
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "pomme"
+      },
+      {
+        "id": "c2",
+        "texte": "poire"
+      },
+      {
+        "id": "c3",
+        "texte": "chaise"
+      },
+      {
+        "id": "c4",
+        "texte": "banane"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : « chaise » n'est pas un fruit, c'est un meuble.",
+    "indice": "Trois mots sont des fruits. Lequel ne se mange pas ?",
+    "explication": "L'intrus est « chaise » : c'est un meuble. Pomme, poire et banane sont des fruits."
+  },
+  "empreinte": "sha256:854e52a5097c9ca7086a0ef0598d75fd111fea4dff2e49e6f2bd644eacdf0fc2",
+  "statut": "brouillon",
+  "version": 1
+}

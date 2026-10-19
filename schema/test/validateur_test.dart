@@ -205,7 +205,7 @@ void main() {
       );
       expect(
         r.erreurs.single,
-        probleme('/exercices/0/reponse/choix', 'reponse_t01_unique'),
+        probleme('/exercices/0/reponse/choix', 'reponse_unique'),
       );
     });
 

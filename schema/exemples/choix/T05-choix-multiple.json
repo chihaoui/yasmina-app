@@ -1,0 +1,55 @@
+{
+  "id": "ma-2-t1-u3-e02-x01",
+  "type": "T05",
+  "gabarit": "choix-multiple-texte",
+  "competence": "ma-nombres-pairs",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "اِخْتَرْ كُلَّ الْأَعْدَادِ الزَّوْجِيَّةِ."
+  },
+  "donnees": {
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "4"
+      },
+      {
+        "id": "c2",
+        "texte": "7"
+      },
+      {
+        "id": "c3",
+        "texte": "10"
+      },
+      {
+        "id": "c4",
+        "texte": "3"
+      },
+      {
+        "id": "c5",
+        "texte": "8"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c1",
+      "c3",
+      "c5"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 4 وَ 10 وَ 8 أَعْدَادٌ زَوْجِيَّةٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 4 وَ 10 وَ 8 أَعْدَادٌ زَوْجِيَّةٌ."
+    },
+    "indice": "الْعَدَدُ الزَّوْجِيُّ نَقْسِمُهُ عَلَى 2 فَلَا يَبْقَى شَيْءٌ.",
+    "explication": "الْأَعْدَادُ الزَّوْجِيَّةُ هِيَ 4 وَ 8 وَ 10. أَمَّا 3 وَ 7 فَأَعْدَادٌ فَرْدِيَّةٌ."
+  },
+  "empreinte": "sha256:fa1ba22795289a9e42011bf149e0ed9312f564a355d11595d912a3f3c36504af",
+  "statut": "brouillon",
+  "version": 1
+}
