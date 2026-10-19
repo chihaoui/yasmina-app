@@ -86,3 +86,10 @@ Les textes ne sont jamais normalisés (pas de NFC ni de NFD, qui réordonneraien
 1. Modifier `edu-content-1.0.schema.json`.
 2. Lancer `dart run tool/generer_schema.dart` dans `schema/` (sinon `schema_synchro_test` échoue).
 3. Lancer `./tool/verifier.sh` à la racine.
+
+## Exemples
+
+Les exemples de `exemples/` (un dossier par moteur) sont copiés dans `lib/src/exemples_generes.dart` (`exemplesEduContent`, chemin relatif vers texte exact). L'app, l'aperçu web et les tests les lisent ainsi sans asset ni `dart:io`, depuis une seule source. Après tout ajout, modification ou suppression d'exemple :
+
+1. Lancer `dart run tool/generer_exemples.dart` dans `schema/` (sinon `exemples_synchro_test` échoue).
+2. Lancer `./tool/verifier.sh` à la racine.

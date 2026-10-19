@@ -5,6 +5,7 @@ Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type 
 - Chaque fichier est un **exercice seul** (définition `exercice` du schéma), validé par `validerExercice` et par `test/exemples_choix_test.dart` : aucune erreur ni aucun avertissement.
 - Contenu original, écrit pour l'exemple, jamais recopié des manuels. Statut `brouillon` : les textes arabes attendent la relecture humaine des harakat.
 - Toutes les images du prototype sont des **emoji** (champ `emoji`), aucun fichier image. Les audios sont produits par la synthèse vocale à partir de `ecoute.texte`.
+- Après tout ajout, modification ou suppression, lancer `dart run tool/generer_exemples.dart` dans `schema/` : les exemples sont copiés dans `lib/src/exemples_generes.dart`, que lisent l'atelier de l'app et l'aperçu web. Le test `exemples_synchro_test` échoue sinon.
 - L'empreinte est calculée selon `schema/README.md` (JSON canonique de type, consigne, donnees et reponse). Elle est à recalculer après toute modification de ces champs.
 
 | Dossier | Moteur | Types |
