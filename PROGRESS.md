@@ -6,16 +6,16 @@ Au 19 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 12 | 24,5 | 49 % |
+| A0 | 18 | 24,5 | 73 % |
 | A1 | 1 | 86,5 | 1 % |
 | A2 | 0 | 61 | 0 % |
 | B | 0 | 78,5 | 0 % |
 | C | 0 | 59,5 | 0 % |
 | D | 0 | 33 | 0 % |
-| **Total** | **13** | **343** | **3,8 %** |
+| **Total** | **19** | **343** | **5,5 %** |
 
-- **Avancement global : 3,8 %** (13 j-h faits sur 343)
-- **Types jouables : 0 sur 53**
+- **Avancement global : 5,5 %** (19 j-h faits sur 343)
+- **Types jouables : 1 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -64,10 +64,10 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A0-10 Langue de l'interface et Directionality (1,5 j-h)
 - [x] A0-11 Profils enfants (5 max) et base drift (2 j-h)
 - [x] A0-12 Menu développeur (1,5 j-h)
-- [ ] A0-13 Lecteur d'exercice générique (4 j-h)
-- [ ] A0-14 Interfaces de plateforme injectées (1,5 j-h)
+- [x] A0-13 Lecteur d'exercice générique (4 j-h)
+- [x] A0-14 Interfaces de plateforme injectées (1,5 j-h)
 - [ ] A0-15 Aperçu web (apps/apercu_web) (1,5 j-h)
-- [ ] A0-16 Yasmina en placeholder (0,5 j-h)
+- [x] A0-16 Yasmina en placeholder (0,5 j-h)
 - [ ] A0-17 Build de test sur téléphone (iPhone fait, Android à installer) (1 j-h)
   - [x] iPhone : build iOS réussi, app installée le 17 oct. 2026
   - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
@@ -78,6 +78,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
 - [x] A1-01a Moteur Choix : schéma, exemples et fiche (1 j-h)
 - [ ] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (7 j-h)
+  - [x] T02 Vrai ou faux jouable dans l'atelier (preuve du lecteur, 19 oct. 2026)
 - [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (12 j-h)
 - [ ] A1-03 Moteur Texte (T07, T17) (4 j-h)
 - [ ] A1-04 Moteur Tracé (T20) (3 j-h)
@@ -149,7 +150,10 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [ ] D-05 Pilotage D (2,5 j-h)
 
 ## Blocages
-- À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A1-12), et « afficher le JSON de l'exercice en cours » avec le lecteur (A0-13). En attendant, le JSON de chaque exemple est visible dans l'atelier.
+- À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A1-12). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
+- Point UX à trancher (moteur Choix) : l'affirmation de T02 en français et en anglais suit choix.md §9 (`latin-body`, 15 px), petit pour un enfant de 6 ans. Proposition : `latin-prompt` (20 px) pour tout texte que l'enfant lit dans un exercice, `latin-body` réservé à l'espace parent.
+- À savoir : dans les tests et les goldens, les emoji s'affichent en carré (le moteur de test n'a pas de police emoji). Sur l'appareil et dans le navigateur, ils s'affichent normalement.
+- Aperçu web : services factices (aucune voix) jusqu'à l'implémentation web des services (A0-15).
 - Résolu le 17 oct. 2026 : build Android bloqué par le disque plein. Espace libéré, `flutter build apk --debug` réussi.
 - Risques à suivre sur `flutter_tts` (warnings au build, pas bloquants aujourd'hui) :
   - iOS : pas encore de support Swift Package Manager (CocoaPods utilisé). Flutter annonce que cela deviendra une erreur dans une version future.
@@ -179,3 +183,4 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 | 17 oct. 2026 | A0 ThemeYasmina (Claude Code) | `docs/design-system/` commité (sans le zip, supprimé). PROGRESS.md aligné sur les estimations de 19 h (A0-19, A0-20, A1-19 à 8 j-h), `tool/avancement.dart` contrôle chaque tâche (id et j-h). Graisses 600 et 800 des polices arabes. `tool/generer_theme.dart` génère les jetons depuis `tokens.json` (couleurs clair et sombre, styles, espacements, rayons, traits, tailles, ombres) et copie les SVG de Yasmina, test de synchro. `ThemeYasmina` clair et sombre (suit l'appareil), tests de contraste. Composants du moteur : `BoutonYasmina`, `BoutonIcone`, `Yasmina` et `YasminaBulle` (statiques, A0-16 reste ouverte pour les animations avec le lecteur). App : accueil avec Yasmina, grille de `CarteProfil` et carte d'ajout pointillée, avatars au style de la démo, formulaire thémé. Aperçu web thémé (cadre en jetons). Garde-fou `tool/garde_design.dart` dans `verifier.sh` (aucune valeur en dur, exception `// design-ok`). 8 goldens (ar, fr, clair, sombre). `flutter build apk --debug`, build iOS et build web réussis. Dépendances ajoutées : flutter_svg 2.3.0 dans le moteur (entraîne vector_graphics, vector_graphics_codec, vector_graphics_compiler, xml, path_parsing, petitparser), flutter_localizations en dev dans le moteur (tests en arabe) | Contrôle visuel de l'aperçu web par Lamjed, jeton `ink-fixed` à trancher, installer l'APK sur Android, puis menu développeur (A0-12) |
 | 19 oct. 2026 | A1-01a moteur Choix, préparation (Claude Code) | Jetons régénérés depuis tokens.json v7 (ink-fixed, styles feedback et listen, marges listen et feedback, icon-md, icon-listen), test de contraste de ink-fixed. Branche `proposition/moteur-choix` : schéma edu-content/1.0 détaillé pour les 13 types du moteur Choix (emoji à côté de image, support complet de T01, T19 en deux formes dont `lettre-vocalisee`), règles du validateur et tests, 17 exemples en emoji dans `schema/exemples/choix/`, fiche `docs/moteurs/choix.md` validée et réponses de Lamjed dans `choix-questions.md`. A1-01 découpée en A1-01a (fait) et A1-01b, ordre « atelier d'abord » inscrit (décision 34), `tool/avancement.dart` accepte les id à lettre (A1-01a). Branche fusionnée dans main. Aucune dépendance ajoutée | Menu développeur et atelier (A0-12), puis moteur Choix (A1-01b) |
 | 19 oct. 2026 | A0-12 menu développeur et atelier (Claude Code) | Exemples de `schema/exemples/` générés dans `edu_content` (`tool/generer_exemples.dart`, `exemplesEduContent`, test de synchro) : une seule source pour l'app, l'aperçu web et les tests, sans asset ni `dart:io`. Moteur : registre des 53 types (12 moteurs dans l'ordre de développement, lot, état, tous à venir), `ModeExercice`, `CatalogueExemples` (chaque exemple validé au premier accès, erreurs affichables sans exception). App : menu développeur par appui long sur le titre des écrans racine, en debug et en profile seulement (redirection en release), toujours en français : atelier, profils de test Lina et Yassine sans doublon, réinitialisation confirmée, abonnement simulé et « tout débloquer » enregistrés sans effet. Atelier : types groupés par moteur avec jouables sur total, écran d'un type et de ses exemples (consigne dans la langue de l'exercice), écran d'un exemple (mode, `ZoneLecteur` comme seul point de branchement du lecteur, JSON formaté). `flutter build apk` debug et release réussis. Dépendance ajoutée : edu_content (workspace) dans moteur_exercices | Lecteur d'exercice générique (A0-13), puis moteur Choix (A1-01b) |
+| 19 oct. 2026 | A0-13 lecteur, A0-14 plateforme, A0-16 Yasmina (Claude Code) | Services de plateforme injectés dans le moteur (audio, vibration, assets, factices exportés), implémentation mobile (`AudioFlutterTts` sans plantage si aucune voix, `VibrationHaptique`). Yasmina saute (bravo) et se penche (encourage), sans mouvement si l'appareil le demande (`mouvements_yasmina.dart`, seule source). `BandeauFeedback` (goldens clair et sombre) et `TuileChoix`. Lecteur générique : `DerouleExercice` en Dart pur (modes vérifier, automatique et sans note), contrat `GabaritReponse` et `ControleurReponse`, libellés genrés en arabe, consigne lue à l'ouverture, feedback en 3 temps, aperçu (afficher la réponse, Rejouer) et édition (rechargement), événements. T02 Vrai ou faux jouable (premier type), branché dans l'atelier avec mode, forme, journal des événements et avertissement de voix absente. `flutter build apk --debug` et build iOS réussis. Aucune dépendance ajoutée (flutter_tts déjà déclaré) | Essayer T02 sur l'iPhone (voix arabe), aperçu web (A0-15), puis les 12 autres types du moteur Choix (A1-01b) |

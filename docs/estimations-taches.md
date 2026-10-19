@@ -8,7 +8,7 @@ Changement du 17 oct. 19 h (décision 29) : 2 j-h de la tâche A1-19 (design, pa
 
 Changement du 19 oct. (décision 34, ordre « atelier d'abord ») : A1-01 Moteur Choix (8 j-h) est découpée en A1-01a schéma, exemples et fiche (1 j-h, fait) et A1-01b moteur (7 j-h). Total inchangé.
 
-## Phase A0 (24,5 j-h, 12 faits)
+## Phase A0 (24,5 j-h, 18 faits)
 
 | Id | Lot | Tâche | j-h | Statut |
 |---|---|---|---|---|
@@ -24,10 +24,10 @@ Changement du 19 oct. (décision 34, ordre « atelier d'abord ») : A1-01 Moteur
 | A0-10 | L03 | Langue de l'interface et Directionality | 1,5 | fait |
 | A0-11 | L03 | Profils enfants (5 max) et base drift | 2 | fait |
 | A0-12 | L03 | Menu développeur | 1,5 | fait |
-| A0-13 | L04 | Lecteur d'exercice générique | 4 | à faire |
-| A0-14 | L04 | Interfaces de plateforme injectées | 1,5 | à faire |
+| A0-13 | L04 | Lecteur d'exercice générique | 4 | fait |
+| A0-14 | L04 | Interfaces de plateforme injectées | 1,5 | fait |
 | A0-15 | L04 | Aperçu web (apps/apercu_web) | 1,5 | à faire |
-| A0-16 | L04 | Yasmina en placeholder | 0,5 | à faire |
+| A0-16 | L04 | Yasmina en placeholder | 0,5 | fait |
 | A0-17 | L00 | Build de test sur téléphone (iPhone fait, Android à installer) | 1 | en cours |
 | A0-18 | L17 | Pilotage A0 | 1 | en cours |
 | A0-19 | L01 | Design system Yasmina (artefact, depuis la démo) | 1 | fait |

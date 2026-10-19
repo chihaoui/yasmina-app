@@ -14,6 +14,8 @@ Un seul moteur pour tous les exercices où l'enfant **touche une ou plusieurs pr
 
 Pas de glisser-déposer dans ce moteur : tout se fait au toucher.
 
+Chaque type se branche sur le lecteur générique (A0-13) par le contrat de `packages/moteur_exercices/lib/src/lecteur/contrat_moteur.dart` : un `GabaritReponse` (mode de validation, contrôleur, zone de réponse) inscrit dans `gabaritsJouables`, puis le type passe à « jouable » dans le registre. Le lecteur porte la consigne, Yasmina, Vérifier et Continuer, le feedback en 3 temps, les libellés, les modes et les événements. T02 est branché depuis le 19 oct. 2026.
+
 Ordre « atelier d'abord » (décision 34) : c'est le premier des 12 moteurs. Ses 13 types sont développés et validés dans l'atelier du menu développeur (chaque type jouable seul, à partir des exemples statiques de `schema/exemples/choix/`), avant tout travail sur le parcours.
 
 ## 2. Types couverts
@@ -189,8 +191,8 @@ Toutes les valeurs viennent de `tokens.json` (version 7), il n'en reste aucune h
 
 | Composant (design system) | Dans le moteur | Statut | Usage ici |
 |---|---|---|---|
-| ChoiceTile | `TuileChoix` | à créer | Toutes les propositions. États repos (`tile`, bordure `line`), sélectionné (`blue-soft`, `blue`), juste (`olive-soft`, `olive`), faux (`coral-soft`, `coral`). Bordure `border-thick`, rayon `radius-lg`, hauteur `choice-min-height`. Emoji en grand au-dessus du texte. Variante barrée pour T45 |
-| Feedback | `BandeauFeedback` | à créer | Validation, indice, explication. Bord de début de ligne `border-feedback`, rayon `radius-lg`, marges `pad-feedback-x` et `pad-bubble-y`, libellé en `latin-label` ou kid, texte en style `feedback` (kid, 19 px, gras) |
+| ChoiceTile | `TuileChoix` | existe (variante barrée de T45 à ajouter) | Toutes les propositions. États repos (`tile`, bordure `line`), sélectionné (`blue-soft`, `blue`), juste (`olive-soft`, `olive`), faux (`coral-soft`, `coral`). Bordure `border-thick`, rayon `radius-lg`, hauteur `choice-min-height`. Emoji en grand au-dessus du texte. Variante barrée pour T45 |
+| Feedback | `BandeauFeedback` | existe | Validation, indice, explication. Bord de début de ligne `border-feedback`, rayon `radius-lg`, marges `pad-feedback-x` et `pad-bubble-y`, libellé en `latin-label` ou kid, texte en style `feedback` (kid, 19 px, gras) |
 | Button | `BoutonYasmina` | existe | Vérifier (bleu), Continuer (vert), Rejouer en aperçu (alt) |
 | YasminaBubble | `Yasmina` et `YasminaBulle` | existent | Yasmina 58 px (`yasmina-reader`) à côté de la consigne, humeur neutre, bravo ou encourage |
 | IconButton | `BoutonIcone` | existe, à compléter | Réécoute de la consigne (rond, icône `icon-md`). Nouvelle variante `listen` pour T03, T55 et le support écouté de T01 : fond `blue`, texte `on-accent` en style `listen`, marges `pad-listen-x` et `pad-listen-y`, icône `icon-listen`, rayon `radius-pill` |
