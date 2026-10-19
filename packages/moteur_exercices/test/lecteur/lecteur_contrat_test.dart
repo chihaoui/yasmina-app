@@ -124,6 +124,9 @@ void main() {
         expect(cle('lecteur_feedback_$temps'), findsOneWidget);
         expect(find.text('Continuer'), findsOneWidget);
         expect(evenements.whereType<Resultat>().single.issue, issue);
+        expect(services.audioFactice.sons, [
+          juste ? SonInterface.juste : SonInterface.revelee,
+        ]);
         expect(evenements.whereType<Essai>().single.juste, juste);
 
         await tester.tap(cle('lecteur_bouton'));
@@ -162,6 +165,8 @@ void main() {
       evenements.whereType<Resultat>().single,
       const Resultat(IssueExercice.termine, essais: 0),
     );
+    // Type non noté : aucun son de feedback.
+    expect(services.audioFactice.sons, isEmpty);
   });
 
   testWidgets('type sans gabarit : message, aucune exception', (tester) async {

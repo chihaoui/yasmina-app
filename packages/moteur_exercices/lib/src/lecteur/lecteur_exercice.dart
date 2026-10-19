@@ -157,6 +157,7 @@ class _LecteurExerciceState extends State<LecteurExercice> {
     final controleur = _controleur!;
     final juste = controleur.corriger();
     _emettre(_deroule.verifier(juste: juste));
+    _jouerSonDuFeedback();
     switch (_deroule.phase) {
       case PhaseExercice.reussi:
         controleur.montrer(AffichageReponse.juste);
@@ -178,10 +179,24 @@ class _LecteurExerciceState extends State<LecteurExercice> {
 
   void _finAutomatique(bool juste) {
     _emettre(_deroule.finAutomatique(juste: juste));
+    _jouerSonDuFeedback();
     _controleur?.montrer(
       juste ? AffichageReponse.juste : AffichageReponse.revelee,
     );
     setState(() {});
+  }
+
+  /// Son d'interface de chaque temps du feedback : juste, essai faux
+  /// (doux), réponse révélée. Le service le coupe si les sons des effets
+  /// sont désactivés ou l'appareil en silencieux.
+  void _jouerSonDuFeedback() {
+    final son = switch (_deroule.feedback) {
+      TempsFeedback.validation => SonInterface.juste,
+      TempsFeedback.indice => SonInterface.essaiFaux,
+      TempsFeedback.explication => SonInterface.revelee,
+      null => null,
+    };
+    if (son != null) widget.services.audio.jouerSon(son);
   }
 
   void _continuer() {

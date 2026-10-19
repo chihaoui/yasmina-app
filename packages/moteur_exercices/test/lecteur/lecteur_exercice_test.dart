@@ -147,6 +147,10 @@ void main() {
         true,
         false,
       ]);
+      expect(services.audioFactice.sons, [
+        SonInterface.essaiFaux,
+        SonInterface.juste,
+      ]);
     },
   );
 
@@ -176,6 +180,10 @@ void main() {
       expect(etat(tester, false), EtatTuile.repos);
       expect(tester.widget<TuileChoix>(cle('vrai_faux_true')).onTap, isNull);
       expect(libelleBouton(tester), 'وَاصِلِي');
+      expect(services.audioFactice.sons, [
+        SonInterface.essaiFaux,
+        SonInterface.revelee,
+      ]);
       expect(
         evenements.whereType<Resultat>().single,
         const Resultat(IssueExercice.explique, essais: 2),
