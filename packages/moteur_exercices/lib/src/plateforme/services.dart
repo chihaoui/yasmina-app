@@ -2,7 +2,38 @@ import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
 
-/// Voix de l'appareil (prototype) ou audios pré-générés (plus tard).
+/// Sons d'interface (décision 35). Fichiers WAV dans les assets du moteur
+/// (assets/sons/), provisoires générés par tool/generer_sons.dart : un
+/// fichier définitif du même nom les remplace sans changer le code.
+enum SonInterface {
+  /// Réponse juste (validation).
+  juste('juste.wav'),
+
+  /// 1er essai faux (indice). Doux, jamais un buzzer.
+  essaiFaux('essai-faux.wav'),
+
+  /// Bonne réponse révélée (explication).
+  revelee('revelee.wav'),
+
+  /// Élément déposé (glisser-déposer).
+  depot('depot.wav'),
+
+  /// Fin d'une étape (écran de résultat).
+  finEtape('fin-etape.wav');
+
+  const SonInterface(this.fichier);
+
+  final String fichier;
+
+  /// Chemin dans le package moteur_exercices.
+  String get asset => 'assets/sons/$fichier';
+
+  /// Clé de l'asset vue depuis une app (préfixe du package).
+  String get cleAsset => 'packages/moteur_exercices/$asset';
+}
+
+/// Voix de l'appareil (prototype) ou audios pré-générés (plus tard), et
+/// sons d'interface.
 abstract interface class ServiceAudio {
   /// Une voix existe pour [langue] (`ar`, `fr` ou `en`). Sans voix, [dire]
   /// ne fait rien : le lecteur reste utilisable.
@@ -12,6 +43,10 @@ abstract interface class ServiceAudio {
   Future<void> dire(String texte, {required String langue});
 
   Future<void> arreter();
+
+  /// Joue un son d'interface, à volume bas. Ne joue rien si les sons des
+  /// effets sont coupés ou si l'appareil est en mode silencieux.
+  Future<void> jouerSon(SonInterface son);
 }
 
 /// Retour haptique.

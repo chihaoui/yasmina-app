@@ -38,6 +38,8 @@ flutter:
     - fonts/OFL-Andika.txt
     # Mascotte, copiée de docs/design-system/yasmina par tool/generer_theme.dart.
     - assets/yasmina/
+    # Sons d'interface (provisoires : tool/generer_sons.dart).
+    - assets/sons/
   # Polices embarquées (voir fonts/README.md), utilisées avec le préfixe
   # packages/moteur_exercices/ (constantes de PolicesYasmina).
   fonts:

@@ -51,6 +51,10 @@ class AudioFlutterTts implements ServiceAudio {
     }
   }
 
+  /// Sons d'interface : branchés sur audioplayers au commit suivant.
+  @override
+  Future<void> jouerSon(SonInterface son) async {}
+
   @override
   Future<void> arreter() async {
     try {

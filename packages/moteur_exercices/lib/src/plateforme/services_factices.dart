@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'services.dart';
 
-/// Audio factice : enregistre ce qui est dit. [voix] liste les langues qui
+/// Audio factice : enregistre ce qui est dit et les sons joués. [voix] liste les langues qui
 /// ont une voix (toutes par défaut).
 class AudioFactice implements ServiceAudio {
   AudioFactice({Set<String>? voix}) : voix = voix ?? {'ar', 'fr', 'en'};
@@ -14,6 +14,9 @@ class AudioFactice implements ServiceAudio {
 
   int arrets = 0;
 
+  /// Sons d'interface joués, dans l'ordre.
+  final sons = <SonInterface>[];
+
   @override
   Future<bool> voixDisponible(String langue) async => voix.contains(langue);
 
@@ -23,6 +26,9 @@ class AudioFactice implements ServiceAudio {
 
   @override
   Future<void> arreter() async => arrets++;
+
+  @override
+  Future<void> jouerSon(SonInterface son) async => sons.add(son);
 }
 
 /// Vibration factice : compte les vibrations.

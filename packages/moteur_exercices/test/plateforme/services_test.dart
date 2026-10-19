@@ -13,6 +13,8 @@ void main() {
     await services.audio.arreter();
     expect(services.audioFactice.dits.single, (texte: 'Bonjour', langue: 'fr'));
     expect(services.audioFactice.arrets, 1);
+    await services.audio.jouerSon(SonInterface.juste);
+    expect(services.audioFactice.sons, [SonInterface.juste]);
   });
 
   test('vibration et assets factices', () async {
