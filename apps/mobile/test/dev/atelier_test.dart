@@ -156,4 +156,75 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   });
+
+  group('T02 jouable dans l\'atelier', () {
+    const chemin = '/dev/atelier/T02/T02-vrai-faux.json';
+
+    String journal(WidgetTester tester) =>
+        tester.widget<Text>(cle('atelier_journal')).data!;
+
+    testWidgets('le lecteur joue l\'exemple, le journal suit les événements', (
+      tester,
+    ) async {
+      await lancerApp(tester, StockageMemoire('fr'));
+      await aller(tester, chemin);
+      expect(find.byType(LecteurExercice), findsOneWidget);
+      expect(cle('atelier_voix_absente'), findsNothing);
+      expect(journal(tester), 'demandeAudio (consigne, en) : True or false?');
+
+      await tester.ensureVisible(cle('vrai_faux_false'));
+      await tester.pumpAndSettle();
+      await tester.tap(cle('vrai_faux_false'));
+      await tester.pump();
+      await tester.tap(cle('lecteur_bouton'));
+      await tester.pumpAndSettle();
+      expect(journal(tester).split('\n').take(3), [
+        'resultat : reussi (1 essai(s))',
+        'essai 1 : juste',
+        'reponseDonnee : false',
+      ]);
+
+      // Continuer relance une partie du même exemple.
+      await tester.tap(cle('lecteur_bouton'));
+      await tester.pumpAndSettle();
+      expect(journal(tester), contains('continuer : nouvelle partie'));
+      expect(
+        tester.widget<TuileChoix>(cle('vrai_faux_false')).etat,
+        EtatTuile.repos,
+      );
+    });
+
+    testWidgets('mode aperçu et forme féminine transmis au lecteur', (
+      tester,
+    ) async {
+      await lancerApp(tester, StockageMemoire('fr'));
+      await aller(tester, chemin);
+      await tester.tap(find.text('Aperçu'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Féminin'));
+      await tester.pumpAndSettle();
+      final config = tester
+          .widget<LecteurExercice>(find.byType(LecteurExercice))
+          .config;
+      expect(config.mode, ModeExercice.apercu);
+      expect(config.formeAdresse, FormeAdresse.feminin);
+      expect(cle('lecteur_afficher_reponse'), findsOneWidget);
+    });
+
+    testWidgets('sans voix pour la langue : avertissement, lecteur jouable', (
+      tester,
+    ) async {
+      await lancerApp(
+        tester,
+        StockageMemoire('fr'),
+        services: ServicesFactices(voix: {'fr'}),
+      );
+      await aller(tester, chemin);
+      expect(
+        texteDe(tester, 'atelier_voix_absente'),
+        startsWith('Aucune voix anglaise sur cet appareil'),
+      );
+      expect(find.byType(LecteurExercice), findsOneWidget);
+    });
+  });
 }
