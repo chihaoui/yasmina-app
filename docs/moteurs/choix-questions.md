@@ -2,6 +2,8 @@
 
 Préparation du moteur Choix (branche `proposition/moteur-choix`, 17 oct. 2026). Consigne reçue : en cas de doute, choisir l'option la plus simple, la noter ici et continuer. Chaque point dit ce qui a été choisi, pourquoi, et ce qu'il faudrait changer si Lamjed tranche autrement.
 
+**Lamjed a répondu le 19 oct. 2026** : voir la dernière section. Les deux premières sections gardent la trace de la proposition du 17 oct.
+
 ## Points tranchés (à confirmer)
 
 | N° | Sujet | Choix fait | Pourquoi | Alternative |
@@ -36,3 +38,31 @@ Préparation du moteur Choix (branche `proposition/moteur-choix`, 17 oct. 2026).
 8. **Niveau des exemples** : T02 et T03 en anglais 4e année, T04 et T55 en français 3e année. Les années de début de l'anglais et du français dans le programme tunisien sont à confirmer pour le parcours réel.
 9. **T23 avec des expressions** (« 3 + 4 ? 8 ») : hors du schéma actuel (nombres seulement). À prévoir pour la 2e année ?
 10. **Tanwin et shadda en T19** : utiles dès la 2e année ? Ils demandent d'élargir l'énumération `haraka`.
+
+## Réponses de Lamjed (19 oct. 2026)
+
+### Points tranchés
+
+- **Points 1 à 4 et 6 à 17 : confirmés tels quels.**
+- **Point 5 (T19) : complété par une 2e forme.** Avec le gabarit `lettre-vocalisee`, `donnees` contient `haraka` (la haraka demandée : fatha, damma, kasra ou soukoun) et `choix` (2 à 4 lettres vocalisées), et la réponse vaut `{ "choix": [id] }`. Exemple : « أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟ » avec بَ بُ بِ بْ. La forme mot (`avant`, `lettre`, `apres`) reste valable pour les autres gabarits. Règles ajoutées : `lettre_vocalisee_invalide`, `reponse_haraka_incoherente`.
+
+### Précisions
+
+- **T01** : le support accepte ensemble un texte (une ou plusieurs lignes), une image ou un emoji, et une écoute (`ecoute`, à la place de `audio`). Gabarits couverts par les exemples : `qcm-scene` (texte et image), `qcm-orthographe` (image et écoute), `qcm-contraire` (mot), en plus de `qcm-texte-image`.
+- **Emoji** : un champ `emoji` (texte) existe à côté de `image` sur les choix, le support, les éléments de suite et l'affirmation de T02, jamais les deux ensemble sur le même objet. Pour le prototype, toutes les images sont des emoji : les exemples ont été convertis.
+- **T18** : 2 formes suffisent pour les lettres qui ne s'attachent pas à gauche (ر, د). La règle « 3 propositions au moins » ne vise que T04 (c'était déjà le cas dans le validateur, la phrase de la fiche prêtait à confusion). Un test le vérifie avec ر.
+
+### Questions ouvertes
+
+| N° | Question | Réponse |
+|---|---|---|
+| 1 | Médias | Emoji pour toutes les images du prototype, audio par la synthèse vocale à partir de `ecoute.texte` |
+| 2 | Accessibilité des tuiles en image seule | Libellé neutre (« صُورَةٌ 1 », « image 1 »), le mot reste seulement audio |
+| 3 | Libellés arabes du moteur | Genrés comme les consignes : تَحَقَّقْ ou تَحَقَّقِي, وَاصِلْ ou وَاصِلِي, اِسْمَعْ ou اِسْمَعِي, أَحْسَنْتَ ou أَحْسَنْتِ. Inchangés : صَحِيحٌ, خَطَأٌ, تَلْمِيحٌ, لِنَتَعَلَّمْ |
+| 4 | Harakat des exemples arabes | Rien à changer (relecture humaine avant le statut valide, comme prévu) |
+| 5 | Codes de compétence | Rien à changer (à remplacer quand le référentiel existera) |
+| 6 | Taille du texte du Feedback | Réglée par tokens.json v7 : style `feedback` (kid, 19 px, gras), marge `pad-feedback-x` |
+| 7 | Variante `listen` du IconButton | Réglée par tokens.json v7 : style `listen`, marges `pad-listen-x` et `pad-listen-y`, icône `icon-listen` (et `icon-md` pour l'IconButton courant) |
+| 8 | Niveau des exemples | Rien à changer |
+| 9 | T23 avec des expressions | Reporté à la 2e année |
+| 10 | Tanwin et shadda en T19 | Reporté à la 2e année |
