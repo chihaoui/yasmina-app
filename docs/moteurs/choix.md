@@ -114,6 +114,7 @@ Règles du validateur propres au moteur (détail dans `schema/README.md`) :
 | 2e essai faux | explication : `feedbacks.explication`, coral | encourage | les bonnes tuiles passent en « juste », les autres sont verrouillées | Continuer (vert) |
 
 - Les textes sont pris au masculin ou au féminin selon la forme d'adresse reçue dans la configuration.
+- **Sons d'interface** (décision 35) : le lecteur joue `juste` à la validation, `essaiFaux` à l'indice (doux, jamais un buzzer) et `revelee` à l'explication, par `ServiceAudio.jouerSon`. Volume bas, rien en mode silencieux ni quand « Sons des effets » est coupé dans le menu développeur.
 - La validation dit ce qui est juste, jamais « tu es doué ». Les exemples suivent ce modèle (« إِجَابَتُكَ صَحِيحَةٌ: ... », « Oui : ... »).
 - Le libellé du bandeau et les boutons sont dans la langue de l'exercice, fournis par le moteur. **En arabe, ils sont genrés comme les consignes** (masculin ou féminin selon le profil) :
 
