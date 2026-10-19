@@ -11,7 +11,7 @@
   },
   "donnees": {
     "affirmation": "An elephant is a small animal.",
-    "image": "images/en/elephant.png"
+    "emoji": "🐘"
   },
   "reponse": {
     "valeur": false
@@ -21,7 +21,7 @@
     "indice": "Think about the size of an elephant next to a cat.",
     "explication": "False. An elephant is one of the biggest animals on land."
   },
-  "empreinte": "sha256:aca7275b0ca96e2ae2d91951dbc1aa246e24b5ad14340f64ed0e9262b34e342c",
+  "empreinte": "sha256:bdab343a46404f4795a7c86fba02c30d46672988ef3413a29982004e1557a844",
   "statut": "brouillon",
   "version": 1
 }

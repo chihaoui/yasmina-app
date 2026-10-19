@@ -1,0 +1,48 @@
+{
+  "id": "fr-3-t1-u3-e02-x01",
+  "type": "T01",
+  "gabarit": "qcm-orthographe",
+  "competence": "fr-orthographe-sons",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Écoute et touche le mot bien écrit."
+  },
+  "donnees": {
+    "support": {
+      "emoji": "🐰",
+      "ecoute": {
+        "texte": "lapin"
+      }
+    },
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "lapain"
+      },
+      {
+        "id": "c2",
+        "texte": "lapin"
+      },
+      {
+        "id": "c3",
+        "texte": "lapun"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c2"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : « lapin » s'écrit avec « in » à la fin.",
+    "indice": "Écoute la fin du mot : on entend « in », comme dans « sapin ».",
+    "explication": "Le mot bien écrit est « lapin », avec « in » à la fin, comme « sapin »."
+  },
+  "empreinte": "sha256:f510c3bc8f7f378c956407b5b85b5b6eceab5a910c970138e43500930f2fb0f1",
+  "statut": "brouillon",
+  "version": 1
+}

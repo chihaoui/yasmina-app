@@ -1,10 +1,10 @@
 # Exemples edu-content/1.0
 
-Exercices d'exemple, un fichier par type, rangés par moteur. Ils servent de référence au moteur, au back-office et au pipeline de génération. Ce ne sont pas des étapes de l'app.
+Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type en a plusieurs, par exemple `T01-qcm-scene.json`), rangés par moteur. Ils servent de référence au moteur, au back-office et au pipeline de génération. Ce ne sont pas des étapes de l'app.
 
 - Chaque fichier est un **exercice seul** (définition `exercice` du schéma), validé par `validerExercice` et par `test/exemples_choix_test.dart` : aucune erreur ni aucun avertissement.
 - Contenu original, écrit pour l'exemple, jamais recopié des manuels. Statut `brouillon` : les textes arabes attendent la relecture humaine des harakat.
-- Les images et les audios cités (`images/...`) n'existent pas encore : ce sont des chemins de placeholder.
+- Toutes les images du prototype sont des **emoji** (champ `emoji`), aucun fichier image. Les audios sont produits par la synthèse vocale à partir de `ecoute.texte`.
 - L'empreinte est calculée selon `schema/README.md` (JSON canonique de type, consigne, donnees et reponse). Elle est à recalculer après toute modification de ces champs.
 
 | Dossier | Moteur | Types |

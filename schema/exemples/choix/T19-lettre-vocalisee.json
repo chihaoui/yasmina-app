@@ -1,0 +1,50 @@
+{
+  "id": "ar-1-t1-u2-e01-x01",
+  "type": "T19",
+  "gabarit": "lettre-vocalisee",
+  "competence": "ar-lecture-harakat",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": "أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟"
+  },
+  "donnees": {
+    "haraka": "fatha",
+    "choix": [
+      {
+        "id": "c1",
+        "texte": "بَ"
+      },
+      {
+        "id": "c2",
+        "texte": "بُ"
+      },
+      {
+        "id": "c3",
+        "texte": "بِ"
+      },
+      {
+        "id": "c4",
+        "texte": "بْ"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "choix": [
+      "c1"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَلَى «بَ» فَتْحَةٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَلَى «بَ» فَتْحَةٌ."
+    },
+    "indice": "الْفَتْحَةُ خَطٌّ صَغِيرٌ فَوْقَ الْحَرْفِ.",
+    "explication": "الْحَرْفُ «بَ» عَلَيْهِ فَتْحَةٌ، فَنَقْرَأُ: بَ."
+  },
+  "empreinte": "sha256:e04b136865d58abb513cda23602f9be97103af19c19d07db2af08206b9a727cd",
+  "statut": "brouillon",
+  "version": 1
+}

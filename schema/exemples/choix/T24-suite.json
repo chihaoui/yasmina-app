@@ -12,36 +12,36 @@
   "donnees": {
     "suite": [
       {
-        "image": "images/ma/triangle.png"
+        "emoji": "🔺"
       },
       {
-        "image": "images/ma/cercle.png"
+        "emoji": "🔵"
       },
       {
-        "image": "images/ma/carre.png"
+        "emoji": "🟩"
       },
       {
-        "image": "images/ma/triangle.png"
+        "emoji": "🔺"
       },
       {
-        "image": "images/ma/cercle.png"
+        "emoji": "🔵"
       },
       {
-        "image": "images/ma/carre.png"
+        "emoji": "🟩"
       }
     ],
     "choix": [
       {
         "id": "c1",
-        "image": "images/ma/cercle.png"
+        "emoji": "🔵"
       },
       {
         "id": "c2",
-        "image": "images/ma/triangle.png"
+        "emoji": "🔺"
       },
       {
         "id": "c3",
-        "image": "images/ma/carre.png"
+        "emoji": "🟩"
       }
     ],
     "melanger": true
@@ -62,7 +62,7 @@
     },
     "explication": "الْمُثَلَّثُ ثُمَّ الدَّائِرَةُ ثُمَّ الْمُرَبَّعُ، ثُمَّ نُعِيدُ مِنَ الْبِدَايَةِ. يَأْتِي الْآنَ الْمُثَلَّثُ."
   },
-  "empreinte": "sha256:57720fb642bdaac77e0cbb0b716ca723c1c2ce29b1e884b94af1356702769e50",
+  "empreinte": "sha256:67c4b3667f0d625f19729db004fa6cd4c035814188ce72a4bca5be321797adf8",
   "statut": "brouillon",
   "version": 1
 }

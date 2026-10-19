@@ -7,9 +7,10 @@ import 'dart:io';
 import 'package:edu_content/edu_content.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Les exemples de schema/exemples/choix/ : un exercice valide par type du
-/// moteur Choix, en brouillon, qui respecte les conventions de
-/// docs/conventions-arabe.md.
+/// Les exemples de schema/exemples/choix/ : au moins un exercice valide par
+/// type du moteur Choix (un par gabarit quand il y en a plusieurs), en
+/// brouillon, en emoji (aucune image dans le prototype), qui respecte les
+/// conventions de docs/conventions-arabe.md.
 void main() {
   const types = [
     'T01',
@@ -37,13 +38,13 @@ void main() {
   Map<String, dynamic> lire(File f) =>
       jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
 
-  test('un exemple par type, nommé par son type', () {
-    expect(fichiers.map((f) => lire(f)['type']), types);
+  test('au moins un exemple par type, nommé par son type', () {
+    expect(fichiers.map((f) => lire(f)['type']).toSet(), types.toSet());
     for (final f in fichiers) {
       expect(nom(f), startsWith('${lire(f)['type']}-'));
     }
     final ids = fichiers.map((f) => lire(f)['id']).toSet();
-    expect(ids, hasLength(types.length));
+    expect(ids, hasLength(fichiers.length));
   });
 
   bool estHaraka(int r) => r >= 0x064B && r <= 0x0652;
@@ -95,6 +96,11 @@ void main() {
             }
           }
         }
+      });
+
+      test('aucune image : des emoji dans le prototype', () {
+        final chemins = tous.map((t) => t.$1);
+        expect(chemins.where((c) => c.endsWith('/image')), isEmpty);
       });
 
       test('ni tiret cadratin ni point-virgule', () {

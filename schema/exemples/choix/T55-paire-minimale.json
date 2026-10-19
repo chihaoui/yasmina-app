@@ -17,12 +17,12 @@
       {
         "id": "c1",
         "texte": "pain",
-        "image": "images/fr/pain.png"
+        "emoji": "🥖"
       },
       {
         "id": "c2",
         "texte": "bain",
-        "image": "images/fr/bain.png"
+        "emoji": "🛁"
       }
     ],
     "melanger": true
@@ -37,7 +37,7 @@
     "indice": "Écoute le premier son : « p » ou « b » ?",
     "explication": "On entend « bain », avec « b ». « Pain » commence par « p »."
   },
-  "empreinte": "sha256:e7b1fa00d125a8ed62e95eaefdc1c385f25e849b2240866b30b5577d14800a94",
+  "empreinte": "sha256:8824d549e4ab40fc09d08efe9b82418654ab40f52c288cf4e8c7a09e089768f6",
   "statut": "brouillon",
   "version": 1
 }

@@ -14,22 +14,22 @@
       {
         "id": "c1",
         "texte": "السَّمَكَةُ",
-        "image": "images/ev/poisson.png"
+        "emoji": "🐟"
       },
       {
         "id": "c2",
         "texte": "الْقِطُّ",
-        "image": "images/ev/chat.png"
+        "emoji": "🐱"
       },
       {
         "id": "c3",
         "texte": "الْحِصَانُ",
-        "image": "images/ev/cheval.png"
+        "emoji": "🐴"
       },
       {
         "id": "c4",
         "texte": "الدِّيكُ",
-        "image": "images/ev/coq.png"
+        "emoji": "🐓"
       }
     ],
     "melanger": true
@@ -50,7 +50,7 @@
     },
     "explication": "السَّمَكَةُ تَعِيشُ فِي الْمَاءِ وَتَتَنَفَّسُ بِخَيَاشِيمِهَا. أَمَّا الْقِطُّ وَالْحِصَانُ وَالدِّيكُ فَتَعِيشُ عَلَى الْيَابِسَةِ."
   },
-  "empreinte": "sha256:075fbd92ce59c61f0221b5da5fe8a835748456628c65dfc412d4b607e2bf96d6",
+  "empreinte": "sha256:134aa35235d9ae7376399c8dea6366e1a40f3bb69005ec73792aa77c89c78349",
   "statut": "brouillon",
   "version": 1
 }

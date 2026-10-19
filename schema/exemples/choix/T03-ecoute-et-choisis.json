@@ -16,19 +16,19 @@
     "choix": [
       {
         "id": "c1",
-        "image": "images/en/dog.png"
+        "emoji": "🐶"
       },
       {
         "id": "c2",
-        "image": "images/en/cat.png"
+        "emoji": "🐱"
       },
       {
         "id": "c3",
-        "image": "images/en/bird.png"
+        "emoji": "🐦"
       },
       {
         "id": "c4",
-        "image": "images/en/fish.png"
+        "emoji": "🐟"
       }
     ],
     "melanger": true
@@ -43,7 +43,7 @@
     "indice": "Listen again. This animal says meow.",
     "explication": "The word is \"cat\". This is the picture of the cat."
   },
-  "empreinte": "sha256:070a0ae5285b55225f92933689d2864512ba28002046693dab066479e2c0f06e",
+  "empreinte": "sha256:b5486acf50ba7a36b39ddd8d91bff030bfb72fea5c2ce023aba46dc1ce472446",
   "statut": "brouillon",
   "version": 1
 }
