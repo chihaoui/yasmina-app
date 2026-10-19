@@ -19,6 +19,11 @@ abstract interface class StockageReglages {
   bool lireToutDebloque();
 
   Future<void> ecrireToutDebloque(bool valeur);
+
+  /// Sons des effets (sons d'interface), activés par défaut.
+  bool lireSonsEffets();
+
+  Future<void> ecrireSonsEffets(bool valeur);
 }
 
 /// Stockage réel, sur l'appareil (et dans le navigateur sur le web).
@@ -28,6 +33,7 @@ class StockageSharedPreferences implements StockageReglages {
   static const _cleLangue = 'langue_interface';
   static const _cleAbonnement = 'dev_abonnement_simule';
   static const _cleDebloque = 'dev_tout_debloque';
+  static const _cleSons = 'sons_effets';
 
   final SharedPreferencesWithCache _preferences;
 
@@ -35,7 +41,7 @@ class StockageSharedPreferences implements StockageReglages {
       StockageSharedPreferences._(
         await SharedPreferencesWithCache.create(
           cacheOptions: const SharedPreferencesWithCacheOptions(
-            allowList: {_cleLangue, _cleAbonnement, _cleDebloque},
+            allowList: {_cleLangue, _cleAbonnement, _cleDebloque, _cleSons},
           ),
         ),
       );
@@ -61,6 +67,13 @@ class StockageSharedPreferences implements StockageReglages {
   @override
   Future<void> ecrireToutDebloque(bool valeur) =>
       _preferences.setBool(_cleDebloque, valeur);
+
+  @override
+  bool lireSonsEffets() => _preferences.getBool(_cleSons) ?? true;
+
+  @override
+  Future<void> ecrireSonsEffets(bool valeur) =>
+      _preferences.setBool(_cleSons, valeur);
 }
 
 /// Stockage en mémoire, pour les tests.
@@ -70,6 +83,7 @@ class StockageMemoire implements StockageReglages {
   String? _langue;
   String? _abonnement;
   bool _debloque = false;
+  bool _sons = true;
 
   @override
   String? lireLangue() => _langue;
@@ -89,6 +103,12 @@ class StockageMemoire implements StockageReglages {
 
   @override
   Future<void> ecrireToutDebloque(bool valeur) async => _debloque = valeur;
+
+  @override
+  bool lireSonsEffets() => _sons;
+
+  @override
+  Future<void> ecrireSonsEffets(bool valeur) async => _sons = valeur;
 }
 
 /// Surchargé dans `main()` par [StockageSharedPreferences] et dans les tests

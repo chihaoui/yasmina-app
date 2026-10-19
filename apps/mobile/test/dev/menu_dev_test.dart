@@ -102,22 +102,29 @@ void main() {
       expect(texteDe(tester, 'formulaire_titre'), 'Nouveau profil');
     });
 
-    testWidgets('abonnement simulé et « tout débloquer » enregistrés', (
-      tester,
-    ) async {
-      final stockage = StockageMemoire('fr');
-      await lancerApp(tester, stockage);
-      await ouvrirMenu(tester, 'accueil_titre');
-      expect(stockage.lireAbonnementSimule(), isNull);
+    testWidgets(
+      'sons des effets, abonnement simulé et « tout débloquer » enregistrés',
+      (tester) async {
+        final stockage = StockageMemoire('fr');
+        await lancerApp(tester, stockage);
+        await ouvrirMenu(tester, 'accueil_titre');
+        expect(stockage.lireAbonnementSimule(), isNull);
 
-      await tester.tap(cle('dev_abonnement_essaiTermine'));
-      await tester.pumpAndSettle();
-      expect(stockage.lireAbonnementSimule(), 'essaiTermine');
+        await tester.tap(cle('dev_abonnement_essaiTermine'));
+        await tester.pumpAndSettle();
+        expect(stockage.lireAbonnementSimule(), 'essaiTermine');
 
-      await tester.scrollUntilVisible(cle('dev_tout_debloquer'), 100);
-      await tester.tap(cle('dev_tout_debloquer'));
-      await tester.pumpAndSettle();
-      expect(stockage.lireToutDebloque(), isTrue);
-    });
+        expect(stockage.lireSonsEffets(), isTrue);
+        await tester.scrollUntilVisible(cle('dev_sons_effets'), 100);
+        await tester.tap(cle('dev_sons_effets'));
+        await tester.pumpAndSettle();
+        expect(stockage.lireSonsEffets(), isFalse);
+
+        await tester.scrollUntilVisible(cle('dev_tout_debloquer'), 100);
+        await tester.tap(cle('dev_tout_debloquer'));
+        await tester.pumpAndSettle();
+        expect(stockage.lireToutDebloque(), isTrue);
+      },
+    );
   });
 }

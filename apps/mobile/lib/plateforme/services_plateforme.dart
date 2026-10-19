@@ -3,7 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
-import 'audio_flutter_tts.dart';
+import '../dev/reglages_dev.dart';
+import 'audio_mobile.dart';
+import 'sons_audioplayers.dart';
 import 'vibration_haptique.dart';
 
 /// Pas encore de fichiers d'exercice à lire (emoji et synthèse vocale dans
@@ -19,7 +21,10 @@ class AssetsAbsents implements ServiceAssets {
 /// Surchargé par ServicesFactices dans les tests.
 final servicesExerciceProvider = Provider<ServicesExercice>(
   (ref) => ServicesExercice(
-    audio: AudioFlutterTts(),
+    audio: AudioMobile(
+      // Interrupteur « Sons des effets » du menu développeur, lu à chaque son.
+      sons: SonsAudioplayers(actifs: () => ref.read(sonsEffetsProvider)),
+    ),
     vibration: const VibrationHaptique(),
     assets: const AssetsAbsents(),
   ),

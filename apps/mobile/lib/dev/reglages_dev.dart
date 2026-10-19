@@ -56,3 +56,19 @@ class ToutDebloqueNotifier extends Notifier<bool> {
     return ref.read(stockageReglagesProvider).ecrireToutDebloque(valeur);
   }
 }
+
+/// « Sons des effets » (menu développeur) : sons d'interface du lecteur,
+/// activés par défaut, respectés par l'implémentation mobile.
+final sonsEffetsProvider = NotifierProvider<SonsEffetsNotifier, bool>(
+  SonsEffetsNotifier.new,
+);
+
+class SonsEffetsNotifier extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(stockageReglagesProvider).lireSonsEffets();
+
+  Future<void> choisir(bool valeur) {
+    state = valeur;
+    return ref.read(stockageReglagesProvider).ecrireSonsEffets(valeur);
+  }
+}

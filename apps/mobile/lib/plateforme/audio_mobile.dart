@@ -1,12 +1,18 @@
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
-/// Audio du prototype : voix de l'appareil par flutter_tts. Sans voix pour
-/// une langue, rien n'est dit et rien ne casse.
-class AudioFlutterTts implements ServiceAudio {
-  AudioFlutterTts([FlutterTts? tts]) : _tts = tts ?? FlutterTts();
+import 'sons_audioplayers.dart';
+
+/// Audio de l'app mobile : voix de l'appareil par flutter_tts (sans voix
+/// pour une langue, rien n'est dit et rien ne casse) et sons d'interface
+/// par audioplayers.
+class AudioMobile implements ServiceAudio {
+  AudioMobile({FlutterTts? tts, this.sons}) : _tts = tts ?? FlutterTts();
 
   final FlutterTts _tts;
+
+  /// Sons d'interface, `null` : aucun son.
+  final SonsAudioplayers? sons;
 
   /// Locales essayées pour chaque langue d'exercice, dans l'ordre.
   static const localesParLangue = {
@@ -51,9 +57,8 @@ class AudioFlutterTts implements ServiceAudio {
     }
   }
 
-  /// Sons d'interface : branchés sur audioplayers au commit suivant.
   @override
-  Future<void> jouerSon(SonInterface son) async {}
+  Future<void> jouerSon(SonInterface son) async => sons?.jouer(son);
 
   @override
   Future<void> arreter() async {
