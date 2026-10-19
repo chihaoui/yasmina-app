@@ -1,7 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../theme/jetons_yasmina.g.dart';
+import '../theme/mouvements_yasmina.dart';
 import '../theme/theme_yasmina.dart';
 
 /// Humeurs de la mascotte (placeholders SVG de la démo).
@@ -24,8 +27,10 @@ enum HumeurYasmina {
 }
 
 /// Yasmina seule, décorative (la tâche ne dépend jamais de son humeur).
-/// Statique pour l'instant : les animations arrivent avec le lecteur.
-class Yasmina extends StatelessWidget {
+/// Elle saute 3 fois en passant à [HumeurYasmina.bravo] et se penche 2 fois
+/// en passant à [HumeurYasmina.encourage]. Aucun mouvement si l'appareil
+/// demande moins d'animations.
+class Yasmina extends StatefulWidget {
   const Yasmina({
     super.key,
     this.humeur = HumeurYasmina.neutre,
@@ -36,13 +41,80 @@ class Yasmina extends StatelessWidget {
   final double taille;
 
   @override
-  Widget build(BuildContext context) => SvgPicture.asset(
-    humeur.asset,
-    package: 'moteur_exercices',
-    width: taille,
-    height: taille,
-    excludeFromSemantics: true,
-  );
+  State<Yasmina> createState() => _YasminaState();
+}
+
+class _YasminaState extends State<Yasmina> with SingleTickerProviderStateMixin {
+  late final AnimationController _mouvement = AnimationController(vsync: this);
+
+  @override
+  void didUpdateWidget(Yasmina ancien) {
+    super.didUpdateWidget(ancien);
+    if (ancien.humeur != widget.humeur) _lancer();
+  }
+
+  void _lancer() {
+    _mouvement.stop();
+    _mouvement.value = 0;
+    if (MediaQuery.maybeDisableAnimationsOf(context) ?? false) return;
+    final (duree, fois) = switch (widget.humeur) {
+      HumeurYasmina.bravo => (
+        MouvementsYasmina.dureeSaut,
+        MouvementsYasmina.sauts,
+      ),
+      HumeurYasmina.encourage => (
+        MouvementsYasmina.dureePenche,
+        MouvementsYasmina.penches,
+      ),
+      HumeurYasmina.neutre => (Duration.zero, 0),
+    };
+    if (fois == 0) return;
+    _mouvement
+      ..duration = duree * fois
+      ..forward(from: 0);
+  }
+
+  @override
+  void dispose() {
+    _mouvement.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final image = SvgPicture.asset(
+      widget.humeur.asset,
+      package: 'moteur_exercices',
+      width: widget.taille,
+      height: widget.taille,
+      excludeFromSemantics: true,
+    );
+    return AnimatedBuilder(
+      animation: _mouvement,
+      child: image,
+      builder: (context, enfant) {
+        final t = _mouvement.value;
+        if (t == 0 || t == 1) return enfant!;
+        final fois = widget.humeur == HumeurYasmina.bravo
+            ? MouvementsYasmina.sauts
+            : MouvementsYasmina.penches;
+        // Une demi-sinusoïde par saut ou par mouvement penché.
+        final cycle = math.sin(math.pi * ((t * fois) % 1));
+        return switch (widget.humeur) {
+          HumeurYasmina.bravo => Transform.translate(
+            offset: Offset(0, -MouvementsYasmina.hauteurSaut * cycle),
+            child: enfant,
+          ),
+          HumeurYasmina.encourage => Transform.rotate(
+            angle: -MouvementsYasmina.anglePenche * cycle,
+            alignment: Alignment.bottomCenter,
+            child: enfant,
+          ),
+          HumeurYasmina.neutre => enfant!,
+        };
+      },
+    );
+  }
 }
 
 /// Yasmina au-dessus de sa bulle de parole

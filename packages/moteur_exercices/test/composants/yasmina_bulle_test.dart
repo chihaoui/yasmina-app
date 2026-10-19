@@ -66,4 +66,55 @@ void main() {
       expect(assetAffiche(tester), HumeurYasmina.bravo.asset);
     });
   });
+
+  group('mouvements de Yasmina', () {
+    Finder mouvement() => find.descendant(
+      of: find.byType(Yasmina),
+      matching: find.byType(Transform),
+    );
+
+    for (final (humeur, duree) in [
+      (
+        HumeurYasmina.bravo,
+        MouvementsYasmina.dureeSaut * MouvementsYasmina.sauts,
+      ),
+      (
+        HumeurYasmina.encourage,
+        MouvementsYasmina.dureePenche * MouvementsYasmina.penches,
+      ),
+    ]) {
+      testWidgets('${humeur.name} : mouvement lancé, puis immobile', (
+        tester,
+      ) async {
+        await afficher(tester, 'ar', const Yasmina());
+        expect(mouvement(), findsNothing);
+        await afficher(tester, 'ar', Yasmina(humeur: humeur));
+        expect(tester.hasRunningAnimations, isTrue);
+        await tester.pump(duree ~/ 6);
+        expect(mouvement(), findsOneWidget);
+        await tester.pumpAndSettle();
+        expect(tester.hasRunningAnimations, isFalse);
+        expect(mouvement(), findsNothing);
+      });
+    }
+
+    testWidgets("aucun mouvement si l'appareil demande moins d'animations", (
+      tester,
+    ) async {
+      tester.platformDispatcher.accessibilityFeaturesTestValue =
+          const FakeAccessibilityFeatures(disableAnimations: true);
+      addTearDown(
+        tester.platformDispatcher.clearAccessibilityFeaturesTestValue,
+      );
+      await afficher(tester, 'ar', const Yasmina());
+      for (final humeur in [HumeurYasmina.bravo, HumeurYasmina.encourage]) {
+        await afficher(tester, 'ar', Yasmina(humeur: humeur));
+        for (var i = 0; i < 4; i++) {
+          await tester.pump(MouvementsYasmina.dureeSaut ~/ 6);
+          expect(mouvement(), findsNothing);
+        }
+        expect(assetAffiche(tester), humeur.asset);
+      }
+    });
+  });
 }

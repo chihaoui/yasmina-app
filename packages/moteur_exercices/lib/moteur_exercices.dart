@@ -13,4 +13,5 @@ export 'src/polices.dart';
 export 'src/registre/catalogue_exemples.dart';
 export 'src/registre/registre_types.dart';
 export 'src/theme/jetons_yasmina.g.dart';
+export 'src/theme/mouvements_yasmina.dart';
 export 'src/theme/theme_yasmina.dart';
