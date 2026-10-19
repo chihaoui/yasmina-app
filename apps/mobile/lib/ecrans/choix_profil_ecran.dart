@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 import '../composants/carte_profil.dart';
+import '../dev/menu_dev.dart';
 import '../donnees/base_yasmina.dart';
 import '../l10n/app_localizations.dart';
 import '../profils/depot_profils.dart';
@@ -41,7 +42,12 @@ class _Choix extends ConsumerWidget {
     final limiteAtteinte = profils.length >= DepotProfils.maxProfils;
     return Scaffold(
       appBar: AppBar(
-        title: Text(textes.profilsTitre, key: const ValueKey('profils_titre')),
+        title: TitreAvecMenuDev(
+          child: Text(
+            textes.profilsTitre,
+            key: const ValueKey('profils_titre'),
+          ),
+        ),
         actions: const [BoutonReglages()],
       ),
       body: ListView(

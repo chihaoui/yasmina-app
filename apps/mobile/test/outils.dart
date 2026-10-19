@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:drift/drift.dart' show DatabaseConnection;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,11 +18,13 @@ import 'package:yasmina/reglages/stockage_reglages.dart';
 /// Lance l'app avec un stockage et une base en mémoire, après avoir créé
 /// [profils] (un seul profil par défaut : l'accueil s'ouvre directement).
 /// Les langues de l'appareil se règlent avec
-/// `tester.platformDispatcher.localesTestValue`.
+/// `tester.platformDispatcher.localesTestValue`. [surcharges] s'ajoute aux
+/// providers surchargés (menu développeur, catalogue des exemples...).
 Future<DepotProfils> lancerApp(
   WidgetTester tester,
   StockageReglages stockage, {
   List<String> profils = const ['Lina'],
+  List<Override> surcharges = const [],
 }) async {
   // closeStreamsSynchronously : sinon drift laisse un timer en attente à la
   // fermeture des flux, que le temps simulé de testWidgets ne déclenche pas.
@@ -50,6 +53,7 @@ Future<DepotProfils> lancerApp(
       overrides: [
         stockageReglagesProvider.overrideWithValue(stockage),
         baseYasminaProvider.overrideWithValue(base),
+        ...surcharges,
       ],
       child: const YasminaApp(),
     ),

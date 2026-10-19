@@ -8,6 +8,17 @@ abstract interface class StockageReglages {
   String? lireLangue();
 
   Future<void> ecrireLangue(String code);
+
+  /// Statut d'abonnement simulé du menu développeur (nom de l'énumération),
+  /// `null` s'il n'a jamais été choisi.
+  String? lireAbonnementSimule();
+
+  Future<void> ecrireAbonnementSimule(String? statut);
+
+  /// « Tout débloquer » du menu développeur.
+  bool lireToutDebloque();
+
+  Future<void> ecrireToutDebloque(bool valeur);
 }
 
 /// Stockage réel, sur l'appareil (et dans le navigateur sur le web).
@@ -15,6 +26,8 @@ class StockageSharedPreferences implements StockageReglages {
   StockageSharedPreferences._(this._preferences);
 
   static const _cleLangue = 'langue_interface';
+  static const _cleAbonnement = 'dev_abonnement_simule';
+  static const _cleDebloque = 'dev_tout_debloque';
 
   final SharedPreferencesWithCache _preferences;
 
@@ -22,7 +35,7 @@ class StockageSharedPreferences implements StockageReglages {
       StockageSharedPreferences._(
         await SharedPreferencesWithCache.create(
           cacheOptions: const SharedPreferencesWithCacheOptions(
-            allowList: {_cleLangue},
+            allowList: {_cleLangue, _cleAbonnement, _cleDebloque},
           ),
         ),
       );
@@ -33,6 +46,21 @@ class StockageSharedPreferences implements StockageReglages {
   @override
   Future<void> ecrireLangue(String code) =>
       _preferences.setString(_cleLangue, code);
+
+  @override
+  String? lireAbonnementSimule() => _preferences.getString(_cleAbonnement);
+
+  @override
+  Future<void> ecrireAbonnementSimule(String? statut) => statut == null
+      ? _preferences.remove(_cleAbonnement)
+      : _preferences.setString(_cleAbonnement, statut);
+
+  @override
+  bool lireToutDebloque() => _preferences.getBool(_cleDebloque) ?? false;
+
+  @override
+  Future<void> ecrireToutDebloque(bool valeur) =>
+      _preferences.setBool(_cleDebloque, valeur);
 }
 
 /// Stockage en mémoire, pour les tests.
@@ -40,12 +68,27 @@ class StockageMemoire implements StockageReglages {
   StockageMemoire([this._langue]);
 
   String? _langue;
+  String? _abonnement;
+  bool _debloque = false;
 
   @override
   String? lireLangue() => _langue;
 
   @override
   Future<void> ecrireLangue(String code) async => _langue = code;
+
+  @override
+  String? lireAbonnementSimule() => _abonnement;
+
+  @override
+  Future<void> ecrireAbonnementSimule(String? statut) async =>
+      _abonnement = statut;
+
+  @override
+  bool lireToutDebloque() => _debloque;
+
+  @override
+  Future<void> ecrireToutDebloque(bool valeur) async => _debloque = valeur;
 }
 
 /// Surchargé dans `main()` par [StockageSharedPreferences] et dans les tests

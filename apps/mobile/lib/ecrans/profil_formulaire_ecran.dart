@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../dev/menu_dev.dart';
 import '../l10n/app_localizations.dart';
 import '../profils/avatar.dart';
 import '../profils/depot_profils.dart';
@@ -153,10 +154,17 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _creation ? textes.profilNouveauTitre : textes.profilModifierTitre,
-          key: const ValueKey('formulaire_titre'),
-        ),
+        title: _creation
+            ? TitreAvecMenuDev(
+                child: Text(
+                  textes.profilNouveauTitre,
+                  key: const ValueKey('formulaire_titre'),
+                ),
+              )
+            : Text(
+                textes.profilModifierTitre,
+                key: const ValueKey('formulaire_titre'),
+              ),
         actions: [if (_creation) const BoutonReglages()],
       ),
       body: _creation && nombre >= DepotProfils.maxProfils

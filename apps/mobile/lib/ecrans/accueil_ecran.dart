@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../dev/menu_dev.dart';
 import '../l10n/app_localizations.dart';
 import '../profils/depot_profils.dart';
 import '../profils/profil_actif.dart';
@@ -22,7 +23,9 @@ class AccueilEcran extends ConsumerWidget {
     if (profil == null) return const EcranChargement();
     return Scaffold(
       appBar: AppBar(
-        title: Text(textes.appTitre, key: const ValueKey('accueil_titre')),
+        title: TitreAvecMenuDev(
+          child: Text(textes.appTitre, key: const ValueKey('accueil_titre')),
+        ),
         actions: const [BoutonReglages()],
       ),
       body: ListView(
