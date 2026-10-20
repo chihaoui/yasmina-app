@@ -104,6 +104,7 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `zone_hors_scene`, `element_duplique` (zones), `reponse_element_inconnu` (T08, T47) | Scène image : zones dans la scène, id uniques, réponses existantes | erreur |
 | `reponse_unique` (T08) | T08 : une seule zone sans `plusieurs` | erreur |
 | `zone_sans_reponse`, `etiquette_reutilisee` (T47) | T47 : une étiquette attendue par zone, une étiquette sur une seule zone | erreur |
+| `etiquettes_superposees` (T47) | T47 : deux zones du même côté de la scène (centre à gauche ou à droite de 0,5) à moins de 0,1 de hauteur l'une de l'autre : leurs cases d'étiquettes, placées par le moteur à côté de la scène, se chevaucheraient | erreur |
 | `etiquettes_sans_intrus` (T47), `elements_trop_nombreux` (T08, T47) | T47 : aucune étiquette en trop. Scène image : plus de 6 zones en 1re ou 2e | avertissement |
 | `element_duplique`, `reponse_element_inconnu` (T36, T37, T38) | Révision et jeux : id uniques, réponses existantes | erreur |
 | `paires_incompletes` (T37), `ordre_incomplet` (T38) | T37 : toutes les paires. T38 : tous les mots | erreur |

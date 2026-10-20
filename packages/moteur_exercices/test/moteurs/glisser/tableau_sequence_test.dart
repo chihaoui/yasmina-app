@@ -106,7 +106,8 @@ void main() {
     expect(style.fontSize, StylesYasmina.contentWord.fontSize);
     await p.glisser('element_e4', 'ligne');
     expect(motConstruit(tester), 'tomapi');
-    await p.toucher('ligne');
+    // Effacer retire la dernière syllabe (corrections du 20 oct.).
+    await p.toucher('ordre_effacer');
     expect(motConstruit(tester), 'toma');
     await p.glisser('element_e3', 'ligne');
     await p.verifier();

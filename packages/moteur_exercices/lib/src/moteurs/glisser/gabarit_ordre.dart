@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../composants/bouton_icone.dart';
+import '../../composants/bouton_yasmina.dart';
 import '../../lecteur/config_exercice.dart';
 import '../../lecteur/contrat_moteur.dart';
 import '../../lecteur/deroule_exercice.dart';
@@ -161,6 +162,10 @@ class _ZoneOrdre extends StatelessWidget {
                       controleur.basculerAttente(id);
                     }
                   }
+                : null,
+            // Posée et glissée hors de la ligne : revient dans la réserve.
+            onSorti: controleur.modifiable && posee
+                ? () => controleur.retirer(id)
                 : null,
           );
         }
@@ -329,14 +334,14 @@ class _ZoneOrdre extends StatelessWidget {
               onDepot: controleur.modifiable
                   ? (id) => deposer(id, 'fin')
                   : null,
+              // Le toucher de la zone pose l'élément en attente, rien
+              // d'autre : la dernière lettre se retire par Effacer.
               onToucher: controleur.modifiable
                   ? () {
                       if (controleur.enAttente != null) {
                         services.vibration.legere();
                         services.audio.jouerSon(SonInterface.depot);
                         controleur.poserAttente('fin');
-                      } else if (mot) {
-                        controleur.retirerDernier();
                       }
                     }
                   : null,
@@ -347,6 +352,14 @@ class _ZoneOrdre extends StatelessWidget {
                 child: Center(child: contenu),
               ),
             ),
+            if (mot)
+              BoutonEffacer(
+                key: const ValueKey('ordre_effacer'),
+                libelle: libelles.effacer,
+                onPressed: controleur.modifiable && ordre.isNotEmpty
+                    ? controleur.retirerDernier
+                    : null,
+              ),
             Wrap(
               key: const ValueKey('reserve'),
               spacing: EspacesYasmina.space2,

@@ -83,6 +83,46 @@ void main() {
   });
 
   group('T47 Étiqueter un schéma', () {
+    testWidgets('cases à gauche et à droite de la scène selon le côté du '
+        'point, reliées par un trait, jamais sur le dessin, sur 390 dp', (
+      tester,
+    ) async {
+      p = Partie(tester);
+      await p.jouer(
+        exempleScene('T47-etiqueter-schema.json'),
+        taille: const Size(390, 844),
+      );
+      final scene = tester.getRect(p.cle('scene_formes'));
+      expect(p.cle('schema_traits'), findsOneWidget);
+      // z2 (centre x 0,35) à gauche, z1 (0,5), z3 (0,5) et z4 (0,5) à droite.
+      expect(
+        tester.getRect(p.cle('cible_z2')).right,
+        lessThanOrEqualTo(scene.left),
+      );
+      for (final z in ['z1', 'z3', 'z4']) {
+        expect(
+          tester.getRect(p.cle('cible_$z')).left,
+          greaterThanOrEqualTo(scene.right),
+        );
+      }
+      // Les trois cases de droite ne se chevauchent pas et suivent la
+      // hauteur de leur point (z1 en haut, z4 en bas).
+      final z1 = tester.getRect(p.cle('cible_z1'));
+      final z3 = tester.getRect(p.cle('cible_z3'));
+      final z4 = tester.getRect(p.cle('cible_z4'));
+      expect(z1.bottom, lessThanOrEqualTo(z3.top));
+      expect(z3.bottom, lessThanOrEqualTo(z4.top));
+      for (final r in [z1, z3, z4]) {
+        expect(r.height, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+        expect(r.width, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+      }
+      // Une étiquette posée tient dans sa case et se retire au toucher.
+      await p.glisser('element_e4', 'cible_z4');
+      expect(p.dans('element_e4', 'cible_z4'), isTrue);
+      await p.toucher('element_e4');
+      expect(p.dans('element_e4', 'reserve'), isTrue);
+    });
+
     testWidgets('français : vrai geste sur une zone de la scène, '
         'remplacement, retrait au toucher, seules les fausses reviennent', (
       tester,

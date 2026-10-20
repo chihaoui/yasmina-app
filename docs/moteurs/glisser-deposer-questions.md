@@ -33,6 +33,13 @@ Préparation du moteur Glisser-déposer (branche `proposition/moteur-glisser-dep
 | 20 | T56, contrôles | Le schème doit avoir une lettre par lettre du mot avec les mêmes harakat (comparées en ensemble, shadda et voyelle dans n'importe quel ordre). La racine qui ne se lit pas dans l'ordre dans le mot donne un avertissement, pas une erreur (racines creuses, défectueuses, hamzées) | Attrape les erreurs fréquentes sans bloquer la morphologie réelle | Erreur bloquante, ou aucun contrôle |
 | 21 | Commits de la tâche 4 | Un seul passage de `verifier.sh` sur l'arbre complet, puis deux commits (schéma et exemples, puis moteur, tests et fiche) : le premier n'a pas été vérifié seul | Gain de 5 minutes sur une file chargée, le premier commit ne touche que le schéma et ses tests | Un passage du vérificateur par commit |
 
+### Nuit du 20 au 21 oct. (corrections du test de Lamjed du 20 oct. au soir)
+
+| N° | Sujet | Choix fait | Pourquoi | Alternative |
+|---|---|---|---|---|
+| 22 | Retrait par glisser | Une tuile posée lâchée hors de toute cible revient dans la réserve, sans retour animé (elle réapparaît à sa place dans la réserve). Demandé par Lamjed pour tous les types à glisser. Pour T27 et T51, un bloc ou un jeton posé lâché sur son propre plateau ou sa propre case y reste, lâché ailleurs il est retiré, un jeton glissé sur une autre case vide s'y déplace | Le plus simple : la place dans la réserve est connue, l'animation vers elle demanderait de la localiser | Animer la tuile jusqu'à sa place dans la réserve |
+| 23 | Bouton Effacer (T15, T16, T56) | `BoutonEffacer` (variante `alt` centrée, icône `backspace_outlined`, libellé `effacer` genré) retire la dernière lettre, le toucher de la zone ne retire plus rien. T13, T14 et T62 gardent le toucher du dernier élément (ce n'est pas le geste de zone) | Demandé par Lamjed, une seule icône Effacer dans tout le moteur | Effacer tout le mot |
+
 ## Questions ouvertes
 
 1. **T56 et T62** : traités l'après-midi du 20 oct. selon l'hypothèse du mentor (catalogue v3.1, 10 types). À confirmer. Restent ouverts : la frise verticale plutôt qu'en largeur sur téléphone, l'écriture de la racine (lettres séparées par une espace, ou par des virgules « ك، ت، ب »), et la place du schème dans le programme (4e année supposée).

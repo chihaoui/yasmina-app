@@ -119,38 +119,71 @@ class ReserveGlissable extends StatelessWidget {
   }
 }
 
-/// Élément posé : le toucher le retire ([onToucher]), zone d'au moins
-/// `target-min`.
+/// Préfixe de la donnée d'un élément posé pendant un glisser : une cible
+/// qui l'accepte le déplace, un lâcher hors cible le retire.
+const prefixePose = 'pose:';
+
+/// Élément posé : le toucher le retire ([onToucher]), le glisser hors de sa
+/// case aussi (corrections du 20 oct. 2026). Glissé sur une cible qui
+/// accepte [donnee] (préfixée par [prefixePose]), il y est déplacé. Zone
+/// d'au moins `target-min`.
 class Pose extends StatelessWidget {
   const Pose({
     super.key,
     required this.libelle,
     required this.child,
+    this.donnee = '',
     this.onToucher,
   });
 
   final String libelle;
   final Widget child;
+
+  /// Donnée du glisser (sans le préfixe), par exemple l'index de la case.
+  final String donnee;
+
+  /// Retire l'élément. `null` : élément verrouillé (ni toucher, ni glisser).
   final VoidCallback? onToucher;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    button: true,
-    enabled: onToucher != null,
-    label: libelle,
-    excludeSemantics: true,
-    child: GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onToucher,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          minWidth: EspacesYasmina.targetMin,
-          minHeight: EspacesYasmina.targetMin,
+  Widget build(BuildContext context) {
+    final corps = Semantics(
+      button: true,
+      enabled: onToucher != null,
+      label: libelle,
+      excludeSemantics: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onToucher,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            minWidth: EspacesYasmina.targetMin,
+            minHeight: EspacesYasmina.targetMin,
+          ),
+          child: Center(child: child),
         ),
-        child: Center(child: child),
       ),
-    ),
-  );
+    );
+    if (onToucher == null) return corps;
+    return Draggable<String>(
+      data: '$prefixePose$donnee',
+      maxSimultaneousDrags: 1,
+      feedback: Material(color: Colors.transparent, child: child),
+      childWhenDragging: Visibility(
+        visible: false,
+        maintainSize: true,
+        maintainAnimation: true,
+        maintainState: true,
+        child: corps,
+      ),
+      // Lâché sans être accepté (toucher sans déplacement, ou hors de toute
+      // cible) : l'élément est retiré.
+      onDragEnd: (details) {
+        if (!details.wasAccepted) onToucher?.call();
+      },
+      child: corps,
+    );
+  }
 }
 
 /// Mot d'état sous le matériel, en aperçu.

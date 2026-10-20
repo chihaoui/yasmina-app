@@ -148,8 +148,9 @@ void main() {
       expect(motConstruit(tester), 'ك ت');
       final style = tester.widget<Text>(p.cle('mot_construit')).style!;
       expect(style.fontFamily, PolicesYasmina.contenuArabe);
-      // Le toucher de la ligne retire la dernière lettre.
-      await p.toucher('ligne');
+      // Effacer retire la dernière lettre (le toucher de la ligne ne retire
+      // plus rien, corrections du 20 oct.).
+      await p.toucher('ordre_effacer');
       expect(motConstruit(tester), 'ك');
       expect(p.dans('element_e2', 'reserve'), isTrue);
       expect(p.bouton.onPressed, isNull);

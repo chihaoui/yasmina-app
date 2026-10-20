@@ -17,6 +17,12 @@ Préparation du moteur Manipulables, base (branche `moteur/manipulables-base`, a
 | 9 | Libellés de T27 et T51 | Propres au gabarit (الْعَشَرَاتُ, الْوَحَدَاتُ, اللَّوْحَةُ, قِطْعَةٌ, خَانَةٌ), pas dans `LibellesLecteur`, compte affiché en chiffres « الْعَشَرَاتُ: 3 وَالْوَحَدَاتُ: 4 » | Évite l'accord du pluriel arabe selon le nombre (عَشَرَةٌ, عَشَرَتَانِ, عَشَرَاتٍ) | Compte en toutes lettres accordé |
 | 10 | T51 : réserve au-dessus du cadre | Le jeton de réserve est au-dessus des cases, au début de ligne, et les cases ont une marge réduite : cinq cases ne tiennent pas à côté de la réserve dans la largeur d'un téléphone | Contrainte de largeur (360 px du cadre de l'aperçu) | Cases plus petites que `target-min` |
 
+### Nuit du 20 au 21 oct. (corrections du test de Lamjed du 20 oct. au soir)
+
+| N° | Sujet | Choix fait | Pourquoi | Alternative |
+|---|---|---|---|---|
+| 11 | Retrait par glisser (T27, T51) | Un bloc ou un jeton posé se glisse : lâché hors du plateau ou du cadre, il est retiré. Un bloc lâché sur le plateau y reste, un jeton lâché sur sa case y reste, sur une autre case vide il s'y déplace | Demandé par Lamjed pour tous les types à glisser | Toucher seulement |
+
 ## Questions ouvertes
 
 1. **Sens de la droite numérique en arabe** : question en attente sur les manuels tunisiens. Le JSON porte `sens`, défaut `gauche-droite`. Quel défaut retenir, et faut-il un défaut différent par niveau ?

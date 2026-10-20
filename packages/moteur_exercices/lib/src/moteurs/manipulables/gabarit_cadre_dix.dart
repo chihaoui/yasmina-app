@@ -129,6 +129,20 @@ class _ZoneCadreDix extends StatelessWidget {
           services.audio.jouerSon(SonInterface.depot);
         }
 
+        /// Dépôt sur la case [i] : un jeton de la réserve, ou un jeton
+        /// posé ailleurs (déplacé). Un jeton relâché sur sa propre case y
+        /// reste.
+        void deposer(int i, String donnee) {
+          if (donnee.startsWith(prefixePose)) {
+            final depuis = int.tryParse(donnee.substring(prefixePose.length));
+            if (depuis == null || depuis == i || controleur.estPleine(i)) {
+              return;
+            }
+            controleur.retirer(depuis);
+          }
+          poser(i);
+        }
+
         Widget caseW(int i) {
           final pleine = controleur.estPleine(i);
           return ZoneDepot(
@@ -137,7 +151,8 @@ class _ZoneCadreDix extends StatelessWidget {
             etat: pleine && etat == EtatMateriel.juste
                 ? EtatDepot.juste
                 : EtatDepot.repos,
-            onDepot: modifiable && !pleine ? (_) => poser(i) : null,
+            onDepot: modifiable ? (d) => deposer(i, d) : null,
+            accepte: (d) => !pleine || d.startsWith(prefixePose),
             onToucher: modifiable && !pleine ? () => poser(i) : null,
             // Marge réduite : cinq cases tiennent dans la largeur du
             // cadre de téléphone.
@@ -149,6 +164,7 @@ class _ZoneCadreDix extends StatelessWidget {
                   ? Pose(
                       key: ValueKey('jeton_$i'),
                       libelle: l.jeton,
+                      donnee: '$i',
                       onToucher: modifiable
                           ? () => controleur.retirer(i)
                           : null,

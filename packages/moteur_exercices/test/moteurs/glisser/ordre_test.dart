@@ -101,8 +101,8 @@ void main() {
   });
 
   group('T15 Construire un mot (lettres), arabe seulement', () {
-    testWidgets('mot entendu après la consigne, lettres liées, le toucher '
-        'de la zone retire la dernière, juste', (tester) async {
+    testWidgets('mot entendu après la consigne, lettres liées, Effacer '
+        'retire la dernière, juste', (tester) async {
       p = Partie(tester);
       await p.jouer(exemple('T15-mot-lettres.json'));
       expect(p.sens, TextDirection.rtl);
@@ -122,8 +122,9 @@ void main() {
       final style = tester.widget<Text>(p.cle('mot_construit')).style!;
       expect(style.fontSize, StylesYasmina.contentWord.fontSize);
       expect(style.fontFamily, PolicesYasmina.contenuArabe);
-      // Le toucher de la zone retire la dernière lettre.
-      await p.toucher('ligne');
+      // Effacer retire la dernière lettre (le toucher de la zone ne retire
+      // plus rien, corrections du 20 oct.).
+      await p.toucher('ordre_effacer');
       expect(motConstruit(tester), 'ق');
       expect(p.dans('element_e3', 'reserve'), isTrue);
       await p.toucher('element_e2');

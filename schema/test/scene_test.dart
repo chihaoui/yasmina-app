@@ -241,6 +241,31 @@ void main() {
       );
     });
 
+    test('T47 : deux zones du même côté à la même hauteur : cases '
+        'd\'étiquettes superposées', () {
+      // z1 (centre x 0,2) et z2 (centre x 0,4) sont toutes deux à gauche,
+      // à la même hauteur : refusé. z2 à droite (x 0,7) : accepté.
+      final ex = valides['T47']!();
+      final zones = (ex['donnees']['zones'] as List)
+          .cast<Map<String, dynamic>>();
+      zones[0]
+        ..['x'] = 0.1
+        ..['y'] = 0.3;
+      zones[1]
+        ..['x'] = 0.3
+        ..['y'] = 0.34;
+      expect(
+        validerExercice(ex).erreurs,
+        contains(probleme('/donnees/zones/1', 'etiquettes_superposees')),
+      );
+      zones[1]['x'] = 0.6;
+      expect(
+        validerExercice(ex).erreurs
+            .where((p) => p.code == 'etiquettes_superposees'),
+        isEmpty,
+      );
+    });
+
     test('T47 : avertissements, aucune étiquette en trop, 7 zones en 1re', () {
       expect(
         avertissements(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../composants/bouton_icone.dart';
+import '../../composants/bouton_yasmina.dart';
 import '../../lecteur/config_exercice.dart';
 import '../../lecteur/contrat_moteur.dart';
 import '../../lecteur/deroule_exercice.dart';
@@ -213,12 +214,12 @@ class _ZoneRacineScheme extends StatelessWidget {
               libelle: controleur.mot,
               etat: juste ? EtatDepot.juste : EtatDepot.repos,
               onDepot: recoit ? deposer : null,
+              // Le toucher de la ligne pose l'élément en attente, rien
+              // d'autre : la dernière lettre se retire par Effacer.
               onToucher: modifiable
                   ? () {
                       if (controleur.enAttente != null && recoit) {
                         poserAttente();
-                      } else {
-                        controleur.retirerDernier();
                       }
                     }
                   : null,
@@ -263,6 +264,13 @@ class _ZoneRacineScheme extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            BoutonEffacer(
+              key: const ValueKey('ordre_effacer'),
+              libelle: libelles.effacer,
+              onPressed: modifiable && controleur.ordre.isNotEmpty
+                  ? controleur.retirerDernier
+                  : null,
             ),
             Wrap(
               key: const ValueKey('reserve'),

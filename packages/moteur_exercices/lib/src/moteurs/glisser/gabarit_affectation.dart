@@ -205,6 +205,10 @@ class _Outils {
               }
             }
           : null,
+      // Posé et glissé hors de toute cible : revient dans la réserve.
+      onSorti: controleur.modifiable && controleur.estPose(id)
+          ? () => controleur.retirer(id)
+          : null,
     );
   }
 

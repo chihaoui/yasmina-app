@@ -15,6 +15,34 @@ enum VarianteBouton {
   alt,
 }
 
+/// Bouton Effacer des zones qui construisent un mot ou une suite (T15,
+/// T16, T56) : secondaire, centré, même icône que la touche Effacer du
+/// clavier de T17 et du pavé de T22 et T48, libellé genré en arabe
+/// (اِمْسَحْ, اِمْسَحِي).
+class BoutonEffacer extends StatelessWidget {
+  const BoutonEffacer({
+    super.key,
+    required this.libelle,
+    required this.onPressed,
+  });
+
+  final String libelle;
+
+  /// `null` : rien à effacer, bouton désactivé.
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) => Align(
+    alignment: AlignmentDirectional.center,
+    child: BoutonYasmina(
+      libelle: libelle,
+      variante: VarianteBouton.alt,
+      icone: Icons.backspace_outlined,
+      onPressed: onPressed,
+    ),
+  );
+}
+
 /// Bouton principal pleine largeur, avec un relief de touche qui disparaît
 /// au toucher (le bouton s'enfonce).
 ///

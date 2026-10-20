@@ -12,7 +12,9 @@ import 'controleur_glisser.dart';
 /// Glisser-déposer réel ([Draggable], la place reste vide pendant le
 /// déplacement) et toucher-toucher en secours : un toucher sans
 /// déplacement appelle [onToucher] (mise en attente). Un dépôt hors cible
-/// ramène la tuile à sa place en un retour animé.
+/// ramène la tuile à sa place en un retour animé, sauf pour un élément
+/// posé ([onSorti] donné) : glissé hors de sa case, il revient dans la
+/// réserve (CLAUDE.md §5, corrections du 20 oct. 2026).
 class TuileGlissable extends StatefulWidget {
   const TuileGlissable({
     super.key,
@@ -27,6 +29,7 @@ class TuileGlissable extends StatefulWidget {
     this.onToucher,
     this.onPris,
     this.onLache,
+    this.onSorti,
   });
 
   /// Id de l'élément, donnée du glisser.
@@ -57,6 +60,10 @@ class TuileGlissable extends StatefulWidget {
   final VoidCallback? onPris;
   final VoidCallback? onLache;
 
+  /// Élément posé lâché hors de toute cible : il est retiré de sa case
+  /// (renvoyé dans la réserve). `null` : retour animé à sa place.
+  final VoidCallback? onSorti;
+
   @override
   State<TuileGlissable> createState() => _TuileGlissableState();
 }
@@ -79,6 +86,10 @@ class _TuileGlissableState extends State<TuileGlissable> {
     // cible : la tuile revient à sa place.
     if ((details.offset - origine).distance <= kTouchSlop) {
       widget.onToucher?.call();
+      return;
+    }
+    if (widget.onSorti case final sorti?) {
+      sorti();
       return;
     }
     RetourAnime.jouer(

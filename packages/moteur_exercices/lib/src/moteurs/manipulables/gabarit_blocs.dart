@@ -193,7 +193,13 @@ class _ZoneBlocs extends StatelessWidget {
           ),
           libelle: l.plateau,
           etat: etat == EtatMateriel.juste ? EtatDepot.juste : EtatDepot.repos,
-          onDepot: modifiable ? ajouter : null,
+          // Un bloc posé relâché sur le plateau y reste (donnée préfixée,
+          // ignorée) : seul un lâcher hors du plateau le retire.
+          onDepot: modifiable
+              ? (sorte) {
+                  if (!sorte.startsWith(prefixePose)) ajouter(sorte);
+                }
+              : null,
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: TaillesYasmina.yasminaHome,
@@ -212,6 +218,7 @@ class _ZoneBlocs extends StatelessWidget {
                         Pose(
                           key: ValueKey('dizaine_$i'),
                           libelle: l.dizaine,
+                          donnee: 'dizaine',
                           onToucher: modifiable
                               ? () => controleur.retirer('dizaine')
                               : null,
@@ -230,6 +237,7 @@ class _ZoneBlocs extends StatelessWidget {
                         Pose(
                           key: ValueKey('unite_$i'),
                           libelle: l.unite,
+                          donnee: 'unite',
                           onToucher: modifiable
                               ? () => controleur.retirer('unite')
                               : null,

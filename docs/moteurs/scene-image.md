@@ -33,7 +33,7 @@ Il vit dans `packages/moteur_exercices`, compatible web (`CustomPaint`, `Stack`)
 
 ### T47 Étiqueter un schéma
 
-1. Sous la scène, la réserve d'étiquettes (`TuileGlissable`, mélangées). Chaque zone est une `ZoneDepot` posée sur la scène : glisser une étiquette dessus l'y pose (son `depot`, vibration), une autre étiquette la remplace. Toucher-toucher en secours. Toucher une étiquette posée la renvoie dans la réserve.
+1. Sous la figure, la réserve d'étiquettes (`TuileGlissable`, mélangées). **Les cases ne sont plus posées sur le dessin** (elles se superposaient et le cachaient, test du 20 oct.) : chaque zone a une case `ZoneDepot` **à gauche ou à droite de la scène** (selon le côté du centre de la zone), reliée par un trait au point de la zone (son centre), comme dans un schéma de manuel. Les cases sont placées automatiquement à la hauteur de leur point, puis écartées si deux se touchent (le contenu ne donne que les zones). La figure ne se retourne pas avec la langue. Glisser une étiquette sur une case l'y pose (son `depot`, vibration), une autre étiquette la remplace. Toucher-toucher en secours. Toucher une étiquette posée la renvoie dans la réserve, la glisser hors de sa case aussi.
 2. Vérifier devient actif quand toutes les zones portent une étiquette. Juste si chaque zone porte l'étiquette attendue (contrôleur d'affectation du moteur Glisser-déposer, forme « zones »).
 3. Accessibilité : chaque zone est nommée par son `libelle` (c'est l'étiquette attendue qui est cachée, pas la zone).
 
@@ -50,7 +50,7 @@ Règles du validateur propres au moteur (détail dans `schema/README.md`) :
 
 - zones : id uniques (`element_duplique`), rectangles dans la scène (`zone_hors_scene` : x + l et y + h au plus 1)
 - T08 : réponses existantes (`reponse_element_inconnu`), une seule zone sans `plusieurs` (`reponse_unique`)
-- T47 : chaque zone a une étiquette et une seule (`zone_sans_reponse`, `etiquette_reutilisee`), réponses existantes, avertissement `etiquettes_sans_intrus` s'il n'y a aucune étiquette en trop
+- T47 : chaque zone a une étiquette et une seule (`zone_sans_reponse`, `etiquette_reutilisee`), réponses existantes, deux zones du même côté à moins de 0,1 de hauteur l'une de l'autre refusées (`etiquettes_superposees` : leurs cases se chevaucheraient), avertissement `etiquettes_sans_intrus` s'il n'y a aucune étiquette en trop
 - avertissement `elements_trop_nombreux` au-delà de 6 zones en 1re et 2e (T08, T47)
 
 ## 5. Correction

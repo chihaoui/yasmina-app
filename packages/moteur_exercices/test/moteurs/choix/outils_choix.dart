@@ -25,12 +25,15 @@ class Partie {
     ModeExercice mode = ModeExercice.enfant,
     int? graine = 1,
     Set<String>? voix,
+    Size taille = const Size(800, 1600),
   }) async {
     final validation = validerExercice(exercice);
     expect(validation.erreurs, isEmpty, reason: '$validation');
-    // Écran haut : toute la zone de réponse visible sans défilement (les
-    // gestes de glisser visent des cibles qui doivent rester à l'écran).
-    tester.view.physicalSize = const Size(800, 1600);
+    // Écran haut par défaut : toute la zone de réponse visible sans
+    // défilement (les gestes de glisser visent des cibles qui doivent
+    // rester à l'écran). [taille] : un écran de téléphone (390 × 844 dp)
+    // pour les tests de disposition.
+    tester.view.physicalSize = taille;
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     services = ServicesFactices(voix: voix);

@@ -13,6 +13,13 @@ Préparation du moteur Scène image (branche `moteur/scene-image`, soir du 20 oc
 | 5 | Zones trop petites | Une zone plus petite que `target-min` est élargie autour de son centre par le moteur | CLAUDE.md : cibles d'au moins 48 dp | Refuser au validateur |
 | 6 | Rapport de la scène | 4 : 3 fixe, largeur de l'écran | Simple, tient dans le cadre de téléphone avec la réserve en dessous | Rapport dans le JSON |
 
+### Nuit du 20 au 21 oct. (corrections du test de Lamjed du 20 oct. au soir)
+
+| N° | Sujet | Choix fait | Pourquoi | Alternative |
+|---|---|---|---|---|
+| 7 | T47 : cases à côté de la scène | Colonnes d'un quart de la largeur à gauche et à droite, scène 4 : 3 au milieu, cases de la hauteur d'une tuile de choix placées à la hauteur du centre de leur zone puis écartées d'au moins `space-2` si elles se touchent (la figure grandit si une colonne déborde), trait fin `ink` et point sur la zone. Le schéma ne change pas : le point est le centre du rectangle de la zone, le côté suit la moitié où est ce centre | Demandé par Lamjed (schéma de manuel), aucun changement de contenu | Côté choisi dans le JSON, scène plus large avec cases superposées aux bords |
+| 8 | T47 : validateur | `etiquettes_superposees` refuse deux zones du même côté à moins de 0,1 de hauteur l'une de l'autre. Les autres cas proches sont écartés par le moteur | Sur un téléphone une case fait près de la moitié de la hauteur de la scène : refuser tout chevauchement avant écartement interdirait tout contenu réel | Seuil plus large, ou avertissement seulement |
+
 ## Questions ouvertes
 
 1. **Images réelles** : quand arrivent-elles (phase B, packs) ? Le schéma garde `scene` sans champ `image` pour l'instant, en ajouter un plus tard n'invalide rien.

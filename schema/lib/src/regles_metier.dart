@@ -1233,6 +1233,10 @@ List<ProblemeValidation> _reglesJeux(
   return problemes;
 }
 
+/// T47 : écart vertical minimal (part de la hauteur de la scène) entre deux
+/// zones du même côté, sinon leurs cases d'étiquettes se superposent.
+const _ecartEtiquettesMin = 0.1;
+
 /// Règles du moteur Scène image (docs/moteurs/scene-image.md) : T08 Hot
 /// spot sur image, T47 Étiqueter un schéma.
 List<ProblemeValidation> _reglesScene(
@@ -1358,6 +1362,30 @@ List<ProblemeValidation> _reglesScene(
           'zone_sans_reponse',
           'la zone « $id » n\'a pas d\'étiquette attendue.',
         );
+      }
+      // Les cases d'étiquettes sont placées par le moteur à gauche ou à
+      // droite de la scène, à la hauteur du point de leur zone : deux zones
+      // du même côté à la même hauteur donneraient des cases superposées.
+      double centreX(Map<String, dynamic> z) =>
+          (z['x'] as num) + (z['l'] as num) / 2;
+      double centreY(Map<String, dynamic> z) =>
+          (z['y'] as num) + (z['h'] as num) / 2;
+      for (var i = 0; i < zones.length; i++) {
+        for (var j = i + 1; j < zones.length; j++) {
+          final a = zones[i];
+          final b = zones[j];
+          if ((centreX(a) < 0.5) == (centreX(b) < 0.5) &&
+              (centreY(a) - centreY(b)).abs() < _ecartEtiquettesMin) {
+            erreur(
+              '$chemin/donnees/zones/$j',
+              'etiquettes_superposees',
+              'les zones « ${a['id']} » et « ${b['id']} » sont du même côté '
+                  'de la scène à la même hauteur : leurs cases d\'étiquettes '
+                  'se chevaucheraient. Écarter les points d\'au moins '
+                  '$_ecartEtiquettesMin de la hauteur, ou changer de côté.',
+            );
+          }
+        }
       }
       if (idsEtiquettes.length <= idsZones.length && idsZones.length > 1) {
         avertissement(
