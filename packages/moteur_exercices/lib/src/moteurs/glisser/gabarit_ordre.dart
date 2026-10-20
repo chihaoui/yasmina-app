@@ -161,6 +161,11 @@ class _ZoneOrdre extends StatelessWidget {
                 ),
           );
         } else {
+          // La case suivante, en fin de ligne : un dépôt s'y ajoute (le
+          // dépôt sur une tuile posée s'insère avant elle).
+          final resteAPoser =
+              controleur.modifiable &&
+              ordre.length < controleur.elements.length;
           contenu = Wrap(
             spacing: EspacesYasmina.space2,
             runSpacing: EspacesYasmina.space2,
@@ -177,6 +182,23 @@ class _ZoneOrdre extends StatelessWidget {
                       start: candidats.isEmpty ? 0 : EspacesYasmina.space4,
                     ),
                     child: tuile(id, posee: true),
+                  ),
+                ),
+              if (resteAPoser)
+                ZoneDepot(
+                  key: const ValueKey('ligne_fin'),
+                  libelle: libelles.verifier,
+                  enLigne: true,
+                  onDepot: (id) => deposer(id, 'fin'),
+                  onToucher: () {
+                    if (controleur.enAttente == null) return;
+                    services.vibration.legere();
+                    services.audio.jouerSon(SonInterface.depot);
+                    controleur.poserAttente('fin');
+                  },
+                  child: const SizedBox(
+                    width: EspacesYasmina.targetMin,
+                    height: EspacesYasmina.targetMin,
                   ),
                 ),
             ],

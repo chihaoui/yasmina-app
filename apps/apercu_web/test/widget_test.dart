@@ -8,7 +8,8 @@ void main() {
   Finder cle(String valeur) => find.byKey(ValueKey(valeur));
 
   Future<void> lancer(WidgetTester tester) async {
-    tester.view.physicalSize = const Size(900, 1100);
+    // Écran haut : la liste déroulante des exemples tient entière à l'écran.
+    tester.view.physicalSize = const Size(900, 2600);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(const ProviderScope(child: ApercuApp()));

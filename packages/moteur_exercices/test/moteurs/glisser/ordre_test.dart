@@ -20,8 +20,8 @@ void main() {
       await p.jouer(exemple('T13-remise-en-ordre.json'));
       expect(p.sens, TextDirection.ltr);
       expect(find.byType(TuileGlissable), findsNWidgets(5));
-      await p.glisserEnFin('element_e1', 'ligne');
-      await p.glisserEnFin('element_e3', 'ligne');
+      await p.glisser('element_e1', 'ligne_fin');
+      await p.glisser('element_e3', 'ligne_fin');
       expect(p.reponsesDonnees.last, {
         'ordre': ['e1', 'e3'],
       });
@@ -35,7 +35,7 @@ void main() {
       expect(p.reponsesDonnees.last, {
         'ordre': ['e1', 'e2', 'e3'],
       });
-      await p.glisserEnFin('element_e5', 'ligne');
+      await p.glisser('element_e5', 'ligne_fin');
       // Le toucher du dernier mot le retire, pas celui d'un autre.
       await p.toucher('pose_e1');
       expect(p.reponsesDonnees.last, {
@@ -48,8 +48,8 @@ void main() {
       expect(p.bouton.onPressed, isNull);
       // Toucher-toucher vers la ligne.
       await p.toucher('element_e4');
-      await p.toucherZone('ligne');
-      await p.glisserEnFin('element_e5', 'ligne');
+      await p.toucher('ligne_fin');
+      await p.glisser('element_e5', 'ligne_fin');
       expect(p.bouton.onPressed, isNotNull);
       await p.verifier();
       await tester.pumpAndSettle();
@@ -64,15 +64,15 @@ void main() {
       p = Partie(tester);
       await p.jouer(t13Arabe());
       expect(p.sens, TextDirection.rtl);
-      await p.glisserEnFin('element_e1', 'ligne');
-      await p.glisserEnFin('element_e3', 'ligne');
+      await p.glisser('element_e1', 'ligne_fin');
+      await p.glisser('element_e3', 'ligne_fin');
       // Premier mot à droite du deuxième.
       expect(
         tester.getCenter(p.cle('pose_e1')).dx,
         greaterThan(tester.getCenter(p.cle('pose_e3')).dx),
       );
-      await p.glisserEnFin('element_e2', 'ligne');
-      await p.glisserEnFin('element_e4', 'ligne');
+      await p.glisser('element_e2', 'ligne_fin');
+      await p.glisser('element_e4', 'ligne_fin');
       await p.verifier();
       expect(p.etatGlissable('pose_e1'), EtatGlissable.pose);
       expect(p.etatGlissable('pose_e3'), EtatGlissable.faux);
@@ -84,9 +84,9 @@ void main() {
       expect(p.cle('pose_e3'), findsNothing);
       expect(p.dans('element_e3', 'reserve'), isTrue);
       expect(p.dans('element_e2', 'reserve'), isTrue);
-      await p.glisserEnFin('element_e4', 'ligne');
-      await p.glisserEnFin('element_e3', 'ligne');
-      await p.glisserEnFin('element_e2', 'ligne');
+      await p.glisser('element_e4', 'ligne_fin');
+      await p.glisser('element_e3', 'ligne_fin');
+      await p.glisser('element_e2', 'ligne_fin');
       await p.verifier();
       await tester.pumpAndSettle();
       expect(p.cle('lecteur_feedback_explication'), findsOneWidget);
@@ -115,8 +115,8 @@ void main() {
       expect(find.byType(TuileGlissable), findsNWidgets(5));
       expect(p.glissable('element_e1').grand, isTrue);
       expect(motConstruit(tester).trim(), isEmpty);
-      await p.glisserEnFin('element_e1', 'ligne');
-      await p.glisserEnFin('element_e3', 'ligne');
+      await p.glisser('element_e1', 'ligne');
+      await p.glisser('element_e3', 'ligne');
       // Une seule chaîne : les lettres se lient (قر).
       expect(motConstruit(tester), 'قر');
       final style = tester.widget<Text>(p.cle('mot_construit')).style!;
@@ -128,7 +128,7 @@ void main() {
       expect(p.dans('element_e3', 'reserve'), isTrue);
       await p.toucher('element_e2');
       await p.toucher('ligne');
-      await p.glisserEnFin('element_e3', 'ligne');
+      await p.glisser('element_e3', 'ligne');
       expect(motConstruit(tester), 'قمر');
       // Vérifier actif avec des lettres en trop dans la réserve.
       expect(p.bouton.onPressed, isNotNull);
@@ -142,13 +142,13 @@ void main() {
         'puis la bonne réponse est révélée', (tester) async {
       p = Partie(tester);
       await p.jouer(exemple('T15-mot-lettres.json'));
-      await p.glisserEnFin('element_e1', 'ligne');
-      await p.glisserEnFin('element_e4', 'ligne');
+      await p.glisser('element_e1', 'ligne');
+      await p.glisser('element_e4', 'ligne');
       await p.verifier();
       expect(p.cle('lecteur_feedback_indice'), findsOneWidget);
       await p.attendreVidage();
       expect(motConstruit(tester), 'ق');
-      await p.glisserEnFin('element_e5', 'ligne');
+      await p.glisser('element_e5', 'ligne');
       await p.verifier();
       await tester.pumpAndSettle();
       expect(motConstruit(tester), 'قمر');

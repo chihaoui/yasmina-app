@@ -25,10 +25,14 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T55': GabaritChoix('T55'),
   'T61': GabaritChoix('T61'),
   // Moteur Glisser-déposer.
+  'T06': GabaritAffectation('T06'),
   'T09': GabaritAffectation('T09'),
   'T11': GabaritAffectation('T11'),
+  'T12': GabaritAffectation('T12'),
   'T13': GabaritOrdre('T13'),
+  'T14': GabaritOrdre('T14'),
   'T15': GabaritOrdre('T15'),
+  'T16': GabaritOrdre('T16'),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

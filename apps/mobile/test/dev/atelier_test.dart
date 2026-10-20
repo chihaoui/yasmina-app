@@ -95,14 +95,27 @@ void main() {
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    // Un type à venir (moteur Glisser-déposer), avec son exemple arabe.
-    await lancerApp(tester, StockageMemoire('fr'));
-    await aller(tester, '/dev/atelier/T14/T14-sequence-images.json');
+    // Un type à venir (T20, moteur Tracé) avec un exemple valide rangé
+    // sous lui : tous les exemples réels sont jouables, le catalogue est
+    // surchargé.
+    final t20 =
+        jsonDecode(
+            exemplesEduContent['glisser-deposer/T14-sequence-images.json']!,
+          ) as Map<String, dynamic>
+          ..['type'] = 'T20'
+          ..['gabarit'] = 'trace-lettre'
+          ..['donnees'] = {'lettre': 'ب'}
+          ..['reponse'] = <String, dynamic>{};
+    final surcharge = catalogueExemplesProvider.overrideWithValue(
+      CatalogueExemples({'trace/T20-essai.json': jsonEncode(t20)}),
+    );
+    await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
+    await aller(tester, '/dev/atelier/T20/T20-essai.json');
     expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
-    expect(json, contains('"gabarit": "sequence-images"'));
+    expect(json, contains('"gabarit": "trace-lettre"'));
     // Les harakat restent telles qu'écrites.
     expect(json, contains('رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.'));
   });

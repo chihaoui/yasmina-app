@@ -116,3 +116,60 @@ Map<String, dynamic> t13Arabe() => exerciceChoix(
   indice: 'الْجُمْلَةُ تَبْدَأُ بِالْفِعْلِ: يَلْعَبُ.',
   explication: 'الْجُمْلَةُ هِيَ: يَلْعَبُ سَامِي فِي الْحَدِيقَةِ.',
 );
+
+/// T06 en arabe : un trou dans une phrase.
+Map<String, dynamic> t06Arabe() => exerciceChoix(
+  type: 'T06',
+  langue: 'ar',
+  gabarit: 'texte-trou',
+  competence: 'nahw-fiil',
+  niveau: 3,
+  consigne: {
+    'masculin': 'اِسْحَبِ الْكَلِمَةَ الْمُنَاسِبَةَ إِلَى الْفَرَاغِ.',
+    'feminin': 'اِسْحَبِي الْكَلِمَةَ الْمُنَاسِبَةَ إِلَى الْفَرَاغِ.',
+  },
+  donnees: {
+    'texte': 'الْوَلَدُ {t1} الْكِتَابَ.',
+    'etiquettes': [
+      {'id': 'e1', 'texte': 'يَقْرَأُ'},
+      {'id': 'e2', 'texte': 'يَأْكُلُ'},
+      {'id': 'e3', 'texte': 'يَنَامُ'},
+    ],
+    'melanger': false,
+  },
+  reponse: {
+    'trous': [
+      {'trou': 't1', 'etiquette': 'e1'},
+    ],
+  },
+  reussite: {
+    'masculin': 'إِجَابَتُكَ صَحِيحَةٌ: الْوَلَدُ يَقْرَأُ الْكِتَابَ.',
+    'feminin': 'إِجَابَتُكِ صَحِيحَةٌ: الْوَلَدُ يَقْرَأُ الْكِتَابَ.',
+  },
+  indice: 'مَاذَا نَفْعَلُ بِالْكِتَابِ؟',
+  explication: 'الْجُمْلَةُ هِيَ: الْوَلَدُ يَقْرَأُ الْكِتَابَ.',
+);
+
+/// T14 en français : les étapes de la journée.
+Map<String, dynamic> t14Francais() => exerciceChoix(
+  type: 'T14',
+  langue: 'fr',
+  gabarit: 'sequence-images',
+  competence: 'temps-journee',
+  consigne: 'Remets les moments de la journée dans l\'ordre.',
+  donnees: {
+    'elements': [
+      {'id': 'e1', 'texte': 'le matin', 'emoji': '🌅'},
+      {'id': 'e2', 'texte': 'midi', 'emoji': '☀️'},
+      {'id': 'e3', 'texte': 'le soir', 'emoji': '🌇'},
+      {'id': 'e4', 'texte': 'la nuit', 'emoji': '🌙'},
+    ],
+    'melanger': false,
+  },
+  reponse: {
+    'ordre': ['e1', 'e2', 'e3', 'e4'],
+  },
+  reussite: 'Oui : le matin, midi, le soir, puis la nuit.',
+  indice: 'La journée commence quand le soleil se lève.',
+  explication: 'L\'ordre est : le matin, midi, le soir, la nuit.',
+);

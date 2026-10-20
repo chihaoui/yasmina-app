@@ -152,7 +152,13 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Glisser-déposer (lot 1).
-  TypeExercice('T06', 'Texte à trous', Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T06',
+    'Texte à trous',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice(
     'T09',
     'Association',
@@ -167,7 +173,13 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T12', 'Tableau de tri', Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T12',
+    'Tableau de tri',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice(
     'T13',
     'Remise en ordre',
@@ -175,7 +187,13 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T14', "Séquence d'images", Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T14',
+    "Séquence d'images",
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice(
     'T15',
     'Construire un mot (lettres)',
@@ -188,6 +206,7 @@ const typesExercices = <TypeExercice>[
     'Construire un mot (syllabes)',
     Moteur.glisserDeposer,
     lot: 1,
+    etat: EtatType.jouable,
   ),
   TypeExercice('T56', 'Racine et schème', Moteur.glisserDeposer, lot: 1),
   TypeExercice('T62', 'Frise chronologique', Moteur.glisserDeposer, lot: 1),

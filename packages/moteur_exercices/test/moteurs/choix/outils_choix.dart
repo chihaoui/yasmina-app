@@ -28,6 +28,11 @@ class Partie {
   }) async {
     final validation = validerExercice(exercice);
     expect(validation.erreurs, isEmpty, reason: '$validation');
+    // Écran haut : toute la zone de réponse visible sans défilement (les
+    // gestes de glisser visent des cibles qui doivent rester à l'écran).
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     services = ServicesFactices(voix: voix);
     evenements = [];
     final langue = exercice['langue'] as String;

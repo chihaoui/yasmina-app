@@ -81,8 +81,13 @@ class _TuileGlissableState extends State<TuileGlissable> {
       context,
       depuis: details.offset,
       vers: origine,
-      enfant: _Corps(widget: widget, tenue: true),
-      taille: (context.findRenderObject() as RenderBox?)?.size,
+      enfant: _Corps(
+        widget: widget,
+        tenue: true,
+        flottante: true,
+        langue: ThemeYasmina.langueDe(context),
+      ),
+      largeur: (context.findRenderObject() as RenderBox?)?.size.width,
     );
   }
 
@@ -98,6 +103,9 @@ class _TuileGlissableState extends State<TuileGlissable> {
       child: _Corps(widget: widget, tenue: _tenue),
     );
     final boite = context.findRenderObject() as RenderBox?;
+    // La copie qui suit le doigt vit dans l'overlay, hors de
+    // LangueExercice : elle reçoit la langue d'ici.
+    final langue = ThemeYasmina.langueDe(context);
     return Draggable<String>(
       data: widget.id,
       maxSimultaneousDrags: 1,
@@ -109,10 +117,15 @@ class _TuileGlissableState extends State<TuileGlissable> {
       // La tuile tenue suit le doigt, légèrement agrandie.
       feedback: Transform.scale(
         scale: MouvementsYasmina.echelleTenue,
+        // Même largeur que la tuile, hauteur naturelle.
         child: SizedBox(
           width: boite?.size.width,
-          height: boite?.size.height,
-          child: _Corps(widget: widget, tenue: true, flottante: true),
+          child: _Corps(
+            widget: widget,
+            tenue: true,
+            flottante: true,
+            langue: langue,
+          ),
         ),
       ),
       // Sa place reste vide pendant le déplacement.
@@ -133,18 +146,22 @@ class _Corps extends StatelessWidget {
     required this.widget,
     required this.tenue,
     this.flottante = false,
+    this.langue,
   });
 
   final TuileGlissable widget;
   final bool tenue;
 
-  /// Copie qui suit le doigt (hors de l'arbre : pas de thème garanti).
+  /// Copie qui suit le doigt (dans l'overlay, hors de LangueExercice).
   final bool flottante;
+
+  /// Langue imposée (copie flottante), sinon celle de l'endroit.
+  final String? langue;
 
   @override
   Widget build(BuildContext context) {
     final c = context.couleurs;
-    final langue = ThemeYasmina.langueDe(context);
+    final langue = this.langue ?? ThemeYasmina.langueDe(context);
     final (fond, bord) = switch (widget.etat) {
       _ when tenue => (c.blueSoft, c.blue),
       EtatGlissable.attente => (c.blueSoft, c.blue),
@@ -221,14 +238,16 @@ class RetourAnime extends StatefulWidget {
     required this.depuis,
     required this.vers,
     required this.enfant,
-    required this.taille,
+    required this.largeur,
     required this.onFin,
   });
 
   final Offset depuis;
   final Offset vers;
   final Widget enfant;
-  final Size taille;
+
+  /// Largeur de la tuile (hauteur naturelle).
+  final double largeur;
   final VoidCallback onFin;
 
   static void jouer(
@@ -236,18 +255,18 @@ class RetourAnime extends StatefulWidget {
     required Offset depuis,
     required Offset vers,
     required Widget enfant,
-    Size? taille,
+    double? largeur,
   }) {
     if (MediaQuery.maybeDisableAnimationsOf(context) ?? false) return;
     final overlay = Overlay.maybeOf(context);
-    if (overlay == null || taille == null) return;
+    if (overlay == null || largeur == null) return;
     late final OverlayEntry entree;
     entree = OverlayEntry(
       builder: (_) => RetourAnime(
         depuis: depuis,
         vers: vers,
         enfant: enfant,
-        taille: taille,
+        largeur: largeur,
         onFin: () => entree.remove(),
       ),
     );
@@ -294,8 +313,7 @@ class _RetourAnimeState extends State<RetourAnime>
         return Positioned(
           left: position.dx,
           top: position.dy,
-          width: widget.taille.width,
-          height: widget.taille.height,
+          width: widget.largeur,
           child: IgnorePointer(child: widget.enfant),
         );
       },

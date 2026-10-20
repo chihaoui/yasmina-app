@@ -14,8 +14,17 @@ void main() {
         typeParId(e.idType!)?.etat == EtatType.jouable,
   );
 
-  test('T09, T11, T13 et T15 sont jouables, avec un exemple chacun', () {
-    expect(exemples.map((e) => e.idType).toSet(), {'T09', 'T11', 'T13', 'T15'});
+  test('les 8 types du moteur sont jouables, avec un exemple chacun', () {
+    expect(exemples.map((e) => e.idType).toSet(), {
+      'T06',
+      'T09',
+      'T11',
+      'T12',
+      'T13',
+      'T14',
+      'T15',
+      'T16',
+    });
   });
 
   for (final exemple in exemples) {

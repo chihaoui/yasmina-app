@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
@@ -16,24 +15,6 @@ extension GestesGlisser on Partie {
     await geste.moveBy(const Offset(0, 1));
     await tester.pump();
     await geste.moveTo(tester.getCenter(cle(cible)));
-    await tester.pump();
-    await geste.up();
-    await tester.pump();
-  }
-
-  /// Vrai glisser jusqu'au bout de la ligne de réponse [cible] (côté fin
-  /// de ligne, hors des tuiles posées) : l'élément s'ajoute à la fin.
-  Future<void> glisserEnFin(String element, String cible) async {
-    await tester.ensureVisible(cle(element));
-    final geste = await tester.startGesture(tester.getCenter(cle(element)));
-    await geste.moveBy(const Offset(0, 1));
-    await tester.pump();
-    final zone = tester.getRect(cle(cible));
-    final rtl =
-        Directionality.of(tester.element(cle(cible))) == TextDirection.rtl;
-    await geste.moveTo(
-      Offset(rtl ? zone.left + 6 : zone.right - 6, zone.center.dy),
-    );
     await tester.pump();
     await geste.up();
     await tester.pump();
