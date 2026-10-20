@@ -70,7 +70,8 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
 - Le parcours normal permet aussi de créer des profils à la main.
 
 ## 8. Qualité
-- Avant chaque commit : `flutter analyze` sans erreur, `flutter test` vert et `flutter build web` de `apps/apercu_web` réussi.
+- Avant chaque commit : `flutter analyze` sans erreur, `flutter test` vert et `flutter build web` de `apps/apercu_web` réussi. Tout cela est joué par `./tool/verifier.sh`, lancé sans pipe ni filtre, sortie dans un fichier, lu avant le commit (« Tout est vert » et code de sortie 0).
+- **Hook anti-commit rouge** (`tool/hooks/pre-commit`, versionné, activé une fois par clone avec `git config core.hooksPath tool/hooks`) : `verifier.sh` écrit, seulement quand tout est vert, l'empreinte de l'index (`git write-tree`) dans `.git/verifier-vert` (hors suivi Git, retiré au début de chaque passage). Le hook refuse le commit si le marqueur est absent ou si l'index à commiter a une autre empreinte. Ordre à respecter : `git add` des fichiers, puis `./tool/verifier.sh`, puis `git commit`. Indexer après la vérification oblige à relancer le vérificateur. `git commit --no-verify` est interdit. Testé par `test/hook_verifier_test.dart`.
 - Un test de widget par moteur, avec un cas en arabe (droite à gauche) et un cas en français.
 - Tests golden sur les écrans clés en arabe et en français.
 - Design : aucune couleur, taille de texte, rayon, espacement ni épaisseur en dur hors `packages/moteur_exercices/lib/src/theme/` (jetons générés depuis `docs/design-system/tokens.json` par `tool/generer_theme.dart`). Contrôlé par `tool/garde_design.dart` dans `verifier.sh`. Exception nommée sur la ligne : `// design-ok : raison`.

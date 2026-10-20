@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Hook pre-commit de Yasmina (CLAUDE.md §8) : refuse tout commit dont
+# l'index n'a pas été vérifié vert par ./tool/verifier.sh.
+#
+# verifier.sh écrit, seulement quand tout est vert, l'empreinte de l'index
+# (git write-tree) dans un marqueur hors suivi Git. Ce hook compare cette
+# empreinte à celle de l'index qui va être commité : absent ou différent,
+# le commit est refusé. Indexer un fichier après la vérification change
+# l'empreinte : il faut relancer verifier.sh.
+#
+# Activation (une fois par clone) : git config core.hooksPath tool/hooks
+set -euo pipefail
+
+dossier_git="$(git rev-parse --git-dir)"
+marqueur="$dossier_git/verifier-vert"
+
+refuser() {
+  printf 'Commit refusé : %s\n' "$1" >&2
+  printf 'Indexer les fichiers (git add), lancer ./tool/verifier.sh, puis commiter.\n' >&2
+  exit 1
+}
+
+if [ ! -f "$marqueur" ]; then
+  refuser "aucun passage vert de ./tool/verifier.sh enregistré ($marqueur absent)."
+fi
+
+attendu="$(tr -d '[:space:]' < "$marqueur")"
+actuel="$(git write-tree)"
+
+if [ -z "$attendu" ]; then
+  refuser "marqueur vide."
+fi
+if [ "$attendu" != "$actuel" ]; then
+  refuser "l'index à commiter ($actuel) n'est pas celui vérifié vert ($attendu)."
+fi
+exit 0
