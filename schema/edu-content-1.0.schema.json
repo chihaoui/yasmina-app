@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 2 types de base du moteur Scène image (T08, T47) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -474,6 +474,24 @@
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesEtiquetage" },
               "reponse": { "$ref": "#/$defs/reponsePlacements" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T53" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesEcoutePlace" },
+              "reponse": { "$ref": "#/$defs/reponseZone" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T54" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesEcouteColorie" },
+              "reponse": { "$ref": "#/$defs/reponseColoriages" }
             }
           }
         },
@@ -1477,6 +1495,95 @@
       }
     },
 
+    "donneesEcoutePlace": {
+      "description": "T53 : écouter une consigne de position (ecoute, jamais affichée), puis toucher une seule fois l'emplacement de la scène où va l'objet (emoji et nom). Règles Dart : zones dans la scène, réponse existante.",
+      "type": "object",
+      "required": ["scene", "objet", "zones", "ecoute"],
+      "additionalProperties": false,
+      "properties": {
+        "scene": { "$ref": "#/$defs/scene" },
+        "objet": {
+          "type": "object",
+          "required": ["emoji"],
+          "additionalProperties": false,
+          "properties": {
+            "emoji": { "$ref": "#/$defs/emoji" },
+            "libelle": { "$ref": "#/$defs/texteNonVide" }
+          }
+        },
+        "zones": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/zoneScene" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
+      }
+    },
+    "reponseZone": {
+      "description": "L'emplacement attendu (règles Dart : une zone existante).",
+      "type": "object",
+      "required": ["zone"],
+      "additionalProperties": false,
+      "properties": { "zone": { "$ref": "#/$defs/idZone" } }
+    },
+    "idObjet": { "type": "string", "pattern": "^o[1-6]$" },
+    "couleurColoriage": {
+      "enum": ["red", "blue", "green", "yellow", "orange", "purple", "brown", "black", "white", "pink"]
+    },
+    "donneesEcouteColorie": {
+      "description": "T54 : écouter (ecoute, jamais affichée), toucher une couleur de la palette puis l'objet à colorier. Les objets sont de grandes icônes (emoji) avec leur nom en sous-titre. Règles Dart : id uniques, réponses existantes, un coloriage par objet.",
+      "type": "object",
+      "required": ["objets", "couleurs", "ecoute"],
+      "additionalProperties": false,
+      "properties": {
+        "objets": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id", "emoji", "libelle"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idObjet" },
+              "emoji": { "$ref": "#/$defs/emoji" },
+              "libelle": { "$ref": "#/$defs/texteNonVide" }
+            }
+          }
+        },
+        "couleurs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/couleurColoriage" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
+      }
+    },
+    "reponseColoriages": {
+      "description": "Les coloriages attendus, un par objet à colorier (règles Dart : objets et couleurs existants, un objet une seule fois).",
+      "type": "object",
+      "required": ["coloriages"],
+      "additionalProperties": false,
+      "properties": {
+        "coloriages": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["objet", "couleur"],
+            "additionalProperties": false,
+            "properties": {
+              "objet": { "$ref": "#/$defs/idObjet" },
+              "couleur": { "$ref": "#/$defs/couleurColoriage" }
+            }
+          }
+        }
+      }
+    },
     "idCarte": { "type": "string", "pattern": "^c[1-8]$" },
     "idPaire": { "type": "string", "pattern": "^p([1-9]|1[0-2])$" },
     "idMot": { "type": "string", "pattern": "^m[1-6]$" },

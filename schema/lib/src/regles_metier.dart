@@ -312,11 +312,20 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
-  if (type == 'T08' || type == 'T47') {
+  if (type == 'T08' || type == 'T47' || type == 'T53') {
     problemes.addAll(
       _reglesScene(
         type,
         _niveauDeId(ex['id'] as String),
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
+  if (type == 'T54') {
+    problemes.addAll(
+      _reglesColoriage(
         ex['donnees'] as Map<String, dynamic>,
         ex['reponse'] as Map<String, dynamic>,
         chemin,
@@ -1325,6 +1334,11 @@ List<ProblemeValidation> _reglesScene(
               '${attendues.length}).',
         );
       }
+    case 'T53':
+      final attendue = reponse['zone'] as String;
+      if (!idsZones.contains(attendue)) {
+        inconnu('$chemin/reponse/zone', attendue, 'zones');
+      }
     case 'T47':
       final etiquettes = (donnees['etiquettes'] as List)
           .cast<Map<String, dynamic>>();
@@ -1427,6 +1441,71 @@ List<ProblemeValidation> _reglesScene(
       '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
           '4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Règles de T54 Écoute et colorie (docs/moteurs/scene-image.md §14) : id
+/// uniques, réponses existantes, un coloriage par objet.
+List<ProblemeValidation> _reglesColoriage(
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  final objets = (donnees['objets'] as List).cast<Map<String, dynamic>>();
+  final ids = <String>{};
+  final libelles = <String>{};
+  for (var k = 0; k < objets.length; k++) {
+    final id = objets[k]['id'] as String;
+    if (!ids.add(id)) {
+      erreur(
+        '$chemin/donnees/objets/$k/id',
+        'element_duplique',
+        'deux objets ont le même id « $id ».',
+      );
+    }
+    final libelle = objets[k]['libelle'] as String;
+    if (!libelles.add(libelle)) {
+      erreur(
+        '$chemin/donnees/objets/$k/libelle',
+        'element_duplique',
+        'deux objets ont le même nom « $libelle ».',
+      );
+    }
+  }
+  final couleurs = (donnees['couleurs'] as List).cast<String>().toSet();
+  final coloriages = (reponse['coloriages'] as List)
+      .cast<Map<String, dynamic>>();
+  final colories = <String>{};
+  for (var k = 0; k < coloriages.length; k++) {
+    final objet = coloriages[k]['objet'] as String;
+    final couleur = coloriages[k]['couleur'] as String;
+    if (!ids.contains(objet)) {
+      erreur(
+        '$chemin/reponse/coloriages/$k/objet',
+        'reponse_element_inconnu',
+        'la réponse désigne « $objet », absent de donnees.objets.',
+      );
+    }
+    if (!couleurs.contains(couleur)) {
+      erreur(
+        '$chemin/reponse/coloriages/$k/couleur',
+        'reponse_element_inconnu',
+        'la réponse désigne la couleur « $couleur », absente de '
+            'donnees.couleurs.',
+      );
+    }
+    if (!colories.add(objet)) {
+      erreur(
+        '$chemin/reponse/coloriages/$k/objet',
+        'element_duplique',
+        'l\'objet « $objet » reçoit deux couleurs.',
+      );
+    }
   }
   return problemes;
 }

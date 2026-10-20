@@ -1,0 +1,86 @@
+{
+  "id": "en-4-t1-u1-e01-x01",
+  "type": "T53",
+  "gabarit": "ecoute-place-scene",
+  "competence": "en-prepositions-place",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "en",
+  "consigne": {
+    "texte": "Listen, then tap the right place for the cat."
+  },
+  "donnees": {
+    "scene": {
+      "elements": [
+        {
+          "forme": "rectangle",
+          "couleur": "amber",
+          "x": 0.2,
+          "y": 0.42,
+          "l": 0.5,
+          "h": 0.07
+        },
+        {
+          "forme": "rectangle",
+          "couleur": "amber",
+          "x": 0.24,
+          "y": 0.49,
+          "l": 0.04,
+          "h": 0.4
+        },
+        {
+          "forme": "rectangle",
+          "couleur": "amber",
+          "x": 0.62,
+          "y": 0.49,
+          "l": 0.04,
+          "h": 0.4
+        }
+      ]
+    },
+    "objet": {
+      "emoji": "🐱",
+      "libelle": "the cat"
+    },
+    "zones": [
+      {
+        "id": "z1",
+        "x": 0.25,
+        "y": 0.12,
+        "l": 0.4,
+        "h": 0.28,
+        "libelle": "on the table"
+      },
+      {
+        "id": "z2",
+        "x": 0.3,
+        "y": 0.52,
+        "l": 0.3,
+        "h": 0.36,
+        "libelle": "under the table"
+      },
+      {
+        "id": "z3",
+        "x": 0.74,
+        "y": 0.45,
+        "l": 0.22,
+        "h": 0.4,
+        "libelle": "next to the table"
+      }
+    ],
+    "ecoute": {
+      "texte": "Put the cat under the table."
+    }
+  },
+  "reponse": {
+    "zone": "z2"
+  },
+  "feedbacks": {
+    "reussite": "Yes: the cat is under the table.",
+    "indice": "Listen again: under means below the table.",
+    "explication": "Under the table means below it, between the legs: that is where the cat goes."
+  },
+  "empreinte": "sha256:568b0b6e70096bcfb0b25ffb3ad5b1413d7ef86ef94c8498eab34b53e2c47a1f",
+  "statut": "brouillon",
+  "version": 1
+}

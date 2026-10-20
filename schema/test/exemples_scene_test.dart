@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 /// brouillon, qui respecte les conventions de
 /// docs/conventions-arabe.md.
 void main() {
-  const types = ['T08', 'T47'];
+  const types = ['T08', 'T47', 'T53', 'T54'];
   final fichiers =
       Directory('exemples/scene-image')
           .listSync()
@@ -31,10 +31,16 @@ void main() {
     }
     final ids = fichiers.map((f) => lire(f)['id']).toSet();
     expect(ids, hasLength(fichiers.length));
-    expect(fichiers, hasLength(2));
-    // Aucune image : des emoji et des formes dessinées.
+    expect(fichiers, hasLength(4));
+    // Aucune image : des emoji et des formes dessinées (T54 n'a pas de
+    // scène : ses objets sont des emoji).
     for (final f in fichiers) {
-      expect(lire(f)['donnees']['scene']['elements'], isNotEmpty);
+      final donnees = lire(f)['donnees'] as Map<String, dynamic>;
+      if (donnees['scene'] case final Map<String, dynamic> scene) {
+        expect(scene['elements'], isNotEmpty);
+      } else {
+        expect(donnees['objets'], isNotEmpty);
+      }
     }
   });
 

@@ -8,15 +8,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
 | A1 | 23 | 36,25 | 63 % |
-| A2 | 3 | 30,5 | 10 % |
+| A2 | 4,5 | 30,5 | 15 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **44,5** | **182,25** | **24,4 %** |
+| **Total** | **46** | **182,25** | **25,2 %** |
 
-- **Avancement global : 24,4 %** (44,5 j-h faits sur 182,25)
-- **Types jouables : 38 sur 52**
+- **Avancement global : 25,2 %** (46 j-h faits sur 182,25)
+- **Types jouables : 40 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -133,7 +133,11 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [ ] A2-03 Moteur Mesure et temps (T28, T30) (2,5 j-h)
 - [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (3,5 j-h)
-- [ ] A2-05 Moteur Scène image avec audio (T53, T54) (1,5 j-h)
+- [x] A2-05 Moteur Scène image avec audio (T53, T54) (1,5 j-h)
+  - [x] Fiche §14 de `docs/moteurs/scene-image.md` et questions 9 à 12 (nuit du 20 au 21 oct. 2026)
+  - [x] Schéma, validateur, 2 exemples en anglais en brouillon (le chat sous la table, le ballon rouge)
+  - [x] T53 un seul toucher sur l'emplacement, T54 couleur puis objet en grandes icônes avec le nom, tests anglais, arabe et français, parité
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone (voix anglaise)
 - [ ] A2-06 Moteur Simulateur (T34, T57) (3 j-h)
 - [ ] A2-07 Moteur Récit (T35) (1,5 j-h)
 - [ ] A2-08 Corrections issues du tour 1 (1 j-h)

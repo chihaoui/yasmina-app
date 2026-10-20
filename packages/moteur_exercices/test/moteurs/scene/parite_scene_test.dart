@@ -11,8 +11,8 @@ void main() {
     (e) => typeParId(e.idType!)?.moteur == Moteur.sceneImage,
   );
 
-  test('T08 et T47 sont jouables', () {
-    expect(exemples.map((e) => e.idType).toSet(), {'T08', 'T47'});
+  test('T08, T47, T53 et T54 sont jouables', () {
+    expect(exemples.map((e) => e.idType).toSet(), {'T08', 'T47', 'T53', 'T54'});
   });
 
   for (final exemple in exemples) {
@@ -22,7 +22,12 @@ void main() {
       final p = Partie(tester);
       await p.jouer(exemple.exercice!, mode: ModeExercice.apercu);
       expect(p.cle('lecteur_erreur'), findsNothing);
-      expect(p.cle('scene'), findsOneWidget);
+      // T54 n'a pas de scène dessinée : ses objets portent la même clé.
+      expect(
+        p.cle('scene').evaluate().isNotEmpty ||
+            p.cle('objets').evaluate().isNotEmpty,
+        isTrue,
+      );
       await tester.tap(p.cle('lecteur_afficher_reponse'));
       await tester.pump();
       expect(p.cle('scene_reponse'), findsOneWidget);

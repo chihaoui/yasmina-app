@@ -1,0 +1,55 @@
+{
+  "id": "en-4-t1-u1-e02-x01",
+  "type": "T54",
+  "gabarit": "ecoute-colorie-objets",
+  "competence": "en-colours-objects",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "en",
+  "consigne": {
+    "texte": "Listen. Tap a colour, then tap the object."
+  },
+  "donnees": {
+    "objets": [
+      {
+        "id": "o1",
+        "emoji": "⚽",
+        "libelle": "ball"
+      },
+      {
+        "id": "o2",
+        "emoji": "🚗",
+        "libelle": "car"
+      },
+      {
+        "id": "o3",
+        "emoji": "🎈",
+        "libelle": "balloon"
+      }
+    ],
+    "couleurs": [
+      "red",
+      "blue",
+      "green"
+    ],
+    "ecoute": {
+      "texte": "Colour the ball red."
+    }
+  },
+  "reponse": {
+    "coloriages": [
+      {
+        "objet": "o1",
+        "couleur": "red"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Yes: the ball is red.",
+    "indice": "Listen again: which object, and which colour?",
+    "explication": "The ball must be red, and only the ball."
+  },
+  "empreinte": "sha256:6650c898f08cf492e1d264407575180e2c3792fd4e1f87ba822f0e264a7043d6",
+  "statut": "brouillon",
+  "version": 1
+}

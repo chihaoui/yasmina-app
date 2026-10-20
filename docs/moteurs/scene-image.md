@@ -1,6 +1,6 @@
 # Moteur Scène image
 
-Fiche de conception du moteur Scène image, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, soir, décision 39)**, à valider par Lamjed. Base de la tâche A1-07 (1,5 j-h en vigueur, les deux types de base). Les types avec audio (T53 Écoute et place, T54 Écoute et colorie, A2-05) viendront compléter cette fiche. Les points tranchés seul et les questions ouvertes sont dans [scene-image-questions.md](scene-image-questions.md).
+Fiche de conception du moteur Scène image, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, soir, décision 39)**, à valider par Lamjed. Base de la tâche A1-07 (1,5 j-h en vigueur, les deux types de base). Les types avec audio (T53 Écoute et place, T54 Écoute et colorie, A2-05) sont décrits au §14 (nuit du 20 au 21 oct. 2026, brouillon). Les points tranchés seul et les questions ouvertes sont dans [scene-image-questions.md](scene-image-questions.md).
 
 Sources : CLAUDE.md §5 (glisser-déposer réel, cibles d'au moins 48 dp, une langue par exercice), la page catalogue v3 (`docs/reference/catalogue-v3-poc.html`, référence visuelle seulement : « moteur scène image commun avec T47, T53, T54 »), la fiche [glisser-deposer.md](glisser-deposer.md) (`TuileGlissable`, `ZoneDepot`, contrôleur d'affectation), la fiche [choix.md](choix.md) pour tout ce qui est commun au lecteur.
 
@@ -112,3 +112,29 @@ Comme le moteur Choix (T08) et le moteur Glisser-déposer (T47) : `reponseDonnee
 | a | Cette fiche, les questions | 0,25 |
 | b | Schéma, règles, exemples, tests | 0,25 |
 | c | `SceneDessinee`, T08, T47 (affectation « zones »), tests, parité | 1 |
+
+## 14. Types avec audio (A2-05, 1,5 j-h en vigueur)
+
+Brouillon de la nuit du 20 au 21 oct. 2026 (session sans surveillance). Deux types où la consigne utile est **entendue** (`ecoute`, dite après la consigne affichée et redite par le bouton Écouter, jamais affichée), format des épreuves Cambridge Starters, en anglais dans les exemples (le moteur accepte toute langue).
+
+| Type | Nom | Ce que fait l'enfant | Réponse | Exemple |
+|---|---|---|---|---|
+| T53 | Écoute et place | Entend « Put the cat under the table », puis touche **une seule fois** l'emplacement de la scène où va l'objet : l'objet (emoji, nom en sous-titre) s'y pose. Un autre emplacement touché le déplace, le même emplacement touché à nouveau le retire | `{ "zone": "z2" }` | `T53-ecoute-place.json` (anglais, 4e) |
+| T54 | Écoute et colorie | Entend « Colour the ball red », touche une couleur de la palette (ronds de `target-min` avec le nom en sous-titre), puis l'objet : l'objet prend la couleur. Les objets sont de **grandes icônes** (emoji en `letter-hero`) **avec leur nom en sous-titre**, sans scène dessinée. Sans couleur en main, un objet colorié touché redevient blanc | `{ "coloriages": [ { "objet": "o1", "couleur": "red" } ] }` | `T54-ecoute-colorie.json` (anglais, 4e) |
+
+### Données JSON
+
+| Type | `donnees` | `reponse` |
+|---|---|---|
+| T53 | `scene` (comme T08), `objet` (`emoji`, `libelle` facultatif), `zones` (2 à 6, `libelle` sert au contenu, le lecteur d'écran garde un libellé neutre), `ecoute` (obligatoire) | `{ "zone" }`, une zone existante (`reponse_element_inconnu`) |
+| T54 | `objets` (2 à 6, `id` `o1`..., `emoji`, `libelle`), `couleurs` (2 à 6 parmi red, blue, green, yellow, orange, purple, brown, black, white, pink, uniques), `ecoute` (obligatoire) | `{ "coloriages": [ { "objet", "couleur" } ] }`, 1 à 6, objets et couleurs existants, un objet une seule fois (`element_duplique`), noms d'objets uniques |
+
+Les couleurs de coloriage sont de **vraies couleurs** (rouge doit être rouge), définies dans le thème (`couleurs_coloriage.dart`, seul endroit autorisé pour une couleur en dur) avec leur nom en anglais, français et arabe (harakat en brouillon).
+
+### Correction et feedback
+
+Comme T08 : Vérifier, 3 temps. T53 : juste si l'emplacement est celui attendu, l'emplacement faux passe en `coral` un instant puis la sélection se vide. T54 : juste si l'affectation objet → couleur est exactement celle attendue (ni plus ni moins), seuls les coloriages faux s'effacent après le 1er essai, un objet bien colorié reste. Réponse révélée : l'objet sur l'emplacement attendu, les objets de la réponse colorés.
+
+### Tests
+
+`scene_audio_test.dart` : un cas anglais (exemple réel) et un cas arabe (T53) ou français (T54) par type, consigne entendue après la consigne affichée et jamais écrite, un seul toucher, déplacement et retrait, couleur puis objet, retour des seuls coloriages faux, révélation, parité dans `parite_scene_test.dart` et l'aperçu web.

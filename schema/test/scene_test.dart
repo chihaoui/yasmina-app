@@ -89,6 +89,46 @@ final valides = <String, Map<String, dynamic> Function()>{
   ),
 };
 
+/// T53 et T54 en anglais : la consigne entendue est en anglais.
+Map<String, dynamic> exerciceAudio(
+  String type,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+) => exercice(type, donnees, reponse)
+  ..['id'] = 'en-4-t1-u1-e01-x01'
+  ..['langue'] = 'en'
+  ..['competence'] = 'en-essai'
+  ..['consigne'] = {'texte': 'Listen.'};
+
+final validesAudio = <String, Map<String, dynamic> Function()>{
+  'T53': () => exerciceAudio(
+    'T53',
+    {
+      'scene': scene(),
+      'objet': {'emoji': '🐱', 'libelle': 'the cat'},
+      'zones': [zone('z1'), zone('z2', x: 0.6)],
+      'ecoute': {'texte': 'Put the cat on the table.'},
+    },
+    {'zone': 'z1'},
+  ),
+  'T54': () => exerciceAudio(
+    'T54',
+    {
+      'objets': [
+        {'id': 'o1', 'emoji': '⚽', 'libelle': 'ball'},
+        {'id': 'o2', 'emoji': '🚗', 'libelle': 'car'},
+      ],
+      'couleurs': ['red', 'blue'],
+      'ecoute': {'texte': 'Colour the ball red.'},
+    },
+    {
+      'coloriages': [
+        {'objet': 'o1', 'couleur': 'red'},
+      ],
+    },
+  ),
+};
+
 Matcher probleme(String chemin, String code) => isA<ProblemeValidation>()
     .having((p) => p.chemin, 'chemin', chemin)
     .having((p) => p.code, 'code', code);
@@ -112,6 +152,69 @@ List<ProblemeValidation> avertissements(
 }
 
 void main() {
+  test('T53 et T54 : exemples valides, zone inconnue, objet ou couleur '
+      'inconnus, objet colorié deux fois, nom en double', () {
+    for (final construire in validesAudio.values) {
+      final r = validerExercice(construire());
+      expect(r.erreurs, isEmpty, reason: '$r');
+      expect(r.avertissements, isEmpty, reason: '$r');
+    }
+    List<ProblemeValidation> erreursAudio(
+      String type,
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = validesAudio[type]!();
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    expect(
+      erreursAudio('T53', (ex) => ex['reponse'] = {'zone': 'z9'}).single,
+      probleme('/reponse/zone', 'reponse_element_inconnu'),
+    );
+    expect(
+      erreursAudio('T53', (ex) => ex['donnees'].remove('ecoute')),
+      contains(probleme('/donnees', 'obligatoire')),
+    );
+    expect(
+      erreursAudio(
+        'T54',
+        (ex) => ex['reponse'] = {
+          'coloriages': [
+            {'objet': 'o3', 'couleur': 'green'},
+          ],
+        },
+      ),
+      unorderedEquals([
+        probleme('/reponse/coloriages/0/objet', 'reponse_element_inconnu'),
+        probleme('/reponse/coloriages/0/couleur', 'reponse_element_inconnu'),
+      ]),
+    );
+    expect(
+      erreursAudio(
+        'T54',
+        (ex) => ex['reponse'] = {
+          'coloriages': [
+            {'objet': 'o1', 'couleur': 'red'},
+            {'objet': 'o1', 'couleur': 'blue'},
+          ],
+        },
+      ).single,
+      probleme('/reponse/coloriages/1/objet', 'element_duplique'),
+    );
+    expect(
+      erreursAudio(
+        'T54',
+        (ex) => ex['donnees']['objets'][1]['libelle'] = 'ball',
+      ).single,
+      probleme('/donnees/objets/1/libelle', 'element_duplique'),
+    );
+    expect(
+      erreursAudio('T54', (ex) => ex['donnees']['couleurs'] = ['red', 'gold']),
+      contains(probleme('/donnees/couleurs/1', 'valeur_non_autorisee')),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

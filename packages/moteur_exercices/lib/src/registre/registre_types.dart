@@ -314,8 +314,20 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T53', 'Écoute et place', Moteur.sceneImage, lot: 2),
-  TypeExercice('T54', 'Écoute et colorie', Moteur.sceneImage, lot: 2),
+  TypeExercice(
+    'T53',
+    'Écoute et place',
+    Moteur.sceneImage,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T54',
+    'Écoute et colorie',
+    Moteur.sceneImage,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Révision et jeux (lot 1).
   TypeExercice(
     'T36',

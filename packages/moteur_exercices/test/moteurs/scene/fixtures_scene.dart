@@ -111,3 +111,63 @@ Map<String, dynamic> t47Arabe() => exerciceChoix(
   indice: 'السَّقْفُ فِي الْأَعْلَى.',
   explication: 'السَّقْفُ فِي الْأَعْلَى، وَالْجِدَارُ تَحْتَهُ. لَا شَجَرَةَ فِي الرَّسْمِ.',
 )..['competence'] = 'ev-bayt-ajzaa';
+
+/// T53 en arabe (éveil, 1re) : placer le soleil au-dessus de la maison.
+Map<String, dynamic> t53Arabe() => exerciceChoix(
+  type: 'T53',
+  langue: 'ar',
+  gabarit: 'ecoute-place-scene',
+  competence: 'eveil-positions',
+  niveau: 1,
+  consigne: {
+    'masculin': 'اِسْتَمِعْ ثُمَّ الْمِسِ الْمَكَانَ الْمُنَاسِبَ.',
+    'feminin': 'اِسْتَمِعِي ثُمَّ الْمِسِي الْمَكَانَ الْمُنَاسِبَ.',
+  },
+  donnees: {
+    'scene': {
+      'elements': [
+        {'emoji': '🏠', 'x': 0.5, 'y': 0.7, 'h': 0.4},
+      ],
+    },
+    'objet': {'emoji': '☀️', 'libelle': 'الشَّمْسُ'},
+    'zones': [
+      {'id': 'z1', 'x': 0.05, 'y': 0.55, 'l': 0.25, 'h': 0.35},
+      {'id': 'z2', 'x': 0.35, 'y': 0.05, 'l': 0.3, 'h': 0.3},
+      {'id': 'z3', 'x': 0.7, 'y': 0.55, 'l': 0.25, 'h': 0.35},
+    ],
+    'ecoute': {'texte': 'ضَعِ الشَّمْسَ فَوْقَ الْبَيْتِ.'},
+  },
+  reponse: {'zone': 'z2'},
+  reussite: {
+    'masculin': 'إِجَابَتُكَ صَحِيحَةٌ: الشَّمْسُ فَوْقَ الْبَيْتِ.',
+    'feminin': 'إِجَابَتُكِ صَحِيحَةٌ: الشَّمْسُ فَوْقَ الْبَيْتِ.',
+  },
+  indice: 'اِسْتَمِعْ مَرَّةً أُخْرَى: فَوْقَ يَعْنِي فِي الْأَعْلَى.',
+  explication: 'الشَّمْسُ فِي السَّمَاءِ، فَوْقَ الْبَيْتِ.',
+)..['competence'] = 'ev-positions';
+
+/// T54 en français : colorier la voiture en bleu.
+Map<String, dynamic> t54Francais() => exerciceChoix(
+  type: 'T54',
+  langue: 'fr',
+  gabarit: 'ecoute-colorie-objets',
+  competence: 'couleurs-objets',
+  niveau: 2,
+  consigne: 'Écoute. Touche une couleur, puis l\'objet.',
+  donnees: {
+    'objets': [
+      {'id': 'o1', 'emoji': '⚽', 'libelle': 'le ballon'},
+      {'id': 'o2', 'emoji': '🚗', 'libelle': 'la voiture'},
+    ],
+    'couleurs': ['red', 'blue', 'yellow'],
+    'ecoute': {'texte': 'Colorie la voiture en bleu.'},
+  },
+  reponse: {
+    'coloriages': [
+      {'objet': 'o2', 'couleur': 'blue'},
+    ],
+  },
+  reussite: 'Oui : la voiture est bleue.',
+  indice: 'Écoute encore : quel objet, quelle couleur ?',
+  explication: 'La voiture doit être bleue, et seulement la voiture.',
+);

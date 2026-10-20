@@ -15,5 +15,5 @@ Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type 
 | `manipulables/` | Manipulables (`docs/moteurs/manipulables.md`, brouillon) | T25, T27, T51, T26 (dinars et millimes), T29 (disque en quarts), T52 (comparaison de deux barres) |
 | `texte/` | Texte (`docs/moteurs/texte.md`, brouillon) | T07 (arabe et français), T17 (arabe avec clavier réduit, et français) |
 | `saisie-numerique/` | Saisie numérique, base (`docs/moteurs/saisie-numerique.md`, brouillon) | T22, T48 (addition et soustraction, avec retenue et avec emprunt) |
-| `scene-image/` | Scène image, base (`docs/moteurs/scene-image.md`, brouillon) | T08 (arabe), T47 (français), scènes en emoji et en formes |
+| `scene-image/` | Scène image (`docs/moteurs/scene-image.md`, brouillon) | T08 (arabe), T47 (français), T53 et T54 (anglais, avec consigne entendue), scènes en emoji et en formes |
 | `revision-jeux/` | Révision et jeux (`docs/moteurs/revision-jeux.md`, brouillon) | T36 (arabe), T37 (français, 6 paires en 2e), T38 (arabe et français) |

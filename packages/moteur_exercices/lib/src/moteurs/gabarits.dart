@@ -18,6 +18,8 @@ import 'manipulables/gabarit_modele_barres.dart';
 import 'manipulables/gabarit_monnaie.dart';
 import 'saisie/gabarit_calcul_pose.dart';
 import 'saisie/gabarit_saisie_numerique.dart';
+import 'scene/gabarit_ecoute_colorie.dart';
+import 'scene/gabarit_ecoute_place.dart';
 import 'scene/gabarit_etiquetage.dart';
 import 'scene/gabarit_hot_spot.dart';
 import 'texte/gabarit_dictee.dart';
@@ -64,9 +66,11 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Saisie numérique (base).
   'T22': GabaritSaisieNumerique(),
   'T48': GabaritCalculPose(),
-  // Moteur Scène image (base).
+  // Moteur Scène image (base et avec audio).
   'T08': GabaritHotSpot(),
   'T47': GabaritEtiquetage(),
+  'T53': GabaritEcoutePlace(),
+  'T54': GabaritEcouteColorie(),
   // Moteur Révision et jeux.
   'T36': GabaritFlashcards(),
   'T37': GabaritMemory(),
