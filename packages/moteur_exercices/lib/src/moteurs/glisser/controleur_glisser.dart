@@ -123,7 +123,10 @@ abstract class ControleurGlisser extends ControleurReponse {
 enum FormeAffectation {
   trous('trous', 'trou', 'etiquette'),
   paires('paires', 'droite', 'gauche'),
-  bacs('classement', 'categorie', 'element');
+  bacs('classement', 'categorie', 'element'),
+
+  /// Zones d'un schéma (T47, moteur Scène image) : une étiquette par zone.
+  zones('placements', 'zone', 'etiquette');
 
   const FormeAffectation(this.champ, this.cleCible, this.cleElement);
 
@@ -202,9 +205,10 @@ class ControleurAffectation extends ControleurGlisser {
   }
 
   /// Complète quand chaque élément attendu est posé (bacs, paires) ou
-  /// chaque cible remplie (trous : les étiquettes en trop restent).
+  /// chaque cible remplie (trous, zones : les étiquettes en trop restent).
   @override
-  bool get complete => forme == FormeAffectation.trous
+  bool get complete =>
+      forme == FormeAffectation.trous || forme == FormeAffectation.zones
       ? cibles.every((c) => _placements.containsValue(c.id))
       : attendu.keys.every(_placements.containsKey);
 

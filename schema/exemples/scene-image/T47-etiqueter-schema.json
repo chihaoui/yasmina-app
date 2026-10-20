@@ -1,0 +1,143 @@
+{
+  "id": "fr-3-t1-u3-e01-x01",
+  "type": "T47",
+  "gabarit": "schema-formes",
+  "competence": "fr-sciences-plante",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Place chaque étiquette sur la bonne partie de la plante."
+  },
+  "donnees": {
+    "scene": {
+      "elements": [
+        {
+          "forme": "rectangle",
+          "couleur": "amber",
+          "x": 0.47,
+          "y": 0.35,
+          "l": 0.06,
+          "h": 0.45
+        },
+        {
+          "forme": "cercle",
+          "couleur": "coral",
+          "x": 0.4,
+          "y": 0.12,
+          "l": 0.2,
+          "h": 0.25
+        },
+        {
+          "forme": "triangle",
+          "couleur": "olive",
+          "x": 0.25,
+          "y": 0.45,
+          "l": 0.22,
+          "h": 0.14
+        },
+        {
+          "forme": "triangle",
+          "couleur": "olive",
+          "x": 0.53,
+          "y": 0.55,
+          "l": 0.22,
+          "h": 0.14
+        },
+        {
+          "forme": "rectangle",
+          "couleur": "line",
+          "x": 0.35,
+          "y": 0.8,
+          "l": 0.3,
+          "h": 0.15
+        }
+      ]
+    },
+    "zones": [
+      {
+        "id": "z1",
+        "x": 0.36,
+        "y": 0.08,
+        "l": 0.28,
+        "h": 0.3,
+        "libelle": "le haut de la plante"
+      },
+      {
+        "id": "z2",
+        "x": 0.22,
+        "y": 0.42,
+        "l": 0.26,
+        "h": 0.2,
+        "libelle": "la partie verte à gauche"
+      },
+      {
+        "id": "z3",
+        "x": 0.4,
+        "y": 0.6,
+        "l": 0.2,
+        "h": 0.18,
+        "libelle": "la partie fine au milieu"
+      },
+      {
+        "id": "z4",
+        "x": 0.33,
+        "y": 0.8,
+        "l": 0.34,
+        "h": 0.17,
+        "libelle": "la partie sous la terre"
+      }
+    ],
+    "etiquettes": [
+      {
+        "id": "e1",
+        "texte": "la fleur"
+      },
+      {
+        "id": "e2",
+        "texte": "la feuille"
+      },
+      {
+        "id": "e3",
+        "texte": "la tige"
+      },
+      {
+        "id": "e4",
+        "texte": "la racine"
+      },
+      {
+        "id": "e5",
+        "texte": "le fruit"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "placements": [
+      {
+        "zone": "z1",
+        "etiquette": "e1"
+      },
+      {
+        "zone": "z2",
+        "etiquette": "e2"
+      },
+      {
+        "zone": "z3",
+        "etiquette": "e3"
+      },
+      {
+        "zone": "z4",
+        "etiquette": "e4"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : la fleur en haut, la feuille, la tige au milieu et la racine sous la terre.",
+    "indice": "La racine est sous la terre, la fleur tout en haut.",
+    "explication": "De haut en bas : la fleur, la feuille sur le côté, la tige au milieu, la racine sous la terre. Il n'y a pas de fruit."
+  },
+  "empreinte": "sha256:29056a47d873bb2aaefbb4419d1602526401604f69aebc3386bf5e7cc1561c18",
+  "statut": "brouillon",
+  "version": 1
+}

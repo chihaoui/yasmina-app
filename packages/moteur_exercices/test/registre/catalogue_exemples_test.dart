@@ -9,7 +9,8 @@ void main() {
     final catalogue = CatalogueExemples();
 
     test('tous valides et rattachés à un moteur du registre (Choix, '
-        'Glisser-déposer, Tracé, Manipulables, Texte, Saisie numérique)', () {
+        'Glisser-déposer, Tracé, Manipulables, Texte, Saisie numérique, '
+        'Scène image)', () {
       expect(catalogue.tous, hasLength(exemplesEduContent.length));
       for (final e in catalogue.tous) {
         expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
@@ -22,6 +23,7 @@ void main() {
             Moteur.manipulables,
             Moteur.texte,
             Moteur.saisieNumerique,
+            Moteur.sceneImage,
           ]),
           reason: e.chemin,
         );

@@ -68,6 +68,7 @@ void main() {
           Moteur.manipulables,
           Moteur.texte,
           Moteur.saisieNumerique,
+          Moteur.sceneImage,
         ]),
         reason: id,
       );

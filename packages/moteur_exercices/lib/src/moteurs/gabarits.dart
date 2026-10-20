@@ -12,6 +12,8 @@ import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
 import 'saisie/gabarit_calcul_pose.dart';
 import 'saisie/gabarit_saisie_numerique.dart';
+import 'scene/gabarit_etiquetage.dart';
+import 'scene/gabarit_hot_spot.dart';
 import 'texte/gabarit_dictee.dart';
 import 'texte/gabarit_toucher_mots.dart';
 import 'trace/gabarit_trace.dart';
@@ -56,6 +58,9 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Saisie numérique (base).
   'T22': GabaritSaisieNumerique(),
   'T48': GabaritCalculPose(),
+  // Moteur Scène image (base).
+  'T08': GabaritHotSpot(),
+  'T47': GabaritEtiquetage(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

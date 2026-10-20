@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) et les 2 types de base du moteur Saisie numérique (T22, T48), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) et les 2 types de base du moteur Scène image (T08, T47), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -443,6 +443,24 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesCalculPose" },
               "reponse": { "$ref": "#/$defs/reponseNombre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T08" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesHotSpot" },
+              "reponse": { "$ref": "#/$defs/reponseZones" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T47" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesEtiquetage" },
+              "reponse": { "$ref": "#/$defs/reponsePlacements" }
             }
           }
         }
@@ -1260,6 +1278,128 @@ const String texteSchemaEduContent = r'''
       "required": ["valeur"],
       "additionalProperties": false,
       "properties": { "valeur": { "type": "integer", "minimum": 0, "maximum": 999999 } }
+    },
+
+    "coordonnee": { "type": "number", "minimum": 0, "maximum": 1 },
+    "idZone": { "type": "string", "pattern": "^z[1-9]$" },
+    "elementScene": {
+      "description": "Un élément dessiné de la scène : un emoji (centré sur x, y, hauteur h) ou une forme (rectangle englobant x, y, l, h, couleur parmi les jetons), en coordonnées normalisées de 0 à 1.",
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "oneOf": [{ "required": ["emoji"] }, { "required": ["forme"] }],
+      "properties": {
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "forme": { "enum": ["cercle", "carre", "rectangle", "triangle"] },
+        "couleur": { "enum": ["blue", "olive", "amber", "coral", "sun", "line"], "default": "line" },
+        "x": { "$ref": "#/$defs/coordonnee" },
+        "y": { "$ref": "#/$defs/coordonnee" },
+        "l": { "$ref": "#/$defs/coordonnee" },
+        "h": { "$ref": "#/$defs/coordonnee" }
+      }
+    },
+    "scene": {
+      "description": "Scène dessinée par le moteur (aucun fichier image dans le prototype), cadre 4 : 3.",
+      "type": "object",
+      "required": ["elements"],
+      "additionalProperties": false,
+      "properties": {
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": { "$ref": "#/$defs/elementScene" }
+        }
+      }
+    },
+    "zoneScene": {
+      "description": "Une zone touchable de la scène : rectangle normalisé (règles Dart : contenu dans la scène), libelle lu par le lecteur d'écran en T47 seulement.",
+      "type": "object",
+      "required": ["id", "x", "y", "l", "h"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idZone" },
+        "x": { "$ref": "#/$defs/coordonnee" },
+        "y": { "$ref": "#/$defs/coordonnee" },
+        "l": { "$ref": "#/$defs/coordonnee" },
+        "h": { "$ref": "#/$defs/coordonnee" },
+        "libelle": { "$ref": "#/$defs/texteNonVide" }
+      }
+    },
+    "donneesHotSpot": {
+      "description": "T08 : toucher la zone demandée de la scène (plusieurs : plusieurs zones).",
+      "type": "object",
+      "required": ["scene", "zones"],
+      "additionalProperties": false,
+      "properties": {
+        "scene": { "$ref": "#/$defs/scene" },
+        "zones": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 9,
+          "items": { "$ref": "#/$defs/zoneScene" }
+        },
+        "plusieurs": { "type": "boolean", "default": false }
+      }
+    },
+    "reponseZones": {
+      "description": "Les zones attendues (règles Dart : existantes, une seule sans plusieurs).",
+      "type": "object",
+      "required": ["zones"],
+      "additionalProperties": false,
+      "properties": {
+        "zones": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idZone" }
+        }
+      }
+    },
+    "donneesEtiquetage": {
+      "description": "T47 : poser chaque étiquette sur la zone du schéma qu'elle nomme, étiquettes en trop possibles.",
+      "type": "object",
+      "required": ["scene", "zones", "etiquettes"],
+      "additionalProperties": false,
+      "properties": {
+        "scene": { "$ref": "#/$defs/scene" },
+        "zones": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/zoneScene" }
+        },
+        "etiquettes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponsePlacements": {
+      "description": "L'étiquette attendue sur chaque zone (règles Dart : toutes les zones, une étiquette par zone).",
+      "type": "object",
+      "required": ["placements"],
+      "additionalProperties": false,
+      "properties": {
+        "placements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["zone", "etiquette"],
+            "additionalProperties": false,
+            "properties": {
+              "zone": { "$ref": "#/$defs/idZone" },
+              "etiquette": { "$ref": "#/$defs/idElement" }
+            }
+          }
+        }
+      }
     }
   }
 }

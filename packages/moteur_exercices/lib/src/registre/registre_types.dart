@@ -289,8 +289,20 @@ const typesExercices = <TypeExercice>[
   TypeExercice('T50', 'Fluidité chronométrée', Moteur.saisieNumerique, lot: 2),
   TypeExercice('T63', "Balance d'équivalence", Moteur.saisieNumerique, lot: 2),
   // Scène image.
-  TypeExercice('T08', 'Hot spot sur image', Moteur.sceneImage, lot: 1),
-  TypeExercice('T47', 'Étiqueter un schéma', Moteur.sceneImage, lot: 1),
+  TypeExercice(
+    'T08',
+    'Hot spot sur image',
+    Moteur.sceneImage,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T47',
+    'Étiqueter un schéma',
+    Moteur.sceneImage,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice('T53', 'Écoute et place', Moteur.sceneImage, lot: 2),
   TypeExercice('T54', 'Écoute et colorie', Moteur.sceneImage, lot: 2),
   // Révision et jeux (lot 1).

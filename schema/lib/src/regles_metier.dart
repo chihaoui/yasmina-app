@@ -321,6 +321,17 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T08' || type == 'T47') {
+    problemes.addAll(
+      _reglesScene(
+        type,
+        _niveauDeId(ex['id'] as String),
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (_typesManipulables.contains(type)) {
     problemes.addAll(
       _reglesManipulables(
@@ -1065,6 +1076,152 @@ List<ProblemeValidation> _reglesGlisser(
       'elements_trop_nombreux',
       '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
           'année : 4 à 6 au maximum (CLAUDE.md §5).',
+    );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Scène image (docs/moteurs/scene-image.md) : T08 Hot
+/// spot sur image, T47 Étiqueter un schéma.
+List<ProblemeValidation> _reglesScene(
+  String type,
+  int? niveau,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  void avertissement(String c, String code, String message) => problemes.add(
+    ProblemeValidation(
+      chemin: c,
+      code: code,
+      message: message,
+      gravite: Gravite.avertissement,
+    ),
+  );
+  final zones = (donnees['zones'] as List).cast<Map<String, dynamic>>();
+  final idsZones = <String>{};
+  for (var k = 0; k < zones.length; k++) {
+    final id = zones[k]['id'] as String;
+    if (!idsZones.add(id)) {
+      erreur(
+        '$chemin/donnees/zones/$k/id',
+        'element_duplique',
+        'deux zones ont le même id « $id ».',
+      );
+    }
+    final x = zones[k]['x'] as num;
+    final y = zones[k]['y'] as num;
+    if (x + (zones[k]['l'] as num) > 1 || y + (zones[k]['h'] as num) > 1) {
+      erreur(
+        '$chemin/donnees/zones/$k',
+        'zone_hors_scene',
+        'la zone « $id » dépasse la scène : x + l et y + h valent 1 au plus.',
+      );
+    }
+  }
+  void inconnu(String c, String id, String champ) => erreur(
+    c,
+    'reponse_element_inconnu',
+    'la réponse désigne « $id », absent de donnees.$champ.',
+  );
+  switch (type) {
+    case 'T08':
+      final attendues = (reponse['zones'] as List).cast<String>();
+      for (var k = 0; k < attendues.length; k++) {
+        if (!idsZones.contains(attendues[k])) {
+          inconnu('$chemin/reponse/zones/$k', attendues[k], 'zones');
+        }
+      }
+      final plusieurs = donnees['plusieurs'] as bool? ?? false;
+      if (!plusieurs && attendues.length > 1) {
+        erreur(
+          '$chemin/reponse/zones',
+          'reponse_unique',
+          'une seule zone attendue sans « plusieurs » (ici '
+              '${attendues.length}).',
+        );
+      }
+    case 'T47':
+      final etiquettes = (donnees['etiquettes'] as List)
+          .cast<Map<String, dynamic>>();
+      final idsEtiquettes = <String>{};
+      final textes = <String>{};
+      for (var k = 0; k < etiquettes.length; k++) {
+        final id = etiquettes[k]['id'] as String;
+        if (!idsEtiquettes.add(id)) {
+          erreur(
+            '$chemin/donnees/etiquettes/$k/id',
+            'element_duplique',
+            'deux étiquettes ont le même id « $id ».',
+          );
+        }
+        final texte = etiquettes[k]['texte'] as String;
+        if (!textes.add(texte)) {
+          erreur(
+            '$chemin/donnees/etiquettes/$k/texte',
+            'element_duplique',
+            'deux étiquettes ont le même texte « $texte ».',
+          );
+        }
+      }
+      final placements = (reponse['placements'] as List)
+          .cast<Map<String, dynamic>>();
+      final zonesServies = <String>{};
+      final etiquettesServies = <String>{};
+      for (var k = 0; k < placements.length; k++) {
+        final zone = placements[k]['zone'] as String;
+        final etiquette = placements[k]['etiquette'] as String;
+        if (!idsZones.contains(zone)) {
+          inconnu('$chemin/reponse/placements/$k/zone', zone, 'zones');
+        }
+        if (!idsEtiquettes.contains(etiquette)) {
+          inconnu(
+            '$chemin/reponse/placements/$k/etiquette',
+            etiquette,
+            'etiquettes',
+          );
+        }
+        if (!zonesServies.add(zone)) {
+          erreur(
+            '$chemin/reponse/placements/$k/zone',
+            'zone_sans_reponse',
+            'la zone « $zone » reçoit deux étiquettes.',
+          );
+        }
+        if (!etiquettesServies.add(etiquette)) {
+          erreur(
+            '$chemin/reponse/placements/$k/etiquette',
+            'etiquette_reutilisee',
+            'l\'étiquette « $etiquette » est posée sur deux zones.',
+          );
+        }
+      }
+      for (final id in idsZones.difference(zonesServies)) {
+        erreur(
+          '$chemin/reponse/placements',
+          'zone_sans_reponse',
+          'la zone « $id » n\'a pas d\'étiquette attendue.',
+        );
+      }
+      if (idsEtiquettes.length <= idsZones.length && idsZones.length > 1) {
+        avertissement(
+          '$chemin/donnees/etiquettes',
+          'etiquettes_sans_intrus',
+          'toutes les étiquettes servent : ajouter une étiquette en trop, '
+              'sinon il suffit de tout poser.',
+        );
+      }
+  }
+  if (niveau != null && niveau <= 2 && zones.length > _elementsMaxPetits) {
+    avertissement(
+      '$chemin/donnees/zones',
+      'elements_trop_nombreux',
+      '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
+          '4 à 6 au maximum (CLAUDE.md §5).',
     );
   }
   return problemes;
