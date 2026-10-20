@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) les 3 types du moteur Révision et jeux (T36, T37, T38) et les 2 types du moteur Mesure et temps (T28, T30), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) les 3 types du moteur Révision et jeux (T36, T37, T38) les 2 types du moteur Mesure et temps (T28, T30) et les 4 types du moteur Grille et graphiques (T31, T32, T33, T60), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -506,6 +506,42 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesRegle" },
               "reponse": { "$ref": "#/$defs/reponseNombre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T31" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesLireGraphique" },
+              "reponse": { "$ref": "#/$defs/reponseSerie" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T32" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesConstruireGraphique" },
+              "reponse": { "$ref": "#/$defs/reponseValeursSeries" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T33" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesSymetrie" },
+              "reponse": { "$ref": "#/$defs/reponseCases" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T60" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesCodage" },
+              "reponse": { "$ref": "#/$defs/reponseChemin" }
             }
           }
         },
@@ -1525,6 +1561,137 @@ const String texteSchemaEduContent = r'''
         },
         "unite": { "$ref": "#/$defs/texteNonVide" },
         "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "idSerie": { "type": "string", "pattern": "^s[1-6]$" },
+    "serieGraphique": {
+      "description": "Une série d'un graphique en barres : une étiquette (emoji ou texte) et une valeur.",
+      "type": "object",
+      "required": ["id", "valeur"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idSerie" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "valeur": { "type": "integer", "minimum": 0, "maximum": 20 }
+      }
+    },
+    "donneesLireGraphique": {
+      "description": "T31 : lire un graphique en barres et toucher la barre qui répond à la question (plus : la plus grande valeur, moins : la plus petite). maximum : haut de l'axe.",
+      "type": "object",
+      "required": ["series", "question"],
+      "additionalProperties": false,
+      "properties": {
+        "series": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "$ref": "#/$defs/serieGraphique" } },
+        "maximum": { "type": "integer", "minimum": 2, "maximum": 20, "default": 10 },
+        "question": { "enum": ["plus", "moins"] },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "reponseSerie": {
+      "description": "La série attendue (règles Dart : celle de la plus grande ou plus petite valeur, unique).",
+      "type": "object",
+      "required": ["serie"],
+      "additionalProperties": false,
+      "properties": { "serie": { "$ref": "#/$defs/idSerie" } }
+    },
+    "donneesConstruireGraphique": {
+      "description": "T32 : construire le graphique en barres d'un tableau (valeur de chaque série), en touchant la cellule de la hauteur voulue. maximum : haut de l'axe.",
+      "type": "object",
+      "required": ["series"],
+      "additionalProperties": false,
+      "properties": {
+        "series": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "$ref": "#/$defs/serieGraphique" } },
+        "maximum": { "type": "integer", "minimum": 2, "maximum": 12, "default": 6 },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "reponseValeursSeries": {
+      "description": "La hauteur attendue de chaque barre (règles Dart : une entrée par série, égale à sa valeur).",
+      "type": "object",
+      "required": ["valeurs"],
+      "additionalProperties": false,
+      "properties": {
+        "valeurs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["serie", "valeur"],
+            "additionalProperties": false,
+            "properties": {
+              "serie": { "$ref": "#/$defs/idSerie" },
+              "valeur": { "type": "integer", "minimum": 0, "maximum": 20 }
+            }
+          }
+        }
+      }
+    },
+    "caseGrille": {
+      "description": "Une case d'un quadrillage : [ligne, colonne] à partir de 0.",
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "integer", "minimum": 0, "maximum": 11 }
+    },
+    "donneesSymetrie": {
+      "description": "T33 : compléter une figure par symétrie par rapport à l'axe vertical du milieu d'un quadrillage. colonnes : pair. cases : les cases données, à gauche de l'axe (règles Dart).",
+      "type": "object",
+      "required": ["lignes", "colonnes", "cases"],
+      "additionalProperties": false,
+      "properties": {
+        "lignes": { "type": "integer", "minimum": 2, "maximum": 10 },
+        "colonnes": { "enum": [4, 6, 8, 10, 12] },
+        "cases": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/caseGrille" } }
+      }
+    },
+    "reponseCases": {
+      "description": "Les cases à colorier (règles Dart : le symétrique exact des cases données).",
+      "type": "object",
+      "required": ["cases"],
+      "additionalProperties": false,
+      "properties": {
+        "cases": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/caseGrille" } }
+      }
+    },
+    "positionGrille": {
+      "type": "object",
+      "required": ["ligne", "colonne"],
+      "additionalProperties": false,
+      "properties": {
+        "ligne": { "type": "integer", "minimum": 0, "maximum": 7 },
+        "colonne": { "type": "integer", "minimum": 0, "maximum": 7 }
+      }
+    },
+    "donneesCodage": {
+      "description": "T60 : mener la fleur (depart) au puits (but) par un programme de flèches, sans sortir de la grille ni heurter un obstacle. max_pas : longueur du programme au plus.",
+      "type": "object",
+      "required": ["lignes", "colonnes", "depart", "but"],
+      "additionalProperties": false,
+      "properties": {
+        "lignes": { "type": "integer", "minimum": 3, "maximum": 8 },
+        "colonnes": { "type": "integer", "minimum": 3, "maximum": 8 },
+        "depart": { "$ref": "#/$defs/positionGrille" },
+        "but": { "$ref": "#/$defs/positionGrille" },
+        "obstacles": { "type": "array", "maxItems": 10, "items": { "$ref": "#/$defs/positionGrille" } },
+        "emoji_depart": { "$ref": "#/$defs/emoji" },
+        "emoji_but": { "$ref": "#/$defs/emoji" },
+        "max_pas": { "type": "integer", "minimum": 1, "maximum": 20, "default": 12 }
+      }
+    },
+    "reponseChemin": {
+      "description": "Un chemin qui mène du départ au but (règles Dart). Tout autre chemin qui arrive est accepté par le moteur.",
+      "type": "object",
+      "required": ["chemin"],
+      "additionalProperties": false,
+      "properties": {
+        "chemin": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": { "enum": ["haut", "bas", "gauche", "droite"] }
+        }
       }
     },
     "reponseNombre": {

@@ -323,6 +323,16 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (const {'T31', 'T32', 'T33', 'T60'}.contains(type)) {
+    problemes.addAll(
+      _reglesGrille(
+        type,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (type == 'T28' || type == 'T30') {
     problemes.addAll(
       _reglesMesure(
@@ -1451,6 +1461,242 @@ List<ProblemeValidation> _reglesScene(
       '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
           '4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Grille et graphiques (docs/moteurs/grille-graphiques.md) :
+/// T31 Lire un graphique, T32 Construire un graphique, T33 Symétrie, T60
+/// Codage de déplacement.
+List<ProblemeValidation> _reglesGrille(
+  String type,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+
+  /// Ids uniques des séries, et leurs valeurs.
+  Map<String, int> series() {
+    final liste = (donnees['series'] as List).cast<Map<String, dynamic>>();
+    final valeurs = <String, int>{};
+    for (var k = 0; k < liste.length; k++) {
+      final id = liste[k]['id'] as String;
+      if (valeurs.containsKey(id)) {
+        erreur(
+          '$chemin/donnees/series/$k/id',
+          'element_duplique',
+          'deux séries ont le même id « $id ».',
+        );
+      }
+      valeurs[id] = liste[k]['valeur'] as int;
+      if (liste[k]['emoji'] == null && liste[k]['texte'] == null) {
+        erreur(
+          '$chemin/donnees/series/$k',
+          'serie_sans_etiquette',
+          'une série porte un emoji ou un texte.',
+        );
+      }
+    }
+    return valeurs;
+  }
+
+  switch (type) {
+    case 'T31':
+      final valeurs = series();
+      final plus = donnees['question'] == 'plus';
+      final maximum = donnees['maximum'] as int? ?? 10;
+      for (final MapEntry(key: id, value: v) in valeurs.entries) {
+        if (v > maximum) {
+          erreur(
+            '$chemin/donnees/series',
+            'valeur_hors_axe',
+            'la série « $id » vaut $v, au-dessus de l\'axe ($maximum).',
+          );
+        }
+      }
+      final extreme = valeurs.values.reduce(
+        (a, b) => plus ? (a > b ? a : b) : (a < b ? a : b),
+      );
+      final candidats = [
+        for (final MapEntry(key: id, value: v) in valeurs.entries)
+          if (v == extreme) id,
+      ];
+      final attendue = reponse['serie'] as String;
+      if (!valeurs.containsKey(attendue)) {
+        erreur(
+          '$chemin/reponse/serie',
+          'serie_inconnue',
+          'la réponse désigne « $attendue », absente de donnees.series.',
+        );
+      } else if (candidats.length > 1) {
+        erreur(
+          '$chemin/donnees/series',
+          'question_ambigue',
+          'plusieurs séries (${candidats.join(', ')}) ont la valeur '
+              '${plus ? 'la plus grande' : 'la plus petite'} ($extreme).',
+        );
+      } else if (candidats.single != attendue) {
+        erreur(
+          '$chemin/reponse/serie',
+          'reponse_valeur_incoherente',
+          'la réponse « $attendue » n\'est pas la série '
+              '${plus ? 'la plus grande' : 'la plus petite'} '
+              '(${candidats.single}).',
+        );
+      }
+    case 'T32':
+      final valeurs = series();
+      final maximum = donnees['maximum'] as int? ?? 6;
+      for (final MapEntry(key: id, value: v) in valeurs.entries) {
+        if (v > maximum) {
+          erreur(
+            '$chemin/donnees/series',
+            'valeur_hors_axe',
+            'la série « $id » vaut $v, au-dessus de l\'axe ($maximum).',
+          );
+        }
+      }
+      final attendues = (reponse['valeurs'] as List)
+          .cast<Map<String, dynamic>>();
+      final vues = <String>{};
+      for (var k = 0; k < attendues.length; k++) {
+        final id = attendues[k]['serie'] as String;
+        final v = attendues[k]['valeur'] as int;
+        if (!valeurs.containsKey(id)) {
+          erreur(
+            '$chemin/reponse/valeurs/$k/serie',
+            'serie_inconnue',
+            'la réponse désigne « $id », absente de donnees.series.',
+          );
+        } else if (valeurs[id] != v) {
+          erreur(
+            '$chemin/reponse/valeurs/$k/valeur',
+            'reponse_valeur_incoherente',
+            'la barre « $id » attend ${valeurs[id]}, pas $v.',
+          );
+        }
+        vues.add(id);
+      }
+      if (vues.length != valeurs.length || attendues.length != valeurs.length) {
+        erreur(
+          '$chemin/reponse/valeurs',
+          'valeurs_incompletes',
+          'la réponse doit citer chacune des ${valeurs.length} séries une '
+              'fois (ici ${attendues.length}).',
+        );
+      }
+    case 'T33':
+      final lignes = donnees['lignes'] as int;
+      final colonnes = donnees['colonnes'] as int;
+      final donneesCases = (donnees['cases'] as List).cast<List>();
+      final fixes = <(int, int)>{};
+      for (var k = 0; k < donneesCases.length; k++) {
+        final l = donneesCases[k][0] as int;
+        final c = donneesCases[k][1] as int;
+        if (l >= lignes || c >= colonnes) {
+          erreur(
+            '$chemin/donnees/cases/$k',
+            'case_hors_grille',
+            'la case [$l, $c] sort du quadrillage ($lignes × $colonnes).',
+          );
+        } else if (c >= colonnes ~/ 2) {
+          erreur(
+            '$chemin/donnees/cases/$k',
+            'case_hors_moitie',
+            'la case [$l, $c] est à droite de l\'axe : les cases données '
+                'sont à gauche.',
+          );
+        }
+        fixes.add((l, c));
+      }
+      final attendues = {for (final f in fixes) (f.$1, colonnes - 1 - f.$2)};
+      final reponses = {
+        for (final c in (reponse['cases'] as List).cast<List>())
+          (c[0] as int, c[1] as int),
+      };
+      if (reponses.length != attendues.length ||
+          !reponses.containsAll(attendues)) {
+        erreur(
+          '$chemin/reponse/cases',
+          'symetrie_incoherente',
+          'la réponse doit être le symétrique exact des cases données par '
+              'rapport à l\'axe vertical.',
+        );
+      }
+    case 'T60':
+      final lignes = donnees['lignes'] as int;
+      final colonnes = donnees['colonnes'] as int;
+      (int, int) lirePos(Map<String, dynamic> m) =>
+          (m['ligne'] as int, m['colonne'] as int);
+      final depart = lirePos(donnees['depart'] as Map<String, dynamic>);
+      final but = lirePos(donnees['but'] as Map<String, dynamic>);
+      final obstacles = {
+        for (final o
+            in (donnees['obstacles'] as List? ?? const [])
+                .cast<Map<String, dynamic>>())
+          lirePos(o),
+      };
+      bool dedans((int, int) p) =>
+          p.$1 >= 0 && p.$1 < lignes && p.$2 >= 0 && p.$2 < colonnes;
+      for (final (nom, p) in [('depart', depart), ('but', but)]) {
+        if (!dedans(p)) {
+          erreur(
+            '$chemin/donnees/$nom',
+            'case_hors_grille',
+            'la case $p sort du quadrillage ($lignes × $colonnes).',
+          );
+        }
+      }
+      if (depart == but) {
+        erreur(
+          '$chemin/donnees/but',
+          'depart_egal_but',
+          'le but est déjà au départ.',
+        );
+      }
+      if (obstacles.contains(depart) || obstacles.contains(but)) {
+        erreur(
+          '$chemin/donnees/obstacles',
+          'obstacle_sur_chemin',
+          'un obstacle est sur le départ ou le but.',
+        );
+      }
+      final chemin0 = (reponse['chemin'] as List).cast<String>();
+      final maxPas = donnees['max_pas'] as int? ?? 12;
+      if (chemin0.length > maxPas) {
+        erreur(
+          '$chemin/reponse/chemin',
+          'chemin_invalide',
+          'le chemin a ${chemin0.length} pas, max_pas vaut $maxPas.',
+        );
+      }
+      var position = depart;
+      var valide = true;
+      for (final pas in chemin0) {
+        final suivante = switch (pas) {
+          'haut' => (position.$1 - 1, position.$2),
+          'bas' => (position.$1 + 1, position.$2),
+          'gauche' => (position.$1, position.$2 - 1),
+          _ => (position.$1, position.$2 + 1),
+        };
+        if (!dedans(suivante) || obstacles.contains(suivante)) {
+          valide = false;
+          break;
+        }
+        position = suivante;
+      }
+      if (!valide || position != but) {
+        erreur(
+          '$chemin/reponse/chemin',
+          'chemin_invalide',
+          'le chemin ${chemin0.join(' ')} ne mène pas du départ $depart au '
+              'but $but sans sortir ni heurter un obstacle.',
+        );
+      }
   }
   return problemes;
 }

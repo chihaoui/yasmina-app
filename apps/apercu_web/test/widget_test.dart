@@ -71,6 +71,7 @@ void main() {
             cle('saisie_reponse').evaluate().isNotEmpty ||
             cle('calcul_reponse').evaluate().isNotEmpty ||
             cle('scene_reponse').evaluate().isNotEmpty ||
+            cle('grille_reponse').evaluate().isNotEmpty ||
             cle('jeux_reponse').evaluate().isNotEmpty ||
             tester
                 .widgetList<MotTouchable>(find.byType(MotTouchable))

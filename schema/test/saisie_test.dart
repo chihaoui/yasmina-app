@@ -211,6 +211,141 @@ void main() {
     );
   });
 
+  test('T31, T32, T33, T60 (moteur Grille et graphiques) : exemples valides '
+      'et règles', () {
+    final grille = <String, Map<String, dynamic>>{
+      'T31': exercice(
+        'T31',
+        {
+          'series': [
+            {'id': 's1', 'emoji': '🍎', 'valeur': 6},
+            {'id': 's2', 'emoji': '🍌', 'valeur': 9},
+          ],
+          'question': 'plus',
+        },
+        {'serie': 's2'},
+      ),
+      'T32': exercice(
+        'T32',
+        {
+          'series': [
+            {'id': 's1', 'emoji': '🍎', 'valeur': 3},
+            {'id': 's2', 'emoji': '🍌', 'valeur': 5},
+          ],
+        },
+        {
+          'valeurs': [
+            {'serie': 's1', 'valeur': 3},
+            {'serie': 's2', 'valeur': 5},
+          ],
+        },
+      ),
+      'T33': exercice(
+        'T33',
+        {
+          'lignes': 4,
+          'colonnes': 6,
+          'cases': [
+            [1, 2],
+            [2, 1],
+          ],
+        },
+        {
+          'cases': [
+            [1, 3],
+            [2, 4],
+          ],
+        },
+      ),
+      'T60': exercice(
+        'T60',
+        {
+          'lignes': 4,
+          'colonnes': 4,
+          'depart': {'ligne': 3, 'colonne': 0},
+          'but': {'ligne': 1, 'colonne': 2},
+          'obstacles': [
+            {'ligne': 2, 'colonne': 1},
+          ],
+        },
+        {
+          'chemin': ['haut', 'haut', 'droite', 'droite'],
+        },
+      ),
+    };
+    for (final MapEntry(key: type, value: ex) in grille.entries) {
+      final r = validerExercice(ex);
+      expect(r.erreurs, isEmpty, reason: '$type : $r');
+      expect(r.avertissements, isEmpty, reason: '$type : $r');
+    }
+    List<ProblemeValidation> erreursDe(
+      String type,
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = jsonDecode(jsonEncode(grille[type])) as Map<String, dynamic>;
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    expect(
+      erreursDe('T31', (ex) => ex['reponse']['serie'] = 's1').single,
+      probleme('/reponse/serie', 'reponse_valeur_incoherente'),
+    );
+    expect(
+      erreursDe('T31', (ex) => ex['donnees']['series'][0]['valeur'] = 9).single,
+      probleme('/donnees/series', 'question_ambigue'),
+    );
+    expect(
+      erreursDe(
+        'T31',
+        (ex) => ex['donnees']['series'][1]['valeur'] = 12,
+      ).single,
+      probleme('/donnees/series', 'valeur_hors_axe'),
+    );
+    expect(
+      erreursDe(
+        'T32',
+        (ex) => ex['reponse']['valeurs'][1]['valeur'] = 4,
+      ).single,
+      probleme('/reponse/valeurs/1/valeur', 'reponse_valeur_incoherente'),
+    );
+    expect(
+      erreursDe('T32', (ex) => ex['reponse']['valeurs'][1]['serie'] = 's1'),
+      contains(probleme('/reponse/valeurs', 'valeurs_incompletes')),
+    );
+    expect(
+      erreursDe('T33', (ex) => ex['reponse']['cases'][0] = [1, 4]).single,
+      probleme('/reponse/cases', 'symetrie_incoherente'),
+    );
+    expect(
+      erreursDe('T33', (ex) => ex['donnees']['cases'][0] = [1, 4]),
+      contains(probleme('/donnees/cases/0', 'case_hors_moitie')),
+    );
+    expect(
+      erreursDe(
+        'T60',
+        (ex) => ex['reponse']['chemin'] = ['droite', 'haut', 'haut'],
+      ).single,
+      probleme('/reponse/chemin', 'chemin_invalide'),
+    );
+    expect(
+      erreursDe(
+        'T60',
+        (ex) => ex['donnees']['but'] = {'ligne': 3, 'colonne': 0},
+      ),
+      contains(probleme('/donnees/but', 'depart_egal_but')),
+    );
+    expect(
+      erreursDe(
+        'T60',
+        (ex) => ex['donnees']['obstacles'] = [
+          {'ligne': 1, 'colonne': 2},
+        ],
+      ),
+      contains(probleme('/donnees/obstacles', 'obstacle_sur_chemin')),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

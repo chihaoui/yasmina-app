@@ -1,0 +1,55 @@
+{
+  "id": "ma-4-t2-u1-e01-x01",
+  "type": "T31",
+  "gabarit": "graphique-barres-lecture",
+  "competence": "ma-donnees-lire-graphique",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِخْتَارَ التَّلَامِيذُ فَاكِهَتَهُمُ الْمُفَضَّلَةَ. اِلْمِسِ الْفَاكِهَةَ الْأَكْثَرَ اخْتِيَارًا.",
+      "feminin": "اِخْتَارَ التَّلَامِيذُ فَاكِهَتَهُمُ الْمُفَضَّلَةَ. اِلْمِسِي الْفَاكِهَةَ الْأَكْثَرَ اخْتِيَارًا."
+    }
+  },
+  "donnees": {
+    "series": [
+      {
+        "id": "s1",
+        "emoji": "🍎",
+        "valeur": 6
+      },
+      {
+        "id": "s2",
+        "emoji": "🍌",
+        "valeur": 9
+      },
+      {
+        "id": "s3",
+        "emoji": "🍊",
+        "valeur": 4
+      },
+      {
+        "id": "s4",
+        "emoji": "🍇",
+        "valeur": 7
+      }
+    ],
+    "maximum": 10,
+    "question": "plus"
+  },
+  "reponse": {
+    "serie": "s2"
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْمَوْزُ، 9 تَلَامِيذَ، هُوَ الْعَمُودُ الْأَطْوَلُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْمَوْزُ، 9 تَلَامِيذَ، هُوَ الْعَمُودُ الْأَطْوَلُ."
+    },
+    "indice": "اِبْحَثْ عَنِ الْعَمُودِ الْأَطْوَلِ.",
+    "explication": "الْمَوْزُ: 9 تَلَامِيذَ، وَهُوَ الْعَمُودُ الْأَطْوَلُ."
+  },
+  "empreinte": "sha256:f0e1fe4f8397801592734ec442ff1c5766ee29e86773418110abaf5624a80ff5",
+  "statut": "brouillon",
+  "version": 1
+}

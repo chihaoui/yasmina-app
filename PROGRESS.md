@@ -8,15 +8,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
 | A1 | 23 | 36,25 | 63 % |
-| A2 | 9 | 30,5 | 30 % |
+| A2 | 12,5 | 30,5 | 41 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **50,5** | **182,25** | **27,7 %** |
+| **Total** | **54** | **182,25** | **29,6 %** |
 
-- **Avancement global : 27,7 %** (50,5 j-h faits sur 182,25)
-- **Types jouables : 45 sur 52**
+- **Avancement global : 29,6 %** (54 j-h faits sur 182,25)
+- **Types jouables : 49 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -140,7 +140,11 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [x] Schéma, validateur, 2 exemples en brouillon (6 h 30, crayon de 7 cm)
   - [x] T28 aiguilles déplacées au doigt (aimant au pas, l'heure suit les minutes), T30 longueur lue et écrite au pavé, tests arabe et français avec un vrai geste, parité
   - [ ] Validation par Lamjed de la fiche et test du geste sur l'iPhone
-- [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (3,5 j-h)
+- [x] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (3,5 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/grille-graphiques.md` et questions (nuit du 20 au 21 oct. 2026)
+  - [x] Schéma, validateur, 4 exemples en brouillon (fruits préférés, 3 barres, symétrie 6 × 8, chemin 5 × 5)
+  - [x] `GraphiqueBarres` partagé, T31 barre touchée, T32 cellules touchées, T33 cases du quadrillage, T60 programme de flèches joué pas à pas, tests arabe et français, parité
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [x] A2-05 Moteur Scène image avec audio (T53, T54) (1,5 j-h)
   - [x] Fiche §14 de `docs/moteurs/scene-image.md` et questions 9 à 12 (nuit du 20 au 21 oct. 2026)
   - [x] Schéma, validateur, 2 exemples en anglais en brouillon (le chat sous la table, le ballon rouge)

@@ -8,29 +8,33 @@ void main() {
   group('exemples réels (schema/exemples)', () {
     final catalogue = CatalogueExemples();
 
-    test('tous valides et rattachés à un moteur du registre (Choix, '
-        'Glisser-déposer, Manipulables, Texte, Saisie numérique, '
-        'Scène image, Révision et jeux, Mesure et temps)', () {
-      expect(catalogue.tous, hasLength(exemplesEduContent.length));
-      for (final e in catalogue.tous) {
-        expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
-        expect(
-          typeParId(e.idType!)!.moteur,
-          isIn([
-            Moteur.choix,
-            Moteur.glisserDeposer,
-            Moteur.manipulables,
-            Moteur.texte,
-            Moteur.saisieNumerique,
-            Moteur.sceneImage,
-            Moteur.revisionJeux,
-            Moteur.mesureTemps,
-          ]),
-          reason: e.chemin,
-        );
-      }
-      expect(catalogue.nonRattaches, isEmpty);
-    });
+    test(
+      'tous valides et rattachés à un moteur du registre (Choix, '
+      'Glisser-déposer, Manipulables, Texte, Saisie numérique, '
+      'Scène image, Révision et jeux, Mesure et temps, Grille et graphiques)',
+      () {
+        expect(catalogue.tous, hasLength(exemplesEduContent.length));
+        for (final e in catalogue.tous) {
+          expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
+          expect(
+            typeParId(e.idType!)!.moteur,
+            isIn([
+              Moteur.choix,
+              Moteur.glisserDeposer,
+              Moteur.manipulables,
+              Moteur.texte,
+              Moteur.saisieNumerique,
+              Moteur.sceneImage,
+              Moteur.revisionJeux,
+              Moteur.mesureTemps,
+              Moteur.grilleGraphiques,
+            ]),
+            reason: e.chemin,
+          );
+        }
+        expect(catalogue.nonRattaches, isEmpty);
+      },
+    );
 
     test('T01 a 4 exemples, T19, T06 et T48 plusieurs, T20 (retiré) aucun', () {
       expect(catalogue.exemplesDuType('T01'), hasLength(4));

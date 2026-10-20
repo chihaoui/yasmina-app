@@ -1,0 +1,62 @@
+{
+  "id": "ma-4-t2-u1-e02-x01",
+  "type": "T32",
+  "gabarit": "graphique-barres-construction",
+  "competence": "ma-donnees-construire-graphique",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِرْسُمِ الْأَعْمِدَةَ حَسَبَ الْجَدْوَلِ: كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا.",
+      "feminin": "اِرْسُمِي الْأَعْمِدَةَ حَسَبَ الْجَدْوَلِ: كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا."
+    }
+  },
+  "donnees": {
+    "series": [
+      {
+        "id": "s1",
+        "emoji": "🍎",
+        "valeur": 3
+      },
+      {
+        "id": "s2",
+        "emoji": "🍌",
+        "valeur": 5
+      },
+      {
+        "id": "s3",
+        "emoji": "🍊",
+        "valeur": 2
+      }
+    ],
+    "maximum": 6
+  },
+  "reponse": {
+    "valeurs": [
+      {
+        "serie": "s1",
+        "valeur": 3
+      },
+      {
+        "serie": "s2",
+        "valeur": 5
+      },
+      {
+        "serie": "s3",
+        "valeur": 2
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الرَّسْمُ الْبَيَانِيُّ صَحِيحٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الرَّسْمُ الْبَيَانِيُّ صَحِيحٌ."
+    },
+    "indice": "كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا: اِلْمِسِ الْمُرَبَّعَ الَّذِي يُوَافِقُ الْعَدَدَ.",
+    "explication": "التُّفَّاحُ 3، الْمَوْزُ 5، الْبُرْتُقَالُ 2."
+  },
+  "empreinte": "sha256:4d4df0262a2b0c690786420c04cff49d890067652d7aa1e711f118108d3d515c",
+  "statut": "brouillon",
+  "version": 1
+}

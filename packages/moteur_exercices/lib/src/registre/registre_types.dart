@@ -384,15 +384,34 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Grille et graphiques (lot 2).
-  TypeExercice('T31', 'Lire un graphique', Moteur.grilleGraphiques, lot: 2),
+  TypeExercice(
+    'T31',
+    'Lire un graphique',
+    Moteur.grilleGraphiques,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   TypeExercice(
     'T32',
     'Construire un graphique',
     Moteur.grilleGraphiques,
     lot: 2,
+    etat: EtatType.jouable,
   ),
-  TypeExercice('T33', 'Symétrie', Moteur.grilleGraphiques, lot: 2),
-  TypeExercice('T60', 'Codage de déplacement', Moteur.grilleGraphiques, lot: 2),
+  TypeExercice(
+    'T33',
+    'Symétrie',
+    Moteur.grilleGraphiques,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T60',
+    'Codage de déplacement',
+    Moteur.grilleGraphiques,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Simulateur (lot 2).
   TypeExercice('T34', 'Flotte ou coule', Moteur.simulateur, lot: 2),
   TypeExercice('T57', "Simulateur d'expérience", Moteur.simulateur, lot: 2),

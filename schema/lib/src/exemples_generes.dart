@@ -1722,6 +1722,286 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'grille-graphiques/T31-lire-graphique.json': r'''
+{
+  "id": "ma-4-t2-u1-e01-x01",
+  "type": "T31",
+  "gabarit": "graphique-barres-lecture",
+  "competence": "ma-donnees-lire-graphique",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِخْتَارَ التَّلَامِيذُ فَاكِهَتَهُمُ الْمُفَضَّلَةَ. اِلْمِسِ الْفَاكِهَةَ الْأَكْثَرَ اخْتِيَارًا.",
+      "feminin": "اِخْتَارَ التَّلَامِيذُ فَاكِهَتَهُمُ الْمُفَضَّلَةَ. اِلْمِسِي الْفَاكِهَةَ الْأَكْثَرَ اخْتِيَارًا."
+    }
+  },
+  "donnees": {
+    "series": [
+      {
+        "id": "s1",
+        "emoji": "🍎",
+        "valeur": 6
+      },
+      {
+        "id": "s2",
+        "emoji": "🍌",
+        "valeur": 9
+      },
+      {
+        "id": "s3",
+        "emoji": "🍊",
+        "valeur": 4
+      },
+      {
+        "id": "s4",
+        "emoji": "🍇",
+        "valeur": 7
+      }
+    ],
+    "maximum": 10,
+    "question": "plus"
+  },
+  "reponse": {
+    "serie": "s2"
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْمَوْزُ، 9 تَلَامِيذَ، هُوَ الْعَمُودُ الْأَطْوَلُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْمَوْزُ، 9 تَلَامِيذَ، هُوَ الْعَمُودُ الْأَطْوَلُ."
+    },
+    "indice": "اِبْحَثْ عَنِ الْعَمُودِ الْأَطْوَلِ.",
+    "explication": "الْمَوْزُ: 9 تَلَامِيذَ، وَهُوَ الْعَمُودُ الْأَطْوَلُ."
+  },
+  "empreinte": "sha256:f0e1fe4f8397801592734ec442ff1c5766ee29e86773418110abaf5624a80ff5",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'grille-graphiques/T32-construire-graphique.json': r'''
+{
+  "id": "ma-4-t2-u1-e02-x01",
+  "type": "T32",
+  "gabarit": "graphique-barres-construction",
+  "competence": "ma-donnees-construire-graphique",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِرْسُمِ الْأَعْمِدَةَ حَسَبَ الْجَدْوَلِ: كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا.",
+      "feminin": "اِرْسُمِي الْأَعْمِدَةَ حَسَبَ الْجَدْوَلِ: كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا."
+    }
+  },
+  "donnees": {
+    "series": [
+      {
+        "id": "s1",
+        "emoji": "🍎",
+        "valeur": 3
+      },
+      {
+        "id": "s2",
+        "emoji": "🍌",
+        "valeur": 5
+      },
+      {
+        "id": "s3",
+        "emoji": "🍊",
+        "valeur": 2
+      }
+    ],
+    "maximum": 6
+  },
+  "reponse": {
+    "valeurs": [
+      {
+        "serie": "s1",
+        "valeur": 3
+      },
+      {
+        "serie": "s2",
+        "valeur": 5
+      },
+      {
+        "serie": "s3",
+        "valeur": 2
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الرَّسْمُ الْبَيَانِيُّ صَحِيحٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الرَّسْمُ الْبَيَانِيُّ صَحِيحٌ."
+    },
+    "indice": "كُلُّ مُرَبَّعٍ يُسَاوِي تِلْمِيذًا وَاحِدًا: اِلْمِسِ الْمُرَبَّعَ الَّذِي يُوَافِقُ الْعَدَدَ.",
+    "explication": "التُّفَّاحُ 3، الْمَوْزُ 5، الْبُرْتُقَالُ 2."
+  },
+  "empreinte": "sha256:4d4df0262a2b0c690786420c04cff49d890067652d7aa1e711f118108d3d515c",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'grille-graphiques/T33-symetrie.json': r'''
+{
+  "id": "ma-4-t2-u2-e01-x01",
+  "type": "T33",
+  "gabarit": "symetrie-quadrillage",
+  "competence": "ma-geometrie-symetrie",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَكْمِلِ الشَّكْلَ بِالتَّنَاظُرِ بِالنِّسْبَةِ إِلَى الْمِحْوَرِ الْأَحْمَرِ.",
+      "feminin": "أَكْمِلِي الشَّكْلَ بِالتَّنَاظُرِ بِالنِّسْبَةِ إِلَى الْمِحْوَرِ الْأَحْمَرِ."
+    }
+  },
+  "donnees": {
+    "lignes": 6,
+    "colonnes": 8,
+    "cases": [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ]
+    ]
+  },
+  "reponse": {
+    "cases": [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الشَّكْلُ مُتَنَاظِرٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الشَّكْلُ مُتَنَاظِرٌ."
+    },
+    "indice": "كُلُّ مُرَبَّعٍ مُلَوَّنٍ لَهُ مُرَبَّعٌ مُقَابِلٌ عَلَى نَفْسِ الْبُعْدِ مِنَ الْمِحْوَرِ.",
+    "explication": "الشَّكْلُ الْمُتَنَاظِرُ هُوَ صُورَةُ الْمِرْآةِ لِلنِّصْفِ الْأَيْسَرِ."
+  },
+  "empreinte": "sha256:470929598b7a0435dd98c6b9b9dec37dcd6674cbc5f89ce1513c7edb3f8042dc",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'grille-graphiques/T60-codage.json': r'''
+{
+  "id": "ma-3-t2-u2-e01-x01",
+  "type": "T60",
+  "gabarit": "codage-chemin",
+  "competence": "ma-espace-codage",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَوْصِلِ الزَّهْرَةَ إِلَى الْبِئْرِ بِالْأَسْهُمِ، ثُمَّ شَغِّلِ الْبَرْنَامَجَ.",
+      "feminin": "أَوْصِلِي الزَّهْرَةَ إِلَى الْبِئْرِ بِالْأَسْهُمِ، ثُمَّ شَغِّلِي الْبَرْنَامَجَ."
+    }
+  },
+  "donnees": {
+    "lignes": 5,
+    "colonnes": 5,
+    "depart": {
+      "ligne": 4,
+      "colonne": 0
+    },
+    "but": {
+      "ligne": 2,
+      "colonne": 3
+    },
+    "obstacles": [
+      {
+        "ligne": 3,
+        "colonne": 2
+      }
+    ],
+    "emoji_depart": "🌸",
+    "emoji_but": "🪣"
+  },
+  "reponse": {
+    "chemin": [
+      "haut",
+      "haut",
+      "droite",
+      "droite",
+      "droite"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: وَصَلَتِ الزَّهْرَةُ إِلَى الْبِئْرِ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: وَصَلَتِ الزَّهْرَةُ إِلَى الْبِئْرِ."
+    },
+    "indice": "الْبِئْرُ فِي الْأَعْلَى إِلَى الْيَمِينِ: اِصْعَدْ أَوَّلًا.",
+    "explication": "أَعْلَى، أَعْلَى، يَمِينًا، يَمِينًا، يَمِينًا."
+  },
+  "empreinte": "sha256:17727c826408a4aafbbe9bd8e2f8e7c6b2163a769cf6b04b77f750ac4b01c09a",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'manipulables/T25-droite-numerique.json': r'''
 {
   "id": "ma-1-t1-u2-e01-x01",

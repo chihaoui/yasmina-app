@@ -1,0 +1,55 @@
+{
+  "id": "ma-3-t2-u2-e01-x01",
+  "type": "T60",
+  "gabarit": "codage-chemin",
+  "competence": "ma-espace-codage",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَوْصِلِ الزَّهْرَةَ إِلَى الْبِئْرِ بِالْأَسْهُمِ، ثُمَّ شَغِّلِ الْبَرْنَامَجَ.",
+      "feminin": "أَوْصِلِي الزَّهْرَةَ إِلَى الْبِئْرِ بِالْأَسْهُمِ، ثُمَّ شَغِّلِي الْبَرْنَامَجَ."
+    }
+  },
+  "donnees": {
+    "lignes": 5,
+    "colonnes": 5,
+    "depart": {
+      "ligne": 4,
+      "colonne": 0
+    },
+    "but": {
+      "ligne": 2,
+      "colonne": 3
+    },
+    "obstacles": [
+      {
+        "ligne": 3,
+        "colonne": 2
+      }
+    ],
+    "emoji_depart": "🌸",
+    "emoji_but": "🪣"
+  },
+  "reponse": {
+    "chemin": [
+      "haut",
+      "haut",
+      "droite",
+      "droite",
+      "droite"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: وَصَلَتِ الزَّهْرَةُ إِلَى الْبِئْرِ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: وَصَلَتِ الزَّهْرَةُ إِلَى الْبِئْرِ."
+    },
+    "indice": "الْبِئْرُ فِي الْأَعْلَى إِلَى الْيَمِينِ: اِصْعَدْ أَوَّلًا.",
+    "explication": "أَعْلَى، أَعْلَى، يَمِينًا، يَمِينًا، يَمِينًا."
+  },
+  "empreinte": "sha256:17727c826408a4aafbbe9bd8e2f8e7c6b2163a769cf6b04b77f750ac4b01c09a",
+  "statut": "brouillon",
+  "version": 1
+}

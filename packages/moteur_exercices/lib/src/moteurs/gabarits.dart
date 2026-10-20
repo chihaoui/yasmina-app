@@ -7,6 +7,10 @@ import 'choix/gabarit_vrai_faux.dart';
 import 'glisser/gabarit_affectation.dart';
 import 'glisser/gabarit_ordre.dart';
 import 'glisser/gabarit_racine_scheme.dart';
+import 'grille/gabarit_codage.dart';
+import 'grille/gabarit_construire_graphique.dart';
+import 'grille/gabarit_lire_graphique.dart';
+import 'grille/gabarit_symetrie.dart';
 import 'jeux/gabarit_flashcards.dart';
 import 'jeux/gabarit_memory.dart';
 import 'jeux/gabarit_mots_meles.dart';
@@ -86,6 +90,11 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Mesure et temps.
   'T28': GabaritHorloge(),
   'T30': GabaritRegle(),
+  // Moteur Grille et graphiques.
+  'T31': GabaritLireGraphique(),
+  'T32': GabaritConstruireGraphique(),
+  'T33': GabaritSymetrie(),
+  'T60': GabaritCodage(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.
