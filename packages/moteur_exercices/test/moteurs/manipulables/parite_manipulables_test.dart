@@ -14,10 +14,8 @@ void main() {
         typeParId(e.idType!)?.etat == EtatType.jouable,
   );
 
-  test('T25 est jouable avec un exemple, T27 et T51 restent à venir', () {
-    expect(exemples.map((e) => e.idType).toSet(), {'T25'});
-    expect(typeParId('T27')!.etat, EtatType.aVenir);
-    expect(typeParId('T51')!.etat, EtatType.aVenir);
+  test('les 3 types de base sont jouables, avec un exemple chacun', () {
+    expect(exemples.map((e) => e.idType).toSet(), {'T25', 'T27', 'T51'});
   });
 
   for (final exemple in exemples) {
@@ -27,14 +25,24 @@ void main() {
       final p = Partie(tester);
       await p.jouer(exemple.exercice!, mode: ModeExercice.apercu);
       expect(p.cle('lecteur_erreur'), findsNothing);
-      expect(p.cle('droite'), findsOneWidget);
       expect(p.audio.audioFactice.dits.first.langue, 'ar');
       await tester.tap(p.cle('lecteur_afficher_reponse'));
       await tester.pump();
-      final revele =
-          tester.widget<CustomPaint>(p.cle('droite_reponse')).painter!
-              as PeintreDroite;
-      expect(revele.valeur, exemple.exercice!['donnees']['cible']);
+      final donnees = exemple.exercice!['donnees'] as Map<String, dynamic>;
+      switch (exemple.idType) {
+        case 'T25':
+          final revele =
+              tester.widget<CustomPaint>(p.cle('droite_reponse')).painter!
+                  as PeintreDroite;
+          expect(revele.valeur, donnees['cible']);
+        case 'T27':
+          expect(p.cle('manipulables_reponse'), findsOneWidget);
+          expect(find.byType(Bloc), findsNWidgets(2 + 3 + 4));
+        case 'T51':
+          expect(p.cle('manipulables_reponse'), findsOneWidget);
+          expect(find.byType(Jeton), findsNWidgets(1 + 7));
+      }
+      expect(find.text('juste'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   }

@@ -39,13 +39,13 @@ Déroulé commun : Yasmina et la consigne (lue à l'ouverture, réécoute), le m
 
 1. À droite (début de ligne en arabe) la **réserve** : une barre de dix (10 cubes collés, `blue-soft`, bordure `blue`) et un cube d'unité (`amber-soft`, bordure `amber`), toujours disponibles. À gauche le **plateau** (zone pointillée, `radius-lg`), avec deux colonnes : les dizaines, puis les unités.
 2. Glisser une barre ou un cube de la réserve sur le plateau l'y ajoute (son `depot`, vibration). Toucher un bloc de la réserve l'ajoute aussi (secours). Toucher un bloc posé le retire.
-3. Sous le plateau, le compte en clair : « 3 عَشَرَاتٌ وَ 4 وَحَدَاتٌ » (nombre en chiffres), lu par le lecteur d'écran. Pas le total : c'est à l'enfant de le construire.
+3. Sous le plateau, le compte en clair : « الْعَشَرَاتُ: 3 وَالْوَحَدَاتُ: 4 » (chiffres, sans accord du pluriel à gérer), lu par le lecteur d'écran. Pas le total : c'est à l'enfant de le construire.
 4. Vérifier devient actif dès qu'un bloc est posé. Le plateau refuse plus de 9 unités si `canonique` (par défaut) et plus de 9 dizaines.
 
 ### T51 Cadre de 10
 
-1. Un cadre de 2 lignes de 5 cases (`target-min` au moins, bordure `line`), qui se lit dans le sens d'écriture. À côté, la **réserve** : un jeton (`olive`) toujours disponible.
-2. Glisser le jeton sur une case vide l'y pose (son `depot`, vibration). Toucher une case vide y pose un jeton (secours), toucher un jeton posé le retire. Les cases se remplissent librement.
+1. Un cadre de 2 lignes de 5 cases (`target-min` au moins, bordure `line`), qui se lit dans le sens d'écriture. Au-dessus, au début de ligne, la **réserve** : un jeton (`olive`) toujours disponible (à côté du cadre, cinq cases ne tiennent pas dans la largeur d'un téléphone).
+2. Glisser le jeton sur une case vide l'y pose (son `depot`, vibration). Toucher une case vide y pose un jeton, toucher la réserve remplit la première case vide (secours), toucher un jeton posé le retire. Les cases se remplissent librement.
 3. Vérifier devient actif dès qu'un jeton est posé (la réponse 0 n'existe pas dans le MVP).
 
 ## 4. Données JSON
@@ -121,8 +121,9 @@ Variante à venir pour T51 : « combien manque-t-il pour faire 10 ? » (cadre pr
 | LetterTile (zone) | `ZoneDepot` | existe | Plateau de T27, cases de T51 (pointillé, aimant, juste) |
 | Button, Feedback, YasminaBubble, IconButton | existants | | Portés par le lecteur |
 | Droite numérique | `DroiteNumerique` | à créer | Trait `ink`, graduations `line`, étiquettes en `option`, repère `blue` |
-| Blocs | `BlocDix`, `BlocUnite` | à créer | Cubes `amber-soft` et `amber`, barre de dix `blue-soft` et `blue` |
-| Jeton | `Jeton` | à créer | Rond `olive`, bordure `olive-text` |
+| Blocs | `Bloc` (barre ou cube) | existe (`materiel.dart`) | Cubes `amber-soft` et `amber`, barre de dix `blue-soft` et `blue`, juste en `olive-soft`, faux en `coral-soft` |
+| Jeton | `Jeton` | existe (`materiel.dart`) | Rond `olive`, bordure `olive-text` |
+| Réserve et élément posé | `ReserveGlissable`, `Pose` | existent (`materiel.dart`) | Réserve inépuisable (glisser ou toucher), élément posé retiré au toucher, zones de `target-min` |
 
 Aucune nouvelle valeur hors `tokens.json` : les tailles reprennent `target-min`, `space-*` et `border-thick`.
 

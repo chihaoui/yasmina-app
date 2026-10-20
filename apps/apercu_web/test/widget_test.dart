@@ -66,7 +66,8 @@ void main() {
         // Droite numérique : le repère est sur la cible.
         final revele =
             cle('trace_reponse').evaluate().isNotEmpty ||
-            cle('droite_reponse').evaluate().isNotEmpty;
+            cle('droite_reponse').evaluate().isNotEmpty ||
+            cle('manipulables_reponse').evaluate().isNotEmpty;
         expect(
           choixJustes.isNotEmpty || glissesJustes.isNotEmpty || revele,
           isTrue,

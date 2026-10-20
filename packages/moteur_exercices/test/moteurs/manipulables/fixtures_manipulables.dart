@@ -44,3 +44,23 @@ Map<String, dynamic> t25Francais() => exerciceChoix(
   indice: 'Compte de 2 en 2 à partir de 10.',
   explication: '16 vient après 10 : 12, 14, 16.',
 );
+
+/// T27 en mode libre : toute somme qui fait 34.
+Map<String, dynamic> t27Libre() => exerciceChoix(
+  type: 'T27',
+  langue: 'ar',
+  gabarit: 'blocs-dizaines-unites',
+  competence: 'numeration',
+  consigne: {
+    'masculin': 'مَثِّلِ الْعَدَدَ 34 كَمَا تُرِيدُ.',
+    'feminin': 'مَثِّلِي الْعَدَدَ 34 كَمَا تُرِيدِينَ.',
+  },
+  donnees: {'cible': 34, 'canonique': false},
+  reponse: {'dizaines': 3, 'unites': 4},
+  reussite: {
+    'masculin': 'إِجَابَتُكَ صَحِيحَةٌ: الْمَجْمُوعُ 34.',
+    'feminin': 'إِجَابَتُكِ صَحِيحَةٌ: الْمَجْمُوعُ 34.',
+  },
+  indice: 'كُلُّ قَضِيبٍ يُسَاوِي 10.',
+  explication: '34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ.',
+)..['competence'] = 'ma-numeration';

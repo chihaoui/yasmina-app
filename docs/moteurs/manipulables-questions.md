@@ -14,6 +14,8 @@ Préparation du moteur Manipulables, base (branche `moteur/manipulables-base`, a
 | 6 | 1er essai faux | Tout revient à l'état de départ (repère au début, plateau et cadre vides), contrairement au moteur Glisser-déposer qui ne retire que les éléments faux | Une valeur unique ou un compte n'a pas de « partie juste » à garder | Garder les blocs et laisser corriger |
 | 7 | Réponse dans le JSON | `reponse` reste explicite (`valeur`, `dizaines` et `unites`, `jetons`) et le validateur contrôle qu'elle correspond à `cible` | Même forme que les autres types pour le back-office et le pipeline | Déduire la réponse de `cible` sans champ |
 | 8 | Langue | Aucune règle `type_langue` : la compétence `ma-` impose l'arabe, et T25 reste jouable en français pour un futur usage | Réversible, et les tests gardent un cas latin pour le sens | Arabe seulement |
+| 9 | Libellés de T27 et T51 | Propres au gabarit (الْعَشَرَاتُ, الْوَحَدَاتُ, اللَّوْحَةُ, قِطْعَةٌ, خَانَةٌ), pas dans `LibellesLecteur`, compte affiché en chiffres « الْعَشَرَاتُ: 3 وَالْوَحَدَاتُ: 4 » | Évite l'accord du pluriel arabe selon le nombre (عَشَرَةٌ, عَشَرَتَانِ, عَشَرَاتٍ) | Compte en toutes lettres accordé |
+| 10 | T51 : réserve au-dessus du cadre | Le jeton de réserve est au-dessus des cases, au début de ligne, et les cases ont une marge réduite : cinq cases ne tiennent pas à côté de la réserve dans la largeur d'un téléphone | Contrainte de largeur (360 px du cadre de l'aperçu) | Cases plus petites que `target-min` |
 
 ## Questions ouvertes
 

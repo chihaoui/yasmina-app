@@ -7,6 +7,8 @@ import 'choix/gabarit_vrai_faux.dart';
 import 'glisser/gabarit_affectation.dart';
 import 'glisser/gabarit_ordre.dart';
 import 'glisser/gabarit_racine_scheme.dart';
+import 'manipulables/gabarit_blocs.dart';
+import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
 import 'trace/gabarit_trace.dart';
 
@@ -42,6 +44,8 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T20': GabaritTrace(),
   // Moteur Manipulables (base).
   'T25': GabaritDroiteNumerique(),
+  'T27': GabaritBlocs(),
+  'T51': GabaritCadreDix(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.
