@@ -62,10 +62,8 @@ void main() {
         final glissesJustes = tester
             .widgetList<TuileGlissable>(find.byType(TuileGlissable))
             .where((t) => t.etat == EtatGlissable.juste);
-        // Tracé (non noté) : la lettre et son guidage passent en olive.
         // Droite numérique : le repère est sur la cible.
         final revele =
-            cle('trace_reponse').evaluate().isNotEmpty ||
             cle('droite_reponse').evaluate().isNotEmpty ||
             cle('manipulables_reponse').evaluate().isNotEmpty ||
             cle('dictee_reponse').evaluate().isNotEmpty ||

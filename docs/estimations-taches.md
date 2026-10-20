@@ -51,7 +51,7 @@ Changements du 19 oct. (décisions 34, 35, 37) :
 | A1-01b | L04 | Moteur Choix (13 types) : moteur | 3,5 | 7 | à faire |
 | A1-02 | L04 | Moteur Glisser-déposer (10 types) | 6 | 12 | à faire |
 | A1-03 | L04 | Moteur Texte (T07, T17) | 2 | 4 | à faire |
-| A1-04 | L04 | Moteur Tracé (T20) | 1,5 | 3 | à faire |
+| A1-04 | L04 | Moteur Tracé (T20) : fait le 20 oct. 2026, puis T20 retiré du MVP le soir même (décision de Lamjed, l'écriture sur écran n'est pas fiable), code dans l'historique Git, estimation et totaux inchangés | 1,5 | 3 | fait |
 | A1-05 | L04 | Moteur Saisie numérique, base (T22, T48) | 2 | 4 | à faire |
 | A1-06 | L04 | Moteur Manipulables, base (T25, T27, T51) | 3 | 6 | à faire |
 | A1-07 | L04 | Moteur Scène image, base (T08, T47) | 1,5 | 3 | à faire |

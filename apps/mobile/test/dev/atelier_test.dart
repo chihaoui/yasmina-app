@@ -24,11 +24,11 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  test('contenu : moteurs dans l\'ordre de développement, 53 types', () {
+  test('contenu : moteurs dans l\'ordre de développement, 52 types', () {
     final lignes = contenuAtelier(CatalogueExemples());
     final moteurs = lignes.whereType<EnTeteMoteur>().map((e) => e.moteur);
     expect(moteurs, Moteur.values);
-    expect(lignes.whereType<LigneType>(), hasLength(53));
+    expect(lignes.whereType<LigneType>(), hasLength(52));
     final choix = lignes.whereType<EnTeteMoteur>().first;
     expect((choix.jouables, choix.total), (jouablesChoix, 13));
     // Chaque type suit l'en-tête de son moteur.

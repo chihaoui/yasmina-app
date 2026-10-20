@@ -46,7 +46,6 @@ export 'src/moteurs/scene/scene.dart';
 export 'src/moteurs/texte/comparaison.dart';
 export 'src/moteurs/texte/gabarit_dictee.dart';
 export 'src/moteurs/texte/gabarit_toucher_mots.dart';
-export 'src/moteurs/trace/gabarit_trace.dart';
 export 'src/plateforme/services.dart';
 export 'src/plateforme/services_factices.dart';
 export 'src/polices.dart';

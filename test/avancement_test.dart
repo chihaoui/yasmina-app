@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../tool/avancement.dart';
 
-/// PROGRESS.md réduit : A0, A1, A2, [A3], B, un journal daté. Les 53 types
-/// sont portés par deux plages (T01 à T36, T37 à T53).
+/// PROGRESS.md réduit : A0, A1, A2, [A3], B, un journal daté. Les 52 types
+/// sont portés par deux plages (T01 à T35, T36 à T52).
 String progres({bool avecA3 = true}) =>
     '''
 # Suivi
@@ -19,10 +19,10 @@ ancien bloc
   - [x] Sous-case sans estimation (ne compte pas)
 
 ## A1 : lot 1 (2 nov. au 31 déc. 2026)
-- [ ] A1-01 Moteurs du lot 1 (T01 à T36) (10 j-h)
+- [ ] A1-01 Moteurs du lot 1 (T01 à T35) (10 j-h)
 
 ## A2 : lot 2 (4 janv. au 28 févr. 2027)
-- [ ] A2-01 Moteurs du lot 2 (T37 à T53) (5 j-h)
+- [ ] A2-01 Moteurs du lot 2 (T36 à T52) (5 j-h)
 ${avecA3 ? '''
 ## A3 : parcours et espace parent (1er au 14 mars 2027)
 - [ ] A3-01 Carte du trimestre (2 j-h)
@@ -112,7 +112,7 @@ void main() {
     // 0,25 + 1,25 faits sur 22,25 en vigueur (le plan, 34,75, ne compte pas).
     expect(lignes, contains('| **Total** | **1,5** | **22,25** | **6,7 %** |'));
     expect(bloc, contains('Avancement global : 6,7 %'));
-    expect(bloc, contains('Types jouables : 0 sur 53'));
+    expect(bloc, contains('Types jouables : 0 sur 52'));
     expect(bloc, contains('Au 20 oct. 2026.'));
   });
 

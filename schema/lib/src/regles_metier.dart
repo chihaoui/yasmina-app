@@ -289,16 +289,6 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
-  if (type == 'T20') {
-    problemes.addAll(
-      _reglesTrace(
-        ex['langue'] as String,
-        ex['donnees'] as Map<String, dynamic>,
-        ex['reponse'] as Map<String, dynamic>,
-        chemin,
-      ),
-    );
-  }
   if (type == 'T07' || type == 'T17') {
     problemes.addAll(
       _reglesTexte(
@@ -1648,75 +1638,6 @@ List<ProblemeValidation> _reglesManipulables(
           'la réponse (${reponse['jetons']}) doit être la cible ($cible).',
         );
       }
-  }
-  return problemes;
-}
-
-/// Règles de T20 Tracé de lettre (docs/moteurs/trace.md), non noté : le
-/// schéma garantit déjà la forme de `donnees` et de `reponse`.
-List<ProblemeValidation> _reglesTrace(
-  String langue,
-  Map<String, dynamic> donnees,
-  Map<String, dynamic> reponse,
-  String chemin,
-) {
-  final problemes = <ProblemeValidation>[];
-  void erreur(String c, String code, String message) => problemes.add(
-    ProblemeValidation(chemin: c, code: code, message: message),
-  );
-  if (langue != 'ar') {
-    erreur(
-      '$chemin/langue',
-      'type_langue',
-      'un T20 trace une lettre arabe : langue ar attendue, pas $langue.',
-    );
-  }
-  final lettre = donnees['lettre'] as String;
-  if (!_lettreNue(lettre)) {
-    erreur(
-      '$chemin/donnees/lettre',
-      'lettre_invalide',
-      'la lettre à tracer est une seule lettre arabe nue, pas « $lettre ».',
-    );
-  }
-  final formes = (donnees['formes'] as List).cast<Map<String, dynamic>>();
-  final ids = <String>{};
-  final positions = <String>{};
-  for (var k = 0; k < formes.length; k++) {
-    final id = formes[k]['id'] as String;
-    if (!ids.add(id)) {
-      erreur(
-        '$chemin/donnees/formes/$k/id',
-        'element_duplique',
-        'deux formes ont le même id « $id ».',
-      );
-    }
-    final position = formes[k]['position'] as String;
-    if (!positions.add(position)) {
-      erreur(
-        '$chemin/donnees/formes/$k/position',
-        'position_dupliquee',
-        'deux formes ont la même position « $position ».',
-      );
-    }
-    final texte = formes[k]['texte'] as String;
-    if (!texte.replaceAll('\u0640', '').contains(lettre)) {
-      erreur(
-        '$chemin/donnees/formes/$k/texte',
-        'forme_sans_lettre',
-        'la forme « $texte » ne contient pas la lettre « $lettre ».',
-      );
-    }
-  }
-  final demandees = (reponse['formes'] as List).cast<String>();
-  for (var k = 0; k < demandees.length; k++) {
-    if (!ids.contains(demandees[k])) {
-      erreur(
-        '$chemin/reponse/formes/$k',
-        'reponse_element_inconnu',
-        'la réponse désigne « ${demandees[k]} », absent de donnees.formes.',
-      );
-    }
   }
   return problemes;
 }

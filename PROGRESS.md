@@ -16,7 +16,7 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 | **Total** | **41,5** | **182,25** | **22,8 %** |
 
 - **Avancement global : 22,8 %** (41,5 j-h faits sur 182,25)
-- **Types jouables : 36 sur 53**
+- **Types jouables : 35 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -29,22 +29,22 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 - Dépôt : https://github.com/chihaoui/yasmina-app (privé), dossier local `/Users/chihaoui/Documents/Forgia/Yasmina`
 
 ## Ordre de développement (décision 34, 19 oct. 2026)
-**Atelier d'abord.** Les 12 moteurs et les 53 types du MVP sont développés et validés dans l'atelier du menu développeur (chaque type jouable seul, contenu statique) avant le parcours. Ordre des moteurs :
+**Atelier d'abord.** Les 11 moteurs et les 52 types du MVP (53 au catalogue v3.1, T20 Tracé de lettre retiré le 20 oct. 2026) sont développés et validés dans l'atelier du menu développeur (chaque type jouable seul, contenu statique) avant le parcours. Ordre des moteurs :
 1. Choix (A1-01b)
 2. Glisser-déposer (A1-02)
-3. Tracé (A1-04)
+3. Tracé (A1-04, fait puis type retiré du MVP le 20 oct. 2026)
 4. Manipulables (A1-06)
 5. Autres moteurs du lot 1 (Texte, Saisie numérique, Scène image, Révision et jeux)
 6. Lot 2 (phase A2)
 
-Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat) et l'espace parent viennent après le 53e type validé : phase A3 (décision 37). Avant cela, une séquence de test sans carte (A1-22) enchaîne des exercices pour le tour 1 des familles.
+Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat) et l'espace parent viennent après le 52e type validé : phase A3 (décision 37). Avant cela, une séquence de test sans carte (A1-22) enchaîne des exercices pour le tour 1 des familles.
 
 ## Jalons
 | Jalon | Date | Critère | État |
 |---|---|---|---|
 | R1 | 15 nov. 2026 | Vitesse mesurée sur 2 semaines, décision freelance | À venir |
-| G1 | 31 déc. 2026 | Lot 1 (36 types) jouable dans l'atelier, séquence de test jouée par 5 à 10 familles | À venir |
-| G2 | 28 févr. 2027 | Rendu et UX des 53 types validés dans l'atelier | À venir |
+| G1 | 31 déc. 2026 | Lot 1 (35 types) jouable dans l'atelier, séquence de test jouée par 5 à 10 familles | À venir |
+| G2 | 28 févr. 2027 | Rendu et UX des 52 types validés dans l'atelier | À venir |
 | G3 | 30 avr. 2027 | Parcours, back-end, back-office, pilote arabe 1re | À venir |
 | G4 | 30 juin 2027 | Bêta mesurée auprès de 150 familles | À venir |
 | G5 | 31 août 2027 | Contenu T1 publié, apps approuvées par les stores | À venir |
@@ -58,7 +58,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A0-05 Maquettes HTML de référence (0,5 j-h)
 - [x] A0-06 Projet Flutter et dépendances (0,5 j-h)
 - [x] A0-07 Schéma edu-content/1.0 et validateur (2 j-h)
-- [ ] A0-08 JSON embarqués (53 types et parcours arabe 1re) (1,5 j-h)
+- [ ] A0-08 JSON embarqués (52 types et parcours arabe 1re) (1,5 j-h)
   - [x] Première étape `ar-1-t1-u1-e01` (T01 et T02), validée par `flutter test`
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
 - [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
@@ -93,11 +93,9 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [x] Fiche en brouillon `docs/moteurs/texte.md`, schéma, validateur, 4 exemples, `comparerTextes` (soir du 20 oct. 2026)
   - [x] T07 mots touchables, T17 clavier arabe du moteur et champ système en latin, tests, parité (20 oct. 2026)
   - [ ] Validation par Lamjed de la fiche et test du clavier arabe sur l'iPhone
-- [x] A1-04 Moteur Tracé (T20) (1,5 j-h)
-  - [x] Fiche en brouillon `docs/moteurs/trace.md` et questions (après-midi du 20 oct. 2026)
-  - [x] Schéma, validateur, exemples ب ل م avec traits de guidage, tests (20 oct. 2026)
-  - [x] Moteur : formes en boutons sans sous-titre, zone de tracé au doigt, guidage par points et flèches, Effacer, mode sans note, parité (20 oct. 2026)
-  - [ ] Validation par Lamjed de la fiche et test du geste sur l'iPhone (la page ne doit pas défiler pendant le tracé)
+- [x] A1-04 Moteur Tracé (1,5 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/trace.md`, schéma, validateur, exemples ب ل م, moteur (formes en boutons, zone de tracé au doigt, guidage, Effacer, mode sans note), tests et parité (après-midi du 20 oct. 2026)
+  - [x] Type Tracé de lettre retiré du MVP le 20 oct. 2026 au soir (décision de Lamjed après le test sur l'iPhone : l'écriture sur écran n'est pas fiable). Retiré du registre, de l'atelier, du schéma et des exemples embarqués dans la nuit du 20 au 21 oct., code gardé dans l'historique Git (commit `82b4c18`). Le MVP compte 52 types, le lot 1 en compte 35
 - [x] A1-05 Moteur Saisie numérique, base (T22, T48) (2 j-h)
   - [x] Fiche en brouillon `docs/moteurs/saisie-numerique.md`, schéma, validateur, 3 exemples (soir du 20 oct. 2026)
   - [x] Pavé numérique du moteur, T22, T48 (sens des colonnes et chiffres configurables, retenues), tests, parité (20 oct. 2026)
@@ -141,7 +139,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [ ] A2-12 Pilotage A2 (1,5 j-h)
 
 ## A3 : parcours et espace parent (1er au 14 mars 2027)
-Après la validation des 53 types dans l'atelier (décision 37) : le parcours, la progression et l'espace parent, déplacés de A1 (anciennes A1-10 à A1-14).
+Après la validation des 52 types dans l'atelier (décision 37) : le parcours, la progression et l'espace parent, déplacés de A1 (anciennes A1-10 à A1-14).
 - [ ] A3-01 Choix de l'enfant et de la matière, carte du trimestre (2 j-h)
 - [ ] A3-02 Intro d'étape, séquences, écran de résultat (2 j-h)
 - [ ] A3-03 Progression locale (1,25 j-h)
@@ -187,7 +185,7 @@ Après la validation des 53 types dans l'atelier (décision 37) : le parcours, l
 - À vérifier sur l'iPhone (soir du 20 oct. 2026) : le clavier arabe du moteur (T17, touches de 48 dp, trois rangées qui tiennent en largeur), le champ système en français (T17, aucune suggestion), le pavé numérique et le calcul posé (T48), la scène dessinée et le glisser d'une étiquette sur une zone (T47), le memory et les mots mêlés (lettres isolées, sens de lecture).
 - Questions en attente (manuels) : disposition du calcul posé en arabe et chiffres (T48, `sens` et `chiffres` dans le JSON), sens de lecture des mots mêlés en arabe (T38, `sens`), ordre des touches du clavier arabe (T17, alphabétique).
 - À valider (périmètre du moteur Glisser-déposer, après-midi du 20 oct. 2026) : hypothèse du mentor appliquée, le catalogue v3.1 fait foi sur la décision 3 : T39 hors MVP, T26 et T27 au moteur Manipulables, T56 et T62 au moteur Glisser-déposer (10 types, tous jouables). Voir `docs/moteurs/glisser-deposer-questions.md`, point 15.
-- À vérifier sur l'iPhone (après-midi du 20 oct. 2026) : le tracé de T20 dans la page du lecteur qui défile (le doigt doit tracer, pas faire défiler), le schème de T56 construit lettre à lettre (« فَاعِلٌ » lié, harakat en place), la frise de T62 qui défile en largeur au-delà de 6 cases, le glisser du repère de T25 avec l'aimant.
+- À vérifier sur l'iPhone (après-midi du 20 oct. 2026) : le schème de T56 construit lettre à lettre (« فَاعِلٌ » lié, harakat en place), la frise de T62 qui défile en largeur au-delà de 6 cases, le glisser du repère de T25 avec l'aimant.
 - Question en attente (manuels) : le sens de la droite numérique en arabe. Le JSON de T25 porte `sens` (`gauche-droite` par défaut, `droite-gauche`), le moteur suit le JSON : le défaut se change en une ligne.
 - À vérifier sur l'iPhone (glisser-déposer) : le vrai glisser dans une liste qui défile (la page du lecteur est un `SingleChildScrollView` : le glisser vertical d'une tuile ne doit pas faire défiler la page), le retour animé, l'aimant, et la liaison des lettres dans la zone du mot de T15.
 - À vérifier sur l'iPhone (moteur Choix, 20 oct. 2026) : en T19 forme mot, la lettre cible est colorée en bleu par un span séparé du même texte. Contrôler que ت reste liée à ses voisines (كُتُبٌ) dans Noto Naskh. Sinon, colorer le mot entier.

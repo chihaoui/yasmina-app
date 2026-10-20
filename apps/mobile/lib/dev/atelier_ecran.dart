@@ -68,7 +68,7 @@ List<LigneAtelier> contenuAtelier(CatalogueExemples catalogue) => [
   ],
 ];
 
-/// L'atelier : les 53 types groupés par moteur, chacun ouvrable seul.
+/// L'atelier : les 52 types groupés par moteur, chacun ouvrable seul.
 class AtelierEcran extends ConsumerWidget {
   const AtelierEcran({super.key});
 

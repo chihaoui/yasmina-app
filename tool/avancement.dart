@@ -24,7 +24,8 @@ const phases = ['A0', 'A1', 'A2', 'A3', 'B', 'C', 'D'];
 
 /// Phases dont les cases portent les types d'exercices (moteurs).
 const _phasesTypes = {'A1', 'A2'};
-const _typesAttendus = 53;
+// 53 au catalogue v3.1, T20 Tracé de lettre retiré du MVP le 20 oct. 2026.
+const _typesAttendus = 52;
 
 const _debut = '<!-- avancement:debut -->';
 const _fin = '<!-- avancement:fin -->';

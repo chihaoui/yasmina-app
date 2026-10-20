@@ -1,11 +1,12 @@
-/// Les 12 moteurs du MVP, dans l'ordre de développement de l'atelier
-/// (décision 34) : Choix, Glisser-déposer, Tracé, Manipulables, autres
-/// moteurs du lot 1, puis les moteurs du lot 2. Les types de lot 2 d'un
+/// Les 11 moteurs du MVP, dans l'ordre de développement de l'atelier
+/// (décision 34) : Choix, Glisser-déposer, Manipulables, autres moteurs du
+/// lot 1, puis les moteurs du lot 2. Le moteur Tracé (T20) a été retiré du
+/// MVP le 20 oct. 2026 (l'écriture sur écran n'est pas fiable), son code
+/// reste dans l'historique Git. Les types de lot 2 d'un
 /// moteur du lot 1 restent dans le groupe de leur moteur.
 enum Moteur {
   choix('Choix'),
   glisserDeposer('Glisser-déposer'),
-  trace('Tracé'),
   manipulables('Manipulables'),
   texte('Texte'),
   saisieNumerique('Saisie numérique'),
@@ -67,8 +68,8 @@ class TypeExercice {
   final EtatType etat;
 }
 
-/// Les 53 types du MVP, source unique pour l'app, l'aperçu web et le
-/// back-office. Un type passe à [EtatType.jouable] quand son moteur est
+/// Les 52 types du MVP (53 au catalogue v3.1, T20 retiré le 20 oct. 2026),
+/// source unique pour l'app, l'aperçu web et le back-office. Un type passe à [EtatType.jouable] quand son moteur est
 /// prêt.
 const typesExercices = <TypeExercice>[
   // Choix (lot 1).
@@ -219,14 +220,6 @@ const typesExercices = <TypeExercice>[
     'T62',
     'Frise chronologique',
     Moteur.glisserDeposer,
-    lot: 1,
-    etat: EtatType.jouable,
-  ),
-  // Tracé (lot 1).
-  TypeExercice(
-    'T20',
-    'Tracé de lettre (non noté)',
-    Moteur.trace,
     lot: 1,
     etat: EtatType.jouable,
   ),

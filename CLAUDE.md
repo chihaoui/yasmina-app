@@ -4,7 +4,7 @@ Ce fichier est lu par Claude Code au début de chaque session. Il décrit le pro
 
 ## 1. Le projet en bref
 - App mobile éducative pour le primaire tunisien (1re à 6e année), 5 matières : arabe, français, anglais, maths, éveil scientifique. Mascotte : Yasmina (fleur de jasmin).
-- Phase actuelle : **prototype mobile Flutter**, contenu en **JSON embarqué** dans l'app, sans back-end. But : valider le rendu et l'UX des 53 types d'exercices avec quelques familles avant de construire le reste.
+- Phase actuelle : **prototype mobile Flutter**, contenu en **JSON embarqué** dans l'app, sans back-end. But : valider le rendu et l'UX des 52 types d'exercices (53 au catalogue v3.1, T20 Tracé de lettre retiré le 20 oct. 2026 : l'écriture sur écran n'est pas fiable) avec quelques familles avant de construire le reste.
 - Références : spécification v0.2, plan de développement, catalogue v3.1 (voir le Projet Claude « App éducative »). En cas de doute sur une règle produit, demander à Lamjed plutôt que deviner.
 
 ## 2. Démarrage de chaque session
@@ -47,7 +47,6 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
 - **Glisser-déposer réel** avec toucher-toucher en secours : doigt immobile 200 ms, l'élément passe en attente, puis se pose au toucher de la cible. Cibles d'au moins 48 dp, effet aimant, retour animé si dépôt hors cible, vibration légère au dépôt. Un élément déposé peut être réordonné ou retiré tant que l'enfant n'a pas appuyé sur Vérifier.
 - **Feedback en 3 temps** : validation centrée sur la tâche (dire ce qui est juste, jamais « tu es doué »), puis indice, puis explication avec la bonne réponse. Accord masculin ou féminin selon le profil.
 - 4 à 6 éléments manipulables au maximum en 1re et 2e année. Consigne toujours sonorisée avec bouton de réécoute.
-- Tracé (T20) non noté, sans sous-titres sous les boutons.
 - Profils : 5 enfants maximum.
 - Harakat : ne jamais les supprimer ni les réordonner dans les textes. Comparaisons de réponses avec normalisation explicite et testée.
 - Conventions d'écriture de l'arabe (`docs/conventions-arabe.md`), imposées dès l'écriture de tout texte arabe (contenu, tests, exemples, prompts du pipeline) : A. alif de liaison en début de phrase avec kasra (اِسْتَمِعْ). B. alif suscrit simplifié : هَذِهِ, jamais d'alif suscrit (aucun caractère U+0670). C. lam de l'article avec soukoun devant une lettre lunaire, hamza comprise (الْإِعْدَادَاتُ, الْكَلِمَةُ), avec kasra devant un alif de liaison (الِاسْمُ).
@@ -57,7 +56,7 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
 ## 6. Contenu embarqué
 - Un fichier JSON par étape au format edu-content/1.0 (blocs `generation`, `etape`, `exercices`). Identifiants stables.
 - Le validateur du schéma tourne dans les tests : un JSON invalide fait échouer `flutter test`.
-- Le prototype embarque au moins un exemple de chacun des 53 types du MVP (catalogue v3.1), plus le parcours d'arabe 1re année de la démo (lettres ب ل م ر, défi, د, ف).
+- Le prototype embarque au moins un exemple de chacun des 52 types du MVP (catalogue v3.1 sans T20), plus le parcours d'arabe 1re année de la démo (lettres ب ل م ر, défi, د, ف).
 
 ## 7. Configuration de test
 - Menu développeur caché (appui long sur le logo, visible seulement en build debug ou profile) :
@@ -66,7 +65,7 @@ Les exercices joués par l'enfant dans l'app doivent pouvoir être rejoués à l
   - statut d'abonnement simulé : essai, essai terminé, abonné
   - tout débloquer
   - afficher le JSON de l'exercice en cours
-  - ouvrir l'atelier : liste des 53 types, chacun jouable seul
+  - ouvrir l'atelier : liste des 52 types, chacun jouable seul
 - Le parcours normal permet aussi de créer des profils à la main.
 
 ## 8. Qualité

@@ -1,3 +1,5 @@
+> **Type retiré du MVP le 20 oct. 2026 au soir (décision de Lamjed) : l'écriture sur écran n'est pas fiable.** Le moteur Tracé a été codé puis retiré du registre, de l'atelier, du schéma et des exemples (branche `corrections/test-20-oct`). Son code reste dans l'historique Git (commit `82b4c18`). Cette fiche est gardée pour mémoire.
+
 # Moteur Tracé : points tranchés et questions ouvertes
 
 Préparation du moteur Tracé (branche `moteur/trace`, après-midi du 20 oct. 2026, session sans surveillance, décision 39). Consigne reçue : en cas de doute, choisir l'option la plus simple et la plus réversible, la noter ici et continuer. Chaque point dit ce qui a été choisi, pourquoi, et ce qu'il faudrait changer si Lamjed tranche autrement.

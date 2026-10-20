@@ -9,7 +9,7 @@ void main() {
     final catalogue = CatalogueExemples();
 
     test('tous valides et rattachés à un moteur du registre (Choix, '
-        'Glisser-déposer, Tracé, Manipulables, Texte, Saisie numérique, '
+        'Glisser-déposer, Manipulables, Texte, Saisie numérique, '
         'Scène image, Révision et jeux)', () {
       expect(catalogue.tous, hasLength(exemplesEduContent.length));
       for (final e in catalogue.tous) {
@@ -19,7 +19,6 @@ void main() {
           isIn([
             Moteur.choix,
             Moteur.glisserDeposer,
-            Moteur.trace,
             Moteur.manipulables,
             Moteur.texte,
             Moteur.saisieNumerique,
@@ -32,13 +31,16 @@ void main() {
       expect(catalogue.nonRattaches, isEmpty);
     });
 
-    test('T01 a 4 exemples, T19 et T06 en ont 2, T20 en a 3, T49 aucun', () {
-      expect(catalogue.exemplesDuType('T01'), hasLength(4));
-      expect(catalogue.exemplesDuType('T19'), hasLength(2));
-      expect(catalogue.exemplesDuType('T06'), hasLength(2));
-      expect(catalogue.exemplesDuType('T20'), hasLength(3));
-      expect(catalogue.exemplesDuType('T49'), isEmpty);
-    });
+    test(
+      'T01 a 4 exemples, T19 et T06 en ont 2, T20 (retiré) et T49 aucun',
+      () {
+        expect(catalogue.exemplesDuType('T01'), hasLength(4));
+        expect(catalogue.exemplesDuType('T19'), hasLength(2));
+        expect(catalogue.exemplesDuType('T06'), hasLength(2));
+        expect(catalogue.exemplesDuType('T20'), isEmpty);
+        expect(catalogue.exemplesDuType('T49'), isEmpty);
+      },
+    );
 
     test('gabarit, langue et consigne (masculin si genrée)', () {
       final scene = catalogue

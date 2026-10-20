@@ -2,19 +2,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 void main() {
-  test('53 types, 12 moteurs, aucun doublon, ids T01 à T63', () {
-    expect(typesExercices, hasLength(53));
-    expect(Moteur.values, hasLength(12));
+  test('52 types, 11 moteurs, aucun doublon, ids T01 à T63', () {
+    expect(typesExercices, hasLength(52));
+    expect(Moteur.values, hasLength(11));
     final ids = typesExercices.map((t) => t.id).toList();
-    expect(ids.toSet(), hasLength(53));
+    expect(ids.toSet(), hasLength(52));
     for (final id in ids) {
       expect(id, matches(RegExp(r'^T(0[1-9]|[1-5][0-9]|6[0-3])$')));
     }
-    expect(typesExercices.map((t) => t.nom).toSet(), hasLength(53));
+    expect(typesExercices.map((t) => t.nom).toSet(), hasLength(52));
+    // T20 Tracé de lettre est retiré du MVP (20 oct. 2026).
+    expect(ids, isNot(contains('T20')));
   });
 
-  test('36 types en lot 1 (jalon G1) et 17 en lot 2', () {
-    expect(typesExercices.where((t) => t.lot == 1), hasLength(36));
+  test('35 types en lot 1 (jalon G1) et 17 en lot 2', () {
+    expect(typesExercices.where((t) => t.lot == 1), hasLength(35));
     expect(typesExercices.where((t) => t.lot == 2), hasLength(17));
   });
 
@@ -40,10 +42,9 @@ void main() {
   });
 
   test("ordre de développement de l'atelier (décision 34)", () {
-    expect(Moteur.values.take(4), [
+    expect(Moteur.values.take(3), [
       Moteur.choix,
       Moteur.glisserDeposer,
-      Moteur.trace,
       Moteur.manipulables,
     ]);
     // Moteurs entièrement en lot 2, après tous ceux qui ont du lot 1.
@@ -64,7 +65,6 @@ void main() {
         isIn([
           Moteur.choix,
           Moteur.glisserDeposer,
-          Moteur.trace,
           Moteur.manipulables,
           Moteur.texte,
           Moteur.saisieNumerique,

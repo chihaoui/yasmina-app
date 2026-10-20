@@ -14,7 +14,7 @@ enum ModeValidation {
   /// bouton Vérifier : feedback puis Continuer.
   automatique,
 
-  /// Type non noté (T20) : Continuer dès que la réponse est complète, sans
+  /// Type non noté (T36) : Continuer dès que la réponse est complète, sans
   /// correction ni feedback juste ou faux.
   sansNote,
 }

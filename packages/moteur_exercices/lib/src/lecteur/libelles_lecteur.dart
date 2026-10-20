@@ -68,7 +68,8 @@ class LibellesLecteur {
   final String vrai;
   final String faux;
 
-  /// Effacer le tracé (T20), genré en arabe.
+  /// Effacer (clavier et pavé du moteur, dernière lettre d'un mot
+  /// construit), genré en arabe.
   final String effacer;
 
   /// Libellé neutre d'une tuile en image ou en emoji seul (numéro à partir

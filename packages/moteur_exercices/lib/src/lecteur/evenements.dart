@@ -58,7 +58,7 @@ enum IssueExercice {
   /// Faux deux fois (ou fin automatique fausse) : explication donnée.
   explique,
 
-  /// Type non noté (T20).
+  /// Type non noté (T36 Flashcards).
   termine,
 }
 
