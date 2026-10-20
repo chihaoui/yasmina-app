@@ -6,7 +6,7 @@ Documentation de travail du prototype.
 - Notes de test avec les familles, une par tour : `retours-tour-1.md`, `retours-tour-2.md`.
 - Grille d'observation et questionnaire parent.
 - `conventions-arabe.md` : conventions d'écriture de l'arabe (alif de liaison, alif suscrit, pas de normalisation Unicode, relecture des harakat avant validation).
-- `moteurs/` : fiches de conception des moteurs d'exercices, écrites avant le code (`choix.md`, `glisser-deposer.md` et `trace.md` en brouillon), avec leurs points tranchés et questions ouvertes.
+- `moteurs/` : fiches de conception des moteurs d'exercices, écrites avant le code (`choix.md`, `glisser-deposer.md`, `trace.md` et `manipulables.md` en brouillon), avec leurs points tranchés et questions ouvertes.
 - `reference/` : maquettes HTML des types d'exercices, référence visuelle seulement (voir son README).
 
 Les spécifications de référence (spécification v0.2, plan de développement, catalogue v3.1) restent dans le Projet Claude « App éducative ».
