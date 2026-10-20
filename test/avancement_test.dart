@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import '../tool/avancement.dart';
@@ -203,5 +205,26 @@ void main() {
         ),
       ),
     );
+  });
+
+  test('fichiers réels : phase A3 et total en vigueur de la décision 37', () {
+    final bloc = calculerBloc(
+      File('PROGRESS.md').readAsStringSync(),
+      File('docs/estimations-taches.md').readAsStringSync(),
+    );
+    final lignes = bloc.split('\n');
+    expect(lignes.where((l) => l.startsWith('| A3 |')), hasLength(1));
+    expect(lignes.last, '<!-- avancement:fin -->');
+    expect(
+      lignes.firstWhere((l) => l.startsWith('| **Total** |')),
+      contains('| **182,25** |'),
+    );
+    final estimations = lireEstimations(
+      File('docs/estimations-taches.md').readAsStringSync(),
+    );
+    expect(estimations.values.fold(0.0, (a, t) => a + (t.plan ?? 0)), 345.25);
+    expect(estimations['A0-21'], (jh: 0.5, plan: 0.75));
+    expect(estimations['A1-22'], (jh: 0.75, plan: 1.5));
+    expect(estimations.keys.where((id) => id.startsWith('A3-')), hasLength(5));
   });
 }

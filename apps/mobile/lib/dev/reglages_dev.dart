@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../reglages/stockage_reglages.dart';
 
 /// Statut d'abonnement simulé (menu développeur). Enregistré, sans effet
-/// tant que l'essai et l'abonnement ne sont pas simulés (A1-14).
+/// tant que l'essai et l'abonnement ne sont pas simulés (A3-05).
 enum AbonnementSimule {
   essai('Essai'),
   essaiTermine('Essai terminé'),
@@ -42,7 +42,7 @@ class AbonnementSimuleNotifier extends Notifier<AbonnementSimule> {
 }
 
 /// « Tout débloquer » (menu développeur). Enregistré, sans effet tant que
-/// la carte du trimestre n'existe pas (A1-10).
+/// la carte du trimestre n'existe pas (A3-01).
 final toutDebloqueProvider = NotifierProvider<ToutDebloqueNotifier, bool>(
   ToutDebloqueNotifier.new,
 );

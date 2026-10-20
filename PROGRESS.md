@@ -6,20 +6,21 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 18 | 24,5 | 73 % |
-| A1 | 1 | 86,5 | 1 % |
-| A2 | 0 | 61 | 0 % |
-| B | 0 | 78,5 | 0 % |
-| C | 0 | 59,5 | 0 % |
-| D | 0 | 33 | 0 % |
-| **Total** | **19** | **343** | **5,5 %** |
+| A0 | 18,5 | 21,75 | 85 % |
+| A1 | 1 | 36,25 | 3 % |
+| A2 | 0 | 30,5 | 0 % |
+| A3 | 0 | 8,25 | 0 % |
+| B | 0 | 39,25 | 0 % |
+| C | 0 | 29,75 | 0 % |
+| D | 0 | 16,5 | 0 % |
+| **Total** | **19,5** | **182,25** | **10,7 %** |
 
-- **Avancement global : 5,5 %** (19 j-h faits sur 343)
+- **Avancement global : 10,7 %** (19,5 j-h faits sur 182,25)
 - **Types jouables : 1 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
-Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par le mentor. Les dates suivent le plan de développement du 17 octobre 2026.
+Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par le mentor. Les dates suivent le plan de développement du 17 octobre 2026, replanifié le 19 octobre (décision 37 : estimations en vigueur à la moitié du plan pour les tâches non faites, phase A3 parcours et espace parent, voir `docs/estimations-taches.md`).
 
 ## État global
 - Phase en cours : **A0, mise en place du prototype mobile** (19 octobre au 1er novembre 2026)
@@ -36,15 +37,15 @@ Mis à jour par Claude Code à la fin de chaque session, relu par Lamjed et par 
 5. Autres moteurs du lot 1 (Texte, Saisie numérique, Scène image, Révision et jeux)
 6. Lot 2 (phase A2)
 
-Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat) et l'espace parent viennent après le 53e type validé.
+Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat) et l'espace parent viennent après le 53e type validé : phase A3 (décision 37). Avant cela, une séquence de test sans carte (A1-22) enchaîne des exercices pour le tour 1 des familles.
 
 ## Jalons
 | Jalon | Date | Critère | État |
 |---|---|---|---|
 | R1 | 15 nov. 2026 | Vitesse mesurée sur 2 semaines, décision freelance | À venir |
-| G1 | 31 déc. 2026 | Lot 1 (36 types) testé par 5 à 10 familles | À venir |
-| G2 | 28 févr. 2027 | Rendu et UX des 53 types validés après 2 tours de retours | À venir |
-| G3 | 30 avr. 2027 | Back-end, back-office et pilote de contenu arabe 1re : chaîne complète | À venir |
+| G1 | 31 déc. 2026 | Lot 1 (36 types) jouable dans l'atelier, séquence de test jouée par 5 à 10 familles | À venir |
+| G2 | 28 févr. 2027 | Rendu et UX des 53 types validés dans l'atelier | À venir |
+| G3 | 30 avr. 2027 | Parcours, back-end, back-office, pilote arabe 1re | À venir |
 | G4 | 30 juin 2027 | Bêta mesurée auprès de 150 familles | À venir |
 | G5 | 31 août 2027 | Contenu T1 publié, apps approuvées par les stores | À venir |
 | Lancement | 15 sept. 2027 | Rentrée scolaire | À venir |
@@ -57,7 +58,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A0-05 Maquettes HTML de référence (0,5 j-h)
 - [x] A0-06 Projet Flutter et dépendances (0,5 j-h)
 - [x] A0-07 Schéma edu-content/1.0 et validateur (2 j-h)
-- [ ] A0-08 JSON embarqués (53 types et parcours arabe 1re) (3 j-h)
+- [ ] A0-08 JSON embarqués (53 types et parcours arabe 1re) (1,5 j-h)
   - [x] Première étape `ar-1-t1-u1-e01` (T01 et T02), validée par `flutter test`
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
 - [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
@@ -66,91 +67,96 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A0-12 Menu développeur (1,5 j-h)
 - [x] A0-13 Lecteur d'exercice générique (4 j-h)
 - [x] A0-14 Interfaces de plateforme injectées (1,5 j-h)
-- [ ] A0-15 Aperçu web (apps/apercu_web) (1,5 j-h)
+- [ ] A0-15 Aperçu web (apps/apercu_web) (0,75 j-h)
 - [x] A0-16 Yasmina en placeholder (0,5 j-h)
-- [ ] A0-17 Build de test sur téléphone (iPhone fait, Android à installer) (1 j-h)
+- [ ] A0-17 Build de test sur téléphone (iPhone fait, Android à installer) (0,5 j-h)
   - [x] iPhone : build iOS réussi, app installée le 17 oct. 2026
   - [ ] Android : APK debug construit (`flutter build apk --debug`), pas encore installé sur un téléphone
-- [ ] A0-18 Pilotage A0 (1 j-h)
+- [ ] A0-18 Pilotage A0 (0,5 j-h)
 - [x] A0-19 Design system Yasmina (artefact, depuis la démo) (1 j-h)
 - [x] A0-20 ThemeYasmina appliqué à l'app et à l'aperçu web (1 j-h)
+- [x] A0-21 Sons d'interface (5 sons, réglage, décision 35) (0,5 j-h)
 
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
 - [x] A1-01a Moteur Choix : schéma, exemples et fiche (1 j-h)
-- [ ] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (7 j-h)
+- [ ] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (3,5 j-h)
   - [x] T02 Vrai ou faux jouable dans l'atelier (preuve du lecteur, 19 oct. 2026)
-- [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (12 j-h)
-- [ ] A1-03 Moteur Texte (T07, T17) (4 j-h)
-- [ ] A1-04 Moteur Tracé (T20) (3 j-h)
-- [ ] A1-05 Moteur Saisie numérique, base (T22, T48) (4 j-h)
-- [ ] A1-06 Moteur Manipulables, base (T25, T27, T51) (6 j-h)
-- [ ] A1-07 Moteur Scène image, base (T08, T47) (3 j-h)
-- [ ] A1-08 Moteur Révision et jeux (T36 à T38) (5 j-h)
-- [ ] A1-09 Vérification du framework sur le prototype (glisser-déposer arabe, harakat, Rive, Android 2 Go) (4 j-h)
-- [ ] A1-10 Choix de l'enfant et de la matière, carte du trimestre (4 j-h)
-- [ ] A1-11 Intro d'étape, séquences, écran de résultat (4 j-h)
-- [ ] A1-12 Progression locale (2,5 j-h)
-- [ ] A1-13 Espace parent local (5 j-h)
-- [ ] A1-14 Simulation essai et abonnement (1 j-h)
-- [ ] A1-15 Tests de parité et golden (2 j-h)
-- [ ] A1-16 Build distribué aux familles (TestFlight, Play) (1 j-h)
-- [ ] A1-17 Grille d'observation et questionnaire parent (1 j-h)
-- [ ] A1-18 Synthèse des retours, tour 1 (1 j-h)
-- [ ] A1-19 Design system et maquettes, partie 1 (designer, part du système Yasmina) (8 j-h)
-- [ ] A1-20 Yasmina : brief et 6 états (illustrateur) (5 j-h)
-- [ ] A1-21 Pilotage A1 (3 j-h)
+- [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (6 j-h)
+- [ ] A1-03 Moteur Texte (T07, T17) (2 j-h)
+- [ ] A1-04 Moteur Tracé (T20) (1,5 j-h)
+- [ ] A1-05 Moteur Saisie numérique, base (T22, T48) (2 j-h)
+- [ ] A1-06 Moteur Manipulables, base (T25, T27, T51) (3 j-h)
+- [ ] A1-07 Moteur Scène image, base (T08, T47) (1,5 j-h)
+- [ ] A1-08 Moteur Révision et jeux (T36 à T38) (2,5 j-h)
+- [ ] A1-09 Vérification du framework sur le prototype (glisser-déposer arabe, harakat, Rive, Android 2 Go) (2 j-h)
+- [ ] A1-15 Tests de parité et golden (1 j-h)
+- [ ] A1-16 Build distribué aux familles (TestFlight, Play) (0,5 j-h)
+- [ ] A1-17 Grille d'observation et questionnaire parent (0,5 j-h)
+- [ ] A1-18 Synthèse des retours, tour 1 (0,5 j-h)
+- [ ] A1-19 Design system et maquettes, partie 1 (designer, part du système Yasmina) (4 j-h)
+- [ ] A1-20 Yasmina : brief et 6 états (illustrateur) (2,5 j-h)
+- [ ] A1-21 Pilotage A1 (1,5 j-h)
+- [ ] A1-22 Séquence de test pour le tour 1 des familles (exercices enchaînés, sans carte) (0,75 j-h)
 
 ## A2 : lot 2 des moteurs et retours familles, tour 2 (4 janv. au 28 févr. 2027)
-- [ ] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (4 j-h)
-- [ ] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (6 j-h)
-- [ ] A2-03 Moteur Mesure et temps (T28, T30) (5 j-h)
-- [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (7 j-h)
-- [ ] A2-05 Moteur Scène image avec audio (T53, T54) (3 j-h)
-- [ ] A2-06 Moteur Simulateur (T34, T57) (6 j-h)
-- [ ] A2-07 Moteur Récit (T35) (3 j-h)
-- [ ] A2-08 Corrections issues du tour 1 (2 j-h)
-- [ ] A2-09 Retours familles, tour 2 (2 j-h)
-- [ ] A2-10 Design system et maquettes, partie 2 (designer) (10 j-h)
-- [ ] A2-11 Yasmina : animations Rive (illustrateur) (10 j-h)
-- [ ] A2-12 Pilotage A2 (3 j-h)
+- [ ] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (2 j-h)
+- [ ] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (3 j-h)
+- [ ] A2-03 Moteur Mesure et temps (T28, T30) (2,5 j-h)
+- [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (3,5 j-h)
+- [ ] A2-05 Moteur Scène image avec audio (T53, T54) (1,5 j-h)
+- [ ] A2-06 Moteur Simulateur (T34, T57) (3 j-h)
+- [ ] A2-07 Moteur Récit (T35) (1,5 j-h)
+- [ ] A2-08 Corrections issues du tour 1 (1 j-h)
+- [ ] A2-09 Retours familles, tour 2 (1 j-h)
+- [ ] A2-10 Design system et maquettes, partie 2 (designer) (5 j-h)
+- [ ] A2-11 Yasmina : animations Rive (illustrateur) (5 j-h)
+- [ ] A2-12 Pilotage A2 (1,5 j-h)
 
-## B : back-end, back-office et pilote de contenu (mars et avril 2027)
-- [ ] B-01 Back-end : schéma Supabase et RLS (6 j-h)
-- [ ] B-02 Back-end : Edge Functions (OTP, droits, clés) (7 j-h)
-- [ ] B-03 Connexion par code simulée en développement (3 j-h)
-- [ ] B-04 Téléchargement à priorités et journal persistant (8 j-h)
-- [ ] B-05 Packs chiffrés et synchronisation (6 j-h)
-- [ ] B-06 Back-office : base, comptes, droits (8 j-h)
-- [ ] B-07 Back-office : écran de relecture et formulaire par gabarit (10 j-h)
-- [ ] B-08 Back-office : publication et construction des packs (5 j-h)
-- [ ] B-09 Pipeline dans le Projet Claude (registre anti-doublon, HTML de validation, GitHub) (8 j-h)
-- [ ] B-10 Outil de validation pour le LLM (edu_content:valider) (1 j-h)
-- [ ] B-11 Médias et packs du pipeline (6,5 j-h)
-- [ ] B-12 Pilote de contenu arabe 1re T1 (go ou no-go) (4 j-h)
-- [ ] B-13 Relecture du pilote (3 j-h)
-- [ ] B-14 Pilotage B (3 j-h)
+## A3 : parcours et espace parent (1er au 14 mars 2027)
+Après la validation des 53 types dans l'atelier (décision 37) : le parcours, la progression et l'espace parent, déplacés de A1 (anciennes A1-10 à A1-14).
+- [ ] A3-01 Choix de l'enfant et de la matière, carte du trimestre (2 j-h)
+- [ ] A3-02 Intro d'étape, séquences, écran de résultat (2 j-h)
+- [ ] A3-03 Progression locale (1,25 j-h)
+- [ ] A3-04 Espace parent local (2,5 j-h)
+- [ ] A3-05 Simulation essai et abonnement (0,5 j-h)
+
+## B : back-end, back-office et pilote de contenu (15 mars au 30 avril 2027)
+- [ ] B-01 Back-end : schéma Supabase et RLS (3 j-h)
+- [ ] B-02 Back-end : Edge Functions (OTP, droits, clés) (3,5 j-h)
+- [ ] B-03 Connexion par code simulée en développement (1,5 j-h)
+- [ ] B-04 Téléchargement à priorités et journal persistant (4 j-h)
+- [ ] B-05 Packs chiffrés et synchronisation (3 j-h)
+- [ ] B-06 Back-office : base, comptes, droits (4 j-h)
+- [ ] B-07 Back-office : écran de relecture et formulaire par gabarit (5 j-h)
+- [ ] B-08 Back-office : publication et construction des packs (2,5 j-h)
+- [ ] B-09 Pipeline dans le Projet Claude (registre anti-doublon, HTML de validation, GitHub) (4 j-h)
+- [ ] B-10 Outil de validation pour le LLM (edu_content:valider) (0,5 j-h)
+- [ ] B-11 Médias et packs du pipeline (3,25 j-h)
+- [ ] B-12 Pilote de contenu arabe 1re T1 (go ou no-go) (2 j-h)
+- [ ] B-13 Relecture du pilote (1,5 j-h)
+- [ ] B-14 Pilotage B (1,5 j-h)
 
 ## C : bêta et paiements (mai et juin 2027)
-- [ ] C-01 Couche jeu complète (pièces, avatar, compagnon, album) (6 j-h)
-- [ ] C-02 Temps d'écran et paramètres parent (4 j-h)
-- [ ] C-03 Paiements (Konnect, Flouci, D17, RevenueCat, codes prépayés, parrainage) (12 j-h)
-- [ ] C-04 Site web (landing, paiement, activation) (6 j-h)
-- [ ] C-05 n8n et WhatsApp (OTP, workflow d'essai, rapports) (8 j-h)
-- [ ] C-06 Analytics internes, Sentry, tableaux de bord (3 j-h)
-- [ ] C-07 Bêta auprès de 150 familles (6 j-h)
-- [ ] C-08 Relecture du contenu de la bêta (7 j-h)
-- [ ] C-09 Ajustements UX après la bêta (designer) (5 j-h)
-- [ ] C-10 Pilotage C (2,5 j-h)
+- [ ] C-01 Couche jeu complète (pièces, avatar, compagnon, album) (3 j-h)
+- [ ] C-02 Temps d'écran et paramètres parent (2 j-h)
+- [ ] C-03 Paiements (Konnect, Flouci, D17, RevenueCat, codes prépayés, parrainage) (6 j-h)
+- [ ] C-04 Site web (landing, paiement, activation) (3 j-h)
+- [ ] C-05 n8n et WhatsApp (OTP, workflow d'essai, rapports) (4 j-h)
+- [ ] C-06 Analytics internes, Sentry, tableaux de bord (1,5 j-h)
+- [ ] C-07 Bêta auprès de 150 familles (3 j-h)
+- [ ] C-08 Relecture du contenu de la bêta (3,5 j-h)
+- [ ] C-09 Ajustements UX après la bêta (designer) (2,5 j-h)
+- [ ] C-10 Pilotage C (1,25 j-h)
 
 ## D : contenu T1 et lancement (juillet et août 2027)
-- [ ] D-01 Contenu T1 des 26 combinaisons (8 j-h)
-- [ ] D-02 Relecture du contenu T1 (15 j-h)
-- [ ] D-03 Publication stores, conformité, déclaration INPDP (4 j-h)
-- [ ] D-04 Recette finale avant lancement (3,5 j-h)
-- [ ] D-05 Pilotage D (2,5 j-h)
+- [ ] D-01 Contenu T1 des 26 combinaisons (4 j-h)
+- [ ] D-02 Relecture du contenu T1 (7,5 j-h)
+- [ ] D-03 Publication stores, conformité, déclaration INPDP (2 j-h)
+- [ ] D-04 Recette finale avant lancement (1,75 j-h)
+- [ ] D-05 Pilotage D (1,25 j-h)
 
 ## Blocages
-- À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A1-12). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
+- À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A3-03). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
 - Résolu le 20 oct. 2026 (moteur Choix) : tout texte court lu par l'enfant en français ou en anglais (affirmation, texte des propositions) passe en `latin-prompt` (20 px). `latin-body` reste pour les textes longs à lire (T45, T46, T61), choix.md §9 mis à jour.
 - À savoir : dans les tests et les goldens, les emoji s'affichent en carré (le moteur de test n'a pas de police emoji). Sur l'appareil et dans le navigateur, ils s'affichent normalement.
 - Aperçu web : services factices (aucune voix, aucun son) jusqu'à l'implémentation web des services (A0-15).
@@ -165,7 +171,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - Risque à suivre (aperçu web) : nos polices sont embarquées, mais le moteur web de Flutter charge encore par défaut CanvasKit et ses polices de secours depuis les CDN de Google (`gstatic.com`). À traiter avec la tâche A0-15 (`--no-web-resources-cdn` et thème de l'aperçu) si l'aperçu doit marcher hors ligne.
 - Taille : les polices ajoutent environ 2,1 Mo à l'app (Andika fait 1,3 Mo à elle seule, car elle couvre beaucoup d'écritures). Un sous-ensemble pourra être produit avant la publication.
 - Résolu le 17 oct. 2026 : double bonjour de l'accueil. La bulle de Yasmina porte le bonjour, la ligne du dessous devient « هَيَّا نَتَعَلَّمُ مَعًا. » ou « On apprend ensemble. » (textes validés par Lamjed).
-- Point de design à trancher (tokens.json) : en thème sombre, `ink` devient clair et ne fait que 1,4:1 sur `sun` (étape ouverte de la carte). La démo écrit les étapes et les cartes de matière en #16243A fixe, absent des jetons. Proposition : un jeton `ink-fixed` (ou `on-pastel`) identique dans les deux thèmes, à ajouter à l'artefact avant la carte du trimestre (A1-10).
+- Point de design à trancher (tokens.json) : en thème sombre, `ink` devient clair et ne fait que 1,4:1 sur `sun` (étape ouverte de la carte). La démo écrit les étapes et les cartes de matière en #16243A fixe, absent des jetons. Proposition : un jeton `ink-fixed` (ou `on-pastel`) identique dans les deux thèmes, à ajouter à l'artefact avant la carte du trimestre (A3-01).
 - À noter : `on-accent` sur `olive` ne fait que 4,05:1 en clair. Acceptable en grand texte gras (bouton Continuer en 22 gras, testé à 3:1), jamais en petit texte.
 - Contrôle visuel de l'aperçu web dans Chrome (clair et sombre) pas fait par Claude Code (Chrome non utilisé à la demande de Lamjed) : à faire par Lamjed.
 - Goldens générés sur macOS : ils peuvent différer sur une autre machine ou une CI Linux (polices et rendu). À régénérer sur la machine de référence si besoin.
@@ -187,3 +193,4 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 | 19 oct. 2026 | A0-12 menu développeur et atelier (Claude Code) | Exemples de `schema/exemples/` générés dans `edu_content` (`tool/generer_exemples.dart`, `exemplesEduContent`, test de synchro) : une seule source pour l'app, l'aperçu web et les tests, sans asset ni `dart:io`. Moteur : registre des 53 types (12 moteurs dans l'ordre de développement, lot, état, tous à venir), `ModeExercice`, `CatalogueExemples` (chaque exemple validé au premier accès, erreurs affichables sans exception). App : menu développeur par appui long sur le titre des écrans racine, en debug et en profile seulement (redirection en release), toujours en français : atelier, profils de test Lina et Yassine sans doublon, réinitialisation confirmée, abonnement simulé et « tout débloquer » enregistrés sans effet. Atelier : types groupés par moteur avec jouables sur total, écran d'un type et de ses exemples (consigne dans la langue de l'exercice), écran d'un exemple (mode, `ZoneLecteur` comme seul point de branchement du lecteur, JSON formaté). `flutter build apk` debug et release réussis. Dépendance ajoutée : edu_content (workspace) dans moteur_exercices | Lecteur d'exercice générique (A0-13), puis moteur Choix (A1-01b) |
 | 19 oct. 2026 | A0-13 lecteur, A0-14 plateforme, A0-16 Yasmina (Claude Code) | Services de plateforme injectés dans le moteur (audio, vibration, assets, factices exportés), implémentation mobile (`AudioFlutterTts` sans plantage si aucune voix, `VibrationHaptique`). Yasmina saute (bravo) et se penche (encourage), sans mouvement si l'appareil le demande (`mouvements_yasmina.dart`, seule source). `BandeauFeedback` (goldens clair et sombre) et `TuileChoix`. Lecteur générique : `DerouleExercice` en Dart pur (modes vérifier, automatique et sans note), contrat `GabaritReponse` et `ControleurReponse`, libellés genrés en arabe, consigne lue à l'ouverture, feedback en 3 temps, aperçu (afficher la réponse, Rejouer) et édition (rechargement), événements. T02 Vrai ou faux jouable (premier type), branché dans l'atelier avec mode, forme, journal des événements et avertissement de voix absente. `flutter build apk --debug` et build iOS réussis. Aucune dépendance ajoutée (flutter_tts déjà déclaré) | Essayer T02 sur l'iPhone (voix arabe), aperçu web (A0-15), puis les 12 autres types du moteur Choix (A1-01b) |
 | 20 oct. 2026 | Sons d'interface, décision 35 (Claude Code) | `SonInterface` (juste, essaiFaux, revelee, depot, finEtape) et `ServiceAudio.jouerSon` dans le moteur, sons provisoires WAV générés par un script du dépôt (notes douces, courts, volume bas, essai faux jamais un buzzer), test du format. Le lecteur joue juste, essaiFaux et revelee aux 3 temps du feedback (mode vérifier et automatique, rien sans note). Mobile : `SonsAudioplayers` (basse latence, volume 0,4, catégorie iOS ambient, usage Android sonification), `AudioFlutterTts` devient `AudioMobile` (voix et sons). Menu développeur : interrupteur « Sons des effets » (activé par défaut, enregistré). Textes courts du moteur Choix en latin-prompt (commit séparé). `flutter build apk --debug` et build iOS réussis. Dépendance ajoutée : audioplayers 6.8.1 dans apps/mobile (compatible web, entraîne audioplayers_android, audioplayers_darwin, audioplayers_web, audioplayers_linux, audioplayers_windows, audioplayers_platform_interface et synchronized) | Écouter les sons et la consigne sur l'iPhone (mode silencieux compris), aperçu web (A0-15), puis moteur Choix (A1-01b) |
+| 20 oct. 2026 | Replanification, décision 37 (Claude Code, session sans surveillance) | Branche `plan/replanification`. `docs/estimations-taches.md` : toutes les tâches non faites à la moitié du plan (colonne j-h en vigueur, colonne Plan gardée), A0-21 sons d'interface (0,5, fait), A1-22 séquence de test du tour 1 (0,75), A1-10 à A1-14 devenues A3-01 à A3-05 dans la phase A3 « Parcours et espace parent » (1er au 14 mars 2027), phase B du 15 mars au 30 avril 2027. Total en vigueur 182,25 j-h (345,25 au plan), calcul tombé juste tâche par tâche. `tool/avancement.dart` lit les tableaux par leur en-tête (colonne Plan ignorée), affiche A3 et contrôle les totaux déclarés, testé par `test/avancement_test.dart` à la racine (nouvelle étape de `verifier.sh`). Jalons G1, G2 et G3 reformulés. Dépendance ajoutée : flutter_test (SDK) en dev à la racine du workspace, pour ce test | Moteur Choix, 12 types restants (A1-01b), puis moteur Glisser-déposer (A1-02) |
