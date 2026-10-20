@@ -3352,6 +3352,169 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'simulateur/T34-flotte-coule.json': r'''
+{
+  "id": "ev-3-t1-u1-e01-x01",
+  "type": "T34",
+  "gabarit": "simulateur-eau",
+  "competence": "ev-matiere-flotte-coule",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "تَوَقَّعْ: هَلْ يَطْفُو الشَّيْءُ أَمْ يَغْرَقُ؟ ثُمَّ لَاحِظْ.",
+      "feminin": "تَوَقَّعِي: هَلْ يَطْفُو الشَّيْءُ أَمْ يَغْرَقُ؟ ثُمَّ لَاحِظِي."
+    }
+  },
+  "donnees": {
+    "decor": "eau",
+    "issues": {
+      "a": {
+        "libelle": "يَطْفُو"
+      },
+      "b": {
+        "libelle": "يَغْرَقُ"
+      }
+    },
+    "objets": [
+      {
+        "id": "o1",
+        "emoji": "🪵",
+        "libelle": "خَشَبٌ"
+      },
+      {
+        "id": "o2",
+        "emoji": "🪨",
+        "libelle": "حَجَرٌ"
+      },
+      {
+        "id": "o3",
+        "emoji": "🔑",
+        "libelle": "مِفْتَاحٌ"
+      },
+      {
+        "id": "o4",
+        "emoji": "🍎",
+        "libelle": "تُفَّاحَةٌ"
+      }
+    ]
+  },
+  "reponse": {
+    "resultats": [
+      {
+        "objet": "o1",
+        "issue": "a"
+      },
+      {
+        "objet": "o2",
+        "issue": "b"
+      },
+      {
+        "objet": "o3",
+        "issue": "b"
+      },
+      {
+        "objet": "o4",
+        "issue": "a"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "تَوَقُّعَاتُكَ صَحِيحَةٌ: الْخَشَبُ وَالتُّفَّاحَةُ يَطْفُوَانِ، الْحَجَرُ وَالْمِفْتَاحُ يَغْرَقَانِ.",
+      "feminin": "تَوَقُّعَاتُكِ صَحِيحَةٌ: الْخَشَبُ وَالتُّفَّاحَةُ يَطْفُوَانِ، الْحَجَرُ وَالْمِفْتَاحُ يَغْرَقَانِ."
+    },
+    "indice": "الْأَشْيَاءُ الْخَفِيفَةُ أَوِ الْمَصْنُوعَةُ مِنَ الْخَشَبِ تَطْفُو غَالِبًا.",
+    "explication": "الْخَشَبُ وَالتُّفَّاحَةُ يَطْفُوَانِ. الْحَجَرُ وَالْمِفْتَاحُ يَغْرَقَانِ."
+  },
+  "empreinte": "sha256:03cdf6a255738ec114c008611cd4cabcc1ea770c18f3613460527a932db46729",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'simulateur/T57-circuit.json': r'''
+{
+  "id": "ev-4-t1-u2-e01-x01",
+  "type": "T57",
+  "gabarit": "simulateur-circuit",
+  "competence": "ev-electricite-conducteurs",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "تَوَقَّعْ لِكُلِّ مَادَّةٍ: هَلْ يُضِيءُ الْمِصْبَاحُ؟ ثُمَّ لَاحِظْ.",
+      "feminin": "تَوَقَّعِي لِكُلِّ مَادَّةٍ: هَلْ يُضِيءُ الْمِصْبَاحُ؟ ثُمَّ لَاحِظِي."
+    }
+  },
+  "donnees": {
+    "decor": "circuit",
+    "issues": {
+      "a": {
+        "libelle": "يُضِيءُ",
+        "emoji": "💡"
+      },
+      "b": {
+        "libelle": "لَا يُضِيءُ"
+      }
+    },
+    "objets": [
+      {
+        "id": "o1",
+        "emoji": "🥉",
+        "libelle": "نُحَاسٌ"
+      },
+      {
+        "id": "o2",
+        "emoji": "🔩",
+        "libelle": "حَدِيدٌ"
+      },
+      {
+        "id": "o3",
+        "emoji": "🪵",
+        "libelle": "خَشَبٌ"
+      },
+      {
+        "id": "o4",
+        "emoji": "🧴",
+        "libelle": "بْلَاسْتِيكٌ"
+      }
+    ]
+  },
+  "reponse": {
+    "resultats": [
+      {
+        "objet": "o1",
+        "issue": "a"
+      },
+      {
+        "objet": "o2",
+        "issue": "a"
+      },
+      {
+        "objet": "o3",
+        "issue": "b"
+      },
+      {
+        "objet": "o4",
+        "issue": "b"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "تَوَقُّعَاتُكَ صَحِيحَةٌ: النُّحَاسُ وَالْحَدِيدُ نَاقِلَانِ لِلْكَهْرَبَاءِ.",
+      "feminin": "تَوَقُّعَاتُكِ صَحِيحَةٌ: النُّحَاسُ وَالْحَدِيدُ نَاقِلَانِ لِلْكَهْرَبَاءِ."
+    },
+    "indice": "الْمَعَادِنُ تَنْقُلُ الْكَهْرَبَاءَ.",
+    "explication": "النُّحَاسُ وَالْحَدِيدُ يَنْقُلَانِ الْكَهْرَبَاءَ. الْخَشَبُ وَالْبْلَاسْتِيكُ عَازِلَانِ."
+  },
+  "empreinte": "sha256:078cfd737786de0f1288eb4914dd51fc95f12f13c17d2b04c9cf3bd8524955f0",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'texte/T07-toucher-mots-fr.json': r'''
 {
   "id": "fr-3-t1-u2-e02-x01",

@@ -323,6 +323,16 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T34' || type == 'T57') {
+    problemes.addAll(
+      _reglesSimulateur(
+        type,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (const {'T31', 'T32', 'T33', 'T60'}.contains(type)) {
     problemes.addAll(
       _reglesGrille(
@@ -1460,6 +1470,76 @@ List<ProblemeValidation> _reglesScene(
       'elements_trop_nombreux',
       '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
           '4 à 6 au maximum (CLAUDE.md §5).',
+    );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Simulateur (docs/moteurs/simulateur.md) : T57 générique,
+/// T34 Flotte ou coule en instance (décor eau).
+List<ProblemeValidation> _reglesSimulateur(
+  String type,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  if (type == 'T34' && (donnees['decor'] as String? ?? 'aucun') != 'eau') {
+    erreur(
+      '$chemin/donnees/decor',
+      'decor_attendu',
+      'T34 Flotte ou coule se joue dans la cuve : decor eau attendu.',
+    );
+  }
+  final objets = (donnees['objets'] as List).cast<Map<String, dynamic>>();
+  final ids = <String>{};
+  final libelles = <String>{};
+  for (var k = 0; k < objets.length; k++) {
+    final id = objets[k]['id'] as String;
+    if (!ids.add(id)) {
+      erreur(
+        '$chemin/donnees/objets/$k/id',
+        'element_duplique',
+        'deux objets ont le même id « $id ».',
+      );
+    }
+    final libelle = objets[k]['libelle'] as String;
+    if (!libelles.add(libelle)) {
+      erreur(
+        '$chemin/donnees/objets/$k/libelle',
+        'element_duplique',
+        'deux objets ont le même nom « $libelle ».',
+      );
+    }
+  }
+  final resultats = (reponse['resultats'] as List).cast<Map<String, dynamic>>();
+  final vus = <String>{};
+  for (var k = 0; k < resultats.length; k++) {
+    final objet = resultats[k]['objet'] as String;
+    if (!ids.contains(objet)) {
+      erreur(
+        '$chemin/reponse/resultats/$k/objet',
+        'reponse_element_inconnu',
+        'la réponse désigne « $objet », absent de donnees.objets.',
+      );
+    }
+    if (!vus.add(objet)) {
+      erreur(
+        '$chemin/reponse/resultats/$k/objet',
+        'element_duplique',
+        'l\'objet « $objet » a deux issues.',
+      );
+    }
+  }
+  if (!vus.containsAll(ids)) {
+    erreur(
+      '$chemin/reponse/resultats',
+      'resultats_incomplets',
+      'chaque objet a une issue réelle : il manque '
+          '${ids.difference(vus).join(', ')}.',
     );
   }
   return problemes;

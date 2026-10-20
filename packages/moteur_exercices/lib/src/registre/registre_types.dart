@@ -413,8 +413,20 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Simulateur (lot 2).
-  TypeExercice('T34', 'Flotte ou coule', Moteur.simulateur, lot: 2),
-  TypeExercice('T57', "Simulateur d'expérience", Moteur.simulateur, lot: 2),
+  TypeExercice(
+    'T34',
+    'Flotte ou coule',
+    Moteur.simulateur,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T57',
+    "Simulateur d'expérience",
+    Moteur.simulateur,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Récit (lot 2).
   TypeExercice('T35', 'Histoire à choix', Moteur.recit, lot: 2),
 ];

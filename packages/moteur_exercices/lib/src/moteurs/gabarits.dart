@@ -31,6 +31,7 @@ import 'scene/gabarit_ecoute_colorie.dart';
 import 'scene/gabarit_ecoute_place.dart';
 import 'scene/gabarit_etiquetage.dart';
 import 'scene/gabarit_hot_spot.dart';
+import 'simulateur/gabarit_simulateur.dart';
 import 'texte/gabarit_dictee.dart';
 import 'texte/gabarit_toucher_mots.dart';
 
@@ -95,6 +96,9 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T32': GabaritConstruireGraphique(),
   'T33': GabaritSymetrie(),
   'T60': GabaritCodage(),
+  // Moteur Simulateur (T34 est une instance de T57).
+  'T34': GabaritSimulateur(),
+  'T57': GabaritSimulateur(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

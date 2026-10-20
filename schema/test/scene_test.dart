@@ -215,6 +215,83 @@ void main() {
     );
   });
 
+  test('T34 et T57 (moteur Simulateur) : exemples valides et règles', () {
+    Map<String, dynamic> simulateur(String type, String decor) => exerciceAudio(
+      type,
+      {
+        'decor': decor,
+        'issues': {
+          'a': {'libelle': 'floats'},
+          'b': {'libelle': 'sinks'},
+        },
+        'objets': [
+          {'id': 'o1', 'emoji': '🪵', 'libelle': 'wood'},
+          {'id': 'o2', 'emoji': '🪨', 'libelle': 'stone'},
+        ],
+      },
+      {
+        'resultats': [
+          {'objet': 'o1', 'issue': 'a'},
+          {'objet': 'o2', 'issue': 'b'},
+        ],
+      },
+    )..['competence'] = 'en-essai';
+    for (final (type, decor) in [('T34', 'eau'), ('T57', 'circuit')]) {
+      final r = validerExercice(simulateur(type, decor));
+      expect(r.erreurs, isEmpty, reason: '$type : $r');
+      expect(r.avertissements, isEmpty, reason: '$type : $r');
+    }
+    List<ProblemeValidation> erreursDe(
+      String type,
+      String decor,
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = simulateur(type, decor);
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    expect(
+      erreursDe('T34', 'circuit', (_) {}).single,
+      probleme('/donnees/decor', 'decor_attendu'),
+    );
+    expect(
+      erreursDe(
+        'T57',
+        'aucun',
+        (ex) => ex['donnees']['objets'].add({
+          'id': 'o3',
+          'emoji': '🍎',
+          'libelle': 'apple',
+        }),
+      ).single,
+      probleme('/reponse/resultats', 'resultats_incomplets'),
+    );
+    expect(
+      erreursDe(
+        'T57',
+        'aucun',
+        (ex) => ex['reponse']['resultats'][1]['objet'] = 'o1',
+      ),
+      unorderedEquals([
+        probleme('/reponse/resultats/1/objet', 'element_duplique'),
+        probleme('/reponse/resultats', 'resultats_incomplets'),
+      ]),
+    );
+    expect(
+      erreursDe(
+        'T57',
+        'aucun',
+        (ex) => ex['donnees']['objets'][1]['libelle'] = 'wood',
+      ).single,
+      probleme('/donnees/objets/1/libelle', 'element_duplique'),
+    );
+    expect(
+      erreursDe('T57', 'aucun', (ex) => ex['donnees']['decor'] = 'feu'),
+      contains(probleme('/donnees/decor', 'valeur_non_autorisee')),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

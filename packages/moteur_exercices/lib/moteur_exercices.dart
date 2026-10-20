@@ -57,6 +57,7 @@ export 'src/moteurs/scene/gabarit_ecoute_place.dart';
 export 'src/moteurs/scene/gabarit_etiquetage.dart';
 export 'src/moteurs/scene/gabarit_hot_spot.dart';
 export 'src/moteurs/scene/scene.dart';
+export 'src/moteurs/simulateur/gabarit_simulateur.dart';
 export 'src/moteurs/texte/comparaison.dart';
 export 'src/moteurs/texte/gabarit_dictee.dart';
 export 'src/moteurs/texte/gabarit_toucher_mots.dart';

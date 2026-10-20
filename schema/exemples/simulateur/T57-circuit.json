@@ -1,0 +1,80 @@
+{
+  "id": "ev-4-t1-u2-e01-x01",
+  "type": "T57",
+  "gabarit": "simulateur-circuit",
+  "competence": "ev-electricite-conducteurs",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "تَوَقَّعْ لِكُلِّ مَادَّةٍ: هَلْ يُضِيءُ الْمِصْبَاحُ؟ ثُمَّ لَاحِظْ.",
+      "feminin": "تَوَقَّعِي لِكُلِّ مَادَّةٍ: هَلْ يُضِيءُ الْمِصْبَاحُ؟ ثُمَّ لَاحِظِي."
+    }
+  },
+  "donnees": {
+    "decor": "circuit",
+    "issues": {
+      "a": {
+        "libelle": "يُضِيءُ",
+        "emoji": "💡"
+      },
+      "b": {
+        "libelle": "لَا يُضِيءُ"
+      }
+    },
+    "objets": [
+      {
+        "id": "o1",
+        "emoji": "🥉",
+        "libelle": "نُحَاسٌ"
+      },
+      {
+        "id": "o2",
+        "emoji": "🔩",
+        "libelle": "حَدِيدٌ"
+      },
+      {
+        "id": "o3",
+        "emoji": "🪵",
+        "libelle": "خَشَبٌ"
+      },
+      {
+        "id": "o4",
+        "emoji": "🧴",
+        "libelle": "بْلَاسْتِيكٌ"
+      }
+    ]
+  },
+  "reponse": {
+    "resultats": [
+      {
+        "objet": "o1",
+        "issue": "a"
+      },
+      {
+        "objet": "o2",
+        "issue": "a"
+      },
+      {
+        "objet": "o3",
+        "issue": "b"
+      },
+      {
+        "objet": "o4",
+        "issue": "b"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "تَوَقُّعَاتُكَ صَحِيحَةٌ: النُّحَاسُ وَالْحَدِيدُ نَاقِلَانِ لِلْكَهْرَبَاءِ.",
+      "feminin": "تَوَقُّعَاتُكِ صَحِيحَةٌ: النُّحَاسُ وَالْحَدِيدُ نَاقِلَانِ لِلْكَهْرَبَاءِ."
+    },
+    "indice": "الْمَعَادِنُ تَنْقُلُ الْكَهْرَبَاءَ.",
+    "explication": "النُّحَاسُ وَالْحَدِيدُ يَنْقُلَانِ الْكَهْرَبَاءَ. الْخَشَبُ وَالْبْلَاسْتِيكُ عَازِلَانِ."
+  },
+  "empreinte": "sha256:078cfd737786de0f1288eb4914dd51fc95f12f13c17d2b04c9cf3bd8524955f0",
+  "statut": "brouillon",
+  "version": 1
+}
