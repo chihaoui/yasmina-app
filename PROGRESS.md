@@ -7,16 +7,16 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
-| A1 | 1 | 36,25 | 3 % |
+| A1 | 4,5 | 36,25 | 12 % |
 | A2 | 0 | 30,5 | 0 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **19,5** | **182,25** | **10,7 %** |
+| **Total** | **23** | **182,25** | **12,6 %** |
 
-- **Avancement global : 10,7 %** (19,5 j-h faits sur 182,25)
-- **Types jouables : 1 sur 53**
+- **Avancement global : 12,6 %** (23 j-h faits sur 182,25)
+- **Types jouables : 13 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -79,8 +79,10 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 
 ## A1 : lot 1 des moteurs et retours familles, tour 1 (2 nov. au 31 déc. 2026)
 - [x] A1-01a Moteur Choix : schéma, exemples et fiche (1 j-h)
-- [ ] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (3,5 j-h)
+- [x] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (3,5 j-h)
   - [x] T02 Vrai ou faux jouable dans l'atelier (preuve du lecteur, 19 oct. 2026)
+  - [x] Les 12 autres types jouables dans l'atelier, un test de widget par type (arabe et latin), parité mobile et web (20 oct. 2026)
+  - [ ] Goldens du moteur Choix (T01 en arabe, T45 en français, clair et sombre) : reportés à A1-15
 - [ ] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (6 j-h)
 - [ ] A1-03 Moteur Texte (T07, T17) (2 j-h)
 - [ ] A1-04 Moteur Tracé (T20) (1,5 j-h)
@@ -156,6 +158,9 @@ Après la validation des 53 types dans l'atelier (décision 37) : le parcours, l
 - [ ] D-05 Pilotage D (1,25 j-h)
 
 ## Blocages
+- À vérifier sur l'iPhone (moteur Choix, 20 oct. 2026) : en T19 forme mot, la lettre cible est colorée en bleu par un span séparé du même texte. Contrôler que ت reste liée à ses voisines (كُتُبٌ) dans Noto Naskh. Sinon, colorer le mot entier.
+- À vérifier sur l'iPhone : `AudioMobile` attend désormais la fin de la synthèse (`awaitSpeakCompletion`) pour enchaîner la consigne puis le mot à écouter (T03, T55, T01 orthographe, T19). Contrôler que la réécoute de la consigne coupe bien le mot en cours.
+- Aperçu web : joue l'exemple choisi dans une liste déroulante (13 types du moteur Choix), en mode aperçu, avec les services factices. Le chargement d'un JSON par fichier ou `postMessage` reste à faire (A0-15).
 - À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A3-03). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
 - Résolu le 20 oct. 2026 (moteur Choix) : tout texte court lu par l'enfant en français ou en anglais (affirmation, texte des propositions) passe en `latin-prompt` (20 px). `latin-body` reste pour les textes longs à lire (T45, T46, T61), choix.md §9 mis à jour.
 - À savoir : dans les tests et les goldens, les emoji s'affichent en carré (le moteur de test n'a pas de police emoji). Sur l'appareil et dans le navigateur, ils s'affichent normalement.
@@ -194,3 +199,4 @@ Après la validation des 53 types dans l'atelier (décision 37) : le parcours, l
 | 19 oct. 2026 | A0-13 lecteur, A0-14 plateforme, A0-16 Yasmina (Claude Code) | Services de plateforme injectés dans le moteur (audio, vibration, assets, factices exportés), implémentation mobile (`AudioFlutterTts` sans plantage si aucune voix, `VibrationHaptique`). Yasmina saute (bravo) et se penche (encourage), sans mouvement si l'appareil le demande (`mouvements_yasmina.dart`, seule source). `BandeauFeedback` (goldens clair et sombre) et `TuileChoix`. Lecteur générique : `DerouleExercice` en Dart pur (modes vérifier, automatique et sans note), contrat `GabaritReponse` et `ControleurReponse`, libellés genrés en arabe, consigne lue à l'ouverture, feedback en 3 temps, aperçu (afficher la réponse, Rejouer) et édition (rechargement), événements. T02 Vrai ou faux jouable (premier type), branché dans l'atelier avec mode, forme, journal des événements et avertissement de voix absente. `flutter build apk --debug` et build iOS réussis. Aucune dépendance ajoutée (flutter_tts déjà déclaré) | Essayer T02 sur l'iPhone (voix arabe), aperçu web (A0-15), puis les 12 autres types du moteur Choix (A1-01b) |
 | 20 oct. 2026 | Sons d'interface, décision 35 (Claude Code) | `SonInterface` (juste, essaiFaux, revelee, depot, finEtape) et `ServiceAudio.jouerSon` dans le moteur, sons provisoires WAV générés par un script du dépôt (notes douces, courts, volume bas, essai faux jamais un buzzer), test du format. Le lecteur joue juste, essaiFaux et revelee aux 3 temps du feedback (mode vérifier et automatique, rien sans note). Mobile : `SonsAudioplayers` (basse latence, volume 0,4, catégorie iOS ambient, usage Android sonification), `AudioFlutterTts` devient `AudioMobile` (voix et sons). Menu développeur : interrupteur « Sons des effets » (activé par défaut, enregistré). Textes courts du moteur Choix en latin-prompt (commit séparé). `flutter build apk --debug` et build iOS réussis. Dépendance ajoutée : audioplayers 6.8.1 dans apps/mobile (compatible web, entraîne audioplayers_android, audioplayers_darwin, audioplayers_web, audioplayers_linux, audioplayers_windows, audioplayers_platform_interface et synchronized) | Écouter les sons et la consigne sur l'iPhone (mode silencieux compris), aperçu web (A0-15), puis moteur Choix (A1-01b) |
 | 20 oct. 2026 | Replanification, décision 37 (Claude Code, session sans surveillance) | Branche `plan/replanification`. `docs/estimations-taches.md` : toutes les tâches non faites à la moitié du plan (colonne j-h en vigueur, colonne Plan gardée), A0-21 sons d'interface (0,5, fait), A1-22 séquence de test du tour 1 (0,75), A1-10 à A1-14 devenues A3-01 à A3-05 dans la phase A3 « Parcours et espace parent » (1er au 14 mars 2027), phase B du 15 mars au 30 avril 2027. Total en vigueur 182,25 j-h (345,25 au plan), calcul tombé juste tâche par tâche. `tool/avancement.dart` lit les tableaux par leur en-tête (colonne Plan ignorée), affiche A3 et contrôle les totaux déclarés, testé par `test/avancement_test.dart` à la racine (nouvelle étape de `verifier.sh`). Jalons G1, G2 et G3 reformulés. Dépendance ajoutée : flutter_test (SDK) en dev à la racine du workspace, pour ce test | Moteur Choix, 12 types restants (A1-01b), puis moteur Glisser-déposer (A1-02) |
+| 20 oct. 2026 | A1-01b moteur Choix (Claude Code, session sans surveillance) | Branche `moteur/choix-a1-01b`. Lecteur : graine de mélange dans `ConfigExercice`, demandes d'audio des zones (`ControleurReponse.demanderAudio`, mot d'ouverture dit après la consigne), `AudioMobile` attend la fin de la synthèse. `TuileChoix` barrée ou grande, `BoutonEcouter` (variante listen). Moteur Choix : `SelectionChoix`, `GrilleChoix`, `GabaritChoix` (T01, T03, T04, T05, T18, T19 lettre vocalisée, T24, T45, T55, T61), `GabaritHaraka` (T19 forme mot), `GabaritComparer` (T23), `GabaritJustification` (T46). Les 13 types jouables dans l'atelier. 45 tests de widget (un cas arabe et un cas latin par type, fixtures arabes en brouillon), test de parité dans le moteur et dans l'aperçu web, qui joue les exemples du catalogue. Un commit rouge (2 tests de l'atelier) détecté après coup et amendé. Aucune dépendance ajoutée | Essayer les 13 types sur l'iPhone (fiche de test de `docs/sessions/2026-10-20.md`), puis moteur Glisser-déposer (A1-02) |
