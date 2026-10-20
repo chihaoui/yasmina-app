@@ -31,6 +31,9 @@ dart run tool/garde_design.dart
 etape "Avancement de PROGRESS.md à jour"
 dart run tool/avancement.dart --verifier
 
+etape "Tests : outils de la racine (tool/)"
+flutter test
+
 etape "Formatage"
 dart format --output=none --set-exit-if-changed .
 

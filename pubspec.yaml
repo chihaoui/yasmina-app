@@ -12,6 +12,8 @@ workspace:
   - schema
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   # 2.17.1 exige build 5, pas encore supporté par freezed, json_serializable
   # et drift_dev. 2.17.0 est retiré. À relâcher quand ils suivront.
   build_runner: 2.16.2
