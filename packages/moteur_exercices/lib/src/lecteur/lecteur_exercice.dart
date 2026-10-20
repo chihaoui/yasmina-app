@@ -58,6 +58,7 @@ class _LecteurExerciceState extends State<LecteurExercice> {
   GabaritReponse? _gabarit;
   ControleurReponse? _controleur;
   StreamSubscription<bool>? _fins;
+  StreamSubscription<DemandeAudio>? _demandesAudio;
   late DerouleExercice _deroule;
   Timer? _minuterieFaux;
   String? _derniereReponse;
@@ -107,9 +108,17 @@ class _LecteurExerciceState extends State<LecteurExercice> {
     }
     _derniereReponse = null;
     _fins = _controleur?.fins.listen(_finAutomatique);
-    if (_controleur != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _lireConsigne();
+    _demandesAudio = _controleur?.demandesAudio.listen(_direPourLaZone);
+    if (_controleur case final controleur?) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted) return;
+        // La consigne, puis le mot à écouter du type (sans couper la
+        // consigne : le service enchaîne).
+        await _lireConsigne();
+        if (!mounted || _controleur != controleur) return;
+        if (controleur.ecouteOuverture case final texte?) {
+          controleur.demanderAudio(texte, langue: widget.config.langue);
+        }
       });
     }
   }
@@ -117,6 +126,7 @@ class _LecteurExerciceState extends State<LecteurExercice> {
   void _arreter() {
     _minuterieFaux?.cancel();
     _fins?.cancel();
+    _demandesAudio?.cancel();
     _controleur
       ?..removeListener(_reponseChangee)
       ..dispose();
@@ -135,12 +145,18 @@ class _LecteurExerciceState extends State<LecteurExercice> {
   String get _consigne =>
       _texte((widget.exercice['consigne'] as Map?)?['texte']);
 
-  void _lireConsigne() {
+  Future<void> _lireConsigne() {
     final langue = widget.config.langue;
-    widget.services.audio.dire(_consigne, langue: langue);
+    final dite = widget.services.audio.dire(_consigne, langue: langue);
     _emettre([
       DemandeAudio(_consigne, langue: langue, origine: OrigineAudio.consigne),
     ]);
+    return dite;
+  }
+
+  void _direPourLaZone(DemandeAudio demande) {
+    widget.services.audio.dire(demande.texte, langue: demande.langue);
+    _emettre([demande]);
   }
 
   void _reponseChangee() {

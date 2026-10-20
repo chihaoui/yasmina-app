@@ -75,6 +75,35 @@ void main() {
     expect(services.audioFactice.dits, hasLength(2));
   });
 
+  testWidgets('mot à écouter : après la consigne à l\'ouverture, puis au '
+      'toucher, dit par le lecteur et émis', (tester) async {
+    await jouer(
+      tester,
+      gabarit: GabaritFactice(ModeValidation.verifier, 'chat'),
+    );
+    expect(services.audioFactice.dits.map((d) => d.texte), [
+      'Choisis A.',
+      'chat',
+    ]);
+    expect(evenements, [
+      const DemandeAudio(
+        'Choisis A.',
+        langue: 'fr',
+        origine: OrigineAudio.consigne,
+      ),
+      const DemandeAudio('chat', langue: 'fr', origine: OrigineAudio.ecoute),
+    ]);
+    await tester.tap(cle('factice_mot'));
+    await tester.pump();
+    expect(services.audioFactice.dits, hasLength(3));
+    expect(services.audioFactice.dits.last.texte, 'chat');
+    expect(evenements.whereType<DemandeAudio>(), hasLength(3));
+    // La réécoute de la consigne ne redit pas le mot.
+    await tester.tap(cle('lecteur_reecoute'));
+    await tester.pump();
+    expect(services.audioFactice.dits.last.texte, 'Choisis A.');
+  });
+
   testWidgets('mode vérifier : faux, faux, explication et Continuer', (
     tester,
   ) async {

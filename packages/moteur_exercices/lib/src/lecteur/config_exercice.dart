@@ -8,6 +8,7 @@ class ConfigExercice {
     required this.langue,
     required this.formeAdresse,
     this.mode = ModeExercice.enfant,
+    this.graine,
   });
 
   /// Langue de l'exercice (`ar`, `fr` ou `en`) : textes, sens, voix.
@@ -17,4 +18,8 @@ class ConfigExercice {
   final FormeAdresse formeAdresse;
 
   final ModeExercice mode;
+
+  /// Graine du mélange des propositions (docs/moteurs/choix.md §5) : tests
+  /// et aperçu reproductibles. `null` : tirage aléatoire.
+  final int? graine;
 }

@@ -30,6 +30,10 @@ class _TtsFactice implements FlutterTts {
   Future<dynamic> stop() async => appels.add('stop');
 
   @override
+  Future<dynamic> awaitSpeakCompletion(bool awaitCompletion) async =>
+      appels.add('attente $awaitCompletion');
+
+  @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
@@ -40,10 +44,14 @@ void main() {
     expect(await audio.voixDisponible('ar'), isTrue);
     await audio.dire('هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟', langue: 'ar');
     expect(tts.appels, [
+      // Une fois : dire ne rend la main qu'à la fin de la synthèse.
+      'attente true',
       'stop',
       'langue ar',
       'dire هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟',
     ]);
+    await audio.dire('مَرْحَبًا', langue: 'ar');
+    expect(tts.appels.where((a) => a.startsWith('attente')), hasLength(1));
   });
 
   test('sans voix : rien n\'est dit, aucune exception', () async {

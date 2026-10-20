@@ -36,6 +36,42 @@ void main() {
     });
   }
 
+  for (final (langue, libelle) in [('ar', 'اِسْمَعِي'), ('fr', 'Écouter')]) {
+    testWidgets('$langue : grand bouton Écouter (variante listen)', (
+      tester,
+    ) async {
+      var appuis = 0;
+      await afficher(
+        tester,
+        langue,
+        BoutonEcouter(libelle: libelle, onPressed: () => appuis++),
+      );
+      expect(find.text(libelle), findsOneWidget);
+      final taille = tester.getSize(find.byType(BoutonEcouter));
+      expect(taille.height, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+      final fond = tester
+          .widget<Material>(
+            find.descendant(
+              of: find.byType(BoutonEcouter),
+              matching: find.byType(Material),
+            ),
+          )
+          .color;
+      expect(fond, CouleursYasmina.clair.blue);
+      final texte = tester.widget<Text>(find.text(libelle)).style!;
+      expect(texte.color, CouleursYasmina.clair.onAccent);
+      expect(texte.fontSize, StylesYasmina.listen.fontSize);
+      expect(
+        texte.fontFamily,
+        langue == 'ar' ? PolicesYasmina.interfaceArabe : PolicesYasmina.latin,
+      );
+      final icone = tester.widget<Icon>(find.byIcon(Icons.volume_up_rounded));
+      expect(icone.size, TaillesYasmina.iconListen);
+      await tester.tap(find.byType(BoutonEcouter));
+      expect(appuis, 1);
+    });
+  }
+
   for (final icone in [Icons.chevron_left_rounded, Icons.undo_rounded]) {
     testWidgets('flèche en miroir en arabe, une seule fois, pas en français '
         '(matchTextDirection : ${icone.matchTextDirection})', (tester) async {

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'config_exercice.dart';
 import 'deroule_exercice.dart';
+import 'evenements.dart';
 
 /// Affichage imposé par le lecteur à la zone de réponse.
 enum AffichageReponse {
@@ -80,6 +81,26 @@ abstract class ControleurReponse extends ChangeNotifier {
   void reponseModifiee() => notifyListeners();
 
   final _fins = StreamController<bool>.broadcast(sync: true);
+  final _demandesAudio = StreamController<DemandeAudio>.broadcast(sync: true);
+
+  /// Audio demandé par la zone (mot à écouter, choix avec audio) : le
+  /// lecteur le fait dire par le service injecté et émet l'événement.
+  Stream<DemandeAudio> get demandesAudio => _demandesAudio.stream;
+
+  /// Fait dire [texte] dans [langue] (origine `ecoute` par défaut).
+  void demanderAudio(
+    String texte, {
+    required String langue,
+    OrigineAudio origine = OrigineAudio.ecoute,
+  }) {
+    if (!_demandesAudio.isClosed) {
+      _demandesAudio.add(DemandeAudio(texte, langue: langue, origine: origine));
+    }
+  }
+
+  /// Texte à faire entendre une fois à l'ouverture, après la consigne (mot
+  /// de T03 et T55, support écouté de T01, mot de T19). `null` : rien.
+  String? get ecouteOuverture => null;
 
   /// Mode automatique : fins signalées par la zone (juste ou non).
   Stream<bool> get fins => _fins.stream;
@@ -94,6 +115,7 @@ abstract class ControleurReponse extends ChangeNotifier {
   @mustCallSuper
   void dispose() {
     _fins.close();
+    _demandesAudio.close();
     super.dispose();
   }
 }

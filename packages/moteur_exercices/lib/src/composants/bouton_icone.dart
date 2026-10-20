@@ -61,3 +61,66 @@ class BoutonIcone extends StatelessWidget {
     );
   }
 }
+
+/// Grand bouton Écouter (variante `listen` du IconButton du design system,
+/// docs/design-system/composants/IconButton.md) : « اِسْمَعْ » ou
+/// « Écouter » sur fond blue, pour faire entendre un mot (T03, T55, support
+/// écouté de T01, mot de T19). Le libellé suit la langue de l'exercice.
+class BoutonEcouter extends StatelessWidget {
+  const BoutonEcouter({
+    super.key,
+    required this.libelle,
+    required this.onPressed,
+  });
+
+  final String libelle;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.couleurs;
+    final style = ThemeYasmina.pourLangue(
+      StylesYasmina.listen,
+      ThemeYasmina.langueDe(context),
+    ).copyWith(color: c.onAccent);
+    return Semantics(
+      button: true,
+      label: libelle,
+      excludeSemantics: true,
+      child: Material(
+        color: c.blue,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(RayonsYasmina.radiusPill),
+        ),
+        child: InkWell(
+          onTap: onPressed,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minHeight: EspacesYasmina.targetMin,
+              minWidth: EspacesYasmina.targetMin,
+            ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: EspacesYasmina.padListenX,
+                vertical: EspacesYasmina.padListenY,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.volume_up_rounded,
+                    color: c.onAccent,
+                    size: TaillesYasmina.iconListen,
+                  ),
+                  const SizedBox(width: EspacesYasmina.space2),
+                  Text(libelle, style: style),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

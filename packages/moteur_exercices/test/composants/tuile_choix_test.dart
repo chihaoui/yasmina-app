@@ -87,6 +87,31 @@ void main() {
     poignee.dispose();
   });
 
+  testWidgets('barrée (T45) et grande (content-word)', (tester) async {
+    await afficher(
+      tester,
+      'fr',
+      const TuileChoix(
+        etat: EtatTuile.selectionne,
+        texte: 'Le chat est blanc.',
+        barre: true,
+      ),
+    );
+    final barre = tester.widget<Text>(find.text('Le chat est blanc.')).style!;
+    expect(barre.decoration, TextDecoration.lineThrough);
+    expect(barre.decorationThickness, TraitsYasmina.borderThick);
+
+    await afficher(
+      tester,
+      'ar',
+      const TuileChoix(etat: EtatTuile.repos, texte: 'ـجـ', grand: true),
+    );
+    final grand = tester.widget<Text>(find.text('ـجـ')).style!;
+    expect(grand.fontSize, StylesYasmina.contentWord.fontSize);
+    expect(grand.fontFamily, PolicesYasmina.contenuArabe);
+    expect(grand.decoration, TextDecoration.none);
+  });
+
   testWidgets(
     'texte en latin-prompt en français (texte court lu par l\'enfant)',
     (tester) async {

@@ -18,6 +18,8 @@ class TuileChoix extends StatelessWidget {
     this.onTap,
     this.libelleAccessibilite,
     this.motEtat,
+    this.barre = false,
+    this.grand = false,
   });
 
   final EtatTuile etat;
@@ -34,6 +36,14 @@ class TuileChoix extends StatelessWidget {
 
   /// Mot d'état sous la tuile, en mode aperçu (« juste », « faux »).
   final String? motEtat;
+
+  /// Texte barré (T45 : une phrase touchée est barrée, en plus de l'état
+  /// sélectionné).
+  final bool barre;
+
+  /// Texte en content-word (formes de lettre, lettres vocalisées, signes)
+  /// au lieu de content-option ou latin-prompt.
+  final bool grand;
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +92,25 @@ class TuileChoix extends StatelessWidget {
                       texte!,
                       textAlign: TextAlign.center,
                       // content-option en arabe, latin-prompt en français et
-                      // en anglais (texte court lu par l'enfant).
+                      // en anglais (texte court lu par l'enfant), content-word
+                      // pour une tuile grande.
                       style:
-                          (langue == 'ar'
+                          (grand
+                                  ? ThemeYasmina.pourLangue(
+                                      StylesYasmina.contentWord,
+                                      langue,
+                                    )
+                                  : langue == 'ar'
                                   ? StylesYasmina.contentOption
                                   : StylesYasmina.latinPrompt)
-                              .copyWith(color: c.ink),
+                              .copyWith(
+                                color: c.ink,
+                                decoration: barre
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                                decorationColor: c.ink,
+                                decorationThickness: TraitsYasmina.borderThick,
+                              ),
                     ),
                   if (motEtat != null)
                     Text(

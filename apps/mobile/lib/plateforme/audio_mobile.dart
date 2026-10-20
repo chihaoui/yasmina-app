@@ -22,6 +22,19 @@ class AudioMobile implements ServiceAudio {
   };
 
   final _locales = <String, String?>{};
+  bool _attenteReglee = false;
+
+  /// `dire` ne rend la main qu'à la fin de la synthèse : le lecteur peut
+  /// enchaîner la consigne puis le mot à écouter sans couper la consigne.
+  Future<void> _reglerAttente() async {
+    if (_attenteReglee) return;
+    _attenteReglee = true;
+    try {
+      await _tts.awaitSpeakCompletion(true);
+    } on Object {
+      // Plugin indisponible : la synthèse rend la main tout de suite.
+    }
+  }
 
   /// Première locale de [langue] reconnue par l'appareil, `null` sinon.
   Future<String?> _locale(String langue) async {
@@ -49,6 +62,7 @@ class AudioMobile implements ServiceAudio {
     final locale = await _locale(langue);
     if (locale == null) return;
     try {
+      await _reglerAttente();
       await _tts.stop();
       await _tts.setLanguage(locale);
       await _tts.speak(texte);
