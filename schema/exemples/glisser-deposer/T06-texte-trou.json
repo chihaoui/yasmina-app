@@ -1,0 +1,50 @@
+{
+  "id": "fr-4-t1-u2-e02-x01",
+  "type": "T06",
+  "gabarit": "texte-trou",
+  "competence": "fr-conjugaison-present",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Glisse le bon mot dans la phrase."
+  },
+  "donnees": {
+    "texte": "Le chien {t1} dans le jardin.",
+    "etiquettes": [
+      {
+        "id": "e1",
+        "texte": "court"
+      },
+      {
+        "id": "e2",
+        "texte": "courent"
+      },
+      {
+        "id": "e3",
+        "texte": "courons"
+      },
+      {
+        "id": "e4",
+        "texte": "courir"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "trous": [
+      {
+        "trou": "t1",
+        "etiquette": "e1"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : le chien court. Avec « le chien », le verbe se termine par « t ».",
+    "indice": "Le sujet est « le chien », comme « il ». Que fait-il ?",
+    "explication": "La phrase est « Le chien court dans le jardin. » Avec il, elle ou le chien, on écrit « court »."
+  },
+  "empreinte": "sha256:b97aa7b4e00ace8c7adf88145e9e25987bc2f4a6ea7b711c2b817ca7ca79070b",
+  "statut": "brouillon",
+  "version": 1
+}

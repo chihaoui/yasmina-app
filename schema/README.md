@@ -9,7 +9,8 @@ Schéma JSON `edu-content/1.0` des exercices et son validateur.
 ## Choix du schéma
 
 - Sous-ensemble prudent du draft 2020-12 : `type`, `enum`, `const`, `pattern`, `required`, `additionalProperties: false`, `$defs` et `$ref`, `oneOf`, `anyOf`, `if` et `then`. Pas de `unevaluatedProperties` ni de `$dynamicRef`, pour rester compatible avec le validateur Dart, avec ajv et avec les sorties structurées d'un LLM.
-- `donnees` et `reponse` sont détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61, voir `docs/moteurs/choix.md`). Les autres types ont un `donnees` générique, précisé moteur par moteur pendant A1. Au moins un exemple valide par type (un par gabarit quand il y en a plusieurs) : `schema/exemples/choix/`.
+- `donnees` et `reponse` sont détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61, voir `docs/moteurs/choix.md`) et les 8 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, voir `docs/moteurs/glisser-deposer.md`, brouillon). Les autres types ont un `donnees` générique, précisé moteur par moteur pendant A1. Au moins un exemple valide par type (un par gabarit quand il y en a plusieurs) : `schema/exemples/choix/`, `schema/exemples/glisser-deposer/`.
+- Glisser-déposer : les réponses sont des tableaux d'objets (`trous`, `paires`, `classement`, `ordre`), jamais des objets à clés variables. Les trous de T06 sont des marqueurs `{t1}` à `{t9}` dans le texte.
 - Une image peut être remplacée par un `emoji` (choix, support, élément de suite, affirmation de T02), jamais les deux ensemble. Dans le prototype, toutes les images sont des emoji.
 - T19 a deux formes, choisies par le gabarit : `lettre-vocalisee` (trouver la lettre qui porte la haraka demandée parmi بَ بُ بِ بْ) ou tout autre gabarit (choisir la haraka d'une lettre dans un mot : `avant`, `lettre`, `apres`).
 - Les textes destinés à l'enfant (consigne, feedbacks) sont un texte simple ou `{ "masculin", "feminin" }`.
@@ -73,6 +74,17 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `reponse_comparaison_fausse` | T23 : le signe correspond aux deux nombres | erreur |
 | `suite_reponse_incoherente` | T24 : la réponse suit le motif répété ou la suite arithmétique d'entiers (non contrôlée si aucun des deux n'est reconnu) | erreur |
 | `preuve_absente_du_texte` | T46 : chaque preuve est recopiée telle quelle du texte | erreur |
+| `element_duplique` | moteur Glisser-déposer : pas d'id ni de texte en double dans une liste (les lettres de T15 et T16 peuvent se répéter) | erreur |
+| `reponse_element_inconnu` | moteur Glisser-déposer : la réponse désigne des éléments, cibles et catégories existants | erreur |
+| `trou_duplique`, `trou_sans_reponse`, `reponse_trou_inconnu`, `etiquette_reutilisee` | T06 : chaque trou du texte une fois, une réponse par trou, une étiquette pour un seul trou | erreur |
+| `association_incomplete` | T09 : gauche et droite de même taille, la réponse est une bijection | erreur |
+| `classement_incomplet`, `categorie_vide` | T11, T12 : chaque élément classé une fois, chaque catégorie utilisée | erreur |
+| `element_sans_texte` | T12 : des mots seulement | erreur |
+| `ordre_incomplet` | T13, T14 : l'ordre cite chaque élément une fois | erreur |
+| `mot_different_ecoute` | T15, T16 : le mot construit par l'ordre est le mot entendu sans ses harakat | erreur |
+| `type_langue` (suite) | T12 et T15 en arabe, T16 jamais en arabe | erreur |
+| `etiquettes_sans_intrus` | T06 à plusieurs trous : toutes les étiquettes servent | avertissement |
+| `elements_trop_nombreux` | moteur Glisser-déposer : plus de 6 éléments en 1re ou 2e année (niveau lu dans l'id) | avertissement |
 | `exercice_orphelin` | exercice cité dans aucune séquence | avertissement |
 | `sequences_nombre` | l'étape n'a pas 4 séquences | avertissement |
 | `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année (sauf une lettre seule, avec ou sans tatweel : formes de T18, lettre de T19) | avertissement |

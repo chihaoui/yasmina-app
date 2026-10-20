@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) et les 8 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -308,6 +308,51 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesResume" },
               "reponse": { "$ref": "#/$defs/reponseChoix" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T06" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesTrous" },
+              "reponse": { "$ref": "#/$defs/reponseTrous" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T09" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesAssociation" },
+              "reponse": { "$ref": "#/$defs/reponseAssociation" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "enum": ["T11", "T12"] } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesTri" },
+              "reponse": { "$ref": "#/$defs/reponseTri" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "enum": ["T13", "T14"] } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesOrdre" },
+              "reponse": { "$ref": "#/$defs/reponseOrdre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "enum": ["T15", "T16"] } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesMot" },
+              "reponse": { "$ref": "#/$defs/reponseOrdre" }
             }
           }
         }
@@ -616,6 +661,240 @@ const String texteSchemaEduContent = r'''
           "maxItems": 6,
           "items": { "$ref": "#/$defs/choixTexte" }
         },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    }
+,
+
+    "idElement": { "type": "string", "pattern": "^e([1-9]|10)$" },
+    "idCategorie": { "type": "string", "pattern": "^k[1-3]$" },
+    "idTrou": { "type": "string", "pattern": "^t[1-9]$" },
+    "idGauche": { "type": "string", "pattern": "^g[1-9]$" },
+    "idDroite": { "type": "string", "pattern": "^d[1-9]$" },
+    "elementGlisser": {
+      "description": "Attendu : un élément à glisser avec un id (e1 à e10) et au moins un texte ou un emoji (jamais une image et un emoji ensemble).",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
+      "properties": {
+        "id": { "$ref": "#/$defs/idElement" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" }
+      }
+    },
+    "elementTexte": {
+      "description": "Élément à glisser avec un texte obligatoire (étiquette, lettre, syllabe).",
+      "type": "object",
+      "required": ["id", "texte"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idElement" },
+        "texte": { "$ref": "#/$defs/texteNonVide" }
+      }
+    },
+    "donneesTrous": {
+      "description": "T06 (et T39 par le gabarit texte-trous) : un texte avec des trous {t1}, {t2}... et des étiquettes à glisser dedans, une par trou, avec des étiquettes en trop possibles.",
+      "type": "object",
+      "required": ["texte", "etiquettes"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": {
+          "description": "Texte avec au moins un trou {t1} à {t9}, chacun une seule fois.",
+          "type": "string",
+          "pattern": "\\{t[1-9]\\}"
+        },
+        "etiquettes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseTrous": {
+      "description": "L'étiquette attendue dans chaque trou (règles Dart : tous les trous, une étiquette par trou).",
+      "type": "object",
+      "required": ["trous"],
+      "additionalProperties": false,
+      "properties": {
+        "trous": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 9,
+          "items": {
+            "type": "object",
+            "required": ["trou", "etiquette"],
+            "additionalProperties": false,
+            "properties": {
+              "trou": { "$ref": "#/$defs/idTrou" },
+              "etiquette": { "$ref": "#/$defs/idElement" }
+            }
+          }
+        }
+      }
+    },
+    "donneesAssociation": {
+      "description": "T09 : les éléments de gauche (à glisser) et les cibles de droite, en nombre égal.",
+      "type": "object",
+      "required": ["gauche", "droite"],
+      "additionalProperties": false,
+      "properties": {
+        "gauche": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "additionalProperties": false,
+            "anyOf": [{ "required": ["texte"] }, { "required": ["emoji"] }],
+            "properties": {
+              "id": { "$ref": "#/$defs/idGauche" },
+              "texte": { "$ref": "#/$defs/texteNonVide" },
+              "emoji": { "$ref": "#/$defs/emoji" }
+            }
+          }
+        },
+        "droite": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "additionalProperties": false,
+            "anyOf": [{ "required": ["texte"] }, { "required": ["emoji"] }],
+            "properties": {
+              "id": { "$ref": "#/$defs/idDroite" },
+              "texte": { "$ref": "#/$defs/texteNonVide" },
+              "emoji": { "$ref": "#/$defs/emoji" }
+            }
+          }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseAssociation": {
+      "description": "Les paires attendues : chaque gauche avec sa droite (bijection, règles Dart).",
+      "type": "object",
+      "required": ["paires"],
+      "additionalProperties": false,
+      "properties": {
+        "paires": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["gauche", "droite"],
+            "additionalProperties": false,
+            "properties": {
+              "gauche": { "$ref": "#/$defs/idGauche" },
+              "droite": { "$ref": "#/$defs/idDroite" }
+            }
+          }
+        }
+      }
+    },
+    "donneesTri": {
+      "description": "T11 (bacs) et T12 (tableau, texte seul) : des catégories et des éléments à classer.",
+      "type": "object",
+      "required": ["categories", "elements"],
+      "additionalProperties": false,
+      "properties": {
+        "categories": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["id", "titre"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idCategorie" },
+              "titre": { "$ref": "#/$defs/texteNonVide" },
+              "emoji": { "$ref": "#/$defs/emoji" }
+            }
+          }
+        },
+        "elements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementGlisser" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseTri": {
+      "description": "La catégorie attendue de chaque élément (règles Dart : tous les éléments, chaque catégorie utilisée).",
+      "type": "object",
+      "required": ["classement"],
+      "additionalProperties": false,
+      "properties": {
+        "classement": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["element", "categorie"],
+            "additionalProperties": false,
+            "properties": {
+              "element": { "$ref": "#/$defs/idElement" },
+              "categorie": { "$ref": "#/$defs/idCategorie" }
+            }
+          }
+        }
+      }
+    },
+    "donneesOrdre": {
+      "description": "T13 (mots) et T14 (images légendées) : les éléments à ranger dans l'ordre.",
+      "type": "object",
+      "required": ["elements"],
+      "additionalProperties": false,
+      "properties": {
+        "elements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementGlisser" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseOrdre": {
+      "description": "Les id dans l'ordre attendu. T13 et T14 : tous les éléments. T15 et T16 : ceux du mot, les autres sont en trop (règles Dart).",
+      "type": "object",
+      "required": ["ordre"],
+      "additionalProperties": false,
+      "properties": {
+        "ordre": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idElement" }
+        }
+      }
+    },
+    "donneesMot": {
+      "description": "T15 (lettres, arabe) et T16 (syllabes, jamais en arabe) : les tuiles du mot, lettres en trop possibles, et le mot entendu.",
+      "type": "object",
+      "required": ["elements"],
+      "additionalProperties": false,
+      "properties": {
+        "elements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 10,
+          "items": { "$ref": "#/$defs/elementTexte" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" },
         "melanger": { "type": "boolean", "default": true }
       }
     }

@@ -1,0 +1,58 @@
+{
+  "id": "fr-5-t1-u1-e02-x01",
+  "type": "T06",
+  "gabarit": "texte-trous",
+  "competence": "fr-comprehension-texte-trous",
+  "critere": "C2",
+  "niveau_critere": "perfectionnement",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Glisse chaque mot dans le bon trou du texte."
+  },
+  "donnees": {
+    "texte": "Le matin, Sami {t1} son cartable. Il {t2} à l'école à pied. Le soir, il {t3} ses devoirs.",
+    "etiquettes": [
+      {
+        "id": "e1",
+        "texte": "prend"
+      },
+      {
+        "id": "e2",
+        "texte": "va"
+      },
+      {
+        "id": "e3",
+        "texte": "fait"
+      },
+      {
+        "id": "e4",
+        "texte": "dort"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "trous": [
+      {
+        "trou": "t1",
+        "etiquette": "e1"
+      },
+      {
+        "trou": "t2",
+        "etiquette": "e2"
+      },
+      {
+        "trou": "t3",
+        "etiquette": "e3"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : Sami prend son cartable, va à l'école et fait ses devoirs.",
+    "indice": "Lis chaque phrase en entier avant de choisir : le mot « dort » ne va dans aucun trou.",
+    "explication": "Le texte est : « Le matin, Sami prend son cartable. Il va à l'école à pied. Le soir, il fait ses devoirs. »"
+  },
+  "empreinte": "sha256:1f499a69cfe27cea85610ce0d0abdf3c7f6aaca596c12183c86d5bbe0fa6eab1",
+  "statut": "brouillon",
+  "version": 1
+}

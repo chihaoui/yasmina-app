@@ -1,0 +1,59 @@
+{
+  "id": "ev-2-t1-u3-e01-x01",
+  "type": "T14",
+  "gabarit": "sequence-images",
+  "competence": "ev-cycle-de-vie",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.",
+      "feminin": "رَتِّبِي مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ."
+    }
+  },
+  "donnees": {
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "بَيْضَةٌ",
+        "emoji": "🥚"
+      },
+      {
+        "id": "e2",
+        "texte": "كَتْكُوتٌ",
+        "emoji": "🐣"
+      },
+      {
+        "id": "e3",
+        "texte": "فَرْخٌ",
+        "emoji": "🐥"
+      },
+      {
+        "id": "e4",
+        "texte": "دَجَاجَةٌ",
+        "emoji": "🐔"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3",
+      "e4"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: هَكَذَا تَنْمُو الدَّجَاجَةُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: هَكَذَا تَنْمُو الدَّجَاجَةُ."
+    },
+    "indice": "كُلُّ دَجَاجَةٍ تَبْدَأُ بِبَيْضَةٍ.",
+    "explication": "بَيْضَةٌ، ثُمَّ كَتْكُوتٌ، ثُمَّ فَرْخٌ، ثُمَّ دَجَاجَةٌ."
+  },
+  "empreinte": "sha256:7a1f4db92026eb92cee47cbe0ffcaf2b109163aa6aa059cb57633cea4dae8427",
+  "statut": "brouillon",
+  "version": 1
+}

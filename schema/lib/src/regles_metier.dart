@@ -277,6 +277,18 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (_typesGlisser.contains(type)) {
+    problemes.addAll(
+      _reglesGlisser(
+        type,
+        ex['langue'] as String,
+        _niveauDeId(ex['id'] as String),
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
 
   if (seul) {
     final competence = ex['competence'] as String;
@@ -585,6 +597,315 @@ List<ProblemeValidation> _reglesChoix(
   }
   return problemes;
 }
+
+/// Niveau (1 à 6) lu dans l'id d'un exercice (`ar-1-t1-u1-e01-x01`).
+int? _niveauDeId(String id) =>
+    int.tryParse(RegExp(r'^[a-z]{2}-([1-6])-').firstMatch(id)?.group(1) ?? '');
+
+/// Les 8 types du moteur Glisser-déposer (docs/moteurs/glisser-deposer.md).
+const _typesGlisser = {'T06', 'T09', 'T11', 'T12', 'T13', 'T14', 'T15', 'T16'};
+
+/// Types où l'enfant manipule des éléments : 4 à 6 au maximum en 1re et 2e
+/// année (CLAUDE.md §5).
+const _elementsMaxPetits = 6;
+
+/// Règles des types du moteur Glisser-déposer. Le schéma garantit déjà la
+/// forme de `donnees` et de `reponse` pour chaque type.
+List<ProblemeValidation> _reglesGlisser(
+  String type,
+  String langue,
+  int? niveau,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  void avertissement(String c, String code, String message) => problemes.add(
+    ProblemeValidation(
+      chemin: c,
+      code: code,
+      message: message,
+      gravite: Gravite.avertissement,
+    ),
+  );
+
+  // Langue imposée : T12 (règle de la langue arabe) et T15 (lettres liées)
+  // en arabe, T16 (syllabes) jamais en arabe.
+  if ((type == 'T12' || type == 'T15') && langue != 'ar') {
+    erreur(
+      '$chemin/langue',
+      'type_langue',
+      'un $type porte sur l\'écriture arabe : langue ar attendue, pas $langue.',
+    );
+  }
+  if (type == 'T16' && langue == 'ar') {
+    erreur(
+      '$chemin/langue',
+      'type_langue',
+      'un T16 (syllabes) ne se joue pas en arabe : des syllabes isolées '
+          'casseraient la liaison des lettres. Utiliser T15.',
+    );
+  }
+
+  /// Ids d'une liste d'éléments, avec contrôle des doublons (id, et texte
+  /// sauf pour les lettres et syllabes, où une lettre peut revenir).
+  Set<String> ids(String champ, {bool textesUniques = true}) {
+    final liste = (donnees[champ] as List).cast<Map<String, dynamic>>();
+    final vus = <String>{};
+    final textes = <String>{};
+    for (var k = 0; k < liste.length; k++) {
+      final id = liste[k]['id'] as String;
+      if (!vus.add(id)) {
+        erreur(
+          '$chemin/donnees/$champ/$k/id',
+          'element_duplique',
+          'deux éléments de $champ ont le même id « $id ».',
+        );
+      }
+      final texte = liste[k]['texte'];
+      if (textesUniques && texte is String && !textes.add(texte)) {
+        erreur(
+          '$chemin/donnees/$champ/$k/texte',
+          'element_duplique',
+          'deux éléments de $champ ont le même texte « $texte ».',
+        );
+      }
+    }
+    return vus;
+  }
+
+  void inconnu(String c, String champ, String id) => erreur(
+    c,
+    'reponse_element_inconnu',
+    'la réponse désigne « $id », absent de donnees.$champ.',
+  );
+
+  var nbElements = 0;
+  switch (type) {
+    case 'T06':
+      final etiquettes = ids('etiquettes');
+      nbElements = etiquettes.length;
+      final texte = donnees['texte'] as String;
+      final trous = RegExp(r'\{(t[1-9])\}')
+          .allMatches(texte)
+          .map((m) => m.group(1)!)
+          .toList();
+      final trousUniques = trous.toSet();
+      if (trousUniques.length != trous.length) {
+        erreur(
+          '$chemin/donnees/texte',
+          'trou_duplique',
+          'un trou apparaît deux fois dans le texte : « $texte ».',
+        );
+      }
+      final reponses = (reponse['trous'] as List).cast<Map<String, dynamic>>();
+      final trousRepondus = <String>{};
+      final etiquettesUtilisees = <String>{};
+      for (var k = 0; k < reponses.length; k++) {
+        final trou = reponses[k]['trou'] as String;
+        final etiquette = reponses[k]['etiquette'] as String;
+        if (!trousUniques.contains(trou)) {
+          erreur(
+            '$chemin/reponse/trous/$k/trou',
+            'reponse_trou_inconnu',
+            'le trou « $trou » n\'est pas dans le texte.',
+          );
+        }
+        if (!trousRepondus.add(trou)) {
+          erreur(
+            '$chemin/reponse/trous/$k/trou',
+            'trou_duplique',
+            'le trou « $trou » a deux réponses.',
+          );
+        }
+        if (!etiquettes.contains(etiquette)) {
+          inconnu(
+            '$chemin/reponse/trous/$k/etiquette',
+            'etiquettes',
+            etiquette,
+          );
+        } else if (!etiquettesUtilisees.add(etiquette)) {
+          erreur(
+            '$chemin/reponse/trous/$k/etiquette',
+            'etiquette_reutilisee',
+            'l\'étiquette « $etiquette » remplit deux trous.',
+          );
+        }
+      }
+      for (final trou in trousUniques.difference(trousRepondus)) {
+        erreur(
+          '$chemin/reponse/trous',
+          'trou_sans_reponse',
+          'le trou « $trou » du texte n\'a pas de réponse.',
+        );
+      }
+      if (trousUniques.length > 1 &&
+          etiquettesUtilisees.length == etiquettes.length) {
+        avertissement(
+          '$chemin/donnees/etiquettes',
+          'etiquettes_sans_intrus',
+          'toutes les étiquettes servent : avec plusieurs trous, ajouter une '
+              'étiquette en trop évite de deviner le dernier trou.',
+        );
+      }
+    case 'T09':
+      final gauche = ids('gauche');
+      final droite = ids('droite');
+      nbElements = gauche.length;
+      if (gauche.length != droite.length) {
+        erreur(
+          '$chemin/donnees/droite',
+          'association_incomplete',
+          'gauche (${gauche.length}) et droite (${droite.length}) doivent '
+              'avoir le même nombre d\'éléments.',
+        );
+      }
+      final paires = (reponse['paires'] as List).cast<Map<String, dynamic>>();
+      final gauchesVues = <String>{};
+      final droitesVues = <String>{};
+      for (var k = 0; k < paires.length; k++) {
+        final g = paires[k]['gauche'] as String;
+        final d = paires[k]['droite'] as String;
+        if (!gauche.contains(g)) {
+          inconnu('$chemin/reponse/paires/$k/gauche', 'gauche', g);
+        }
+        if (!droite.contains(d)) {
+          inconnu('$chemin/reponse/paires/$k/droite', 'droite', d);
+        }
+        if (!gauchesVues.add(g) || !droitesVues.add(d)) {
+          erreur(
+            '$chemin/reponse/paires/$k',
+            'association_incomplete',
+            'un élément ne fait partie que d\'une paire (« $g », « $d »).',
+          );
+        }
+      }
+      if (gauchesVues.length != gauche.length ||
+          droitesVues.length != droite.length) {
+        erreur(
+          '$chemin/reponse/paires',
+          'association_incomplete',
+          'chaque élément de gauche et de droite doit être dans une paire.',
+        );
+      }
+    case 'T11' || 'T12':
+      final categories = ids('categories');
+      final elements = ids('elements');
+      nbElements = elements.length;
+      final classement = (reponse['classement'] as List)
+          .cast<Map<String, dynamic>>();
+      final classes = <String>{};
+      final utilisees = <String>{};
+      for (var k = 0; k < classement.length; k++) {
+        final e = classement[k]['element'] as String;
+        final c = classement[k]['categorie'] as String;
+        if (!elements.contains(e)) {
+          inconnu('$chemin/reponse/classement/$k/element', 'elements', e);
+        }
+        if (!categories.contains(c)) {
+          inconnu('$chemin/reponse/classement/$k/categorie', 'categories', c);
+        }
+        if (!classes.add(e)) {
+          erreur(
+            '$chemin/reponse/classement/$k/element',
+            'classement_incomplet',
+            'l\'élément « $e » est classé deux fois.',
+          );
+        }
+        utilisees.add(c);
+      }
+      for (final e in elements.difference(classes)) {
+        erreur(
+          '$chemin/reponse/classement',
+          'classement_incomplet',
+          'l\'élément « $e » n\'est pas classé.',
+        );
+      }
+      for (final c in categories.difference(utilisees)) {
+        erreur(
+          '$chemin/reponse/classement',
+          'categorie_vide',
+          'la catégorie « $c » ne reçoit aucun élément.',
+        );
+      }
+      if (type == 'T12') {
+        final liste = (donnees['elements'] as List)
+            .cast<Map<String, dynamic>>();
+        for (var k = 0; k < liste.length; k++) {
+          if (liste[k]['texte'] == null) {
+            erreur(
+              '$chemin/donnees/elements/$k',
+              'element_sans_texte',
+              'un tableau de tri (T12) classe des mots : texte obligatoire.',
+            );
+          }
+        }
+      }
+    case 'T13' || 'T14':
+      final elements = ids('elements');
+      nbElements = elements.length;
+      final ordre = (reponse['ordre'] as List).cast<String>();
+      for (var k = 0; k < ordre.length; k++) {
+        if (!elements.contains(ordre[k])) {
+          inconnu('$chemin/reponse/ordre/$k', 'elements', ordre[k]);
+        }
+      }
+      if (ordre.toSet().length != elements.length) {
+        erreur(
+          '$chemin/reponse/ordre',
+          'ordre_incomplet',
+          'l\'ordre doit citer chacun des ${elements.length} éléments une '
+              'fois (ici ${ordre.length}).',
+        );
+      }
+    case 'T15' || 'T16':
+      final elements = ids('elements', textesUniques: false);
+      nbElements = elements.length;
+      final ordre = (reponse['ordre'] as List).cast<String>();
+      for (var k = 0; k < ordre.length; k++) {
+        if (!elements.contains(ordre[k])) {
+          inconnu('$chemin/reponse/ordre/$k', 'elements', ordre[k]);
+        }
+      }
+      final ecoute = donnees['ecoute'] as Map<String, dynamic>?;
+      if (ecoute != null) {
+        final liste = (donnees['elements'] as List)
+            .cast<Map<String, dynamic>>();
+        final mot = [
+          for (final id in ordre)
+            liste.where((e) => e['id'] == id).firstOrNull?['texte'] ?? '',
+        ].join();
+        final entendu = _sansHarakat(ecoute['texte'] as String);
+        if (mot != entendu) {
+          erreur(
+            '$chemin/donnees/ecoute/texte',
+            'mot_different_ecoute',
+            'le mot construit « $mot » doit être le mot entendu sans ses '
+                'harakat « $entendu ».',
+          );
+        }
+      }
+  }
+
+  if (niveau != null && niveau <= 2 && nbElements > _elementsMaxPetits) {
+    avertissement(
+      '$chemin/donnees',
+      'elements_trop_nombreux',
+      '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
+          'année : 4 à 6 au maximum (CLAUDE.md §5).',
+    );
+  }
+  return problemes;
+}
+
+/// Texte sans ses harakat (comparaison seulement, jamais appliqué au texte
+/// stocké).
+String _sansHarakat(String texte) => String.fromCharCodes(
+  texte.runes.where((r) => !_estHaraka(r) && r != 0x0670),
+);
 
 /// Clé de comparaison d'un élément de suite ou d'un choix (texte, image et
 /// emoji).

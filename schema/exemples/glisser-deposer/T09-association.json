@@ -1,0 +1,79 @@
+{
+  "id": "fr-3-t1-u2-e01-x01",
+  "type": "T09",
+  "gabarit": "association-mot-image",
+  "competence": "fr-lecture-mots-images",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Glisse chaque mot sur son image."
+  },
+  "donnees": {
+    "gauche": [
+      {
+        "id": "g1",
+        "texte": "pomme"
+      },
+      {
+        "id": "g2",
+        "texte": "vélo"
+      },
+      {
+        "id": "g3",
+        "texte": "lune"
+      },
+      {
+        "id": "g4",
+        "texte": "poisson"
+      }
+    ],
+    "droite": [
+      {
+        "id": "d1",
+        "emoji": "🚲"
+      },
+      {
+        "id": "d2",
+        "emoji": "🐟"
+      },
+      {
+        "id": "d3",
+        "emoji": "🍎"
+      },
+      {
+        "id": "d4",
+        "emoji": "🌙"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "paires": [
+      {
+        "gauche": "g1",
+        "droite": "d3"
+      },
+      {
+        "gauche": "g2",
+        "droite": "d1"
+      },
+      {
+        "gauche": "g3",
+        "droite": "d4"
+      },
+      {
+        "gauche": "g4",
+        "droite": "d2"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : chaque mot est sur son image.",
+    "indice": "Lis chaque mot à voix haute, puis cherche son image.",
+    "explication": "pomme et la pomme, vélo et le vélo, lune et la lune, poisson et le poisson."
+  },
+  "empreinte": "sha256:a051af5dc730705be1667c04bebf9ed016b5edcc852fa5262d81949e66802988",
+  "statut": "brouillon",
+  "version": 1
+}

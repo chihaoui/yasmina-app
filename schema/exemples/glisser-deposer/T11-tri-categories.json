@@ -1,0 +1,101 @@
+{
+  "id": "ev-2-t1-u2-e01-x01",
+  "type": "T11",
+  "gabarit": "tri-bacs",
+  "competence": "ev-aliments-fruits-legumes",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "صَنِّفِ الْأَطْعِمَةَ: فَوَاكِهُ أَمْ خُضَرٌ؟",
+      "feminin": "صَنِّفِي الْأَطْعِمَةَ: فَوَاكِهُ أَمْ خُضَرٌ؟"
+    }
+  },
+  "donnees": {
+    "categories": [
+      {
+        "id": "k1",
+        "titre": "فَوَاكِهُ",
+        "emoji": "🍇"
+      },
+      {
+        "id": "k2",
+        "titre": "خُضَرٌ",
+        "emoji": "🥬"
+      }
+    ],
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "مَوْزَةٌ",
+        "emoji": "🍌"
+      },
+      {
+        "id": "e2",
+        "texte": "جَزَرَةٌ",
+        "emoji": "🥕"
+      },
+      {
+        "id": "e3",
+        "texte": "بُرْتُقَالَةٌ",
+        "emoji": "🍊"
+      },
+      {
+        "id": "e4",
+        "texte": "خِيَارَةٌ",
+        "emoji": "🥒"
+      },
+      {
+        "id": "e5",
+        "texte": "فَرَاوْلَةٌ",
+        "emoji": "🍓"
+      },
+      {
+        "id": "e6",
+        "texte": "بَصَلَةٌ",
+        "emoji": "🧅"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "classement": [
+      {
+        "element": "e1",
+        "categorie": "k1"
+      },
+      {
+        "element": "e2",
+        "categorie": "k2"
+      },
+      {
+        "element": "e3",
+        "categorie": "k1"
+      },
+      {
+        "element": "e4",
+        "categorie": "k2"
+      },
+      {
+        "element": "e5",
+        "categorie": "k1"
+      },
+      {
+        "element": "e6",
+        "categorie": "k2"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ طَعَامٍ فِي مَكَانِهِ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ طَعَامٍ فِي مَكَانِهِ."
+    },
+    "indice": "الْفَوَاكِهُ حُلْوَةٌ وَتَنْمُو عَلَى الْأَشْجَارِ غَالِبًا. الْخُضَرُ نَطْبُخُهَا أَوْ نَأْكُلُهَا فِي السَّلَطَةِ.",
+    "explication": "الْفَوَاكِهُ: الْمَوْزَةُ وَالْبُرْتُقَالَةُ وَالْفَرَاوْلَةُ. الْخُضَرُ: الْجَزَرَةُ وَالْخِيَارَةُ وَالْبَصَلَةُ."
+  },
+  "empreinte": "sha256:7e2046b16d83bc6621df454182c08ed09e96c8adbf46ec99d58ddfd516564b09",
+  "statut": "brouillon",
+  "version": 1
+}

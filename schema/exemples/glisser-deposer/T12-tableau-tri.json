@@ -1,0 +1,95 @@
+{
+  "id": "ar-3-t1-u3-e01-x01",
+  "type": "T12",
+  "gabarit": "tableau-tri",
+  "competence": "ar-lam-shamsiya-qamariya",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ: لَامٌ شَمْسِيَّةٌ أَمْ لَامٌ قَمَرِيَّةٌ؟",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ: لَامٌ شَمْسِيَّةٌ أَمْ لَامٌ قَمَرِيَّةٌ؟"
+    }
+  },
+  "donnees": {
+    "categories": [
+      {
+        "id": "k1",
+        "titre": "لَامٌ شَمْسِيَّةٌ",
+        "emoji": "☀️"
+      },
+      {
+        "id": "k2",
+        "titre": "لَامٌ قَمَرِيَّةٌ",
+        "emoji": "🌙"
+      }
+    ],
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "الدَّفْتَرُ"
+      },
+      {
+        "id": "e2",
+        "texte": "الْجَبَلُ"
+      },
+      {
+        "id": "e3",
+        "texte": "الطَّرِيقُ"
+      },
+      {
+        "id": "e4",
+        "texte": "الْكُرْسِيُّ"
+      },
+      {
+        "id": "e5",
+        "texte": "السَّيَّارَةُ"
+      },
+      {
+        "id": "e6",
+        "texte": "الْمَدْرَسَةُ"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "classement": [
+      {
+        "element": "e1",
+        "categorie": "k1"
+      },
+      {
+        "element": "e2",
+        "categorie": "k2"
+      },
+      {
+        "element": "e3",
+        "categorie": "k1"
+      },
+      {
+        "element": "e4",
+        "categorie": "k2"
+      },
+      {
+        "element": "e5",
+        "categorie": "k1"
+      },
+      {
+        "element": "e6",
+        "categorie": "k2"
+      }
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي عَمُودِهَا.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي عَمُودِهَا."
+    },
+    "indice": "اللَّامُ الشَّمْسِيَّةُ لَا تُنْطَقُ، وَبَعْدَهَا حَرْفٌ عَلَيْهِ شَدَّةٌ. اللَّامُ الْقَمَرِيَّةُ تُنْطَقُ وَعَلَيْهَا سُكُونٌ.",
+    "explication": "شَمْسِيَّةٌ: الدَّفْتَرُ وَالطَّرِيقُ وَالسَّيَّارَةُ. قَمَرِيَّةٌ: الْجَبَلُ وَالْكُرْسِيُّ وَالْمَدْرَسَةُ."
+  },
+  "empreinte": "sha256:095c495c6afb7c4fae037bc8c074d8433dd9ff7a38c73a9437373adfd9e898c2",
+  "statut": "brouillon",
+  "version": 1
+}

@@ -1,0 +1,54 @@
+{
+  "id": "en-5-t1-u2-e01-x01",
+  "type": "T13",
+  "gabarit": "ordre-mots",
+  "competence": "en-sentence-order",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "en",
+  "consigne": {
+    "texte": "Drag the words to make a sentence."
+  },
+  "donnees": {
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "We"
+      },
+      {
+        "id": "e2",
+        "texte": "play"
+      },
+      {
+        "id": "e3",
+        "texte": "football"
+      },
+      {
+        "id": "e4",
+        "texte": "on"
+      },
+      {
+        "id": "e5",
+        "texte": "Sunday."
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3",
+      "e4",
+      "e5"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Right: We play football on Sunday.",
+    "indice": "A sentence starts with a capital letter. Here it is \"We\".",
+    "explication": "The sentence is \"We play football on Sunday.\""
+  },
+  "empreinte": "sha256:7381729d70991cdbfcbca37ab4f32e7250e1f56bcdc565e1346a5b7a5fc0637f",
+  "statut": "brouillon",
+  "version": 1
+}

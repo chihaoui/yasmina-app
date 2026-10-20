@@ -8,19 +8,25 @@ void main() {
   group('exemples réels (schema/exemples)', () {
     final catalogue = CatalogueExemples();
 
-    test('tous valides et rattachés à un type du moteur Choix', () {
+    test('tous valides et rattachés à un moteur du registre (Choix, '
+        'Glisser-déposer)', () {
       expect(catalogue.tous, hasLength(exemplesEduContent.length));
       for (final e in catalogue.tous) {
         expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
-        expect(typeParId(e.idType!)!.moteur, Moteur.choix, reason: e.chemin);
+        expect(
+          typeParId(e.idType!)!.moteur,
+          isIn([Moteur.choix, Moteur.glisserDeposer]),
+          reason: e.chemin,
+        );
       }
       expect(catalogue.nonRattaches, isEmpty);
     });
 
-    test('T01 a 4 exemples, T19 en a 2, T06 aucun', () {
+    test('T01 a 4 exemples, T19 et T06 en ont 2, T20 aucun', () {
       expect(catalogue.exemplesDuType('T01'), hasLength(4));
       expect(catalogue.exemplesDuType('T19'), hasLength(2));
-      expect(catalogue.exemplesDuType('T06'), isEmpty);
+      expect(catalogue.exemplesDuType('T06'), hasLength(2));
+      expect(catalogue.exemplesDuType('T20'), isEmpty);
     });
 
     test('gabarit, langue et consigne (masculin si genrée)', () {

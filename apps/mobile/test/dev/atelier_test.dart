@@ -95,25 +95,16 @@ void main() {
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    // Un type à venir, avec un exemple du moteur Choix rangé sous lui.
-    final surcharge = catalogueExemplesProvider.overrideWithValue(
-      CatalogueExemples({
-        'choix/T06-essai.json':
-            exemplesEduContent['choix/T19-lettre-vocalisee.json']!.replaceFirst(
-              '"type": "T19"',
-              '"type": "T06"',
-            ),
-      }),
-    );
-    await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
-    await aller(tester, '/dev/atelier/T06/T06-essai.json');
+    // Un type à venir (moteur Glisser-déposer), avec son exemple arabe.
+    await lancerApp(tester, StockageMemoire('fr'));
+    await aller(tester, '/dev/atelier/T14/T14-sequence-images.json');
     expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
-    expect(json, contains('"gabarit": "lettre-vocalisee"'));
+    expect(json, contains('"gabarit": "sequence-images"'));
     // Les harakat restent telles qu'écrites.
-    expect(json, contains('أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟'));
+    expect(json, contains('رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.'));
   });
 
   group('exemples en erreur', () {

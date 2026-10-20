@@ -1,0 +1,61 @@
+{
+  "id": "ar-1-t1-u4-e02-x01",
+  "type": "T15",
+  "gabarit": "mot-lettres",
+  "competence": "ar-ecriture-construire-mot",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْتَمِعْ وَرَكِّبِ الْكَلِمَةَ بِالْحُرُوفِ.",
+      "feminin": "اِسْتَمِعِي وَرَكِّبِي الْكَلِمَةَ بِالْحُرُوفِ."
+    }
+  },
+  "donnees": {
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "ق"
+      },
+      {
+        "id": "e2",
+        "texte": "م"
+      },
+      {
+        "id": "e3",
+        "texte": "ر"
+      },
+      {
+        "id": "e4",
+        "texte": "ب"
+      },
+      {
+        "id": "e5",
+        "texte": "ن"
+      }
+    ],
+    "ecoute": {
+      "texte": "قَمَرٌ"
+    },
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: قَمَرٌ تُكْتَبُ ق ثُمَّ م ثُمَّ ر.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: قَمَرٌ تُكْتَبُ ق ثُمَّ م ثُمَّ ر."
+    },
+    "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ الْقَافِ.",
+    "explication": "قَمَرٌ: ق ثُمَّ م ثُمَّ ر. الْحَرْفَانِ ب وَن لَيْسَا فِي الْكَلِمَةِ."
+  },
+  "empreinte": "sha256:cfc452d674e7548dfa3e7955041ddfd599b9e75093a345da70d595bcce909305",
+  "statut": "brouillon",
+  "version": 1
+}
