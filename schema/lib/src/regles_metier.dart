@@ -299,6 +299,18 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T07' || type == 'T17') {
+    problemes.addAll(
+      _reglesTexte(
+        type,
+        ex['langue'] as String,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        (ex['normalisation'] as List?)?.cast<String>() ?? const [],
+        chemin,
+      ),
+    );
+  }
   if (_typesManipulables.contains(type)) {
     problemes.addAll(
       _reglesManipulables(
@@ -1044,6 +1056,112 @@ List<ProblemeValidation> _reglesGlisser(
       '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
           'année : 4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Nombre de mots d'une phrase de T07.
+const _motsMin = 2;
+const _motsMax = 20;
+
+/// Règles du moteur Texte (docs/moteurs/texte.md) : T07 Toucher les mots,
+/// T17 Dictée au clavier.
+List<ProblemeValidation> _reglesTexte(
+  String type,
+  String langue,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  List<String> normalisation,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  void avertissement(String c, String code, String message) => problemes.add(
+    ProblemeValidation(
+      chemin: c,
+      code: code,
+      message: message,
+      gravite: Gravite.avertissement,
+    ),
+  );
+  switch (type) {
+    case 'T07':
+      final mots = (donnees['texte'] as String)
+          .split(' ')
+          .where((m) => m.isNotEmpty)
+          .toList();
+      if (mots.length < _motsMin || mots.length > _motsMax) {
+        erreur(
+          '$chemin/donnees/texte',
+          'phrase_invalide',
+          'la phrase a ${mots.length} mot(s) : de $_motsMin à $_motsMax '
+              'attendus.',
+        );
+      }
+      final attendus = (reponse['mots'] as List).cast<int>();
+      for (var k = 0; k < attendus.length; k++) {
+        if (attendus[k] >= mots.length) {
+          erreur(
+            '$chemin/reponse/mots/$k',
+            'mot_inconnu',
+            'le mot ${attendus[k]} n\'existe pas : la phrase a '
+                '${mots.length} mots (index de 0 à ${mots.length - 1}).',
+          );
+        }
+      }
+      final plusieurs = donnees['plusieurs'] as bool? ?? false;
+      if (!plusieurs && attendus.length > 1) {
+        erreur(
+          '$chemin/reponse/mots',
+          'reponse_unique',
+          'un seul mot attendu sans « plusieurs » (ici '
+              '${attendus.length}).',
+        );
+      }
+    case 'T17':
+      final entendu = (donnees['ecoute'] as Map<String, dynamic>)['texte'];
+      final attendu = reponse['texte'] as String;
+      if (entendu != attendu) {
+        erreur(
+          '$chemin/reponse/texte',
+          'ecoute_differente_reponse',
+          'le texte attendu « $attendu » doit être le mot entendu '
+              '« $entendu ».',
+        );
+      }
+      final harakat = donnees['harakat'] as bool? ?? false;
+      if (harakat && langue != 'ar') {
+        erreur(
+          '$chemin/donnees/harakat',
+          'harakat_hors_arabe',
+          'la rangée de harakat n\'existe que pour un exercice en arabe.',
+        );
+      }
+      if (langue == 'ar') {
+        final avecHarakat = _contientHaraka(attendu);
+        if (avecHarakat &&
+            !harakat &&
+            !normalisation.contains('harakat_ignorees')) {
+          erreur(
+            '$chemin/reponse/texte',
+            'harakat_impossibles',
+            'le mot attendu porte des harakat que l\'enfant ne peut pas '
+                'écrire : proposer la rangée de harakat (donnees.harakat) '
+                'ou comparer sans harakat (normalisation '
+                'harakat_ignorees).',
+          );
+        }
+        if (harakat && !avecHarakat) {
+          avertissement(
+            '$chemin/reponse/texte',
+            'harakat_manquantes_reponse',
+            'la rangée de harakat est proposée mais le mot attendu '
+                '« $attendu » n\'en porte aucune.',
+          );
+        }
+      }
   }
   return problemes;
 }

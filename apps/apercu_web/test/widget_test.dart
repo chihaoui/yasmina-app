@@ -67,7 +67,11 @@ void main() {
         final revele =
             cle('trace_reponse').evaluate().isNotEmpty ||
             cle('droite_reponse').evaluate().isNotEmpty ||
-            cle('manipulables_reponse').evaluate().isNotEmpty;
+            cle('manipulables_reponse').evaluate().isNotEmpty ||
+            cle('dictee_reponse').evaluate().isNotEmpty ||
+            tester
+                .widgetList<MotTouchable>(find.byType(MotTouchable))
+                .any((m) => m.etat == EtatMot.juste);
         expect(
           choixJustes.isNotEmpty || glissesJustes.isNotEmpty || revele,
           isTrue,

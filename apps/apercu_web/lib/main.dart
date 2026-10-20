@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
@@ -28,6 +29,11 @@ class ApercuApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aperçu Yasmina',
       debugShowCheckedModeBanner: false,
+      // Localisation Material (champ de saisie système de T17), interface
+      // de l'aperçu en français.
+      locale: const Locale('fr'),
+      supportedLocales: const [Locale('ar'), Locale('fr'), Locale('en')],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       theme: ThemeYasmina.theme(langue: 'fr', luminosite: Brightness.light),
       darkTheme: ThemeYasmina.theme(langue: 'fr', luminosite: Brightness.dark),
       themeMode: ThemeMode.system,

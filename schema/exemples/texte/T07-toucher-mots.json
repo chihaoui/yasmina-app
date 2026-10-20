@@ -1,0 +1,35 @@
+{
+  "id": "ar-3-t1-u2-e01-x01",
+  "type": "T07",
+  "gabarit": "toucher-mots",
+  "competence": "ar-nahw-fiil",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِلْمِسِ الْفِعْلَ فِي الْجُمْلَةِ.",
+      "feminin": "اِلْمِسِي الْفِعْلَ فِي الْجُمْلَةِ."
+    }
+  },
+  "donnees": {
+    "texte": "يَقْرَأُ الْوَلَدُ قِصَّةً جَمِيلَةً.",
+    "plusieurs": false
+  },
+  "reponse": {
+    "mots": [
+      0
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْفِعْلُ هُوَ يَقْرَأُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْفِعْلُ هُوَ يَقْرَأُ."
+    },
+    "indice": "الْفِعْلُ يَدُلُّ عَلَى عَمَلٍ: مَاذَا يَفْعَلُ الْوَلَدُ؟",
+    "explication": "يَقْرَأُ فِعْلٌ، وَالْوَلَدُ اِسْمٌ."
+  },
+  "empreinte": "sha256:36c1b261e0a81efe069a8d2e462502fd6766d728c594e327c1844b6b5401db56",
+  "statut": "brouillon",
+  "version": 1
+}

@@ -256,8 +256,20 @@ const typesExercices = <TypeExercice>[
   TypeExercice('T29', 'Fractions', Moteur.manipulables, lot: 2),
   TypeExercice('T52', 'Modèle en barres', Moteur.manipulables, lot: 2),
   // Texte (lot 1).
-  TypeExercice('T07', 'Toucher les mots', Moteur.texte, lot: 1),
-  TypeExercice('T17', 'Dictée au clavier', Moteur.texte, lot: 1),
+  TypeExercice(
+    'T07',
+    'Toucher les mots',
+    Moteur.texte,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T17',
+    'Dictée au clavier',
+    Moteur.texte,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   // Saisie numérique.
   TypeExercice('T22', 'Saisie numérique', Moteur.saisieNumerique, lot: 1),
   TypeExercice('T48', 'Calcul posé', Moteur.saisieNumerique, lot: 1),

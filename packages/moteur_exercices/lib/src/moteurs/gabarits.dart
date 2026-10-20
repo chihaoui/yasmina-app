@@ -10,6 +10,8 @@ import 'glisser/gabarit_racine_scheme.dart';
 import 'manipulables/gabarit_blocs.dart';
 import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
+import 'texte/gabarit_dictee.dart';
+import 'texte/gabarit_toucher_mots.dart';
 import 'trace/gabarit_trace.dart';
 
 /// Gabarits des types jouables, par id de type. Un type y entre quand son
@@ -46,6 +48,9 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T25': GabaritDroiteNumerique(),
   'T27': GabaritBlocs(),
   'T51': GabaritCadreDix(),
+  // Moteur Texte.
+  'T07': GabaritToucherMots(),
+  'T17': GabaritDictee(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

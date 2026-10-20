@@ -66,6 +66,7 @@ void main() {
           Moteur.glisserDeposer,
           Moteur.trace,
           Moteur.manipulables,
+          Moteur.texte,
         ]),
         reason: id,
       );

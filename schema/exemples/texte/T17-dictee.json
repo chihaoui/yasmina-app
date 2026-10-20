@@ -1,0 +1,39 @@
+{
+  "id": "ar-1-t1-u3-e01-x01",
+  "type": "T17",
+  "gabarit": "dictee-mot",
+  "competence": "ar-ecriture-dictee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْتَمِعْ وَاكْتُبِ الْكَلِمَةَ.",
+      "feminin": "اِسْتَمِعِي وَاكْتُبِي الْكَلِمَةَ."
+    }
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "قَلَمٌ"
+    },
+    "emoji": "✏️",
+    "harakat": false
+  },
+  "reponse": {
+    "texte": "قَلَمٌ"
+  },
+  "normalisation": [
+    "harakat_ignorees"
+  ],
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: قَلَمٌ تُكْتَبُ ق ثُمَّ ل ثُمَّ م.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: قَلَمٌ تُكْتَبُ ق ثُمَّ ل ثُمَّ م."
+    },
+    "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ الْقَافِ.",
+    "explication": "قَلَمٌ: ق ثُمَّ ل ثُمَّ م."
+  },
+  "empreinte": "sha256:ec08cf6a5ffa0a51dc89da09eb9389bdf5124f34175b43c6dbdce1fd29f034df",
+  "statut": "brouillon",
+  "version": 1
+}

@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé et les 3 types de base du moteur Manipulables (T25, T27, T51), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) et les 2 types du moteur Texte (T07, T17), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -407,6 +407,24 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesCadreDix" },
               "reponse": { "$ref": "#/$defs/reponseJetons" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T07" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesToucherMots" },
+              "reponse": { "$ref": "#/$defs/reponseMots" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T17" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesDictee" },
+              "reponse": { "$ref": "#/$defs/reponseTexte" }
             }
           }
         }
@@ -1140,6 +1158,51 @@ const String texteSchemaEduContent = r'''
       "required": ["jetons"],
       "additionalProperties": false,
       "properties": { "jetons": { "type": "integer", "minimum": 0, "maximum": 10 } }
+    },
+
+    "donneesToucherMots": {
+      "description": "T07 : toucher dans une phrase le ou les mots demandés. La phrase est découpée sur les espaces (2 à 20 mots, règles Dart), la ponctuation reste collée au mot.",
+      "type": "object",
+      "required": ["texte"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "plusieurs": { "type": "boolean", "default": false }
+      }
+    },
+    "reponseMots": {
+      "description": "Index (à partir de 0) des mots attendus dans la phrase (règles Dart : mots existants, un seul sans plusieurs).",
+      "type": "object",
+      "required": ["mots"],
+      "additionalProperties": false,
+      "properties": {
+        "mots": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 0, "maximum": 19 }
+        }
+      }
+    },
+    "donneesDictee": {
+      "description": "T17 : écrire un mot entendu. harakat (arabe) : une rangée de harakat sur le clavier du moteur. casse (latin) : clavier en minuscules. La comparaison suit normalisation (harakat_ignorees, casse...).",
+      "type": "object",
+      "required": ["ecoute"],
+      "additionalProperties": false,
+      "properties": {
+        "ecoute": { "$ref": "#/$defs/ecoute" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "harakat": { "type": "boolean", "default": false },
+        "casse": { "enum": ["libre", "minuscules"], "default": "libre" }
+      }
+    },
+    "reponseTexte": {
+      "description": "Le texte attendu, tel qu'écrit (règles Dart : le mot entendu).",
+      "type": "object",
+      "required": ["texte"],
+      "additionalProperties": false,
+      "properties": { "texte": { "$ref": "#/$defs/texteNonVide" } }
     }
   }
 }

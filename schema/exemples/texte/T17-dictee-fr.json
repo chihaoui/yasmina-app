@@ -1,0 +1,34 @@
+{
+  "id": "fr-2-t1-u1-e01-x01",
+  "type": "T17",
+  "gabarit": "dictee-mot",
+  "competence": "fr-orthographe-dictee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Écoute et écris le mot."
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "poule"
+    },
+    "emoji": "🐔",
+    "casse": "minuscules"
+  },
+  "reponse": {
+    "texte": "poule"
+  },
+  "normalisation": [
+    "casse",
+    "espaces"
+  ],
+  "feedbacks": {
+    "reussite": "Oui : poule s'écrit p, o, u, l, e.",
+    "indice": "Le mot commence par la lettre p.",
+    "explication": "Le mot est poule."
+  },
+  "empreinte": "sha256:0ea65c28a1486fc9e851b3bdc4bd903fbcc477b1f47bc3e4853d00eb1b37ca6f",
+  "statut": "brouillon",
+  "version": 1
+}

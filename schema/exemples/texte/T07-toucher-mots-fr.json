@@ -1,0 +1,30 @@
+{
+  "id": "fr-3-t1-u2-e02-x01",
+  "type": "T07",
+  "gabarit": "toucher-mots",
+  "competence": "fr-grammaire-noms",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Touche les deux noms de la phrase."
+  },
+  "donnees": {
+    "texte": "Le chat dort sur le canapé.",
+    "plusieurs": true
+  },
+  "reponse": {
+    "mots": [
+      1,
+      5
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : chat et canapé sont des noms.",
+    "indice": "Un nom est souvent précédé de le, la, un ou une.",
+    "explication": "Les noms sont chat et canapé. Le verbe est dort."
+  },
+  "empreinte": "sha256:1de8038c0e600f8df1dc5927eeceea1c132d2192da1eb44137eeced68b58e719",
+  "statut": "brouillon",
+  "version": 1
+}

@@ -84,35 +84,35 @@ void main() {
 
   testWidgets('type sans exemple : ouvrable, avec un message', (tester) async {
     await lancerApp(tester, StockageMemoire('fr'));
-    await aller(tester, '/dev/atelier/T07');
-    expect(texteDe(tester, 'atelier_type_titre'), 'T07  Toucher les mots');
+    await aller(tester, '/dev/atelier/T22');
+    expect(texteDe(tester, 'atelier_type_titre'), 'T22  Saisie numérique');
     expect(cle('atelier_aucun_exemple'), findsOneWidget);
   });
 
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    // Un type à venir (T07, moteur Texte) avec un exemple valide rangé
-    // sous lui : tous les exemples réels sont jouables, le catalogue est
-    // surchargé.
-    final t07 =
+    // Un type à venir (T22, moteur Saisie numérique) avec un exemple
+    // valide rangé sous lui : tous les exemples réels sont jouables, le
+    // catalogue est surchargé.
+    final t22 =
         jsonDecode(
             exemplesEduContent['glisser-deposer/T14-sequence-images.json']!,
           ) as Map<String, dynamic>
-          ..['type'] = 'T07'
-          ..['gabarit'] = 'toucher-mots'
+          ..['type'] = 'T22'
+          ..['gabarit'] = 'saisie-essai'
           ..['donnees'] = {'texte': 'كَلِمَةٌ'}
           ..['reponse'] = <String, dynamic>{};
     final surcharge = catalogueExemplesProvider.overrideWithValue(
-      CatalogueExemples({'texte/T07-essai.json': jsonEncode(t07)}),
+      CatalogueExemples({'saisie/T22-essai.json': jsonEncode(t22)}),
     );
     await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
-    await aller(tester, '/dev/atelier/T07/T07-essai.json');
+    await aller(tester, '/dev/atelier/T22/T22-essai.json');
     expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
-    expect(json, contains('"gabarit": "toucher-mots"'));
+    expect(json, contains('"gabarit": "saisie-essai"'));
     // Les harakat restent telles qu'écrites.
     expect(json, contains('رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.'));
   });

@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Localisation Material : le champ de saisie système de T17 l'exige.
+  flutter_localizations:
+    sdk: flutter
   moteur_exercices:
     path: ../../packages/moteur_exercices
   flutter_riverpod: ^3.4.3

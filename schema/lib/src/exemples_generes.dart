@@ -1831,6 +1831,152 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'texte/T07-toucher-mots-fr.json': r'''
+{
+  "id": "fr-3-t1-u2-e02-x01",
+  "type": "T07",
+  "gabarit": "toucher-mots",
+  "competence": "fr-grammaire-noms",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Touche les deux noms de la phrase."
+  },
+  "donnees": {
+    "texte": "Le chat dort sur le canapé.",
+    "plusieurs": true
+  },
+  "reponse": {
+    "mots": [
+      1,
+      5
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : chat et canapé sont des noms.",
+    "indice": "Un nom est souvent précédé de le, la, un ou une.",
+    "explication": "Les noms sont chat et canapé. Le verbe est dort."
+  },
+  "empreinte": "sha256:1de8038c0e600f8df1dc5927eeceea1c132d2192da1eb44137eeced68b58e719",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'texte/T07-toucher-mots.json': r'''
+{
+  "id": "ar-3-t1-u2-e01-x01",
+  "type": "T07",
+  "gabarit": "toucher-mots",
+  "competence": "ar-nahw-fiil",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِلْمِسِ الْفِعْلَ فِي الْجُمْلَةِ.",
+      "feminin": "اِلْمِسِي الْفِعْلَ فِي الْجُمْلَةِ."
+    }
+  },
+  "donnees": {
+    "texte": "يَقْرَأُ الْوَلَدُ قِصَّةً جَمِيلَةً.",
+    "plusieurs": false
+  },
+  "reponse": {
+    "mots": [
+      0
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْفِعْلُ هُوَ يَقْرَأُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْفِعْلُ هُوَ يَقْرَأُ."
+    },
+    "indice": "الْفِعْلُ يَدُلُّ عَلَى عَمَلٍ: مَاذَا يَفْعَلُ الْوَلَدُ؟",
+    "explication": "يَقْرَأُ فِعْلٌ، وَالْوَلَدُ اِسْمٌ."
+  },
+  "empreinte": "sha256:36c1b261e0a81efe069a8d2e462502fd6766d728c594e327c1844b6b5401db56",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'texte/T17-dictee-fr.json': r'''
+{
+  "id": "fr-2-t1-u1-e01-x01",
+  "type": "T17",
+  "gabarit": "dictee-mot",
+  "competence": "fr-orthographe-dictee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Écoute et écris le mot."
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "poule"
+    },
+    "emoji": "🐔",
+    "casse": "minuscules"
+  },
+  "reponse": {
+    "texte": "poule"
+  },
+  "normalisation": [
+    "casse",
+    "espaces"
+  ],
+  "feedbacks": {
+    "reussite": "Oui : poule s'écrit p, o, u, l, e.",
+    "indice": "Le mot commence par la lettre p.",
+    "explication": "Le mot est poule."
+  },
+  "empreinte": "sha256:0ea65c28a1486fc9e851b3bdc4bd903fbcc477b1f47bc3e4853d00eb1b37ca6f",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'texte/T17-dictee.json': r'''
+{
+  "id": "ar-1-t1-u3-e01-x01",
+  "type": "T17",
+  "gabarit": "dictee-mot",
+  "competence": "ar-ecriture-dictee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْتَمِعْ وَاكْتُبِ الْكَلِمَةَ.",
+      "feminin": "اِسْتَمِعِي وَاكْتُبِي الْكَلِمَةَ."
+    }
+  },
+  "donnees": {
+    "ecoute": {
+      "texte": "قَلَمٌ"
+    },
+    "emoji": "✏️",
+    "harakat": false
+  },
+  "reponse": {
+    "texte": "قَلَمٌ"
+  },
+  "normalisation": [
+    "harakat_ignorees"
+  ],
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: قَلَمٌ تُكْتَبُ ق ثُمَّ ل ثُمَّ م.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: قَلَمٌ تُكْتَبُ ق ثُمَّ ل ثُمَّ م."
+    },
+    "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ الْقَافِ.",
+    "explication": "قَلَمٌ: ق ثُمَّ ل ثُمَّ م."
+  },
+  "empreinte": "sha256:ec08cf6a5ffa0a51dc89da09eb9389bdf5124f34175b43c6dbdce1fd29f034df",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'trace/T20-ba.json': r'''
 {
   "id": "ar-1-t1-u1-e01-x02",
