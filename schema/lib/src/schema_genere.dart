@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) et les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) et le type T20 du moteur Tracé, génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -371,6 +371,15 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesRacineScheme" },
               "reponse": { "$ref": "#/$defs/reponseOrdre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T20" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesTrace" },
+              "reponse": { "$ref": "#/$defs/reponseTrace" }
             }
           }
         }
@@ -978,6 +987,75 @@ const String texteSchemaEduContent = r'''
         },
         "ecoute": { "$ref": "#/$defs/ecoute" },
         "melanger": { "type": "boolean", "default": true }
+      }
+    },
+
+    "idForme": { "type": "string", "pattern": "^f[1-4]$" },
+    "pointTrace": {
+      "description": "Un point du guidage, dans le repère de la zone de tracé : x de gauche à droite et y de haut en bas, entre 0 et 1.",
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "formeTrace": {
+      "description": "Une forme de la lettre à tracer : son glyphe (avec tatweel), sa position, et ses traits de guidage facultatifs (1 à 4 traits de 2 à 20 points, dans le sens d'écriture).",
+      "type": "object",
+      "required": ["id", "texte", "position"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/idForme" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "position": { "enum": ["isolee", "debut", "milieu", "fin"] },
+        "traits": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 20,
+            "items": { "$ref": "#/$defs/pointTrace" }
+          }
+        }
+      }
+    },
+    "donneesTrace": {
+      "description": "T20 (arabe, non noté) : tracer une lettre au doigt dans une ou plusieurs de ses formes, guidé par des points et des flèches dans le sens d'écriture.",
+      "type": "object",
+      "required": ["lettre", "formes"],
+      "additionalProperties": false,
+      "properties": {
+        "lettre": {
+          "description": "Une seule lettre arabe, sans haraka.",
+          "type": "string",
+          "pattern": "^[\u0621-\u064A]$"
+        },
+        "formes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/formeTrace" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" }
+      }
+    },
+    "reponseTrace": {
+      "description": "Non noté : les formes que l'enfant doit avoir tracées pour que Continuer s'active (règles Dart : des formes existantes).",
+      "type": "object",
+      "required": ["formes"],
+      "additionalProperties": false,
+      "properties": {
+        "formes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idForme" }
+        }
       }
     }
   }

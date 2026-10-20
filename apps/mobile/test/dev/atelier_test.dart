@@ -84,38 +84,35 @@ void main() {
 
   testWidgets('type sans exemple : ouvrable, avec un message', (tester) async {
     await lancerApp(tester, StockageMemoire('fr'));
-    await aller(tester, '/dev/atelier/T20');
-    expect(
-      texteDe(tester, 'atelier_type_titre'),
-      'T20  Tracé de lettre (non noté)',
-    );
+    await aller(tester, '/dev/atelier/T07');
+    expect(texteDe(tester, 'atelier_type_titre'), 'T07  Toucher les mots');
     expect(cle('atelier_aucun_exemple'), findsOneWidget);
   });
 
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    // Un type à venir (T20, moteur Tracé) avec un exemple valide rangé
+    // Un type à venir (T07, moteur Texte) avec un exemple valide rangé
     // sous lui : tous les exemples réels sont jouables, le catalogue est
     // surchargé.
-    final t20 =
+    final t07 =
         jsonDecode(
             exemplesEduContent['glisser-deposer/T14-sequence-images.json']!,
           ) as Map<String, dynamic>
-          ..['type'] = 'T20'
-          ..['gabarit'] = 'trace-lettre'
-          ..['donnees'] = {'lettre': 'ب'}
+          ..['type'] = 'T07'
+          ..['gabarit'] = 'toucher-mots'
+          ..['donnees'] = {'texte': 'كَلِمَةٌ'}
           ..['reponse'] = <String, dynamic>{};
     final surcharge = catalogueExemplesProvider.overrideWithValue(
-      CatalogueExemples({'trace/T20-essai.json': jsonEncode(t20)}),
+      CatalogueExemples({'texte/T07-essai.json': jsonEncode(t07)}),
     );
     await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
-    await aller(tester, '/dev/atelier/T20/T20-essai.json');
+    await aller(tester, '/dev/atelier/T07/T07-essai.json');
     expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
-    expect(json, contains('"gabarit": "trace-lettre"'));
+    expect(json, contains('"gabarit": "toucher-mots"'));
     // Les harakat restent telles qu'écrites.
     expect(json, contains('رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.'));
   });
