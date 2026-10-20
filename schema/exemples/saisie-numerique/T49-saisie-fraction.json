@@ -1,0 +1,44 @@
+{
+  "id": "ma-5-t1-u2-e01-x01",
+  "type": "T49",
+  "gabarit": "fraction-somme",
+  "competence": "ma-fractions-addition",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ وَاكْتُبِ النَّتِيجَةَ فِي شَكْلِ كَسْرٍ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ وَاكْتُبِي النَّتِيجَةَ فِي شَكْلِ كَسْرٍ."
+    }
+  },
+  "donnees": {
+    "termes": [
+      {
+        "numerateur": 1,
+        "denominateur": 4
+      },
+      {
+        "numerateur": 2,
+        "denominateur": 4
+      }
+    ],
+    "operation": "addition",
+    "equivalentes": true
+  },
+  "reponse": {
+    "numerateur": 3,
+    "denominateur": 4
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 1 عَلَى 4 زَائِدُ 2 عَلَى 4 يُسَاوِي 3 عَلَى 4.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 1 عَلَى 4 زَائِدُ 2 عَلَى 4 يُسَاوِي 3 عَلَى 4."
+    },
+    "indice": "الْمَقَامُ نَفْسُهُ: نَجْمَعُ الْبَسْطَيْنِ فَقَطْ.",
+    "explication": "1 زَائِدُ 2 يُسَاوِي 3، وَالْمَقَامُ يَبْقَى 4: النَّتِيجَةُ 3 عَلَى 4."
+  },
+  "empreinte": "sha256:7b48ff7bd7e10928afe37b1b35c13d563d0572204fb8eee776595697b56959e5",
+  "statut": "brouillon",
+  "version": 1
+}

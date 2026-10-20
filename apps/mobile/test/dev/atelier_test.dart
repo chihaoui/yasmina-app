@@ -83,35 +83,64 @@ void main() {
   });
 
   testWidgets('type sans exemple : ouvrable, avec un message', (tester) async {
+    // Le premier type du registre sans exemple (il en reste tant que le
+    // lot 2 n'est pas fini) : sinon, l'écran d'un type s'ouvre quand même.
+    final catalogue = CatalogueExemples();
+    final sansExemple = typesExercices
+        .where((t) => catalogue.exemplesDuType(t.id).isEmpty)
+        .firstOrNull;
     await lancerApp(tester, StockageMemoire('fr'));
-    await aller(tester, '/dev/atelier/T49');
-    expect(texteDe(tester, 'atelier_type_titre'), 'T49  Saisie de fraction');
+    if (sansExemple == null) {
+      await aller(tester, '/dev/atelier/T01');
+      expect(cle('atelier_aucun_exemple'), findsNothing);
+      return;
+    }
+    await aller(tester, '/dev/atelier/${sansExemple.id}');
+    expect(
+      texteDe(tester, 'atelier_type_titre'),
+      '${sansExemple.id}  ${sansExemple.nom}',
+    );
     expect(cle('atelier_aucun_exemple'), findsOneWidget);
   });
 
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    // Un type à venir (T49, lot 2) avec un exemple valide rangé sous lui :
-    // tous les exemples réels sont jouables, le catalogue est surchargé.
-    final t49 =
-        jsonDecode(
-            exemplesEduContent['glisser-deposer/T14-sequence-images.json']!,
-          ) as Map<String, dynamic>
-          ..['type'] = 'T49'
-          ..['gabarit'] = 'fraction-essai'
-          ..['donnees'] = {'texte': 'كَلِمَةٌ'}
-          ..['reponse'] = <String, dynamic>{};
+    // Un type à venir (le premier du registre, s'il en reste) avec un
+    // exemple valide rangé sous lui : tous les exemples réels sont
+    // jouables, le catalogue est surchargé. Quand tout le lot 2 est
+    // jouable, l'exemple réel de T14 sert et le lecteur s'ouvre.
+    final aVenir = typesExercices
+        .where((t) => t.etat == EtatType.aVenir)
+        .firstOrNull;
+    final id = aVenir?.id ?? 'T14';
+    final exercice = jsonDecode(
+      exemplesEduContent['glisser-deposer/T14-sequence-images.json']!,
+    ) as Map<String, dynamic>;
+    if (aVenir != null) {
+      exercice
+        ..['type'] = id
+        ..['gabarit'] = 'essai-a-venir'
+        ..['donnees'] = {'texte': 'كَلِمَةٌ'}
+        ..['reponse'] = <String, dynamic>{};
+    }
     final surcharge = catalogueExemplesProvider.overrideWithValue(
-      CatalogueExemples({'saisie/T49-essai.json': jsonEncode(t49)}),
+      CatalogueExemples({'essai/$id-essai.json': jsonEncode(exercice)}),
     );
     await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
-    await aller(tester, '/dev/atelier/T49/T49-essai.json');
-    expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
+    await aller(tester, '/dev/atelier/$id/$id-essai.json');
+    if (aVenir != null) {
+      expect(
+        texteDe(tester, 'zone_lecteur_message'),
+        startsWith('Type à venir'),
+      );
+    } else {
+      expect(find.byType(LecteurExercice), findsOneWidget);
+    }
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
-    expect(json, contains('"gabarit": "fraction-essai"'));
+    expect(json, contains('"gabarit": "${exercice['gabarit']}"'));
     // Les harakat restent telles qu'écrites.
     expect(json, contains('رَتِّبْ مَرَاحِلَ نُمُوِّ الدَّجَاجَةِ.'));
   });

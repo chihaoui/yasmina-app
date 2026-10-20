@@ -2483,6 +2483,132 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'saisie-numerique/T49-saisie-fraction.json': r'''
+{
+  "id": "ma-5-t1-u2-e01-x01",
+  "type": "T49",
+  "gabarit": "fraction-somme",
+  "competence": "ma-fractions-addition",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ وَاكْتُبِ النَّتِيجَةَ فِي شَكْلِ كَسْرٍ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ وَاكْتُبِي النَّتِيجَةَ فِي شَكْلِ كَسْرٍ."
+    }
+  },
+  "donnees": {
+    "termes": [
+      {
+        "numerateur": 1,
+        "denominateur": 4
+      },
+      {
+        "numerateur": 2,
+        "denominateur": 4
+      }
+    ],
+    "operation": "addition",
+    "equivalentes": true
+  },
+  "reponse": {
+    "numerateur": 3,
+    "denominateur": 4
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 1 عَلَى 4 زَائِدُ 2 عَلَى 4 يُسَاوِي 3 عَلَى 4.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 1 عَلَى 4 زَائِدُ 2 عَلَى 4 يُسَاوِي 3 عَلَى 4."
+    },
+    "indice": "الْمَقَامُ نَفْسُهُ: نَجْمَعُ الْبَسْطَيْنِ فَقَطْ.",
+    "explication": "1 زَائِدُ 2 يُسَاوِي 3، وَالْمَقَامُ يَبْقَى 4: النَّتِيجَةُ 3 عَلَى 4."
+  },
+  "empreinte": "sha256:7b48ff7bd7e10928afe37b1b35c13d563d0572204fb8eee776595697b56959e5",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T50-fluidite.json': r'''
+{
+  "id": "ma-1-t2-u1-e01-x01",
+  "type": "T50",
+  "gabarit": "fluidite-complements",
+  "competence": "ma-calcul-complements-10",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَكْمِلْ إِلَى 10 بِأَسْرَعِ مَا يُمْكِنُ.",
+      "feminin": "أَكْمِلِي إِلَى 10 بِأَسْرَعِ مَا يُمْكِنُ."
+    }
+  },
+  "donnees": {
+    "exercice": "complement",
+    "cible": 10,
+    "duree": 30,
+    "chrono": true
+  },
+  "reponse": {
+    "questions_min": 1
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "اِنْتَهَى الْوَقْتُ: أَحْسَنْتَ الْمُحَاوَلَةَ.",
+      "feminin": "اِنْتَهَى الْوَقْتُ: أَحْسَنْتِ الْمُحَاوَلَةَ."
+    },
+    "indice": "فَكِّرْ: كَمْ يَنْقُصُ لِلْوُصُولِ إِلَى 10؟",
+    "explication": "7 زَائِدُ 3 يُسَاوِي 10، وَ4 زَائِدُ 6 يُسَاوِي 10."
+  },
+  "empreinte": "sha256:5f4f1b10916d1d06151835b223bfa6380692a04dd52c4d69906fb6325b90d003",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T63-balance.json': r'''
+{
+  "id": "ma-4-t1-u3-e01-x01",
+  "type": "T63",
+  "gabarit": "balance-sac",
+  "competence": "ma-egalite-balance",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "مَا كُتْلَةُ الْكِيسِ لِكَيْ يَتَوَازَنَ الْمِيزَانُ؟",
+      "feminin": "مَا كُتْلَةُ الْكِيسِ لِكَيْ يَتَوَازَنَ الْمِيزَانُ؟"
+    }
+  },
+  "donnees": {
+    "gauche": [
+      2,
+      2
+    ],
+    "droite": [
+      3,
+      3,
+      3
+    ],
+    "sac": "gauche"
+  },
+  "reponse": {
+    "valeur": 5
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُتْلَةُ الْكِيسِ 5.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُتْلَةُ الْكِيسِ 5."
+    },
+    "indice": "فِي الْيَمِينِ 3 زَائِدُ 3 زَائِدُ 3 يُسَاوِي 9، وَفِي الْيَسَارِ الْكِيسُ وَ2 زَائِدُ 2.",
+    "explication": "9 نَاقِصُ 4 يُسَاوِي 5: كُتْلَةُ الْكِيسِ 5."
+  },
+  "empreinte": "sha256:521e80aca6c7ea271cf6d97b07dddc2b21efcfdd7a771322b157ea32058478ea",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'scene-image/T08-hot-spot.json': r'''
 {
   "id": "ev-1-t1-u1-e01-x01",

@@ -16,7 +16,10 @@ import 'manipulables/gabarit_droite_numerique.dart';
 import 'manipulables/gabarit_fractions.dart';
 import 'manipulables/gabarit_modele_barres.dart';
 import 'manipulables/gabarit_monnaie.dart';
+import 'saisie/gabarit_balance.dart';
 import 'saisie/gabarit_calcul_pose.dart';
+import 'saisie/gabarit_fluidite.dart';
+import 'saisie/gabarit_saisie_fraction.dart';
 import 'saisie/gabarit_saisie_numerique.dart';
 import 'scene/gabarit_ecoute_colorie.dart';
 import 'scene/gabarit_ecoute_place.dart';
@@ -63,9 +66,12 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Texte.
   'T07': GabaritToucherMots(),
   'T17': GabaritDictee(),
-  // Moteur Saisie numérique (base).
+  // Moteur Saisie numérique (base et avancée).
   'T22': GabaritSaisieNumerique(),
   'T48': GabaritCalculPose(),
+  'T49': GabaritSaisieFraction(),
+  'T50': GabaritFluidite(),
+  'T63': GabaritBalance(),
   // Moteur Scène image (base et avec audio).
   'T08': GabaritHotSpot(),
   'T47': GabaritEtiquetage(),

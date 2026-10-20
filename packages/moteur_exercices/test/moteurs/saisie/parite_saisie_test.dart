@@ -11,8 +11,14 @@ void main() {
     (e) => typeParId(e.idType!)?.moteur == Moteur.saisieNumerique,
   );
 
-  test('T22 et T48 sont jouables', () {
-    expect(exemples.map((e) => e.idType).toSet(), {'T22', 'T48'});
+  test('T22, T48, T49, T50 et T63 sont jouables', () {
+    expect(exemples.map((e) => e.idType).toSet(), {
+      'T22',
+      'T48',
+      'T49',
+      'T50',
+      'T63',
+    });
   });
 
   for (final exemple in exemples) {
@@ -22,11 +28,12 @@ void main() {
       final p = Partie(tester);
       await p.jouer(exemple.exercice!, mode: ModeExercice.apercu);
       expect(p.cle('lecteur_erreur'), findsNothing);
-      expect(p.cle('pave'), findsOneWidget);
+      // T50 n'a pas de pavé : trois réponses proposées.
+      if (exemple.idType != 'T50') expect(p.cle('pave'), findsOneWidget);
       await tester.tap(p.cle('lecteur_afficher_reponse'));
       await tester.pump();
       expect(
-        p.cle(exemple.idType == 'T22' ? 'saisie_reponse' : 'calcul_reponse'),
+        p.cle(exemple.idType == 'T48' ? 'calcul_reponse' : 'saisie_reponse'),
         findsOneWidget,
       );
       expect(find.text('juste'), findsOneWidget);

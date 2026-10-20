@@ -1,0 +1,41 @@
+{
+  "id": "ma-4-t1-u3-e01-x01",
+  "type": "T63",
+  "gabarit": "balance-sac",
+  "competence": "ma-egalite-balance",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "مَا كُتْلَةُ الْكِيسِ لِكَيْ يَتَوَازَنَ الْمِيزَانُ؟",
+      "feminin": "مَا كُتْلَةُ الْكِيسِ لِكَيْ يَتَوَازَنَ الْمِيزَانُ؟"
+    }
+  },
+  "donnees": {
+    "gauche": [
+      2,
+      2
+    ],
+    "droite": [
+      3,
+      3,
+      3
+    ],
+    "sac": "gauche"
+  },
+  "reponse": {
+    "valeur": 5
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُتْلَةُ الْكِيسِ 5.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُتْلَةُ الْكِيسِ 5."
+    },
+    "indice": "فِي الْيَمِينِ 3 زَائِدُ 3 زَائِدُ 3 يُسَاوِي 9، وَفِي الْيَسَارِ الْكِيسُ وَ2 زَائِدُ 2.",
+    "explication": "9 نَاقِصُ 4 يُسَاوِي 5: كُتْلَةُ الْكِيسِ 5."
+  },
+  "empreinte": "sha256:521e80aca6c7ea271cf6d97b07dddc2b21efcfdd7a771322b157ea32058478ea",
+  "statut": "brouillon",
+  "version": 1
+}

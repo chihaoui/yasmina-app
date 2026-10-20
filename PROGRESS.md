@@ -8,15 +8,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
 | A1 | 23 | 36,25 | 63 % |
-| A2 | 4,5 | 30,5 | 15 % |
+| A2 | 6,5 | 30,5 | 21 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **46** | **182,25** | **25,2 %** |
+| **Total** | **48** | **182,25** | **26,3 %** |
 
-- **Avancement global : 25,2 %** (46 j-h faits sur 182,25)
-- **Types jouables : 40 sur 52**
+- **Avancement global : 26,3 %** (48 j-h faits sur 182,25)
+- **Types jouables : 43 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -125,7 +125,11 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [ ] A1-22 Séquence de test pour le tour 1 des familles (exercices enchaînés, sans carte) (0,75 j-h)
 
 ## A2 : lot 2 des moteurs et retours familles, tour 2 (4 janv. au 28 févr. 2027)
-- [ ] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (2 j-h)
+- [x] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (2 j-h)
+  - [x] Fiche §14 de `docs/moteurs/saisie-numerique.md` et questions 9 à 11 (nuit du 20 au 21 oct. 2026)
+  - [x] Schéma, validateur, 3 exemples en brouillon (1/4 + 2/4, compléments à 10 en 30 s, sac de 5)
+  - [x] T49 deux cases et pavé, T50 chronomètre et trois réponses sans note, T63 balance qui penche selon la saisie, tests arabe et français, parité
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [x] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (3 j-h)
   - [x] Fiche §14 de `docs/moteurs/manipulables.md` et questions 12 à 18 (nuit du 20 au 21 oct. 2026)
   - [x] Schéma, validateur, 3 exemples en brouillon (monnaie 2 dinars 700 millimes, trois quarts d'un disque, comparaison de deux barres)

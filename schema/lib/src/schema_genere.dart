@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -460,6 +460,33 @@ const String texteSchemaEduContent = r'''
           "then": {
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesCalculPose" },
+              "reponse": { "$ref": "#/$defs/reponseNombre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T49" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesSaisieFraction" },
+              "reponse": { "$ref": "#/$defs/fractionReponse" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T50" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesFluidite" },
+              "reponse": { "$ref": "#/$defs/reponseFluidite" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T63" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesBalance" },
               "reponse": { "$ref": "#/$defs/reponseNombre" }
             }
           }
@@ -1368,6 +1395,77 @@ const String texteSchemaEduContent = r'''
         "sens": { "enum": ["droite-gauche", "gauche-droite"], "default": "droite-gauche" },
         "chiffres": { "$ref": "#/$defs/chiffres" },
         "retenues": { "type": "boolean", "default": false }
+      }
+    },
+    "fractionReponse": {
+      "description": "Une fraction : numérateur sur dénominateur (dénominateur jamais nul). Pour T49, le résultat attendu (règles Dart : égal à la somme ou à la différence des termes, à une fraction équivalente près).",
+      "type": "object",
+      "required": ["numerateur", "denominateur"],
+      "additionalProperties": false,
+      "properties": {
+        "numerateur": { "type": "integer", "minimum": 0, "maximum": 99 },
+        "denominateur": { "type": "integer", "minimum": 1, "maximum": 99 }
+      }
+    },
+    "donneesSaisieFraction": {
+      "description": "T49 : calculer une addition ou une soustraction de deux fractions et écrire le résultat (numérateur puis dénominateur) sur le pavé. equivalentes (par défaut) : une fraction équivalente est acceptée (6/8 pour 3/4).",
+      "type": "object",
+      "required": ["termes", "operation"],
+      "additionalProperties": false,
+      "properties": {
+        "termes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/fractionReponse" }
+        },
+        "operation": { "enum": ["addition", "soustraction"] },
+        "equivalentes": { "type": "boolean", "default": true },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "donneesFluidite": {
+      "description": "T50 (sans note, « bats ton record ») : des questions de calcul mental au plus vite, trois réponses proposées. exercice : complement (à cible), addition ou soustraction (jusqu'à max). chrono : duree secondes, sinon questions questions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exercice": { "enum": ["complement", "addition", "soustraction"], "default": "complement" },
+        "cible": { "type": "integer", "minimum": 5, "maximum": 20, "default": 10 },
+        "max": { "type": "integer", "minimum": 5, "maximum": 100, "default": 10 },
+        "duree": { "type": "integer", "minimum": 10, "maximum": 120, "default": 30 },
+        "chrono": { "type": "boolean", "default": true },
+        "questions": { "type": "integer", "minimum": 3, "maximum": 30, "default": 10 },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "reponseFluidite": {
+      "description": "Sans note : questions_min questions répondues au moins pour que Continuer s'active (1 par défaut).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "questions_min": { "type": "integer", "minimum": 1, "maximum": 60, "default": 1 }
+      }
+    },
+    "donneesBalance": {
+      "description": "T63 : deux plateaux de masses connues, un sac de masse inconnue sur l'un d'eux (sac). L'enfant écrit la masse du sac, la balance penche selon la valeur. Règles Dart : la différence des plateaux est strictement positive et vaut la réponse.",
+      "type": "object",
+      "required": ["gauche", "droite"],
+      "additionalProperties": false,
+      "properties": {
+        "gauche": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 6,
+          "items": { "type": "integer", "minimum": 1, "maximum": 50 }
+        },
+        "droite": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 6,
+          "items": { "type": "integer", "minimum": 1, "maximum": 50 }
+        },
+        "sac": { "enum": ["gauche", "droite"], "default": "gauche" },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
       }
     },
     "reponseNombre": {

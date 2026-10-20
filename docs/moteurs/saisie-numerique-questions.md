@@ -15,10 +15,20 @@ Préparation du moteur Saisie numérique (branche `moteur/saisie-numerique`, soi
 | 7 | T22 : problème dit | Le texte du problème est dit après la consigne (comme un mot à écouter), bouton de réécoute de la consigne seulement | L'enfant de 1re ne lit pas encore un problème seul | Bouton Écouter dédié au problème |
 | 8 | Tolérance | `tolerance` du schéma s'applique à T22 seulement (jamais à un calcul posé) | Un calcul posé a une seule réponse | Tolérance partout |
 
+### Nuit du 20 au 21 oct., types avancés (A2-01)
+
+| N° | Sujet | Choix fait | Pourquoi | Alternative |
+|---|---|---|---|---|
+| 9 | T49 : deux cases et un pavé | Numérateur puis dénominateur, case active au toucher (bordure `blue`), le même pavé numérique, fraction équivalente acceptée par défaut (`equivalentes`) | Catalogue : « clavier dédié numérateur et dénominateur, 6/8 accepté » | Un champ texte « 3/4 » |
+| 10 | T50 : sans note, trois réponses proposées | Mode sans note du lecteur, questions tirées avec la graine, trois tuiles de choix, fausse marquée 0,7 s puis question suivante, Stop possible, `questions_min` pour Continuer. Aucun record gardé (pas de stockage dans le moteur) | Catalogue : « hors score, comparaison à son propre record » : le record viendra avec la progression locale (A3-03) | Saisie au pavé (plus lente), record dans le moteur |
+| 11 | T63 : balance dessinée | `CustomPaint` : pied, fléau incliné (un huitième de tour au plus, proportionnel à l'écart ramené à la masse attendue), plateaux suspendus, masses en carrés `amber` numérotés, sac rond `blue` avec « ? » ou la valeur écrite | Aucune image, la balance réagit à la saisie comme dans le catalogue | Masses glissées sur les plateaux (glisser-déposer) |
+
 ## Questions ouvertes
 
 1. **Disposition du calcul posé en arabe** : unités à droite ou à gauche dans les manuels tunisiens ? Retenue écrite au-dessus ou en dessous ? Le JSON porte `sens` et `retenues`, le défaut est `droite-gauche` et sans retenue.
 2. **Chiffres** : occidentaux (0 à 9) ou orientaux (٠ à ٩) dans les manuels de maths tunisiens ? Le défaut est occidental, comme tous les exemples.
-3. **T22 avec un nombre décimal ou une fraction** : hors base (A2-01).
+3. **T22 avec un nombre décimal** : hors base. La fraction est couverte par T49 (A2-01).
+6. **T50** : où garder le record personnel (progression locale, A3-03) ? Durée et nombre de réponses proposées (3) à valider sur l'iPhone. Chronomètre désactivable par le contenu (`chrono`), faut-il aussi un réglage parent ?
+7. **T63** : unité des masses (grammes, kilos) à afficher ? Masses glissées plutôt qu'écrites ?
 4. **Unité après le nombre** (« د » pour dinar) : placement avant ou après en arabe ?
 5. **Harakat des exemples arabes** : brouillon, relecture humaine.

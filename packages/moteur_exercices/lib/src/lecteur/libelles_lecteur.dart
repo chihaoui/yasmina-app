@@ -14,6 +14,8 @@ class LibellesLecteur {
     required this.vrai,
     required this.faux,
     required this.effacer,
+    required this.numerateur,
+    required this.denominateur,
     required this.imageNumerotee,
   });
 
@@ -30,6 +32,8 @@ class LibellesLecteur {
         vrai: 'صَحِيحٌ',
         faux: 'خَطَأٌ',
         effacer: feminin ? 'اِمْسَحِي' : 'اِمْسَحْ',
+        numerateur: 'الْبَسْطُ',
+        denominateur: 'الْمَقَامُ',
         imageNumerotee: (n) => 'صُورَةٌ $n',
       ),
       'en' => LibellesLecteur._(
@@ -42,6 +46,8 @@ class LibellesLecteur {
         vrai: 'True',
         faux: 'False',
         effacer: 'Erase',
+        numerateur: 'numerator',
+        denominateur: 'denominator',
         imageNumerotee: (n) => 'picture $n',
       ),
       _ => LibellesLecteur._(
@@ -54,6 +60,8 @@ class LibellesLecteur {
         vrai: 'Vrai',
         faux: 'Faux',
         effacer: 'Effacer',
+        numerateur: 'numérateur',
+        denominateur: 'dénominateur',
         imageNumerotee: (n) => 'image $n',
       ),
     };
@@ -72,6 +80,10 @@ class LibellesLecteur {
   /// construit), genré en arabe.
   final String effacer;
 
+  /// Champs d'une fraction (T49), lus par le lecteur d'écran.
+  final String numerateur;
+  final String denominateur;
+
   /// Libellé neutre d'une tuile en image ou en emoji seul (numéro à partir
   /// de 1) : le lecteur d'écran ne doit pas donner la réponse.
   final String Function(int n) imageNumerotee;
@@ -89,6 +101,8 @@ class LibellesLecteur {
     vrai,
     faux,
     effacer,
+    numerateur,
+    denominateur,
     image(1),
   ];
 }

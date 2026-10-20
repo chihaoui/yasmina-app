@@ -296,9 +296,27 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T49', 'Saisie de fraction', Moteur.saisieNumerique, lot: 2),
-  TypeExercice('T50', 'Fluidité chronométrée', Moteur.saisieNumerique, lot: 2),
-  TypeExercice('T63', "Balance d'équivalence", Moteur.saisieNumerique, lot: 2),
+  TypeExercice(
+    'T49',
+    'Saisie de fraction',
+    Moteur.saisieNumerique,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T50',
+    'Fluidité chronométrée',
+    Moteur.saisieNumerique,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T63',
+    "Balance d'équivalence",
+    Moteur.saisieNumerique,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Scène image.
   TypeExercice(
     'T08',

@@ -31,16 +31,13 @@ void main() {
       expect(catalogue.nonRattaches, isEmpty);
     });
 
-    test(
-      'T01 a 4 exemples, T19 et T06 en ont 2, T20 (retiré) et T49 aucun',
-      () {
-        expect(catalogue.exemplesDuType('T01'), hasLength(4));
-        expect(catalogue.exemplesDuType('T19'), hasLength(2));
-        expect(catalogue.exemplesDuType('T06'), hasLength(2));
-        expect(catalogue.exemplesDuType('T20'), isEmpty);
-        expect(catalogue.exemplesDuType('T49'), isEmpty);
-      },
-    );
+    test('T01 a 4 exemples, T19, T06 et T48 plusieurs, T20 (retiré) aucun', () {
+      expect(catalogue.exemplesDuType('T01'), hasLength(4));
+      expect(catalogue.exemplesDuType('T19'), hasLength(2));
+      expect(catalogue.exemplesDuType('T06'), hasLength(2));
+      expect(catalogue.exemplesDuType('T20'), isEmpty);
+      expect(catalogue.exemplesDuType('T48'), hasLength(4));
+    });
 
     test('gabarit, langue et consigne (masculin si genrée)', () {
       final scene = catalogue

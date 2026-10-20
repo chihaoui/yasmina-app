@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:edu_content/edu_content.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -60,6 +62,104 @@ List<ProblemeValidation> erreurs(
 }
 
 void main() {
+  test('T49, T50, T63 : exemples valides et règles', () {
+    final avances = <String, Map<String, dynamic>>{
+      'T49': exercice(
+        'T49',
+        {
+          'termes': [
+            {'numerateur': 1, 'denominateur': 4},
+            {'numerateur': 2, 'denominateur': 4},
+          ],
+          'operation': 'addition',
+        },
+        {'numerateur': 3, 'denominateur': 4},
+      ),
+      'T50': exercice('T50', {'exercice': 'complement', 'cible': 10}, {}),
+      'T63': exercice(
+        'T63',
+        {
+          'gauche': [2, 2],
+          'droite': [3, 3, 3],
+          'sac': 'gauche',
+        },
+        {'valeur': 5},
+      ),
+    };
+    for (final MapEntry(key: type, value: ex) in avances.entries) {
+      final r = validerExercice(ex);
+      expect(r.erreurs, isEmpty, reason: '$type : $r');
+      expect(r.avertissements, isEmpty, reason: '$type : $r');
+    }
+    List<ProblemeValidation> erreursDe(
+      String type,
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = jsonDecode(jsonEncode(avances[type])) as Map<String, dynamic>;
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    // T49 : 6/8 vaut 3/4, 1/2 non. Soustraction négative refusée.
+    expect(
+      erreursDe(
+        'T49',
+        (ex) => ex['reponse'] = {'numerateur': 6, 'denominateur': 8},
+      ),
+      isEmpty,
+    );
+    expect(
+      erreursDe(
+        'T49',
+        (ex) => ex['reponse'] = {'numerateur': 1, 'denominateur': 2},
+      ).single,
+      probleme('/reponse', 'fraction_resultat_incoherente'),
+    );
+    expect(
+      erreursDe(
+        'T49',
+        (ex) => ex['donnees']['operation'] = 'soustraction',
+      ).single,
+      probleme('/donnees/termes', 'soustraction_negative'),
+    );
+    expect(
+      erreursDe(
+        'T49',
+        (ex) => ex['reponse'] = {'numerateur': 3, 'denominateur': 0},
+      ),
+      contains(probleme('/reponse/denominateur', 'valeur_trop_petite')),
+    );
+    // T50 : sans chronomètre, questions_min dans les questions.
+    expect(
+      erreursDe('T50', (ex) {
+        ex['donnees']['chrono'] = false;
+        ex['donnees']['questions'] = 3;
+        ex['reponse'] = {'questions_min': 5};
+      }).single,
+      probleme('/reponse/questions_min', 'questions_min_trop_grand'),
+    );
+    expect(
+      erreursDe('T50', (ex) => ex['donnees']['duree'] = 5),
+      contains(probleme('/donnees/duree', 'valeur_trop_petite')),
+    );
+    // T63 : la réponse est la différence, le sac pèse quelque chose.
+    expect(
+      erreursDe('T63', (ex) => ex['reponse']['valeur'] = 4).single,
+      probleme('/reponse/valeur', 'reponse_valeur_incoherente'),
+    );
+    expect(
+      erreursDe('T63', (ex) => ex['donnees']['gauche'] = [5, 5]).single,
+      probleme('/donnees', 'balance_invalide'),
+    );
+    expect(
+      erreursDe('T63', (ex) {
+        ex['donnees']['sac'] = 'droite';
+        ex['reponse']['valeur'] = 4;
+      }).single,
+      probleme('/donnees', 'balance_invalide'),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

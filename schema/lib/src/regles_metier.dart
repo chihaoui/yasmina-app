@@ -302,7 +302,7 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
-  if (type == 'T22' || type == 'T48') {
+  if (const {'T22', 'T48', 'T49', 'T50', 'T63'}.contains(type)) {
     problemes.addAll(
       _reglesSaisie(
         type,
@@ -1522,9 +1522,9 @@ List<ProblemeValidation> _reglesSaisie(
   void erreur(String c, String code, String message) => problemes.add(
     ProblemeValidation(chemin: c, code: code, message: message),
   );
-  final valeur = reponse['valeur'] as int;
   switch (type) {
     case 'T22':
+      final valeur = reponse['valeur'] as int;
       final max = donnees['chiffres_max'] as int? ?? 3;
       if ('$valeur'.length > max) {
         erreur(
@@ -1535,6 +1535,7 @@ List<ProblemeValidation> _reglesSaisie(
         );
       }
     case 'T48':
+      final valeur = reponse['valeur'] as int;
       final a = donnees['a'] as int;
       final b = donnees['b'] as int;
       final addition = donnees['operation'] == 'addition';
@@ -1552,6 +1553,83 @@ List<ProblemeValidation> _reglesSaisie(
           'reponse_valeur_incoherente',
           'la réponse ($valeur) doit être le résultat du calcul '
               '($resultat).',
+        );
+      }
+    case 'T49':
+      final termes = (donnees['termes'] as List).cast<Map<String, dynamic>>();
+      final addition = donnees['operation'] == 'addition';
+      final n1 = termes[0]['numerateur'] as int;
+      final d1 = termes[0]['denominateur'] as int;
+      final n2 = termes[1]['numerateur'] as int;
+      final d2 = termes[1]['denominateur'] as int;
+      // Résultat sur le dénominateur commun d1 × d2.
+      final numerateur = addition ? n1 * d2 + n2 * d1 : n1 * d2 - n2 * d1;
+      final denominateur = d1 * d2;
+      if (numerateur < 0) {
+        erreur(
+          '$chemin/donnees/termes',
+          'soustraction_negative',
+          '$n1/$d1 moins $n2/$d2 est négatif.',
+        );
+      } else {
+        final rn = reponse['numerateur'] as int;
+        final rd = reponse['denominateur'] as int;
+        if (rn * denominateur != numerateur * rd) {
+          erreur(
+            '$chemin/reponse',
+            'fraction_resultat_incoherente',
+            'la réponse $rn/$rd ne vaut pas $n1/$d1 '
+                '${addition ? '+' : '−'} $n2/$d2 '
+                '(= $numerateur/$denominateur).',
+          );
+        }
+      }
+    case 'T50':
+      final chrono = donnees['chrono'] as bool? ?? true;
+      final exercice = donnees['exercice'] as String? ?? 'complement';
+      final questionsMin = reponse['questions_min'] as int? ?? 1;
+      if (!chrono && questionsMin > (donnees['questions'] as int? ?? 10)) {
+        erreur(
+          '$chemin/reponse/questions_min',
+          'questions_min_trop_grand',
+          'sans chronomètre, questions_min ($questionsMin) dépasse le nombre '
+              'de questions (${donnees['questions'] ?? 10}).',
+        );
+      }
+      if (exercice == 'complement' && donnees['max'] != null) {
+        problemes.add(
+          ProblemeValidation(
+            chemin: '$chemin/donnees/max',
+            code: 'champ_inutile',
+            message: 'max ne sert pas aux compléments (cible).',
+            gravite: Gravite.avertissement,
+          ),
+        );
+      }
+    case 'T63':
+      final valeur = reponse['valeur'] as int;
+      final gauche = (donnees['gauche'] as List).cast<int>();
+      final droite = (donnees['droite'] as List).cast<int>();
+      final sacAGauche = donnees['sac'] != 'droite';
+      final sommeGauche = gauche.fold(0, (a, b) => a + b);
+      final sommeDroite = droite.fold(0, (a, b) => a + b);
+      final attendu = sacAGauche
+          ? sommeDroite - sommeGauche
+          : sommeGauche - sommeDroite;
+      if (attendu <= 0) {
+        erreur(
+          '$chemin/donnees',
+          'balance_invalide',
+          'le plateau du sac (${sacAGauche ? 'gauche' : 'droite'}) pèse '
+              'déjà autant ou plus que l\'autre : la masse du sac serait '
+              '$attendu.',
+        );
+      } else if (valeur != attendu) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'reponse_valeur_incoherente',
+          'la réponse ($valeur) doit être la masse qui équilibre '
+              '($attendu).',
         );
       }
   }

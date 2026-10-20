@@ -1,6 +1,6 @@
 # Moteur Saisie numérique
 
-Fiche de conception du moteur Saisie numérique, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, soir, décision 39)**, à valider par Lamjed. Base de la tâche A1-05 (2 j-h en vigueur, les deux types de base). Les types avancés (T49 Saisie de fraction, T50 Fluidité chronométrée, T63 Balance d'équivalence, A2-01) viendront compléter cette fiche. Les points tranchés seul et les questions ouvertes sont dans [saisie-numerique-questions.md](saisie-numerique-questions.md).
+Fiche de conception du moteur Saisie numérique, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, soir, décision 39)**, à valider par Lamjed. Base de la tâche A1-05 (2 j-h en vigueur, les deux types de base). Les types avancés (T49 Saisie de fraction, T50 Fluidité chronométrée, T63 Balance d'équivalence, A2-01) sont décrits au §14 (nuit du 20 au 21 oct. 2026, brouillon). Les points tranchés seul et les questions ouvertes sont dans [saisie-numerique-questions.md](saisie-numerique-questions.md).
 
 Sources : CLAUDE.md §5 (maths en arabe, consigne sonorisée), le schéma (`tolerance` de l'exercice), la page catalogue v3 (`docs/reference/catalogue-v3-poc.html`, référence visuelle seulement : problème en dinars et pavé numérique, T48 « à confirmer sur les manuels »), la fiche [choix.md](choix.md) pour tout ce qui est commun au lecteur.
 
@@ -117,3 +117,31 @@ Règles du validateur propres au moteur (détail dans `schema/README.md`) :
 | a | Cette fiche, les questions | 0,25 |
 | b | Schéma, règles, exemples, tests | 0,5 |
 | c | `PaveNumerique`, T22, T48 (colonnes, sens, chiffres, retenues), tests, parité | 1,25 |
+
+## 14. Types avancés (A2-01, 2 j-h en vigueur)
+
+Brouillon de la nuit du 20 au 21 oct. 2026 (session sans surveillance). Trois types de plus sur le pavé numérique du moteur et sur la tuile de choix.
+
+| Type | Nom | Ce que fait l'enfant | Validation | Réponse | Exemple |
+|---|---|---|---|---|---|
+| T49 | Saisie de fraction | Calcule une addition ou une soustraction de deux fractions, écrit le résultat sur le pavé : le numérateur dans la case du haut, le dénominateur dans celle du bas (toucher une case la rend active, Effacer vide la case active puis revient au numérateur) | Vérifier | `{ "numerateur": 3, "denominateur": 4 }` | `T49-saisie-fraction.json` (5e, 1/4 + 2/4) |
+| T50 | Fluidité chronométrée | Lance le chronomètre (bouton), puis répond au plus vite à des questions de calcul mental (compléments à la cible, additions ou soustractions jusqu'à `max`) en touchant l'une des trois réponses proposées. Une fausse est marquée un instant (son `essaiFaux`), une juste joue `depot`, chaque réponse passe à la question suivante. À la fin du temps (ou après `questions` questions sans chronomètre, ou au bouton Stop), le score s'affiche | sans note | `{ "questions_min": 1 }` (questions répondues au moins pour Continuer) | `T50-fluidite.json` (1re, compléments à 10 en 30 s) |
+| T63 | Balance d'équivalence | Lit la balance (masses connues en carrés numérotés sur chaque plateau, un sac rond sur l'un d'eux), écrit la masse du sac sur le pavé : **la balance penche selon la valeur écrite** et s'équilibre quand elle est juste | Vérifier | `{ "valeur": 5 }` | `T63-balance.json` (4e, 2 + 2 + sac contre 3 + 3 + 3) |
+
+### Données JSON
+
+| Type | `donnees` | `reponse` |
+|---|---|---|
+| T49 | `termes` (2 fractions `numerateur` 0 à 99, `denominateur` 1 à 99), `operation` (`addition`, `soustraction`), `equivalentes` (vrai par défaut : 6/8 accepté pour 3/4), `chiffres` | la fraction attendue, égale au résultat à une fraction équivalente près (`fraction_resultat_incoherente`), différence jamais négative (`soustraction_negative`) |
+| T50 | `exercice` (`complement` par défaut, `addition`, `soustraction`), `cible` (compléments, 10 par défaut), `max` (additions et soustractions, 10 par défaut), `duree` (10 à 120 s, 30 par défaut), `chrono` (vrai par défaut), `questions` (sans chronomètre, 10 par défaut), `chiffres` | `questions_min` (1 par défaut, au plus le nombre de questions sans chronomètre : `questions_min_trop_grand`) |
+| T63 | `gauche` et `droite` (0 à 6 masses de 1 à 50), `sac` (`gauche` par défaut, `droite`), `chiffres` | `valeur`, la différence des plateaux, strictement positive (`balance_invalide`, `reponse_valeur_incoherente`) |
+
+Les questions de T50 sont tirées avec la graine de la configuration (reproductibles en test et en aperçu), trois réponses proposées dont la bonne, dans les bornes de l'exercice. L'énoncé se lit de gauche à droite (« 7 + ? = 10 »), les chiffres suivent `chiffres`.
+
+### Correction et feedback
+
+T49 et T63 : Vérifier, 3 temps, cases ou sac en `coral` un instant puis vidés après le 1er essai faux, bonne réponse révélée après le 2e (balance à l'équilibre). T50 : sans note, aucun bandeau, Continuer dès que le temps est écoulé et `questions_min` questions répondues, résultat `termine` avec le score dans `reponseDonnee` (justes, total). Le record personnel (catalogue : « bats ton record ») attend la progression locale (A3-03) : le moteur ne garde rien.
+
+### Tests
+
+`saisie_avancee_test.dart` : un cas arabe (exemple réel) et un cas français (fixture) par type. T49 : cases activées au toucher, Effacer, fraction équivalente acceptée ou refusée. T50 : chronomètre qui descend (temps simulé), réponses justes et fausses, fin du temps, score, Stop, sans chronomètre. T63 : inclinaison selon la valeur écrite (vers la droite sans sac, vers la gauche quand le sac pèse trop, équilibre), faux puis juste, révélation. Parité dans `parite_saisie_test.dart` et l'aperçu web.
