@@ -8,8 +8,12 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Choix.
   'T01': GabaritChoix('T01'),
   'T02': GabaritVraiFaux(),
+  'T03': GabaritChoix('T03'),
   'T04': GabaritChoix('T04'),
   'T05': GabaritChoix('T05'),
+  'T45': GabaritChoix('T45'),
+  'T55': GabaritChoix('T55'),
+  'T61': GabaritChoix('T61'),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.
