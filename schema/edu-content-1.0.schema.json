@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) et le type T20 du moteur Tracé, génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé et les 3 types de base du moteur Manipulables (T25, T27, T51), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -375,6 +375,33 @@
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesTrace" },
               "reponse": { "$ref": "#/$defs/reponseTrace" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T25" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesDroiteNumerique" },
+              "reponse": { "$ref": "#/$defs/reponseValeur" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T27" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesBlocs" },
+              "reponse": { "$ref": "#/$defs/reponseBlocs" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T51" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesCadreDix" },
+              "reponse": { "$ref": "#/$defs/reponseJetons" }
             }
           }
         }
@@ -1052,6 +1079,62 @@
           "items": { "$ref": "#/$defs/idForme" }
         }
       }
+    },
+
+    "donneesDroiteNumerique": {
+      "description": "T25 : placer un nombre sur une droite graduée de min à max par pas, étiquetée tous les reperes. sens : gauche-droite (min à gauche, par défaut) ou droite-gauche (règles Dart : étendue multiple du pas, 20 intervalles au plus, cible sur une graduation).",
+      "type": "object",
+      "required": ["min", "max", "cible"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "max": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "pas": { "type": "integer", "minimum": 1, "default": 1 },
+        "reperes": { "type": "integer", "minimum": 1, "default": 5 },
+        "cible": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "sens": { "enum": ["gauche-droite", "droite-gauche"], "default": "gauche-droite" }
+      }
+    },
+    "reponseValeur": {
+      "description": "La valeur attendue sur la droite (règles Dart : égale à cible).",
+      "type": "object",
+      "required": ["valeur"],
+      "additionalProperties": false,
+      "properties": { "valeur": { "type": "integer", "minimum": 0, "maximum": 100 } }
+    },
+    "donneesBlocs": {
+      "description": "T27 : représenter un nombre de 10 à 99 avec des barres de dix et des cubes d'unités. canonique (par défaut) : exactement les dizaines et les unités du nombre.",
+      "type": "object",
+      "required": ["cible"],
+      "additionalProperties": false,
+      "properties": {
+        "cible": { "type": "integer", "minimum": 10, "maximum": 99 },
+        "canonique": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseBlocs": {
+      "description": "Dizaines et unités attendues (règles Dart : leur somme vaut cible, 9 unités au plus en mode canonique).",
+      "type": "object",
+      "required": ["dizaines", "unites"],
+      "additionalProperties": false,
+      "properties": {
+        "dizaines": { "type": "integer", "minimum": 0, "maximum": 9 },
+        "unites": { "type": "integer", "minimum": 0, "maximum": 99 }
+      }
+    },
+    "donneesCadreDix": {
+      "description": "T51 : poser le nombre demandé de jetons dans un cadre de 10 (deux lignes de cinq cases).",
+      "type": "object",
+      "required": ["cible"],
+      "additionalProperties": false,
+      "properties": { "cible": { "type": "integer", "minimum": 1, "maximum": 10 } }
+    },
+    "reponseJetons": {
+      "description": "Le nombre de jetons attendu (règles Dart : égal à cible).",
+      "type": "object",
+      "required": ["jetons"],
+      "additionalProperties": false,
+      "properties": { "jetons": { "type": "integer", "minimum": 0, "maximum": 10 } }
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "id": "ma-1-t1-u1-e01-x02",
+  "type": "T51",
+  "gabarit": "cadre-dix",
+  "competence": "ma-nombres-cadre-dix",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعْ 7 قِطَعٍ فِي إِطَارِ الْعَشَرَةِ.",
+      "feminin": "ضَعِي 7 قِطَعٍ فِي إِطَارِ الْعَشَرَةِ."
+    }
+  },
+  "donnees": {
+    "cible": 7
+  },
+  "reponse": {
+    "jetons": 7
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 7 قِطَعٍ، وَتَبْقَى 3 خَانَاتٍ فَارِغَةٍ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 7 قِطَعٍ، وَتَبْقَى 3 خَانَاتٍ فَارِغَةٍ."
+    },
+    "indice": "اِمْلَأِ الصَّفَّ الْأَوَّلَ، ثُمَّ أَضِفْ قِطْعَتَيْنِ.",
+    "explication": "7 = 5 + 2: صَفٌّ كَامِلٌ وَقِطْعَتَانِ."
+  },
+  "empreinte": "sha256:65d16edc516e73f489c260b7263bf54f3d4f895fb424037dd8913876a34b744c",
+  "statut": "brouillon",
+  "version": 1
+}

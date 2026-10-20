@@ -1,0 +1,37 @@
+{
+  "id": "ma-1-t1-u2-e01-x01",
+  "type": "T25",
+  "gabarit": "droite-0-10",
+  "competence": "ma-nombres-droite",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعِ الْعَلَامَةَ عَلَى الْعَدَدِ 7.",
+      "feminin": "ضَعِي الْعَلَامَةَ عَلَى الْعَدَدِ 7."
+    }
+  },
+  "donnees": {
+    "min": 0,
+    "max": 10,
+    "pas": 1,
+    "reperes": 5,
+    "cible": 7,
+    "sens": "gauche-droite"
+  },
+  "reponse": {
+    "valeur": 7
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْعَدَدُ 7 يَبْعُدُ 7 خُطُوَاتٍ عَنِ الصِّفْرِ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْعَدَدُ 7 يَبْعُدُ 7 خُطُوَاتٍ عَنِ الصِّفْرِ."
+    },
+    "indice": "عُدَّ الْخُطُوَاتِ مِنَ الصِّفْرِ: 1، 2، 3، ثُمَّ وَاصِلْ.",
+    "explication": "الْعَدَدُ 7 يَأْتِي بَعْدَ 5 بِخُطْوَتَيْنِ."
+  },
+  "empreinte": "sha256:14d3af162388ada80dad91e2334e11674a78940a8ac5a9c934dd8659f627976d",
+  "statut": "brouillon",
+  "version": 1
+}

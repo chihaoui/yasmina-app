@@ -1722,6 +1722,115 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'manipulables/T25-droite-numerique.json': r'''
+{
+  "id": "ma-1-t1-u2-e01-x01",
+  "type": "T25",
+  "gabarit": "droite-0-10",
+  "competence": "ma-nombres-droite",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعِ الْعَلَامَةَ عَلَى الْعَدَدِ 7.",
+      "feminin": "ضَعِي الْعَلَامَةَ عَلَى الْعَدَدِ 7."
+    }
+  },
+  "donnees": {
+    "min": 0,
+    "max": 10,
+    "pas": 1,
+    "reperes": 5,
+    "cible": 7,
+    "sens": "gauche-droite"
+  },
+  "reponse": {
+    "valeur": 7
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْعَدَدُ 7 يَبْعُدُ 7 خُطُوَاتٍ عَنِ الصِّفْرِ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْعَدَدُ 7 يَبْعُدُ 7 خُطُوَاتٍ عَنِ الصِّفْرِ."
+    },
+    "indice": "عُدَّ الْخُطُوَاتِ مِنَ الصِّفْرِ: 1، 2، 3، ثُمَّ وَاصِلْ.",
+    "explication": "الْعَدَدُ 7 يَأْتِي بَعْدَ 5 بِخُطْوَتَيْنِ."
+  },
+  "empreinte": "sha256:14d3af162388ada80dad91e2334e11674a78940a8ac5a9c934dd8659f627976d",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'manipulables/T27-blocs-base-10.json': r'''
+{
+  "id": "ma-2-t1-u1-e01-x01",
+  "type": "T27",
+  "gabarit": "blocs-dizaines-unites",
+  "competence": "ma-numeration-dizaines-unites",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "مَثِّلِ الْعَدَدَ 34 بِالْعَشَرَاتِ وَالْوَحَدَاتِ.",
+      "feminin": "مَثِّلِي الْعَدَدَ 34 بِالْعَشَرَاتِ وَالْوَحَدَاتِ."
+    }
+  },
+  "donnees": {
+    "cible": 34,
+    "canonique": true
+  },
+  "reponse": {
+    "dizaines": 3,
+    "unites": 4
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ."
+    },
+    "indice": "رَقْمُ الْعَشَرَاتِ هُوَ 3: ضَعْ 3 قِطَعٍ مِنَ الْعَشَرَاتِ أَوَّلًا.",
+    "explication": "34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ: ثَلَاثَةُ قُضْبَانٍ وَأَرْبَعُ مُكَعَّبَاتٍ."
+  },
+  "empreinte": "sha256:530dff7dbfa8785ebe6c0d6f2a217a87b43d5a7b280299534be75774fc5e1a64",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'manipulables/T51-cadre-de-10.json': r'''
+{
+  "id": "ma-1-t1-u1-e01-x02",
+  "type": "T51",
+  "gabarit": "cadre-dix",
+  "competence": "ma-nombres-cadre-dix",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعْ 7 قِطَعٍ فِي إِطَارِ الْعَشَرَةِ.",
+      "feminin": "ضَعِي 7 قِطَعٍ فِي إِطَارِ الْعَشَرَةِ."
+    }
+  },
+  "donnees": {
+    "cible": 7
+  },
+  "reponse": {
+    "jetons": 7
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 7 قِطَعٍ، وَتَبْقَى 3 خَانَاتٍ فَارِغَةٍ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 7 قِطَعٍ، وَتَبْقَى 3 خَانَاتٍ فَارِغَةٍ."
+    },
+    "indice": "اِمْلَأِ الصَّفَّ الْأَوَّلَ، ثُمَّ أَضِفْ قِطْعَتَيْنِ.",
+    "explication": "7 = 5 + 2: صَفٌّ كَامِلٌ وَقِطْعَتَانِ."
+  },
+  "empreinte": "sha256:65d16edc516e73f489c260b7263bf54f3d4f895fb424037dd8913876a34b744c",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'trace/T20-ba.json': r'''
 {
   "id": "ar-1-t1-u1-e01-x02",

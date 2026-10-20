@@ -299,6 +299,17 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (_typesManipulables.contains(type)) {
+    problemes.addAll(
+      _reglesManipulables(
+        type,
+        _niveauDeId(ex['id'] as String),
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
 
   if (seul) {
     final competence = ex['competence'] as String;
@@ -1033,6 +1044,115 @@ List<ProblemeValidation> _reglesGlisser(
       '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
           'année : 4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Les 3 types de base du moteur Manipulables (docs/moteurs/manipulables.md).
+const _typesManipulables = {'T25', 'T27', 'T51'};
+
+/// Droite numérique : au plus 20 intervalles, et 10 en 1re ou 2e année.
+const _intervallesMax = 20;
+const _intervallesMaxPetits = 10;
+
+/// Règles des types de base du moteur Manipulables : la réponse correspond
+/// à la cible, la droite numérique est cohérente.
+List<ProblemeValidation> _reglesManipulables(
+  String type,
+  int? niveau,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  switch (type) {
+    case 'T25':
+      final min = donnees['min'] as int;
+      final max = donnees['max'] as int;
+      final pas = donnees['pas'] as int? ?? 1;
+      final cible = donnees['cible'] as int;
+      if (max <= min) {
+        erreur(
+          '$chemin/donnees/max',
+          'droite_invalide',
+          'max ($max) doit dépasser min ($min).',
+        );
+      } else if ((max - min) % pas != 0) {
+        erreur(
+          '$chemin/donnees/pas',
+          'droite_invalide',
+          'l\'étendue de la droite ($min à $max) doit être un multiple du '
+              'pas ($pas).',
+        );
+      } else {
+        final intervalles = (max - min) ~/ pas;
+        if (intervalles > _intervallesMax) {
+          erreur(
+            '$chemin/donnees',
+            'droite_trop_longue',
+            '$intervalles intervalles : $_intervallesMax au plus.',
+          );
+        } else if (niveau != null &&
+            niveau <= 2 &&
+            intervalles > _intervallesMaxPetits) {
+          problemes.add(
+            ProblemeValidation(
+              chemin: '$chemin/donnees',
+              code: 'graduations_trop_nombreuses',
+              message:
+                  '$intervalles intervalles en ${niveau == 1 ? '1re' : '2e'} '
+                  'année : $_intervallesMaxPetits au plus.',
+              gravite: Gravite.avertissement,
+            ),
+          );
+        }
+        if (cible < min || cible > max || (cible - min) % pas != 0) {
+          erreur(
+            '$chemin/donnees/cible',
+            'cible_hors_droite',
+            'la cible ($cible) doit être une graduation de la droite '
+                '($min à $max par $pas).',
+          );
+        }
+      }
+      if (reponse['valeur'] != cible) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['valeur']}) doit être la cible ($cible).',
+        );
+      }
+    case 'T27':
+      final cible = donnees['cible'] as int;
+      final canonique = donnees['canonique'] as bool? ?? true;
+      final dizaines = reponse['dizaines'] as int;
+      final unites = reponse['unites'] as int;
+      if (dizaines * 10 + unites != cible) {
+        erreur(
+          '$chemin/reponse',
+          'reponse_valeur_incoherente',
+          '$dizaines dizaines et $unites unités font '
+              '${dizaines * 10 + unites}, pas $cible.',
+        );
+      } else if (canonique && unites > 9) {
+        erreur(
+          '$chemin/reponse/unites',
+          'reponse_valeur_incoherente',
+          'en mode canonique, 9 unités au plus ($unites données).',
+        );
+      }
+    case 'T51':
+      final cible = donnees['cible'] as int;
+      if (reponse['jetons'] != cible) {
+        erreur(
+          '$chemin/reponse/jetons',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['jetons']}) doit être la cible ($cible).',
+        );
+      }
   }
   return problemes;
 }

@@ -9,13 +9,18 @@ void main() {
     final catalogue = CatalogueExemples();
 
     test('tous valides et rattachés à un moteur du registre (Choix, '
-        'Glisser-déposer, Tracé)', () {
+        'Glisser-déposer, Tracé, Manipulables)', () {
       expect(catalogue.tous, hasLength(exemplesEduContent.length));
       for (final e in catalogue.tous) {
         expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
         expect(
           typeParId(e.idType!)!.moteur,
-          isIn([Moteur.choix, Moteur.glisserDeposer, Moteur.trace]),
+          isIn([
+            Moteur.choix,
+            Moteur.glisserDeposer,
+            Moteur.trace,
+            Moteur.manipulables,
+          ]),
           reason: e.chemin,
         );
       }

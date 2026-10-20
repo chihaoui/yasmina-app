@@ -1,0 +1,34 @@
+{
+  "id": "ma-2-t1-u1-e01-x01",
+  "type": "T27",
+  "gabarit": "blocs-dizaines-unites",
+  "competence": "ma-numeration-dizaines-unites",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "مَثِّلِ الْعَدَدَ 34 بِالْعَشَرَاتِ وَالْوَحَدَاتِ.",
+      "feminin": "مَثِّلِي الْعَدَدَ 34 بِالْعَشَرَاتِ وَالْوَحَدَاتِ."
+    }
+  },
+  "donnees": {
+    "cible": 34,
+    "canonique": true
+  },
+  "reponse": {
+    "dizaines": 3,
+    "unites": 4
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ."
+    },
+    "indice": "رَقْمُ الْعَشَرَاتِ هُوَ 3: ضَعْ 3 قِطَعٍ مِنَ الْعَشَرَاتِ أَوَّلًا.",
+    "explication": "34 هُوَ 3 عَشَرَاتٍ وَ4 وَحَدَاتٍ: ثَلَاثَةُ قُضْبَانٍ وَأَرْبَعُ مُكَعَّبَاتٍ."
+  },
+  "empreinte": "sha256:530dff7dbfa8785ebe6c0d6f2a217a87b43d5a7b280299534be75774fc5e1a64",
+  "statut": "brouillon",
+  "version": 1
+}
