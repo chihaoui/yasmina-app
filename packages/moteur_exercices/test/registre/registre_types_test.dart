@@ -52,11 +52,15 @@ void main() {
     expect(Moteur.values.skip(premierLot2).any(aDuLot1), isFalse);
   });
 
-  test('T02 est le seul type jouable pour l\'instant', () {
-    expect(
-      typesExercices.where((t) => t.etat == EtatType.jouable).map((t) => t.id),
-      ['T02'],
-    );
+  test('les types jouables sont ceux du moteur Choix déjà branchés', () {
+    final jouables = typesExercices
+        .where((t) => t.etat == EtatType.jouable)
+        .map((t) => t.id);
+    expect(jouables, contains('T02'));
+    expect(jouables, gabaritsJouables.keys);
+    for (final id in jouables) {
+      expect(typeParId(id)!.moteur, Moteur.choix, reason: id);
+    }
     expect(typeParId('T19')!.nom, 'Choisir la haraka');
     expect(typeParId('T99'), isNull);
   });

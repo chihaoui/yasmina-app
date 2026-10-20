@@ -14,6 +14,11 @@ import '../outils.dart';
 void main() {
   Finder cle(String valeur) => find.byKey(ValueKey(valeur));
 
+  /// Types du moteur Choix déjà jouables (ils entrent un par un).
+  final jouablesChoix = typesDuMoteur(Moteur.choix)
+      .where((t) => t.etat == EtatType.jouable)
+      .length;
+
   Future<void> aller(WidgetTester tester, String chemin) async {
     GoRouter.of(tester.element(find.byType(Scaffold).first)).push(chemin);
     await tester.pumpAndSettle();
@@ -25,7 +30,7 @@ void main() {
     expect(moteurs, Moteur.values);
     expect(lignes.whereType<LigneType>(), hasLength(53));
     final choix = lignes.whereType<EnTeteMoteur>().first;
-    expect((choix.jouables, choix.total), (1, 13));
+    expect((choix.jouables, choix.total), (jouablesChoix, 13));
     // Chaque type suit l'en-tête de son moteur.
     Moteur? courant;
     for (final ligne in lignes) {
@@ -45,7 +50,10 @@ void main() {
 
     expect(texteDe(tester, 'atelier_titre'), 'Atelier');
     expect(sensDe(tester, 'atelier_titre'), TextDirection.ltr);
-    expect(texteDe(tester, 'atelier_moteur_choix'), 'Choix · 1 / 13 jouables');
+    expect(
+      texteDe(tester, 'atelier_moteur_choix'),
+      'Choix · $jouablesChoix / 13 jouables',
+    );
     expect(find.text('T01  QCM'), findsOneWidget);
     expect(find.text('Lot 1 · 4 exemples'), findsOneWidget);
     expect(find.text('À venir'), findsWidgets);

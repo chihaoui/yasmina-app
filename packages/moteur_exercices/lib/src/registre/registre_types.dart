@@ -72,7 +72,7 @@ class TypeExercice {
 /// prêt.
 const typesExercices = <TypeExercice>[
   // Choix (lot 1).
-  TypeExercice('T01', 'QCM', Moteur.choix, lot: 1),
+  TypeExercice('T01', 'QCM', Moteur.choix, lot: 1, etat: EtatType.jouable),
   TypeExercice(
     'T02',
     'Vrai ou faux',
@@ -81,8 +81,20 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   TypeExercice('T03', 'Écoute et choisis', Moteur.choix, lot: 1),
-  TypeExercice('T04', "Trouve l'intrus", Moteur.choix, lot: 1),
-  TypeExercice('T05', 'Choix multiple', Moteur.choix, lot: 1),
+  TypeExercice(
+    'T04',
+    "Trouve l'intrus",
+    Moteur.choix,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T05',
+    'Choix multiple',
+    Moteur.choix,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice('T18', 'Forme de la lettre', Moteur.choix, lot: 1),
   TypeExercice('T19', 'Choisir la haraka', Moteur.choix, lot: 1),
   TypeExercice('T23', 'Comparer', Moteur.choix, lot: 1),
