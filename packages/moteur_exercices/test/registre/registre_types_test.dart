@@ -61,7 +61,12 @@ void main() {
     for (final id in jouables) {
       expect(
         typeParId(id)!.moteur,
-        isIn([Moteur.choix, Moteur.glisserDeposer, Moteur.trace]),
+        isIn([
+          Moteur.choix,
+          Moteur.glisserDeposer,
+          Moteur.trace,
+          Moteur.manipulables,
+        ]),
         reason: id,
       );
     }

@@ -7,6 +7,7 @@ import 'choix/gabarit_vrai_faux.dart';
 import 'glisser/gabarit_affectation.dart';
 import 'glisser/gabarit_ordre.dart';
 import 'glisser/gabarit_racine_scheme.dart';
+import 'manipulables/gabarit_droite_numerique.dart';
 import 'trace/gabarit_trace.dart';
 
 /// Gabarits des types jouables, par id de type. Un type y entre quand son
@@ -39,6 +40,8 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T62': GabaritOrdre('T62'),
   // Moteur Tracé.
   'T20': GabaritTrace(),
+  // Moteur Manipulables (base).
+  'T25': GabaritDroiteNumerique(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.
