@@ -26,4 +26,11 @@ abstract final class MouvementsYasmina {
   /// Durée pendant laquelle une réponse fausse reste marquée avant que la
   /// sélection soit vidée (1er essai faux).
   static const dureeFaux = Duration(milliseconds: 700);
+
+  /// Agrandissement d'une tuile tenue pendant un glisser (sans jeton,
+  /// question 5 de docs/moteurs/glisser-deposer-questions.md).
+  static const echelleTenue = 1.05;
+
+  /// Retour animé d'une tuile lâchée hors cible vers sa place.
+  static const dureeRetour = Duration(milliseconds: 200);
 }

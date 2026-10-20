@@ -35,9 +35,9 @@ void main() {
     expect(cle('lecteur_afficher_reponse'), findsOneWidget);
   });
 
-  group('parité web : chaque exemple du moteur Choix', () {
+  group('parité web : chaque exemple d\'un type jouable', () {
     final exemples = CatalogueExemples().tous.where(
-      (e) => typeParId(e.idType!)?.moteur == Moteur.choix,
+      (e) => typeParId(e.idType!)?.etat == EtatType.jouable,
     );
     for (final exemple in exemples) {
       testWidgets('${exemple.fichier} : joué, réponse révélée', (tester) async {
@@ -55,12 +55,13 @@ void main() {
         expect(lecteur.config.langue, exemple.langue);
         await tester.tap(cle('lecteur_afficher_reponse'));
         await tester.pump();
-        expect(
-          tester
-              .widgetList<TuileChoix>(find.byType(TuileChoix))
-              .where((t) => t.etat == EtatTuile.juste),
-          isNotEmpty,
-        );
+        final choixJustes = tester
+            .widgetList<TuileChoix>(find.byType(TuileChoix))
+            .where((t) => t.etat == EtatTuile.juste);
+        final glissesJustes = tester
+            .widgetList<TuileGlissable>(find.byType(TuileGlissable))
+            .where((t) => t.etat == EtatGlissable.juste);
+        expect(choixJustes.isNotEmpty || glissesJustes.isNotEmpty, isTrue);
         expect(tester.takeException(), isNull);
       });
     }

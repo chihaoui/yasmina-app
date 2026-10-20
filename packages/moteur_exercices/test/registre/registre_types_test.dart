@@ -59,7 +59,11 @@ void main() {
     expect(jouables, contains('T02'));
     expect(jouables, gabaritsJouables.keys);
     for (final id in jouables) {
-      expect(typeParId(id)!.moteur, Moteur.choix, reason: id);
+      expect(
+        typeParId(id)!.moteur,
+        isIn([Moteur.choix, Moteur.glisserDeposer]),
+        reason: id,
+      );
     }
     expect(typeParId('T19')!.nom, 'Choisir la haraka');
     expect(typeParId('T99'), isNull);

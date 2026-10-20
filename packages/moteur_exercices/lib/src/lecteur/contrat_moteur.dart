@@ -61,8 +61,13 @@ abstract class ControleurReponse extends ChangeNotifier {
   /// Corrige la réponse courante, sans rien afficher.
   bool corriger();
 
-  /// Vide la réponse (après le 1er essai faux, Rejouer).
+  /// Vide la réponse (Rejouer).
   void vider();
+
+  /// Après le 1er essai faux : retire ce qui est faux. Par défaut, tout
+  /// (moteur Choix). Le moteur Glisser-déposer ne retire que les éléments
+  /// mal placés.
+  void retirerFaux() => vider();
 
   AffichageReponse _affichage = AffichageReponse.saisie;
 

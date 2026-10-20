@@ -106,7 +106,8 @@ class _LecteurExerciceState extends State<LecteurExercice> {
       _erreur = e;
       _controleur = null;
     }
-    _derniereReponse = null;
+    // Un changement d'état sans réponse (élément en attente) n'émet rien.
+    _derniereReponse = jsonEncode(_controleur?.reponse);
     _fins = _controleur?.fins.listen(_finAutomatique);
     _demandesAudio = _controleur?.demandesAudio.listen(_direPourLaZone);
     if (_controleur case final controleur?) {
@@ -185,7 +186,7 @@ class _LecteurExerciceState extends State<LecteurExercice> {
         controleur.montrer(AffichageReponse.faux);
         _minuterieFaux = Timer(MouvementsYasmina.dureeFaux, () {
           if (!mounted || _controleur != controleur) return;
-          _viderSansEvenement(controleur);
+          _retirerFauxSansEvenement(controleur);
         });
       case PhaseExercice.saisie || PhaseExercice.termine:
         break;
@@ -235,6 +236,13 @@ class _LecteurExerciceState extends State<LecteurExercice> {
   /// lecteur, pas de l'enfant : aucun reponseDonnee.
   void _viderSansEvenement(ControleurReponse controleur) {
     controleur.vider();
+    _derniereReponse = jsonEncode(controleur.reponse);
+    controleur.montrer(AffichageReponse.saisie);
+  }
+
+  /// Après le 1er essai faux : retire ce qui est faux, sans reponseDonnee.
+  void _retirerFauxSansEvenement(ControleurReponse controleur) {
+    controleur.retirerFaux();
     _derniereReponse = jsonEncode(controleur.reponse);
     controleur.montrer(AffichageReponse.saisie);
   }

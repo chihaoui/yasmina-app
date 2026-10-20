@@ -153,16 +153,35 @@ const typesExercices = <TypeExercice>[
   ),
   // Glisser-déposer (lot 1).
   TypeExercice('T06', 'Texte à trous', Moteur.glisserDeposer, lot: 1),
-  TypeExercice('T09', 'Association', Moteur.glisserDeposer, lot: 1),
-  TypeExercice('T11', 'Tri en catégories', Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T09',
+    'Association',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T11',
+    'Tri en catégories',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice('T12', 'Tableau de tri', Moteur.glisserDeposer, lot: 1),
-  TypeExercice('T13', 'Remise en ordre', Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T13',
+    'Remise en ordre',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice('T14', "Séquence d'images", Moteur.glisserDeposer, lot: 1),
   TypeExercice(
     'T15',
     'Construire un mot (lettres)',
     Moteur.glisserDeposer,
     lot: 1,
+    etat: EtatType.jouable,
   ),
   TypeExercice(
     'T16',

@@ -4,6 +4,8 @@ import 'choix/gabarit_comparer.dart';
 import 'choix/gabarit_haraka.dart';
 import 'choix/gabarit_justification.dart';
 import 'choix/gabarit_vrai_faux.dart';
+import 'glisser/gabarit_affectation.dart';
+import 'glisser/gabarit_ordre.dart';
 
 /// Gabarits des types jouables, par id de type. Un type y entre quand son
 /// moteur sait le jouer, et passe alors à « jouable » dans le registre.
@@ -22,6 +24,11 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T46': GabaritJustification(),
   'T55': GabaritChoix('T55'),
   'T61': GabaritChoix('T61'),
+  // Moteur Glisser-déposer.
+  'T09': GabaritAffectation('T09'),
+  'T11': GabaritAffectation('T11'),
+  'T13': GabaritOrdre('T13'),
+  'T15': GabaritOrdre('T15'),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.
