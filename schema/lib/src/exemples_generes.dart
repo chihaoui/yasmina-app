@@ -2349,6 +2349,94 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'recit/T35-histoire-choix.json': r'''
+{
+  "id": "fr-2-t1-u3-e01-x01",
+  "type": "T35",
+  "gabarit": "histoire-choix",
+  "competence": "fr-comprehension-securite",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Aide Nour à aller à l'école en sécurité."
+  },
+  "donnees": {
+    "etapes": [
+      {
+        "id": "e1",
+        "scene": "🏠 🛣️ 🏫",
+        "texte": "Nour doit traverser la rue. Que fait-elle ?",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "Elle court vite sans regarder.",
+            "juste": false,
+            "pourquoi": "Courir sans regarder est dangereux : une voiture peut arriver."
+          },
+          {
+            "id": "c2",
+            "texte": "Elle va au passage piéton et regarde à gauche et à droite.",
+            "juste": true
+          }
+        ]
+      },
+      {
+        "id": "e2",
+        "scene": "🚦",
+        "texte": "Le petit bonhomme du feu est rouge. Que fait Nour ?",
+        "choix": [
+          {
+            "id": "c3",
+            "texte": "Elle attend que le bonhomme passe au vert.",
+            "juste": true
+          },
+          {
+            "id": "c4",
+            "texte": "Elle traverse quand même, il n'y a pas de voiture.",
+            "juste": false,
+            "pourquoi": "Même sans voiture, on attend le bonhomme vert : une voiture peut arriver vite."
+          }
+        ]
+      },
+      {
+        "id": "e3",
+        "scene": "🚗 👧",
+        "texte": "Une voiture s'arrête et un inconnu propose à Nour de la déposer à l'école. Que fait-elle ?",
+        "choix": [
+          {
+            "id": "c5",
+            "texte": "Elle monte, c'est plus rapide.",
+            "juste": false,
+            "pourquoi": "On ne monte jamais dans la voiture d'un inconnu."
+          },
+          {
+            "id": "c6",
+            "texte": "Elle dit non, s'éloigne et le dit à un adulte qu'elle connaît.",
+            "juste": true
+          }
+        ]
+      }
+    ],
+    "fin": "Nour arrive à l'école en sécurité. Bravo pour tes choix."
+  },
+  "reponse": {
+    "etapes": [
+      "e1",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Nour est arrivée à l'école en sécurité.",
+    "indice": "Pense à ce qui est le plus sûr.",
+    "explication": "Passage piéton, bonhomme vert, jamais de voiture d'inconnu."
+  },
+  "empreinte": "sha256:ac1e0699dd45abb09389e3739ab479d428fbd3ef49803b2acd436e2d78dba221",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'revision-jeux/T36-flashcards.json': r'''
 {
   "id": "ar-1-t1-u2-e02-x01",

@@ -46,6 +46,7 @@ export 'src/moteurs/manipulables/gabarit_monnaie.dart';
 export 'src/moteurs/manipulables/materiel.dart';
 export 'src/moteurs/mesure/gabarit_horloge.dart';
 export 'src/moteurs/mesure/gabarit_regle.dart';
+export 'src/moteurs/recit/gabarit_recit.dart';
 export 'src/moteurs/saisie/gabarit_balance.dart';
 export 'src/moteurs/saisie/gabarit_calcul_pose.dart';
 export 'src/moteurs/saisie/gabarit_fluidite.dart';

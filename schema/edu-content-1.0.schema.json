@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) les 3 types du moteur Révision et jeux (T36, T37, T38) les 2 types du moteur Mesure et temps (T28, T30) les 4 types du moteur Grille et graphiques (T31, T32, T33, T60) et les 2 types du moteur Simulateur (T57, T34), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) les 3 types du moteur Révision et jeux (T36, T37, T38) les 2 types du moteur Mesure et temps (T28, T30) les 4 types du moteur Grille et graphiques (T31, T32, T33, T60) les 2 types du moteur Simulateur (T57, T34) et le type T35 du moteur Récit, génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -546,6 +546,15 @@
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesSimulateur" },
               "reponse": { "$ref": "#/$defs/reponseResultats" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T35" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesRecit" },
+              "reponse": { "$ref": "#/$defs/reponseEtapes" }
             }
           }
         },
@@ -1760,6 +1769,63 @@
               "issue": { "enum": ["a", "b"] }
             }
           }
+        }
+      }
+    },
+    "idEtapeRecit": { "type": "string", "pattern": "^e[1-6]$" },
+    "idChoixRecit": { "type": "string", "pattern": "^c([1-9]|1[0-8])$" },
+    "donneesRecit": {
+      "description": "T35 (sans note) : une histoire en étapes, une question et deux ou trois choix par étape. Le bon choix fait avancer, un mauvais choix explique (pourquoi) puis laisse choisir à nouveau. Règles Dart : un seul choix juste par étape, un pourquoi par mauvais choix.",
+      "type": "object",
+      "required": ["etapes"],
+      "additionalProperties": false,
+      "properties": {
+        "etapes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id", "texte", "choix"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idEtapeRecit" },
+              "scene": { "$ref": "#/$defs/texteNonVide" },
+              "texte": { "$ref": "#/$defs/texteNonVide" },
+              "choix": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "required": ["id", "texte"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "#/$defs/idChoixRecit" },
+                    "texte": { "$ref": "#/$defs/texteNonVide" },
+                    "juste": { "type": "boolean", "default": false },
+                    "pourquoi": { "$ref": "#/$defs/texteNonVide" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "fin": { "$ref": "#/$defs/texteNonVide" }
+      }
+    },
+    "reponseEtapes": {
+      "description": "Sans note : les étapes à parcourir, dans l'ordre (règles Dart : toutes les étapes).",
+      "type": "object",
+      "required": ["etapes"],
+      "additionalProperties": false,
+      "properties": {
+        "etapes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idEtapeRecit" }
         }
       }
     },

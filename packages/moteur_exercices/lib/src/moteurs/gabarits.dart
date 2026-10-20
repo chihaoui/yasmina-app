@@ -22,6 +22,7 @@ import 'manipulables/gabarit_modele_barres.dart';
 import 'manipulables/gabarit_monnaie.dart';
 import 'mesure/gabarit_horloge.dart';
 import 'mesure/gabarit_regle.dart';
+import 'recit/gabarit_recit.dart';
 import 'saisie/gabarit_balance.dart';
 import 'saisie/gabarit_calcul_pose.dart';
 import 'saisie/gabarit_fluidite.dart';
@@ -99,6 +100,8 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Simulateur (T34 est une instance de T57).
   'T34': GabaritSimulateur(),
   'T57': GabaritSimulateur(),
+  // Moteur Récit.
+  'T35': GabaritRecit(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

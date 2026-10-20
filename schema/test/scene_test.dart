@@ -292,6 +292,78 @@ void main() {
     );
   });
 
+  test('T35 (moteur Récit) : exemple valide et règles', () {
+    Map<String, dynamic> recit() => exerciceAudio(
+      'T35',
+      {
+        'etapes': [
+          {
+            'id': 'e1',
+            'texte': 'The cat is hungry. What does it do?',
+            'choix': [
+              <String, dynamic>{'id': 'c1', 'texte': 'It eats.', 'juste': true},
+              <String, dynamic>{
+                'id': 'c2',
+                'texte': 'It sleeps.',
+                'pourquoi': 'Sleeping does not feed the cat.',
+              },
+            ],
+          },
+          {
+            'id': 'e2',
+            'texte': 'Now the cat is tired.',
+            'choix': [
+              <String, dynamic>{
+                'id': 'c3',
+                'texte': 'It runs.',
+                'pourquoi': 'Running tires it more.',
+              },
+              <String, dynamic>{
+                'id': 'c4',
+                'texte': 'It sleeps.',
+                'juste': true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        'etapes': ['e1', 'e2'],
+      },
+    )..['competence'] = 'en-essai';
+    final r = validerExercice(recit());
+    expect(r.erreurs, isEmpty, reason: '$r');
+    expect(r.avertissements, isEmpty, reason: '$r');
+    List<ProblemeValidation> erreursDe(
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = recit();
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    expect(
+      erreursDe((ex) => ex['donnees']['etapes'][0]['choix'][1]['juste'] = true)
+          .single,
+      probleme('/donnees/etapes/0/choix', 'choix_juste_unique'),
+    );
+    expect(
+      erreursDe(
+        (ex) => ex['donnees']['etapes'][0]['choix'][1].remove('pourquoi'),
+      ).single,
+      probleme('/donnees/etapes/0/choix/1', 'pourquoi_manquant'),
+    );
+    expect(
+      erreursDe((ex) => ex['donnees']['etapes'][1]['choix'][0]['id'] = 'c1')
+          .single,
+      probleme('/donnees/etapes/1/choix/0/id', 'element_duplique'),
+    );
+    expect(
+      erreursDe((ex) => ex['reponse']['etapes'] = ['e2', 'e1']).single,
+      probleme('/reponse/etapes', 'etapes_incompletes'),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

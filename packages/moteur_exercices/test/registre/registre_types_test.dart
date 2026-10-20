@@ -73,6 +73,7 @@ void main() {
           Moteur.mesureTemps,
           Moteur.grilleGraphiques,
           Moteur.simulateur,
+          Moteur.recit,
         ]),
         reason: id,
       );

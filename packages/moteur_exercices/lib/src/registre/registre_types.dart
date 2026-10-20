@@ -428,7 +428,13 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Récit (lot 2).
-  TypeExercice('T35', 'Histoire à choix', Moteur.recit, lot: 2),
+  TypeExercice(
+    'T35',
+    'Histoire à choix',
+    Moteur.recit,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
 ];
 
 /// Type d'id [id] (`T01`), ou `null` s'il ne fait pas partie du MVP.

@@ -8,15 +8,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
 | A1 | 23 | 36,25 | 63 % |
-| A2 | 15,5 | 30,5 | 51 % |
+| A2 | 17 | 30,5 | 56 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **57** | **182,25** | **31,3 %** |
+| **Total** | **58,5** | **182,25** | **32,1 %** |
 
-- **Avancement global : 31,3 %** (57 j-h faits sur 182,25)
-- **Types jouables : 51 sur 52**
+- **Avancement global : 32,1 %** (58,5 j-h faits sur 182,25)
+- **Types jouables : 52 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -155,7 +155,11 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [x] Schéma, validateur, 2 exemples en brouillon (flotte ou coule dans la cuve, matériaux conducteurs)
   - [x] T57 générique (deux issues, objets, décor eau, circuit ou aucun), T34 en instance au décor eau, prédire puis observer en mode automatique, tests arabe et français, parité
   - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
-- [ ] A2-07 Moteur Récit (T35) (1,5 j-h)
+- [x] A2-07 Moteur Récit (T35) (1,5 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/recit.md` et questions (nuit du 20 au 21 oct. 2026)
+  - [x] Schéma, validateur (un seul choix juste par étape, un pourquoi par mauvais choix), 1 exemple en brouillon (Nour va à l'école)
+  - [x] Étapes enchaînées dans la zone, mauvais choix expliqué puis repris, sans note, tests français et arabe, parité
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [ ] A2-08 Corrections issues du tour 1 (1 j-h)
 - [ ] A2-09 Retours familles, tour 2 (1 j-h)
 - [ ] A2-10 Design system et maquettes, partie 2 (designer) (5 j-h)

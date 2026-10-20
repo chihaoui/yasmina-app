@@ -60,8 +60,15 @@ void main() {
 
     // Le dernier moteur (Récit, lot 2) est atteint en défilant.
     await tester.scrollUntilVisible(cle('atelier_type_T35'), 300);
-    expect(texteDe(tester, 'atelier_moteur_recit'), 'Récit · 0 / 1 jouables');
-    expect(find.text('À venir'), findsWidgets);
+    final recit = typesDuMoteur(Moteur.recit);
+    final recitJouables = recit.where((t) => t.etat == EtatType.jouable).length;
+    expect(
+      texteDe(tester, 'atelier_moteur_recit'),
+      'Récit · $recitJouables / ${recit.length} jouables',
+    );
+    // Plus aucune pastille « À venir » quand les 52 types sont jouables.
+    final aVenir = typesExercices.where((t) => t.etat == EtatType.aVenir);
+    expect(find.text('À venir'), aVenir.isEmpty ? findsNothing : findsWidgets);
   });
 
   testWidgets('T01 : 4 exemples valides, consigne arabe de droite à gauche', (
@@ -138,6 +145,19 @@ void main() {
       expect(find.byType(LecteurExercice), findsOneWidget);
     }
     await tester.tap(find.text('Aperçu'));
+    await tester.pumpAndSettle();
+    // Le JSON est sous le lecteur, qui occupe l'écran avec son propre
+    // défilement (un glisser au milieu le ferait défiler, lui) : la liste
+    // de l'écran saute à sa fin.
+    final liste = tester.state<ScrollableState>(
+      find
+          .descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    liste.position.jumpTo(liste.position.maxScrollExtent);
     await tester.pumpAndSettle();
     final json = tester.widget<SelectableText>(cle('atelier_json')).data!;
     expect(json, contains('"gabarit": "${exercice['gabarit']}"'));

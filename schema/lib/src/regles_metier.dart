@@ -323,6 +323,15 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T35') {
+    problemes.addAll(
+      _reglesRecit(
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (type == 'T34' || type == 'T57') {
     problemes.addAll(
       _reglesSimulateur(
@@ -1470,6 +1479,72 @@ List<ProblemeValidation> _reglesScene(
       'elements_trop_nombreux',
       '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
           '4 à 6 au maximum (CLAUDE.md §5).',
+    );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Récit (docs/moteurs/recit.md) : T35 Histoire à choix.
+List<ProblemeValidation> _reglesRecit(
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  final etapes = (donnees['etapes'] as List).cast<Map<String, dynamic>>();
+  final idsEtapes = <String>[];
+  final idsChoix = <String>{};
+  for (var k = 0; k < etapes.length; k++) {
+    final id = etapes[k]['id'] as String;
+    if (idsEtapes.contains(id)) {
+      erreur(
+        '$chemin/donnees/etapes/$k/id',
+        'element_duplique',
+        'deux étapes ont le même id « $id ».',
+      );
+    }
+    idsEtapes.add(id);
+    final choix = (etapes[k]['choix'] as List).cast<Map<String, dynamic>>();
+    var justes = 0;
+    for (var j = 0; j < choix.length; j++) {
+      final cid = choix[j]['id'] as String;
+      if (!idsChoix.add(cid)) {
+        erreur(
+          '$chemin/donnees/etapes/$k/choix/$j/id',
+          'element_duplique',
+          'deux choix ont le même id « $cid » (uniques dans toute '
+              'l\'histoire).',
+        );
+      }
+      if (choix[j]['juste'] == true) {
+        justes++;
+      } else if (choix[j]['pourquoi'] == null) {
+        erreur(
+          '$chemin/donnees/etapes/$k/choix/$j',
+          'pourquoi_manquant',
+          'un mauvais choix explique pourquoi (pourquoi).',
+        );
+      }
+    }
+    if (justes != 1) {
+      erreur(
+        '$chemin/donnees/etapes/$k/choix',
+        'choix_juste_unique',
+        'l\'étape « $id » a $justes choix juste(s) : exactement un attendu.',
+      );
+    }
+  }
+  final attendues = (reponse['etapes'] as List).cast<String>();
+  if (attendues.length != idsEtapes.length ||
+      !attendues.asMap().entries.every((e) => idsEtapes[e.key] == e.value)) {
+    erreur(
+      '$chemin/reponse/etapes',
+      'etapes_incompletes',
+      'la réponse cite toutes les étapes dans l\'ordre '
+          '(${idsEtapes.join(', ')}).',
     );
   }
   return problemes;
