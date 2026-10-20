@@ -46,9 +46,27 @@
         "b": {
           "emoji": "🍐"
         }
+      },
+      {
+        "id": "p5",
+        "a": {
+          "texte": "orange"
+        },
+        "b": {
+          "emoji": "🍊"
+        }
+      },
+      {
+        "id": "p6",
+        "a": {
+          "texte": "cerise"
+        },
+        "b": {
+          "emoji": "🍒"
+        }
       }
     ],
-    "essais_max": 10,
+    "essais_max": 15,
     "melanger": true
   },
   "reponse": {
@@ -56,15 +74,17 @@
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5",
+      "p6"
     ]
   },
   "feedbacks": {
     "reussite": "Oui : toutes les paires sont trouvées.",
     "indice": "Retiens la place des cartes que tu retournes.",
-    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire."
+    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire, orange, cerise."
   },
-  "empreinte": "sha256:fbd91c442368e26f98dea22e62267630bfc99b47e2a22cbc2728da9705c6501d",
+  "empreinte": "sha256:6614e95f2e93fc8b4a6d0befbd8e39439db0ce8a667a84d05840c296cdec01cf",
   "statut": "brouillon",
   "version": 1
 }

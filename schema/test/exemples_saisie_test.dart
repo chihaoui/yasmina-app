@@ -31,7 +31,7 @@ void main() {
     }
     final ids = fichiers.map((f) => lire(f)['id']).toSet();
     expect(ids, hasLength(fichiers.length));
-    expect(fichiers, hasLength(3));
+    expect(fichiers, hasLength(5));
     // Maths en arabe, chiffres occidentaux par défaut.
     for (final f in fichiers) {
       expect(lire(f)['langue'], 'ar');

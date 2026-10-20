@@ -1969,9 +1969,27 @@ const Map<String, String> exemplesEduContent = {
         "b": {
           "emoji": "🍐"
         }
+      },
+      {
+        "id": "p5",
+        "a": {
+          "texte": "orange"
+        },
+        "b": {
+          "emoji": "🍊"
+        }
+      },
+      {
+        "id": "p6",
+        "a": {
+          "texte": "cerise"
+        },
+        "b": {
+          "emoji": "🍒"
+        }
       }
     ],
-    "essais_max": 10,
+    "essais_max": 15,
     "melanger": true
   },
   "reponse": {
@@ -1979,15 +1997,17 @@ const Map<String, String> exemplesEduContent = {
       "p1",
       "p2",
       "p3",
-      "p4"
+      "p4",
+      "p5",
+      "p6"
     ]
   },
   "feedbacks": {
     "reussite": "Oui : toutes les paires sont trouvées.",
     "indice": "Retiens la place des cartes que tu retournes.",
-    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire."
+    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire, orange, cerise."
   },
-  "empreinte": "sha256:fbd91c442368e26f98dea22e62267630bfc99b47e2a22cbc2728da9705c6501d",
+  "empreinte": "sha256:6614e95f2e93fc8b4a6d0befbd8e39439db0ce8a667a84d05840c296cdec01cf",
   "statut": "brouillon",
   "version": 1
 }
@@ -2189,6 +2209,80 @@ const Map<String, String> exemplesEduContent = {
     "explication": "الْوَحَدَاتُ: 4 زَائِدُ 5 يُسَاوِي 9. الْعَشَرَاتُ: 3 زَائِدُ 2 يُسَاوِي 5. النَّتِيجَةُ 59."
   },
   "empreinte": "sha256:0d888b0a99945fd171c142d51278651fd7108f0bfcb69b40f7b32fa95cb944a8",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T48-addition-retenue.json': r'''
+{
+  "id": "ma-2-t1-u3-e02-x01",
+  "type": "T48",
+  "gabarit": "addition-posee",
+  "competence": "ma-calcul-addition-posee",
+  "critere": "C2",
+  "niveau_critere": "perfectionnement",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ مَعَ الْحَمْلِ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ مَعَ الْحَمْلِ."
+    }
+  },
+  "donnees": {
+    "a": 47,
+    "b": 36,
+    "operation": "addition",
+    "retenues": true
+  },
+  "reponse": {
+    "valeur": 83
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 47 زَائِدُ 36 يُسَاوِي 83.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 47 زَائِدُ 36 يُسَاوِي 83."
+    },
+    "indice": "7 زَائِدُ 6 يُسَاوِي 13: نَكْتُبُ 3 وَنَحْمِلُ 1 إِلَى الْعَشَرَاتِ.",
+    "explication": "الْوَحَدَاتُ: 7 زَائِدُ 6 يُسَاوِي 13، نَكْتُبُ 3 وَنَحْمِلُ 1. الْعَشَرَاتُ: 4 زَائِدُ 3 زَائِدُ 1 يُسَاوِي 8. النَّتِيجَةُ 83."
+  },
+  "empreinte": "sha256:103e46c4bb4ebf18d3213b79b2df3d9e5afa7a024bc7184fdbde4d61bd0358b1",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T48-soustraction-emprunt.json': r'''
+{
+  "id": "ma-2-t1-u3-e02-x02",
+  "type": "T48",
+  "gabarit": "soustraction-posee",
+  "competence": "ma-calcul-soustraction-posee",
+  "critere": "C2",
+  "niveau_critere": "perfectionnement",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ مَعَ الِاسْتِعَارَةِ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ مَعَ الِاسْتِعَارَةِ."
+    }
+  },
+  "donnees": {
+    "a": 62,
+    "b": 28,
+    "operation": "soustraction",
+    "retenues": true
+  },
+  "reponse": {
+    "valeur": 34
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 62 نَاقِصُ 28 يُسَاوِي 34.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 62 نَاقِصُ 28 يُسَاوِي 34."
+    },
+    "indice": "2 أَصْغَرُ مِنْ 8: نَسْتَعِيرُ عَشَرَةً مِنَ الْعَشَرَاتِ.",
+    "explication": "الْوَحَدَاتُ: 12 نَاقِصُ 8 يُسَاوِي 4 بَعْدَ الِاسْتِعَارَةِ. الْعَشَرَاتُ: 5 نَاقِصُ 2 يُسَاوِي 3. النَّتِيجَةُ 34."
+  },
+  "empreinte": "sha256:f2626d74e16b22b62ccab801a79a82ac47dcbcd322d87b18c216f956f135ea40",
   "statut": "brouillon",
   "version": 1
 }
@@ -2594,7 +2688,9 @@ const Map<String, String> exemplesEduContent = {
       "texte": "قَلَمٌ"
     },
     "emoji": "✏️",
-    "harakat": false
+    "harakat": false,
+    "clavier": "reduit",
+    "lettres": "قلمبنترد"
   },
   "reponse": {
     "texte": "قَلَمٌ"

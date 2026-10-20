@@ -1172,7 +1172,7 @@ const String texteSchemaEduContent = r'''
       }
     },
     "donneesDictee": {
-      "description": "T17 : écrire un mot entendu. harakat (arabe) : une rangée de harakat sur le clavier du moteur. casse (latin) : clavier en minuscules. La comparaison suit normalisation (harakat_ignorees, casse...).",
+      "description": "T17 : écrire un mot entendu. harakat (arabe) : une rangée de harakat sur le clavier du moteur. clavier (arabe) : complet (par défaut) ou reduit aux lettres de lettres (les lettres du mot et 4 à 6 lettres en trop, recommandé en 1re et 2e, règles Dart). casse (latin) : clavier en minuscules. La comparaison suit normalisation (harakat_ignorees, casse...).",
       "type": "object",
       "required": ["ecoute"],
       "additionalProperties": false,
@@ -1180,6 +1180,14 @@ const String texteSchemaEduContent = r'''
         "ecoute": { "$ref": "#/$defs/ecoute" },
         "emoji": { "$ref": "#/$defs/emoji" },
         "harakat": { "type": "boolean", "default": false },
+        "clavier": { "enum": ["complet", "reduit"], "default": "complet" },
+        "lettres": {
+          "description": "Touches du clavier réduit : lettres arabes nues, sans espace (règles Dart : toutes les lettres du mot attendu, 4 à 6 en trop).",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 20,
+          "pattern": "^[ء-ي]+$"
+        },
         "casse": { "enum": ["libre", "minuscules"], "default": "libre" }
       }
     },
@@ -1353,7 +1361,7 @@ const String texteSchemaEduContent = r'''
     },
 
     "idCarte": { "type": "string", "pattern": "^c[1-8]$" },
-    "idPaire": { "type": "string", "pattern": "^p[1-6]$" },
+    "idPaire": { "type": "string", "pattern": "^p([1-9]|1[0-2])$" },
     "idMot": { "type": "string", "pattern": "^m[1-6]$" },
     "faceCarte": {
       "description": "Une face de carte : un texte, un emoji, ou les deux.",
@@ -1406,15 +1414,15 @@ const String texteSchemaEduContent = r'''
       }
     },
     "donneesMemory": {
-      "description": "T37 (automatique, noté) : des paires de cartes à retrouver. essais_max : nombre d'essais au-delà duquel la fin est comptée fausse (deux fois le nombre de paires par défaut).",
+      "description": "T37 (automatique, noté) : des paires de cartes à retrouver, sur une grille de 3 colonnes toujours pleine (règles Dart : 3 paires en 1re, 6 en 2e et 3e, 9 en 4e et 5e, 12 en 6e). essais_max : nombre d'essais au-delà duquel la fin est comptée fausse (deux fois le nombre de paires par défaut).",
       "type": "object",
       "required": ["paires"],
       "additionalProperties": false,
       "properties": {
         "paires": {
           "type": "array",
-          "minItems": 2,
-          "maxItems": 6,
+          "minItems": 3,
+          "maxItems": 12,
           "items": {
             "type": "object",
             "required": ["id", "a", "b"],
@@ -1438,8 +1446,8 @@ const String texteSchemaEduContent = r'''
       "properties": {
         "paires": {
           "type": "array",
-          "minItems": 2,
-          "maxItems": 6,
+          "minItems": 3,
+          "maxItems": 12,
           "uniqueItems": true,
           "items": { "$ref": "#/$defs/idPaire" }
         }

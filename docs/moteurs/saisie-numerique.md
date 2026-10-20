@@ -15,7 +15,7 @@ Les deux types se branchent sur le lecteur en `ModeValidation.verifier` : Vérif
 | Type | Nom | Ce que fait l'enfant | Réponse | Exemple |
 |---|---|---|---|---|
 | T22 | Saisie numérique | Lit (et entend) un court problème, tape la réponse sur le pavé | `{ "valeur": 27 }` | `T22-probleme.json` |
-| T48 | Calcul posé | Lit une addition ou une soustraction posée en colonnes, écrit le résultat chiffre par chiffre, des unités vers les dizaines | `{ "valeur": 59 }` | `T48-addition-posee.json`, `T48-soustraction-posee.json` |
+| T48 | Calcul posé | Lit une addition ou une soustraction posée en colonnes, écrit le résultat chiffre par chiffre, des unités vers les dizaines | `{ "valeur": 59 }` | `T48-addition-posee.json`, `T48-soustraction-posee.json`, `T48-addition-retenue.json` (47 + 36, cases de retenue), `T48-soustraction-emprunt.json` (62 − 28, cases de retenue) |
 
 ## 3. Interaction
 

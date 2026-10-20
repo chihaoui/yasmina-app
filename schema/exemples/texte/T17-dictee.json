@@ -17,7 +17,9 @@
       "texte": "قَلَمٌ"
     },
     "emoji": "✏️",
-    "harakat": false
+    "harakat": false,
+    "clavier": "reduit",
+    "lettres": "قلمبنترد"
   },
   "reponse": {
     "texte": "قَلَمٌ"

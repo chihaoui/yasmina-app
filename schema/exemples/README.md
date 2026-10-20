@@ -13,7 +13,7 @@ Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type 
 | `choix/` | Choix (`docs/moteurs/choix.md`) | T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 |
 | `glisser-deposer/` | Glisser-déposer (`docs/moteurs/glisser-deposer.md`, brouillon) | T06 (deux gabarits), T09, T11, T12, T13, T14, T15, T16, T56 (racine et schème), T62 |
 | `manipulables/` | Manipulables, base (`docs/moteurs/manipulables.md`, brouillon) | T25, T27, T51 |
-| `texte/` | Texte (`docs/moteurs/texte.md`, brouillon) | T07 (arabe et français), T17 (arabe et français) |
-| `saisie-numerique/` | Saisie numérique, base (`docs/moteurs/saisie-numerique.md`, brouillon) | T22, T48 (addition et soustraction) |
+| `texte/` | Texte (`docs/moteurs/texte.md`, brouillon) | T07 (arabe et français), T17 (arabe avec clavier réduit, et français) |
+| `saisie-numerique/` | Saisie numérique, base (`docs/moteurs/saisie-numerique.md`, brouillon) | T22, T48 (addition et soustraction, avec retenue et avec emprunt) |
 | `scene-image/` | Scène image, base (`docs/moteurs/scene-image.md`, brouillon) | T08 (arabe), T47 (français), scènes en emoji et en formes |
-| `revision-jeux/` | Révision et jeux (`docs/moteurs/revision-jeux.md`, brouillon) | T36 (arabe), T37 (français), T38 (arabe et français) |
+| `revision-jeux/` | Révision et jeux (`docs/moteurs/revision-jeux.md`, brouillon) | T36 (arabe), T37 (français, 6 paires en 2e), T38 (arabe et français) |

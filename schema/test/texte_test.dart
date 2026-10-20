@@ -43,10 +43,13 @@ final valides = <String, Map<String, dynamic> Function()>{
       'mots': [0],
     },
   ),
+  // 2e année : clavier réduit aux lettres du mot et à 5 lettres en trop.
   'T17': () => exercice(
     'T17',
     {
       'ecoute': {'texte': 'قَلَمٌ'},
+      'clavier': 'reduit',
+      'lettres': 'قلمبنترد',
     },
     {'texte': 'قَلَمٌ'},
     normalisation: ['harakat_ignorees'],
@@ -199,6 +202,72 @@ void main() {
       expect(
         a.single,
         probleme('/reponse/texte', 'harakat_manquantes_reponse'),
+      );
+    });
+
+    test('clavier réduit : lettres obligatoires, toutes celles du mot, '
+        '4 à 6 en trop, arabe seulement, recommandé en 1re et 2e', () {
+      expect(
+        erreurs('T17', (ex) => ex['donnees'].remove('lettres')).single,
+        probleme('/donnees/lettres', 'clavier_sans_lettres'),
+      );
+      expect(
+        erreurs('T17', (ex) => ex['donnees']['lettres'] = 'قلبنتر').single,
+        probleme('/donnees/lettres', 'clavier_lettre_manquante'),
+      );
+      expect(
+        erreurs('T17', (ex) => ex['donnees']['lettres'] = 'قلممبنت').single,
+        probleme('/donnees/lettres', 'element_duplique'),
+      );
+      expect(
+        erreurs('T17', (ex) => ex['donnees']['clavier'] = 'complet').single,
+        probleme('/donnees/lettres', 'clavier_lettres_inutiles'),
+      );
+      // Une espace ou une haraka dans les touches : refusé par le schéma.
+      expect(
+        erreurs(
+          'T17',
+          (ex) => ex['donnees']['lettres'] = 'قلم بن',
+        ).map((p) => p.chemin),
+        contains('/donnees/lettres'),
+      );
+      // 3 lettres en trop seulement : avertissement. 5 : rien.
+      expect(
+        avertissements(
+          'T17',
+          (ex) => ex['donnees']['lettres'] = 'قلمبنت',
+        ).single,
+        probleme('/donnees/lettres', 'clavier_lettres_en_trop'),
+      );
+      expect(avertissements('T17', (_) {}), isEmpty);
+      // Clavier complet en 1re ou 2e : avertissement, pas en 3e.
+      expect(
+        avertissements('T17', (ex) {
+          ex['donnees'].remove('clavier');
+          ex['donnees'].remove('lettres');
+        }).single,
+        probleme('/donnees', 'clavier_complet_petits'),
+      );
+      expect(
+        avertissements('T17', (ex) {
+          ex['id'] = 'ar-3-t1-u1-e01-x01';
+          ex['donnees'].remove('clavier');
+          ex['donnees'].remove('lettres');
+        }),
+        isEmpty,
+      );
+      expect(
+        erreurs('T17', (ex) {
+          ex['langue'] = 'fr';
+          ex['competence'] = 'fr-essai';
+          ex['donnees'] = {
+            'ecoute': {'texte': 'poule'},
+            'clavier': 'complet',
+          };
+          ex['reponse']['texte'] = 'poule';
+          ex.remove('normalisation');
+        }).single,
+        probleme('/donnees/clavier', 'clavier_hors_arabe'),
       );
     });
 

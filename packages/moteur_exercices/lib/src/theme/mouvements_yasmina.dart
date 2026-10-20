@@ -33,4 +33,10 @@ abstract final class MouvementsYasmina {
 
   /// Retour animé d'une tuile lâchée hors cible vers sa place.
   static const dureeRetour = Duration(milliseconds: 200);
+
+  /// Secousse douce d'une zone sur une erreur (mots mêlés) : durée,
+  /// amplitude en px et nombre d'allers-retours. Jamais la couleur seule.
+  static const dureeSecousse = Duration(milliseconds: 400);
+  static const amplitudeSecousse = 6.0;
+  static const secousses = 3;
 }

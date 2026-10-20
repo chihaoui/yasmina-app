@@ -33,6 +33,7 @@ class CarteRevision extends StatelessWidget {
     required this.libelle,
     this.onTap,
     this.grande = false,
+    this.fixe = false,
     this.motEtat,
   });
 
@@ -44,6 +45,10 @@ class CarteRevision extends StatelessWidget {
 
   /// Carte seule, en grand (flashcard).
   final bool grande;
+
+  /// Carte de taille fixe (memory) : elle remplit la place que lui donne
+  /// son parent, même hauteur face cachée et face visible, contenu ajusté.
+  final bool fixe;
   final String? motEtat;
 
   bool get cachee => etat == EtatCarte.cachee;
@@ -81,51 +86,58 @@ class CarteRevision extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: grande
-                  ? TaillesYasmina.yasminaHome
-                  : TaillesYasmina.choiceMinHeight,
-              minWidth: EspacesYasmina.targetMin,
-            ),
+            constraints: fixe
+                ? const BoxConstraints.expand()
+                : BoxConstraints(
+                    minHeight: grande
+                        ? TaillesYasmina.yasminaHome
+                        : TaillesYasmina.choiceMinHeight,
+                    minWidth: EspacesYasmina.targetMin,
+                  ),
             child: Padding(
               padding: const EdgeInsetsDirectional.symmetric(
                 horizontal: EspacesYasmina.space3,
                 vertical: EspacesYasmina.space2,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (cachee)
-                    Text(
-                      '?',
-                      style: StylesYasmina.contentWord.copyWith(color: c.muted),
-                    )
-                  else ...[
-                    if (face.emoji case final emoji?)
+              child: FittedBox(
+                fit: fixe ? BoxFit.scaleDown : BoxFit.none,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (cachee)
                       Text(
-                        emoji,
-                        style: grande
-                            ? StylesYasmina.letterHero
-                            : StylesYasmina.contentWord,
-                      ),
-                    if (face.texte case final texte?)
+                        '?',
+                        style: StylesYasmina.contentWord.copyWith(
+                          color: c.muted,
+                        ),
+                      )
+                    else ...[
+                      if (face.emoji case final emoji?)
+                        Text(
+                          emoji,
+                          style: grande
+                              ? StylesYasmina.letterHero
+                              : StylesYasmina.contentWord,
+                        ),
+                      if (face.texte case final texte?)
+                        Text(
+                          texte,
+                          textAlign: TextAlign.center,
+                          style: styleTexte,
+                        ),
+                    ],
+                    if (motEtat != null)
                       Text(
-                        texte,
-                        textAlign: TextAlign.center,
-                        style: styleTexte,
+                        motEtat!,
+                        style: StylesYasmina.latinLabel.copyWith(
+                          color: etat == EtatCarte.fausse
+                              ? c.coralText
+                              : c.oliveText,
+                        ),
                       ),
                   ],
-                  if (motEtat != null)
-                    Text(
-                      motEtat!,
-                      style: StylesYasmina.latinLabel.copyWith(
-                        color: etat == EtatCarte.fausse
-                            ? c.coralText
-                            : c.oliveText,
-                      ),
-                    ),
-                ],
+                ),
               ),
             ),
           ),

@@ -34,8 +34,8 @@ Les deux types se branchent sur le lecteur en `ModeValidation.verifier` : Vérif
 
 1. Bouton Écouter (grand, `listen`) : le mot (`ecoute.texte`) est dit après la consigne, puis à chaque toucher. Le mot n'est jamais affiché avant la correction. Un emoji facultatif (`emoji`) donne un indice visuel.
 2. Le champ de saisie (grand, `content-word`, centré, dans le sens de la langue) montre ce que l'enfant écrit.
-3. **Arabe : clavier du moteur.** Trois rangées de lettres arabes (28 lettres, hamza et ta marbouta comprises, plus alif maqsura), une rangée de harakat facultative (fatha, damma, kasra, soukoun, shadda, les trois tanwin) si `harakat: true`, une touche Effacer (dernier caractère) et une touche Espace si le mot en a. Jamais le clavier système en arabe : il varie trop d'un appareil à l'autre et mélange des claviers dialectaux. Les touches font au moins `target-min`, en `content-option`.
-4. **Français et anglais : clavier système** (`TextField` sans correction automatique ni suggestions, majuscules selon `casse`), parce que les enfants le retrouvent sur tous les appareils et que le moteur n'a pas à dessiner un AZERTY.
+3. **Arabe : clavier du moteur**, en **grille à largeur calculée** : les touches se répartissent en rangées équilibrées d'au plus 7 (6 par rangée pour le clavier complet sur un téléphone), chacune d'au moins `target-min` de côté, toutes de la même largeur (corrections du test du 20 oct. : un `Wrap` affichait une lettre par ligne sur l'iPhone, la touche s'étirant à toute la largeur). `clavier` dans le JSON : `complet` (par défaut, 28 lettres, hamza et ses formes, ta marbouta, alif maqsura, dans l'ordre alphabétique) ou `reduit` (les lettres de `lettres` : celles du mot et 4 à 6 lettres en trop, affichées dans l'ordre alphabétique pour ne pas trahir le mot), recommandé en 1re et 2e. Une rangée de harakat facultative (fatha, damma, kasra, soukoun, shadda, les trois tanwin) si `harakat: true`, une touche Effacer (dernier caractère, icône `backspace_outlined`) et une touche Espace si le mot en a. Jamais le clavier système en arabe : il varie trop d'un appareil à l'autre et mélange des claviers dialectaux.
+4. **Français et anglais : clavier système** (`TextField` sans correction automatique ni suggestions, majuscules selon `casse`), parce que les enfants le retrouvent sur tous les appareils et que le moteur n'a pas à dessiner un AZERTY. Le champ occupe toute sa case (hauteur d'une tuile de choix, tout toucher dedans ouvre le clavier), le curseur est visible, et il **reçoit le focus à l'ouverture** : le clavier de l'appareil s'affiche sans attendre (test du 20 oct. : le champ semblait absent sur l'iPhone).
 5. Vérifier devient actif dès qu'un caractère est saisi. Après Vérifier, le champ est verrouillé. Explication : le mot attendu s'affiche en `olive` au-dessus du champ.
 
 ## 4. Données JSON
@@ -45,14 +45,14 @@ Le schéma `schema/edu-content-1.0.schema.json` est la référence (définitions
 | Type | `donnees` | `reponse` |
 |---|---|---|
 | T07 | `texte` (la phrase, 2 à 20 mots séparés par des espaces), `plusieurs` (faux par défaut) | `{ "mots": [index à partir de 0] }`, 1 à 6 index, sans doublon, tous dans la phrase |
-| T17 | `ecoute` (le mot dit, obligatoire), `emoji` facultatif, `harakat` (arabe : rangée de harakat proposée, faux par défaut), `casse` (latin : `libre` par défaut, `minuscules`) | `{ "texte": "le mot attendu" }` |
+| T17 | `ecoute` (le mot dit, obligatoire), `emoji` facultatif, `harakat` (arabe : rangée de harakat proposée, faux par défaut), `clavier` (arabe : `complet` par défaut, `reduit`), `lettres` (arabe, avec `reduit` : les touches, lettres nues du mot et 4 à 6 lettres en trop), `casse` (latin : `libre` par défaut, `minuscules`) | `{ "texte": "le mot attendu" }` |
 
 `normalisation` (champ commun de l'exercice) dit comment comparer la saisie à la réponse de T17, sur une copie, jamais sur le texte stocké : `harakat_ignorees` (les harakat de la saisie et de la réponse sont retirées avant de comparer, défaut recommandé en 1re et 2e quand `harakat` est faux), `casse`, `espaces`, `ponctuation`, `tatweel`, `chiffres`. Sans normalisation, la comparaison est exacte, caractère par caractère, harakat comprises et dans l'ordre d'écriture.
 
 Règles du validateur propres au moteur (détail dans `schema/README.md`) :
 
 - T07 : chaque index de `reponse.mots` désigne un mot de la phrase (`mot_inconnu`), au plus un mot si `plusieurs` est faux (`reponse_unique`)
-- T17 : `reponse.texte` est le mot entendu (`ecoute_differente_reponse`), `harakat` seulement en arabe (`harakat_hors_arabe`), un mot sans harakat avec `harakat: true` est signalé (`harakat_manquantes_reponse`, avertissement), et si la réponse porte des harakat sans `harakat` ni `harakat_ignorees`, l'enfant ne pourrait pas l'écrire (`harakat_impossibles`)
+- T17 : `reponse.texte` est le mot entendu (`ecoute_differente_reponse`), `harakat` seulement en arabe (`harakat_hors_arabe`), un mot sans harakat avec `harakat: true` est signalé (`harakat_manquantes_reponse`, avertissement), et si la réponse porte des harakat sans `harakat` ni `harakat_ignorees`, l'enfant ne pourrait pas l'écrire (`harakat_impossibles`). Clavier réduit : `clavier` et `lettres` en arabe seulement (`clavier_hors_arabe`), `reduit` exige `lettres` (`clavier_sans_lettres`) qui porte toutes les lettres du mot attendu (`clavier_lettre_manquante`) sans doublon, 4 à 6 lettres en trop (`clavier_lettres_en_trop`, avertissement), `lettres` inutile sans `reduit` (`clavier_lettres_inutiles`), clavier complet en 1re ou 2e signalé (`clavier_complet_petits`, avertissement)
 
 ## 5. Correction
 
@@ -86,14 +86,14 @@ Sons et libellés : ceux du lecteur (décision 35, choix.md §6).
 ## 9. Cas arabe et cas français
 
 - T07 : phrase en `content-sentence` (arabe) ou `latin-prompt` (français, anglais), de droite à gauche en arabe. Les mots sont découpés sur les espaces, sans toucher aux harakat ni à la ponctuation collée.
-- T17 en arabe : clavier du moteur en naskh (`content-option`), lettres dans l'ordre alphabétique sur trois rangées de droite à gauche, harakat sur une rangée à part si `harakat`. Le champ affiche le mot lié, harakat comprises.
+- T17 en arabe : clavier du moteur en naskh (`content-option`), lettres dans l'ordre alphabétique en grille de droite à gauche (complet ou réduit), harakat sur une rangée à part si `harakat`. Le champ affiche le mot lié, harakat comprises.
 - T17 en français et en anglais : clavier système, `autocorrect` et suggestions coupés, pas de majuscule automatique.
 - Exemples : arabe (T07 trouver le verbe, T17 écrire قَلَمٌ sans harakat avec `harakat_ignorees`), français (T07 trouver les noms, T17 écrire « lapin »).
 
 ## 10. Règles UX
 
 - Mot touchable d'au moins `target-min` de haut, touche de clavier d'au moins `target-min`, écart `space-1` entre les touches, `space-2` entre les mots.
-- Clavier arabe : 3 rangées de 9 à 10 touches, qui tiennent dans 360 px (touches de `target-min` de large au minimum, défilement en largeur si l'écran est plus étroit).
+- Clavier arabe : grille à largeur calculée, rangées équilibrées d'au plus 7 touches d'au moins `target-min` de côté (6 par rangée pour le clavier complet sur 390 dp), écart `space-1`. Testé sur un écran de 390 dp.
 - Un seul bouton principal par écran : Vérifier, sous le clavier.
 - Juste et faux ne passent jamais par la couleur seule.
 - Accessibilité : chaque mot et chaque touche est un bouton nommé, le champ de T17 annonce ce qui est écrit.

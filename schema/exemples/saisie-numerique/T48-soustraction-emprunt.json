@@ -1,0 +1,35 @@
+{
+  "id": "ma-2-t1-u3-e02-x02",
+  "type": "T48",
+  "gabarit": "soustraction-posee",
+  "competence": "ma-calcul-soustraction-posee",
+  "critere": "C2",
+  "niveau_critere": "perfectionnement",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ مَعَ الِاسْتِعَارَةِ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ مَعَ الِاسْتِعَارَةِ."
+    }
+  },
+  "donnees": {
+    "a": 62,
+    "b": 28,
+    "operation": "soustraction",
+    "retenues": true
+  },
+  "reponse": {
+    "valeur": 34
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 62 نَاقِصُ 28 يُسَاوِي 34.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 62 نَاقِصُ 28 يُسَاوِي 34."
+    },
+    "indice": "2 أَصْغَرُ مِنْ 8: نَسْتَعِيرُ عَشَرَةً مِنَ الْعَشَرَاتِ.",
+    "explication": "الْوَحَدَاتُ: 12 نَاقِصُ 8 يُسَاوِي 4 بَعْدَ الِاسْتِعَارَةِ. الْعَشَرَاتُ: 5 نَاقِصُ 2 يُسَاوِي 3. النَّتِيجَةُ 34."
+  },
+  "empreinte": "sha256:f2626d74e16b22b62ccab801a79a82ac47dcbcd322d87b18c216f956f135ea40",
+  "statut": "brouillon",
+  "version": 1
+}

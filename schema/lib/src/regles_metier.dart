@@ -294,6 +294,7 @@ List<ProblemeValidation> reglesExercice(
       _reglesTexte(
         type,
         ex['langue'] as String,
+        _niveauDeId(ex['id'] as String),
         ex['donnees'] as Map<String, dynamic>,
         ex['reponse'] as Map<String, dynamic>,
         (ex['normalisation'] as List?)?.cast<String>() ?? const [],
@@ -327,6 +328,7 @@ List<ProblemeValidation> reglesExercice(
       _reglesJeux(
         type,
         ex['langue'] as String,
+        _niveauDeId(ex['id'] as String),
         ex['donnees'] as Map<String, dynamic>,
         ex['reponse'] as Map<String, dynamic>,
         chemin,
@@ -1089,11 +1091,23 @@ bool motsMelesDroiteGauche(Map<String, dynamic> donnees, String langue) =>
     ? langue == 'ar'
     : donnees['sens'] == 'droite-gauche';
 
+/// Paires du memory (T37) selon le niveau (revision-jeux.md §3) : grille de
+/// 3 colonnes toujours pleine, 3 × 2 en 1re, 3 × 4 en 2e et 3e, 3 × 6 en 4e
+/// et 5e, 3 × 8 en 6e. `null` si le niveau est inconnu.
+int? pairesMemoryParNiveau(int? niveau) => switch (niveau) {
+  1 => 3,
+  2 || 3 => 6,
+  4 || 5 => 9,
+  6 => 12,
+  _ => null,
+};
+
 /// Règles du moteur Révision et jeux (docs/moteurs/revision-jeux.md) : T36
 /// Flashcards, T37 Memory, T38 Mots mêlés.
 List<ProblemeValidation> _reglesJeux(
   String type,
   String langue,
+  int? niveau,
   Map<String, dynamic> donnees,
   Map<String, dynamic> reponse,
   String chemin,
@@ -1137,6 +1151,16 @@ List<ProblemeValidation> _reglesJeux(
       }
     case 'T37':
       final paires = ids('paires');
+      final pairesNiveau = pairesMemoryParNiveau(niveau);
+      if (pairesNiveau != null && paires.length != pairesNiveau) {
+        erreur(
+          '$chemin/donnees/paires',
+          'memory_cartes_niveau',
+          'en ${niveau == 1 ? '1re' : '${niveau}e'} année, le memory a '
+              '$pairesNiveau paires (${pairesNiveau * 2} cartes sur 3 '
+              'colonnes), pas ${paires.length}.',
+        );
+      }
       final attendues = (reponse['paires'] as List).cast<String>();
       for (var k = 0; k < attendues.length; k++) {
         if (!paires.contains(attendues[k])) {
@@ -1464,6 +1488,7 @@ const _motsMax = 20;
 List<ProblemeValidation> _reglesTexte(
   String type,
   String langue,
+  int? niveau,
   Map<String, dynamic> donnees,
   Map<String, dynamic> reponse,
   List<String> normalisation,
@@ -1557,9 +1582,89 @@ List<ProblemeValidation> _reglesTexte(
           );
         }
       }
+      // Clavier réduit (texte.md §3) : les lettres du mot et 4 à 6 lettres
+      // en trop, recommandé en 1re et 2e.
+      final clavier = donnees['clavier'] as String?;
+      final lettres = donnees['lettres'] as String?;
+      if (langue != 'ar' && (clavier != null || lettres != null)) {
+        erreur(
+          '$chemin/donnees/clavier',
+          'clavier_hors_arabe',
+          'le clavier du moteur (clavier, lettres) n\'existe que pour un '
+              'exercice en arabe : le clavier système sert en $langue.',
+        );
+      }
+      if (clavier == 'reduit') {
+        if (lettres == null) {
+          erreur(
+            '$chemin/donnees/lettres',
+            'clavier_sans_lettres',
+            'un clavier réduit exige donnees.lettres : les lettres du mot '
+                'et 4 à 6 lettres en trop.',
+          );
+        } else {
+          final touches = <int>{};
+          for (final r in lettres.runes) {
+            if (!touches.add(r)) {
+              erreur(
+                '$chemin/donnees/lettres',
+                'element_duplique',
+                'la lettre « ${String.fromCharCode(r)} » est deux fois sur '
+                    'le clavier réduit.',
+              );
+            }
+          }
+          final attenduNu = _sansHarakat(attendu).runes
+              .where(_estLettreArabe)
+              .toSet();
+          final manquantes = attenduNu.where((r) => !touches.contains(r));
+          if (manquantes.isNotEmpty) {
+            erreur(
+              '$chemin/donnees/lettres',
+              'clavier_lettre_manquante',
+              'le clavier réduit ne porte pas toutes les lettres du mot '
+                  'attendu : il manque '
+                  '« ${manquantes.map(String.fromCharCode).join(' ')} ».',
+            );
+          }
+          final enTrop = touches.difference(attenduNu).length;
+          if (enTrop < _lettresEnTropMin || enTrop > _lettresEnTropMax) {
+            avertissement(
+              '$chemin/donnees/lettres',
+              'clavier_lettres_en_trop',
+              '$enTrop lettre(s) en trop sur le clavier réduit : de '
+                  '$_lettresEnTropMin à $_lettresEnTropMax attendues.',
+            );
+          }
+        }
+      } else if (lettres != null) {
+        erreur(
+          '$chemin/donnees/lettres',
+          'clavier_lettres_inutiles',
+          'donnees.lettres ne sert qu\'avec clavier: reduit.',
+        );
+      }
+      if (langue == 'ar' &&
+          niveau != null &&
+          niveau <= _niveauClavierReduit &&
+          clavier != 'reduit') {
+        avertissement(
+          '$chemin/donnees',
+          'clavier_complet_petits',
+          'en ${niveau == 1 ? '1re' : '2e'} année, le clavier réduit est '
+              'recommandé (clavier: reduit, lettres du mot et 4 à 6 lettres '
+              'en trop).',
+        );
+      }
   }
   return problemes;
 }
+
+/// Clavier réduit de T17 : lettres en trop attendues, et dernier niveau où
+/// il est recommandé (texte.md §3).
+const _lettresEnTropMin = 4;
+const _lettresEnTropMax = 6;
+const _niveauClavierReduit = 2;
 
 /// Les 3 types de base du moteur Manipulables (docs/moteurs/manipulables.md).
 const _typesManipulables = {'T25', 'T27', 'T51'};

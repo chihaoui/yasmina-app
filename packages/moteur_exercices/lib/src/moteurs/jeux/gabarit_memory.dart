@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -78,8 +78,9 @@ class ControleurMemory extends ControleurReponse {
     required this.essaisMax,
     bool melanger = true,
   }) : cartes = melanger
-           ? (List.of(cartes)
-               ..shuffle(config.graine == null ? null : Random(config.graine)))
+           ? (List.of(cartes)..shuffle(
+               config.graine == null ? null : math.Random(config.graine),
+             ))
            : List.unmodifiable(cartes);
 
   final ConfigExercice config;
@@ -172,7 +173,12 @@ class ControleurMemory extends ControleurReponse {
   }
 }
 
-/// La grille de cartes, trois par ligne.
+/// Colonnes de la grille du memory (revision-jeux.md §3 : 3 × 2 en 1re,
+/// 3 × 4 en 2e et 3e, 3 × 6 en 4e et 5e, 3 × 8 en 6e).
+const colonnesMemory = 3;
+
+/// La grille de cartes, trois par ligne, cartes de taille fixe (même
+/// hauteur face cachée et face visible, texte ajusté).
 class _ZoneMemory extends StatelessWidget {
   const _ZoneMemory(this.controleur);
 
@@ -200,42 +206,60 @@ class _ZoneMemory extends StatelessWidget {
         final fini =
             affichage == AffichageReponse.juste ||
             affichage == AffichageReponse.revelee;
+        final cartes = controleur.cartes;
         return LayoutBuilder(
           builder: (context, contraintes) {
-            // design-ok : trois cartes par ligne.
             final largeur =
-                (contraintes.maxWidth - 2 * EspacesYasmina.space2) / 3;
-            return Wrap(
+                (contraintes.maxWidth -
+                    (colonnesMemory - 1) * EspacesYasmina.space2) /
+                colonnesMemory;
+            Widget carte(int i) {
+              final carte = cartes[i];
+              final trouvee = controleur.estTrouvee(carte.id) || fini;
+              final retournee = controleur.estRetournee(carte.id);
+              final etat = trouvee
+                  ? EtatCarte.trouvee
+                  : retournee
+                  ? (controleur.enAttente
+                        ? EtatCarte.fausse
+                        : EtatCarte.retournee)
+                  : EtatCarte.cachee;
+              return SizedBox(
+                width: largeur,
+                height: TaillesYasmina.choiceMinHeight,
+                child: CarteRevision(
+                  key: ValueKey('carte_${carte.id}'),
+                  face: carte.face,
+                  etat: etat,
+                  libelle: l.carteN(i + 1),
+                  fixe: true,
+                  motEtat: apercu && trouvee && fini ? 'juste' : null,
+                  onTap: controleur.modifiable && !trouvee && !retournee
+                      ? () => controleur.retourner(carte.id)
+                      : null,
+                ),
+              );
+            }
+
+            return Column(
               key: ValueKey(revelee ? 'jeux_reponse' : 'memory'),
               spacing: EspacesYasmina.space2,
-              runSpacing: EspacesYasmina.space2,
               children: [
-                for (final (i, carte) in controleur.cartes.indexed)
-                  SizedBox(
-                    width: largeur,
-                    child: Builder(
-                      builder: (context) {
-                        final trouvee = controleur.estTrouvee(carte.id) || fini;
-                        final retournee = controleur.estRetournee(carte.id);
-                        final etat = trouvee
-                            ? EtatCarte.trouvee
-                            : retournee
-                            ? (controleur.enAttente
-                                  ? EtatCarte.fausse
-                                  : EtatCarte.retournee)
-                            : EtatCarte.cachee;
-                        return CarteRevision(
-                          key: ValueKey('carte_${carte.id}'),
-                          face: carte.face,
-                          etat: etat,
-                          libelle: l.carteN(i + 1),
-                          motEtat: apercu && trouvee && fini ? 'juste' : null,
-                          onTap: controleur.modifiable && !trouvee && !retournee
-                              ? () => controleur.retourner(carte.id)
-                              : null,
-                        );
-                      },
-                    ),
+                for (
+                  var debut = 0;
+                  debut < cartes.length;
+                  debut += colonnesMemory
+                )
+                  Row(
+                    spacing: EspacesYasmina.space2,
+                    children: [
+                      for (
+                        var i = debut;
+                        i < math.min(debut + colonnesMemory, cartes.length);
+                        i++
+                      )
+                        carte(i),
+                    ],
                   ),
               ],
             );

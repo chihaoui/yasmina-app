@@ -55,24 +55,28 @@ final valides = <String, Map<String, dynamic> Function()>{
       'cartes': ['c1', 'c2'],
     },
   ),
+  // 2e année : 6 paires (grille de 3 × 4).
   'T37': () => exercice(
     'T37',
     {
       'paires': [
-        {
-          'id': 'p1',
-          'a': {'texte': 'قِطٌّ'},
-          'b': {'emoji': '🐱'},
-        },
-        {
-          'id': 'p2',
-          'a': {'texte': 'كَلْبٌ'},
-          'b': {'emoji': '🐶'},
-        },
+        for (final (i, (mot, emoji)) in [
+          ('قِطٌّ', '🐱'),
+          ('كَلْبٌ', '🐶'),
+          ('أَرْنَبٌ', '🐰'),
+          ('حِصَانٌ', '🐴'),
+          ('بَقَرَةٌ', '🐮'),
+          ('دَجَاجَةٌ', '🐔'),
+        ].indexed)
+          {
+            'id': 'p${i + 1}',
+            'a': {'texte': mot},
+            'b': {'emoji': emoji},
+          },
       ],
     },
     {
-      'paires': ['p1', 'p2'],
+      'paires': ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
     },
   ),
   // قلم de droite à gauche sur la ligne 0 à partir de la colonne 3, كتب
@@ -201,14 +205,25 @@ void main() {
         erreurs(
           'T37',
           (ex) => ex['reponse'] = {
-            'paires': ['p1', 'p6'],
+            'paires': ['p1', 'p2', 'p3', 'p4', 'p5', 'p9'],
           },
         ),
         unorderedEquals([
-          probleme('/reponse/paires/1', 'reponse_element_inconnu'),
+          probleme('/reponse/paires/5', 'reponse_element_inconnu'),
           probleme('/reponse/paires', 'paires_incompletes'),
         ]),
       );
+    });
+
+    test('T37 : nombre de paires du niveau (grille de 3 colonnes pleine)', () {
+      // 6 paires en 2e : valide. En 1re il en faut 3, en 4e 9, en 6e 12.
+      for (final (niveau, attendu) in [(1, 3), (4, 9), (6, 12)]) {
+        final e = erreurs('T37', (ex) => ex['id'] = 'ar-$niveau-t1-u1-e01-x01');
+        expect(e.single, probleme('/donnees/paires', 'memory_cartes_niveau'));
+        expect(e.single.message, contains('$attendu paires'));
+      }
+      expect(erreurs('T37', (ex) => ex['id'] = 'ar-3-t1-u1-e01-x01'), isEmpty);
+      expect(validerExercice(valides['T37']!()).erreurs, isEmpty);
     });
 
     test('T38 : grille irrégulière, lettre vocalisée ou espace en arabe', () {

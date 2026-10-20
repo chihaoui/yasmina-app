@@ -99,6 +99,10 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `phrase_invalide`, `mot_inconnu`, `reponse_unique` (T07) | T07 : 2 à 20 mots, index existants, un seul mot sans `plusieurs` | erreur |
 | `ecoute_differente_reponse` (T17), `harakat_hors_arabe`, `harakat_impossibles` | T17 : le texte attendu est le mot entendu, la rangée de harakat seulement en arabe, un mot attendu vocalisé exige la rangée de harakat ou `harakat_ignorees` | erreur |
 | `harakat_manquantes_reponse` | T17 : rangée de harakat proposée mais mot attendu sans harakat | avertissement |
+| `clavier_hors_arabe`, `clavier_sans_lettres`, `clavier_lettre_manquante`, `clavier_lettres_inutiles`, `element_duplique` (lettres) | T17 : `clavier` et `lettres` en arabe seulement, un clavier `reduit` exige `lettres`, qui porte toutes les lettres du mot attendu (sans doublon), `lettres` inutile sans `reduit` | erreur |
+| `clavier_lettres_en_trop`, `clavier_complet_petits` | T17 : 4 à 6 lettres en trop sur le clavier réduit, clavier réduit recommandé en 1re et 2e | avertissement |
+| `clavier_hors_arabe`, `clavier_sans_lettres`, `clavier_lettre_manquante`, `clavier_lettres_inutiles`, `element_duplique` (lettres) | T17 : `clavier` et `lettres` en arabe seulement, un clavier `reduit` exige `lettres`, qui porte toutes les lettres du mot attendu (sans doublon), `lettres` inutile sans `reduit` | erreur |
+| `clavier_lettres_en_trop`, `clavier_complet_petits` | T17 : 4 à 6 lettres en trop sur le clavier réduit, clavier réduit recommandé en 1re et 2e | avertissement |
 | `valeur_trop_longue` | T22 : la réponse tient dans `chiffres_max` chiffres | erreur |
 | `soustraction_negative`, `reponse_valeur_incoherente` (T48) | T48 : résultat jamais négatif, la réponse est le résultat du calcul | erreur |
 | `zone_hors_scene`, `element_duplique` (zones), `reponse_element_inconnu` (T08, T47) | Scène image : zones dans la scène, id uniques, réponses existantes | erreur |
@@ -108,6 +112,8 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `etiquettes_sans_intrus` (T47), `elements_trop_nombreux` (T08, T47) | T47 : aucune étiquette en trop. Scène image : plus de 6 zones en 1re ou 2e | avertissement |
 | `element_duplique`, `reponse_element_inconnu` (T36, T37, T38) | Révision et jeux : id uniques, réponses existantes | erreur |
 | `paires_incompletes` (T37), `ordre_incomplet` (T38) | T37 : toutes les paires. T38 : tous les mots | erreur |
+| `memory_cartes_niveau` (T37) | T37 : nombre de paires du niveau (lu dans l'id) pour une grille de 3 colonnes pleine : 3 en 1re, 6 en 2e et 3e, 9 en 4e et 5e, 12 en 6e | erreur |
+| `memory_cartes_niveau` (T37) | T37 : nombre de paires du niveau (lu dans l'id) pour une grille de 3 colonnes pleine : 3 en 1re, 6 en 2e et 3e, 9 en 4e et 5e, 12 en 6e | erreur |
 | `grille_irreguliere`, `lettre_invalide` (T38), `mot_hors_grille` | T38 : lignes de même longueur, lettres arabes nues, chaque mot lisible à sa position dans le sens déclaré | erreur |
 | `etiquettes_sans_intrus` | T06 à plusieurs trous : toutes les étiquettes servent | avertissement |
 | `elements_trop_nombreux` | moteur Glisser-déposer : plus de 6 éléments en 1re ou 2e année (niveau lu dans l'id) | avertissement |

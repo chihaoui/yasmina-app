@@ -6,7 +6,10 @@ import '../choix/outils_choix.dart';
 import 'fixtures_jeux.dart';
 
 /// T36 Flashcards (sans note), T37 Memory et T38 Mots mêlés (automatiques)
-/// (docs/moteurs/revision-jeux.md).
+/// (docs/moteurs/revision-jeux.md), avec les corrections du test du
+/// 20 oct. 2026 : memory à grille pleine sur 3 colonnes et cartes de taille
+/// fixe, mots mêlés lettre à lettre ou au doigt glissé, erreur signalée par
+/// la lettre rouge, une secousse et le son essaiFaux.
 void main() {
   late Partie p;
 
@@ -21,6 +24,9 @@ void main() {
 
   String compteur(WidgetTester tester) =>
       tester.widget<Text>(p.cle('cartes_compteur')).data!;
+
+  EtatCase etatCase(WidgetTester tester, String cle) =>
+      tester.widget<CaseGrille>(p.cle(cle)).etat;
 
   group('T36 Flashcards', () {
     testWidgets('arabe : carte retournée au toucher, je savais, à revoir '
@@ -104,11 +110,13 @@ void main() {
   });
 
   group('T37 Memory', () {
-    testWidgets('français : paire fausse refermée, paire juste gardée avec '
-        'son, fin automatique juste', (tester) async {
+    testWidgets('français, 2e année : 12 cartes sur 3 colonnes, paire fausse '
+        'refermée, paire juste gardée avec son, fin automatique juste', (
+      tester,
+    ) async {
       p = Partie(tester);
       await p.jouer(exempleJeux('T37-memory.json'));
-      expect(find.byType(CarteRevision), findsNWidgets(8));
+      expect(find.byType(CarteRevision), findsNWidgets(12));
       // Mode automatique : aucun bouton avant la fin.
       expect(p.cle('lecteur_bouton'), findsNothing);
       await p.toucher('carte_p1a');
@@ -128,7 +136,7 @@ void main() {
         'paires': ['p1'],
         'essais': 2,
       });
-      for (final id in ['p2', 'p3', 'p4']) {
+      for (final id in ['p2', 'p3', 'p4', 'p5', 'p6']) {
         await p.toucher('carte_${id}a');
         await p.toucher('carte_${id}b');
       }
@@ -141,7 +149,7 @@ void main() {
       expect(p.audio.audioFactice.sons, contains(SonInterface.juste));
       expect(
         p.audio.audioFactice.sons.where((s) => s == SonInterface.depot),
-        hasLength(4),
+        hasLength(6),
       );
     });
 
@@ -156,19 +164,59 @@ void main() {
       await p.toucher('carte_p1a');
       await p.toucher('carte_p2b');
       await p.attendreVidage();
-      await p.toucher('carte_p1a');
-      await p.toucher('carte_p1b');
-      await p.toucher('carte_p2a');
-      await p.toucher('carte_p2b');
+      for (final id in ['p1', 'p2', 'p3']) {
+        await p.toucher('carte_${id}a');
+        await p.toucher('carte_${id}b');
+      }
       await tester.pumpAndSettle();
       expect(p.resultat, const Resultat(IssueExercice.explique, essais: 1));
       expect(p.cle('lecteur_feedback_explication'), findsOneWidget);
     });
+
+    for (final (niveau, paires) in [(1, 3), (4, 9), (6, 12)]) {
+      testWidgets('grille pleine 3 × ${paires * 2 ~/ 3} en ${niveau}e année '
+          'sur 390 × 844 dp : cartes de taille fixe (au moins 48 dp), '
+          'sans défilement', (tester) async {
+        p = Partie(tester);
+        await p.jouer(
+          t37Niveau(niveau, paires: paires),
+          taille: const Size(390, 844),
+        );
+        final cartes = find.byType(CarteRevision);
+        expect(cartes, findsNWidgets(paires * 2));
+        final rects = [
+          for (var i = 0; i < paires * 2; i++) tester.getRect(cartes.at(i)),
+        ];
+        // Même taille pour toutes, au moins 48 dp.
+        for (final r in rects) {
+          expect(r.size, rects.first.size);
+          expect(r.height, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+          expect(r.width, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+        }
+        // Trois colonnes : trois cartes par hauteur.
+        final hauteurs = rects.map((r) => r.top).toSet();
+        expect(hauteurs, hasLength(paires * 2 ~/ 3));
+        for (final h in hauteurs) {
+          expect(rects.where((r) => r.top == h), hasLength(3));
+        }
+        // Tout tient à l'écran : la zone du lecteur ne défile pas.
+        final position = tester
+            .state<ScrollableState>(find.byType(Scrollable).first)
+            .position;
+        expect(position.maxScrollExtent, 0);
+        expect(rects.last.bottom, lessThanOrEqualTo(844));
+        // Face visible : même hauteur que face cachée.
+        await p.toucher('carte_p1a');
+        expect(tester.getRect(cartes.first).size, rects.first.size);
+        expect(tester.takeException(), isNull);
+      });
+    }
   });
 
   group('T38 Mots mêlés', () {
-    testWidgets('arabe : lettres isolées, mot lu de droite à gauche, '
-        'sélection fausse effacée, colonne, fin automatique', (tester) async {
+    testWidgets('arabe : lettres touchées une à une de droite à gauche, '
+        'lettre fausse en rouge puis sélection vidée avec le son essaiFaux, '
+        'colonne lue à l\'envers, fin automatique', (tester) async {
       p = Partie(tester);
       await p.jouer(exempleJeux('T38-mots-meles.json'));
       expect(p.cle('grille'), findsOneWidget);
@@ -177,40 +225,90 @@ void main() {
         tester.getCenter(p.cle('case_0_0')).dx,
         lessThan(tester.getCenter(p.cle('case_0_4')).dx),
       );
-      // قلم : de la colonne 3 à la colonne 1 sur la ligne 0.
+      // قلم : ق (0,3), ل (0,2), م (0,1), lu de droite à gauche.
       await p.toucher('case_0_3');
+      expect(etatCase(tester, 'case_0_3'), EtatCase.selectionnee);
+      await p.toucher('case_0_2');
+      expect(p.reponsesDonnees, isEmpty);
       await p.toucher('case_0_1');
       expect(p.reponsesDonnees.last, {
         'mots': ['m1'],
       });
       expect(p.audio.audioFactice.sons, [SonInterface.depot]);
+      expect(etatCase(tester, 'case_0_2'), EtatCase.trouvee);
       final barre = tester.widget<Text>(p.cle('mot_m1')).style!.decoration;
       expect(barre, TextDecoration.lineThrough);
-      // Sélection fausse.
-      await p.toucher('case_2_2');
-      await p.toucher('case_2_4');
-      expect(p.reponsesDonnees, hasLength(1));
-      await p.attendreVidage();
-      // درس sur la ligne 1, puis كتاب en colonne 0 (dernière lettre d'abord).
+      // د (1,3) commence درس, puis ح (2,2) ne prolonge aucun mot : rouge,
+      // son essaiFaux, puis toute la sélection se vide. Rien n'est perdu.
       await p.toucher('case_1_3');
-      await p.toucher('case_1_1');
-      await p.toucher('case_4_0');
-      await p.toucher('case_1_0');
+      expect(etatCase(tester, 'case_1_3'), EtatCase.selectionnee);
+      await p.toucher('case_2_2');
+      expect(etatCase(tester, 'case_2_2'), EtatCase.fausse);
+      expect(etatCase(tester, 'case_1_3'), EtatCase.selectionnee);
+      expect(p.audio.audioFactice.sons.last, SonInterface.essaiFaux);
+      expect(p.reponsesDonnees, hasLength(1));
+      // Pendant l'effet d'erreur, les touchers sont ignorés.
+      await p.toucher('case_1_2');
+      expect(etatCase(tester, 'case_1_2'), EtatCase.repos);
+      await p.attendreVidage();
+      expect(etatCase(tester, 'case_2_2'), EtatCase.repos);
+      expect(etatCase(tester, 'case_1_3'), EtatCase.repos);
+      // Une lettre qui ne commence aucun mot est fausse tout de suite.
+      await p.toucher('case_2_4');
+      expect(etatCase(tester, 'case_2_4'), EtatCase.fausse);
+      await p.attendreVidage();
+      // درس, puis كتاب à l'envers (dernière lettre d'abord).
+      for (final c in ['case_1_3', 'case_1_2', 'case_1_1']) {
+        await p.toucher(c);
+      }
+      expect(p.reponsesDonnees.last, {
+        'mots': ['m1', 'm2'],
+      });
+      for (final c in ['case_4_0', 'case_3_0', 'case_2_0', 'case_1_0']) {
+        await p.toucher(c);
+      }
       await tester.pumpAndSettle();
       expect(p.resultat, const Resultat(IssueExercice.reussi, essais: 1));
       expect(find.text('أَحْسَنْتَ'), findsOneWidget);
     });
 
-    testWidgets('français : de gauche à droite, aperçu révèle tous les mots', (
+    testWidgets('français : le doigt glissé le long du mot le trouve, une '
+        'glissade qui sort du mot vide la sélection, aperçu révèle tout', (
       tester,
     ) async {
       p = Partie(tester);
       await p.jouer(exempleJeux('T38-mots-meles-fr.json'));
-      await p.toucher('case_0_0');
-      await p.toucher('case_0_3');
+      // CHAT sur la ligne 0, colonnes 0 à 3, lu de gauche à droite.
+      final geste = await tester.startGesture(
+        tester.getCenter(p.cle('case_0_0')),
+      );
+      for (final c in ['case_0_1', 'case_0_2', 'case_0_3']) {
+        await geste.moveTo(tester.getCenter(p.cle(c)));
+        await tester.pump();
+      }
+      await geste.up();
+      await tester.pump();
       expect(p.reponsesDonnees.last, {
         'mots': ['m1'],
       });
+      expect(p.audio.audioFactice.sons, [SonInterface.depot]);
+      // SOL en colonne 0 depuis la ligne 1 : glisser S, O puis sortir sur
+      // A (3,1) : erreur, la sélection se vide.
+      final geste2 = await tester.startGesture(
+        tester.getCenter(p.cle('case_1_0')),
+      );
+      await geste2.moveTo(tester.getCenter(p.cle('case_2_0')));
+      await tester.pump();
+      expect(etatCase(tester, 'case_2_0'), EtatCase.selectionnee);
+      await geste2.moveTo(tester.getCenter(p.cle('case_3_1')));
+      await tester.pump();
+      await geste2.up();
+      await tester.pump();
+      expect(etatCase(tester, 'case_3_1'), EtatCase.fausse);
+      expect(p.audio.audioFactice.sons.last, SonInterface.essaiFaux);
+      await p.attendreVidage();
+      expect(etatCase(tester, 'case_1_0'), EtatCase.repos);
+      expect(p.reponsesDonnees, hasLength(1));
 
       await p.jouer(
         exempleJeux('T38-mots-meles-fr.json'),

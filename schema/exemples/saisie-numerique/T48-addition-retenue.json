@@ -1,0 +1,35 @@
+{
+  "id": "ma-2-t1-u3-e02-x01",
+  "type": "T48",
+  "gabarit": "addition-posee",
+  "competence": "ma-calcul-addition-posee",
+  "critere": "C2",
+  "niveau_critere": "perfectionnement",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ مَعَ الْحَمْلِ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ مَعَ الْحَمْلِ."
+    }
+  },
+  "donnees": {
+    "a": 47,
+    "b": 36,
+    "operation": "addition",
+    "retenues": true
+  },
+  "reponse": {
+    "valeur": 83
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 47 زَائِدُ 36 يُسَاوِي 83.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 47 زَائِدُ 36 يُسَاوِي 83."
+    },
+    "indice": "7 زَائِدُ 6 يُسَاوِي 13: نَكْتُبُ 3 وَنَحْمِلُ 1 إِلَى الْعَشَرَاتِ.",
+    "explication": "الْوَحَدَاتُ: 7 زَائِدُ 6 يُسَاوِي 13، نَكْتُبُ 3 وَنَحْمِلُ 1. الْعَشَرَاتُ: 4 زَائِدُ 3 زَائِدُ 1 يُسَاوِي 8. النَّتِيجَةُ 83."
+  },
+  "empreinte": "sha256:103e46c4bb4ebf18d3213b79b2df3d9e5afa7a024bc7184fdbde4d61bd0358b1",
+  "statut": "brouillon",
+  "version": 1
+}

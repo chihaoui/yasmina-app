@@ -91,7 +91,19 @@ void main() {
       expect(p.audio.audioFactice.dits.last.texte, 'قَلَمٌ');
       // Le mot n'est jamais affiché.
       expect(find.text('قَلَمٌ'), findsNothing);
-      expect(p.cle('clavier'), findsOneWidget);
+      // 1re année : clavier réduit aux lettres du mot et aux lettres en
+      // trop du JSON, dans l'ordre alphabétique (ب à droite de ت en arabe).
+      expect(p.cle('clavier_reduit'), findsOneWidget);
+      expect(p.cle('clavier'), findsNothing);
+      for (final l in 'قلمبنترد'.runes) {
+        expect(p.cle('touche_${String.fromCharCode(l)}'), findsOneWidget);
+      }
+      expect(p.cle('touche_ا'), findsNothing);
+      expect(p.cle('touche_ء'), findsNothing);
+      expect(
+        tester.getCenter(p.cle('touche_ب')).dx,
+        greaterThan(tester.getCenter(p.cle('touche_ت')).dx),
+      );
       expect(p.cle('clavier_harakat'), findsNothing);
       expect(p.cle('dictee_champ'), findsNothing);
       expect(p.bouton.onPressed, isNull);
@@ -136,6 +148,60 @@ void main() {
       expect(p.cle('dictee_reponse'), findsOneWidget);
       expect(saisie(tester), 'بَابٌ');
       expect(p.resultat, const Resultat(IssueExercice.explique, essais: 2));
+    });
+
+    testWidgets('clavier complet en grille sur 390 dp : touches d\'au moins '
+        '48 dp de côté, six par rangée, toutes de la même largeur', (
+      tester,
+    ) async {
+      p = Partie(tester);
+      await p.jouer(t17Harakat(), taille: const Size(390, 844));
+      expect(p.cle('clavier'), findsOneWidget);
+      final premiere = tester.getRect(p.cle('touche_ا'));
+      expect(premiere.width, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+      expect(premiere.width, lessThan(2 * EspacesYasmina.targetMin));
+      expect(premiere.height, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+      for (final l in lettresClavierArabe) {
+        expect(tester.getSize(p.cle('touche_$l')), premiere.size, reason: l);
+      }
+      // 36 touches en 6 rangées de 6 : ا à ح sur la première, خ sur la
+      // deuxième.
+      for (final l in ['ب', 'ت', 'ث', 'ج', 'ح']) {
+        expect(tester.getCenter(p.cle('touche_$l')).dy, premiere.center.dy);
+      }
+      expect(
+        tester.getCenter(p.cle('touche_خ')).dy,
+        greaterThan(premiere.center.dy),
+      );
+      // Les touches ne dépassent pas l'écran.
+      for (final l in lettresClavierArabe) {
+        final r = tester.getRect(p.cle('touche_$l'));
+        expect(r.left, greaterThanOrEqualTo(0));
+        expect(r.right, lessThanOrEqualTo(390));
+      }
+      expect(tester.getSize(p.cle('clavier_harakat')).height, greaterThan(0));
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('français sur 390 dp : le champ système est visible, de '
+        'taille non nulle, et a le focus à l\'ouverture (clavier demandé)', (
+      tester,
+    ) async {
+      p = Partie(tester);
+      await p.jouer(
+        exempleTexte('T17-dictee-fr.json'),
+        taille: const Size(390, 844),
+      );
+      final champ = p.cle('dictee_champ');
+      expect(champ, findsOneWidget);
+      final rect = tester.getRect(champ);
+      expect(rect.height, greaterThanOrEqualTo(EspacesYasmina.targetMin));
+      expect(rect.width, greaterThan(200));
+      expect(rect.top, greaterThanOrEqualTo(0));
+      expect(rect.bottom, lessThanOrEqualTo(844));
+      expect(tester.widget<TextField>(champ).focusNode!.hasFocus, isTrue);
+      expect(tester.testTextInput.hasAnyClients, isTrue);
+      expect(tester.takeException(), isNull);
     });
 
     testWidgets('français : clavier système, casse ignorée, aperçu', (

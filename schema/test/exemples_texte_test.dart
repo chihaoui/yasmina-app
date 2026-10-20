@@ -76,6 +76,8 @@ void main() {
         for (final (chemin, texte) in tous) {
           final runes = texte.runes.toList();
           if (!runes.any(lettreArabe)) continue;
+          // Les touches du clavier réduit (T17) sont des lettres nues.
+          if (chemin == '/donnees/lettres') continue;
           expect(runes, isNot(contains(0x0670)), reason: chemin);
           final lettres = runes.where(lettreArabe).length;
           // Une lettre seule (tuile de T15) ne porte pas de haraka.
