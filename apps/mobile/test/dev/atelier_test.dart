@@ -56,11 +56,12 @@ void main() {
     );
     expect(find.text('T01  QCM'), findsOneWidget);
     expect(find.text('Lot 1 · 4 exemples'), findsOneWidget);
-    expect(find.text('À venir'), findsWidgets);
+    expect(find.text('Jouable'), findsWidgets);
 
     // Le dernier moteur (Récit, lot 2) est atteint en défilant.
     await tester.scrollUntilVisible(cle('atelier_type_T35'), 300);
     expect(texteDe(tester, 'atelier_moteur_recit'), 'Récit · 0 / 1 jouables');
+    expect(find.text('À venir'), findsWidgets);
   });
 
   testWidgets('T01 : 4 exemples valides, consigne arabe de droite à gauche', (
@@ -94,8 +95,18 @@ void main() {
   testWidgets('exemple ouvert : mode, zone du lecteur à venir et JSON', (
     tester,
   ) async {
-    await lancerApp(tester, StockageMemoire('fr'));
-    await aller(tester, '/dev/atelier/T19/T19-lettre-vocalisee.json');
+    // Un type à venir, avec un exemple du moteur Choix rangé sous lui.
+    final surcharge = catalogueExemplesProvider.overrideWithValue(
+      CatalogueExemples({
+        'choix/T06-essai.json':
+            exemplesEduContent['choix/T19-lettre-vocalisee.json']!.replaceFirst(
+              '"type": "T19"',
+              '"type": "T06"',
+            ),
+      }),
+    );
+    await lancerApp(tester, StockageMemoire('fr'), surcharges: [surcharge]);
+    await aller(tester, '/dev/atelier/T06/T06-essai.json');
     expect(texteDe(tester, 'zone_lecteur_message'), startsWith('Type à venir'));
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
