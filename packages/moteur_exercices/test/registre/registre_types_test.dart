@@ -67,6 +67,7 @@ void main() {
           Moteur.trace,
           Moteur.manipulables,
           Moteur.texte,
+          Moteur.saisieNumerique,
         ]),
         reason: id,
       );

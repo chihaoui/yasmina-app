@@ -1,0 +1,34 @@
+{
+  "id": "ma-2-t1-u2-e01-x01",
+  "type": "T22",
+  "gabarit": "probleme-court",
+  "competence": "ma-problemes-addition",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِقْرَأْ وَاكْتُبِ الْجَوَابَ.",
+      "feminin": "اِقْرَئِي وَاكْتُبِي الْجَوَابَ."
+    }
+  },
+  "donnees": {
+    "texte": "فِي السَّلَّةِ 12 تُفَّاحَةً وَ15 بُرْتُقَالَةً. كَمْ ثَمَرَةً فِي السَّلَّةِ؟",
+    "emoji": "🧺",
+    "chiffres_max": 3
+  },
+  "reponse": {
+    "valeur": 27
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 12 زَائِدُ 15 يُسَاوِي 27.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 12 زَائِدُ 15 يُسَاوِي 27."
+    },
+    "indice": "اِجْمَعْ عَدَدَ التُّفَّاحِ وَعَدَدَ الْبُرْتُقَالِ.",
+    "explication": "فِي السَّلَّةِ 27 ثَمَرَةً: 12 زَائِدُ 15 يُسَاوِي 27."
+  },
+  "empreinte": "sha256:6e7a01bce0dc1b9668e483123df725baafdcc4ba9cd397c141e46bb2366ac250",
+  "statut": "brouillon",
+  "version": 1
+}

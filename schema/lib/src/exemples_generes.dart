@@ -1831,6 +1831,115 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'saisie-numerique/T22-probleme.json': r'''
+{
+  "id": "ma-2-t1-u2-e01-x01",
+  "type": "T22",
+  "gabarit": "probleme-court",
+  "competence": "ma-problemes-addition",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِقْرَأْ وَاكْتُبِ الْجَوَابَ.",
+      "feminin": "اِقْرَئِي وَاكْتُبِي الْجَوَابَ."
+    }
+  },
+  "donnees": {
+    "texte": "فِي السَّلَّةِ 12 تُفَّاحَةً وَ15 بُرْتُقَالَةً. كَمْ ثَمَرَةً فِي السَّلَّةِ؟",
+    "emoji": "🧺",
+    "chiffres_max": 3
+  },
+  "reponse": {
+    "valeur": 27
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 12 زَائِدُ 15 يُسَاوِي 27.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 12 زَائِدُ 15 يُسَاوِي 27."
+    },
+    "indice": "اِجْمَعْ عَدَدَ التُّفَّاحِ وَعَدَدَ الْبُرْتُقَالِ.",
+    "explication": "فِي السَّلَّةِ 27 ثَمَرَةً: 12 زَائِدُ 15 يُسَاوِي 27."
+  },
+  "empreinte": "sha256:6e7a01bce0dc1b9668e483123df725baafdcc4ba9cd397c141e46bb2366ac250",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T48-addition-posee.json': r'''
+{
+  "id": "ma-2-t1-u3-e01-x01",
+  "type": "T48",
+  "gabarit": "addition-posee",
+  "competence": "ma-calcul-addition-posee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ."
+    }
+  },
+  "donnees": {
+    "a": 34,
+    "b": 25,
+    "operation": "addition"
+  },
+  "reponse": {
+    "valeur": 59
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 34 زَائِدُ 25 يُسَاوِي 59.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 34 زَائِدُ 25 يُسَاوِي 59."
+    },
+    "indice": "اِبْدَأْ بِالْوَحَدَاتِ: 4 زَائِدُ 5.",
+    "explication": "الْوَحَدَاتُ: 4 زَائِدُ 5 يُسَاوِي 9. الْعَشَرَاتُ: 3 زَائِدُ 2 يُسَاوِي 5. النَّتِيجَةُ 59."
+  },
+  "empreinte": "sha256:0d888b0a99945fd171c142d51278651fd7108f0bfcb69b40f7b32fa95cb944a8",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'saisie-numerique/T48-soustraction-posee.json': r'''
+{
+  "id": "ma-2-t1-u3-e01-x02",
+  "type": "T48",
+  "gabarit": "soustraction-posee",
+  "competence": "ma-calcul-soustraction-posee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ."
+    }
+  },
+  "donnees": {
+    "a": 57,
+    "b": 23,
+    "operation": "soustraction",
+    "retenues": false
+  },
+  "reponse": {
+    "valeur": 34
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 57 نَاقِصُ 23 يُسَاوِي 34.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 57 نَاقِصُ 23 يُسَاوِي 34."
+    },
+    "indice": "اِبْدَأْ بِالْوَحَدَاتِ: 7 نَاقِصُ 3.",
+    "explication": "الْوَحَدَاتُ: 7 نَاقِصُ 3 يُسَاوِي 4. الْعَشَرَاتُ: 5 نَاقِصُ 2 يُسَاوِي 3. النَّتِيجَةُ 34."
+  },
+  "empreinte": "sha256:6a613897f8010d9b7b517f80440961c47e3754448e37dd7d821240f6679de5bb",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'texte/T07-toucher-mots-fr.json': r'''
 {
   "id": "fr-3-t1-u2-e02-x01",

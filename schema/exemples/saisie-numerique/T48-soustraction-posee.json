@@ -1,0 +1,35 @@
+{
+  "id": "ma-2-t1-u3-e01-x02",
+  "type": "T48",
+  "gabarit": "soustraction-posee",
+  "competence": "ma-calcul-soustraction-posee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ."
+    }
+  },
+  "donnees": {
+    "a": 57,
+    "b": 23,
+    "operation": "soustraction",
+    "retenues": false
+  },
+  "reponse": {
+    "valeur": 34
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 57 نَاقِصُ 23 يُسَاوِي 34.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 57 نَاقِصُ 23 يُسَاوِي 34."
+    },
+    "indice": "اِبْدَأْ بِالْوَحَدَاتِ: 7 نَاقِصُ 3.",
+    "explication": "الْوَحَدَاتُ: 7 نَاقِصُ 3 يُسَاوِي 4. الْعَشَرَاتُ: 5 نَاقِصُ 2 يُسَاوِي 3. النَّتِيجَةُ 34."
+  },
+  "empreinte": "sha256:6a613897f8010d9b7b517f80440961c47e3754448e37dd7d821240f6679de5bb",
+  "statut": "brouillon",
+  "version": 1
+}

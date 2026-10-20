@@ -10,6 +10,8 @@ import 'glisser/gabarit_racine_scheme.dart';
 import 'manipulables/gabarit_blocs.dart';
 import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
+import 'saisie/gabarit_calcul_pose.dart';
+import 'saisie/gabarit_saisie_numerique.dart';
 import 'texte/gabarit_dictee.dart';
 import 'texte/gabarit_toucher_mots.dart';
 import 'trace/gabarit_trace.dart';
@@ -51,6 +53,9 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Texte.
   'T07': GabaritToucherMots(),
   'T17': GabaritDictee(),
+  // Moteur Saisie numérique (base).
+  'T22': GabaritSaisieNumerique(),
+  'T48': GabaritCalculPose(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

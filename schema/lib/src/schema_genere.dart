@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) et les 2 types du moteur Texte (T07, T17), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) et les 2 types de base du moteur Saisie numérique (T22, T48), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -425,6 +425,24 @@ const String texteSchemaEduContent = r'''
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesDictee" },
               "reponse": { "$ref": "#/$defs/reponseTexte" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T22" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesSaisieNumerique" },
+              "reponse": { "$ref": "#/$defs/reponseNombre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T48" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesCalculPose" },
+              "reponse": { "$ref": "#/$defs/reponseNombre" }
             }
           }
         }
@@ -1203,6 +1221,45 @@ const String texteSchemaEduContent = r'''
       "required": ["texte"],
       "additionalProperties": false,
       "properties": { "texte": { "$ref": "#/$defs/texteNonVide" } }
+    },
+
+    "chiffres": {
+      "description": "Chiffres affichés par le pavé et la saisie : occidentaux (0 à 9, par défaut) ou orientaux (٠ à ٩). La valeur stockée est toujours un entier.",
+      "enum": ["occidentaux", "orientaux"],
+      "default": "occidentaux"
+    },
+    "donneesSaisieNumerique": {
+      "description": "T22 : écrire la réponse d'un court problème sur le pavé numérique. texte : le problème (sinon la consigne suffit), dit après la consigne. tolerance (champ commun) s'applique.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "unite": { "$ref": "#/$defs/texteNonVide" },
+        "chiffres_max": { "type": "integer", "minimum": 1, "maximum": 6, "default": 3 },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "donneesCalculPose": {
+      "description": "T48 : addition ou soustraction posée en colonnes. sens : colonne des unités à droite (droite-gauche, par défaut) ou à gauche. retenues : cases de retenue (aide, hors correction). Règles Dart : résultat jamais négatif.",
+      "type": "object",
+      "required": ["a", "b", "operation"],
+      "additionalProperties": false,
+      "properties": {
+        "a": { "type": "integer", "minimum": 0, "maximum": 999 },
+        "b": { "type": "integer", "minimum": 0, "maximum": 999 },
+        "operation": { "enum": ["addition", "soustraction"] },
+        "sens": { "enum": ["droite-gauche", "gauche-droite"], "default": "droite-gauche" },
+        "chiffres": { "$ref": "#/$defs/chiffres" },
+        "retenues": { "type": "boolean", "default": false }
+      }
+    },
+    "reponseNombre": {
+      "description": "Le nombre attendu (règles Dart : dans la limite des chiffres de T22, le résultat du calcul de T48).",
+      "type": "object",
+      "required": ["valeur"],
+      "additionalProperties": false,
+      "properties": { "valeur": { "type": "integer", "minimum": 0, "maximum": 999999 } }
     }
   }
 }

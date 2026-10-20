@@ -1,0 +1,34 @@
+{
+  "id": "ma-2-t1-u3-e01-x01",
+  "type": "T48",
+  "gabarit": "addition-posee",
+  "competence": "ma-calcul-addition-posee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "أَنْجِزِ الْعَمَلِيَّةَ.",
+      "feminin": "أَنْجِزِي الْعَمَلِيَّةَ."
+    }
+  },
+  "donnees": {
+    "a": 34,
+    "b": 25,
+    "operation": "addition"
+  },
+  "reponse": {
+    "valeur": 59
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 34 زَائِدُ 25 يُسَاوِي 59.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 34 زَائِدُ 25 يُسَاوِي 59."
+    },
+    "indice": "اِبْدَأْ بِالْوَحَدَاتِ: 4 زَائِدُ 5.",
+    "explication": "الْوَحَدَاتُ: 4 زَائِدُ 5 يُسَاوِي 9. الْعَشَرَاتُ: 3 زَائِدُ 2 يُسَاوِي 5. النَّتِيجَةُ 59."
+  },
+  "empreinte": "sha256:0d888b0a99945fd171c142d51278651fd7108f0bfcb69b40f7b32fa95cb944a8",
+  "statut": "brouillon",
+  "version": 1
+}

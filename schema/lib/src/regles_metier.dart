@@ -311,6 +311,16 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T22' || type == 'T48') {
+    problemes.addAll(
+      _reglesSaisie(
+        type,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (_typesManipulables.contains(type)) {
     problemes.addAll(
       _reglesManipulables(
@@ -1056,6 +1066,54 @@ List<ProblemeValidation> _reglesGlisser(
       '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
           'année : 4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Saisie numérique (docs/moteurs/saisie-numerique.md) :
+/// T22 Saisie numérique, T48 Calcul posé.
+List<ProblemeValidation> _reglesSaisie(
+  String type,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  final valeur = reponse['valeur'] as int;
+  switch (type) {
+    case 'T22':
+      final max = donnees['chiffres_max'] as int? ?? 3;
+      if ('$valeur'.length > max) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'valeur_trop_longue',
+          'la réponse $valeur a ${'$valeur'.length} chiffres : '
+              'chiffres_max vaut $max.',
+        );
+      }
+    case 'T48':
+      final a = donnees['a'] as int;
+      final b = donnees['b'] as int;
+      final addition = donnees['operation'] == 'addition';
+      if (!addition && a < b) {
+        erreur(
+          '$chemin/donnees/b',
+          'soustraction_negative',
+          '$a moins $b est négatif : b doit être au plus a.',
+        );
+      }
+      final resultat = addition ? a + b : a - b;
+      if (resultat >= 0 && valeur != resultat) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'reponse_valeur_incoherente',
+          'la réponse ($valeur) doit être le résultat du calcul '
+              '($resultat).',
+        );
+      }
   }
   return problemes;
 }

@@ -2,7 +2,7 @@
 
 Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type en a plusieurs, par exemple `T01-qcm-scene.json`), rangés par moteur. Ils servent de référence au moteur, au back-office et au pipeline de génération. Ce ne sont pas des étapes de l'app.
 
-- Chaque fichier est un **exercice seul** (définition `exercice` du schéma), validé par `validerExercice` et par `test/exemples_choix_test.dart`, `test/exemples_glisser_test.dart`, `test/exemples_trace_test.dart`, `test/exemples_manipulables_test.dart` ou `test/exemples_texte_test.dart` : aucune erreur ni aucun avertissement.
+- Chaque fichier est un **exercice seul** (définition `exercice` du schéma), validé par `validerExercice` et par `test/exemples_choix_test.dart`, `test/exemples_glisser_test.dart`, `test/exemples_trace_test.dart`, `test/exemples_manipulables_test.dart`, `test/exemples_texte_test.dart` ou `test/exemples_saisie_test.dart` : aucune erreur ni aucun avertissement.
 - Contenu original, écrit pour l'exemple, jamais recopié des manuels. Statut `brouillon` : les textes arabes attendent la relecture humaine des harakat.
 - Toutes les images du prototype sont des **emoji** (champ `emoji`), aucun fichier image. Les audios sont produits par la synthèse vocale à partir de `ecoute.texte`.
 - Après tout ajout, modification ou suppression, lancer `dart run tool/generer_exemples.dart` dans `schema/` : les exemples sont copiés dans `lib/src/exemples_generes.dart`, que lisent l'atelier de l'app et l'aperçu web. Le test `exemples_synchro_test` échoue sinon.
@@ -15,3 +15,4 @@ Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type 
 | `trace/` | Tracé (`docs/moteurs/trace.md`, brouillon) | T20 (ب, ل, م : les trois premières lettres de la démo, traits de guidage faits main) |
 | `manipulables/` | Manipulables, base (`docs/moteurs/manipulables.md`, brouillon) | T25, T27, T51 |
 | `texte/` | Texte (`docs/moteurs/texte.md`, brouillon) | T07 (arabe et français), T17 (arabe et français) |
+| `saisie-numerique/` | Saisie numérique, base (`docs/moteurs/saisie-numerique.md`, brouillon) | T22, T48 (addition et soustraction) |

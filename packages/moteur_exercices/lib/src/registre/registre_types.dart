@@ -271,8 +271,20 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Saisie numérique.
-  TypeExercice('T22', 'Saisie numérique', Moteur.saisieNumerique, lot: 1),
-  TypeExercice('T48', 'Calcul posé', Moteur.saisieNumerique, lot: 1),
+  TypeExercice(
+    'T22',
+    'Saisie numérique',
+    Moteur.saisieNumerique,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T48',
+    'Calcul posé',
+    Moteur.saisieNumerique,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   TypeExercice('T49', 'Saisie de fraction', Moteur.saisieNumerique, lot: 2),
   TypeExercice('T50', 'Fluidité chronométrée', Moteur.saisieNumerique, lot: 2),
   TypeExercice('T63', "Balance d'équivalence", Moteur.saisieNumerique, lot: 2),
