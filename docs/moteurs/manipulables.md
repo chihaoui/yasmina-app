@@ -1,6 +1,6 @@
 # Moteur Manipulables
 
-Fiche de conception du moteur Manipulables, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, après-midi, décision 39)**, à valider par Lamjed. Base de la tâche A1-06 (3 j-h en vigueur, les trois types de base). Les types avancés (T26 Monnaie, T29 Fractions, T52 Modèle en barres, A2-02) viendront compléter cette fiche. Les points tranchés seul et les questions ouvertes sont dans [manipulables-questions.md](manipulables-questions.md).
+Fiche de conception du moteur Manipulables, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, après-midi, décision 39)**, à valider par Lamjed. Base de la tâche A1-06 (3 j-h en vigueur, les trois types de base). Les types avancés (T26 Monnaie, T29 Fractions, T52 Modèle en barres, A2-02) sont décrits au §14 (nuit du 20 au 21 oct. 2026, brouillon). Les points tranchés seul et les questions ouvertes sont dans [manipulables-questions.md](manipulables-questions.md).
 
 Sources : CLAUDE.md §5 (maths en arabe, glisser-déposer réel avec toucher en secours, cibles d'au moins 48 dp, 4 à 6 éléments manipulables en 1re et 2e), la page catalogue v3 (`docs/reference/catalogue-v3-poc.html`, référence visuelle seulement : droite de 0 à 10 avec repères, blocs base 10 par boutons, cadre de 10 à cases touchées), la fiche [glisser-deposer.md](glisser-deposer.md) pour le geste, la fiche [choix.md](choix.md) pour tout ce qui est commun au lecteur.
 
@@ -143,3 +143,37 @@ Aucune nouvelle valeur hors `tokens.json` : les tailles reprennent `target-min`,
 | b | Schéma, règles du validateur, un exemple par type, tests | 0,5 |
 | c1 | `DroiteNumerique` et T25 (geste, aimant, sens configurable), tests | 1 |
 | c2 | `BlocDix`, `BlocUnite`, `Jeton`, T27 et T51, tests, parité, atelier | 1,25 |
+
+## 14. Types avancés (A2-02, 3 j-h en vigueur)
+
+Brouillon de la nuit du 20 au 21 oct. 2026 (session sans surveillance). Trois types de plus sur les composants du moteur (réserve inépuisable, élément posé glissable, zone de dépôt, pavé numérique), avec le retrait par glisser des corrections du 20 oct. Aucune image : tout est dessiné par le code.
+
+| Type | Nom | Ce que fait l'enfant | Réponse | Exemple |
+|---|---|---|---|---|
+| T26 | Monnaie | Glisse des pièces (dinars et millimes) de la réserve dans le porte-monnaie pour former le montant demandé, glisse une pièce posée hors du porte-monnaie (ou la touche) pour la retirer | `{ "montant": 2700 }` (millimes) | `T26-monnaie.json` (3e, 2 dinars et 700 millimes) |
+| T29 | Fractions | Touche les parts d'un disque ou d'un rectangle divisé en parts égales pour les colorier, un second toucher les décolorie | `{ "parts": 3 }` (parts coloriées) | `T29-fraction.json` (5e, trois quarts d'un disque) |
+| T52 | Modèle en barres | Lit un problème (dit après la consigne), glisse les nombres du problème dans les segments connus du schéma en barres, puis écrit l'inconnue (le total d'une barre, ou un segment) sur le pavé | `{ "valeur": 35 }` | `T52-modele-barres.json` (3e, comparaison de deux barres) |
+
+### Interaction
+
+- **T26.** La réserve (une pièce par sorte, de la plus grande à la plus petite, au début de ligne) est inépuisable : glisser ou toucher une pièce l'ajoute au porte-monnaie (son `depot`, vibration). Les pièces posées sont des `Pose` : glissées hors du porte-monnaie ou touchées, elles sont retirées, relâchées dans le porte-monnaie elles y restent. Le montant en clair sous le porte-monnaie : « الْمَجْمُوعُ: 2 د وَ700 م ». Pièces du prototype (millimes) : 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, dessinées de façon générique (rondes, millimes en `amber`, dinars en `blue` et un peu plus grands, la valeur écrite dessus). 20 pièces au plus dans le porte-monnaie. Juste si la somme vaut la cible, quelles que soient les pièces.
+- **T29.** La forme ne se retourne pas avec la langue : les parts se numérotent dans le sens des aiguilles d'une montre (disque, la première en haut) ou de gauche à droite (rectangle). Chaque part a une cible de toucher de `target-min` à son centre (lecteur d'écran : « جُزْءٌ 1 »). Le compte « 2 مِنْ 4 » sous la forme. Juste si le nombre de parts coloriées est le numérateur, quelles que soient les parts.
+- **T52.** Le problème en `content-sentence`, dit après la consigne. Les barres (1 à 3) : un libellé au début de ligne, puis les segments côte à côte, de largeur proportionnelle à leur valeur (au moins une cible), chacun une `ZoneDepot` qui reçoit une étiquette (une par segment, une étiquette sur un seul segment). L'inconnue : une case « ? » à la place d'un segment, ou une accolade sous toute une barre avec la case « ? ». Le pavé numérique écrit l'inconnue (3 chiffres au plus) dans la case. Vérifier devient actif quand tous les segments connus sont étiquetés et une valeur écrite. Les étiquettes sont comparées par leur **texte** (deux « 23 » sont interchangeables). Après le 1er essai faux, seules les étiquettes mal placées reviennent et la valeur fausse s'efface.
+
+### Données JSON
+
+| Type | `donnees` | `reponse` |
+|---|---|---|
+| T26 | `pieces` (1 à 8 sortes parmi les pièces du prototype, uniques), `cible` (5 à 20000 millimes) | `{ "montant" }`, égal à `cible` |
+| T29 | `forme` (`disque` par défaut, `rectangle`), `parts` (2 à 12), `numerateur` (1 à 12) | `{ "parts" }`, égal à `numerateur` |
+| T52 | `texte` (le problème, facultatif), `barres` (1 à 3 : `id` `b1`..., `libelle`, `segments` 1 à 4 : `id` `s1`..., `valeur` 1 à 999), `inconnue` (`barre` ou `segment`, un seul), `etiquettes` (1 à 8 nombres en texte, `id` `e1`...), `melanger` | `{ "valeur" }`, égal au total de la barre inconnue ou à la valeur du segment inconnu |
+
+Règles du validateur : T26 `montant_inatteignable` (la cible se forme avec les pièces), `reponse_valeur_incoherente`, avertissement `elements_trop_nombreux` au-delà de 6 sortes en 1re et 2e. T29 `fraction_invalide` (numérateur au plus égal aux parts), `reponse_valeur_incoherente`. T52 `element_duplique`, `inconnue_invalide`, `etiquette_non_numerique`, `segment_sans_etiquette` (une étiquette libre de la bonne valeur par segment connu), `reponse_valeur_incoherente`, avertissement `etiquettes_sans_intrus`.
+
+### Correction et feedback
+
+Comme les types de base : Vérifier, 3 temps, retour à l'état de départ après le 1er essai faux pour T26 et T29 (une somme ou un compte n'a pas de partie juste), retrait des seuls éléments faux pour T52 (comme le glisser-déposer). Réponse révélée : T26 décompose la cible par les plus grandes pièces, T29 colorie les premières parts, T52 pose une étiquette de la bonne valeur sur chaque segment et écrit l'inconnue.
+
+### Tests
+
+`manipulables_avances_test.dart` : un cas arabe (exemple réel) et un cas français (fixture) par type, vrai geste de glisser (pièces, étiquettes), toucher en secours, retrait par glisser et au toucher, pavé, faux puis juste, faux deux fois avec la réponse révélée, parité dans `parite_manipulables_test.dart` et dans l'aperçu web.

@@ -14,8 +14,15 @@ void main() {
         typeParId(e.idType!)?.etat == EtatType.jouable,
   );
 
-  test('les 3 types de base sont jouables, avec un exemple chacun', () {
-    expect(exemples.map((e) => e.idType).toSet(), {'T25', 'T27', 'T51'});
+  test('les 6 types sont jouables, avec un exemple chacun', () {
+    expect(exemples.map((e) => e.idType).toSet(), {
+      'T25',
+      'T27',
+      'T51',
+      'T26',
+      'T29',
+      'T52',
+    });
   });
 
   for (final exemple in exemples) {
@@ -41,8 +48,21 @@ void main() {
         case 'T51':
           expect(p.cle('manipulables_reponse'), findsOneWidget);
           expect(find.byType(Jeton), findsNWidgets(1 + 7));
+        case 'T26':
+          expect(p.cle('manipulables_reponse'), findsOneWidget);
+          // 5 pièces de réserve, et 2 dinars 700 millimes en 4 pièces.
+          expect(find.byType(Piece), findsNWidgets(5 + 4));
+        case 'T29':
+          expect(p.cle('manipulables_reponse'), findsOneWidget);
+          final peintre =
+              tester.widget<CustomPaint>(p.cle('fraction_dessin')).painter!
+                  as PeintreFraction;
+          expect(peintre.coloriees, hasLength(donnees['numerateur']));
+        case 'T52':
+          expect(p.cle('manipulables_reponse'), findsOneWidget);
+          expect(find.byKey(const ValueKey('inconnue')), findsOneWidget);
       }
-      expect(find.text('juste'), findsOneWidget);
+      expect(find.text('juste'), findsWidgets);
       expect(tester.takeException(), isNull);
     });
   }

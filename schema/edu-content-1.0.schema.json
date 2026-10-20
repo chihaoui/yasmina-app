@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 2 types de base du moteur Scène image (T08, T47) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 2 types de base du moteur Scène image (T08, T47) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -393,6 +393,33 @@
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesCadreDix" },
               "reponse": { "$ref": "#/$defs/reponseJetons" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T26" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesMonnaie" },
+              "reponse": { "$ref": "#/$defs/reponseMontant" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T29" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesFraction" },
+              "reponse": { "$ref": "#/$defs/reponseParts" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T52" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesModeleBarres" },
+              "reponse": { "$ref": "#/$defs/reponseNombre" }
             }
           }
         },
@@ -1141,6 +1168,101 @@
       "properties": { "jetons": { "type": "integer", "minimum": 0, "maximum": 10 } }
     },
 
+    "donneesMonnaie": {
+      "description": "T26 : former un montant en millimes (1 dinar = 1000 millimes) avec des pièces glissées dans le porte-monnaie. pieces : les sortes de pièces de la réserve, inépuisables. Règles Dart : montant atteignable avec ces pièces.",
+      "type": "object",
+      "required": ["pieces", "cible"],
+      "additionalProperties": false,
+      "properties": {
+        "pieces": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "enum": [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000] }
+        },
+        "cible": { "type": "integer", "minimum": 5, "maximum": 20000 }
+      }
+    },
+    "reponseMontant": {
+      "description": "Le montant attendu en millimes (règles Dart : égal à cible).",
+      "type": "object",
+      "required": ["montant"],
+      "additionalProperties": false,
+      "properties": { "montant": { "type": "integer", "minimum": 0, "maximum": 20000 } }
+    },
+    "donneesFraction": {
+      "description": "T29 : colorier des parts d'une forme divisée en parts égales pour représenter une fraction numerateur/parts. forme : disque (secteurs, par défaut) ou rectangle (bandes). Règles Dart : numerateur au plus égal à parts.",
+      "type": "object",
+      "required": ["parts", "numerateur"],
+      "additionalProperties": false,
+      "properties": {
+        "forme": { "enum": ["disque", "rectangle"], "default": "disque" },
+        "parts": { "type": "integer", "minimum": 2, "maximum": 12 },
+        "numerateur": { "type": "integer", "minimum": 1, "maximum": 12 }
+      }
+    },
+    "reponseParts": {
+      "description": "Le nombre de parts coloriées attendu (règles Dart : égal à numerateur).",
+      "type": "object",
+      "required": ["parts"],
+      "additionalProperties": false,
+      "properties": { "parts": { "type": "integer", "minimum": 1, "maximum": 12 } }
+    },
+    "idBarre": { "type": "string", "pattern": "^b[1-3]$" },
+    "idSegment": { "type": "string", "pattern": "^s[1-9]$" },
+    "donneesModeleBarres": {
+      "description": "T52 (méthode de Singapour) : un problème (texte, dit après la consigne), un schéma de 1 à 3 barres faites de segments de valeur connue, une inconnue (le total d'une barre ou un segment), et les étiquettes (nombres) à glisser dans les segments connus. Règles Dart : une seule inconnue existante, une étiquette par segment connu portant sa valeur, réponse égale à l'inconnue.",
+      "type": "object",
+      "required": ["barres", "inconnue", "etiquettes"],
+      "additionalProperties": false,
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "barres": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["id", "libelle", "segments"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idBarre" },
+              "libelle": { "$ref": "#/$defs/texteNonVide" },
+              "segments": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": ["id", "valeur"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": { "$ref": "#/$defs/idSegment" },
+                    "valeur": { "type": "integer", "minimum": 1, "maximum": 999 }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "inconnue": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "barre": { "$ref": "#/$defs/idBarre" },
+            "segment": { "$ref": "#/$defs/idSegment" }
+          }
+        },
+        "etiquettes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementTexte" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
     "donneesToucherMots": {
       "description": "T07 : toucher dans une phrase le ou les mots demandés. La phrase est découpée sur les espaces (2 à 20 mots, règles Dart), la ponctuation reste collée au mot.",
       "type": "object",

@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 /// brouillon, qui respecte les conventions de
 /// docs/conventions-arabe.md.
 void main() {
-  const types = ['T25', 'T27', 'T51'];
+  const types = ['T25', 'T27', 'T51', 'T26', 'T29', 'T52'];
   final fichiers =
       Directory('exemples/manipulables')
           .listSync()
@@ -31,7 +31,7 @@ void main() {
     }
     final ids = fichiers.map((f) => lire(f)['id']).toSet();
     expect(ids, hasLength(fichiers.length));
-    expect(fichiers, hasLength(3));
+    expect(fichiers, hasLength(6));
     // Maths en arabe, chiffres occidentaux dans les consignes.
     for (final f in fichiers) {
       expect(lire(f)['langue'], 'ar');

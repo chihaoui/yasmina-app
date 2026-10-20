@@ -1,0 +1,80 @@
+{
+  "id": "ma-3-t1-u3-e01-x01",
+  "type": "T52",
+  "gabarit": "barres-comparaison",
+  "competence": "ma-problemes-modele-barres",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعِ الْأَعْدَادَ فِي الْمُخَطَّطِ ثُمَّ اكْتُبِ الْمَجْهُولَ.",
+      "feminin": "ضَعِي الْأَعْدَادَ فِي الْمُخَطَّطِ ثُمَّ اكْتُبِي الْمَجْهُولَ."
+    }
+  },
+  "donnees": {
+    "texte": "مَعَ سَامِي 23 قَلَمًا، وَمَعَ رِيمَ 12 قَلَمًا أَكْثَرَ مِنْهُ. كَمْ قَلَمًا مَعَ رِيمَ؟",
+    "barres": [
+      {
+        "id": "b1",
+        "libelle": "سَامِي",
+        "segments": [
+          {
+            "id": "s1",
+            "valeur": 23
+          }
+        ]
+      },
+      {
+        "id": "b2",
+        "libelle": "رِيمَ",
+        "segments": [
+          {
+            "id": "s2",
+            "valeur": 23
+          },
+          {
+            "id": "s3",
+            "valeur": 12
+          }
+        ]
+      }
+    ],
+    "inconnue": {
+      "barre": "b2"
+    },
+    "etiquettes": [
+      {
+        "id": "e1",
+        "texte": "23"
+      },
+      {
+        "id": "e2",
+        "texte": "23"
+      },
+      {
+        "id": "e3",
+        "texte": "12"
+      },
+      {
+        "id": "e4",
+        "texte": "11"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "valeur": 35
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 23 زَائِدُ 12 يُسَاوِي 35.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 23 زَائِدُ 12 يُسَاوِي 35."
+    },
+    "indice": "شَرِيطُ رِيمَ أَطْوَلُ: هُوَ شَرِيطُ سَامِي وَ12 زِيَادَةً.",
+    "explication": "مَعَ رِيمَ 23 زَائِدُ 12، أَيْ 35 قَلَمًا."
+  },
+  "empreinte": "sha256:ef3137097c6d243a417d8d349ce9b9027da957594159998fdbbe5b06c2408a4e",
+  "statut": "brouillon",
+  "version": 1
+}

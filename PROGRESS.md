@@ -8,15 +8,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
 | A1 | 23 | 36,25 | 63 % |
-| A2 | 0 | 30,5 | 0 % |
+| A2 | 3 | 30,5 | 10 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **41,5** | **182,25** | **22,8 %** |
+| **Total** | **44,5** | **182,25** | **24,4 %** |
 
-- **Avancement global : 22,8 %** (41,5 j-h faits sur 182,25)
-- **Types jouables : 35 sur 52**
+- **Avancement global : 24,4 %** (44,5 j-h faits sur 182,25)
+- **Types jouables : 38 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -126,7 +126,11 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 
 ## A2 : lot 2 des moteurs et retours familles, tour 2 (4 janv. au 28 févr. 2027)
 - [ ] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (2 j-h)
-- [ ] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (3 j-h)
+- [x] A2-02 Moteur Manipulables, avancés (T26, T29, T52) (3 j-h)
+  - [x] Fiche §14 de `docs/moteurs/manipulables.md` et questions 12 à 18 (nuit du 20 au 21 oct. 2026)
+  - [x] Schéma, validateur, 3 exemples en brouillon (monnaie 2 dinars 700 millimes, trois quarts d'un disque, comparaison de deux barres)
+  - [x] T26 pièces glissées dans le porte-monnaie et glissées hors pour retirer, T29 parts touchées, T52 nombres glissés dans les segments puis inconnue au pavé, tests arabe et français avec un vrai geste, parité
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [ ] A2-03 Moteur Mesure et temps (T28, T30) (2,5 j-h)
 - [ ] A2-04 Moteur Grille et graphiques (T31 à T33, T60) (3,5 j-h)
 - [ ] A2-05 Moteur Scène image avec audio (T53, T54) (1,5 j-h)

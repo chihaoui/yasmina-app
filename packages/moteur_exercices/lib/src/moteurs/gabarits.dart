@@ -13,6 +13,9 @@ import 'jeux/gabarit_mots_meles.dart';
 import 'manipulables/gabarit_blocs.dart';
 import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
+import 'manipulables/gabarit_fractions.dart';
+import 'manipulables/gabarit_modele_barres.dart';
+import 'manipulables/gabarit_monnaie.dart';
 import 'saisie/gabarit_calcul_pose.dart';
 import 'saisie/gabarit_saisie_numerique.dart';
 import 'scene/gabarit_etiquetage.dart';
@@ -48,10 +51,13 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T16': GabaritOrdre('T16'),
   'T56': GabaritRacineScheme(),
   'T62': GabaritOrdre('T62'),
-  // Moteur Manipulables (base).
+  // Moteur Manipulables (base et avancés).
   'T25': GabaritDroiteNumerique(),
   'T27': GabaritBlocs(),
   'T51': GabaritCadreDix(),
+  'T26': GabaritMonnaie(),
+  'T29': GabaritFractions(),
+  'T52': GabaritModeleBarres(),
   // Moteur Texte.
   'T07': GabaritToucherMots(),
   'T17': GabaritDictee(),

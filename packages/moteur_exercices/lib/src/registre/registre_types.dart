@@ -245,9 +245,27 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T26', 'Monnaie', Moteur.manipulables, lot: 2),
-  TypeExercice('T29', 'Fractions', Moteur.manipulables, lot: 2),
-  TypeExercice('T52', 'Modèle en barres', Moteur.manipulables, lot: 2),
+  TypeExercice(
+    'T26',
+    'Monnaie',
+    Moteur.manipulables,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T29',
+    'Fractions',
+    Moteur.manipulables,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T52',
+    'Modèle en barres',
+    Moteur.manipulables,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Texte (lot 1).
   TypeExercice(
     'T07',

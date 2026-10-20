@@ -39,6 +39,48 @@ final valides = <String, Map<String, dynamic> Function()>{
       exercice('T25', {'min': 0, 'max': 10, 'cible': 7}, {'valeur': 7}),
   'T27': () => exercice('T27', {'cible': 34}, {'dizaines': 3, 'unites': 4}),
   'T51': () => exercice('T51', {'cible': 7}, {'jetons': 7}),
+  'T26': () => exercice(
+    'T26',
+    {
+      'pieces': [1000, 500, 200, 100],
+      'cible': 1700,
+    },
+    {'montant': 1700},
+    niveau: 3,
+  ),
+  'T29': () =>
+      exercice('T29', {'parts': 4, 'numerateur': 3}, {'parts': 3}, niveau: 5),
+  'T52': () => exercice(
+    'T52',
+    {
+      'barres': [
+        {
+          'id': 'b1',
+          'libelle': 'سَامِي',
+          'segments': [
+            {'id': 's1', 'valeur': 23},
+          ],
+        },
+        {
+          'id': 'b2',
+          'libelle': 'رِيمَ',
+          'segments': [
+            {'id': 's2', 'valeur': 23},
+            {'id': 's3', 'valeur': 12},
+          ],
+        },
+      ],
+      'inconnue': {'barre': 'b2'},
+      'etiquettes': [
+        {'id': 'e1', 'texte': '23'},
+        {'id': 'e2', 'texte': '23'},
+        {'id': 'e3', 'texte': '12'},
+        {'id': 'e4', 'texte': '11'},
+      ],
+    },
+    {'valeur': 35},
+    niveau: 3,
+  ),
 };
 
 Matcher probleme(String chemin, String code) => isA<ProblemeValidation>()
@@ -64,8 +106,8 @@ List<ProblemeValidation> avertissements(
 }
 
 void main() {
-  test('un exemple valide pour chacun des 3 types, sans avertissement', () {
-    expect(valides.keys, hasLength(3));
+  test('un exemple valide pour chacun des 6 types, sans avertissement', () {
+    expect(valides.keys, hasLength(6));
     valides.forEach((type, construire) {
       final r = validerExercice(construire());
       expect(r.erreurs, isEmpty, reason: '$type : $r');
@@ -204,6 +246,102 @@ void main() {
           ex['reponse'] = {'dizaines': 2, 'unites': 14};
         }),
         isEmpty,
+      );
+    });
+
+    test('T26 : montant inatteignable, réponse différente, trop de pièces '
+        'en 1re', () {
+      // 1750 : inatteignable, et la réponse 1700 ne vaut plus la cible.
+      expect(
+        erreurs('T26', (ex) => ex['donnees']['cible'] = 1750),
+        contains(probleme('/donnees/cible', 'montant_inatteignable')),
+      );
+      expect(
+        erreurs('T26', (ex) => ex['reponse']['montant'] = 1600).single,
+        probleme('/reponse/montant', 'reponse_valeur_incoherente'),
+      );
+      expect(
+        erreurs('T26', (ex) => ex['donnees']['pieces'] = [1000, 7]),
+        contains(probleme('/donnees/pieces/1', 'valeur_non_autorisee')),
+      );
+      expect(
+        avertissements('T26', (ex) {
+          ex['id'] = 'ma-1-t1-u1-e01-x01';
+          ex['donnees']['pieces'] = [1000, 500, 200, 100, 50, 20, 10];
+          ex['donnees']['cible'] = 1000;
+          ex['reponse']['montant'] = 1000;
+        }).single,
+        probleme('/donnees/pieces', 'elements_trop_nombreux'),
+      );
+    });
+
+    test('T29 : numérateur au-dessus des parts, réponse différente', () {
+      expect(
+        erreurs('T29', (ex) => ex['donnees']['numerateur'] = 5),
+        contains(probleme('/donnees/numerateur', 'fraction_invalide')),
+      );
+      expect(
+        erreurs('T29', (ex) => ex['reponse']['parts'] = 2).single,
+        probleme('/reponse/parts', 'reponse_valeur_incoherente'),
+      );
+      expect(
+        erreurs('T29', (ex) => ex['donnees']['forme'] = 'triangle'),
+        contains(probleme('/donnees/forme', 'valeur_non_autorisee')),
+      );
+    });
+
+    test('T52 : inconnue, étiquettes, réponse', () {
+      expect(
+        erreurs('T52', (ex) => ex['donnees']['inconnue'] = {}).single,
+        probleme('/donnees/inconnue', 'inconnue_invalide'),
+      );
+      expect(
+        erreurs(
+          'T52',
+          (ex) => ex['donnees']['inconnue'] = {'barre': 'b3'},
+        ).single,
+        probleme('/donnees/inconnue/barre', 'inconnue_invalide'),
+      );
+      // Segment inconnu : la réponse est sa valeur, et il n'a pas besoin
+      // d'étiquette.
+      expect(
+        erreurs('T52', (ex) {
+          ex['donnees']['inconnue'] = {'segment': 's3'};
+          ex['reponse']['valeur'] = 12;
+        }),
+        isEmpty,
+      );
+      expect(
+        erreurs('T52', (ex) => ex['reponse']['valeur'] = 34).single,
+        probleme('/reponse/valeur', 'reponse_valeur_incoherente'),
+      );
+      expect(
+        erreurs(
+          'T52',
+          (ex) => ex['donnees']['etiquettes'][1]['texte'] = '24',
+        ).single,
+        probleme('/donnees/etiquettes', 'segment_sans_etiquette'),
+      );
+      expect(
+        erreurs(
+          'T52',
+          (ex) => ex['donnees']['etiquettes'][3]['texte'] = 'onze',
+        ).single,
+        probleme('/donnees/etiquettes/3/texte', 'etiquette_non_numerique'),
+      );
+      expect(
+        erreurs(
+          'T52',
+          (ex) => ex['donnees']['barres'][1]['segments'][0]['id'] = 's1',
+        ).single,
+        probleme('/donnees/barres/1/segments/0/id', 'element_duplique'),
+      );
+      expect(
+        avertissements(
+          'T52',
+          (ex) => ex['donnees']['etiquettes'].removeLast(),
+        ).single,
+        probleme('/donnees/etiquettes', 'etiquettes_sans_intrus'),
       );
     });
 

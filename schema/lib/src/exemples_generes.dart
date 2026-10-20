@@ -1761,6 +1761,47 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'manipulables/T26-monnaie.json': r'''
+{
+  "id": "ma-3-t1-u2-e01-x01",
+  "type": "T26",
+  "gabarit": "monnaie-porte-monnaie",
+  "competence": "ma-mesure-monnaie",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "كَوِّنْ مَبْلَغَ دِينَارَيْنِ وَسَبْعِمِئَةِ مَلِيمٍ بِالْقِطَعِ.",
+      "feminin": "كَوِّنِي مَبْلَغَ دِينَارَيْنِ وَسَبْعِمِئَةِ مَلِيمٍ بِالْقِطَعِ."
+    }
+  },
+  "donnees": {
+    "pieces": [
+      1000,
+      500,
+      200,
+      100,
+      50
+    ],
+    "cible": 2700
+  },
+  "reponse": {
+    "montant": 2700
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْمَبْلَغُ 2 دِينَارٍ وَ700 مَلِيمٍ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْمَبْلَغُ 2 دِينَارٍ وَ700 مَلِيمٍ."
+    },
+    "indice": "اِبْدَأْ بِالدَّنَانِيرِ: الدِّينَارُ الْوَاحِدُ يُسَاوِي 1000 مَلِيمٍ.",
+    "explication": "دِينَارٌ وَدِينَارٌ وَ500 مَلِيمٍ وَ200 مَلِيمٍ تُسَاوِي 2 دِينَارٍ وَ700 مَلِيمٍ."
+  },
+  "empreinte": "sha256:5fe9128597678745ad0cde090f720c21a7369200b29ae18073d4fac00ef0eb57",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'manipulables/T27-blocs-base-10.json': r'''
 {
   "id": "ma-2-t1-u1-e01-x01",
@@ -1797,6 +1838,42 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'manipulables/T29-fraction.json': r'''
+{
+  "id": "ma-5-t1-u1-e01-x01",
+  "type": "T29",
+  "gabarit": "fraction-disque",
+  "competence": "ma-fractions-representer",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "لَوِّنْ ثَلَاثَةَ أَرْبَاعِ الْقُرْصِ.",
+      "feminin": "لَوِّنِي ثَلَاثَةَ أَرْبَاعِ الْقُرْصِ."
+    }
+  },
+  "donnees": {
+    "forme": "disque",
+    "parts": 4,
+    "numerateur": 3
+  },
+  "reponse": {
+    "parts": 3
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 3 أَجْزَاءٍ مُلَوَّنَةٍ مِنْ 4.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 3 أَجْزَاءٍ مُلَوَّنَةٍ مِنْ 4."
+    },
+    "indice": "الْقُرْصُ مُقَسَّمٌ إِلَى 4 أَجْزَاءٍ: لَوِّنْ 3 مِنْهَا.",
+    "explication": "الْمَقَامُ 4 هُوَ عَدَدُ الْأَجْزَاءِ، وَالْبَسْطُ 3 هُوَ عَدَدُ الْأَجْزَاءِ الْمُلَوَّنَةِ."
+  },
+  "empreinte": "sha256:77bf745151fc2e6b7756fc5db88a0adc151ce58b4745117bd6d3e5b96cc4f61d",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'manipulables/T51-cadre-de-10.json': r'''
 {
   "id": "ma-1-t1-u1-e01-x02",
@@ -1827,6 +1904,88 @@ const Map<String, String> exemplesEduContent = {
     "explication": "7 = 5 + 2: صَفٌّ كَامِلٌ وَقِطْعَتَانِ."
   },
   "empreinte": "sha256:65d16edc516e73f489c260b7263bf54f3d4f895fb424037dd8913876a34b744c",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'manipulables/T52-modele-barres.json': r'''
+{
+  "id": "ma-3-t1-u3-e01-x01",
+  "type": "T52",
+  "gabarit": "barres-comparaison",
+  "competence": "ma-problemes-modele-barres",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "ضَعِ الْأَعْدَادَ فِي الْمُخَطَّطِ ثُمَّ اكْتُبِ الْمَجْهُولَ.",
+      "feminin": "ضَعِي الْأَعْدَادَ فِي الْمُخَطَّطِ ثُمَّ اكْتُبِي الْمَجْهُولَ."
+    }
+  },
+  "donnees": {
+    "texte": "مَعَ سَامِي 23 قَلَمًا، وَمَعَ رِيمَ 12 قَلَمًا أَكْثَرَ مِنْهُ. كَمْ قَلَمًا مَعَ رِيمَ؟",
+    "barres": [
+      {
+        "id": "b1",
+        "libelle": "سَامِي",
+        "segments": [
+          {
+            "id": "s1",
+            "valeur": 23
+          }
+        ]
+      },
+      {
+        "id": "b2",
+        "libelle": "رِيمَ",
+        "segments": [
+          {
+            "id": "s2",
+            "valeur": 23
+          },
+          {
+            "id": "s3",
+            "valeur": 12
+          }
+        ]
+      }
+    ],
+    "inconnue": {
+      "barre": "b2"
+    },
+    "etiquettes": [
+      {
+        "id": "e1",
+        "texte": "23"
+      },
+      {
+        "id": "e2",
+        "texte": "23"
+      },
+      {
+        "id": "e3",
+        "texte": "12"
+      },
+      {
+        "id": "e4",
+        "texte": "11"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "valeur": 35
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 23 زَائِدُ 12 يُسَاوِي 35.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 23 زَائِدُ 12 يُسَاوِي 35."
+    },
+    "indice": "شَرِيطُ رِيمَ أَطْوَلُ: هُوَ شَرِيطُ سَامِي وَ12 زِيَادَةً.",
+    "explication": "مَعَ رِيمَ 23 زَائِدُ 12، أَيْ 35 قَلَمًا."
+  },
+  "empreinte": "sha256:ef3137097c6d243a417d8d349ce9b9027da957594159998fdbbe5b06c2408a4e",
   "statut": "brouillon",
   "version": 1
 }

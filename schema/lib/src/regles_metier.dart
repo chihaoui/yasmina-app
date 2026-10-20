@@ -1667,7 +1667,23 @@ const _lettresEnTropMax = 6;
 const _niveauClavierReduit = 2;
 
 /// Les 3 types de base du moteur Manipulables (docs/moteurs/manipulables.md).
-const _typesManipulables = {'T25', 'T27', 'T51'};
+const _typesManipulables = {'T25', 'T27', 'T51', 'T26', 'T29', 'T52'};
+
+/// T26 : le montant [cible] se forme avec les [pieces] (chacune autant de
+/// fois qu'on veut).
+bool montantAtteignable(int cible, List<int> pieces) {
+  if (cible < 0) return false;
+  final possible = List<bool>.filled(cible + 1, false)..[0] = true;
+  for (var m = 1; m <= cible; m++) {
+    for (final p in pieces) {
+      if (p <= m && possible[m - p]) {
+        possible[m] = true;
+        break;
+      }
+    }
+  }
+  return possible[cible];
+}
 
 /// Droite numérique : au plus 20 intervalles, et 10 en 1re ou 2e année.
 const _intervallesMax = 20;
@@ -1769,6 +1785,177 @@ List<ProblemeValidation> _reglesManipulables(
           '$chemin/reponse/jetons',
           'reponse_valeur_incoherente',
           'la réponse (${reponse['jetons']}) doit être la cible ($cible).',
+        );
+      }
+    case 'T26':
+      final pieces = (donnees['pieces'] as List).cast<int>();
+      final cible = donnees['cible'] as int;
+      if (!montantAtteignable(cible, pieces)) {
+        erreur(
+          '$chemin/donnees/cible',
+          'montant_inatteignable',
+          'le montant $cible millimes ne se forme pas avec les pièces '
+              '${pieces.join(', ')}.',
+        );
+      }
+      if (reponse['montant'] != cible) {
+        erreur(
+          '$chemin/reponse/montant',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['montant']}) doit être la cible ($cible).',
+        );
+      }
+      if (niveau != null && niveau <= 2 && pieces.length > _elementsMaxPetits) {
+        problemes.add(
+          ProblemeValidation(
+            chemin: '$chemin/donnees/pieces',
+            code: 'elements_trop_nombreux',
+            message:
+                '${pieces.length} sortes de pièces en '
+                '${niveau == 1 ? '1re' : '2e'} année : '
+                '$_elementsMaxPetits au plus (CLAUDE.md §5).',
+            gravite: Gravite.avertissement,
+          ),
+        );
+      }
+    case 'T29':
+      final parts = donnees['parts'] as int;
+      final numerateur = donnees['numerateur'] as int;
+      if (numerateur > parts) {
+        erreur(
+          '$chemin/donnees/numerateur',
+          'fraction_invalide',
+          'le numérateur ($numerateur) dépasse le nombre de parts ($parts).',
+        );
+      }
+      if (reponse['parts'] != numerateur) {
+        erreur(
+          '$chemin/reponse/parts',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['parts']}) doit être le numérateur '
+              '($numerateur).',
+        );
+      }
+    case 'T52':
+      final barres = (donnees['barres'] as List).cast<Map<String, dynamic>>();
+      final idsBarres = <String>{};
+      final segments = <String, int>{};
+      final totaux = <String, int>{};
+      for (var k = 0; k < barres.length; k++) {
+        final id = barres[k]['id'] as String;
+        if (!idsBarres.add(id)) {
+          erreur(
+            '$chemin/donnees/barres/$k/id',
+            'element_duplique',
+            'deux barres ont le même id « $id ».',
+          );
+        }
+        var total = 0;
+        final liste = (barres[k]['segments'] as List)
+            .cast<Map<String, dynamic>>();
+        for (var j = 0; j < liste.length; j++) {
+          final sid = liste[j]['id'] as String;
+          final valeur = liste[j]['valeur'] as int;
+          if (segments.containsKey(sid)) {
+            erreur(
+              '$chemin/donnees/barres/$k/segments/$j/id',
+              'element_duplique',
+              'deux segments ont le même id « $sid ».',
+            );
+          }
+          segments[sid] = valeur;
+          total += valeur;
+        }
+        totaux[id] = total;
+      }
+      final inconnue = (donnees['inconnue'] as Map).cast<String, dynamic>();
+      final barre = inconnue['barre'] as String?;
+      final segment = inconnue['segment'] as String?;
+      int? attendu;
+      if ((barre == null) == (segment == null)) {
+        erreur(
+          '$chemin/donnees/inconnue',
+          'inconnue_invalide',
+          'l\'inconnue est le total d\'une barre ou un segment, un seul des '
+              'deux.',
+        );
+      } else if (barre != null) {
+        attendu = totaux[barre];
+        if (attendu == null) {
+          erreur(
+            '$chemin/donnees/inconnue/barre',
+            'inconnue_invalide',
+            'la barre « $barre » n\'existe pas.',
+          );
+        }
+      } else {
+        attendu = segments[segment];
+        if (attendu == null) {
+          erreur(
+            '$chemin/donnees/inconnue/segment',
+            'inconnue_invalide',
+            'le segment « $segment » n\'existe pas.',
+          );
+        }
+      }
+      final etiquettes = (donnees['etiquettes'] as List)
+          .cast<Map<String, dynamic>>();
+      final idsEtiquettes = <String>{};
+      final valeursEtiquettes = <int>[];
+      for (var k = 0; k < etiquettes.length; k++) {
+        final id = etiquettes[k]['id'] as String;
+        if (!idsEtiquettes.add(id)) {
+          erreur(
+            '$chemin/donnees/etiquettes/$k/id',
+            'element_duplique',
+            'deux étiquettes ont le même id « $id ».',
+          );
+        }
+        final valeur = int.tryParse(etiquettes[k]['texte'] as String);
+        if (valeur == null) {
+          erreur(
+            '$chemin/donnees/etiquettes/$k/texte',
+            'etiquette_non_numerique',
+            'une étiquette du modèle en barres est un nombre entier, pas '
+                '« ${etiquettes[k]['texte']} ».',
+          );
+        } else {
+          valeursEtiquettes.add(valeur);
+        }
+      }
+      // Chaque segment connu a une étiquette de sa valeur, une par segment.
+      final libres = List.of(valeursEtiquettes);
+      final connus = [
+        for (final MapEntry(key: sid, value: v) in segments.entries)
+          if (sid != segment) (sid, v),
+      ];
+      for (final (sid, v) in connus) {
+        if (!libres.remove(v)) {
+          erreur(
+            '$chemin/donnees/etiquettes',
+            'segment_sans_etiquette',
+            'aucune étiquette « $v » libre pour le segment « $sid ».',
+          );
+        }
+      }
+      if (libres.isEmpty && connus.isNotEmpty) {
+        problemes.add(
+          ProblemeValidation(
+            chemin: '$chemin/donnees/etiquettes',
+            code: 'etiquettes_sans_intrus',
+            message:
+                'toutes les étiquettes servent : ajouter une étiquette en '
+                'trop, sinon il suffit de tout poser.',
+            gravite: Gravite.avertissement,
+          ),
+        );
+      }
+      if (attendu != null && reponse['valeur'] != attendu) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['valeur']}) doit être l\'inconnue '
+              '($attendu).',
         );
       }
   }

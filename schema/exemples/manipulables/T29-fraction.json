@@ -1,0 +1,34 @@
+{
+  "id": "ma-5-t1-u1-e01-x01",
+  "type": "T29",
+  "gabarit": "fraction-disque",
+  "competence": "ma-fractions-representer",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "لَوِّنْ ثَلَاثَةَ أَرْبَاعِ الْقُرْصِ.",
+      "feminin": "لَوِّنِي ثَلَاثَةَ أَرْبَاعِ الْقُرْصِ."
+    }
+  },
+  "donnees": {
+    "forme": "disque",
+    "parts": 4,
+    "numerateur": 3
+  },
+  "reponse": {
+    "parts": 3
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: 3 أَجْزَاءٍ مُلَوَّنَةٍ مِنْ 4.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: 3 أَجْزَاءٍ مُلَوَّنَةٍ مِنْ 4."
+    },
+    "indice": "الْقُرْصُ مُقَسَّمٌ إِلَى 4 أَجْزَاءٍ: لَوِّنْ 3 مِنْهَا.",
+    "explication": "الْمَقَامُ 4 هُوَ عَدَدُ الْأَجْزَاءِ، وَالْبَسْطُ 3 هُوَ عَدَدُ الْأَجْزَاءِ الْمُلَوَّنَةِ."
+  },
+  "empreinte": "sha256:77bf745151fc2e6b7756fc5db88a0adc151ce58b4745117bd6d3e5b96cc4f61d",
+  "statut": "brouillon",
+  "version": 1
+}
