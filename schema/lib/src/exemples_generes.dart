@@ -1831,6 +1831,296 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'revision-jeux/T36-flashcards.json': r'''
+{
+  "id": "ar-1-t1-u2-e02-x01",
+  "type": "T36",
+  "gabarit": "flashcards-mots",
+  "competence": "ar-vocabulaire-animaux",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِقْلِبِ الْبِطَاقَةَ وَقُلِ الْكَلِمَةَ.",
+      "feminin": "اِقْلِبِي الْبِطَاقَةَ وَقُولِي الْكَلِمَةَ."
+    }
+  },
+  "donnees": {
+    "cartes": [
+      {
+        "id": "c1",
+        "recto": {
+          "emoji": "🐱"
+        },
+        "verso": {
+          "texte": "قِطٌّ"
+        },
+        "ecoute": {
+          "texte": "قِطٌّ"
+        }
+      },
+      {
+        "id": "c2",
+        "recto": {
+          "emoji": "🐶"
+        },
+        "verso": {
+          "texte": "كَلْبٌ"
+        },
+        "ecoute": {
+          "texte": "كَلْبٌ"
+        }
+      },
+      {
+        "id": "c3",
+        "recto": {
+          "emoji": "🐟"
+        },
+        "verso": {
+          "texte": "سَمَكَةٌ"
+        },
+        "ecoute": {
+          "texte": "سَمَكَةٌ"
+        }
+      },
+      {
+        "id": "c4",
+        "recto": {
+          "emoji": "🐦"
+        },
+        "verso": {
+          "texte": "عُصْفُورٌ"
+        },
+        "ecoute": {
+          "texte": "عُصْفُورٌ"
+        }
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "cartes": [
+      "c1",
+      "c2",
+      "c3",
+      "c4"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "رَاجَعْتَ كُلَّ الْبِطَاقَاتِ.",
+      "feminin": "رَاجَعْتِ كُلَّ الْبِطَاقَاتِ."
+    },
+    "indice": "اِقْلِبِ الْبِطَاقَةَ لِتَرَى الْكَلِمَةَ.",
+    "explication": "قِطٌّ، كَلْبٌ، سَمَكَةٌ، عُصْفُورٌ."
+  },
+  "empreinte": "sha256:50c56a6f94acaad2afec1a450db05679af5b648952f94f000c0805f75d2a21a8",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'revision-jeux/T37-memory.json': r'''
+{
+  "id": "fr-2-t1-u2-e01-x01",
+  "type": "T37",
+  "gabarit": "memory-mot-image",
+  "competence": "fr-vocabulaire-fruits",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Retrouve chaque mot et son image."
+  },
+  "donnees": {
+    "paires": [
+      {
+        "id": "p1",
+        "a": {
+          "texte": "pomme"
+        },
+        "b": {
+          "emoji": "🍎"
+        }
+      },
+      {
+        "id": "p2",
+        "a": {
+          "texte": "banane"
+        },
+        "b": {
+          "emoji": "🍌"
+        }
+      },
+      {
+        "id": "p3",
+        "a": {
+          "texte": "fraise"
+        },
+        "b": {
+          "emoji": "🍓"
+        }
+      },
+      {
+        "id": "p4",
+        "a": {
+          "texte": "poire"
+        },
+        "b": {
+          "emoji": "🍐"
+        }
+      }
+    ],
+    "essais_max": 10,
+    "melanger": true
+  },
+  "reponse": {
+    "paires": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : toutes les paires sont trouvées.",
+    "indice": "Retiens la place des cartes que tu retournes.",
+    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire."
+  },
+  "empreinte": "sha256:fbd91c442368e26f98dea22e62267630bfc99b47e2a22cbc2728da9705c6501d",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'revision-jeux/T38-mots-meles-fr.json': r'''
+{
+  "id": "fr-3-t1-u1-e02-x01",
+  "type": "T38",
+  "gabarit": "mots-meles-carre",
+  "competence": "fr-lecture-mots",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Trouve les trois mots cachés dans la grille."
+  },
+  "donnees": {
+    "grille": [
+      "CHATE",
+      "SIBOR",
+      "OLUNE",
+      "LAMIP",
+      "ETRAN"
+    ],
+    "mots": [
+      {
+        "id": "m1",
+        "texte": "CHAT",
+        "ligne": 0,
+        "colonne": 0,
+        "direction": "ligne"
+      },
+      {
+        "id": "m2",
+        "texte": "LUNE",
+        "ligne": 2,
+        "colonne": 1,
+        "direction": "ligne"
+      },
+      {
+        "id": "m3",
+        "texte": "SOL",
+        "ligne": 1,
+        "colonne": 0,
+        "direction": "colonne"
+      }
+    ]
+  },
+  "reponse": {
+    "mots": [
+      "m1",
+      "m2",
+      "m3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : chat, lune et sol sont trouvés.",
+    "indice": "Lis les lignes de gauche à droite et les colonnes de haut en bas.",
+    "explication": "CHAT sur la première ligne, LUNE sur la troisième, SOL dans la première colonne."
+  },
+  "empreinte": "sha256:9cf9ae842f1480da40ed9769a3e090a2daf753ec38aa9006521709c2c1e0ea94",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'revision-jeux/T38-mots-meles.json': r'''
+{
+  "id": "ar-3-t1-u1-e02-x01",
+  "type": "T38",
+  "gabarit": "mots-meles-carre",
+  "competence": "ar-lecture-mots",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِبْحَثْ عَنِ الْكَلِمَاتِ الثَّلَاثِ فِي الشَّبَكَةِ.",
+      "feminin": "اِبْحَثِي عَنِ الْكَلِمَاتِ الثَّلَاثِ فِي الشَّبَكَةِ."
+    }
+  },
+  "donnees": {
+    "grille": [
+      "تملقب",
+      "كسردا",
+      "تبحدم",
+      "ايرزك",
+      "بسعلن"
+    ],
+    "mots": [
+      {
+        "id": "m1",
+        "texte": "قَلَمٌ",
+        "ligne": 0,
+        "colonne": 3,
+        "direction": "ligne"
+      },
+      {
+        "id": "m2",
+        "texte": "دَرْسٌ",
+        "ligne": 1,
+        "colonne": 3,
+        "direction": "ligne"
+      },
+      {
+        "id": "m3",
+        "texte": "كِتَابٌ",
+        "ligne": 1,
+        "colonne": 0,
+        "direction": "colonne"
+      }
+    ],
+    "sens": "droite-gauche"
+  },
+  "reponse": {
+    "mots": [
+      "m1",
+      "m2",
+      "m3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "وَجَدْتَ الْكَلِمَاتِ الثَّلَاثَ.",
+      "feminin": "وَجَدْتِ الْكَلِمَاتِ الثَّلَاثَ."
+    },
+    "indice": "اِقْرَأِ السُّطُورَ مِنَ الْيَمِينِ إِلَى الْيَسَارِ.",
+    "explication": "قَلَمٌ فِي السَّطْرِ الْأَوَّلِ، دَرْسٌ فِي الثَّانِي، كِتَابٌ فِي الْعَمُودِ الْأَوَّلِ."
+  },
+  "empreinte": "sha256:ee876f04fc5c9d600676b3cd7cb18e51f2087b43089a575c74ce8463a122d907",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'saisie-numerique/T22-probleme.json': r'''
 {
   "id": "ma-2-t1-u2-e01-x01",

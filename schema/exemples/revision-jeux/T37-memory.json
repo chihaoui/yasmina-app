@@ -1,0 +1,70 @@
+{
+  "id": "fr-2-t1-u2-e01-x01",
+  "type": "T37",
+  "gabarit": "memory-mot-image",
+  "competence": "fr-vocabulaire-fruits",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Retrouve chaque mot et son image."
+  },
+  "donnees": {
+    "paires": [
+      {
+        "id": "p1",
+        "a": {
+          "texte": "pomme"
+        },
+        "b": {
+          "emoji": "🍎"
+        }
+      },
+      {
+        "id": "p2",
+        "a": {
+          "texte": "banane"
+        },
+        "b": {
+          "emoji": "🍌"
+        }
+      },
+      {
+        "id": "p3",
+        "a": {
+          "texte": "fraise"
+        },
+        "b": {
+          "emoji": "🍓"
+        }
+      },
+      {
+        "id": "p4",
+        "a": {
+          "texte": "poire"
+        },
+        "b": {
+          "emoji": "🍐"
+        }
+      }
+    ],
+    "essais_max": 10,
+    "melanger": true
+  },
+  "reponse": {
+    "paires": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : toutes les paires sont trouvées.",
+    "indice": "Retiens la place des cartes que tu retournes.",
+    "explication": "Toutes les paires sont trouvées, avec beaucoup d'essais : pomme, banane, fraise, poire."
+  },
+  "empreinte": "sha256:fbd91c442368e26f98dea22e62267630bfc99b47e2a22cbc2728da9705c6501d",
+  "statut": "brouillon",
+  "version": 1
+}

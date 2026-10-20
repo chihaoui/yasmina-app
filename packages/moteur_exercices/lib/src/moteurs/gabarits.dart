@@ -7,6 +7,9 @@ import 'choix/gabarit_vrai_faux.dart';
 import 'glisser/gabarit_affectation.dart';
 import 'glisser/gabarit_ordre.dart';
 import 'glisser/gabarit_racine_scheme.dart';
+import 'jeux/gabarit_flashcards.dart';
+import 'jeux/gabarit_memory.dart';
+import 'jeux/gabarit_mots_meles.dart';
 import 'manipulables/gabarit_blocs.dart';
 import 'manipulables/gabarit_cadre_dix.dart';
 import 'manipulables/gabarit_droite_numerique.dart';
@@ -61,6 +64,10 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   // Moteur Scène image (base).
   'T08': GabaritHotSpot(),
   'T47': GabaritEtiquetage(),
+  // Moteur Révision et jeux.
+  'T36': GabaritFlashcards(),
+  'T37': GabaritMemory(),
+  'T38': GabaritMotsMeles(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

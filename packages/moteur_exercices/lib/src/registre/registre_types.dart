@@ -306,9 +306,27 @@ const typesExercices = <TypeExercice>[
   TypeExercice('T53', 'Écoute et place', Moteur.sceneImage, lot: 2),
   TypeExercice('T54', 'Écoute et colorie', Moteur.sceneImage, lot: 2),
   // Révision et jeux (lot 1).
-  TypeExercice('T36', 'Flashcards', Moteur.revisionJeux, lot: 1),
-  TypeExercice('T37', 'Memory', Moteur.revisionJeux, lot: 1),
-  TypeExercice('T38', 'Mots mêlés', Moteur.revisionJeux, lot: 1),
+  TypeExercice(
+    'T36',
+    'Flashcards',
+    Moteur.revisionJeux,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T37',
+    'Memory',
+    Moteur.revisionJeux,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T38',
+    'Mots mêlés',
+    Moteur.revisionJeux,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   // Mesure et temps (lot 2).
   TypeExercice('T28', 'Horloge', Moteur.mesureTemps, lot: 2),
   TypeExercice('T30', 'Règle', Moteur.mesureTemps, lot: 2),

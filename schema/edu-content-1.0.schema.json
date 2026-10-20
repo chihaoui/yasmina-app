@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) et les 2 types de base du moteur Scène image (T08, T47), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) le type T20 du moteur Tracé, les 3 types de base du moteur Manipulables (T25, T27, T51) les 2 types du moteur Texte (T07, T17) les 2 types de base du moteur Saisie numérique (T22, T48) les 2 types de base du moteur Scène image (T08, T47) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -456,6 +456,33 @@
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesEtiquetage" },
               "reponse": { "$ref": "#/$defs/reponsePlacements" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T36" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesFlashcards" },
+              "reponse": { "$ref": "#/$defs/reponseCartes" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T37" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesMemory" },
+              "reponse": { "$ref": "#/$defs/reponsePaires" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T38" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesMotsMeles" },
+              "reponse": { "$ref": "#/$defs/reponseMotsMeles" }
             }
           }
         }
@@ -1393,6 +1420,147 @@
               "etiquette": { "$ref": "#/$defs/idElement" }
             }
           }
+        }
+      }
+    },
+
+    "idCarte": { "type": "string", "pattern": "^c[1-8]$" },
+    "idPaire": { "type": "string", "pattern": "^p[1-6]$" },
+    "idMot": { "type": "string", "pattern": "^m[1-6]$" },
+    "faceCarte": {
+      "description": "Une face de carte : un texte, un emoji, ou les deux.",
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["texte"] }, { "required": ["emoji"] }],
+      "properties": {
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "emoji": { "$ref": "#/$defs/emoji" }
+      }
+    },
+    "donneesFlashcards": {
+      "description": "T36 (sans note) : des cartes à retourner, recto puis verso, avec une auto-évaluation.",
+      "type": "object",
+      "required": ["cartes"],
+      "additionalProperties": false,
+      "properties": {
+        "cartes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["id", "recto", "verso"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idCarte" },
+              "recto": { "$ref": "#/$defs/faceCarte" },
+              "verso": { "$ref": "#/$defs/faceCarte" },
+              "ecoute": { "$ref": "#/$defs/ecoute" }
+            }
+          }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponseCartes": {
+      "description": "Les cartes à voir pour finir (règles Dart : existantes).",
+      "type": "object",
+      "required": ["cartes"],
+      "additionalProperties": false,
+      "properties": {
+        "cartes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idCarte" }
+        }
+      }
+    },
+    "donneesMemory": {
+      "description": "T37 (automatique, noté) : des paires de cartes à retrouver. essais_max : nombre d'essais au-delà duquel la fin est comptée fausse (deux fois le nombre de paires par défaut).",
+      "type": "object",
+      "required": ["paires"],
+      "additionalProperties": false,
+      "properties": {
+        "paires": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id", "a", "b"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idPaire" },
+              "a": { "$ref": "#/$defs/faceCarte" },
+              "b": { "$ref": "#/$defs/faceCarte" }
+            }
+          }
+        },
+        "essais_max": { "type": "integer", "minimum": 1, "maximum": 60 },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "reponsePaires": {
+      "description": "Toutes les paires à trouver (règles Dart : chaque paire une fois).",
+      "type": "object",
+      "required": ["paires"],
+      "additionalProperties": false,
+      "properties": {
+        "paires": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idPaire" }
+        }
+      }
+    },
+    "donneesMotsMeles": {
+      "description": "T38 (automatique, noté) : une grille de lettres (lignes de même longueur, règles Dart) et les mots à trouver, chacun à sa position (ligne et colonne de la première lettre, direction). sens : lecture des lignes, droite-gauche par défaut en arabe, gauche-droite sinon.",
+      "type": "object",
+      "required": ["grille", "mots"],
+      "additionalProperties": false,
+      "properties": {
+        "grille": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 8,
+          "items": { "type": "string", "minLength": 4, "maxLength": 8 }
+        },
+        "mots": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["id", "texte", "ligne", "colonne", "direction"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "$ref": "#/$defs/idMot" },
+              "texte": { "$ref": "#/$defs/texteNonVide" },
+              "ligne": { "type": "integer", "minimum": 0, "maximum": 7 },
+              "colonne": { "type": "integer", "minimum": 0, "maximum": 7 },
+              "direction": { "enum": ["ligne", "colonne"] }
+            }
+          }
+        },
+        "sens": { "enum": ["droite-gauche", "gauche-droite"] }
+      }
+    },
+    "reponseMotsMeles": {
+      "description": "Tous les mots à trouver (règles Dart : chaque mot une fois).",
+      "type": "object",
+      "required": ["mots"],
+      "additionalProperties": false,
+      "properties": {
+        "mots": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idMot" }
         }
       }
     }

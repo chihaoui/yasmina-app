@@ -1,0 +1,66 @@
+{
+  "id": "ar-3-t1-u1-e02-x01",
+  "type": "T38",
+  "gabarit": "mots-meles-carre",
+  "competence": "ar-lecture-mots",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِبْحَثْ عَنِ الْكَلِمَاتِ الثَّلَاثِ فِي الشَّبَكَةِ.",
+      "feminin": "اِبْحَثِي عَنِ الْكَلِمَاتِ الثَّلَاثِ فِي الشَّبَكَةِ."
+    }
+  },
+  "donnees": {
+    "grille": [
+      "تملقب",
+      "كسردا",
+      "تبحدم",
+      "ايرزك",
+      "بسعلن"
+    ],
+    "mots": [
+      {
+        "id": "m1",
+        "texte": "قَلَمٌ",
+        "ligne": 0,
+        "colonne": 3,
+        "direction": "ligne"
+      },
+      {
+        "id": "m2",
+        "texte": "دَرْسٌ",
+        "ligne": 1,
+        "colonne": 3,
+        "direction": "ligne"
+      },
+      {
+        "id": "m3",
+        "texte": "كِتَابٌ",
+        "ligne": 1,
+        "colonne": 0,
+        "direction": "colonne"
+      }
+    ],
+    "sens": "droite-gauche"
+  },
+  "reponse": {
+    "mots": [
+      "m1",
+      "m2",
+      "m3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "وَجَدْتَ الْكَلِمَاتِ الثَّلَاثَ.",
+      "feminin": "وَجَدْتِ الْكَلِمَاتِ الثَّلَاثَ."
+    },
+    "indice": "اِقْرَأِ السُّطُورَ مِنَ الْيَمِينِ إِلَى الْيَسَارِ.",
+    "explication": "قَلَمٌ فِي السَّطْرِ الْأَوَّلِ، دَرْسٌ فِي الثَّانِي، كِتَابٌ فِي الْعَمُودِ الْأَوَّلِ."
+  },
+  "empreinte": "sha256:ee876f04fc5c9d600676b3cd7cb18e51f2087b43089a575c74ce8463a122d907",
+  "statut": "brouillon",
+  "version": 1
+}

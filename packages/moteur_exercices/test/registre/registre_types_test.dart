@@ -69,6 +69,7 @@ void main() {
           Moteur.texte,
           Moteur.saisieNumerique,
           Moteur.sceneImage,
+          Moteur.revisionJeux,
         ]),
         reason: id,
       );

@@ -332,6 +332,17 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T36' || type == 'T37' || type == 'T38') {
+    problemes.addAll(
+      _reglesJeux(
+        type,
+        ex['langue'] as String,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (_typesManipulables.contains(type)) {
     problemes.addAll(
       _reglesManipulables(
@@ -1077,6 +1088,157 @@ List<ProblemeValidation> _reglesGlisser(
       '$nbElements éléments à manipuler en ${niveau == 1 ? '1re' : '2e'} '
           'année : 4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Sens de lecture des lignes d'une grille de mots mêlés (T38) : de droite
+/// à gauche en arabe par défaut.
+bool motsMelesDroiteGauche(Map<String, dynamic> donnees, String langue) =>
+    (donnees['sens'] as String?) == null
+    ? langue == 'ar'
+    : donnees['sens'] == 'droite-gauche';
+
+/// Règles du moteur Révision et jeux (docs/moteurs/revision-jeux.md) : T36
+/// Flashcards, T37 Memory, T38 Mots mêlés.
+List<ProblemeValidation> _reglesJeux(
+  String type,
+  String langue,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+
+  /// Ids uniques d'une liste d'objets.
+  Set<String> ids(String champ) {
+    final liste = (donnees[champ] as List).cast<Map<String, dynamic>>();
+    final vus = <String>{};
+    for (var k = 0; k < liste.length; k++) {
+      final id = liste[k]['id'] as String;
+      if (!vus.add(id)) {
+        erreur(
+          '$chemin/donnees/$champ/$k/id',
+          'element_duplique',
+          'deux éléments de $champ ont le même id « $id ».',
+        );
+      }
+    }
+    return vus;
+  }
+
+  void inconnu(String c, String champ, String id) => erreur(
+    c,
+    'reponse_element_inconnu',
+    'la réponse désigne « $id », absent de donnees.$champ.',
+  );
+
+  switch (type) {
+    case 'T36':
+      final cartes = ids('cartes');
+      final demandees = (reponse['cartes'] as List).cast<String>();
+      for (var k = 0; k < demandees.length; k++) {
+        if (!cartes.contains(demandees[k])) {
+          inconnu('$chemin/reponse/cartes/$k', 'cartes', demandees[k]);
+        }
+      }
+    case 'T37':
+      final paires = ids('paires');
+      final attendues = (reponse['paires'] as List).cast<String>();
+      for (var k = 0; k < attendues.length; k++) {
+        if (!paires.contains(attendues[k])) {
+          inconnu('$chemin/reponse/paires/$k', 'paires', attendues[k]);
+        }
+      }
+      if (attendues.where(paires.contains).toSet().length != paires.length) {
+        erreur(
+          '$chemin/reponse/paires',
+          'paires_incompletes',
+          'la réponse doit citer chacune des ${paires.length} paires une '
+              'fois (ici ${attendues.length}).',
+        );
+      }
+    case 'T38':
+      final grille = (donnees['grille'] as List).cast<String>();
+      final lignes = [for (final l in grille) l.runes.toList()];
+      final largeur = lignes.first.length;
+      var reguliere = true;
+      for (var k = 0; k < lignes.length; k++) {
+        if (lignes[k].length != largeur) {
+          reguliere = false;
+          erreur(
+            '$chemin/donnees/grille/$k',
+            'grille_irreguliere',
+            'la ligne $k a ${lignes[k].length} lettres, la première en a '
+                '$largeur.',
+          );
+        }
+        if (langue == 'ar') {
+          for (final r in lignes[k]) {
+            if (!_estLettreArabe(r)) {
+              erreur(
+                '$chemin/donnees/grille/$k',
+                'lettre_invalide',
+                'une grille arabe ne porte que des lettres nues, sans '
+                    'harakat ni espace : « ${grille[k]} ».',
+              );
+              break;
+            }
+          }
+        }
+      }
+      final mots = ids('mots');
+      final liste = (donnees['mots'] as List).cast<Map<String, dynamic>>();
+      final droiteGauche = motsMelesDroiteGauche(donnees, langue);
+      for (var k = 0; k < liste.length; k++) {
+        final m = liste[k];
+        final lettres = _sansHarakat(m['texte'] as String).runes.toList();
+        var ligne = m['ligne'] as int;
+        var colonne = m['colonne'] as int;
+        final enLigne = m['direction'] == 'ligne';
+        var lu = true;
+        for (final lettre in lettres) {
+          if (ligne < 0 ||
+              ligne >= lignes.length ||
+              colonne < 0 ||
+              colonne >= lignes[ligne].length ||
+              lignes[ligne][colonne] != lettre) {
+            lu = false;
+            break;
+          }
+          if (enLigne) {
+            colonne += droiteGauche ? -1 : 1;
+          } else {
+            ligne += 1;
+          }
+        }
+        if (reguliere && !lu) {
+          erreur(
+            '$chemin/donnees/mots/$k',
+            'mot_hors_grille',
+            'le mot « ${m['texte']} » ne se lit pas dans la grille à la '
+                'ligne ${m['ligne']}, colonne ${m['colonne']}, en '
+                '${m['direction']} (${droiteGauche ? 'droite-gauche' : 'gauche-droite'}).',
+          );
+        }
+      }
+      final attendus = (reponse['mots'] as List).cast<String>();
+      for (var k = 0; k < attendus.length; k++) {
+        if (!mots.contains(attendus[k])) {
+          inconnu('$chemin/reponse/mots/$k', 'mots', attendus[k]);
+        }
+      }
+      if (attendus.where(mots.contains).toSet().length != mots.length) {
+        erreur(
+          '$chemin/reponse/mots',
+          'ordre_incomplet',
+          'la réponse doit citer chacun des ${mots.length} mots une fois '
+              '(ici ${attendus.length}).',
+        );
+      }
   }
   return problemes;
 }

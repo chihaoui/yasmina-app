@@ -1,0 +1,59 @@
+{
+  "id": "fr-3-t1-u1-e02-x01",
+  "type": "T38",
+  "gabarit": "mots-meles-carre",
+  "competence": "fr-lecture-mots",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Trouve les trois mots cachés dans la grille."
+  },
+  "donnees": {
+    "grille": [
+      "CHATE",
+      "SIBOR",
+      "OLUNE",
+      "LAMIP",
+      "ETRAN"
+    ],
+    "mots": [
+      {
+        "id": "m1",
+        "texte": "CHAT",
+        "ligne": 0,
+        "colonne": 0,
+        "direction": "ligne"
+      },
+      {
+        "id": "m2",
+        "texte": "LUNE",
+        "ligne": 2,
+        "colonne": 1,
+        "direction": "ligne"
+      },
+      {
+        "id": "m3",
+        "texte": "SOL",
+        "ligne": 1,
+        "colonne": 0,
+        "direction": "colonne"
+      }
+    ]
+  },
+  "reponse": {
+    "mots": [
+      "m1",
+      "m2",
+      "m3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : chat, lune et sol sont trouvés.",
+    "indice": "Lis les lignes de gauche à droite et les colonnes de haut en bas.",
+    "explication": "CHAT sur la première ligne, LUNE sur la troisième, SOL dans la première colonne."
+  },
+  "empreinte": "sha256:9cf9ae842f1480da40ed9769a3e090a2daf753ec38aa9006521709c2c1e0ea94",
+  "statut": "brouillon",
+  "version": 1
+}
