@@ -160,7 +160,7 @@
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) et les 3 types du moteur Révision et jeux (T36, T37, T38), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62) les 6 types du moteur Manipulables (T25, T27, T51, et T26, T29, T52 avancés) les 2 types du moteur Texte (T07, T17) les 5 types du moteur Saisie numérique (T22, T48, et T49, T50, T63 avancés) les 4 types du moteur Scène image (T08, T47, et T53, T54 avec audio) les 3 types du moteur Révision et jeux (T36, T37, T38) et les 2 types du moteur Mesure et temps (T28, T30), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -482,6 +482,24 @@
           "then": {
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesBalance" },
+              "reponse": { "$ref": "#/$defs/reponseNombre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T28" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesHorloge" },
+              "reponse": { "$ref": "#/$defs/heureCadran" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T30" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesRegle" },
               "reponse": { "$ref": "#/$defs/reponseNombre" }
             }
           }
@@ -1460,6 +1478,47 @@
           "items": { "type": "integer", "minimum": 1, "maximum": 50 }
         },
         "sac": { "enum": ["gauche", "droite"], "default": "gauche" },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "heureCadran": {
+      "description": "Une heure sur un cadran de 12 heures : heure de 1 à 12, minutes de 0 à 59. Pour T28, la cible (règles Dart : minutes multiples du pas, différente du départ).",
+      "type": "object",
+      "required": ["heure", "minutes"],
+      "additionalProperties": false,
+      "properties": {
+        "heure": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "minutes": { "type": "integer", "minimum": 0, "maximum": 59 }
+      }
+    },
+    "donneesHorloge": {
+      "description": "T28 : régler l'horloge sur l'heure demandée (reponse) en déplaçant les aiguilles au doigt. pas : aimant de l'aiguille des minutes (5 par défaut, 15, 30). depart : position des aiguilles à l'ouverture (12 h 00 par défaut).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pas": { "enum": [5, 15, 30], "default": 5 },
+        "depart": { "$ref": "#/$defs/heureCadran" },
+        "chiffres": { "$ref": "#/$defs/chiffres" }
+      }
+    },
+    "donneesRegle": {
+      "description": "T30 : lire la longueur d'un objet posé le long d'une règle graduée en centimètres et l'écrire sur le pavé. objet.depart : l'objet peut ne pas partir de zéro. Règles Dart : objet dans la règle, réponse égale à sa longueur.",
+      "type": "object",
+      "required": ["objet"],
+      "additionalProperties": false,
+      "properties": {
+        "longueur_regle": { "type": "integer", "minimum": 5, "maximum": 30, "default": 10 },
+        "objet": {
+          "type": "object",
+          "required": ["longueur"],
+          "additionalProperties": false,
+          "properties": {
+            "emoji": { "$ref": "#/$defs/emoji" },
+            "longueur": { "type": "integer", "minimum": 1, "maximum": 30 },
+            "depart": { "type": "integer", "minimum": 0, "maximum": 29, "default": 0 }
+          }
+        },
+        "unite": { "$ref": "#/$defs/texteNonVide" },
         "chiffres": { "$ref": "#/$defs/chiffres" }
       }
     },

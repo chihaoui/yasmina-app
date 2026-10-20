@@ -1990,6 +1990,85 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'mesure-temps/T28-horloge.json': r'''
+{
+  "id": "ma-2-t2-u1-e01-x01",
+  "type": "T28",
+  "gabarit": "horloge-aiguilles",
+  "competence": "ma-mesure-heure",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِضْبِطِ السَّاعَةَ عَلَى السَّادِسَةِ وَالنِّصْفِ.",
+      "feminin": "اِضْبِطِي السَّاعَةَ عَلَى السَّادِسَةِ وَالنِّصْفِ."
+    }
+  },
+  "donnees": {
+    "pas": 5,
+    "depart": {
+      "heure": 12,
+      "minutes": 0
+    }
+  },
+  "reponse": {
+    "heure": 6,
+    "minutes": 30
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: السَّاعَةُ السَّادِسَةُ وَالنِّصْفُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: السَّاعَةُ السَّادِسَةُ وَالنِّصْفُ."
+    },
+    "indice": "الْعَقْرَبُ الْقَصِيرُ لِلسَّاعَاتِ، وَالطَّوِيلُ لِلدَّقَائِقِ.",
+    "explication": "فِي السَّادِسَةِ وَالنِّصْفِ: الْعَقْرَبُ الطَّوِيلُ عَلَى 6، وَالْقَصِيرُ بَيْنَ 6 وَ7."
+  },
+  "empreinte": "sha256:a769aa367df7f351519aaf6bd5a5bbaeac20b8dd8221365ea6c38bcc647b6ed8",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'mesure-temps/T30-regle.json': r'''
+{
+  "id": "ma-3-t2-u1-e01-x01",
+  "type": "T30",
+  "gabarit": "regle-objet",
+  "competence": "ma-mesure-longueur",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "مَا طُولُ الْقَلَمِ بِالسَّنْتِيمِتْرِ؟",
+      "feminin": "مَا طُولُ الْقَلَمِ بِالسَّنْتِيمِتْرِ؟"
+    }
+  },
+  "donnees": {
+    "longueur_regle": 10,
+    "objet": {
+      "emoji": "✏️",
+      "longueur": 7,
+      "depart": 0
+    },
+    "unite": "صم"
+  },
+  "reponse": {
+    "valeur": 7
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: طُولُ الْقَلَمِ 7 صم.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: طُولُ الْقَلَمِ 7 صم."
+    },
+    "indice": "اِبْدَأِ الْقِرَاءَةَ مِنَ الصِّفْرِ.",
+    "explication": "الْقَلَمُ يَبْدَأُ عِنْدَ 0 وَيَنْتَهِي عِنْدَ 7: طُولُهُ 7 صم."
+  },
+  "empreinte": "sha256:928b9bd7ef9052d8bf6de368afa0292d405912fb255cf42f7cb5a3b43e4bbdb2",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
   'revision-jeux/T36-flashcards.json': r'''
 {
   "id": "ar-1-t1-u2-e02-x01",

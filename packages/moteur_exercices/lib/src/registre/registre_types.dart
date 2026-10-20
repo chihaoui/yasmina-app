@@ -369,8 +369,20 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Mesure et temps (lot 2).
-  TypeExercice('T28', 'Horloge', Moteur.mesureTemps, lot: 2),
-  TypeExercice('T30', 'Règle', Moteur.mesureTemps, lot: 2),
+  TypeExercice(
+    'T28',
+    'Horloge',
+    Moteur.mesureTemps,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T30',
+    'Règle',
+    Moteur.mesureTemps,
+    lot: 2,
+    etat: EtatType.jouable,
+  ),
   // Grille et graphiques (lot 2).
   TypeExercice('T31', 'Lire un graphique', Moteur.grilleGraphiques, lot: 2),
   TypeExercice(

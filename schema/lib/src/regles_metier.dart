@@ -323,6 +323,16 @@ List<ProblemeValidation> reglesExercice(
       ),
     );
   }
+  if (type == 'T28' || type == 'T30') {
+    problemes.addAll(
+      _reglesMesure(
+        type,
+        ex['donnees'] as Map<String, dynamic>,
+        ex['reponse'] as Map<String, dynamic>,
+        chemin,
+      ),
+    );
+  }
   if (type == 'T54') {
     problemes.addAll(
       _reglesColoriage(
@@ -1441,6 +1451,66 @@ List<ProblemeValidation> _reglesScene(
       '${zones.length} zones en ${niveau == 1 ? '1re' : '2e'} année : '
           '4 à 6 au maximum (CLAUDE.md §5).',
     );
+  }
+  return problemes;
+}
+
+/// Règles du moteur Mesure et temps (docs/moteurs/mesure-temps.md) : T28
+/// Horloge, T30 Règle.
+List<ProblemeValidation> _reglesMesure(
+  String type,
+  Map<String, dynamic> donnees,
+  Map<String, dynamic> reponse,
+  String chemin,
+) {
+  final problemes = <ProblemeValidation>[];
+  void erreur(String c, String code, String message) => problemes.add(
+    ProblemeValidation(chemin: c, code: code, message: message),
+  );
+  switch (type) {
+    case 'T28':
+      final pas = donnees['pas'] as int? ?? 5;
+      final minutes = reponse['minutes'] as int;
+      final heure = reponse['heure'] as int;
+      if (minutes % pas != 0) {
+        erreur(
+          '$chemin/reponse/minutes',
+          'heure_hors_pas',
+          'les minutes de la cible ($minutes) doivent être un multiple du '
+              'pas ($pas) pour que l\'aiguille s\'y aimante.',
+        );
+      }
+      final depart = (donnees['depart'] as Map?)?.cast<String, dynamic>();
+      final departHeure = depart?['heure'] as int? ?? 12;
+      final departMinutes = depart?['minutes'] as int? ?? 0;
+      if (departHeure % 12 == heure % 12 && departMinutes == minutes) {
+        erreur(
+          '$chemin/donnees/depart',
+          'depart_egal_cible',
+          'les aiguilles partent déjà de l\'heure demandée.',
+        );
+      }
+    case 'T30':
+      final longueurRegle = donnees['longueur_regle'] as int? ?? 10;
+      final objet = donnees['objet'] as Map<String, dynamic>;
+      final longueur = objet['longueur'] as int;
+      final depart = objet['depart'] as int? ?? 0;
+      if (depart + longueur > longueurRegle) {
+        erreur(
+          '$chemin/donnees/objet',
+          'objet_hors_regle',
+          'l\'objet va de $depart à ${depart + longueur} : la règle fait '
+              '$longueurRegle.',
+        );
+      }
+      if (reponse['valeur'] != longueur) {
+        erreur(
+          '$chemin/reponse/valeur',
+          'reponse_valeur_incoherente',
+          'la réponse (${reponse['valeur']}) doit être la longueur de '
+              'l\'objet ($longueur).',
+        );
+      }
   }
   return problemes;
 }

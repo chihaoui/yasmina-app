@@ -160,6 +160,57 @@ void main() {
     );
   });
 
+  test('T28 et T30 (moteur Mesure et temps) : exemples valides et règles', () {
+    final mesure = <String, Map<String, dynamic>>{
+      'T28': exercice('T28', {'pas': 5}, {'heure': 6, 'minutes': 30}),
+      'T30': exercice(
+        'T30',
+        {
+          'longueur_regle': 10,
+          'objet': {'emoji': '✏️', 'longueur': 7},
+        },
+        {'valeur': 7},
+      ),
+    };
+    for (final MapEntry(key: type, value: ex) in mesure.entries) {
+      final r = validerExercice(ex);
+      expect(r.erreurs, isEmpty, reason: '$type : $r');
+      expect(r.avertissements, isEmpty, reason: '$type : $r');
+    }
+    List<ProblemeValidation> erreursDe(
+      String type,
+      void Function(Map<String, dynamic> ex) f,
+    ) {
+      final ex = jsonDecode(jsonEncode(mesure[type])) as Map<String, dynamic>;
+      f(ex);
+      return validerExercice(ex).erreurs;
+    }
+
+    expect(
+      erreursDe('T28', (ex) => ex['reponse']['minutes'] = 32).single,
+      probleme('/reponse/minutes', 'heure_hors_pas'),
+    );
+    expect(
+      erreursDe(
+        'T28',
+        (ex) => ex['donnees']['depart'] = {'heure': 6, 'minutes': 30},
+      ).single,
+      probleme('/donnees/depart', 'depart_egal_cible'),
+    );
+    expect(
+      erreursDe('T28', (ex) => ex['donnees']['pas'] = 10),
+      contains(probleme('/donnees/pas', 'valeur_non_autorisee')),
+    );
+    expect(
+      erreursDe('T30', (ex) => ex['donnees']['objet']['depart'] = 5).single,
+      probleme('/donnees/objet', 'objet_hors_regle'),
+    );
+    expect(
+      erreursDe('T30', (ex) => ex['reponse']['valeur'] = 8).single,
+      probleme('/reponse/valeur', 'reponse_valeur_incoherente'),
+    );
+  });
+
   test('un exemple valide pour chacun des 2 types, sans avertissement', () {
     valides.forEach((type, construire) {
       final r = validerExercice(construire());

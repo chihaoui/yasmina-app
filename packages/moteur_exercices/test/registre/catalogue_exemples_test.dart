@@ -10,7 +10,7 @@ void main() {
 
     test('tous valides et rattachés à un moteur du registre (Choix, '
         'Glisser-déposer, Manipulables, Texte, Saisie numérique, '
-        'Scène image, Révision et jeux)', () {
+        'Scène image, Révision et jeux, Mesure et temps)', () {
       expect(catalogue.tous, hasLength(exemplesEduContent.length));
       for (final e in catalogue.tous) {
         expect(e.estValide, isTrue, reason: '${e.chemin} : ${e.erreurs}');
@@ -24,6 +24,7 @@ void main() {
             Moteur.saisieNumerique,
             Moteur.sceneImage,
             Moteur.revisionJeux,
+            Moteur.mesureTemps,
           ]),
           reason: e.chemin,
         );

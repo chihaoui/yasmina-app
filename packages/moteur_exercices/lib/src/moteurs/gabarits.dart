@@ -16,6 +16,8 @@ import 'manipulables/gabarit_droite_numerique.dart';
 import 'manipulables/gabarit_fractions.dart';
 import 'manipulables/gabarit_modele_barres.dart';
 import 'manipulables/gabarit_monnaie.dart';
+import 'mesure/gabarit_horloge.dart';
+import 'mesure/gabarit_regle.dart';
 import 'saisie/gabarit_balance.dart';
 import 'saisie/gabarit_calcul_pose.dart';
 import 'saisie/gabarit_fluidite.dart';
@@ -81,6 +83,9 @@ const Map<String, GabaritReponse> gabaritsJouables = {
   'T36': GabaritFlashcards(),
   'T37': GabaritMemory(),
   'T38': GabaritMotsMeles(),
+  // Moteur Mesure et temps.
+  'T28': GabaritHorloge(),
+  'T30': GabaritRegle(),
 };
 
 /// Gabarit du type [idType], `null` s'il n'est pas encore jouable.

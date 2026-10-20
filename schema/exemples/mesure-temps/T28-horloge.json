@@ -1,0 +1,37 @@
+{
+  "id": "ma-2-t2-u1-e01-x01",
+  "type": "T28",
+  "gabarit": "horloge-aiguilles",
+  "competence": "ma-mesure-heure",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِضْبِطِ السَّاعَةَ عَلَى السَّادِسَةِ وَالنِّصْفِ.",
+      "feminin": "اِضْبِطِي السَّاعَةَ عَلَى السَّادِسَةِ وَالنِّصْفِ."
+    }
+  },
+  "donnees": {
+    "pas": 5,
+    "depart": {
+      "heure": 12,
+      "minutes": 0
+    }
+  },
+  "reponse": {
+    "heure": 6,
+    "minutes": 30
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: السَّاعَةُ السَّادِسَةُ وَالنِّصْفُ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: السَّاعَةُ السَّادِسَةُ وَالنِّصْفُ."
+    },
+    "indice": "الْعَقْرَبُ الْقَصِيرُ لِلسَّاعَاتِ، وَالطَّوِيلُ لِلدَّقَائِقِ.",
+    "explication": "فِي السَّادِسَةِ وَالنِّصْفِ: الْعَقْرَبُ الطَّوِيلُ عَلَى 6، وَالْقَصِيرُ بَيْنَ 6 وَ7."
+  },
+  "empreinte": "sha256:a769aa367df7f351519aaf6bd5a5bbaeac20b8dd8221365ea6c38bcc647b6ed8",
+  "statut": "brouillon",
+  "version": 1
+}
