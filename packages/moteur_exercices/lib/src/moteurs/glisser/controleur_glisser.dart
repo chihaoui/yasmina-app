@@ -228,13 +228,15 @@ class ControleurAffectation extends ControleurGlisser {
 }
 
 /// Les éléments se rangent dans une ligne, dans l'ordre : mots (T13),
-/// images (T14), lettres ou syllabes d'un mot (T15, T16).
+/// images (T14), lettres ou syllabes d'un mot (T15, T16), éléments d'une
+/// frise (T62), lettres d'une racine ou d'un schème (T56).
 class ControleurOrdre extends ControleurGlisser {
   ControleurOrdre({
     required super.config,
     required super.elements,
     required this.attendu,
     this.exigeTous = true,
+    this.capacite,
     this.ecoute,
     super.melanger,
   });
@@ -245,6 +247,13 @@ class ControleurOrdre extends ControleurGlisser {
   /// Vérifier exige tous les éléments (T13, T14) ou au moins un (T15, T16,
   /// où des lettres de la réserve peuvent être en trop).
   final bool exigeTous;
+
+  /// Nombre de places dans la ligne (emplacements de T56), `null` sans
+  /// limite. Une ligne pleine ne reçoit plus d'élément de la réserve.
+  final int? capacite;
+
+  /// La ligne est pleine.
+  bool get pleine => capacite != null && _ordre.length >= capacite!;
 
   /// Mot entendu (T15, T16), dit après la consigne et au toucher.
   final String? ecoute;
@@ -265,6 +274,7 @@ class ControleurOrdre extends ControleurGlisser {
   void poser(String id, String cible) {
     if (!modifiable) return;
     final ancienne = _ordre.indexOf(id);
+    if (ancienne < 0 && pleine) return;
     if (ancienne >= 0) _ordre.removeAt(ancienne);
     var index = int.tryParse(cible) ?? _ordre.length;
     if (ancienne >= 0 && ancienne < index) index--;

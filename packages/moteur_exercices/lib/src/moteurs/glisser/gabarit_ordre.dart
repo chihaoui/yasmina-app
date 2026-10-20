@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../composants/bouton_icone.dart';
@@ -15,7 +17,8 @@ import 'tuile_glissable.dart';
 import 'zone_depot.dart';
 
 /// Types à ordre du moteur Glisser-déposer : T13 mots, T14 images, T15
-/// lettres et T16 syllabes d'un mot (docs/moteurs/glisser-deposer.md §2).
+/// lettres et T16 syllabes d'un mot, T62 éléments d'une frise
+/// (docs/moteurs/glisser-deposer.md §2).
 class GabaritOrdre implements GabaritReponse {
   const GabaritOrdre(this.type);
 
@@ -25,6 +28,9 @@ class GabaritOrdre implements GabaritReponse {
   ModeValidation get validation => ModeValidation.verifier;
 
   bool get _mot => type == 'T15' || type == 'T16';
+
+  /// La ligne de réponse est une frise chronologique (T62).
+  bool get _frise => type == 'T62';
 
   @override
   ControleurOrdre creerControleur(
@@ -38,7 +44,13 @@ class GabaritOrdre implements GabaritReponse {
       elements: [
         for (final e
             in (donnees['elements'] as List).cast<Map<String, dynamic>>())
-          Proposition.depuisJson(e),
+          Proposition(
+            id: e['id'] as String,
+            texte: e['texte'] as String?,
+            emoji: e['emoji'] as String?,
+            // Date d'un élément de frise (T62).
+            detail: e['date'] as String?,
+          ),
       ],
       attendu: (reponse['ordre'] as List).cast<String>(),
       exigeTous: !_mot,
@@ -53,12 +65,19 @@ class GabaritOrdre implements GabaritReponse {
         controleur as ControleurOrdre,
         mot: _mot,
         grand: _mot || type == 'T14',
+        frise: _frise,
       );
 }
 
-/// Ligne de réponse (T13, T14) ou zone du mot (T15, T16), puis la réserve.
+/// Ligne de réponse (T13, T14), zone du mot (T15, T16) ou frise (T62),
+/// puis la réserve.
 class _ZoneOrdre extends StatelessWidget {
-  const _ZoneOrdre(this.controleur, {required this.mot, required this.grand});
+  const _ZoneOrdre(
+    this.controleur, {
+    required this.mot,
+    required this.grand,
+    this.frise = false,
+  });
 
   final ControleurOrdre controleur;
 
@@ -67,6 +86,9 @@ class _ZoneOrdre extends StatelessWidget {
 
   /// Tuiles en content-word (lettres, syllabes, grandes images).
   final bool grand;
+
+  /// Les éléments posés se placent sur une frise à cases fixes (T62).
+  final bool frise;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +116,12 @@ class _ZoneOrdre extends StatelessWidget {
           };
         }
 
-        Widget tuile(String id, {bool posee = false, bool fantome = false}) {
+        Widget tuile(
+          String id, {
+          bool posee = false,
+          bool fantome = false,
+          bool compacte = false,
+        }) {
           final e = controleur.element(id);
           if (fantome) {
             return Visibility(
@@ -112,16 +139,18 @@ class _ZoneOrdre extends StatelessWidget {
               ),
             );
           }
+          // Sur la frise, une case étroite : l'emoji (sinon le texte) et la
+          // date, le texte reste le libellé lu.
           return TuileGlissable(
             key: ValueKey('${posee ? 'pose' : 'element'}_$id'),
             id: id,
             etat: controleur.etatDe(id),
-            texte: e.texte,
+            texte: compacte && e.emoji != null ? null : e.texte,
             emoji: e.emoji,
+            detail: e.detail,
             grand: grand,
-            libelleAccessibilite: e.texte == null
-                ? libelles.image(controleur.numero(id))
-                : null,
+            libelleAccessibilite:
+                e.texte ?? libelles.image(controleur.numero(id)),
             motEtat: motEtat(id),
             onToucher: controleur.modifiable
                 ? () {
@@ -159,6 +188,81 @@ class _ZoneOrdre extends StatelessWidget {
                     _ => c.ink,
                   },
                 ),
+          );
+        } else if (frise) {
+          // Une case par élément sur une ligne du temps, dans le sens
+          // d'écriture : les éléments posés dans l'ordre, puis la case
+          // suivante (seule à recevoir un dépôt), puis les cases vides.
+          final n = controleur.elements.length;
+          final resteAPoser = controleur.modifiable && ordre.length < n;
+          Widget case_(int i) {
+            final Widget enfant;
+            if (i < ordre.length) {
+              final id = ordre[i];
+              enfant = DragTarget<String>(
+                key: ValueKey('avant_$id'),
+                onWillAcceptWithDetails: (d) =>
+                    controleur.modifiable && d.data != id,
+                onAcceptWithDetails: (d) => deposer(d.data, '$i'),
+                builder: (context, candidats, _) =>
+                    tuile(id, posee: true, compacte: true),
+              );
+            } else {
+              final suivante = i == ordre.length && resteAPoser;
+              enfant = ZoneDepot(
+                key: ValueKey(suivante ? 'ligne_fin' : 'frise_case_$i'),
+                libelle: '${i + 1}',
+                enLigne: true,
+                onDepot: suivante ? (id) => deposer(id, 'fin') : null,
+                onToucher: suivante
+                    ? () {
+                        if (controleur.enAttente == null) return;
+                        services.vibration.legere();
+                        services.audio.jouerSon(SonInterface.depot);
+                        controleur.poserAttente('fin');
+                      }
+                    : null,
+                child: const SizedBox(
+                  width: EspacesYasmina.targetMin,
+                  height: EspacesYasmina.targetMin,
+                ),
+              );
+            }
+            return Center(child: enfant);
+          }
+
+          contenu = LayoutBuilder(
+            key: const ValueKey('frise'),
+            builder: (context, contraintes) {
+              final largeurCase = math.max(
+                EspacesYasmina.targetMin + EspacesYasmina.space2,
+                contraintes.maxWidth / n,
+              );
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        for (var i = 0; i < n; i++)
+                          SizedBox(width: largeurCase, child: case_(i)),
+                      ],
+                    ),
+                    CustomPaint(
+                      size: Size(largeurCase * n, EspacesYasmina.space8),
+                      painter: _LigneDuTemps(
+                        cases: n,
+                        couleur: c.line,
+                        sens: Directionality.of(context),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           );
         } else {
           // La case suivante, en fin de ligne : un dépôt s'y ajoute (le
@@ -257,4 +361,57 @@ class _ZoneOrdre extends StatelessWidget {
       },
     );
   }
+}
+
+/// Ligne du temps de la frise (T62) : un trait sous les cases, un repère
+/// au milieu de chaque case et une flèche dans le sens d'écriture.
+class _LigneDuTemps extends CustomPainter {
+  const _LigneDuTemps({
+    required this.cases,
+    required this.couleur,
+    required this.sens,
+  });
+
+  final int cases;
+  final Color couleur;
+  final TextDirection sens;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final trait = Paint()
+      ..color = couleur
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = TraitsYasmina.borderThick
+      ..strokeCap = StrokeCap.round;
+    final y = size.height / 2;
+    canvas.drawLine(Offset(0, y), Offset(size.width, y), trait);
+    final largeurCase = size.width / cases;
+    for (var i = 0; i < cases; i++) {
+      final x = largeurCase * (i + 1 / 2);
+      canvas.drawLine(
+        Offset(x, y - EspacesYasmina.space2),
+        Offset(x, y + EspacesYasmina.space2),
+        trait,
+      );
+    }
+    // Flèche à la fin de la ligne, dans le sens de lecture.
+    final fin = sens == TextDirection.rtl ? 0.0 : size.width;
+    final recul = sens == TextDirection.rtl
+        ? EspacesYasmina.space3
+        : -EspacesYasmina.space3;
+    canvas.drawLine(
+      Offset(fin, y),
+      Offset(fin + recul, y - EspacesYasmina.space2),
+      trait,
+    );
+    canvas.drawLine(
+      Offset(fin, y),
+      Offset(fin + recul, y + EspacesYasmina.space2),
+      trait,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_LigneDuTemps ancien) =>
+      ancien.cases != cases || ancien.couleur != couleur || ancien.sens != sens;
 }

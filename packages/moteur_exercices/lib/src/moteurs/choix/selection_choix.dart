@@ -8,7 +8,13 @@ import '../../lecteur/contrat_moteur.dart';
 /// Une proposition touchable du moteur Choix : un choix, une preuve, une
 /// forme de lettre, une haraka ou un signe. Texte, emoji ou les deux.
 class Proposition {
-  const Proposition({required this.id, this.texte, this.emoji, this.audio});
+  const Proposition({
+    required this.id,
+    this.texte,
+    this.emoji,
+    this.audio,
+    this.detail,
+  });
 
   /// Lit un élément de `donnees.choix` (ou `preuves`, ou `suite` avec un id
   /// donné par [idSuite]).
@@ -26,6 +32,9 @@ class Proposition {
 
   /// Fichier audio du choix (plus tard, phase B).
   final String? audio;
+
+  /// Texte court affiché sous l'élément (date d'un élément de frise, T62).
+  final String? detail;
 }
 
 /// Sélection d'une ou plusieurs propositions parmi une liste, corrigée par

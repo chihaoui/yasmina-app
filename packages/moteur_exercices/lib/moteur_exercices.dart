@@ -26,6 +26,7 @@ export 'src/moteurs/gabarits.dart';
 export 'src/moteurs/glisser/controleur_glisser.dart';
 export 'src/moteurs/glisser/gabarit_affectation.dart';
 export 'src/moteurs/glisser/gabarit_ordre.dart';
+export 'src/moteurs/glisser/gabarit_racine_scheme.dart';
 export 'src/moteurs/glisser/tuile_glissable.dart';
 export 'src/moteurs/glisser/zone_depot.dart';
 export 'src/plateforme/services.dart';

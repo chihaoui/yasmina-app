@@ -20,6 +20,7 @@ class TuileGlissable extends StatefulWidget {
     required this.etat,
     this.texte,
     this.emoji,
+    this.detail,
     this.grand = false,
     this.libelleAccessibilite,
     this.motEtat,
@@ -34,6 +35,9 @@ class TuileGlissable extends StatefulWidget {
   final EtatGlissable etat;
   final String? texte;
   final String? emoji;
+
+  /// Texte court sous le texte, en caption (date d'un élément de frise).
+  final String? detail;
 
   /// Texte en content-word (lettres, syllabes).
   final bool grand;
@@ -180,7 +184,10 @@ class _Corps extends StatelessWidget {
       button: true,
       enabled: widget.onToucher != null,
       selected: widget.etat == EtatGlissable.attente,
-      label: widget.libelleAccessibilite ?? widget.texte ?? '',
+      label: [
+        widget.libelleAccessibilite ?? widget.texte ?? '',
+        ?widget.detail,
+      ].join(' '),
       excludeSemantics: true,
       child: Material(
         color: fond,
@@ -210,6 +217,15 @@ class _Corps extends StatelessWidget {
                     widget.texte!,
                     textAlign: TextAlign.center,
                     style: styleTexte,
+                  ),
+                if (widget.detail != null)
+                  Text(
+                    widget.detail!,
+                    textAlign: TextAlign.center,
+                    style: ThemeYasmina.pourLangue(
+                      StylesYasmina.caption,
+                      langue,
+                    ).copyWith(color: c.muted),
                   ),
                 if (widget.motEtat != null)
                   Text(

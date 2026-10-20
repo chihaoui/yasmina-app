@@ -208,8 +208,20 @@ const typesExercices = <TypeExercice>[
     lot: 1,
     etat: EtatType.jouable,
   ),
-  TypeExercice('T56', 'Racine et schème', Moteur.glisserDeposer, lot: 1),
-  TypeExercice('T62', 'Frise chronologique', Moteur.glisserDeposer, lot: 1),
+  TypeExercice(
+    'T56',
+    'Racine et schème',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
+  TypeExercice(
+    'T62',
+    'Frise chronologique',
+    Moteur.glisserDeposer,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   // Tracé (lot 1).
   TypeExercice('T20', 'Tracé de lettre (non noté)', Moteur.trace, lot: 1),
   // Manipulables.

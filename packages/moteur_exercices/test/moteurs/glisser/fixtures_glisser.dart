@@ -173,3 +173,34 @@ Map<String, dynamic> t14Francais() => exerciceChoix(
   indice: 'La journée commence quand le soleil se lève.',
   explication: 'L\'ordre est : le matin, midi, le soir, la nuit.',
 );
+
+/// T62 en arabe (éveil, 2e année) : les étapes de la plante, étiquetées
+/// sans date.
+Map<String, dynamic> t62Arabe() => exerciceChoix(
+  type: 'T62',
+  langue: 'ar',
+  gabarit: 'frise-etapes',
+  competence: 'nabat-marahil',
+  consigne: {
+    'masculin': 'رَتِّبْ مَرَاحِلَ نُمُوِّ النَّبْتَةِ عَلَى الْخَطِّ.',
+    'feminin': 'رَتِّبِي مَرَاحِلَ نُمُوِّ النَّبْتَةِ عَلَى الْخَطِّ.',
+  },
+  donnees: {
+    'elements': [
+      {'id': 'e1', 'texte': 'بَذْرَةٌ', 'emoji': '🌰'},
+      {'id': 'e2', 'texte': 'بُرْعُمٌ', 'emoji': '🌱'},
+      {'id': 'e3', 'texte': 'نَبْتَةٌ', 'emoji': '🌿'},
+      {'id': 'e4', 'texte': 'زَهْرَةٌ', 'emoji': '🌸'},
+    ],
+    'melanger': false,
+  },
+  reponse: {
+    'ordre': ['e1', 'e2', 'e3', 'e4'],
+  },
+  reussite: {
+    'masculin': 'إِجَابَتُكَ صَحِيحَةٌ: هَكَذَا تَنْمُو النَّبْتَةُ.',
+    'feminin': 'إِجَابَتُكِ صَحِيحَةٌ: هَكَذَا تَنْمُو النَّبْتَةُ.',
+  },
+  indice: 'كُلُّ نَبْتَةٍ تَبْدَأُ بِبَذْرَةٍ.',
+  explication: 'بَذْرَةٌ، ثُمَّ بُرْعُمٌ، ثُمَّ نَبْتَةٌ، ثُمَّ زَهْرَةٌ.',
+);

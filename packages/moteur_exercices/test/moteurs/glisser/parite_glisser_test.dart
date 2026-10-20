@@ -14,7 +14,7 @@ void main() {
         typeParId(e.idType!)?.etat == EtatType.jouable,
   );
 
-  test('les 8 types du moteur sont jouables, avec un exemple chacun', () {
+  test('les 10 types du moteur sont jouables, avec un exemple chacun', () {
     expect(exemples.map((e) => e.idType).toSet(), {
       'T06',
       'T09',
@@ -24,6 +24,8 @@ void main() {
       'T14',
       'T15',
       'T16',
+      'T56',
+      'T62',
     });
   });
 

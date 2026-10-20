@@ -1,6 +1,6 @@
 # Moteur Glisser-déposer
 
-Fiche de conception du moteur Glisser-déposer, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, décision 39)**, à valider par Lamjed. Base de la tâche A1-02 (6 j-h en vigueur). Les points tranchés seul et les questions ouvertes sont dans [glisser-deposer-questions.md](glisser-deposer-questions.md).
+Fiche de conception du moteur Glisser-déposer, écrite avant le code. Statut : **brouillon du 20 oct. 2026 (Claude Code, session sans surveillance, décision 39)**, complété l'après-midi par T56 et T62 (hypothèse de périmètre du mentor : le catalogue v3.1 fait foi, le moteur compte 10 types), à valider par Lamjed. Base de la tâche A1-02 (6 j-h en vigueur). Les points tranchés seul et les questions ouvertes sont dans [glisser-deposer-questions.md](glisser-deposer-questions.md).
 
 Sources : CLAUDE.md §5 (glisser-déposer réel, toucher-toucher en secours, cibles, aimant, retour animé, vibration, réordonner ou retirer avant Vérifier, remplissage de droite à gauche, 4 à 6 éléments en 1re et 2e), la page catalogue v3 (`docs/reference/catalogue-v3-poc.html`, référence visuelle seulement, jamais du code à reprendre), la liste des types de la décision 3, la fiche [choix.md](choix.md) pour tout ce qui est commun au lecteur.
 
@@ -29,21 +29,24 @@ Liste de la décision 3, confrontée au registre des 53 types (`registre_types.d
 | T14 | Séquence d'images | Comme T13, avec de grandes images légendées | Glisser-déposer, lot 1 | `T14-sequence-images.json` |
 | T15 | Construire un mot (lettres) | Glisse les lettres dans la zone du mot, elles se lient | Glisser-déposer, lot 1 | `T15-mot-lettres.json` |
 | T16 | Construire un mot (syllabes) | Comme T15, avec des syllabes | Glisser-déposer, lot 1 | `T16-mot-syllabes.json` |
+| T56 | Racine et schème (arabe) | Glisse les lettres de la racine (ك ت ب) ou du schème (فَاعِلٌ) d'un mot dans des emplacements | Glisser-déposer, lot 1 (catalogue v3.1) | `T56-racine.json`, `T56-scheme.json` |
+| T62 | Frise chronologique | Variante de T13 : glisse des éléments datés ou étiquetés dans l'ordre sur une frise | Glisser-déposer, lot 1 (catalogue v3.1) | `T62-frise.json` |
 | T26 | Monnaie | Glisse des pièces dans le porte-monnaie pour former un montant | **Manipulables, lot 2 (A2-02)** | aucun ici (voir §13) |
 | T27 | Blocs base 10 | Glisse des dizaines et des unités pour représenter un nombre | **Manipulables, lot 1 (A1-06)** | aucun ici (voir §13) |
-| T39 | Glisser des mots dans un texte | Plusieurs trous dans un court texte, avec une banque de mots | **Absent des 53 types** (fusionné dans T06 par le catalogue v3) | couvert par le gabarit `texte-trous` de T06 |
+| T39 | Glisser des mots dans un texte | Plusieurs trous dans un court texte, avec une banque de mots | **Absent des 53 types** (fusionné dans T06 par le catalogue v3, « plus tard » hors MVP) | couvert par le gabarit `texte-trous` de T06 |
 
-Le registre range aussi T56 (Racine et schème) et T62 (Frise chronologique) dans ce moteur. Ils ne sont pas dans la liste de la décision 3 : ils ne sont pas traités par cette fiche (question ouverte 1).
+Périmètre retenu l'après-midi du 20 oct. (hypothèse du mentor, à valider le soir) : le catalogue v3.1 (décision 15) fait foi sur la liste de la décision 3. T39 est hors MVP, T26 et T27 relèvent du moteur Manipulables, T56 et T62 appartiennent à ce moteur, qui compte donc **10 types**.
 
-Cinq interactions suffisent pour les 8 types codés ici, chaque type étant une présentation de l'une d'elles :
+Six interactions suffisent pour les 10 types, chaque type étant une présentation de l'une d'elles :
 
 | Interaction | Types | Cibles |
 |---|---|---|
 | **Trous** | T06 (et T39 par le gabarit `texte-trous`) | les trous d'un texte, un élément par trou |
 | **Paires** | T09 | les éléments de droite, un élément de gauche par cible |
 | **Bacs** | T11, T12 | les catégories, plusieurs éléments par bac |
-| **Ordre** | T13, T14 | une ligne de réponse, les éléments s'y rangent dans l'ordre |
+| **Ordre** | T13, T14, T62 | une ligne de réponse (une frise pour T62), les éléments s'y rangent dans l'ordre |
 | **Mot** | T15, T16 | la zone du mot, les lettres ou syllabes s'y lient dans l'ordre |
+| **Emplacements** | T56 | des emplacements en nombre fixe, un par lettre attendue, remplis dans l'ordre |
 
 ## 3. Interaction
 
@@ -55,7 +58,7 @@ Cinq interactions suffisent pour les 8 types codés ici, chaque type étant une 
 4. **Dépôt hors cible** : l'élément revient à sa place en un **retour animé** (glissé jusqu'à sa position d'origine, 200 ms, aucun mouvement si l'appareil demande moins d'animations).
 5. **Dépôt réussi** : **vibration légère** (`ServiceVibration.legere`) et son `depot` (`ServiceAudio.jouerSon`). Aucun jugement à ce moment : un dépôt n'est ni juste ni faux tant que Vérifier n'est pas appuyé.
 6. **Réordonner ou retirer avant Vérifier.** Un élément posé reste glissable : vers une autre cible, vers une autre position de la ligne (ordre, mot), ou vers la réserve. Le toucher d'un élément posé le renvoie dans la réserve (T13 à T16 : seulement le dernier de la ligne, pour ne pas déplacer les autres par erreur).
-7. **Vérifier** devient actif quand la réponse est complète : tous les trous remplis (T06), toutes les paires faites (T09), tous les éléments classés (T11, T12), tous les éléments rangés (T13, T14), au moins un élément posé (T15, T16, où des lettres de la réserve peuvent être en trop).
+7. **Vérifier** devient actif quand la réponse est complète : tous les trous remplis (T06), toutes les paires faites (T09), tous les éléments classés (T11, T12), tous les éléments rangés (T13, T14, T62), au moins un élément posé (T15, T16, où des lettres de la réserve peuvent être en trop), tous les emplacements remplis (T56, lettres en trop possibles : une ligne pleine ne reçoit plus rien).
 
 ### Déroulé commun
 
@@ -71,6 +74,8 @@ Identique au moteur Choix : Yasmina et la consigne (lue à l'ouverture, réécou
 | T14 | Comme T13 avec de grandes tuiles (emoji et légende) | Grandes tuiles, mélangées |
 | T15 | La zone du mot : les lettres posées s'affichent **liées comme à l'écrit** (`content-word`, police content), pas en tuiles séparées. Bouton Écouter si `ecoute` existe (mot dit après la consigne, puis à chaque toucher) | Tuiles de lettres (`LetterTile`), mélangées, avec des lettres en trop possibles |
 | T16 | Comme T15 avec des syllabes | Tuiles de syllabes |
+| T56 | Le mot en grand (`content-word`, bouton Écouter si `ecoute`), puis la ligne des emplacements : les lettres posées, puis une case pointillée par emplacement encore vide (la première reçoit le dépôt). **Racine** : les lettres posées s'affichent isolées, séparées par une espace (ك ت ب), comme un jadhr s'écrit. **Schème** : elles s'affichent **liées en une seule chaîne**, chacune avec la haraka de son emplacement (فَ, فَا, فَاعِ, فَاعِلٌ). Le toucher de la ligne retire la dernière lettre | Tuiles de lettres nues (`content-word`), mélangées, avec des lettres en trop |
+| T62 | Une frise : une case par élément sur une ligne du temps (trait, repère par case, flèche dans le sens d'écriture), les éléments posés dans l'ordre puis la case suivante (seule à recevoir un dépôt), puis les cases vides. Sur la frise, la tuile posée montre l'emoji (sinon le texte) et sa date, le texte reste le libellé lu. Un dépôt sur un élément posé s'insère avant lui. Plus de cases que l'écran : la frise défile en largeur | Tuiles emoji, texte et date, mélangées |
 
 ## 4. Données JSON
 
@@ -83,6 +88,8 @@ Le schéma `schema/edu-content-1.0.schema.json` est la référence (définitions
 | T11, T12 | `categories` (2 à 3, id `k1`..., `titre`, `emoji` facultatif), `elements` (2 à 8, id `e1`...), `melanger` | `{ "classement": [ { "element": "e1", "categorie": "k2" }, ... ] }`, chaque élément dans une catégorie, chaque catégorie utilisée |
 | T13, T14 | `elements` (2 à 8, id `e1`...), `melanger` | `{ "ordre": ["e3", "e1", ...] }`, tous les éléments, une fois chacun |
 | T15, T16 | `elements` (2 à 10, lettres ou syllabes, id `e1`..., texte obligatoire), `ecoute` facultative (le mot dit), `melanger` | `{ "ordre": ["e2", "e1", ...] }`, chaque id une fois au plus, des éléments de la réserve peuvent rester inutilisés (lettres en trop) |
+| T62 | `elements` (2 à 8, id `e1`..., texte ou emoji, `date` facultative : texte court « 7 h », « 1956 »), `melanger` | `{ "ordre": [...] }`, tous les éléments, une fois chacun (comme T13) |
+| T56 | `mot` (vocalisé), `forme` (`racine` ou `scheme`), `emplacements` (2 à 6, un par lettre attendue, `haraka` facultative parmi fatha, damma, kasra, soukoun, fathatan, dammatan, kasratan, shadda-fatha, shadda-damma, shadda-kasra, pour le schème seulement), `lettres` (2 à 10 tuiles d'une lettre nue, lettres en trop possibles), `ecoute` facultative (le mot), `melanger` | `{ "ordre": ["e1", ...] }`, une lettre par emplacement, dans l'ordre d'écriture |
 
 Les réponses sont des tableaux d'objets, pas des objets à clés variables : le schéma reste dans son sous-ensemble prudent (pas de `patternProperties`).
 
@@ -94,7 +101,9 @@ Règles du validateur propres au moteur (détail dans `schema/README.md`) :
 - T11, T12 : chaque élément est classé, chaque catégorie reçoit au moins un élément (`classement_incomplet`, `categorie_vide`)
 - T13, T14 : l'ordre contient tous les éléments une seule fois (`ordre_incomplet`)
 - T15, T16 : l'ordre n'a pas de doublon, et si `ecoute` existe, le mot construit (textes dans l'ordre, collés) est le mot entendu une fois les harakat retirées de la comparaison (`mot_different_ecoute`) : les tuiles portent les lettres nues, l'écoute le mot vocalisé
-- T12 et T15 en arabe seulement (`type_langue`), T16 jamais en arabe (les syllabes découpées cassent la liaison des lettres)
+- T62 : mêmes règles que T13 (`ordre_incomplet`, `reponse_element_inconnu`)
+- T56 : une lettre arabe nue par tuile (`lettre_invalide`), une lettre par emplacement (`ordre_incomplet`), aucune haraka sur un emplacement de racine (`haraka_hors_scheme`), pour le schème un emplacement par lettre du mot avec la haraka que cette lettre porte dans le mot (`scheme_longueur`, `scheme_harakat_differentes`, shadda et voyelle comparées sans tenir compte de leur ordre, jamais de NFC ni de NFD), le mot entendu est le mot (`ecoute_differente_reponse`), avertissement `racine_hors_mot` si les lettres de la racine ne se lisent pas dans l'ordre dans le mot (racine creuse ou défectueuse, à relire)
+- T12, T15 et T56 en arabe seulement (`type_langue`), T16 jamais en arabe (les syllabes découpées cassent la liaison des lettres)
 - avertissement `elements_trop_nombreux` : plus de 6 éléments en 1re ou 2e année (niveau lu dans l'id de l'exercice)
 
 ## 5. Correction
@@ -136,14 +145,19 @@ Sons d'interface : `depot` à chaque dépôt réussi, puis `juste`, `essaiFaux` 
 | `sequence-images` | T14 | Grandes tuiles emoji et légende |
 | `mot-lettres` | T15 | Lettres liées dans la zone du mot |
 | `mot-syllabes` | T16 | Syllabes collées dans la zone du mot |
+| `racine-lettres` | T56 | Forme racine : lettres isolées dans les emplacements |
+| `scheme-lettres` | T56 | Forme schème : lettres liées avec leurs harakat |
+| `frise-journee`, `frise-etapes` | T62 | Frise des moments d'une journée (avec dates) ou des étapes d'un phénomène (étiquettes seules) |
 
 ## 9. Cas arabe et cas français
 
 - **Sens** : toute la zone suit `langue` par `LangueExercice`. En arabe, la réserve se remplit de droite à gauche, la ligne de réponse (T13, T14) et la zone du mot (T15, T16) se remplissent **de droite à gauche**, la colonne de gauche de T09 est à droite (début de ligne), les bacs se lisent de droite à gauche.
 - **Liaison des lettres (T15)** : la zone du mot affiche une seule chaîne de texte (les lettres posées, collées), jamais des tuiles séparées, pour que ب + ا + ب donne « باب ». Les tuiles de la réserve montrent la lettre isolée. Les harakat ne sont pas sur les tuiles de lettres : le mot entendu les porte.
+- **Racine et schème (T56)** : même vigilance que T15 et T19. Les tuiles portent la lettre nue. Le schème construit est une seule chaîne où chaque lettre posée reçoit la haraka de son emplacement (signes combinants ajoutés après la lettre, jamais réordonnés), pour que ف + ا + ع + ل donne « فَاعِلٌ » lié. La racine s'affiche en lettres isolées séparées par une espace (« ك ت ب »), comme on l'écrit. Le mot à analyser est affiché vocalisé tel qu'écrit.
+- **Frise (T62)** : la ligne du temps suit le sens d'écriture : en arabe, la première case est à droite et la flèche pointe vers la gauche.
 - **T16 en français ou en anglais seulement** : des syllabes arabes découpées afficheraient des lettres isolées là où l'écrit les lie.
 - **Polices** : éléments en `content-option` (arabe) ou `latin-prompt` (français, anglais), lettres et mot construit en `content-word`, texte à trous en `content-sentence` ou `latin-prompt` (long : `latin-body`, décision 38), titres des bacs en `option` (arabe) ou `latin-label`.
-- **Exemples** : arabe pour T11, T12, T14, T15, français pour T06, T09, T16, anglais pour T13.
+- **Exemples** : arabe pour T11, T12, T14, T15, T56 (racine et schème, 4e année), français pour T06, T09, T16, T62 (3e année), anglais pour T13.
 
 ## 10. Règles UX
 
@@ -171,7 +185,8 @@ Aucune nouvelle valeur hors `tokens.json` : la bordure pointillée reprend `bord
 - Pour chaque interaction : un vrai geste de glisser (`tester.drag` ou `startGesture` puis `moveTo` et `up`) jusqu'à une cible, un glisser hors cible (retour), et le toucher-toucher (toucher l'élément puis la cible).
 - Le déroulé complet : juste au 1er essai, faux puis juste (seuls les éléments faux reviennent), faux deux fois (réponse révélée), événements, son `depot` et vibration à chaque dépôt.
 - Test de parité : chaque exemple joué dans un test de widget mobile et par l'aperçu web (test de widget et build web).
-- Validation dans l'atelier : les 8 types jouables seuls avec chaque exemple.
+- Validation dans l'atelier : les 10 types jouables seuls avec chaque exemple.
+- T56 : les lettres isolées de la racine (« ك ت ب »), le schème lié lettre à lettre (« فَ », « فَا », « فَاعِ », « فَاعِلٌ »), la ligne pleine qui refuse une lettre de plus, le retrait du dernier. T62 : les cases de la frise dans le sens d'écriture, la date sous l'élément, l'insertion avant un élément posé.
 
 ## 13. Découpage (A1-02, 6 j-h en vigueur)
 
@@ -182,4 +197,5 @@ Aucune nouvelle valeur hors `tokens.json` : la bordure pointillée reprend `bord
 | c1 | `TuileGlissable`, `ZoneDepot`, geste (glisser, attente, aimant, retour), son et vibration, contrôleur d'affectation et d'ordre, tests du geste | 1,5 |
 | c2 | T09, T11, T13, T15 | 1,5 |
 | c3 | T06 (deux gabarits), T12, T14, T16, parité, atelier | 1,5 |
-| hors fiche | T26 et T27 : restent au moteur Manipulables (A1-06, A2-02) sauf décision contraire, T56 et T62 : à décrire plus tard | 0,5 de réserve |
+| c4 | T56 (racine et schème) et T62 (frise) : schéma, validateur, exemples, moteur, tests, parité (après-midi du 20 oct.) | 0,5 de réserve |
+| hors fiche | T26 et T27 : restent au moteur Manipulables (A1-06, A2-02), T39 hors MVP | 0 |
