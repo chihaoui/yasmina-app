@@ -7,16 +7,16 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
-| A1 | 12 | 36,25 | 33 % |
+| A1 | 23 | 36,25 | 63 % |
 | A2 | 0 | 30,5 | 0 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **30,5** | **182,25** | **16,7 %** |
+| **Total** | **41,5** | **182,25** | **22,8 %** |
 
-- **Avancement global : 16,7 %** (30,5 j-h faits sur 182,25)
-- **Types jouables : 25 sur 53**
+- **Avancement global : 22,8 %** (41,5 j-h faits sur 182,25)
+- **Types jouables : 36 sur 53**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
 
@@ -89,20 +89,33 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [x] Moteur : geste (glisser réel, toucher-toucher, aimant, retour animé, son et vibration), 8 types (T06, T09, T11, T12, T13, T14, T15, T16) jouables dans l'atelier (20 oct. 2026)
   - [x] T56 Racine et schème et T62 Frise chronologique : schéma, validateur, 3 exemples, moteur, tests, parité (après-midi du 20 oct. 2026, hypothèse de périmètre du mentor à valider : catalogue v3.1, 10 types)
   - [ ] Validation par Lamjed de la fiche, des 21 points tranchés et du test sur l'iPhone
-- [ ] A1-03 Moteur Texte (T07, T17) (2 j-h)
+- [x] A1-03 Moteur Texte (T07, T17) (2 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/texte.md`, schéma, validateur, 4 exemples, `comparerTextes` (soir du 20 oct. 2026)
+  - [x] T07 mots touchables, T17 clavier arabe du moteur et champ système en latin, tests, parité (20 oct. 2026)
+  - [ ] Validation par Lamjed de la fiche et test du clavier arabe sur l'iPhone
 - [x] A1-04 Moteur Tracé (T20) (1,5 j-h)
   - [x] Fiche en brouillon `docs/moteurs/trace.md` et questions (après-midi du 20 oct. 2026)
   - [x] Schéma, validateur, exemples ب ل م avec traits de guidage, tests (20 oct. 2026)
   - [x] Moteur : formes en boutons sans sous-titre, zone de tracé au doigt, guidage par points et flèches, Effacer, mode sans note, parité (20 oct. 2026)
   - [ ] Validation par Lamjed de la fiche et test du geste sur l'iPhone (la page ne doit pas défiler pendant le tracé)
-- [ ] A1-05 Moteur Saisie numérique, base (T22, T48) (2 j-h)
-- [ ] A1-06 Moteur Manipulables, base (T25, T27, T51) (3 j-h)
+- [x] A1-05 Moteur Saisie numérique, base (T22, T48) (2 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/saisie-numerique.md`, schéma, validateur, 3 exemples (soir du 20 oct. 2026)
+  - [x] Pavé numérique du moteur, T22, T48 (sens des colonnes et chiffres configurables, retenues), tests, parité (20 oct. 2026)
+  - [ ] Validation par Lamjed (disposition du calcul posé en arabe, chiffres) et test sur l'iPhone
+- [x] A1-06 Moteur Manipulables, base (T25, T27, T51) (3 j-h)
   - [x] Fiche en brouillon `docs/moteurs/manipulables.md` et questions (après-midi du 20 oct. 2026, sens de la droite numérique configurable par `sens`)
   - [x] Schéma, validateur, un exemple par type (droite numérique, blocs base 10, cadre de 10), tests (20 oct. 2026)
   - [x] T25 Droite numérique jouable dans l'atelier : repère glissé avec aimant, graduation touchée, sens configurable, tests et parité (20 oct. 2026)
-  - [ ] T27 Blocs base 10 et T51 Cadre de 10 : moteur, tests, parité
-- [ ] A1-07 Moteur Scène image, base (T08, T47) (1,5 j-h)
-- [ ] A1-08 Moteur Révision et jeux (T36 à T38) (2,5 j-h)
+  - [x] T27 Blocs base 10 et T51 Cadre de 10 : réserve inépuisable, plateau canonique, cadre de deux lignes, tests, parité (soir du 20 oct. 2026)
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
+- [x] A1-07 Moteur Scène image, base (T08, T47) (1,5 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/scene-image.md`, schéma (scène en emoji et formes, zones normalisées), validateur, 2 exemples (soir du 20 oct. 2026)
+  - [x] Scène dessinée par le moteur, T08 zones touchables, T47 étiquettes glissées (affectation « zones »), tests, parité (20 oct. 2026)
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
+- [x] A1-08 Moteur Révision et jeux (T36 à T38) (2,5 j-h)
+  - [x] Fiche en brouillon `docs/moteurs/revision-jeux.md`, schéma, validateur, 4 exemples (soir du 20 oct. 2026)
+  - [x] T36 flashcards sans note, T37 memory automatique noté par les essais, T38 mots mêlés (lettres isolées, lecture de droite à gauche en arabe), tests, parité (20 oct. 2026)
+  - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [ ] A1-09 Vérification du framework sur le prototype (glisser-déposer arabe, harakat, Rive, Android 2 Go) (2 j-h)
 - [ ] A1-15 Tests de parité et golden (1 j-h)
 - [ ] A1-16 Build distribué aux familles (TestFlight, Play) (0,5 j-h)
@@ -171,6 +184,8 @@ Après la validation des 53 types dans l'atelier (décision 37) : le parcours, l
 - [ ] D-05 Pilotage D (1,25 j-h)
 
 ## Blocages
+- À vérifier sur l'iPhone (soir du 20 oct. 2026) : le clavier arabe du moteur (T17, touches de 48 dp, trois rangées qui tiennent en largeur), le champ système en français (T17, aucune suggestion), le pavé numérique et le calcul posé (T48), la scène dessinée et le glisser d'une étiquette sur une zone (T47), le memory et les mots mêlés (lettres isolées, sens de lecture).
+- Questions en attente (manuels) : disposition du calcul posé en arabe et chiffres (T48, `sens` et `chiffres` dans le JSON), sens de lecture des mots mêlés en arabe (T38, `sens`), ordre des touches du clavier arabe (T17, alphabétique).
 - À valider (périmètre du moteur Glisser-déposer, après-midi du 20 oct. 2026) : hypothèse du mentor appliquée, le catalogue v3.1 fait foi sur la décision 3 : T39 hors MVP, T26 et T27 au moteur Manipulables, T56 et T62 au moteur Glisser-déposer (10 types, tous jouables). Voir `docs/moteurs/glisser-deposer-questions.md`, point 15.
 - À vérifier sur l'iPhone (après-midi du 20 oct. 2026) : le tracé de T20 dans la page du lecteur qui défile (le doigt doit tracer, pas faire défiler), le schème de T56 construit lettre à lettre (« فَاعِلٌ » lié, harakat en place), la frise de T62 qui défile en largeur au-delà de 6 cases, le glisser du repère de T25 avec l'aimant.
 - Question en attente (manuels) : le sens de la droite numérique en arabe. Le JSON de T25 porte `sens` (`gauche-droite` par défaut, `droite-gauche`), le moteur suit le JSON : le défaut se change en une ligne.
@@ -217,6 +232,7 @@ Après la validation des 53 types dans l'atelier (décision 37) : le parcours, l
 | 20 oct. 2026 | Sons d'interface, décision 35 (Claude Code) | `SonInterface` (juste, essaiFaux, revelee, depot, finEtape) et `ServiceAudio.jouerSon` dans le moteur, sons provisoires WAV générés par un script du dépôt (notes douces, courts, volume bas, essai faux jamais un buzzer), test du format. Le lecteur joue juste, essaiFaux et revelee aux 3 temps du feedback (mode vérifier et automatique, rien sans note). Mobile : `SonsAudioplayers` (basse latence, volume 0,4, catégorie iOS ambient, usage Android sonification), `AudioFlutterTts` devient `AudioMobile` (voix et sons). Menu développeur : interrupteur « Sons des effets » (activé par défaut, enregistré). Textes courts du moteur Choix en latin-prompt (commit séparé). `flutter build apk --debug` et build iOS réussis. Dépendance ajoutée : audioplayers 6.8.1 dans apps/mobile (compatible web, entraîne audioplayers_android, audioplayers_darwin, audioplayers_web, audioplayers_linux, audioplayers_windows, audioplayers_platform_interface et synchronized) | Écouter les sons et la consigne sur l'iPhone (mode silencieux compris), aperçu web (A0-15), puis moteur Choix (A1-01b) |
 | 20 oct. 2026 | Replanification, décision 37 (Claude Code, session sans surveillance) | Branche `plan/replanification`. `docs/estimations-taches.md` : toutes les tâches non faites à la moitié du plan (colonne j-h en vigueur, colonne Plan gardée), A0-21 sons d'interface (0,5, fait), A1-22 séquence de test du tour 1 (0,75), A1-10 à A1-14 devenues A3-01 à A3-05 dans la phase A3 « Parcours et espace parent » (1er au 14 mars 2027), phase B du 15 mars au 30 avril 2027. Total en vigueur 182,25 j-h (345,25 au plan), calcul tombé juste tâche par tâche. `tool/avancement.dart` lit les tableaux par leur en-tête (colonne Plan ignorée), affiche A3 et contrôle les totaux déclarés, testé par `test/avancement_test.dart` à la racine (nouvelle étape de `verifier.sh`). Jalons G1, G2 et G3 reformulés. Dépendance ajoutée : flutter_test (SDK) en dev à la racine du workspace, pour ce test | Moteur Choix, 12 types restants (A1-01b), puis moteur Glisser-déposer (A1-02) |
 | 20 oct. 2026 | A1-01b moteur Choix (Claude Code, session sans surveillance) | Branche `moteur/choix-a1-01b`. Lecteur : graine de mélange dans `ConfigExercice`, demandes d'audio des zones (`ControleurReponse.demanderAudio`, mot d'ouverture dit après la consigne), `AudioMobile` attend la fin de la synthèse. `TuileChoix` barrée ou grande, `BoutonEcouter` (variante listen). Moteur Choix : `SelectionChoix`, `GrilleChoix`, `GabaritChoix` (T01, T03, T04, T05, T18, T19 lettre vocalisée, T24, T45, T55, T61), `GabaritHaraka` (T19 forme mot), `GabaritComparer` (T23), `GabaritJustification` (T46). Les 13 types jouables dans l'atelier. 45 tests de widget (un cas arabe et un cas latin par type, fixtures arabes en brouillon), test de parité dans le moteur et dans l'aperçu web, qui joue les exemples du catalogue. Un commit rouge (2 tests de l'atelier) détecté après coup et amendé. Aucune dépendance ajoutée | Essayer les 13 types sur l'iPhone (fiche de test de `docs/sessions/2026-10-20.md`), puis moteur Glisser-déposer (A1-02) |
+| 20 oct. 2026 | Fin du lot 1, tâches 7 à 11 (Claude Code, session sans surveillance, soir) | Branches `moteur/manipulables-t27-t51`, `moteur/texte`, `moteur/saisie-numerique`, `moteur/scene-image`, `moteur/revision-jeux`. T27 et T51 (matériel dessiné, réserve inépuisable). Moteur Texte : fiche, T07 mots touchables, T17 clavier arabe du moteur ou champ système, `comparerTextes` et ses normalisations testées. Moteur Saisie numérique : fiche, pavé numérique, T22, T48 (sens, chiffres, retenues configurables). Moteur Scène image : fiche, scène en emoji et formes, T08 zones touchables, T47 étiquettes (affectation « zones »). Moteur Révision et jeux : fiche, T36 sans note, T37 automatique, T38 mots mêlés. Un vérificateur par commit, un commit amendé (fait d'abord sur un lint rouge). Dépendance ajoutée : flutter_localizations (SDK) dans apps/apercu_web (localisation Material du champ système de T17) | Lamjed : fiche de test du soir, valider les 6 fiches en brouillon, puis A1-09 (vérification du framework), A1-15 (parité et goldens), A1-22 (séquence de test) |
 | 20 oct. 2026 | A1-02 moteur Glisser-déposer, T56 et T62 (Claude Code, session sans surveillance, après-midi) | Branche `moteur/glisser-deposer-t56-t62`. Hypothèse de périmètre du mentor (catalogue v3.1, 10 types). Schéma et validateur : `donneesFrise` (date facultative), `donneesRacineScheme` (mot, forme, emplacements avec haraka nommée, lettres nues), règles `lettre_invalide`, `haraka_hors_scheme`, `scheme_longueur`, `scheme_harakat_differentes`, `racine_hors_mot`. 3 exemples en brouillon. Moteur : contrôleur d'ordre à capacité, tuile avec date, frise à cases fixes avec ligne du temps peinte, gabarit Racine et schème (racine en lettres isolées, schème lié avec les harakat des emplacements). 5 tests de widget avec un vrai geste, parité à 10 types, fiche et 7 points tranchés. Aucune dépendance ajoutée | Valider le périmètre et les points tranchés, test du soir sur l'iPhone |
 | 20 oct. 2026 | A1-04 moteur Tracé, T20 (Claude Code, session sans surveillance, après-midi) | Branche `moteur/trace`. Fiche `docs/moteurs/trace.md` en brouillon (11 points tranchés, 8 questions). Schéma `donneesTrace` (lettre, formes avec glyphe, position et traits de guidage normalisés, nom de la lettre), `reponseTrace` (formes à tracer), 6 règles, exemples ب ل م avec traits faits main. Moteur en mode sans note : formes en boutons sans sous-titre, zone de tracé 3 : 2 avec la lettre en naskh, points et flèches dans le sens d'écriture, encre au doigt, Effacer par forme (libellé genré), tolérance d'un quart de largeur, le lecteur verrouille la zone après Continuer. 4 tests de widget avec un vrai geste, parité moteur et aperçu web. Aucune dépendance ajoutée | Relire les traits avec un enseignant, tester le geste sur l'iPhone |
 | 20 oct. 2026 | A1-06 moteur Manipulables, base, étapes a et b et c1 (Claude Code, session sans surveillance, après-midi) | Branche `moteur/manipulables-base`. Fiche `docs/moteurs/manipulables.md` en brouillon (8 points tranchés, 6 questions, sens de la droite configurable). Schéma et validateur pour T25 (`min`, `max`, `pas`, `reperes`, `cible`, `sens`), T27 (`cible`, `canonique`), T51 (`cible`), réponses explicites contrôlées contre la cible, 3 exemples en brouillon, 23 tests du schéma. T25 jouable : droite peinte de gauche à droite, repère glissé avec aimant ou graduation touchée, retour au départ après le 1er essai faux, 3 tests de widget, parité. Aucune dépendance ajoutée | Moteur des 3 types (A1-06, étape c2 : T27 et T51), puis moteur Texte (A1-03) |
