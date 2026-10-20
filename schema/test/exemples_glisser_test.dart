@@ -8,10 +8,22 @@ import 'package:edu_content/edu_content.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Les exemples de schema/exemples/glisser-deposer/ : un exercice valide par
-/// type du moteur Glisser-déposer (deux gabarits pour T06), en brouillon, en
-/// emoji, qui respecte les conventions de docs/conventions-arabe.md.
+/// type du moteur Glisser-déposer (deux gabarits pour T06 et pour T56), en
+/// brouillon, en emoji, qui respecte les conventions de
+/// docs/conventions-arabe.md.
 void main() {
-  const types = ['T06', 'T09', 'T11', 'T12', 'T13', 'T14', 'T15', 'T16'];
+  const types = [
+    'T06',
+    'T09',
+    'T11',
+    'T12',
+    'T13',
+    'T14',
+    'T15',
+    'T16',
+    'T56',
+    'T62',
+  ];
   final fichiers =
       Directory('exemples/glisser-deposer')
           .listSync()
@@ -32,7 +44,12 @@ void main() {
     expect(ids, hasLength(fichiers.length));
     expect(
       fichiers.map((f) => lire(f)['gabarit']),
-      containsAll(['texte-trou', 'texte-trous']),
+      containsAll([
+        'texte-trou',
+        'texte-trous',
+        'racine-lettres',
+        'scheme-lettres',
+      ]),
     );
   });
 

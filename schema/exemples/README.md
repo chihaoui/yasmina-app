@@ -11,4 +11,4 @@ Exercices d'exemple, au moins un fichier par type (un par gabarit quand un type 
 | Dossier | Moteur | Types |
 |---|---|---|
 | `choix/` | Choix (`docs/moteurs/choix.md`) | T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 |
-| `glisser-deposer/` | Glisser-déposer (`docs/moteurs/glisser-deposer.md`, brouillon) | T06 (deux gabarits), T09, T11, T12, T13, T14, T15, T16 |
+| `glisser-deposer/` | Glisser-déposer (`docs/moteurs/glisser-deposer.md`, brouillon) | T06 (deux gabarits), T09, T11, T12, T13, T14, T15, T16, T56 (racine et schème), T62 |

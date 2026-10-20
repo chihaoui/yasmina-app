@@ -1,7 +1,7 @@
 import 'package:edu_content/edu_content.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Règles des 8 types du moteur Glisser-déposer
+/// Règles des 10 types du moteur Glisser-déposer
 /// (docs/moteurs/glisser-deposer.md), sur des exercices seuls construits
 /// ici (les tests tournent aussi dans Chrome).
 
@@ -157,7 +157,58 @@ final valides = <String, Map<String, dynamic> Function()>{
       'ordre': ['e1', 'e2', 'e3'],
     },
   ),
+  'T56': () => exercice(
+    'T56',
+    {
+      'mot': 'كَاتِبٌ',
+      'forme': 'racine',
+      'emplacements': [
+        <String, dynamic>{},
+        <String, dynamic>{},
+        <String, dynamic>{},
+      ],
+      'lettres': elements(['ك', 'ت', 'ب', 'ن']),
+    },
+    {
+      'ordre': ['e1', 'e2', 'e3'],
+    },
+    langue: 'ar',
+    niveau: 4,
+  ),
+  'T62': () => exercice(
+    'T62',
+    {
+      'elements': [
+        {'id': 'e1', 'emoji': '⏰', 'texte': 'le réveil', 'date': '7 h'},
+        {'id': 'e2', 'emoji': '🏫', 'texte': 'l\'école', 'date': '8 h'},
+        {'id': 'e3', 'emoji': '🌙', 'texte': 'la nuit'},
+      ],
+    },
+    {
+      'ordre': ['e1', 'e2', 'e3'],
+    },
+  ),
 };
+
+/// T56 sous la forme schème : كَاتِبٌ sur le schème فَاعِلٌ.
+Map<String, dynamic> t56Scheme() {
+  final ex = valides['T56']!();
+  ex['donnees'] = {
+    'mot': 'كَاتِبٌ',
+    'forme': 'scheme',
+    'emplacements': [
+      {'haraka': 'fatha'},
+      <String, dynamic>{},
+      {'haraka': 'kasra'},
+      {'haraka': 'dammatan'},
+    ],
+    'lettres': elements(['ف', 'ا', 'ع', 'ل', 'م']),
+  };
+  ex['reponse'] = {
+    'ordre': ['e1', 'e2', 'e3', 'e4'],
+  };
+  return ex;
+}
 
 Matcher probleme(String chemin, String code) => isA<ProblemeValidation>()
     .having((p) => p.chemin, 'chemin', chemin)
@@ -182,13 +233,16 @@ List<ProblemeValidation> avertissements(
 }
 
 void main() {
-  test('un exemple valide pour chacun des 8 types, sans avertissement', () {
-    expect(valides.keys, hasLength(8));
+  test('un exemple valide pour chacun des 10 types, sans avertissement', () {
+    expect(valides.keys, hasLength(10));
     valides.forEach((type, construire) {
       final r = validerExercice(construire());
       expect(r.erreurs, isEmpty, reason: '$type : $r');
       expect(r.avertissements, isEmpty, reason: '$type : $r');
     });
+    final scheme = validerExercice(t56Scheme());
+    expect(scheme.erreurs, isEmpty, reason: '$scheme');
+    expect(scheme.avertissements, isEmpty, reason: '$scheme');
   });
 
   group('schéma', () {
@@ -240,6 +294,45 @@ void main() {
     test('T15 : ordre avec un doublon', () {
       final r = erreurs('T15', (ex) => ex['reponse']['ordre'] = ['e1', 'e1']);
       expect(r, contains(probleme('/reponse/ordre', 'doublon_liste')));
+    });
+
+    test('T56 : forme inconnue, haraka inconnue, 7 emplacements', () {
+      expect(
+        erreurs('T56', (ex) => ex['donnees']['forme'] = 'wazn'),
+        contains(probleme('/donnees/forme', 'valeur_non_autorisee')),
+      );
+      expect(
+        erreurs(
+          'T56',
+          (ex) => ex['donnees']['emplacements'][0] = {'haraka': 'tanwin'},
+        ),
+        contains(
+          probleme('/donnees/emplacements/0/haraka', 'valeur_non_autorisee'),
+        ),
+      );
+      expect(
+        erreurs(
+          'T56',
+          (ex) => ex['donnees']['emplacements'] = [
+            for (var i = 0; i < 7; i++) <String, dynamic>{},
+          ],
+        ),
+        contains(probleme('/donnees/emplacements', 'liste_trop_longue')),
+      );
+    });
+
+    test('T62 : date vide, image et emoji ensemble', () {
+      expect(
+        erreurs('T62', (ex) => ex['donnees']['elements'][0]['date'] = ''),
+        contains(probleme('/donnees/elements/0/date', 'texte_trop_court')),
+      );
+      expect(
+        erreurs(
+          'T62',
+          (ex) => ex['donnees']['elements'][0]['image'] = 'images/reveil.png',
+        ),
+        contains(probleme('/donnees/elements/0', 'proprietes_exclusives')),
+      );
     });
   });
 
@@ -471,6 +564,143 @@ void main() {
           ]);
           ex['reponse']['ordre'] = ['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7'];
         }),
+        isEmpty,
+      );
+    });
+
+    test('T62 : ordre incomplet, élément inconnu, comme T13', () {
+      expect(
+        erreurs('T62', (ex) => ex['reponse']['ordre'] = ['e1', 'e2']).single,
+        probleme('/reponse/ordre', 'ordre_incomplet'),
+      );
+      expect(
+        erreurs('T62', (ex) => ex['reponse']['ordre'] = ['e1', 'e2', 'e9']),
+        contains(probleme('/reponse/ordre/2', 'reponse_element_inconnu')),
+      );
+    });
+
+    test('T56 : arabe seulement, tuiles d\'une lettre nue', () {
+      expect(
+        erreurs('T56', (ex) {
+          ex['langue'] = 'fr';
+          ex['competence'] = 'fr-essai';
+        }),
+        contains(probleme('/langue', 'type_langue')),
+      );
+      final r = erreurs('T56', (ex) {
+        ex['donnees']['lettres'][0]['texte'] = 'كَ';
+        ex['donnees']['lettres'][1]['texte'] = 'تب';
+      });
+      expect(
+        r,
+        unorderedEquals([
+          probleme('/donnees/lettres/0/texte', 'lettre_invalide'),
+          probleme('/donnees/lettres/1/texte', 'lettre_invalide'),
+        ]),
+      );
+    });
+
+    test('T56 : une lettre par emplacement, lettre inconnue, lettres '
+        'répétées autorisées', () {
+      expect(
+        erreurs('T56', (ex) => ex['reponse']['ordre'] = ['e1', 'e2']).single,
+        probleme('/reponse/ordre', 'ordre_incomplet'),
+      );
+      expect(
+        erreurs('T56', (ex) => ex['reponse']['ordre'] = ['e1', 'e2', 'e9']),
+        contains(probleme('/reponse/ordre/2', 'reponse_element_inconnu')),
+      );
+      expect(
+        erreurs('T56', (ex) {
+          ex['donnees']['mot'] = 'بَابٌ';
+          ex['donnees']['lettres'] = elements(['ب', 'و', 'ب', 'ن']);
+        }),
+        isEmpty,
+      );
+    });
+
+    test('T56 racine : haraka interdite, racine qui ne se lit pas dans '
+        'le mot (avertissement)', () {
+      expect(
+        erreurs(
+          'T56',
+          (ex) => ex['donnees']['emplacements'][1] = {'haraka': 'fatha'},
+        ).single,
+        probleme('/donnees/emplacements/1/haraka', 'haraka_hors_scheme'),
+      );
+      // قَالَ : racine ق و ل, le و ne se lit pas dans le mot.
+      final a = avertissements('T56', (ex) {
+        ex['donnees']['mot'] = 'قَالَ';
+        ex['donnees']['lettres'] = elements(['ق', 'و', 'ل', 'ن']);
+      });
+      expect(a.single, probleme('/reponse/ordre', 'racine_hors_mot'));
+      expect(a.single.message, contains('ق و ل'));
+      // Les lettres dans le désordre aussi.
+      expect(
+        avertissements(
+          'T56',
+          (ex) => ex['reponse']['ordre'] = ['e2', 'e1', 'e3'],
+        ).single,
+        probleme('/reponse/ordre', 'racine_hors_mot'),
+      );
+    });
+
+    test('T56 schème : un emplacement par lettre du mot, mêmes harakat', () {
+      expect(
+        erreurs('T56', (ex) {
+          ex.addAll(t56Scheme());
+          ex['donnees']['emplacements'] = [
+            {'haraka': 'fatha'},
+            {'haraka': 'kasra'},
+            {'haraka': 'dammatan'},
+          ];
+          ex['reponse']['ordre'] = ['e1', 'e3', 'e4'];
+        }).single,
+        probleme('/donnees/emplacements', 'scheme_longueur'),
+      );
+      final r = erreurs('T56', (ex) {
+        ex.addAll(t56Scheme());
+        ex['donnees']['emplacements'][2] = {'haraka': 'damma'};
+        ex['donnees']['emplacements'][3] = <String, dynamic>{};
+      });
+      expect(
+        r,
+        unorderedEquals([
+          probleme('/donnees/emplacements/2', 'scheme_harakat_differentes'),
+          probleme('/donnees/emplacements/3', 'scheme_harakat_differentes'),
+        ]),
+      );
+      expect(r.first.message, contains('كَاتِبٌ'));
+      // Shadda et voyelle, dans l'ordre d'écriture ou l'inverse.
+      for (final mot in ['مُعَلِّمٌ', 'مُعَلِّمٌ'.replaceAll('ِّ', 'ِّ')]) {
+        expect(
+          erreurs('T56', (ex) {
+            ex.addAll(t56Scheme());
+            ex['donnees']['mot'] = mot;
+            ex['donnees']['emplacements'] = [
+              {'haraka': 'damma'},
+              {'haraka': 'fatha'},
+              {'haraka': 'shadda-kasra'},
+              {'haraka': 'dammatan'},
+            ];
+            ex['donnees']['lettres'] = elements(['م', 'ف', 'ع', 'ل', 'ن']);
+          }),
+          isEmpty,
+          reason: mot,
+        );
+      }
+    });
+
+    test('T56 : le mot entendu est le mot', () {
+      expect(
+        erreurs(
+          'T56',
+          (ex) => ex['donnees']['ecoute'] = {'texte': 'كِتَابٌ'},
+        ).single,
+        probleme('/donnees/ecoute/texte', 'ecoute_differente_reponse'),
+      );
+      expect(
+        erreurs('T56', (ex) => ex['donnees']['ecoute'] = {'texte': 'كَاتِبٌ'}),
         isEmpty,
       );
     });

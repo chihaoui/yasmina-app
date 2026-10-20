@@ -1,0 +1,80 @@
+{
+  "id": "ar-4-t1-u3-e01-x02",
+  "type": "T56",
+  "gabarit": "scheme-lettres",
+  "competence": "ar-sarf-wazn",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْحَبِ الْحُرُوفَ لِتُكَوِّنَ وَزْنَ الْكَلِمَةِ.",
+      "feminin": "اِسْحَبِي الْحُرُوفَ لِتُكَوِّنِي وَزْنَ الْكَلِمَةِ."
+    }
+  },
+  "donnees": {
+    "mot": "كَاتِبٌ",
+    "forme": "scheme",
+    "emplacements": [
+      {
+        "haraka": "fatha"
+      },
+      {},
+      {
+        "haraka": "kasra"
+      },
+      {
+        "haraka": "dammatan"
+      }
+    ],
+    "lettres": [
+      {
+        "id": "e1",
+        "texte": "ف"
+      },
+      {
+        "id": "e2",
+        "texte": "ع"
+      },
+      {
+        "id": "e3",
+        "texte": "ل"
+      },
+      {
+        "id": "e4",
+        "texte": "ا"
+      },
+      {
+        "id": "e5",
+        "texte": "م"
+      },
+      {
+        "id": "e6",
+        "texte": "ت"
+      }
+    ],
+    "ecoute": {
+      "texte": "كَاتِبٌ"
+    },
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e4",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كَاتِبٌ عَلَى وَزْنِ فَاعِلٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كَاتِبٌ عَلَى وَزْنِ فَاعِلٌ."
+    },
+    "indice": "ضَعِ الْفَاءَ مَكَانَ الْحَرْفِ الْأَوَّلِ، وَالْعَيْنَ مَكَانَ الثَّانِي، وَاللَّامَ مَكَانَ الثَّالِثِ.",
+    "explication": "كَاتِبٌ: ك فِي مَكَانِ ف، ا تَبْقَى، ت فِي مَكَانِ ع، ب فِي مَكَانِ ل. الْوَزْنُ هُوَ فَاعِلٌ."
+  },
+  "empreinte": "sha256:e82c62055a8077d5ed4b9279d8b3460ef5afab8230d80c0324bc1c68914b2705",
+  "statut": "brouillon",
+  "version": 1
+}

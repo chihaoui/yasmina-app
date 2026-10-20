@@ -1,0 +1,68 @@
+{
+  "id": "ar-4-t1-u3-e01-x01",
+  "type": "T56",
+  "gabarit": "racine-lettres",
+  "competence": "ar-sarf-jadhr",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْحَبْ حُرُوفَ جَذْرِ الْكَلِمَةِ إِلَى أَمَاكِنِهَا.",
+      "feminin": "اِسْحَبِي حُرُوفَ جَذْرِ الْكَلِمَةِ إِلَى أَمَاكِنِهَا."
+    }
+  },
+  "donnees": {
+    "mot": "مَكْتَبٌ",
+    "forme": "racine",
+    "emplacements": [
+      {},
+      {},
+      {}
+    ],
+    "lettres": [
+      {
+        "id": "e1",
+        "texte": "ك"
+      },
+      {
+        "id": "e2",
+        "texte": "ت"
+      },
+      {
+        "id": "e3",
+        "texte": "ب"
+      },
+      {
+        "id": "e4",
+        "texte": "م"
+      },
+      {
+        "id": "e5",
+        "texte": "ن"
+      }
+    ],
+    "ecoute": {
+      "texte": "مَكْتَبٌ"
+    },
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْجَذْرُ هُوَ ك ت ب.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْجَذْرُ هُوَ ك ت ب."
+    },
+    "indice": "الْحُرُوفُ الْأَصْلِيَّةُ ثَلَاثَةٌ: اِبْحَثْ عَنْهَا فِي الْكَلِمَةِ.",
+    "explication": "مَكْتَبٌ مِنَ الْجَذْرِ ك ت ب: كَتَبَ، كَاتِبٌ، كِتَابٌ."
+  },
+  "empreinte": "sha256:b149d952f7df34ae93cd04d3f00502153c33e842646f2bb41ff168c24f5a563e",
+  "statut": "brouillon",
+  "version": 1
+}

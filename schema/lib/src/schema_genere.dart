@@ -165,7 +165,7 @@ const String texteSchemaEduContent = r'''
           }
         },
         "donnees": {
-          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) et les 8 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16), génériques pour les autres types (précisées moteur par moteur).",
+          "description": "Données propres au type. Détaillées pour les 13 types du moteur Choix (T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61) et les 10 types du moteur Glisser-déposer (T06, T09, T11, T12, T13, T14, T15, T16, T56, T62), génériques pour les autres types (précisées moteur par moteur).",
           "type": "object"
         },
         "reponse": {
@@ -352,6 +352,24 @@ const String texteSchemaEduContent = r'''
           "then": {
             "properties": {
               "donnees": { "$ref": "#/$defs/donneesMot" },
+              "reponse": { "$ref": "#/$defs/reponseOrdre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T62" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesFrise" },
+              "reponse": { "$ref": "#/$defs/reponseOrdre" }
+            }
+          }
+        },
+        {
+          "if": { "required": ["type"], "properties": { "type": { "const": "T56" } } },
+          "then": {
+            "properties": {
+              "donnees": { "$ref": "#/$defs/donneesRacineScheme" },
               "reponse": { "$ref": "#/$defs/reponseOrdre" }
             }
           }
@@ -889,6 +907,70 @@ const String texteSchemaEduContent = r'''
       "additionalProperties": false,
       "properties": {
         "elements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 10,
+          "items": { "$ref": "#/$defs/elementTexte" }
+        },
+        "ecoute": { "$ref": "#/$defs/ecoute" },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "elementFrise": {
+      "description": "Attendu : un élément de frise avec un id (e1 à e10), au moins un texte ou un emoji (jamais une image et un emoji ensemble), et une date facultative (texte court affiché sous l'élément : « 7 h », « 1956 »).",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["texte"] }, { "required": ["image"] }, { "required": ["emoji"] }],
+      "not": { "required": ["image", "emoji"] },
+      "properties": {
+        "id": { "$ref": "#/$defs/idElement" },
+        "texte": { "$ref": "#/$defs/texteNonVide" },
+        "image": { "$ref": "#/$defs/cheminMedia" },
+        "emoji": { "$ref": "#/$defs/emoji" },
+        "date": { "$ref": "#/$defs/texteNonVide" }
+      }
+    },
+    "donneesFrise": {
+      "description": "T62 (variante de T13) : des éléments datés ou étiquetés à ranger dans l'ordre sur une frise chronologique.",
+      "type": "object",
+      "required": ["elements"],
+      "additionalProperties": false,
+      "properties": {
+        "elements": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/elementFrise" }
+        },
+        "melanger": { "type": "boolean", "default": true }
+      }
+    },
+    "harakaScheme": {
+      "description": "Haraka d'un emplacement du schème (T56) : fatha, damma, kasra, soukoun, les trois tanwin, ou shadda avec sa voyelle.",
+      "enum": ["fatha", "damma", "kasra", "soukoun", "fathatan", "dammatan", "kasratan", "shadda-fatha", "shadda-damma", "shadda-kasra"]
+    },
+    "donneesRacineScheme": {
+      "description": "T56 (arabe) : retrouver la racine (forme racine, lettres isolées sans haraka) ou le schème (forme scheme, lettres liées avec la haraka de chaque emplacement) d'un mot en glissant des lettres dans des emplacements, un par lettre attendue, lettres en trop possibles.",
+      "type": "object",
+      "required": ["mot", "forme", "emplacements", "lettres"],
+      "additionalProperties": false,
+      "properties": {
+        "mot": { "$ref": "#/$defs/texteNonVide" },
+        "forme": { "enum": ["racine", "scheme"] },
+        "emplacements": {
+          "description": "Un emplacement par lettre attendue, dans l'ordre d'écriture. Sa haraka ne sert qu'au schème.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "haraka": { "$ref": "#/$defs/harakaScheme" } }
+          }
+        },
+        "lettres": {
+          "description": "Tuiles de lettres nues (une lettre arabe chacune), avec des lettres en trop possibles.",
           "type": "array",
           "minItems": 2,
           "maxItems": 10,

@@ -1504,4 +1504,222 @@ const Map<String, String> exemplesEduContent = {
   "version": 1
 }
 ''',
+  'glisser-deposer/T56-racine.json': r'''
+{
+  "id": "ar-4-t1-u3-e01-x01",
+  "type": "T56",
+  "gabarit": "racine-lettres",
+  "competence": "ar-sarf-jadhr",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْحَبْ حُرُوفَ جَذْرِ الْكَلِمَةِ إِلَى أَمَاكِنِهَا.",
+      "feminin": "اِسْحَبِي حُرُوفَ جَذْرِ الْكَلِمَةِ إِلَى أَمَاكِنِهَا."
+    }
+  },
+  "donnees": {
+    "mot": "مَكْتَبٌ",
+    "forme": "racine",
+    "emplacements": [
+      {},
+      {},
+      {}
+    ],
+    "lettres": [
+      {
+        "id": "e1",
+        "texte": "ك"
+      },
+      {
+        "id": "e2",
+        "texte": "ت"
+      },
+      {
+        "id": "e3",
+        "texte": "ب"
+      },
+      {
+        "id": "e4",
+        "texte": "م"
+      },
+      {
+        "id": "e5",
+        "texte": "ن"
+      }
+    ],
+    "ecoute": {
+      "texte": "مَكْتَبٌ"
+    },
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: الْجَذْرُ هُوَ ك ت ب.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: الْجَذْرُ هُوَ ك ت ب."
+    },
+    "indice": "الْحُرُوفُ الْأَصْلِيَّةُ ثَلَاثَةٌ: اِبْحَثْ عَنْهَا فِي الْكَلِمَةِ.",
+    "explication": "مَكْتَبٌ مِنَ الْجَذْرِ ك ت ب: كَتَبَ، كَاتِبٌ، كِتَابٌ."
+  },
+  "empreinte": "sha256:b149d952f7df34ae93cd04d3f00502153c33e842646f2bb41ff168c24f5a563e",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'glisser-deposer/T56-scheme.json': r'''
+{
+  "id": "ar-4-t1-u3-e01-x02",
+  "type": "T56",
+  "gabarit": "scheme-lettres",
+  "competence": "ar-sarf-wazn",
+  "critere": "C2",
+  "niveau_critere": "minimal",
+  "langue": "ar",
+  "consigne": {
+    "texte": {
+      "masculin": "اِسْحَبِ الْحُرُوفَ لِتُكَوِّنَ وَزْنَ الْكَلِمَةِ.",
+      "feminin": "اِسْحَبِي الْحُرُوفَ لِتُكَوِّنِي وَزْنَ الْكَلِمَةِ."
+    }
+  },
+  "donnees": {
+    "mot": "كَاتِبٌ",
+    "forme": "scheme",
+    "emplacements": [
+      {
+        "haraka": "fatha"
+      },
+      {},
+      {
+        "haraka": "kasra"
+      },
+      {
+        "haraka": "dammatan"
+      }
+    ],
+    "lettres": [
+      {
+        "id": "e1",
+        "texte": "ف"
+      },
+      {
+        "id": "e2",
+        "texte": "ع"
+      },
+      {
+        "id": "e3",
+        "texte": "ل"
+      },
+      {
+        "id": "e4",
+        "texte": "ا"
+      },
+      {
+        "id": "e5",
+        "texte": "م"
+      },
+      {
+        "id": "e6",
+        "texte": "ت"
+      }
+    ],
+    "ecoute": {
+      "texte": "كَاتِبٌ"
+    },
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e4",
+      "e2",
+      "e3"
+    ]
+  },
+  "feedbacks": {
+    "reussite": {
+      "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كَاتِبٌ عَلَى وَزْنِ فَاعِلٌ.",
+      "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كَاتِبٌ عَلَى وَزْنِ فَاعِلٌ."
+    },
+    "indice": "ضَعِ الْفَاءَ مَكَانَ الْحَرْفِ الْأَوَّلِ، وَالْعَيْنَ مَكَانَ الثَّانِي، وَاللَّامَ مَكَانَ الثَّالِثِ.",
+    "explication": "كَاتِبٌ: ك فِي مَكَانِ ف، ا تَبْقَى، ت فِي مَكَانِ ع، ب فِي مَكَانِ ل. الْوَزْنُ هُوَ فَاعِلٌ."
+  },
+  "empreinte": "sha256:e82c62055a8077d5ed4b9279d8b3460ef5afab8230d80c0324bc1c68914b2705",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
+  'glisser-deposer/T62-frise.json': r'''
+{
+  "id": "fr-3-t1-u4-e01-x01",
+  "type": "T62",
+  "gabarit": "frise-journee",
+  "competence": "fr-temps-journee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Glisse chaque moment de la journée à sa place sur la frise."
+  },
+  "donnees": {
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "Le réveil",
+        "emoji": "⏰",
+        "date": "7 h"
+      },
+      {
+        "id": "e2",
+        "texte": "L'école",
+        "emoji": "🏫",
+        "date": "8 h"
+      },
+      {
+        "id": "e3",
+        "texte": "Le déjeuner",
+        "emoji": "🍽️",
+        "date": "12 h"
+      },
+      {
+        "id": "e4",
+        "texte": "Le goûter",
+        "emoji": "🍎",
+        "date": "16 h"
+      },
+      {
+        "id": "e5",
+        "texte": "Le coucher",
+        "emoji": "🌙",
+        "date": "20 h"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3",
+      "e4",
+      "e5"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : le réveil, l'école, le déjeuner, le goûter, puis le coucher.",
+    "indice": "Lis les heures : la journée commence à 7 h.",
+    "explication": "L'ordre est : 7 h le réveil, 8 h l'école, 12 h le déjeuner, 16 h le goûter, 20 h le coucher."
+  },
+  "empreinte": "sha256:d0e0bc1b8a17f3b8bd27f8602b2a1a1c6c023cbe0f16ae6a1f9aeca9e84c0eae",
+  "statut": "brouillon",
+  "version": 1
+}
+''',
 };

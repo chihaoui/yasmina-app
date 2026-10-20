@@ -1,0 +1,64 @@
+{
+  "id": "fr-3-t1-u4-e01-x01",
+  "type": "T62",
+  "gabarit": "frise-journee",
+  "competence": "fr-temps-journee",
+  "critere": "C1",
+  "niveau_critere": "minimal",
+  "langue": "fr",
+  "consigne": {
+    "texte": "Glisse chaque moment de la journée à sa place sur la frise."
+  },
+  "donnees": {
+    "elements": [
+      {
+        "id": "e1",
+        "texte": "Le réveil",
+        "emoji": "⏰",
+        "date": "7 h"
+      },
+      {
+        "id": "e2",
+        "texte": "L'école",
+        "emoji": "🏫",
+        "date": "8 h"
+      },
+      {
+        "id": "e3",
+        "texte": "Le déjeuner",
+        "emoji": "🍽️",
+        "date": "12 h"
+      },
+      {
+        "id": "e4",
+        "texte": "Le goûter",
+        "emoji": "🍎",
+        "date": "16 h"
+      },
+      {
+        "id": "e5",
+        "texte": "Le coucher",
+        "emoji": "🌙",
+        "date": "20 h"
+      }
+    ],
+    "melanger": true
+  },
+  "reponse": {
+    "ordre": [
+      "e1",
+      "e2",
+      "e3",
+      "e4",
+      "e5"
+    ]
+  },
+  "feedbacks": {
+    "reussite": "Oui : le réveil, l'école, le déjeuner, le goûter, puis le coucher.",
+    "indice": "Lis les heures : la journée commence à 7 h.",
+    "explication": "L'ordre est : 7 h le réveil, 8 h l'école, 12 h le déjeuner, 16 h le goûter, 20 h le coucher."
+  },
+  "empreinte": "sha256:d0e0bc1b8a17f3b8bd27f8602b2a1a1c6c023cbe0f16ae6a1f9aeca9e84c0eae",
+  "statut": "brouillon",
+  "version": 1
+}

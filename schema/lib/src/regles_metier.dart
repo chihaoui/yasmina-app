@@ -602,8 +602,33 @@ List<ProblemeValidation> _reglesChoix(
 int? _niveauDeId(String id) =>
     int.tryParse(RegExp(r'^[a-z]{2}-([1-6])-').firstMatch(id)?.group(1) ?? '');
 
-/// Les 8 types du moteur Glisser-déposer (docs/moteurs/glisser-deposer.md).
-const _typesGlisser = {'T06', 'T09', 'T11', 'T12', 'T13', 'T14', 'T15', 'T16'};
+/// Les 10 types du moteur Glisser-déposer (docs/moteurs/glisser-deposer.md).
+const _typesGlisser = {
+  'T06',
+  'T09',
+  'T11',
+  'T12',
+  'T13',
+  'T14',
+  'T15',
+  'T16',
+  'T56',
+  'T62',
+};
+
+/// Runes de chaque haraka d'un emplacement de schème (T56).
+const _signesHarakaScheme = <String, List<int>>{
+  'fatha': [0x064E],
+  'damma': [0x064F],
+  'kasra': [0x0650],
+  'soukoun': [0x0652],
+  'fathatan': [0x064B],
+  'dammatan': [0x064C],
+  'kasratan': [0x064D],
+  'shadda-fatha': [0x0651, 0x064E],
+  'shadda-damma': [0x0651, 0x064F],
+  'shadda-kasra': [0x0651, 0x0650],
+};
 
 /// Types où l'enfant manipule des éléments : 4 à 6 au maximum en 1re et 2e
 /// année (CLAUDE.md §5).
@@ -632,9 +657,9 @@ List<ProblemeValidation> _reglesGlisser(
     ),
   );
 
-  // Langue imposée : T12 (règle de la langue arabe) et T15 (lettres liées)
-  // en arabe, T16 (syllabes) jamais en arabe.
-  if ((type == 'T12' || type == 'T15') && langue != 'ar') {
+  // Langue imposée : T12 (règle de la langue arabe), T15 (lettres liées)
+  // et T56 (racine et schème) en arabe, T16 (syllabes) jamais en arabe.
+  if ((type == 'T12' || type == 'T15' || type == 'T56') && langue != 'ar') {
     erreur(
       '$chemin/langue',
       'type_langue',
@@ -844,7 +869,7 @@ List<ProblemeValidation> _reglesGlisser(
           }
         }
       }
-    case 'T13' || 'T14':
+    case 'T13' || 'T14' || 'T62':
       final elements = ids('elements');
       nbElements = elements.length;
       final ordre = (reponse['ordre'] as List).cast<String>();
@@ -887,6 +912,107 @@ List<ProblemeValidation> _reglesGlisser(
                 'harakat « $entendu ».',
           );
         }
+      }
+    case 'T56':
+      final lettres = ids('lettres', textesUniques: false);
+      nbElements = lettres.length;
+      final liste = (donnees['lettres'] as List).cast<Map<String, dynamic>>();
+      for (var k = 0; k < liste.length; k++) {
+        final texte = liste[k]['texte'] as String;
+        if (!_lettreNue(texte)) {
+          erreur(
+            '$chemin/donnees/lettres/$k/texte',
+            'lettre_invalide',
+            'une tuile de T56 porte une seule lettre arabe sans haraka, '
+                'pas « $texte ».',
+          );
+        }
+      }
+      final emplacements = (donnees['emplacements'] as List)
+          .cast<Map<String, dynamic>>();
+      final forme = donnees['forme'] as String;
+      final ordre = (reponse['ordre'] as List).cast<String>();
+      for (var k = 0; k < ordre.length; k++) {
+        if (!lettres.contains(ordre[k])) {
+          inconnu('$chemin/reponse/ordre/$k', 'lettres', ordre[k]);
+        }
+      }
+      if (ordre.length != emplacements.length) {
+        erreur(
+          '$chemin/reponse/ordre',
+          'ordre_incomplet',
+          'l\'ordre doit citer une lettre par emplacement '
+              '(${emplacements.length} emplacements, ${ordre.length} '
+              'lettres).',
+        );
+      }
+      final mot = donnees['mot'] as String;
+      final lettresDuMot = _lettresEtHarakat(mot);
+      final construites = [
+        for (final id in ordre)
+          liste.where((e) => e['id'] == id).firstOrNull?['texte'] as String? ??
+              '',
+      ];
+      if (forme == 'racine') {
+        for (var k = 0; k < emplacements.length; k++) {
+          if (emplacements[k].containsKey('haraka')) {
+            erreur(
+              '$chemin/donnees/emplacements/$k/haraka',
+              'haraka_hors_scheme',
+              'une racine s\'écrit en lettres nues : la haraka d\'un '
+                  'emplacement est réservée à la forme scheme.',
+            );
+          }
+        }
+        // Les lettres de la racine se lisent dans l'ordre dans le mot.
+        // Sinon (racine creuse, défectueuse, hamzée) : à relire.
+        var i = 0;
+        for (final (lettre, _) in lettresDuMot) {
+          if (i < construites.length && lettre == construites[i]) i++;
+        }
+        if (i < construites.length) {
+          avertissement(
+            '$chemin/reponse/ordre',
+            'racine_hors_mot',
+            'la racine « ${construites.join(' ')} » ne se lit pas dans '
+                'l\'ordre dans « $mot » : à relire (racine creuse ou '
+                'défectueuse ?).',
+          );
+        }
+      } else if (lettresDuMot.length != emplacements.length) {
+        erreur(
+          '$chemin/donnees/emplacements',
+          'scheme_longueur',
+          'le schème a ${emplacements.length} emplacements pour un mot de '
+              '${lettresDuMot.length} lettres : un emplacement par lettre '
+              'du mot « $mot ».',
+        );
+      } else {
+        for (var k = 0; k < emplacements.length; k++) {
+          final attendues = String.fromCharCodes(lettresDuMot[k].$2..sort());
+          final nom = emplacements[k]['haraka'] as String?;
+          final donnees = String.fromCharCodes(
+            [...?_signesHarakaScheme[nom]]..sort(),
+          );
+          if (attendues != donnees) {
+            erreur(
+              '$chemin/donnees/emplacements/$k',
+              'scheme_harakat_differentes',
+              'l\'emplacement ${k + 1} porte « ${nom ?? 'aucune haraka'} » '
+                  'alors que la lettre « ${lettresDuMot[k].$1} » du mot '
+                  '« $mot » porte « ${lettresDuMot[k].$1}$attendues ».',
+            );
+          }
+        }
+      }
+      final ecoute = donnees['ecoute'] as Map<String, dynamic>?;
+      if (ecoute != null && ecoute['texte'] != mot) {
+        erreur(
+          '$chemin/donnees/ecoute/texte',
+          'ecoute_differente_reponse',
+          'le mot entendu doit être le mot « $mot », pas '
+              '« ${ecoute['texte']} ».',
+        );
       }
   }
 
@@ -942,6 +1068,30 @@ String? _suivantDeLaSuite(List<Map<String, dynamic>> suite) {
 }
 
 bool _estHaraka(int r) => r >= 0x064B && r <= 0x0652;
+
+/// Une lettre arabe nue : une seule rune, lettre de base, sans tatweel ni
+/// haraka (tuile de T56).
+bool _lettreNue(String texte) {
+  final runes = texte.runes.toList();
+  return runes.length == 1 && _estLettreArabe(runes.single);
+}
+
+bool _estLettreArabe(int r) => r >= 0x0621 && r <= 0x064A && r != 0x0640;
+
+/// Lettres d'un mot vocalisé, chacune avec les runes de ses harakat (dans
+/// l'ordre du texte, jamais réordonnées ici). Les autres caractères
+/// (espaces, tatweel) sont ignorés.
+List<(String, List<int>)> _lettresEtHarakat(String mot) {
+  final lettres = <(String, List<int>)>[];
+  for (final r in mot.runes) {
+    if (_estLettreArabe(r)) {
+      lettres.add((String.fromCharCode(r), []));
+    } else if (_estHaraka(r) && lettres.isNotEmpty) {
+      lettres.last.$2.add(r);
+    }
+  }
+  return lettres;
+}
 
 /// Convention B : alif suscrit simplifié (هَذِهِ, jamais هٰذِهِ), donc aucun
 /// U+0670 dans les textes.
