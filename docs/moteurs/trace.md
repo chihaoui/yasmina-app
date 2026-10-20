@@ -67,7 +67,7 @@ Aucune. La « réponse » est l'ensemble des formes tracées (`{ "formes": ["f1"
 |---|---|---|---|---|
 | Pendant le tracé | aucun | neutre | encre bleue sur la lettre grise | Continuer inactif tant qu'une forme demandée manque |
 | Formes demandées tracées | aucun | neutre | inchangée | Continuer (vert) |
-| Après Continuer | aucun | neutre | inchangée | l'hôte enchaîne (résultat `termine`) |
+| Après Continuer | aucun | neutre | inchangée et verrouillée (plus de tracé, plus de changement de forme) | l'hôte enchaîne (résultat `termine`) |
 
 Aucun son `juste`, `essaiFaux` ni `revelee` (décision 35 : le lecteur n'en joue aucun en mode sans note). Pas de vibration au tracé.
 

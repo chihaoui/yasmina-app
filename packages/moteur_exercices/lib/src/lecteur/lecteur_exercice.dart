@@ -220,6 +220,9 @@ class _LecteurExerciceState extends State<LecteurExercice> {
     if (_deroule.validation == ModeValidation.sansNote &&
         !_deroule.estTermine) {
       _emettre(_deroule.terminerSansNote());
+      // Type non noté : la zone est verrouillée telle quelle (aucune
+      // réponse après le résultat), sans jugement affiché.
+      _controleur?.montrer(AffichageReponse.juste);
       setState(() {});
     }
     widget.onContinuer?.call();

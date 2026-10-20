@@ -62,7 +62,12 @@ void main() {
         final glissesJustes = tester
             .widgetList<TuileGlissable>(find.byType(TuileGlissable))
             .where((t) => t.etat == EtatGlissable.juste);
-        expect(choixJustes.isNotEmpty || glissesJustes.isNotEmpty, isTrue);
+        // Tracé (non noté) : la lettre et son guidage passent en olive.
+        final traceRevele = cle('trace_reponse').evaluate().isNotEmpty;
+        expect(
+          choixJustes.isNotEmpty || glissesJustes.isNotEmpty || traceRevele,
+          isTrue,
+        );
         expect(tester.takeException(), isNull);
       });
     }

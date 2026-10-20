@@ -223,7 +223,13 @@ const typesExercices = <TypeExercice>[
     etat: EtatType.jouable,
   ),
   // Tracé (lot 1).
-  TypeExercice('T20', 'Tracé de lettre (non noté)', Moteur.trace, lot: 1),
+  TypeExercice(
+    'T20',
+    'Tracé de lettre (non noté)',
+    Moteur.trace,
+    lot: 1,
+    etat: EtatType.jouable,
+  ),
   // Manipulables.
   TypeExercice('T25', 'Droite numérique', Moteur.manipulables, lot: 1),
   TypeExercice('T27', 'Blocs base 10', Moteur.manipulables, lot: 1),

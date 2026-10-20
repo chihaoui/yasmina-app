@@ -29,6 +29,7 @@ export 'src/moteurs/glisser/gabarit_ordre.dart';
 export 'src/moteurs/glisser/gabarit_racine_scheme.dart';
 export 'src/moteurs/glisser/tuile_glissable.dart';
 export 'src/moteurs/glisser/zone_depot.dart';
+export 'src/moteurs/trace/gabarit_trace.dart';
 export 'src/plateforme/services.dart';
 export 'src/plateforme/services_factices.dart';
 export 'src/polices.dart';

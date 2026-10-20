@@ -52,7 +52,7 @@ void main() {
     expect(Moteur.values.skip(premierLot2).any(aDuLot1), isFalse);
   });
 
-  test('les types jouables sont ceux du moteur Choix déjà branchés', () {
+  test('les types jouables sont ceux des moteurs déjà branchés', () {
     final jouables = typesExercices
         .where((t) => t.etat == EtatType.jouable)
         .map((t) => t.id);
@@ -61,7 +61,7 @@ void main() {
     for (final id in jouables) {
       expect(
         typeParId(id)!.moteur,
-        isIn([Moteur.choix, Moteur.glisserDeposer]),
+        isIn([Moteur.choix, Moteur.glisserDeposer, Moteur.trace]),
         reason: id,
       );
     }

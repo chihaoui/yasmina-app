@@ -13,6 +13,7 @@ class LibellesLecteur {
     required this.explication,
     required this.vrai,
     required this.faux,
+    required this.effacer,
     required this.imageNumerotee,
   });
 
@@ -28,6 +29,7 @@ class LibellesLecteur {
         explication: 'لِنَتَعَلَّمْ',
         vrai: 'صَحِيحٌ',
         faux: 'خَطَأٌ',
+        effacer: feminin ? 'اِمْسَحِي' : 'اِمْسَحْ',
         imageNumerotee: (n) => 'صُورَةٌ $n',
       ),
       'en' => LibellesLecteur._(
@@ -39,6 +41,7 @@ class LibellesLecteur {
         explication: "Let's learn",
         vrai: 'True',
         faux: 'False',
+        effacer: 'Erase',
         imageNumerotee: (n) => 'picture $n',
       ),
       _ => LibellesLecteur._(
@@ -50,6 +53,7 @@ class LibellesLecteur {
         explication: 'Explication',
         vrai: 'Vrai',
         faux: 'Faux',
+        effacer: 'Effacer',
         imageNumerotee: (n) => 'image $n',
       ),
     };
@@ -63,6 +67,9 @@ class LibellesLecteur {
   final String explication;
   final String vrai;
   final String faux;
+
+  /// Effacer le tracé (T20), genré en arabe.
+  final String effacer;
 
   /// Libellé neutre d'une tuile en image ou en emoji seul (numéro à partir
   /// de 1) : le lecteur d'écran ne doit pas donner la réponse.
@@ -80,6 +87,7 @@ class LibellesLecteur {
     explication,
     vrai,
     faux,
+    effacer,
     image(1),
   ];
 }

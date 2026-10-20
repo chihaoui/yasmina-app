@@ -6,12 +6,12 @@ void main() {
     final m = LibellesLecteur.pour('ar', FormeAdresse.masculin);
     final f = LibellesLecteur.pour('ar', FormeAdresse.feminin);
     expect(
-      [m.verifier, m.continuer, m.ecouter, m.validation],
-      ['تَحَقَّقْ', 'وَاصِلْ', 'اِسْمَعْ', 'أَحْسَنْتَ'],
+      [m.verifier, m.continuer, m.ecouter, m.validation, m.effacer],
+      ['تَحَقَّقْ', 'وَاصِلْ', 'اِسْمَعْ', 'أَحْسَنْتَ', 'اِمْسَحْ'],
     );
     expect(
-      [f.verifier, f.continuer, f.ecouter, f.validation],
-      ['تَحَقَّقِي', 'وَاصِلِي', 'اِسْمَعِي', 'أَحْسَنْتِ'],
+      [f.verifier, f.continuer, f.ecouter, f.validation, f.effacer],
+      ['تَحَقَّقِي', 'وَاصِلِي', 'اِسْمَعِي', 'أَحْسَنْتِ', 'اِمْسَحِي'],
     );
     for (final l in [m, f]) {
       expect(
@@ -26,8 +26,8 @@ void main() {
     for (final forme in FormeAdresse.values) {
       final fr = LibellesLecteur.pour('fr', forme);
       expect(
-        [fr.verifier, fr.continuer, fr.vrai, fr.faux, fr.image(2)],
-        ['Vérifier', 'Continuer', 'Vrai', 'Faux', 'image 2'],
+        [fr.verifier, fr.continuer, fr.vrai, fr.faux, fr.image(2), fr.effacer],
+        ['Vérifier', 'Continuer', 'Vrai', 'Faux', 'image 2', 'Effacer'],
       );
       final en = LibellesLecteur.pour('en', forme);
       expect(
