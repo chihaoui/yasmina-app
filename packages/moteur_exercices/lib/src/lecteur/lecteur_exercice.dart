@@ -424,7 +424,8 @@ class _BarreApercu extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text('Afficher la réponse', style: style),
+              // Souple : le cadre de l'aperçu fait 360 px.
+              Flexible(child: Text('Afficher la réponse', style: style)),
               Switch(
                 key: const ValueKey('lecteur_afficher_reponse'),
                 value: reponseAffichee,

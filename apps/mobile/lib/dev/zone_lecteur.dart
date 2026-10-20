@@ -93,8 +93,7 @@ class _ZoneLecteurState extends State<ZoneLecteur> {
   Widget _message(BuildContext context, CouleursYasmina c) {
     final message = !widget.exemple.estValide
         ? 'Exemple invalide : corriger le JSON avant de le jouer.'
-        : 'Type à venir : son moteur n\'est pas encore prêt (A1-01b pour '
-              'le moteur Choix).';
+        : 'Type à venir : son moteur n\'est pas encore prêt.';
     return DecoratedBox(
       key: const ValueKey('zone_lecteur'),
       decoration: BoxDecoration(

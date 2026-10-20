@@ -7,6 +7,18 @@ void main() {
   runApp(const ProviderScope(child: ApercuApp()));
 }
 
+/// Exemples de schema/exemples/ joués par l'aperçu (même source que l'app
+/// et les tests), dans l'ordre du catalogue.
+final catalogueApercuProvider = Provider<CatalogueExemples>(
+  (ref) => CatalogueExemples(),
+);
+
+/// Services de l'aperçu web : factices jusqu'à l'implémentation web
+/// (A0-15). Aucune voix, aucun son : le lecteur reste jouable.
+final servicesApercuProvider = Provider<ServicesExercice>(
+  (ref) => ServicesFactices(),
+);
+
 class ApercuApp extends StatelessWidget {
   const ApercuApp({super.key});
 
@@ -16,14 +28,103 @@ class ApercuApp extends StatelessWidget {
     return MaterialApp(
       title: 'Aperçu Yasmina',
       debugShowCheckedModeBanner: false,
-      theme: ThemeYasmina.theme(langue: 'ar', luminosite: Brightness.light),
-      darkTheme: ThemeYasmina.theme(langue: 'ar', luminosite: Brightness.dark),
+      theme: ThemeYasmina.theme(langue: 'fr', luminosite: Brightness.light),
+      darkTheme: ThemeYasmina.theme(langue: 'fr', luminosite: Brightness.dark),
       themeMode: ThemeMode.system,
-      home: Builder(
-        builder: (context) => Scaffold(
-          backgroundColor: context.couleurs.bg,
-          body: const Center(
-            child: CadreTelephone(child: CarteDemo(langue: 'ar')),
+      home: const ApercuExercice(),
+    );
+  }
+}
+
+/// Un exemple du catalogue joué dans un cadre de téléphone, en mode aperçu
+/// (afficher la réponse, rejouer). Le choix de l'exemple, en français,
+/// tient lieu de page hôte en attendant le chargement d'un JSON (A0-15).
+class ApercuExercice extends ConsumerStatefulWidget {
+  const ApercuExercice({super.key});
+
+  @override
+  ConsumerState<ApercuExercice> createState() => _ApercuExerciceState();
+}
+
+class _ApercuExerciceState extends ConsumerState<ApercuExercice> {
+  String? _chemin;
+  FormeAdresse _forme = FormeAdresse.masculin;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.couleurs;
+    final jouables = ref
+        .watch(catalogueApercuProvider)
+        .tous
+        .where(
+          (e) =>
+              e.estValide &&
+              typeParId(e.idType ?? '')?.etat == EtatType.jouable,
+        )
+        .toList();
+    final exemple =
+        jouables.where((e) => e.chemin == _chemin).firstOrNull ??
+        jouables.firstOrNull;
+    return Scaffold(
+      backgroundColor: c.bg,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: EspacesYasmina.space4,
+            children: [
+              Wrap(
+                spacing: EspacesYasmina.space3,
+                runSpacing: EspacesYasmina.space2,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  DropdownMenu<String>(
+                    key: const ValueKey('apercu_exemple'),
+                    initialSelection: exemple?.chemin,
+                    label: const Text('Exemple'),
+                    dropdownMenuEntries: [
+                      for (final e in jouables)
+                        DropdownMenuEntry(
+                          value: e.chemin,
+                          label: '${e.idType}  ${e.fichier}',
+                        ),
+                    ],
+                    onSelected: (chemin) => setState(() => _chemin = chemin),
+                  ),
+                  SegmentedButton<FormeAdresse>(
+                    key: const ValueKey('apercu_forme'),
+                    segments: const [
+                      ButtonSegment(
+                        value: FormeAdresse.masculin,
+                        label: Text('Masculin'),
+                      ),
+                      ButtonSegment(
+                        value: FormeAdresse.feminin,
+                        label: Text('Féminin'),
+                      ),
+                    ],
+                    selected: {_forme},
+                    onSelectionChanged: (choix) =>
+                        setState(() => _forme = choix.single),
+                  ),
+                ],
+              ),
+              CadreTelephone(
+                child: exemple == null
+                    ? const Text('Aucun exemple jouable.')
+                    : LecteurExercice(
+                        key: ValueKey('${exemple.chemin}_${_forme.name}'),
+                        exercice: exemple.exercice!,
+                        config: ConfigExercice(
+                          langue: exemple.langue!,
+                          formeAdresse: _forme,
+                          mode: ModeExercice.apercu,
+                        ),
+                        services: ref.watch(servicesApercuProvider),
+                      ),
+              ),
+            ],
           ),
         ),
       ),
@@ -54,7 +155,7 @@ class CadreTelephone extends StatelessWidget {
           child: SizedBox(
             width: TaillesYasmina.frameWidth,
             height: TaillesYasmina.frameHeight,
-            child: Center(child: child),
+            child: child,
           ),
         ),
       ),

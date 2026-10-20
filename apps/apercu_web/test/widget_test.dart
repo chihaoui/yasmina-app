@@ -1,19 +1,26 @@
 import 'package:apercu_web/main.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
 void main() {
-  testWidgets("l'aperçu web affiche la carte du moteur", (tester) async {
-    tester.view.physicalSize = const Size(800, 1000);
+  Finder cle(String valeur) => find.byKey(ValueKey(valeur));
+
+  Future<void> lancer(WidgetTester tester) async {
+    tester.view.physicalSize = const Size(900, 1100);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
-
     await tester.pumpWidget(const ProviderScope(child: ApercuApp()));
+    await tester.pump();
+  }
+
+  testWidgets("l'aperçu web joue le premier exemple dans le cadre", (
+    tester,
+  ) async {
+    await lancer(tester);
     expect(find.byType(CadreTelephone), findsOneWidget);
-    expect(find.byType(CarteDemo), findsOneWidget);
-    expect(find.text('يَاسْمِينَة'), findsOneWidget);
+    expect(find.byType(LecteurExercice), findsOneWidget);
     // L'écran du cadre fait frame-width × frame-height.
     final ecran = tester.getSize(
       find.descendant(
@@ -25,5 +32,37 @@ void main() {
       ecran,
       const Size(TaillesYasmina.frameWidth, TaillesYasmina.frameHeight),
     );
+    expect(cle('lecteur_afficher_reponse'), findsOneWidget);
+  });
+
+  group('parité web : chaque exemple du moteur Choix', () {
+    final exemples = CatalogueExemples().tous.where(
+      (e) => typeParId(e.idType!)?.moteur == Moteur.choix,
+    );
+    for (final exemple in exemples) {
+      testWidgets('${exemple.fichier} : joué, réponse révélée', (tester) async {
+        await lancer(tester);
+        await tester.tap(cle('apercu_exemple'));
+        await tester.pumpAndSettle();
+        await tester.tap(
+          find.text('${exemple.idType}  ${exemple.fichier}').last,
+        );
+        await tester.pumpAndSettle();
+        final lecteur = tester.widget<LecteurExercice>(
+          find.byType(LecteurExercice),
+        );
+        expect(lecteur.exercice['id'], exemple.exercice!['id']);
+        expect(lecteur.config.langue, exemple.langue);
+        await tester.tap(cle('lecteur_afficher_reponse'));
+        await tester.pump();
+        expect(
+          tester
+              .widgetList<TuileChoix>(find.byType(TuileChoix))
+              .where((t) => t.etat == EtatTuile.juste),
+          isNotEmpty,
+        );
+        expect(tester.takeException(), isNull);
+      });
+    }
   });
 }
