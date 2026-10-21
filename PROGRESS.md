@@ -6,16 +6,16 @@ Au 21 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
-| A0 | 18,5 | 21,75 | 85 % |
+| A0 | 20 | 21,75 | 92 % |
 | A1 | 24,75 | 36,25 | 68 % |
 | A2 | 17 | 30,5 | 56 % |
-| A3 | 0 | 8,25 | 0 % |
+| A3 | 8,25 | 8,25 | 100 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **60,25** | **182,25** | **33,1 %** |
+| **Total** | **70** | **182,25** | **38,4 %** |
 
-- **Avancement global : 33,1 %** (60,25 j-h faits sur 182,25)
+- **Avancement global : 38,4 %** (70 j-h faits sur 182,25)
 - **Types jouables : 52 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -58,9 +58,12 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A0-05 Maquettes HTML de référence (0,5 j-h)
 - [x] A0-06 Projet Flutter et dépendances (0,5 j-h)
 - [x] A0-07 Schéma edu-content/1.0 et validateur (2 j-h)
-- [ ] A0-08 JSON embarqués (52 types et parcours arabe 1re) (1,5 j-h)
+- [x] A0-08 JSON embarqués (52 types et parcours arabe 1re) (1,5 j-h)
   - [x] Première étape `ar-1-t1-u1-e01` (T01 et T02), validée par `flutter test`
   - [x] Relecture des harakat de `ar-1-t1-u1-e01` par Lamjed, étape passée en statut valide le 17 oct. 2026
+  - [x] Les 52 types : un exemple au moins par type dans `schema/exemples/` (atelier, aperçu web, tests)
+  - [x] Parcours d'arabe 1re T1 : `docs/contenu/contenu-ar-1-t1.json` converti par `tool/convertir_contenu.dart` en 7 étapes edu-content/1.0 (100 exercices, T20 remplacé par un T17 au clavier réduit, décision 40), validées par `flutter test` (jour du 21 oct. 2026)
+  - [ ] Relecture humaine des harakat des 98 exercices en brouillon (x01 et x02 restent valides)
 - [x] A0-09 Conventions d'écriture de l'arabe (0,5 j-h)
 - [x] A0-10 Langue de l'interface et Directionality (1,5 j-h)
 - [x] A0-11 Profils enfants (5 max) et base drift (2 j-h)
@@ -174,11 +177,18 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 
 ## A3 : parcours et espace parent (1er au 14 mars 2027)
 Après la validation des 52 types dans l'atelier (décision 37) : le parcours, la progression et l'espace parent, déplacés de A1 (anciennes A1-10 à A1-14).
-- [ ] A3-01 Choix de l'enfant et de la matière, carte du trimestre (2 j-h)
-- [ ] A3-02 Intro d'étape, séquences, écran de résultat (2 j-h)
-- [ ] A3-03 Progression locale (1,25 j-h)
-- [ ] A3-04 Espace parent local (2,5 j-h)
-- [ ] A3-05 Simulation essai et abonnement (0,5 j-h)
+Lancée le 21 oct. 2026 avant la fin de la validation des 52 types sur l'iPhone (écart assumé à la décision 34). Le parcours réutilise le lecteur et les moteurs sans les modifier.
+- [x] A3-01 Choix de l'enfant et de la matière, carte du trimestre (2 j-h)
+  - [x] Accueil : matières selon le niveau (arabe, maths, éveil en 1re, français dès la 2e, anglais dès la 4e), « bientôt » sans contenu, carte du trimestre (unités, lettres, défi, ouverte, faite, verrouillée, sens de l'interface), jour du 21 oct. 2026
+  - [ ] Validation par Lamjed des points tranchés (`docs/sessions/2026-10-21-jour.md`) et test sur l'iPhone
+- [x] A3-02 Intro d'étape, séquences, écran de résultat (2 j-h)
+  - [x] Intro (Yasmina, lettre et formes, séquences), séquences jouées dans le lecteur avec la barre SequenceProgress, résultat (réussis sur total, étape suivante débloquée, retour à la carte), jour du 21 oct. 2026
+- [x] A3-03 Progression locale (1,25 j-h)
+  - [x] Base drift v2 (migration pas à pas, instantané, test) : résultat par exercice, état par étape avec reprise, bilan par séquence calculé, profil de test Lina avec progression d'exemple, réinitialisation, jour du 21 oct. 2026
+- [x] A3-04 Espace parent local (2,5 j-h)
+  - [x] Porte parentale (multiplication configurable), profils déplacés (décision 28), langue, sons des effets (décision 35), progression par enfant, sans harakat (décision 27), jour du 21 oct. 2026
+- [x] A3-05 Simulation essai et abonnement (0,5 j-h)
+  - [x] Statut simulé respecté par le parcours (essai, essai terminé, abonné), offres 10, 20 et 50 DT dans l'espace parent (décision 13), « S'abonner » sans réseau, jour du 21 oct. 2026
 
 ## B : back-end, back-office et pilote de contenu (15 mars au 30 avril 2027)
 - [ ] B-01 Back-end : schéma Supabase et RLS (3 j-h)
@@ -231,7 +241,10 @@ Après la validation des 52 types dans l'atelier (décision 37) : le parcours, l
 - À vérifier sur l'iPhone (moteur Choix, 20 oct. 2026) : en T19 forme mot, la lettre cible est colorée en bleu par un span séparé du même texte. Contrôler que ت reste liée à ses voisines (كُتُبٌ) dans Noto Naskh. Sinon, colorer le mot entier.
 - À vérifier sur l'iPhone : `AudioMobile` attend désormais la fin de la synthèse (`awaitSpeakCompletion`) pour enchaîner la consigne puis le mot à écouter (T03, T55, T01 orthographe, T19). Contrôler que la réécoute de la consigne coupe bien le mot en cours.
 - Aperçu web : joue l'exemple choisi dans une liste déroulante (13 types du moteur Choix), en mode aperçu, avec les services factices. Le chargement d'un JSON par fichier ou `postMessage` reste à faire (A0-15).
-- À suivre (menu développeur, CLAUDE.md §7) : la « progression d'exemple » du profil de test Lina viendra avec la progression locale (A3-03). Le JSON de l'exercice en cours est affiché dans l'atelier, sous le lecteur et son journal.
+- À vérifier sur l'iPhone (jour du 21 oct. 2026, fiche de test dans `docs/sessions/2026-10-21-jour.md` §3) : le parcours complet (matières, carte, intro, une étape de 14 exercices, résultat, progression après relance), l'espace parent (porte, profils, langue, sons, progression, offres) et les trois statuts d'abonnement simulés.
+- À valider par Lamjed (jour du 21 oct. 2026) : les points tranchés seuls du parcours, de la progression, de l'espace parent et de la conversion du contenu (`docs/sessions/2026-10-21-jour.md` §2), dont le validateur T15 qui accepte des tuiles vocalisées et le remplacement de T20 par un T17 dans chaque séquence أَكْتُبُ.
+- Goldens régénérés ou créés sans contrôle humain complet (jour du 21 oct. 2026) : accueil (4, matières), choix du profil (4, sans crayon ni ajout), carte du trimestre (4, nouvelles). Trois regardés par Claude Code (carte_ar, carte_fr_sombre, accueil_fr, choix_profil_fr, carte_fr) : conformes.
+- Outils de génération (drift, build_runner) : `dart run <paquet>` reste bloqué sur une résolution pub en ligne sur ce réseau. Contournement documenté dans `base_yasmina.dart` : lancer les instantanés précompilés de `.dart_tool/pub/bin/`.
 - Résolu le 20 oct. 2026 (moteur Choix) : tout texte court lu par l'enfant en français ou en anglais (affirmation, texte des propositions) passe en `latin-prompt` (20 px). `latin-body` reste pour les textes longs à lire (T45, T46, T61), choix.md §9 mis à jour.
 - À savoir : dans les tests et les goldens, les emoji s'affichent en carré (le moteur de test n'a pas de police emoji). Sur l'appareil et dans le navigateur, ils s'affichent normalement.
 - Aperçu web : services factices (aucune voix, aucun son) jusqu'à l'implémentation web des services (A0-15).
@@ -275,4 +288,5 @@ Après la validation des 52 types dans l'atelier (décision 37) : le parcours, l
 | 20 oct. 2026 | A1-04 moteur Tracé, T20 (Claude Code, session sans surveillance, après-midi) | Branche `moteur/trace`. Fiche `docs/moteurs/trace.md` en brouillon (11 points tranchés, 8 questions). Schéma `donneesTrace` (lettre, formes avec glyphe, position et traits de guidage normalisés, nom de la lettre), `reponseTrace` (formes à tracer), 6 règles, exemples ب ل م avec traits faits main. Moteur en mode sans note : formes en boutons sans sous-titre, zone de tracé 3 : 2 avec la lettre en naskh, points et flèches dans le sens d'écriture, encre au doigt, Effacer par forme (libellé genré), tolérance d'un quart de largeur, le lecteur verrouille la zone après Continuer. 4 tests de widget avec un vrai geste, parité moteur et aperçu web. Aucune dépendance ajoutée | Relire les traits avec un enseignant, tester le geste sur l'iPhone |
 | 20 oct. 2026 | A1-06 moteur Manipulables, base, étapes a et b et c1 (Claude Code, session sans surveillance, après-midi) | Branche `moteur/manipulables-base`. Fiche `docs/moteurs/manipulables.md` en brouillon (8 points tranchés, 6 questions, sens de la droite configurable). Schéma et validateur pour T25 (`min`, `max`, `pas`, `reperes`, `cible`, `sens`), T27 (`cible`, `canonique`), T51 (`cible`), réponses explicites contrôlées contre la cible, 3 exemples en brouillon, 23 tests du schéma. T25 jouable : droite peinte de gauche à droite, repère glissé avec aimant ou graduation touchée, retour au départ après le 1er essai faux, 3 tests de widget, parité. Aucune dépendance ajoutée | Moteur des 3 types (A1-06, étape c2 : T27 et T51), puis moteur Texte (A1-03) |
 | 20 oct. 2026 | A1-02 moteur Glisser-déposer, étapes a, b et c (Claude Code, session sans surveillance, décision 39) | Branche `proposition/moteur-glisser-deposer`. Fiche en brouillon `docs/moteurs/glisser-deposer.md` (8 types en 5 interactions) et 14 points tranchés seul dans `glisser-deposer-questions.md`. Schéma, 14 règles du validateur, 9 exemples en brouillon (`schema/exemples/glisser-deposer/`), 55 tests. Moteur : `TuileGlissable` (glisser réel, toucher-toucher, retour animé), `ZoneDepot` (pointillé, aimant), contrôleurs d'affectation et d'ordre, son `depot` et vibration, seuls les éléments faux reviennent après le 1er essai (`ControleurReponse.retirerFaux`). T06, T09, T11, T12, T13, T14, T15, T16 jouables dans l'atelier, 20 tests de widget avec un vrai geste, parité mobile et web. T26, T27 (Manipulables dans le registre), T39 (gabarit de T06), T56 et T62 non traités : à trancher. Compte rendu `docs/sessions/2026-10-20.md`. Aucune dépendance ajoutée | Lamjed : fiche de test du soir, valider la fiche du glisser-déposer et les points tranchés, puis moteur Tracé (A1-04) |
+| 21 oct. 2026 | Jour du 21 oct. : A0-08 parcours converti, phase A3 complète (A3-01 à A3-05), exemples hors release, audit d'accessibilité (Claude Code, session sans surveillance, décision 39) | Branches empilées depuis `app/sequence-test` : `contenu/parcours-ar-1-t1` (`tool/convertir_contenu.dart`, 7 étapes, 100 exercices, T20 remplacé par T17, validateur T15 assoupli aux tuiles vocalisées), `app/parcours` (matières selon le niveau, carte du trimestre, intro, étape jouée dans le lecteur sans le modifier, résultat, goldens de la carte), `app/progression` (drift v2, résultat par exercice, état par étape avec reprise, Lina avec progression d'exemple), `app/espace-parent` (porte parentale par multiplication, profils déplacés, langue, sons, progression par enfant, sans harakat), `app/abonnement-simule` (statuts respectés par le parcours, offres 10, 20, 50 DT, « S'abonner » sans réseau), `app/nettoyage-accessibilite` (exemples hors release par `sourcesAtelier`, audit des 52 types et des écrans par les règles de flutter_test, 4 corrections). Un vérificateur vert par commit (hook). Compte rendu `docs/sessions/2026-10-21-jour.md`. Aucune dépendance ajoutée (`edu_content` passe en dépendance directe de apps/mobile) | Lamjed : fiche de test de 30 min (`docs/sessions/2026-10-21-jour.md` §5), valider les 19 points tranchés et les questions, relire les harakat des 98 exercices et des ARB nouveaux, ouvrir les 12 goldens, puis A1-09, A1-16 (build aux familles) |
 | 21 oct. 2026 | Nuit du 20 au 21 oct. : hook, corrections, relecture, lot 2 complet, A1-22, A1-15 (Claude Code, session sans surveillance, décision 39) | Branches empilées depuis `moteur/revision-jeux` : `outils/hook-verifier` (hook anti-commit rouge, marqueur `.git/verifier-vert`, `verifier.sh` hors ligne), `corrections/test-20-oct` (T20 retiré, 52 types, retrait par glisser partout, T47 cases latérales, T17 clavier en grille, T48 retenues, T38 lettre à lettre, T37 grille de 3), `outils/relecture-harakat` (`docs/relecture/harakat.html`), puis le lot 2 : `moteur/manipulables-avances` (T26, T29, T52), `moteur/scene-image-audio` (T53, T54), `moteur/saisie-numerique-avancee` (T49, T50, T63), `moteur/mesure-temps` (T28, T30), `moteur/grille-graphiques` (T31, T32, T33, T60), `moteur/simulateur` (T57, T34), `moteur/recit` (T35) : **52 types jouables sur 52**. `app/sequence-test` : A1-22 séquence de test (bouton « Jouer », séries dans `assets/sequences/tour-1.json`, lecteur enchaîné, bilan de Yasmina) et A1-15 (faite : `parite_types_test.dart`, 4 goldens du lecteur). Un vérificateur vert par commit (hook). Compte rendu `docs/sessions/2026-10-21.md`. Aucune dépendance ajoutée | Lamjed : fiche de test de 90 min (`docs/sessions/2026-10-21.md` §5), valider les fiches du lot 2 et les points tranchés, trier `tour-1.json`, ouvrir les goldens, puis A1-09, A1-16 (build aux familles) |
