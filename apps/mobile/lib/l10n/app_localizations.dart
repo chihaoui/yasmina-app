@@ -116,30 +116,6 @@ abstract class AppLocalizations {
   /// **'Exemple d\'exercice'**
   String get accueilExempleExercice;
 
-  /// Titre de l'écran des réglages.
-  ///
-  /// In fr, this message translates to:
-  /// **'Réglages'**
-  String get reglagesTitre;
-
-  /// Infobulle et libellé d'accessibilité du bouton des réglages.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ouvrir les réglages'**
-  String get reglagesOuvrir;
-
-  /// Titre du réglage de la langue de l'interface.
-  ///
-  /// In fr, this message translates to:
-  /// **'Langue de l\'application'**
-  String get reglageLangue;
-
-  /// Aide sous le réglage de la langue.
-  ///
-  /// In fr, this message translates to:
-  /// **'Les exercices gardent la langue de leur matière.'**
-  String get reglageLangueAide;
-
   /// Nom d'un avatar, lu par les lecteurs d'écran.
   ///
   /// In fr, this message translates to:
@@ -193,24 +169,6 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Qui joue ?'**
   String get profilsTitre;
-
-  /// Bouton de création d'un profil.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ajouter un enfant'**
-  String get profilsAjouter;
-
-  /// Message affiché à la place du bouton quand 5 profils existent.
-  ///
-  /// In fr, this message translates to:
-  /// **'5 profils au maximum sur cet appareil'**
-  String get profilsLimite;
-
-  /// Infobulle du bouton crayon sur une carte de profil.
-  ///
-  /// In fr, this message translates to:
-  /// **'Modifier le profil de {prenom}'**
-  String profilModifierInfobulle(String prenom);
 
   /// Titre du formulaire de création.
   ///
@@ -529,6 +487,156 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Reprendre'**
   String get introReprendre;
+
+  /// Infobulle et libellé d'accessibilité du bouton des écrans enfant qui mène à la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espace parent'**
+  String get espaceParentOuvrir;
+
+  /// Bulle de Yasmina au premier lancement, sans profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bienvenue ! Un parent ajoute le premier enfant depuis l\'espace parent.'**
+  String get bienvenueBulle;
+
+  /// Titre de l'espace parent et de sa porte (sans harakat, décision 27).
+  ///
+  /// In fr, this message translates to:
+  /// **'Espace parent'**
+  String get parentTitre;
+
+  /// Titre de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espace réservé aux parents'**
+  String get parentPorteTitre;
+
+  /// Aide de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour entrer, réponds à cette opération.'**
+  String get parentPorteAide;
+
+  /// Opération de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'{a} × {b} = ?'**
+  String parentPorteQuestion(int a, int b);
+
+  /// Libellé du champ de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réponse'**
+  String get parentPorteReponse;
+
+  /// Bouton de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Entrer'**
+  String get parentPorteEntrer;
+
+  /// Erreur de la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce n\'est pas la bonne réponse.'**
+  String get parentPorteFaux;
+
+  /// Bouton qui referme la porte parentale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quitter l\'espace parent'**
+  String get parentQuitter;
+
+  /// Section des profils dans l'espace parent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enfants'**
+  String get parentEnfants;
+
+  /// Ligne de création d'un profil dans l'espace parent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un enfant'**
+  String get parentAjouterEnfant;
+
+  /// Message quand 5 profils existent.
+  ///
+  /// In fr, this message translates to:
+  /// **'5 profils au maximum sur cet appareil'**
+  String get parentLimite;
+
+  /// Section de la progression des enfants.
+  ///
+  /// In fr, this message translates to:
+  /// **'Progression'**
+  String get parentProgression;
+
+  /// Section progression sans profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun enfant pour l\'instant.'**
+  String get parentAucuneProgression;
+
+  /// Matière sans parcours dans la progression.
+  ///
+  /// In fr, this message translates to:
+  /// **'bientôt'**
+  String get parentBientot;
+
+  /// Étapes faites sur le total d'une matière.
+  ///
+  /// In fr, this message translates to:
+  /// **'{faites} / {total} étapes faites'**
+  String parentEtapesFaites(int faites, int total);
+
+  /// État d'une étape faite : meilleure partie.
+  ///
+  /// In fr, this message translates to:
+  /// **'faite, {reussis} / {total} réussis'**
+  String parentEtapeFaite(int reussis, int total);
+
+  /// État d'une étape commencée et pas finie.
+  ///
+  /// In fr, this message translates to:
+  /// **'en cours, exercice {index} / {total}'**
+  String parentEtapeEnCours(int index, int total);
+
+  /// Section de la langue de l'interface.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue de l\'application'**
+  String get parentLangue;
+
+  /// Aide sous le réglage de la langue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les exercices gardent la langue de leur matière.'**
+  String get parentLangueAide;
+
+  /// Réglage des sons d'interface (décision 35).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sons des effets'**
+  String get parentSons;
+
+  /// Aide du réglage des sons.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sons du feedback, à volume bas. Rien en mode silencieux.'**
+  String get parentSonsAide;
+
+  /// Section de l'abonnement simulé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abonnement'**
+  String get parentAbonnement;
+
+  /// Emplacement de la simulation d'abonnement (A3-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Statut simulé (menu développeur). Les offres arrivent bientôt.'**
+  String get parentAbonnementBientot;
 }
 
 class _AppLocalizationsDelegate

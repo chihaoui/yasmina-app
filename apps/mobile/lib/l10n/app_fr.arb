@@ -12,22 +12,6 @@
   "@accueilExempleExercice": {
     "description": "Titre de la carte qui montre un exercice dans la langue de sa matière."
   },
-  "reglagesTitre": "Réglages",
-  "@reglagesTitre": {
-    "description": "Titre de l'écran des réglages."
-  },
-  "reglagesOuvrir": "Ouvrir les réglages",
-  "@reglagesOuvrir": {
-    "description": "Infobulle et libellé d'accessibilité du bouton des réglages."
-  },
-  "reglageLangue": "Langue de l'application",
-  "@reglageLangue": {
-    "description": "Titre du réglage de la langue de l'interface."
-  },
-  "reglageLangueAide": "Les exercices gardent la langue de leur matière.",
-  "@reglageLangueAide": {
-    "description": "Aide sous le réglage de la langue."
-  },
   "avatarFleur": "Fleur",
   "@avatarFleur": {
     "description": "Nom d'un avatar, lu par les lecteurs d'écran."
@@ -63,23 +47,6 @@
   "profilsTitre": "Qui joue ?",
   "@profilsTitre": {
     "description": "Titre de l'écran de choix du profil."
-  },
-  "profilsAjouter": "Ajouter un enfant",
-  "@profilsAjouter": {
-    "description": "Bouton de création d'un profil."
-  },
-  "profilsLimite": "5 profils au maximum sur cet appareil",
-  "@profilsLimite": {
-    "description": "Message affiché à la place du bouton quand 5 profils existent."
-  },
-  "profilModifierInfobulle": "Modifier le profil de {prenom}",
-  "@profilModifierInfobulle": {
-    "description": "Infobulle du bouton crayon sur une carte de profil.",
-    "placeholders": {
-      "prenom": {
-        "type": "String"
-      }
-    }
   },
   "profilNouveauTitre": "Nouveau profil",
   "@profilNouveauTitre": {
@@ -341,5 +308,137 @@
   "introReprendre": "Reprendre",
   "@introReprendre": {
     "description": "Bouton de l'intro d'une étape commencée et quittée en cours de route : la partie reprend au même exercice."
+  },
+  "espaceParentOuvrir": "Espace parent",
+  "@espaceParentOuvrir": {
+    "description": "Infobulle et libellé d'accessibilité du bouton des écrans enfant qui mène à la porte parentale."
+  },
+  "bienvenueBulle": "Bienvenue ! Un parent ajoute le premier enfant depuis l'espace parent.",
+  "@bienvenueBulle": {
+    "description": "Bulle de Yasmina au premier lancement, sans profil."
+  },
+  "parentTitre": "Espace parent",
+  "@parentTitre": {
+    "description": "Titre de l'espace parent et de sa porte (sans harakat, décision 27)."
+  },
+  "parentPorteTitre": "Espace réservé aux parents",
+  "@parentPorteTitre": {
+    "description": "Titre de la porte parentale."
+  },
+  "parentPorteAide": "Pour entrer, réponds à cette opération.",
+  "@parentPorteAide": {
+    "description": "Aide de la porte parentale."
+  },
+  "parentPorteQuestion": "{a} × {b} = ?",
+  "@parentPorteQuestion": {
+    "description": "Opération de la porte parentale.",
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
+  "parentPorteReponse": "Réponse",
+  "@parentPorteReponse": {
+    "description": "Libellé du champ de la porte parentale."
+  },
+  "parentPorteEntrer": "Entrer",
+  "@parentPorteEntrer": {
+    "description": "Bouton de la porte parentale."
+  },
+  "parentPorteFaux": "Ce n'est pas la bonne réponse.",
+  "@parentPorteFaux": {
+    "description": "Erreur de la porte parentale."
+  },
+  "parentQuitter": "Quitter l'espace parent",
+  "@parentQuitter": {
+    "description": "Bouton qui referme la porte parentale."
+  },
+  "parentEnfants": "Enfants",
+  "@parentEnfants": {
+    "description": "Section des profils dans l'espace parent."
+  },
+  "parentAjouterEnfant": "Ajouter un enfant",
+  "@parentAjouterEnfant": {
+    "description": "Ligne de création d'un profil dans l'espace parent."
+  },
+  "parentLimite": "5 profils au maximum sur cet appareil",
+  "@parentLimite": {
+    "description": "Message quand 5 profils existent."
+  },
+  "parentProgression": "Progression",
+  "@parentProgression": {
+    "description": "Section de la progression des enfants."
+  },
+  "parentAucuneProgression": "Aucun enfant pour l'instant.",
+  "@parentAucuneProgression": {
+    "description": "Section progression sans profil."
+  },
+  "parentBientot": "bientôt",
+  "@parentBientot": {
+    "description": "Matière sans parcours dans la progression."
+  },
+  "parentEtapesFaites": "{faites} / {total} étapes faites",
+  "@parentEtapesFaites": {
+    "description": "Étapes faites sur le total d'une matière.",
+    "placeholders": {
+      "faites": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "parentEtapeFaite": "faite, {reussis} / {total} réussis",
+  "@parentEtapeFaite": {
+    "description": "État d'une étape faite : meilleure partie.",
+    "placeholders": {
+      "reussis": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "parentEtapeEnCours": "en cours, exercice {index} / {total}",
+  "@parentEtapeEnCours": {
+    "description": "État d'une étape commencée et pas finie.",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "parentLangue": "Langue de l'application",
+  "@parentLangue": {
+    "description": "Section de la langue de l'interface."
+  },
+  "parentLangueAide": "Les exercices gardent la langue de leur matière.",
+  "@parentLangueAide": {
+    "description": "Aide sous le réglage de la langue."
+  },
+  "parentSons": "Sons des effets",
+  "@parentSons": {
+    "description": "Réglage des sons d'interface (décision 35)."
+  },
+  "parentSonsAide": "Sons du feedback, à volume bas. Rien en mode silencieux.",
+  "@parentSonsAide": {
+    "description": "Aide du réglage des sons."
+  },
+  "parentAbonnement": "Abonnement",
+  "@parentAbonnement": {
+    "description": "Section de l'abonnement simulé."
+  },
+  "parentAbonnementBientot": "Statut simulé (menu développeur). Les offres arrivent bientôt.",
+  "@parentAbonnementBientot": {
+    "description": "Emplacement de la simulation d'abonnement (A3-05)."
   }
 }

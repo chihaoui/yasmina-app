@@ -45,17 +45,17 @@ void main() {
       },
     );
 
-    testWidgets('accessible dès le premier lancement (création du profil)', (
+    testWidgets('accessible dès le premier lancement (écran de bienvenue)', (
       tester,
     ) async {
       await lancerApp(tester, StockageMemoire('fr'), profils: []);
-      await ouvrirMenu(tester, 'formulaire_titre');
+      await ouvrirMenu(tester, 'bienvenue_titre');
       expect(cle('menu_dev_titre'), findsOneWidget);
     });
 
     testWidgets('profils de test créés une seule fois', (tester) async {
       final depot = await lancerApp(tester, StockageMemoire('fr'), profils: []);
-      await ouvrirMenu(tester, 'formulaire_titre');
+      await ouvrirMenu(tester, 'bienvenue_titre');
       await tester.tap(cle('dev_profils_test'));
       await tester.pumpAndSettle();
       expect(find.text('2 profils créés.'), findsOneWidget);
@@ -76,7 +76,7 @@ void main() {
     testWidgets('Lina reçoit une progression d\'exemple (première étape faite, '
         'deuxième en cours), Yassine reste vierge', (tester) async {
       await lancerApp(tester, StockageMemoire('fr'), profils: []);
-      await ouvrirMenu(tester, 'formulaire_titre');
+      await ouvrirMenu(tester, 'bienvenue_titre');
       await tester.tap(cle('dev_profils_test'));
       await tester.pumpAndSettle();
       GoRouter.of(tester.element(cle('menu_dev_titre'))).go('/');
@@ -125,11 +125,12 @@ void main() {
       expect(await depot.lister(), isEmpty);
       expect(stockage.lireAbonnementSimule(), isNull);
       expect(stockage.lireLangue(), 'fr');
-      expect(texteDe(tester, 'formulaire_titre'), 'Nouveau profil');
+      expect(cle('bienvenue_titre'), findsOneWidget);
     });
 
     testWidgets(
-      'sons des effets, abonnement simulé et « tout débloquer » enregistrés',
+      'abonnement simulé et « tout débloquer » enregistrés (les sons des '
+      'effets sont dans l\'espace parent, décision 35)',
       (tester) async {
         final stockage = StockageMemoire('fr');
         await lancerApp(tester, stockage);
@@ -139,12 +140,6 @@ void main() {
         await tester.tap(cle('dev_abonnement_essaiTermine'));
         await tester.pumpAndSettle();
         expect(stockage.lireAbonnementSimule(), 'essaiTermine');
-
-        expect(stockage.lireSonsEffets(), isTrue);
-        await tester.scrollUntilVisible(cle('dev_sons_effets'), 100);
-        await tester.tap(cle('dev_sons_effets'));
-        await tester.pumpAndSettle();
-        expect(stockage.lireSonsEffets(), isFalse);
 
         await tester.scrollUntilVisible(cle('dev_tout_debloquer'), 100);
         await tester.tap(cle('dev_tout_debloquer'));

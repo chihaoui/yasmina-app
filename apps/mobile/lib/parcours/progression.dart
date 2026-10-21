@@ -245,6 +245,11 @@ final etapesFaitesProvider = StreamProvider.family<Set<String>, int>(
   (ref, profilId) => ref.watch(depotProgressionProvider).etapesFaites(profilId),
 );
 
+/// Étapes commencées par un profil (faites ou en cours), en continu.
+final etatsEtapesProvider = StreamProvider.family<List<EtatEtapeProfil>, int>(
+  (ref, profilId) => ref.watch(depotProgressionProvider).etatsEtapes(profilId),
+);
+
 /// État d'une étape pour un profil (`(profilId, etapeId)`), en continu,
 /// `null` tant qu'elle n'a pas été commencée.
 final etatEtapeProfilProvider =

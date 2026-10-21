@@ -19,18 +19,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accueilExempleExercice => 'مِثَالُ تَمْرِينٍ';
 
   @override
-  String get reglagesTitre => 'الْإِعْدَادَاتُ';
-
-  @override
-  String get reglagesOuvrir => 'اِفْتَحِ الْإِعْدَادَاتِ';
-
-  @override
-  String get reglageLangue => 'لُغَةُ التَّطْبِيقِ';
-
-  @override
-  String get reglageLangueAide => 'تَبْقَى التَّمَارِينُ بِلُغَةِ مَادَّتِهَا.';
-
-  @override
   String get avatarFleur => 'زَهْرَةٌ';
 
   @override
@@ -56,18 +44,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profilsTitre => 'مَنْ يَلْعَبُ؟';
-
-  @override
-  String get profilsAjouter => 'إِضَافَةُ طِفْلٍ';
-
-  @override
-  String get profilsLimite =>
-      'خَمْسَةُ مَلَفَّاتٍ عَلَى الْأَكْثَرِ فِي هَذَا الْجِهَازِ';
-
-  @override
-  String profilModifierInfobulle(String prenom) {
-    return 'تَعْدِيلُ مَلَفِّ $prenom';
-  }
 
   @override
   String get profilNouveauTitre => 'مَلَفٌّ جَدِيدٌ';
@@ -255,4 +231,90 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get introReprendre => 'هَيَّا نُكْمِلُ';
+
+  @override
+  String get espaceParentOuvrir => 'فَضَاءُ الْأَوْلِيَاءِ';
+
+  @override
+  String get bienvenueBulle =>
+      'مَرْحَبًا! يُضِيفُ الْوَلِيُّ الطِّفْلَ الْأَوَّلَ مِنْ فَضَاءِ الْأَوْلِيَاءِ.';
+
+  @override
+  String get parentTitre => 'فضاء الأولياء';
+
+  @override
+  String get parentPorteTitre => 'مساحة مخصصة للأولياء';
+
+  @override
+  String get parentPorteAide => 'للدخول، أجب عن هذه العملية.';
+
+  @override
+  String parentPorteQuestion(int a, int b) {
+    return '$a × $b = ?';
+  }
+
+  @override
+  String get parentPorteReponse => 'الجواب';
+
+  @override
+  String get parentPorteEntrer => 'دخول';
+
+  @override
+  String get parentPorteFaux => 'الجواب غير صحيح.';
+
+  @override
+  String get parentQuitter => 'الخروج من فضاء الأولياء';
+
+  @override
+  String get parentEnfants => 'الأطفال';
+
+  @override
+  String get parentAjouterEnfant => 'إضافة طفل';
+
+  @override
+  String get parentLimite => 'خمسة ملفات على الأكثر في هذا الجهاز';
+
+  @override
+  String get parentProgression => 'التقدم';
+
+  @override
+  String get parentAucuneProgression => 'لا أطفال بعد.';
+
+  @override
+  String get parentBientot => 'قريبا';
+
+  @override
+  String parentEtapesFaites(int faites, int total) {
+    return '$faites / $total مراحل منجزة';
+  }
+
+  @override
+  String parentEtapeFaite(int reussis, int total) {
+    return 'منجزة، $reussis / $total صحيحة';
+  }
+
+  @override
+  String parentEtapeEnCours(int index, int total) {
+    return 'جارية، التمرين $index / $total';
+  }
+
+  @override
+  String get parentLangue => 'لغة التطبيق';
+
+  @override
+  String get parentLangueAide => 'تبقى التمارين بلغة مادتها.';
+
+  @override
+  String get parentSons => 'أصوات المؤثرات';
+
+  @override
+  String get parentSonsAide =>
+      'أصوات التغذية الراجعة بصوت منخفض. لا شيء في الوضع الصامت.';
+
+  @override
+  String get parentAbonnement => 'الاشتراك';
+
+  @override
+  String get parentAbonnementBientot =>
+      'الحالة محاكاة (قائمة المطور). العروض قريبا.';
 }

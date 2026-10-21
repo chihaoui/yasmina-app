@@ -57,66 +57,24 @@ class CarteProfil extends StatelessWidget {
   }
 }
 
-/// Carte pointillée « Ajouter un enfant », absente à 5 profils.
-class CarteAjoutProfil extends StatelessWidget {
-  const CarteAjoutProfil({
-    super.key,
-    required this.libelle,
-    required this.onTap,
-  });
-
-  final String libelle;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.couleurs;
-    return _Cadre(
-      onTap: onTap,
-      pointille: true,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox.square(
-            dimension: TaillesYasmina.avatarCard,
-            child: Icon(Icons.add_rounded, color: c.muted),
-          ),
-          const SizedBox(height: EspacesYasmina.space1),
-          Text(
-            libelle,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge!
-                .copyWith(color: c.muted),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Fond surface, bordure line (pleine ou pointillée), coins radius-2xl.
+/// Fond surface, bordure line, coins radius-2xl. La carte pointillée
+/// « Ajouter un enfant » a quitté l'écran enfant avec la décision 28 : les
+/// profils se créent dans l'espace parent.
 class _Cadre extends StatelessWidget {
-  const _Cadre({
-    required this.onTap,
-    required this.child,
-    this.pointille = false,
-  });
+  const _Cadre({required this.onTap, required this.child});
 
   final VoidCallback onTap;
   final Widget child;
-  final bool pointille;
 
   @override
   Widget build(BuildContext context) {
     final c = context.couleurs;
     final rayon = BorderRadius.circular(RayonsYasmina.radius2xl);
-    final contenu = Material(
-      color: pointille ? Colors.transparent : c.surface,
+    return Material(
+      color: c.surface,
       shape: RoundedRectangleBorder(
         borderRadius: rayon,
-        side: pointille
-            ? BorderSide.none
-            : BorderSide(color: c.line, width: TraitsYasmina.borderThick),
+        side: BorderSide(color: c.line, width: TraitsYasmina.borderThick),
       ),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -130,45 +88,5 @@ class _Cadre extends StatelessWidget {
         ),
       ),
     );
-    if (!pointille) return contenu;
-    return CustomPaint(
-      foregroundPainter: _BordurePointillee(couleur: c.line),
-      child: contenu,
-    );
   }
-}
-
-/// Bordure pointillée arrondie (pas de paquet : Flutter ne la dessine pas).
-class _BordurePointillee extends CustomPainter {
-  const _BordurePointillee({required this.couleur});
-
-  final Color couleur;
-
-  /// Longueur d'un trait et d'un espace : 3 fois l'épaisseur, comme le
-  /// pointillé CSS de la démo.
-  static const _pas = TraitsYasmina.borderThick * 3;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    const demi = TraitsYasmina.borderThick / 2;
-    final contour = Path()
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          Offset.zero & size,
-          const Radius.circular(RayonsYasmina.radius2xl),
-        ).deflate(demi),
-      );
-    final pinceau = Paint()
-      ..color = couleur
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = TraitsYasmina.borderThick;
-    for (final mesure in contour.computeMetrics()) {
-      for (var d = 0.0; d < mesure.length; d += _pas * 2) {
-        canvas.drawPath(mesure.extractPath(d, d + _pas), pinceau);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_BordurePointillee ancien) => ancien.couleur != couleur;
 }

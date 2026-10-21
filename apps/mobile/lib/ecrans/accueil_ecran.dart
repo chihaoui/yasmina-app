@@ -34,7 +34,7 @@ class AccueilEcran extends ConsumerWidget {
         title: TitreAvecMenuDev(
           child: Text(textes.appTitre, key: const ValueKey('accueil_titre')),
         ),
-        actions: const [BoutonReglages()],
+        actions: const [BoutonEspaceParent()],
       ),
       // Écran court : tout est construit (tests et lecteurs d'écran).
       body: SingleChildScrollView(

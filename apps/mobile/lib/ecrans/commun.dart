@@ -4,18 +4,20 @@ import 'package:moteur_exercices/moteur_exercices.dart';
 
 import '../l10n/app_localizations.dart';
 
-/// Bouton des réglages, présent sur les écrans racine (la langue doit
-/// pouvoir changer dès le premier lancement).
-class BoutonReglages extends StatelessWidget {
-  const BoutonReglages({super.key});
+/// Bouton de l'espace parent (porte parentale), présent sur les écrans
+/// racine : profils, langue et réglages y vivent (décisions 27, 28, 35), la
+/// langue doit pouvoir changer dès le premier lancement.
+class BoutonEspaceParent extends StatelessWidget {
+  const BoutonEspaceParent({super.key});
 
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsetsDirectional.only(end: EspacesYasmina.space2),
     child: BoutonIcone(
-      icone: Icons.settings_rounded,
-      libelle: AppLocalizations.of(context).reglagesOuvrir,
-      onPressed: () => context.push('/reglages'),
+      key: const ValueKey('espace_parent_ouvrir'),
+      icone: Icons.lock_outline_rounded,
+      libelle: AppLocalizations.of(context).espaceParentOuvrir,
+      onPressed: () => context.push('/parent'),
     ),
   );
 }

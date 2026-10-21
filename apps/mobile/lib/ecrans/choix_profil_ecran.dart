@@ -11,10 +11,10 @@ import '../profils/depot_profils.dart';
 import '../profils/libelles.dart';
 import '../profils/profil_actif.dart';
 import 'commun.dart';
-import 'profil_formulaire_ecran.dart';
 
-/// « Qui joue ? » : un profil par carte, sans mot de passe. Sans profil, le
-/// formulaire de création s'affiche directement.
+/// « Qui joue ? » : un profil par carte, sans mot de passe. Les profils se
+/// créent et se modifient dans l'espace parent (décision 28) : sans profil,
+/// Yasmina y invite.
 class ChoixProfilEcran extends ConsumerWidget {
   const ChoixProfilEcran({super.key});
 
@@ -24,10 +24,48 @@ class ChoixProfilEcran extends ConsumerWidget {
         .watch(profilsProvider)
         .when(
           data: (profils) =>
-              profils.isEmpty ? const ProfilFormulaireEcran() : _Choix(profils),
+              profils.isEmpty ? const _Bienvenue() : _Choix(profils),
           loading: () => const EcranChargement(),
           error: (erreur, _) => Scaffold(body: Center(child: Text('$erreur'))),
         );
+  }
+}
+
+/// Premier lancement, aucun profil : la porte parentale pour créer le
+/// premier enfant.
+class _Bienvenue extends StatelessWidget {
+  const _Bienvenue();
+
+  @override
+  Widget build(BuildContext context) {
+    final textes = AppLocalizations.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: TitreAvecMenuDev(
+          child: Text(textes.appTitre, key: const ValueKey('bienvenue_titre')),
+        ),
+        actions: const [BoutonEspaceParent()],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            YasminaBulle(
+              texte: textes.bienvenueBulle,
+              cleTexte: const ValueKey('bienvenue_bulle'),
+            ),
+            const SizedBox(height: EspacesYasmina.space8),
+            BoutonYasmina(
+              key: const ValueKey('bienvenue_parent'),
+              libelle: textes.espaceParentOuvrir,
+              icone: Icons.lock_outline_rounded,
+              onPressed: () => context.push('/parent'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -39,7 +77,6 @@ class _Choix extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textes = AppLocalizations.of(context);
-    final limiteAtteinte = profils.length >= DepotProfils.maxProfils;
     return Scaffold(
       appBar: AppBar(
         title: TitreAvecMenuDev(
@@ -48,7 +85,7 @@ class _Choix extends ConsumerWidget {
             key: const ValueKey('profils_titre'),
           ),
         ),
-        actions: const [BoutonReglages()],
+        actions: const [BoutonEspaceParent()],
       ),
       body: ListView(
         padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
@@ -65,30 +102,9 @@ class _Choix extends ConsumerWidget {
                     ref.read(profilActifProvider.notifier).choisir(p.id);
                     context.go('/accueil');
                   },
-                  action: BoutonIcone(
-                    key: ValueKey('profil_modifier_${p.id}'),
-                    icone: Icons.edit_rounded,
-                    libelle: textes.profilModifierInfobulle(p.prenom),
-                    onPressed: () => context.push('/profils/${p.id}'),
-                  ),
-                ),
-              if (!limiteAtteinte)
-                CarteAjoutProfil(
-                  key: const ValueKey('profils_ajouter'),
-                  libelle: textes.profilsAjouter,
-                  onTap: () => context.push('/profils/nouveau'),
                 ),
             ],
           ),
-          if (limiteAtteinte) ...[
-            const SizedBox(height: EspacesYasmina.space8),
-            Text(
-              textes.profilsLimite,
-              key: const ValueKey('profils_limite'),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
         ],
       ),
     );

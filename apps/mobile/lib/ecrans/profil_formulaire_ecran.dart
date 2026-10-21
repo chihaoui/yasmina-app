@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
-import '../dev/menu_dev.dart';
 import '../l10n/app_localizations.dart';
+import '../parent/sans_harakat.dart';
 import '../profils/avatar.dart';
 import '../profils/depot_profils.dart';
 import '../profils/libelles.dart';
@@ -13,6 +13,8 @@ import 'commun.dart';
 
 /// Création (sans [profilId]) ou modification d'un profil : prénom, niveau,
 /// avatar et forme d'adresse. Suppression avec confirmation en modification.
+/// Écran de l'espace parent (décision 28) : textes sans harakat
+/// (décision 27).
 class ProfilFormulaireEcran extends ConsumerStatefulWidget {
   const ProfilFormulaireEcran({super.key, this.profilId});
 
@@ -74,15 +76,16 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
     final depot = ref.read(depotProfilsProvider);
     try {
       if (_creation) {
-        final profil = await depot.creer(
+        await depot.creer(
           prenom: _prenom.text,
           niveau: _niveau,
           avatar: _avatar,
           formeAdresse: _forme!,
         );
         if (!mounted) return;
-        ref.read(profilActifProvider.notifier).choisir(profil.id);
-        context.go('/accueil');
+        // Un profil créé n'ouvre plus l'accueil : l'enfant est choisi sur
+        // « Qui joue ? » après la sortie de l'espace parent.
+        context.canPop() ? context.pop() : context.go('/parent/espace');
       } else {
         final id = widget.profilId!;
         await depot.modifier(
@@ -93,16 +96,16 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
         );
         await depot.changerNiveau(id, _niveau);
         if (!mounted) return;
-        context.canPop() ? context.pop() : context.go('/');
+        context.canPop() ? context.pop() : context.go('/parent/espace');
       }
     } on PrenomInvalide {
-      setState(() => _erreurPrenom = textes.profilPrenomVide);
+      setState(() => _erreurPrenom = sansHarakat(textes.profilPrenomVide));
     } on PrenomDejaUtilise {
-      setState(() => _erreurPrenom = textes.profilPrenomExiste);
+      setState(() => _erreurPrenom = sansHarakat(textes.profilPrenomExiste));
     } on LimiteProfilsAtteinte {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(textes.profilsLimite)));
+          .showSnackBar(SnackBar(content: Text(textes.parentLimite)));
     }
   }
 
@@ -111,17 +114,19 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
     final confirme = await showDialog<bool>(
       context: context,
       builder: (dialogue) => AlertDialog(
-        content: Text(textes.profilSupprimerQuestion(_prenomInitial)),
+        content: Text(
+          sansHarakat(textes.profilSupprimerQuestion(_prenomInitial)),
+        ),
         actions: [
           TextButton(
             key: const ValueKey('dialogue_annuler'),
             onPressed: () => Navigator.pop(dialogue, false),
-            child: Text(textes.annuler),
+            child: Text(sansHarakat(textes.annuler)),
           ),
           FilledButton(
             key: const ValueKey('dialogue_supprimer'),
             onPressed: () => Navigator.pop(dialogue, true),
-            child: Text(textes.supprimer),
+            child: Text(sansHarakat(textes.supprimer)),
           ),
         ],
       ),
@@ -133,12 +138,13 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
     if (ref.read(profilActifProvider) == id) {
       ref.read(profilActifProvider.notifier).oublier();
     }
-    context.go('/');
+    context.canPop() ? context.pop() : context.go('/parent/espace');
   }
 
   @override
   Widget build(BuildContext context) {
     final textes = AppLocalizations.of(context);
+    String t(String texte) => sansHarakat(texte);
     if (!_charge) return const EcranChargement();
     final nombre = ref.watch(profilsProvider).value?.length ?? 0;
     final theme = Theme.of(context);
@@ -149,28 +155,25 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
         top: EspacesYasmina.space8,
         bottom: EspacesYasmina.space2,
       ),
-      child: Text(texte, style: theme.textTheme.titleMedium),
+      child: Text(t(texte), style: theme.textTheme.titleMedium),
     );
 
     return Scaffold(
       appBar: AppBar(
         title: _creation
-            ? TitreAvecMenuDev(
-                child: Text(
-                  textes.profilNouveauTitre,
-                  key: const ValueKey('formulaire_titre'),
-                ),
+            ? Text(
+                t(textes.profilNouveauTitre),
+                key: const ValueKey('formulaire_titre'),
               )
             : Text(
-                textes.profilModifierTitre,
+                t(textes.profilModifierTitre),
                 key: const ValueKey('formulaire_titre'),
               ),
-        actions: [if (_creation) const BoutonReglages()],
       ),
       body: _creation && nombre >= DepotProfils.maxProfils
           ? Center(
               child: Text(
-                textes.profilsLimite,
+                textes.parentLimite,
                 key: const ValueKey('profils_limite'),
               ),
             )
@@ -186,7 +189,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                     controller: _prenom,
                     maxLength: DepotProfils.longueurMaxPrenom,
                     decoration: InputDecoration(
-                      labelText: textes.profilPrenom,
+                      labelText: t(textes.profilPrenom),
                       errorText: _erreurPrenom,
                     ),
                     onChanged: (_) => setState(() => _erreurPrenom = null),
@@ -199,7 +202,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                       for (var n = 1; n <= 6; n++)
                         ChoiceChip(
                           key: ValueKey('niveau_$n'),
-                          label: Text(libelleNiveau(textes, n)),
+                          label: Text(t(libelleNiveau(textes, n))),
                           selected: _niveau == n,
                           onSelected: (_) => setState(() => _niveau = n),
                         ),
@@ -211,7 +214,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                         top: EspacesYasmina.space2,
                       ),
                       child: Text(
-                        textes.profilNiveauAide,
+                        t(textes.profilNiveauAide),
                         style: theme.textTheme.bodySmall,
                       ),
                     ),
@@ -257,12 +260,12 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                         RadioListTile<FormeAdresse>(
                           key: const ValueKey('forme_masculin'),
                           value: FormeAdresse.masculin,
-                          title: Text(textes.formeMasculin),
+                          title: Text(t(textes.formeMasculin)),
                         ),
                         RadioListTile<FormeAdresse>(
                           key: const ValueKey('forme_feminin'),
                           value: FormeAdresse.feminin,
-                          title: Text(textes.formeFeminin),
+                          title: Text(t(textes.formeFeminin)),
                         ),
                       ],
                     ),
@@ -270,7 +273,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                   const SizedBox(height: EspacesYasmina.space8),
                   BoutonYasmina(
                     key: const ValueKey('profil_enregistrer'),
-                    libelle: textes.profilEnregistrer,
+                    libelle: t(textes.profilEnregistrer),
                     onPressed: _peutEnregistrer ? _enregistrer : null,
                   ),
                   if (!_creation) ...[
@@ -278,7 +281,7 @@ class _ProfilFormulaireEcranState extends ConsumerState<ProfilFormulaireEcran> {
                     TextButton.icon(
                       key: const ValueKey('profil_supprimer'),
                       icon: const Icon(Icons.delete_outline_rounded),
-                      label: Text(textes.profilSupprimer),
+                      label: Text(t(textes.profilSupprimer)),
                       style: TextButton.styleFrom(foregroundColor: c.coralText),
                       onPressed: _supprimer,
                     ),

@@ -67,7 +67,6 @@ class MenuDevEcran extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final abonnement = ref.watch(abonnementSimuleProvider);
     final debloque = ref.watch(toutDebloqueProvider);
-    final sons = ref.watch(sonsEffetsProvider);
     return CadreDev(
       child: Builder(
         builder: (context) {
@@ -127,18 +126,6 @@ class MenuDevEcran extends ConsumerWidget {
                     'Profils, historique et réglages de test.',
                   ),
                   onTap: () => _reinitialiser(context, ref),
-                ),
-                titre('Sons'),
-                SwitchListTile(
-                  key: const ValueKey('dev_sons_effets'),
-                  title: const Text('Sons des effets'),
-                  subtitle: const Text(
-                    'Sons du feedback (juste, essai faux, réponse révélée), à '
-                    'volume bas. Rien en mode silencieux.',
-                  ),
-                  value: sons,
-                  onChanged: (valeur) =>
-                      ref.read(sonsEffetsProvider.notifier).choisir(valeur),
                 ),
                 titre('Abonnement simulé'),
                 RadioGroup<AbonnementSimule>(

@@ -12,10 +12,12 @@ import '../ecrans/choix_profil_ecran.dart';
 import '../ecrans/demarrage_ecran.dart';
 import '../ecrans/etape_intro_ecran.dart';
 import '../ecrans/etape_jeu_ecran.dart';
+import '../ecrans/parent/espace_parent_ecran.dart';
+import '../ecrans/parent/porte_parent_ecran.dart';
 import '../ecrans/profil_formulaire_ecran.dart';
-import '../ecrans/reglages_ecran.dart';
 import '../ecrans/sequence_ecran.dart';
 import '../ecrans/serie_ecran.dart';
+import '../parent/porte_parentale.dart';
 import '../profils/profil_actif.dart';
 
 /// Routes de l'app. Un routeur par ProviderScope (pas d'état partagé entre
@@ -36,6 +38,13 @@ final routeurProvider = Provider<GoRouter>((ref) {
           ref.read(profilActifProvider) == null) {
         return '/';
       }
+      // L'espace parent et les profils exigent la porte parentale ouverte
+      // (décision 28).
+      if ((chemin == '/parent/espace' ||
+              chemin.startsWith('/parent/profils')) &&
+          !ref.read(porteOuverteProvider)) {
+        return '/parent';
+      }
       return null;
     },
     routes: [
@@ -45,22 +54,29 @@ final routeurProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/', builder: (context, state) => const ChoixProfilEcran()),
       GoRoute(
-        path: '/profils/nouveau',
-        builder: (context, state) => const ProfilFormulaireEcran(),
-      ),
-      GoRoute(
-        path: '/profils/:id',
-        builder: (context, state) => ProfilFormulaireEcran(
-          profilId: int.parse(state.pathParameters['id']!),
-        ),
-      ),
-      GoRoute(
         path: '/accueil',
         builder: (context, state) => const AccueilEcran(),
       ),
+      // Espace parent (A3-04) : porte parentale, puis l'espace et les
+      // profils, tous au premier niveau (le retour depuis l'espace revient à
+      // l'écran enfant, la porte reste ouverte pour la session).
       GoRoute(
-        path: '/reglages',
-        builder: (context, state) => const ReglagesEcran(),
+        path: '/parent',
+        builder: (context, state) => const PorteParentEcran(),
+      ),
+      GoRoute(
+        path: '/parent/espace',
+        builder: (context, state) => const EspaceParentEcran(),
+      ),
+      GoRoute(
+        path: '/parent/profils/nouveau',
+        builder: (context, state) => const ProfilFormulaireEcran(),
+      ),
+      GoRoute(
+        path: '/parent/profils/:id',
+        builder: (context, state) => ProfilFormulaireEcran(
+          profilId: int.parse(state.pathParameters['id']!),
+        ),
       ),
       // Parcours (A3-01, A3-02) : carte du trimestre d'une matière, intro
       // d'une étape, étape jouée.

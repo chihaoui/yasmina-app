@@ -19,19 +19,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get accueilExempleExercice => 'Exemple d\'exercice';
 
   @override
-  String get reglagesTitre => 'Réglages';
-
-  @override
-  String get reglagesOuvrir => 'Ouvrir les réglages';
-
-  @override
-  String get reglageLangue => 'Langue de l\'application';
-
-  @override
-  String get reglageLangueAide =>
-      'Les exercices gardent la langue de leur matière.';
-
-  @override
   String get avatarFleur => 'Fleur';
 
   @override
@@ -57,17 +44,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profilsTitre => 'Qui joue ?';
-
-  @override
-  String get profilsAjouter => 'Ajouter un enfant';
-
-  @override
-  String get profilsLimite => '5 profils au maximum sur cet appareil';
-
-  @override
-  String profilModifierInfobulle(String prenom) {
-    return 'Modifier le profil de $prenom';
-  }
 
   @override
   String get profilNouveauTitre => 'Nouveau profil';
@@ -252,4 +228,91 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get introReprendre => 'Reprendre';
+
+  @override
+  String get espaceParentOuvrir => 'Espace parent';
+
+  @override
+  String get bienvenueBulle =>
+      'Bienvenue ! Un parent ajoute le premier enfant depuis l\'espace parent.';
+
+  @override
+  String get parentTitre => 'Espace parent';
+
+  @override
+  String get parentPorteTitre => 'Espace réservé aux parents';
+
+  @override
+  String get parentPorteAide => 'Pour entrer, réponds à cette opération.';
+
+  @override
+  String parentPorteQuestion(int a, int b) {
+    return '$a × $b = ?';
+  }
+
+  @override
+  String get parentPorteReponse => 'Réponse';
+
+  @override
+  String get parentPorteEntrer => 'Entrer';
+
+  @override
+  String get parentPorteFaux => 'Ce n\'est pas la bonne réponse.';
+
+  @override
+  String get parentQuitter => 'Quitter l\'espace parent';
+
+  @override
+  String get parentEnfants => 'Enfants';
+
+  @override
+  String get parentAjouterEnfant => 'Ajouter un enfant';
+
+  @override
+  String get parentLimite => '5 profils au maximum sur cet appareil';
+
+  @override
+  String get parentProgression => 'Progression';
+
+  @override
+  String get parentAucuneProgression => 'Aucun enfant pour l\'instant.';
+
+  @override
+  String get parentBientot => 'bientôt';
+
+  @override
+  String parentEtapesFaites(int faites, int total) {
+    return '$faites / $total étapes faites';
+  }
+
+  @override
+  String parentEtapeFaite(int reussis, int total) {
+    return 'faite, $reussis / $total réussis';
+  }
+
+  @override
+  String parentEtapeEnCours(int index, int total) {
+    return 'en cours, exercice $index / $total';
+  }
+
+  @override
+  String get parentLangue => 'Langue de l\'application';
+
+  @override
+  String get parentLangueAide =>
+      'Les exercices gardent la langue de leur matière.';
+
+  @override
+  String get parentSons => 'Sons des effets';
+
+  @override
+  String get parentSonsAide =>
+      'Sons du feedback, à volume bas. Rien en mode silencieux.';
+
+  @override
+  String get parentAbonnement => 'Abonnement';
+
+  @override
+  String get parentAbonnementBientot =>
+      'Statut simulé (menu développeur). Les offres arrivent bientôt.';
 }
