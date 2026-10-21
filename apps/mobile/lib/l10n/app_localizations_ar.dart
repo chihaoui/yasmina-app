@@ -315,6 +315,52 @@ class AppLocalizationsAr extends AppLocalizations {
   String get parentAbonnement => 'الاشتراك';
 
   @override
-  String get parentAbonnementBientot =>
-      'الحالة محاكاة (قائمة المطور). العروض قريبا.';
+  String get abonnementEssai => 'تَجْرِبَةٌ مَجَّانِيَّةٌ';
+
+  @override
+  String get abonnementAbonne => 'مُشْتَرِكٌ';
+
+  @override
+  String get essaiTermineTitre => 'اِنْتَهَتِ التَّجْرِبَةُ الْمَجَّانِيَّةُ.';
+
+  @override
+  String get essaiTermineAide =>
+      'يُمْكِنُ لِلْوَلِيِّ الِاشْتِرَاكُ مِنْ فَضَاءِ الْأَوْلِيَاءِ.';
+
+  @override
+  String get parentAbonnementEssai => 'تجربة مجانية جارية';
+
+  @override
+  String get parentAbonnementEssaiTermine => 'انتهت التجربة';
+
+  @override
+  String get parentAbonnementAbonne => 'الاشتراك نشط';
+
+  @override
+  String get parentAbonnementAide =>
+      'حتى خمسة أطفال لكل حساب. محاكاة بدون دفع: اختيار عرض ينشط الاشتراك.';
+
+  @override
+  String get parentOffreMois => '10 د.ت في الشهر';
+
+  @override
+  String get parentOffreMoisAide => 'بدون التزام';
+
+  @override
+  String get parentOffreTrimestre => '20 د.ت لثلاثة أشهر';
+
+  @override
+  String get parentOffreTrimestreAide => 'كل محتوى الثلاثي';
+
+  @override
+  String get parentOffreAnnee => '50 د.ت لاثني عشر شهرا';
+
+  @override
+  String get parentOffreAnneeAide => 'بما في ذلك الصيف، أفضل عرض';
+
+  @override
+  String get parentSabonner => 'اشتراك';
+
+  @override
+  String get parentAbonnementRetourEssai => 'محاكاة: العودة إلى التجربة';
 }

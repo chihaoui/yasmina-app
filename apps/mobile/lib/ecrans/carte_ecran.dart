@@ -40,6 +40,12 @@ class CarteEcran extends ConsumerWidget {
     if (parcours == null || parcours.etapes.isEmpty) {
       return _bientot(context, textes, matiere.nom(textes));
     }
+    // Abonnement simulé (A3-05) : essai terminé, la carte explique et
+    // renvoie vers l'espace parent.
+    final abonnement = ref.watch(abonnementSimuleProvider);
+    if (!abonnement.parcoursOuvert) {
+      return _EssaiTermine(titre: matiere.nom(textes));
+    }
     final faites = ref.watch(etapesFaitesProvider(profil.id)).value ?? {};
     final toutDebloque = ref.watch(toutDebloqueProvider);
     return _Carte(
@@ -48,6 +54,7 @@ class CarteEcran extends ConsumerWidget {
       parcours: parcours,
       faites: faites,
       toutDebloque: toutDebloque,
+      abonnement: abonnement,
     );
   }
 
@@ -81,6 +88,48 @@ const _serpentin = [
   0.0,
 ];
 
+/// L'essai simulé est terminé : Yasmina explique, le bouton mène à la porte
+/// parentale (les offres sont dans l'espace parent).
+class _EssaiTermine extends StatelessWidget {
+  const _EssaiTermine({required this.titre});
+
+  final String titre;
+
+  @override
+  Widget build(BuildContext context) {
+    final textes = AppLocalizations.of(context);
+    return Scaffold(
+      appBar: AppBar(title: Text(titre, key: const ValueKey('carte_titre'))),
+      body: SingleChildScrollView(
+        padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            YasminaBulle(
+              texte: textes.essaiTermineTitre,
+              humeur: HumeurYasmina.encourage,
+              cleTexte: const ValueKey('carte_essai_termine'),
+            ),
+            const SizedBox(height: EspacesYasmina.space4),
+            Text(
+              textes.essaiTermineAide,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: EspacesYasmina.space8),
+            BoutonYasmina(
+              key: const ValueKey('carte_espace_parent'),
+              libelle: textes.espaceParentOuvrir,
+              icone: Icons.lock_outline_rounded,
+              onPressed: () => context.push('/parent'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _Carte extends StatelessWidget {
   const _Carte({
     required this.code,
@@ -88,6 +137,7 @@ class _Carte extends StatelessWidget {
     required this.parcours,
     required this.faites,
     required this.toutDebloque,
+    required this.abonnement,
   });
 
   final String code;
@@ -95,6 +145,7 @@ class _Carte extends StatelessWidget {
   final Parcours parcours;
   final Set<String> faites;
   final bool toutDebloque;
+  final AbonnementSimule abonnement;
 
   void _ouvrir(BuildContext context, Etape etape, EtatEtape etat) {
     if (etat == EtatEtape.verrouillee) {
@@ -126,10 +177,43 @@ class _Carte extends StatelessWidget {
               end: EspacesYasmina.space4,
             ),
             child: Center(
-              child: Text(
-                textes.carteTrimestre(parcours.trimestre),
-                key: const ValueKey('carte_trimestre'),
-                style: theme.bodySmall,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    textes.carteTrimestre(parcours.trimestre),
+                    key: const ValueKey('carte_trimestre'),
+                    style: theme.bodySmall,
+                  ),
+                  // Pastille du statut simulé (Pill : texte -text sur -soft).
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: abonnement == AbonnementSimule.abonne
+                          ? c.oliveSoft
+                          : c.amberSoft,
+                      borderRadius: BorderRadius.circular(
+                        RayonsYasmina.radiusPill,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.symmetric(
+                        horizontal: EspacesYasmina.space2,
+                      ),
+                      child: Text(
+                        abonnement == AbonnementSimule.abonne
+                            ? textes.abonnementAbonne
+                            : textes.abonnementEssai,
+                        key: const ValueKey('carte_abonnement'),
+                        style: theme.bodySmall!.copyWith(
+                          color: abonnement == AbonnementSimule.abonne
+                              ? c.oliveText
+                              : c.amberText,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

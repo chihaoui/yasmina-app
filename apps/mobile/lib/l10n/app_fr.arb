@@ -437,8 +437,68 @@
   "@parentAbonnement": {
     "description": "Section de l'abonnement simulé."
   },
-  "parentAbonnementBientot": "Statut simulé (menu développeur). Les offres arrivent bientôt.",
-  "@parentAbonnementBientot": {
-    "description": "Emplacement de la simulation d'abonnement (A3-05)."
+  "abonnementEssai": "Essai gratuit",
+  "@abonnementEssai": {
+    "description": "Pastille du statut simulé sur la carte du trimestre (essai en cours)."
+  },
+  "abonnementAbonne": "Abonné",
+  "@abonnementAbonne": {
+    "description": "Pastille du statut simulé sur la carte du trimestre (abonné)."
+  },
+  "essaiTermineTitre": "L'essai gratuit est terminé.",
+  "@essaiTermineTitre": {
+    "description": "Bulle de Yasmina à la place de la carte quand l'essai simulé est terminé."
+  },
+  "essaiTermineAide": "Un parent peut s'abonner depuis l'espace parent.",
+  "@essaiTermineAide": {
+    "description": "Explication sous la bulle quand l'essai simulé est terminé."
+  },
+  "parentAbonnementEssai": "Essai gratuit en cours",
+  "@parentAbonnementEssai": {
+    "description": "Statut simulé dans l'espace parent."
+  },
+  "parentAbonnementEssaiTermine": "Essai terminé",
+  "@parentAbonnementEssaiTermine": {
+    "description": "Statut simulé dans l'espace parent."
+  },
+  "parentAbonnementAbonne": "Abonnement actif",
+  "@parentAbonnementAbonne": {
+    "description": "Statut simulé dans l'espace parent."
+  },
+  "parentAbonnementAide": "Jusqu'à 5 enfants par compte. Simulation sans paiement : choisir une offre active l'abonnement.",
+  "@parentAbonnementAide": {
+    "description": "Aide de la section abonnement (décision 13)."
+  },
+  "parentOffreMois": "10 DT par mois",
+  "@parentOffreMois": {
+    "description": "Offre mensuelle."
+  },
+  "parentOffreMoisAide": "Sans engagement",
+  "@parentOffreMoisAide": {
+    "description": "Sous-titre de l'offre mensuelle."
+  },
+  "parentOffreTrimestre": "20 DT pour 3 mois",
+  "@parentOffreTrimestre": {
+    "description": "Offre trimestrielle."
+  },
+  "parentOffreTrimestreAide": "Tout le contenu du trimestre",
+  "@parentOffreTrimestreAide": {
+    "description": "Sous-titre de l'offre trimestrielle."
+  },
+  "parentOffreAnnee": "50 DT pour 12 mois",
+  "@parentOffreAnnee": {
+    "description": "Offre annuelle."
+  },
+  "parentOffreAnneeAide": "Été compris, la meilleure offre",
+  "@parentOffreAnneeAide": {
+    "description": "Sous-titre de l'offre annuelle."
+  },
+  "parentSabonner": "S'abonner",
+  "@parentSabonner": {
+    "description": "Bouton d'une offre : bascule le statut simulé sur abonné."
+  },
+  "parentAbonnementRetourEssai": "Simulation : revenir à l'essai",
+  "@parentAbonnementRetourEssai": {
+    "description": "Bouton qui remet le statut simulé sur essai."
   }
 }

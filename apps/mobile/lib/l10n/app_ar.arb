@@ -89,5 +89,20 @@
   "parentSons": "أصوات المؤثرات",
   "parentSonsAide": "أصوات التغذية الراجعة بصوت منخفض. لا شيء في الوضع الصامت.",
   "parentAbonnement": "الاشتراك",
-  "parentAbonnementBientot": "الحالة محاكاة (قائمة المطور). العروض قريبا."
+  "abonnementEssai": "تَجْرِبَةٌ مَجَّانِيَّةٌ",
+  "abonnementAbonne": "مُشْتَرِكٌ",
+  "essaiTermineTitre": "اِنْتَهَتِ التَّجْرِبَةُ الْمَجَّانِيَّةُ.",
+  "essaiTermineAide": "يُمْكِنُ لِلْوَلِيِّ الِاشْتِرَاكُ مِنْ فَضَاءِ الْأَوْلِيَاءِ.",
+  "parentAbonnementEssai": "تجربة مجانية جارية",
+  "parentAbonnementEssaiTermine": "انتهت التجربة",
+  "parentAbonnementAbonne": "الاشتراك نشط",
+  "parentAbonnementAide": "حتى خمسة أطفال لكل حساب. محاكاة بدون دفع: اختيار عرض ينشط الاشتراك.",
+  "parentOffreMois": "10 د.ت في الشهر",
+  "parentOffreMoisAide": "بدون التزام",
+  "parentOffreTrimestre": "20 د.ت لثلاثة أشهر",
+  "parentOffreTrimestreAide": "كل محتوى الثلاثي",
+  "parentOffreAnnee": "50 د.ت لاثني عشر شهرا",
+  "parentOffreAnneeAide": "بما في ذلك الصيف، أفضل عرض",
+  "parentSabonner": "اشتراك",
+  "parentAbonnementRetourEssai": "محاكاة: العودة إلى التجربة"
 }

@@ -314,8 +314,10 @@ class _Sons extends ConsumerWidget {
   }
 }
 
-/// Emplacement de la simulation d'abonnement (A3-05) : le statut simulé du
-/// menu développeur, en attendant les offres.
+/// Abonnement simulé (A3-05, décision 13) : le statut, puis les trois
+/// offres par compte (jusqu'à 5 enfants), sans paiement ni réseau.
+/// « S'abonner » bascule le statut simulé sur abonné ; un bouton de
+/// simulation le remet sur essai.
 class EmplacementAbonnement extends ConsumerWidget {
   const EmplacementAbonnement({super.key});
 
@@ -323,12 +325,105 @@ class EmplacementAbonnement extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textes = AppLocalizations.of(context);
     final statut = ref.watch(abonnementSimuleProvider);
+    final theme = Theme.of(context).textTheme;
+    final c = context.couleurs;
+    final libelle = switch (statut) {
+      AbonnementSimule.essai => textes.parentAbonnementEssai,
+      AbonnementSimule.essaiTermine => textes.parentAbonnementEssaiTermine,
+      AbonnementSimule.abonne => textes.parentAbonnementAbonne,
+    };
+    final abonne = statut == AbonnementSimule.abonne;
     return Card(
-      child: ListTile(
-        key: const ValueKey('parent_abonnement_statut'),
-        leading: const Icon(Icons.card_membership_rounded),
-        title: Text(statut.libelle),
-        subtitle: Text(textes.parentAbonnementBientot),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ListTile(
+            key: const ValueKey('parent_abonnement_statut'),
+            leading: Icon(
+              abonne ? Icons.verified_rounded : Icons.card_membership_rounded,
+              color: abonne ? c.olive : c.amber,
+            ),
+            title: Text(libelle),
+            subtitle: Text(textes.parentAbonnementAide),
+          ),
+          if (abonne)
+            Padding(
+              padding: const EdgeInsetsDirectional.all(EspacesYasmina.space4),
+              child: TextButton.icon(
+                key: const ValueKey('parent_abonnement_retour'),
+                icon: const Icon(Icons.replay_rounded),
+                label: Text(textes.parentAbonnementRetourEssai),
+                onPressed: () => ref
+                    .read(abonnementSimuleProvider.notifier)
+                    .choisir(AbonnementSimule.essai),
+              ),
+            )
+          else
+            for (final (cle, titre, aide, meilleure) in [
+              (
+                'mois',
+                textes.parentOffreMois,
+                textes.parentOffreMoisAide,
+                false,
+              ),
+              (
+                'trimestre',
+                textes.parentOffreTrimestre,
+                textes.parentOffreTrimestreAide,
+                false,
+              ),
+              (
+                'annee',
+                textes.parentOffreAnnee,
+                textes.parentOffreAnneeAide,
+                true,
+              ),
+            ])
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                  EspacesYasmina.space4,
+                  0,
+                  EspacesYasmina.space4,
+                  EspacesYasmina.space4,
+                ),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: c.tile,
+                    borderRadius: BorderRadius.circular(RayonsYasmina.radiusLg),
+                    border: Border.all(
+                      color: meilleure ? c.blue : c.line,
+                      width: TraitsYasmina.borderThick,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.all(
+                      EspacesYasmina.space4,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(titre, style: theme.bodyLarge),
+                              Text(aide, style: theme.bodySmall),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: EspacesYasmina.space3),
+                        FilledButton(
+                          key: ValueKey('parent_sabonner_$cle'),
+                          onPressed: () => ref
+                              .read(abonnementSimuleProvider.notifier)
+                              .choisir(AbonnementSimule.abonne),
+                          child: Text(textes.parentSabonner),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+        ],
       ),
     );
   }

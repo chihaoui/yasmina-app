@@ -88,9 +88,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(stockage.lireSonsEffets(), isFalse);
 
-      // Abonnement : emplacement avec le statut simulé.
+      // Abonnement : statut simulé et offres (A3-05).
       await tester.scrollUntilVisible(cle('parent_abonnement_statut'), 200);
-      expect(find.text('Essai'), findsOneWidget);
+      expect(find.text('Essai gratuit en cours'), findsOneWidget);
 
       // Quitter : porte refermée, retour à « Qui joue ? ».
       await tester.tap(cle('parent_quitter'));

@@ -632,11 +632,101 @@ abstract class AppLocalizations {
   /// **'Abonnement'**
   String get parentAbonnement;
 
-  /// Emplacement de la simulation d'abonnement (A3-05).
+  /// Pastille du statut simulé sur la carte du trimestre (essai en cours).
   ///
   /// In fr, this message translates to:
-  /// **'Statut simulé (menu développeur). Les offres arrivent bientôt.'**
-  String get parentAbonnementBientot;
+  /// **'Essai gratuit'**
+  String get abonnementEssai;
+
+  /// Pastille du statut simulé sur la carte du trimestre (abonné).
+  ///
+  /// In fr, this message translates to:
+  /// **'Abonné'**
+  String get abonnementAbonne;
+
+  /// Bulle de Yasmina à la place de la carte quand l'essai simulé est terminé.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'essai gratuit est terminé.'**
+  String get essaiTermineTitre;
+
+  /// Explication sous la bulle quand l'essai simulé est terminé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un parent peut s\'abonner depuis l\'espace parent.'**
+  String get essaiTermineAide;
+
+  /// Statut simulé dans l'espace parent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Essai gratuit en cours'**
+  String get parentAbonnementEssai;
+
+  /// Statut simulé dans l'espace parent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Essai terminé'**
+  String get parentAbonnementEssaiTermine;
+
+  /// Statut simulé dans l'espace parent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abonnement actif'**
+  String get parentAbonnementAbonne;
+
+  /// Aide de la section abonnement (décision 13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu\'à 5 enfants par compte. Simulation sans paiement : choisir une offre active l\'abonnement.'**
+  String get parentAbonnementAide;
+
+  /// Offre mensuelle.
+  ///
+  /// In fr, this message translates to:
+  /// **'10 DT par mois'**
+  String get parentOffreMois;
+
+  /// Sous-titre de l'offre mensuelle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans engagement'**
+  String get parentOffreMoisAide;
+
+  /// Offre trimestrielle.
+  ///
+  /// In fr, this message translates to:
+  /// **'20 DT pour 3 mois'**
+  String get parentOffreTrimestre;
+
+  /// Sous-titre de l'offre trimestrielle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout le contenu du trimestre'**
+  String get parentOffreTrimestreAide;
+
+  /// Offre annuelle.
+  ///
+  /// In fr, this message translates to:
+  /// **'50 DT pour 12 mois'**
+  String get parentOffreAnnee;
+
+  /// Sous-titre de l'offre annuelle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Été compris, la meilleure offre'**
+  String get parentOffreAnneeAide;
+
+  /// Bouton d'une offre : bascule le statut simulé sur abonné.
+  ///
+  /// In fr, this message translates to:
+  /// **'S\'abonner'**
+  String get parentSabonner;
+
+  /// Bouton qui remet le statut simulé sur essai.
+  ///
+  /// In fr, this message translates to:
+  /// **'Simulation : revenir à l\'essai'**
+  String get parentAbonnementRetourEssai;
 }
 
 class _AppLocalizationsDelegate

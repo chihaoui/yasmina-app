@@ -313,6 +313,52 @@ class AppLocalizationsFr extends AppLocalizations {
   String get parentAbonnement => 'Abonnement';
 
   @override
-  String get parentAbonnementBientot =>
-      'Statut simulé (menu développeur). Les offres arrivent bientôt.';
+  String get abonnementEssai => 'Essai gratuit';
+
+  @override
+  String get abonnementAbonne => 'Abonné';
+
+  @override
+  String get essaiTermineTitre => 'L\'essai gratuit est terminé.';
+
+  @override
+  String get essaiTermineAide =>
+      'Un parent peut s\'abonner depuis l\'espace parent.';
+
+  @override
+  String get parentAbonnementEssai => 'Essai gratuit en cours';
+
+  @override
+  String get parentAbonnementEssaiTermine => 'Essai terminé';
+
+  @override
+  String get parentAbonnementAbonne => 'Abonnement actif';
+
+  @override
+  String get parentAbonnementAide =>
+      'Jusqu\'à 5 enfants par compte. Simulation sans paiement : choisir une offre active l\'abonnement.';
+
+  @override
+  String get parentOffreMois => '10 DT par mois';
+
+  @override
+  String get parentOffreMoisAide => 'Sans engagement';
+
+  @override
+  String get parentOffreTrimestre => '20 DT pour 3 mois';
+
+  @override
+  String get parentOffreTrimestreAide => 'Tout le contenu du trimestre';
+
+  @override
+  String get parentOffreAnnee => '50 DT pour 12 mois';
+
+  @override
+  String get parentOffreAnneeAide => 'Été compris, la meilleure offre';
+
+  @override
+  String get parentSabonner => 'S\'abonner';
+
+  @override
+  String get parentAbonnementRetourEssai => 'Simulation : revenir à l\'essai';
 }

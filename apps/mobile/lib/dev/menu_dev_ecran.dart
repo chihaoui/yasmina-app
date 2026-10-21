@@ -160,8 +160,9 @@ class MenuDevEcran extends ConsumerWidget {
                     EspacesYasmina.space6,
                   ),
                   child: Text(
-                    'L\'abonnement simulé et « Tout débloquer » sont '
-                    'enregistrés, sans effet pour l\'instant.',
+                    'L\'abonnement simulé agit sur le parcours (A3-05) : '
+                    'essai terminé ferme la carte. « Tout débloquer » ouvre '
+                    'toutes les étapes.',
                     style: textes.bodySmall,
                   ),
                 ),

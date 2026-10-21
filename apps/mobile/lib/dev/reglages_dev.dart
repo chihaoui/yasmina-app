@@ -2,8 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../reglages/stockage_reglages.dart';
 
-/// Statut d'abonnement simulé (menu développeur). Enregistré, sans effet
-/// tant que l'essai et l'abonnement ne sont pas simulés (A3-05).
+/// Statut d'abonnement simulé (A3-05, décision 13), choisi dans le menu
+/// développeur ou par les offres de l'espace parent, sans paiement ni
+/// réseau. Le parcours le respecte : essai, le trimestre en cours est
+/// ouvert ; essai terminé, la carte explique et renvoie vers l'espace
+/// parent ; abonné, tout est ouvert.
 enum AbonnementSimule {
   essai('Essai'),
   essaiTermine('Essai terminé'),
@@ -11,7 +14,11 @@ enum AbonnementSimule {
 
   const AbonnementSimule(this.libelle);
 
+  /// Libellé du menu développeur (français).
   final String libelle;
+
+  /// Le parcours est jouable (essai en cours ou abonné).
+  bool get parcoursOuvert => this != AbonnementSimule.essaiTermine;
 }
 
 final abonnementSimuleProvider =
