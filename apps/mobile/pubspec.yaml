@@ -25,13 +25,15 @@ dependencies:
   flutter_tts: ^4.2.5
   shared_preferences: ^2.5.6
   audioplayers: ^6.8.1
+  # Schéma et exemples (workspace) : l'atelier lit les exemples en debug et
+  # en profile (sourcesAtelier), le contenu embarqué est validé en test.
+  edu_content:
+    path: ../../schema
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  edu_content:
-    path: ../../schema
   build_runner: 2.16.2
   freezed: ^4.0.2
   json_serializable: ^6.14.1

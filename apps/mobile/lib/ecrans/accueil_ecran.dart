@@ -69,15 +69,17 @@ class AccueilEcran extends ConsumerWidget {
               ),
             const SizedBox(height: EspacesYasmina.space6),
             // Séquence de test du tour 1 (A1-22) : les exercices s'enchaînent
-            // sans carte.
-            BoutonYasmina(
-              key: const ValueKey('accueil_jouer'),
-              libelle: textes.accueilJouer,
-              icone: Icons.play_arrow_rounded,
-              variante: VarianteBouton.alt,
-              onPressed: () => context.push('/sequence'),
-            ),
-            const SizedBox(height: EspacesYasmina.space6),
+            // sans carte. Absente quand le catalogue est vide (build release).
+            if (ref.watch(catalogueExemplesProvider).tous.isNotEmpty) ...[
+              BoutonYasmina(
+                key: const ValueKey('accueil_jouer'),
+                libelle: textes.accueilJouer,
+                icone: Icons.play_arrow_rounded,
+                variante: VarianteBouton.alt,
+                onPressed: () => context.push('/sequence'),
+              ),
+              const SizedBox(height: EspacesYasmina.space6),
+            ],
             // Toujours visible, même avec un seul profil.
             BoutonYasmina(
               key: const ValueKey('profil_changer'),

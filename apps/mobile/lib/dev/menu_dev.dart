@@ -1,3 +1,4 @@
+import 'package:edu_content/edu_content.dart' show exemplesEduContent;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,9 +28,15 @@ class TitreAvecMenuDev extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (!ref.watch(menuDevDisponibleProvider)) return child;
+    // Cible d'au moins target-min de haut (audit d'accessibilité) : le
+    // titre reste un en-tête, l'appui long n'est pas annoncé.
     return GestureDetector(
       onLongPress: () => context.push('/dev'),
-      child: child,
+      excludeFromSemantics: true,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: EspacesYasmina.targetMin),
+        child: Align(alignment: AlignmentDirectional.centerStart, child: child),
+      ),
     );
   }
 }
@@ -92,8 +99,17 @@ Future<String> creerProfilsDeTest(
   return [bilan, ...remarques].join(' ');
 }
 
-/// Exemples de schema/exemples/, lus et validés au premier accès. Surchargé
-/// dans les tests par des exemples en erreur.
+/// Sources du catalogue de l'atelier : les exemples de schema/exemples/ en
+/// debug et en profile, rien en release (les textes des exemples ne sont
+/// pas embarqués dans l'app publiée, A3 nettoyage). `release` est une
+/// constante de compilation : en release, la carte des exemples n'est plus
+/// référencée et le compilateur l'élimine. Seul point de l'app qui lit
+/// [exemplesEduContent] (contrôlé par tool/verifier.sh).
+Map<String, String> sourcesAtelier({bool release = kReleaseMode}) =>
+    release ? const {} : exemplesEduContent;
+
+/// Exemples de l'atelier, lus et validés au premier accès. Surchargé dans
+/// les tests par des exemples en erreur.
 final catalogueExemplesProvider = Provider<CatalogueExemples>(
-  (ref) => CatalogueExemples(),
+  (ref) => CatalogueExemples(sourcesAtelier()),
 );

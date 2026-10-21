@@ -16,6 +16,7 @@ class LibellesLecteur {
     required this.effacer,
     required this.numerateur,
     required this.denominateur,
+    required this.retenue,
     required this.imageNumerotee,
   });
 
@@ -34,6 +35,7 @@ class LibellesLecteur {
         effacer: feminin ? 'اِمْسَحِي' : 'اِمْسَحْ',
         numerateur: 'الْبَسْطُ',
         denominateur: 'الْمَقَامُ',
+        retenue: 'الْمُحْتَفَظُ بِهِ',
         imageNumerotee: (n) => 'صُورَةٌ $n',
       ),
       'en' => LibellesLecteur._(
@@ -48,6 +50,7 @@ class LibellesLecteur {
         effacer: 'Erase',
         numerateur: 'numerator',
         denominateur: 'denominator',
+        retenue: 'carry',
         imageNumerotee: (n) => 'picture $n',
       ),
       _ => LibellesLecteur._(
@@ -62,6 +65,7 @@ class LibellesLecteur {
         effacer: 'Effacer',
         numerateur: 'numérateur',
         denominateur: 'dénominateur',
+        retenue: 'retenue',
         imageNumerotee: (n) => 'image $n',
       ),
     };
@@ -84,6 +88,10 @@ class LibellesLecteur {
   final String numerateur;
   final String denominateur;
 
+  /// Case de retenue ou d'emprunt d'un calcul posé (T48), lue par le
+  /// lecteur d'écran avec le numéro de la colonne.
+  final String retenue;
+
   /// Libellé neutre d'une tuile en image ou en emoji seul (numéro à partir
   /// de 1) : le lecteur d'écran ne doit pas donner la réponse.
   final String Function(int n) imageNumerotee;
@@ -103,6 +111,7 @@ class LibellesLecteur {
     effacer,
     numerateur,
     denominateur,
+    retenue,
     image(1),
   ];
 }

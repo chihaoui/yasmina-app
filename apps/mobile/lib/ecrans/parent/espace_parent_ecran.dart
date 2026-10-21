@@ -219,6 +219,7 @@ class _ProgressionEnfant extends ConsumerWidget {
               top: EspacesYasmina.space1,
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(
                   etat.faite
@@ -229,28 +230,35 @@ class _ProgressionEnfant extends ConsumerWidget {
                 ),
                 const SizedBox(width: EspacesYasmina.space2),
                 // Le titre de l'étape est du contenu : il garde ses harakat.
+                // L'état passe sous le titre (jamais de débordement sur un
+                // téléphone).
                 Expanded(
-                  child: Text(
-                    etape.titre,
-                    textDirection: LangueExercice.directionDe(etape.langue),
-                    style: ThemeYasmina.pourLangue(
-                      StylesYasmina.option,
-                      etape.langue,
-                    ).copyWith(color: c.ink),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        etape.titre,
+                        textDirection: LangueExercice.directionDe(etape.langue),
+                        style: ThemeYasmina.pourLangue(
+                          StylesYasmina.option,
+                          etape.langue,
+                        ).copyWith(color: c.ink),
+                      ),
+                      Text(
+                        etat.faite
+                            ? textes.parentEtapeFaite(
+                                etat.meilleursReussis,
+                                etat.total,
+                              )
+                            : textes.parentEtapeEnCours(
+                                etat.indexReprise,
+                                etat.total,
+                              ),
+                        key: ValueKey('parent_etat_${profil.id}_${etape.id}'),
+                        style: theme.bodySmall,
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  etat.faite
-                      ? textes.parentEtapeFaite(
-                          etat.meilleursReussis,
-                          etat.total,
-                        )
-                      : textes.parentEtapeEnCours(
-                          etat.indexReprise,
-                          etat.total,
-                        ),
-                  key: ValueKey('parent_etat_${profil.id}_${etape.id}'),
-                  style: theme.bodySmall,
                 ),
               ],
             ),

@@ -37,6 +37,20 @@ if grep -rn "package:flutter/" schema/lib; then
 fi
 echo "OK"
 
+etape "Exemples de l'atelier hors des builds release (apps/mobile)"
+# exemplesEduContent n'est lu que par sourcesAtelier (lib/dev/menu_dev.dart),
+# derrière kReleaseMode : ailleurs, les textes des exemples entreraient dans
+# l'app publiée.
+if grep -rn "exemplesEduContent" apps/mobile/lib | grep -v "lib/dev/menu_dev.dart"; then
+  echo "Erreur : exemplesEduContent ne se lit que dans apps/mobile/lib/dev/menu_dev.dart (sourcesAtelier)." >&2
+  exit 1
+fi
+if ! grep -q "release ? const {} : exemplesEduContent" apps/mobile/lib/dev/menu_dev.dart; then
+  echo "Erreur : sourcesAtelier doit rendre une carte vide en release." >&2
+  exit 1
+fi
+echo "OK"
+
 etape "Design : aucune valeur en dur"
 dart run tool/garde_design.dart
 

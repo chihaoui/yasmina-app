@@ -435,12 +435,24 @@ class _BarreApercu extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Souple : le cadre de l'aperçu fait 360 px.
-              Flexible(child: Text('Afficher la réponse', style: style)),
-              Switch(
-                key: const ValueKey('lecteur_afficher_reponse'),
-                value: reponseAffichee,
-                onChanged: onAfficherReponse,
+              // Souple : le cadre de l'aperçu fait 360 px. Le texte sert de
+              // libellé à l'interrupteur pour le lecteur d'écran.
+              Flexible(
+                child: MergeSemantics(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text('Afficher la réponse', style: style),
+                      ),
+                      Switch(
+                        key: const ValueKey('lecteur_afficher_reponse'),
+                        value: reponseAffichee,
+                        onChanged: onAfficherReponse,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const Spacer(),
               TextButton.icon(

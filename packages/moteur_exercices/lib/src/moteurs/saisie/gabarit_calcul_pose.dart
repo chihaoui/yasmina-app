@@ -247,16 +247,24 @@ class _ZoneCalcul extends StatelessWidget {
                     if (controleur.retenues)
                       ligne([
                         for (final i in ordre)
-                          cellule(
-                            Text(
-                              controleur.retenue(i) ? ch('1') : '',
-                              style: styleRetenue,
+                          // Libellé pour le lecteur d'écran : « retenue » et
+                          // le numéro de la colonne (audit d'accessibilité),
+                          // fusionné avec la case.
+                          MergeSemantics(
+                            child: Semantics(
+                              label: '${libelles.retenue} ${i + 1}',
+                              child: cellule(
+                                Text(
+                                  controleur.retenue(i) ? ch('1') : '',
+                                  style: styleRetenue,
+                                ),
+                                key: ValueKey('retenue_$i'),
+                                bord: c.line,
+                                onTap: modifiable
+                                    ? () => controleur.basculerRetenue(i)
+                                    : null,
+                              ),
                             ),
-                            key: ValueKey('retenue_$i'),
-                            bord: c.line,
-                            onTap: modifiable
-                                ? () => controleur.basculerRetenue(i)
-                                : null,
                           ),
                       ]),
                     ligne([
