@@ -43,6 +43,15 @@ class AccueilEcran extends ConsumerWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: EspacesYasmina.space8),
+          // Séquence de test du tour 1 (A1-22) : les exercices s'enchaînent
+          // sans carte, le parcours vient en A3.
+          BoutonYasmina(
+            key: const ValueKey('accueil_jouer'),
+            libelle: textes.accueilJouer,
+            icone: Icons.play_arrow_rounded,
+            onPressed: () => context.push('/sequence'),
+          ),
+          const SizedBox(height: EspacesYasmina.space8),
           Card(
             child: Padding(
               padding: const EdgeInsetsDirectional.all(EspacesYasmina.space6),

@@ -355,6 +355,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Changer d\'enfant'**
   String get profilChanger;
+
+  /// Bouton de l'accueil qui ouvre la séquence de test (exercices enchaînés, sans carte).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jouer'**
+  String get accueilJouer;
+
+  /// Titre de l'écran des séries de la séquence de test.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes exercices'**
+  String get sequenceTitre;
+
+  /// Nombre d'exercices d'une série.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =0{Aucun exercice} =1{1 exercice} other{{n} exercices}}'**
+  String sequenceNombreExercices(int n);
+
+  /// Progression dans une série.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exercice {i} sur {n}'**
+  String sequenceProgression(int i, int n);
+
+  /// Bulle de Yasmina à la fin d'une série (centrée sur la tâche, jamais sur l'enfant).
+  ///
+  /// In fr, this message translates to:
+  /// **'C\'est fini ! Tous les exercices sont faits.'**
+  String get sequenceFinTitre;
+
+  /// Sous la bulle de fin : exercices réussis (juste au 1er ou au 2e essai, ou sans note) sur le total.
+  ///
+  /// In fr, this message translates to:
+  /// **'{reussis} réussis sur {total}'**
+  String sequenceBilan(int reussis, int total);
+
+  /// Bouton de la fin d'une série.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour à l\'accueil'**
+  String get sequenceRetour;
+
+  /// Séquence ou série sans exercice jouable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun exercice pour l\'instant.'**
+  String get sequenceAucune;
 }
 
 class _AppLocalizationsDelegate

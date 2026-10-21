@@ -1,0 +1,169 @@
+{
+  "id": "tour-1",
+  "commentaire": "Séquence de test du tour 1 des familles (A1-22) : une série par moteur, tous les exemples du catalogue (schema/exemples). Ordre, contenu et titres se modifient ici, sans toucher au code. Un chemin absent du catalogue est sauté. Titres arabes en brouillon (relecture humaine).",
+  "series": [
+    {
+      "id": "choix",
+      "titre": {
+        "ar": "أَخْتَارُ الْجَوَابَ الصَّحِيحَ",
+        "fr": "Choisir la bonne réponse"
+      },
+      "exemples": [
+        "choix/T01-qcm-contraire.json",
+        "choix/T01-qcm-orthographe.json",
+        "choix/T01-qcm-scene.json",
+        "choix/T01-qcm-texte-image.json",
+        "choix/T02-vrai-faux.json",
+        "choix/T03-ecoute-et-choisis.json",
+        "choix/T04-intrus.json",
+        "choix/T05-choix-multiple.json",
+        "choix/T18-forme-lettre.json",
+        "choix/T19-haraka.json",
+        "choix/T19-lettre-vocalisee.json",
+        "choix/T23-comparer.json",
+        "choix/T24-suite.json",
+        "choix/T45-barrer.json",
+        "choix/T46-justification.json",
+        "choix/T55-paire-minimale.json",
+        "choix/T61-resume.json"
+      ]
+    },
+    {
+      "id": "glisser-deposer",
+      "titre": {
+        "ar": "أَسْحَبُ وَأَضَعُ",
+        "fr": "Glisser et déposer"
+      },
+      "exemples": [
+        "glisser-deposer/T06-texte-trou.json",
+        "glisser-deposer/T06-texte-trous.json",
+        "glisser-deposer/T09-association.json",
+        "glisser-deposer/T11-tri-categories.json",
+        "glisser-deposer/T12-tableau-tri.json",
+        "glisser-deposer/T13-remise-en-ordre.json",
+        "glisser-deposer/T14-sequence-images.json",
+        "glisser-deposer/T15-mot-lettres.json",
+        "glisser-deposer/T16-mot-syllabes.json",
+        "glisser-deposer/T56-racine.json",
+        "glisser-deposer/T56-scheme.json",
+        "glisser-deposer/T62-frise.json"
+      ]
+    },
+    {
+      "id": "manipulables",
+      "titre": {
+        "ar": "أُحَرِّكُ وَأَعُدُّ",
+        "fr": "Manipuler et compter"
+      },
+      "exemples": [
+        "manipulables/T25-droite-numerique.json",
+        "manipulables/T27-blocs-base-10.json",
+        "manipulables/T51-cadre-de-10.json",
+        "manipulables/T26-monnaie.json",
+        "manipulables/T29-fraction.json",
+        "manipulables/T52-modele-barres.json"
+      ]
+    },
+    {
+      "id": "texte",
+      "titre": {
+        "ar": "أَقْرَأُ وَأَكْتُبُ",
+        "fr": "Lire et écrire"
+      },
+      "exemples": [
+        "texte/T07-toucher-mots-fr.json",
+        "texte/T07-toucher-mots.json",
+        "texte/T17-dictee-fr.json",
+        "texte/T17-dictee.json"
+      ]
+    },
+    {
+      "id": "saisie-numerique",
+      "titre": {
+        "ar": "الْأَعْدَادُ",
+        "fr": "Les nombres"
+      },
+      "exemples": [
+        "saisie-numerique/T22-probleme.json",
+        "saisie-numerique/T48-addition-posee.json",
+        "saisie-numerique/T48-addition-retenue.json",
+        "saisie-numerique/T48-soustraction-emprunt.json",
+        "saisie-numerique/T48-soustraction-posee.json",
+        "saisie-numerique/T49-saisie-fraction.json",
+        "saisie-numerique/T50-fluidite.json",
+        "saisie-numerique/T63-balance.json"
+      ]
+    },
+    {
+      "id": "scene-image",
+      "titre": {
+        "ar": "أُلَاحِظُ الصُّورَةَ",
+        "fr": "Observer l'image"
+      },
+      "exemples": [
+        "scene-image/T08-hot-spot.json",
+        "scene-image/T47-etiqueter-schema.json",
+        "scene-image/T53-ecoute-place.json",
+        "scene-image/T54-ecoute-colorie.json"
+      ]
+    },
+    {
+      "id": "revision-jeux",
+      "titre": {
+        "ar": "أَلْعَابُ الْمُرَاجَعَةِ",
+        "fr": "Jeux de révision"
+      },
+      "exemples": [
+        "revision-jeux/T36-flashcards.json",
+        "revision-jeux/T37-memory.json",
+        "revision-jeux/T38-mots-meles-fr.json",
+        "revision-jeux/T38-mots-meles.json"
+      ]
+    },
+    {
+      "id": "mesure-temps",
+      "titre": {
+        "ar": "أَقِيسُ وَأَقْرَأُ السَّاعَةَ",
+        "fr": "Mesurer et lire l'heure"
+      },
+      "exemples": [
+        "mesure-temps/T28-horloge.json",
+        "mesure-temps/T30-regle.json"
+      ]
+    },
+    {
+      "id": "grille-graphiques",
+      "titre": {
+        "ar": "الشَّبَكَاتُ وَالرُّسُومُ",
+        "fr": "Grilles et graphiques"
+      },
+      "exemples": [
+        "grille-graphiques/T31-lire-graphique.json",
+        "grille-graphiques/T32-construire-graphique.json",
+        "grille-graphiques/T33-symetrie.json",
+        "grille-graphiques/T60-codage.json"
+      ]
+    },
+    {
+      "id": "simulateur",
+      "titre": {
+        "ar": "تَجَارِبُ",
+        "fr": "Expériences"
+      },
+      "exemples": [
+        "simulateur/T34-flotte-coule.json",
+        "simulateur/T57-circuit.json"
+      ]
+    },
+    {
+      "id": "recit",
+      "titre": {
+        "ar": "قِصَصٌ",
+        "fr": "Histoires"
+      },
+      "exemples": [
+        "recit/T35-histoire-choix.json"
+      ]
+    }
+  ]
+}

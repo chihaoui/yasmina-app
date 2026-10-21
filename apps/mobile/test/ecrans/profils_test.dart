@@ -66,6 +66,9 @@ void main() {
   ) async {
     await lancerApp(tester, StockageMemoire('fr'));
     expect(texteDe(tester, 'accueil_bonjour'), 'Bonjour Lina !');
+    // Sous le bouton « Jouer » : hors de l'écran de test, la liste défile.
+    await tester.ensureVisible(cle('profil_changer'));
+    await tester.pumpAndSettle();
     await tester.tap(cle('profil_changer'));
     await tester.pumpAndSettle();
     expect(texteDe(tester, 'profils_titre'), 'Qui joue ?');

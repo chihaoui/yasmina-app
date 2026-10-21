@@ -7,15 +7,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
-| A1 | 23 | 36,25 | 63 % |
+| A1 | 23,75 | 36,25 | 66 % |
 | A2 | 17 | 30,5 | 56 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **58,5** | **182,25** | **32,1 %** |
+| **Total** | **59,25** | **182,25** | **32,5 %** |
 
-- **Avancement global : 32,1 %** (58,5 j-h faits sur 182,25)
+- **Avancement global : 32,5 %** (59,25 j-h faits sur 182,25)
 - **Types jouables : 52 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -122,7 +122,10 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [ ] A1-19 Design system et maquettes, partie 1 (designer, part du système Yasmina) (4 j-h)
 - [ ] A1-20 Yasmina : brief et 6 états (illustrateur) (2,5 j-h)
 - [ ] A1-21 Pilotage A1 (1,5 j-h)
-- [ ] A1-22 Séquence de test pour le tour 1 des familles (exercices enchaînés, sans carte) (0,75 j-h)
+- [x] A1-22 Séquence de test pour le tour 1 des familles (exercices enchaînés, sans carte) (0,75 j-h)
+  - [x] Bouton « Jouer » de l'accueil, écran des séries, série jouée dans le lecteur avec la progression, bilan de Yasmina, retour (nuit du 20 au 21 oct. 2026)
+  - [x] `apps/mobile/assets/sequences/tour-1.json` : une série par moteur, tous les exemples du catalogue, modifiable sans code, contrôlé par `test/sequences/`
+  - [ ] Lamjed : trier les séries pour le tour 1 (plus courtes, 1re année d'abord), relire les titres arabes, tester sur l'iPhone
 
 ## A2 : lot 2 des moteurs et retours familles, tour 2 (4 janv. au 28 févr. 2027)
 - [x] A2-01 Moteur Saisie numérique, avancée (T49, T50, T63) (2 j-h)

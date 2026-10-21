@@ -146,4 +146,41 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profilChanger => 'Changer d\'enfant';
+
+  @override
+  String get accueilJouer => 'Jouer';
+
+  @override
+  String get sequenceTitre => 'Mes exercices';
+
+  @override
+  String sequenceNombreExercices(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n exercices',
+      one: '1 exercice',
+      zero: 'Aucun exercice',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sequenceProgression(int i, int n) {
+    return 'Exercice $i sur $n';
+  }
+
+  @override
+  String get sequenceFinTitre => 'C\'est fini ! Tous les exercices sont faits.';
+
+  @override
+  String sequenceBilan(int reussis, int total) {
+    return '$reussis réussis sur $total';
+  }
+
+  @override
+  String get sequenceRetour => 'Retour à l\'accueil';
+
+  @override
+  String get sequenceAucune => 'Aucun exercice pour l\'instant.';
 }

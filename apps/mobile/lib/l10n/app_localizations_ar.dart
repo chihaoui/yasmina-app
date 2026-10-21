@@ -145,4 +145,44 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profilChanger => 'تَغْيِيرُ الطِّفْلِ';
+
+  @override
+  String get accueilJouer => 'هَيَّا نَلْعَبْ';
+
+  @override
+  String get sequenceTitre => 'تَمَارِينِي';
+
+  @override
+  String sequenceNombreExercices(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n تَمْرِينًا',
+      many: '$n تَمْرِينًا',
+      few: '$n تَمَارِينَ',
+      two: 'تَمْرِينَانِ',
+      one: 'تَمْرِينٌ وَاحِدٌ',
+      zero: 'لَا تَمَارِينَ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sequenceProgression(int i, int n) {
+    return 'التَّمْرِينُ $i مِنْ $n';
+  }
+
+  @override
+  String get sequenceFinTitre => 'اِنْتَهَتِ التَّمَارِينُ كُلُّهَا!';
+
+  @override
+  String sequenceBilan(int reussis, int total) {
+    return '$reussis مِنْ $total صَحِيحَةٌ';
+  }
+
+  @override
+  String get sequenceRetour => 'الْعَوْدَةُ إِلَى الْبِدَايَةِ';
+
+  @override
+  String get sequenceAucune => 'لَا تَمَارِينَ بَعْدُ.';
 }

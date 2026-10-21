@@ -186,5 +186,58 @@
   "profilChanger": "Changer d'enfant",
   "@profilChanger": {
     "description": "Bouton de l'accueil qui ramène au choix du profil."
+  },
+  "accueilJouer": "Jouer",
+  "@accueilJouer": {
+    "description": "Bouton de l'accueil qui ouvre la séquence de test (exercices enchaînés, sans carte)."
+  },
+  "sequenceTitre": "Mes exercices",
+  "@sequenceTitre": {
+    "description": "Titre de l'écran des séries de la séquence de test."
+  },
+  "sequenceNombreExercices": "{n, plural, =0{Aucun exercice} =1{1 exercice} other{{n} exercices}}",
+  "@sequenceNombreExercices": {
+    "description": "Nombre d'exercices d'une série.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "sequenceProgression": "Exercice {i} sur {n}",
+  "@sequenceProgression": {
+    "description": "Progression dans une série.",
+    "placeholders": {
+      "i": {
+        "type": "int"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "sequenceFinTitre": "C'est fini ! Tous les exercices sont faits.",
+  "@sequenceFinTitre": {
+    "description": "Bulle de Yasmina à la fin d'une série (centrée sur la tâche, jamais sur l'enfant)."
+  },
+  "sequenceBilan": "{reussis} réussis sur {total}",
+  "@sequenceBilan": {
+    "description": "Sous la bulle de fin : exercices réussis (juste au 1er ou au 2e essai, ou sans note) sur le total.",
+    "placeholders": {
+      "reussis": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "sequenceRetour": "Retour à l'accueil",
+  "@sequenceRetour": {
+    "description": "Bouton de la fin d'une série."
+  },
+  "sequenceAucune": "Aucun exercice pour l'instant.",
+  "@sequenceAucune": {
+    "description": "Séquence ou série sans exercice jouable."
   }
 }

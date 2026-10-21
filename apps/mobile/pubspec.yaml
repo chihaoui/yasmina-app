@@ -45,3 +45,5 @@ flutter:
   # Flutter ne parcourt pas les sous-dossiers : déclarer chaque dossier.
   assets:
     - assets/content/ar/1/
+    # Séquence de test du tour 1 des familles (A1-22), test/sequences/.
+    - assets/sequences/

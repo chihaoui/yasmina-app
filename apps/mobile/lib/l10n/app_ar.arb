@@ -42,5 +42,13 @@
   "annuler": "إِلْغَاءٌ",
   "supprimer": "حَذْفٌ",
   "accueilBonjour": "مَرْحَبًا يَا {prenom}!",
-  "profilChanger": "تَغْيِيرُ الطِّفْلِ"
+  "profilChanger": "تَغْيِيرُ الطِّفْلِ",
+  "accueilJouer": "هَيَّا نَلْعَبْ",
+  "sequenceTitre": "تَمَارِينِي",
+  "sequenceNombreExercices": "{n, plural, =0{لَا تَمَارِينَ} =1{تَمْرِينٌ وَاحِدٌ} =2{تَمْرِينَانِ} few{{n} تَمَارِينَ} many{{n} تَمْرِينًا} other{{n} تَمْرِينًا}}",
+  "sequenceProgression": "التَّمْرِينُ {i} مِنْ {n}",
+  "sequenceFinTitre": "اِنْتَهَتِ التَّمَارِينُ كُلُّهَا!",
+  "sequenceBilan": "{reussis} مِنْ {total} صَحِيحَةٌ",
+  "sequenceRetour": "الْعَوْدَةُ إِلَى الْبِدَايَةِ",
+  "sequenceAucune": "لَا تَمَارِينَ بَعْدُ."
 }

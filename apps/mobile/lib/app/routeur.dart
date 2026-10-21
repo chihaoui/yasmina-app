@@ -11,6 +11,8 @@ import '../ecrans/choix_profil_ecran.dart';
 import '../ecrans/demarrage_ecran.dart';
 import '../ecrans/profil_formulaire_ecran.dart';
 import '../ecrans/reglages_ecran.dart';
+import '../ecrans/sequence_ecran.dart';
+import '../ecrans/serie_ecran.dart';
 import '../profils/profil_actif.dart';
 
 /// Routes de l'app. Un routeur par ProviderScope (pas d'état partagé entre
@@ -22,8 +24,9 @@ final routeurProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       // Menu développeur : jamais en release (CLAUDE.md §7).
       if (!menuDev && state.uri.path.startsWith('/dev')) return '/';
-      // L'accueil exige un profil choisi.
-      if (state.matchedLocation == '/accueil' &&
+      // L'accueil et la séquence de test exigent un profil choisi.
+      final chemin = state.matchedLocation;
+      if ((chemin == '/accueil' || chemin.startsWith('/sequence')) &&
           ref.read(profilActifProvider) == null) {
         return '/';
       }
@@ -52,6 +55,18 @@ final routeurProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/reglages',
         builder: (context, state) => const ReglagesEcran(),
+      ),
+      // Séquence de test du tour 1 (A1-22) : séries, puis une série jouée.
+      GoRoute(
+        path: '/sequence',
+        builder: (context, state) => const SequenceEcran(),
+        routes: [
+          GoRoute(
+            path: ':serie',
+            builder: (context, state) =>
+                SerieEcran(idSerie: state.pathParameters['serie']!),
+          ),
+        ],
       ),
       if (menuDev)
         GoRoute(
