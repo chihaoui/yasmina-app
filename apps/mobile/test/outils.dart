@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -11,6 +12,7 @@ import 'package:moteur_exercices/moteur_exercices.dart';
 import 'package:yasmina/donnees/base_yasmina.dart';
 import 'package:yasmina/donnees/providers.dart';
 import 'package:yasmina/main.dart';
+import 'package:yasmina/parcours/parcours.dart';
 import 'package:yasmina/plateforme/services_plateforme.dart';
 import 'package:yasmina/profils/avatar.dart';
 import 'package:yasmina/profils/depot_profils.dart';
@@ -28,6 +30,7 @@ Future<DepotProfils> lancerApp(
   List<String> profils = const ['Lina'],
   List<Override> surcharges = const [],
   ServicesExercice? services,
+  CatalogueParcours? catalogue,
 }) async {
   // closeStreamsSynchronously : sinon drift laisse un timer en attente à la
   // fermeture des flux, que le temps simulé de testWidgets ne déclenche pas.
@@ -60,6 +63,11 @@ Future<DepotProfils> lancerApp(
         servicesExerciceProvider.overrideWithValue(
           services ?? ServicesFactices(),
         ),
+        // Le contenu embarqué est lu sur le disque, sans attente réelle
+        // (le temps simulé de testWidgets n'attend pas le bundle).
+        catalogueParcoursProvider.overrideWith(
+          (ref) async => catalogue ?? catalogueEmbarque(),
+        ),
         ...surcharges,
       ],
       child: const YasminaApp(),
@@ -68,6 +76,18 @@ Future<DepotProfils> lancerApp(
   await tester.pumpAndSettle();
   return depot;
 }
+
+/// Les étapes de assets/content, lues sur le disque (même source que le
+/// bundle, validée par contenu_embarque_test.dart).
+CatalogueParcours catalogueEmbarque() => CatalogueParcours.depuisEtapes([
+  for (final f in Directory(
+    'assets/content',
+  ).listSync(recursive: true).whereType<File>())
+    if (f.path.endsWith('.json'))
+      Etape.depuisJson(
+        jsonDecode(f.readAsStringSync()) as Map<String, dynamic>,
+      ),
+]);
 
 /// Sens d'écriture effectif du widget qui porte [cle].
 TextDirection sensDe(WidgetTester tester, String cle) =>

@@ -183,4 +183,70 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sequenceAucune => 'Aucun exercice pour l\'instant.';
+
+  @override
+  String get matiereArabe => 'Arabe';
+
+  @override
+  String get matiereMaths => 'Maths';
+
+  @override
+  String get matiereEveil => 'Éveil scientifique';
+
+  @override
+  String get matiereFrancais => 'Français';
+
+  @override
+  String get matiereAnglais => 'Anglais';
+
+  @override
+  String get matiereBientot => 'Bientôt';
+
+  @override
+  String matiereEtapesFaites(int faites, int total) {
+    return '$faites sur $total';
+  }
+
+  @override
+  String carteTrimestre(int n) {
+    return 'Trimestre $n';
+  }
+
+  @override
+  String carteUnite(int n) {
+    return 'Unité $n';
+  }
+
+  @override
+  String get carteBientot => 'Cette matière arrive bientôt.';
+
+  @override
+  String get etapeOuverte => 'À faire';
+
+  @override
+  String get etapeFaite => 'Faite';
+
+  @override
+  String get etapeVerrouillee => 'Verrouillée';
+
+  @override
+  String get etapeVerrouilleeMessage => 'Termine d\'abord l\'étape précédente.';
+
+  @override
+  String get introBulle => 'C\'est parti !';
+
+  @override
+  String get introCommencer => 'Commencer';
+
+  @override
+  String get introRejouer => 'Rejouer';
+
+  @override
+  String get resultatTitre => 'Étape terminée !';
+
+  @override
+  String get resultatSuivante => 'Étape suivante débloquée !';
+
+  @override
+  String get resultatRetourCarte => 'Retour à la carte';
 }

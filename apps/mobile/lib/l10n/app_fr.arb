@@ -239,5 +239,103 @@
   "sequenceAucune": "Aucun exercice pour l'instant.",
   "@sequenceAucune": {
     "description": "Séquence ou série sans exercice jouable."
+  },
+  "matiereArabe": "Arabe",
+  "@matiereArabe": {
+    "description": "Nom de la matière arabe sur l'accueil et la carte."
+  },
+  "matiereMaths": "Maths",
+  "@matiereMaths": {
+    "description": "Nom de la matière maths."
+  },
+  "matiereEveil": "Éveil scientifique",
+  "@matiereEveil": {
+    "description": "Nom de la matière éveil scientifique."
+  },
+  "matiereFrancais": "Français",
+  "@matiereFrancais": {
+    "description": "Nom de la matière français (à partir de la 2e année)."
+  },
+  "matiereAnglais": "Anglais",
+  "@matiereAnglais": {
+    "description": "Nom de la matière anglais (à partir de la 4e année)."
+  },
+  "matiereBientot": "Bientôt",
+  "@matiereBientot": {
+    "description": "Pastille d'une matière sans contenu dans le prototype."
+  },
+  "matiereEtapesFaites": "{faites} sur {total}",
+  "@matiereEtapesFaites": {
+    "description": "Étapes faites sur le total (carte de matière, bandeau d'unité, carte du trimestre).",
+    "placeholders": {
+      "faites": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "carteTrimestre": "Trimestre {n}",
+  "@carteTrimestre": {
+    "description": "Trimestre affiché sur la carte.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "carteUnite": "Unité {n}",
+  "@carteUnite": {
+    "description": "Bandeau d'une unité sur la carte du trimestre.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "carteBientot": "Cette matière arrive bientôt.",
+  "@carteBientot": {
+    "description": "Matière sans parcours embarqué."
+  },
+  "etapeOuverte": "À faire",
+  "@etapeOuverte": {
+    "description": "État d'une étape ouverte sur la carte."
+  },
+  "etapeFaite": "Faite",
+  "@etapeFaite": {
+    "description": "État d'une étape terminée sur la carte (rejouable)."
+  },
+  "etapeVerrouillee": "Verrouillée",
+  "@etapeVerrouillee": {
+    "description": "État d'une étape pas encore ouverte."
+  },
+  "etapeVerrouilleeMessage": "Termine d'abord l'étape précédente.",
+  "@etapeVerrouilleeMessage": {
+    "description": "Message quand l'enfant touche une étape verrouillée."
+  },
+  "introBulle": "C'est parti !",
+  "@introBulle": {
+    "description": "Bulle de Yasmina sur l'intro d'une étape."
+  },
+  "introCommencer": "Commencer",
+  "@introCommencer": {
+    "description": "Bouton de l'intro d'une étape."
+  },
+  "introRejouer": "Rejouer",
+  "@introRejouer": {
+    "description": "Bouton de l'intro d'une étape déjà faite."
+  },
+  "resultatTitre": "Étape terminée !",
+  "@resultatTitre": {
+    "description": "Bulle de Yasmina sur l'écran de résultat d'une étape."
+  },
+  "resultatSuivante": "Étape suivante débloquée !",
+  "@resultatSuivante": {
+    "description": "Sur l'écran de résultat, quand l'étape suivante vient de s'ouvrir."
+  },
+  "resultatRetourCarte": "Retour à la carte",
+  "@resultatRetourCarte": {
+    "description": "Bouton de l'écran de résultat."
   }
 }

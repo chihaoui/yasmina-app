@@ -403,6 +403,126 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Aucun exercice pour l\'instant.'**
   String get sequenceAucune;
+
+  /// Nom de la matière arabe sur l'accueil et la carte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arabe'**
+  String get matiereArabe;
+
+  /// Nom de la matière maths.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maths'**
+  String get matiereMaths;
+
+  /// Nom de la matière éveil scientifique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Éveil scientifique'**
+  String get matiereEveil;
+
+  /// Nom de la matière français (à partir de la 2e année).
+  ///
+  /// In fr, this message translates to:
+  /// **'Français'**
+  String get matiereFrancais;
+
+  /// Nom de la matière anglais (à partir de la 4e année).
+  ///
+  /// In fr, this message translates to:
+  /// **'Anglais'**
+  String get matiereAnglais;
+
+  /// Pastille d'une matière sans contenu dans le prototype.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bientôt'**
+  String get matiereBientot;
+
+  /// Étapes faites sur le total (carte de matière, bandeau d'unité, carte du trimestre).
+  ///
+  /// In fr, this message translates to:
+  /// **'{faites} sur {total}'**
+  String matiereEtapesFaites(int faites, int total);
+
+  /// Trimestre affiché sur la carte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trimestre {n}'**
+  String carteTrimestre(int n);
+
+  /// Bandeau d'une unité sur la carte du trimestre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Unité {n}'**
+  String carteUnite(int n);
+
+  /// Matière sans parcours embarqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette matière arrive bientôt.'**
+  String get carteBientot;
+
+  /// État d'une étape ouverte sur la carte.
+  ///
+  /// In fr, this message translates to:
+  /// **'À faire'**
+  String get etapeOuverte;
+
+  /// État d'une étape terminée sur la carte (rejouable).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faite'**
+  String get etapeFaite;
+
+  /// État d'une étape pas encore ouverte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Verrouillée'**
+  String get etapeVerrouillee;
+
+  /// Message quand l'enfant touche une étape verrouillée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Termine d\'abord l\'étape précédente.'**
+  String get etapeVerrouilleeMessage;
+
+  /// Bulle de Yasmina sur l'intro d'une étape.
+  ///
+  /// In fr, this message translates to:
+  /// **'C\'est parti !'**
+  String get introBulle;
+
+  /// Bouton de l'intro d'une étape.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer'**
+  String get introCommencer;
+
+  /// Bouton de l'intro d'une étape déjà faite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejouer'**
+  String get introRejouer;
+
+  /// Bulle de Yasmina sur l'écran de résultat d'une étape.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape terminée !'**
+  String get resultatTitre;
+
+  /// Sur l'écran de résultat, quand l'étape suivante vient de s'ouvrir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape suivante débloquée !'**
+  String get resultatSuivante;
+
+  /// Bouton de l'écran de résultat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour à la carte'**
+  String get resultatRetourCarte;
 }
 
 class _AppLocalizationsDelegate

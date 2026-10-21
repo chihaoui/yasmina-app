@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../parcours/progression.dart';
 import '../profils/depot_profils.dart';
 import '../profils/profil_actif.dart';
 import 'cadre_dev.dart';
@@ -29,8 +30,8 @@ class MenuDevEcran extends ConsumerWidget {
         child: AlertDialog(
           title: const Text('Réinitialiser toutes les données ?'),
           content: const Text(
-            'Les profils, leur historique et les réglages de test seront '
-            'effacés. La langue de l\'interface est gardée.',
+            'Les profils, leur historique, leur progression et les réglages '
+            'de test seront effacés. La langue de l\'interface est gardée.',
           ),
           actions: [
             TextButton(
@@ -49,6 +50,7 @@ class MenuDevEcran extends ConsumerWidget {
     );
     if (confirme != true) return;
     await ref.read(depotProfilsProvider).toutEffacer();
+    await ref.read(depotProgressionProvider).toutEffacer();
     ref.read(profilActifProvider.notifier).oublier();
     await ref.read(abonnementSimuleProvider.notifier).oublier();
     await ref.read(toutDebloqueProvider.notifier).choisir(false);

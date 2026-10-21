@@ -53,6 +53,8 @@ void main() {
     'en mode enfant avec la forme du profil, bilan, retour à l\'accueil',
     (tester) async {
       await lancerApp(tester, StockageMemoire('fr'), surcharges: surcharges);
+      // Sous les cartes de matière (écran de test de 600 px).
+      await tester.ensureVisible(cle('accueil_jouer'));
       await tester.tap(cle('accueil_jouer'));
       await tester.pumpAndSettle();
       expect(texteDe(tester, 'sequence_titre'), 'Mes exercices');
@@ -93,6 +95,8 @@ void main() {
     'ne s\'ouvre pas, progression en arabe',
     (tester) async {
       await lancerApp(tester, StockageMemoire('ar'), surcharges: surcharges);
+      // Sous les cartes de matière (écran de test de 600 px).
+      await tester.ensureVisible(cle('accueil_jouer'));
       await tester.tap(cle('accueil_jouer'));
       await tester.pumpAndSettle();
       expect(texteDe(tester, 'sequence_titre'), 'تَمَارِينِي');

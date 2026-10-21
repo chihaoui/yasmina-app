@@ -7,8 +7,11 @@ import '../dev/atelier_type_ecran.dart';
 import '../dev/menu_dev.dart';
 import '../dev/menu_dev_ecran.dart';
 import '../ecrans/accueil_ecran.dart';
+import '../ecrans/carte_ecran.dart';
 import '../ecrans/choix_profil_ecran.dart';
 import '../ecrans/demarrage_ecran.dart';
+import '../ecrans/etape_intro_ecran.dart';
+import '../ecrans/etape_jeu_ecran.dart';
 import '../ecrans/profil_formulaire_ecran.dart';
 import '../ecrans/reglages_ecran.dart';
 import '../ecrans/sequence_ecran.dart';
@@ -24,9 +27,12 @@ final routeurProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       // Menu développeur : jamais en release (CLAUDE.md §7).
       if (!menuDev && state.uri.path.startsWith('/dev')) return '/';
-      // L'accueil et la séquence de test exigent un profil choisi.
+      // L'accueil, le parcours et la séquence de test exigent un profil
+      // choisi.
       final chemin = state.matchedLocation;
-      if ((chemin == '/accueil' || chemin.startsWith('/sequence')) &&
+      if ((chemin == '/accueil' ||
+              chemin.startsWith('/sequence') ||
+              chemin.startsWith('/matiere')) &&
           ref.read(profilActifProvider) == null) {
         return '/';
       }
@@ -55,6 +61,31 @@ final routeurProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/reglages',
         builder: (context, state) => const ReglagesEcran(),
+      ),
+      // Parcours (A3-01, A3-02) : carte du trimestre d'une matière, intro
+      // d'une étape, étape jouée.
+      GoRoute(
+        path: '/matiere/:code',
+        builder: (context, state) =>
+            CarteEcran(code: state.pathParameters['code']!),
+        routes: [
+          GoRoute(
+            path: 'etape/:etape',
+            builder: (context, state) => EtapeIntroEcran(
+              code: state.pathParameters['code']!,
+              etapeId: state.pathParameters['etape']!,
+            ),
+            routes: [
+              GoRoute(
+                path: 'jouer',
+                builder: (context, state) => EtapeJeuEcran(
+                  code: state.pathParameters['code']!,
+                  etapeId: state.pathParameters['etape']!,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       // Séquence de test du tour 1 (A1-22) : séries, puis une série jouée.
       GoRoute(

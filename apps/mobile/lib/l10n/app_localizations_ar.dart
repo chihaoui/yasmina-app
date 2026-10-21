@@ -185,4 +185,71 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sequenceAucune => 'لَا تَمَارِينَ بَعْدُ.';
+
+  @override
+  String get matiereArabe => 'الْعَرَبِيَّةُ';
+
+  @override
+  String get matiereMaths => 'الرِّيَاضِيَّاتُ';
+
+  @override
+  String get matiereEveil => 'الْإِيقَاظُ الْعِلْمِيُّ';
+
+  @override
+  String get matiereFrancais => 'الْفَرَنْسِيَّةُ';
+
+  @override
+  String get matiereAnglais => 'الْإِنْجِلِيزِيَّةُ';
+
+  @override
+  String get matiereBientot => 'قَرِيبًا';
+
+  @override
+  String matiereEtapesFaites(int faites, int total) {
+    return '$faites مِنْ $total';
+  }
+
+  @override
+  String carteTrimestre(int n) {
+    return 'الثُّلَاثِيُّ $n';
+  }
+
+  @override
+  String carteUnite(int n) {
+    return 'الْوَحْدَةُ $n';
+  }
+
+  @override
+  String get carteBientot => 'سَتَصِلُ هَذِهِ الْمَادَّةُ قَرِيبًا.';
+
+  @override
+  String get etapeOuverte => 'جَاهِزَةٌ';
+
+  @override
+  String get etapeFaite => 'مُنْجَزَةٌ';
+
+  @override
+  String get etapeVerrouillee => 'مُغْلَقَةٌ';
+
+  @override
+  String get etapeVerrouilleeMessage =>
+      'لَا بُدَّ مِنْ إِكْمَالِ الْمَرْحَلَةِ السَّابِقَةِ أَوَّلًا.';
+
+  @override
+  String get introBulle => 'هَيَّا بِنَا!';
+
+  @override
+  String get introCommencer => 'هَيَّا نَبْدَأُ';
+
+  @override
+  String get introRejouer => 'هَيَّا نُعِيدُ';
+
+  @override
+  String get resultatTitre => 'اِنْتَهَتِ الْمَرْحَلَةُ!';
+
+  @override
+  String get resultatSuivante => 'فُتِحَتِ الْمَرْحَلَةُ التَّالِيَةُ!';
+
+  @override
+  String get resultatRetourCarte => 'الْعَوْدَةُ إِلَى الْخَرِيطَةِ';
 }
