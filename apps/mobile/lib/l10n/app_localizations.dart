@@ -523,6 +523,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Retour à la carte'**
   String get resultatRetourCarte;
+
+  /// Bouton de l'intro d'une étape commencée et quittée en cours de route : la partie reprend au même exercice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre'**
+  String get introReprendre;
 }
 
 class _AppLocalizationsDelegate

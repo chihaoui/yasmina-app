@@ -162,6 +162,36 @@ void main() {
     },
   );
 
+  testWidgets('une étape quittée en cours de route reprend au même exercice '
+      '(progression locale, A3-03)', (tester) async {
+    await lancerApp(tester, StockageMemoire('fr'), catalogue: catalogue);
+    await tester.tap(cle('matiere_ar'));
+    await tester.pumpAndSettle();
+    await tester.tap(cle('etape_ar-1-t1-u1-e01'));
+    await tester.pumpAndSettle();
+    await tester.tap(cle('intro_commencer'));
+    await tester.pumpAndSettle();
+    expect(texteDe(tester, 'jeu_compteur'), 'Exercice 1 sur 2');
+    await repondreJuste(tester);
+    expect(texteDe(tester, 'jeu_compteur'), 'Exercice 2 sur 2');
+
+    // Retour à l'intro puis à la carte : rien n'est perdu.
+    GoRouter.of(tester.element(cle('jeu_titre'))).pop();
+    await tester.pumpAndSettle();
+    expect(find.text('Reprendre'), findsOneWidget);
+    GoRouter.of(tester.element(cle('intro_titre'))).pop();
+    await tester.pumpAndSettle();
+    expect(texteDe(tester, 'etape_etat_ar-1-t1-u1-e01'), 'À faire');
+
+    await tester.tap(cle('etape_ar-1-t1-u1-e01'));
+    await tester.pumpAndSettle();
+    await tester.tap(cle('intro_commencer'));
+    await tester.pumpAndSettle();
+    expect(texteDe(tester, 'jeu_compteur'), 'Exercice 2 sur 2');
+    await repondreJuste(tester);
+    expect(find.text('2 réussis sur 2'), findsOneWidget);
+  });
+
   testWidgets('interface en arabe : carte de droite à gauche, états en arabe', (
     tester,
   ) async {

@@ -4,6 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../parcours/matieres.dart';
+import '../parcours/parcours.dart';
+import '../parcours/progression.dart';
+import '../parcours/progression_exemple.dart';
 import '../profils/avatar.dart';
 import '../profils/depot_profils.dart';
 
@@ -32,23 +36,46 @@ class TitreAvecMenuDev extends ConsumerWidget {
 
 /// Profils de test de CLAUDE.md §7, en 1re année.
 const _profilsDeTest = [
-  (prenom: 'Lina', forme: FormeAdresse.feminin, avatar: Avatar.fleur),
-  (prenom: 'Yassine', forme: FormeAdresse.masculin, avatar: Avatar.bateau),
+  (
+    prenom: 'Lina',
+    forme: FormeAdresse.feminin,
+    avatar: Avatar.fleur,
+    exemple: true,
+  ),
+  (
+    prenom: 'Yassine',
+    forme: FormeAdresse.masculin,
+    avatar: Avatar.bateau,
+    exemple: false,
+  ),
 ];
 
-/// Crée Lina et Yassine, sans doublon, et renvoie le bilan à afficher.
-Future<String> creerProfilsDeTest(DepotProfils depot) async {
+/// Crée Lina (avec une progression d'exemple sur le parcours d'arabe 1re,
+/// CLAUDE.md §7) et Yassine (vierge), sans doublon, et renvoie le bilan à
+/// afficher.
+Future<String> creerProfilsDeTest(
+  DepotProfils depot, {
+  DepotProgression? progression,
+  CatalogueParcours? catalogue,
+}) async {
   var crees = 0;
   final remarques = <String>[];
   for (final p in _profilsDeTest) {
     try {
-      await depot.creer(
+      final profil = await depot.creer(
         prenom: p.prenom,
         niveau: 1,
         avatar: p.avatar,
         formeAdresse: p.forme,
       );
       crees++;
+      if (p.exemple && progression != null) {
+        await ecrireProgressionExemple(
+          progression,
+          profil.id,
+          catalogue?.pour(matiere: Matiere.arabe.cle, niveau: 1),
+        );
+      }
     } on PrenomDejaUtilise {
       remarques.add('${p.prenom} existe déjà.');
     } on LimiteProfilsAtteinte {

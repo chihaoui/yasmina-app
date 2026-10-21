@@ -249,4 +249,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get resultatRetourCarte => 'Retour à la carte';
+
+  @override
+  String get introReprendre => 'Reprendre';
 }

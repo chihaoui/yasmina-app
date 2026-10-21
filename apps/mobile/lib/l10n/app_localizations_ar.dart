@@ -252,4 +252,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resultatRetourCarte => 'الْعَوْدَةُ إِلَى الْخَرِيطَةِ';
+
+  @override
+  String get introReprendre => 'هَيَّا نُكْمِلُ';
 }

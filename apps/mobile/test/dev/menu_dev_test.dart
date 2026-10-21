@@ -73,6 +73,32 @@ void main() {
       );
     });
 
+    testWidgets('Lina reçoit une progression d\'exemple (première étape faite, '
+        'deuxième en cours), Yassine reste vierge', (tester) async {
+      await lancerApp(tester, StockageMemoire('fr'), profils: []);
+      await ouvrirMenu(tester, 'formulaire_titre');
+      await tester.tap(cle('dev_profils_test'));
+      await tester.pumpAndSettle();
+      GoRouter.of(tester.element(cle('menu_dev_titre'))).go('/');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Lina'));
+      await tester.pumpAndSettle();
+      expect(find.text('1 sur 7'), findsOneWidget);
+      await tester.tap(cle('matiere_ar'));
+      await tester.pumpAndSettle();
+      expect(texteDe(tester, 'etape_etat_ar-1-t1-u1-e01'), 'Faite');
+      expect(texteDe(tester, 'etape_etat_ar-1-t1-u1-e02'), 'À faire');
+      await tester.tap(cle('etape_ar-1-t1-u1-e02'));
+      await tester.pumpAndSettle();
+      expect(find.text('Reprendre'), findsOneWidget);
+
+      GoRouter.of(tester.element(cle('intro_titre'))).go('/');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Yassine'));
+      await tester.pumpAndSettle();
+      expect(find.text('0 sur 7'), findsOneWidget);
+    });
+
     testWidgets('réinitialiser : tout est effacé, retour à la création', (
       tester,
     ) async {

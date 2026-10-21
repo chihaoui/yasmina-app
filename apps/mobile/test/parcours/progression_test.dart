@@ -22,27 +22,6 @@ void main() {
     expect(etatEtape(parcours, e1, {e1}, toutDebloque: true), EtatEtape.faite);
   });
 
-  test('progression en mémoire : par profil, meilleure note gardée, tout '
-      'effacer', () async {
-    final depot = ProgressionMemoire();
-    final flux = depot.etapesFaites(1).asBroadcastStream();
-    expect(await flux.first, isEmpty);
-    final suivant = flux.first;
-    await depot.terminerEtape(
-      1,
-      const ResultatEtape(etapeId: e1, reussis: 1, total: 2),
-    );
-    expect(await suivant, {e1});
-    await depot.terminerEtape(
-      1,
-      const ResultatEtape(etapeId: e1, reussis: 0, total: 2),
-    );
-    expect(await depot.etapesFaites(1).first, {e1});
-    expect(await depot.etapesFaites(2).first, isEmpty);
-    await depot.toutEffacer();
-    expect(await depot.etapesFaites(1).first, isEmpty);
-  });
-
   test('parcours : ordre par unité puis ordre, suivante et précédente', () {
     expect(parcours.etapes.map((e) => e.id), [e1, e2]);
     expect(parcours.suivante(e1)!.id, e2);

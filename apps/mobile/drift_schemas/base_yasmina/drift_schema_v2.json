@@ -1,0 +1,624 @@
+{
+  "_meta": {
+    "description": "This file contains a serialized version of schema entities for drift.",
+    "version": "1.3.0"
+  },
+  "options": {
+    "store_date_time_values_as_text": true
+  },
+  "entities": [
+    {
+      "id": 0,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "profils",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY AUTOINCREMENT",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "prenom",
+            "getter_name": "prenom",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL COLLATE NOCASE UNIQUE CHECK (length(prenom) BETWEEN 1 AND 20 AND prenom = trim(prenom))",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "unique"
+            ]
+          },
+          {
+            "name": "niveau",
+            "getter_name": "niveau",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL CHECK (niveau BETWEEN 1 AND 6)",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "avatar",
+            "getter_name": "avatar",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const EnumNameConverter<Avatar>(Avatar.values)",
+              "dart_type_name": "Avatar"
+            }
+          },
+          {
+            "name": "forme_adresse",
+            "getter_name": "formeAdresse",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const EnumNameConverter<FormeAdresse>(FormeAdresse.values)",
+              "dart_type_name": "FormeAdresse"
+            }
+          },
+          {
+            "name": "cree_le",
+            "getter_name": "creeLe",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "modifie_le",
+            "getter_name": "modifieLe",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 1,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "historique_niveaux",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY AUTOINCREMENT",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "profil_id",
+            "getter_name": "profilId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL REFERENCES profils(id)ON DELETE CASCADE",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "profils",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "cascade"
+                }
+              }
+            ]
+          },
+          {
+            "name": "niveau",
+            "getter_name": "niveau",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL CHECK (niveau BETWEEN 1 AND 6)",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "debut",
+            "getter_name": "debut",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "fin",
+            "getter_name": "fin",
+            "moor_type": "dateTime",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 2,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "historique_profil",
+        "sql": "CREATE INDEX historique_profil ON historique_niveaux (profil_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 3,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "historique_un_seul_en_cours",
+        "sql": "CREATE UNIQUE INDEX historique_un_seul_en_cours\n  ON historique_niveaux (profil_id) WHERE fin IS NULL;",
+        "unique": true,
+        "columns": []
+      }
+    },
+    {
+      "id": 4,
+      "references": [
+        0
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 0,
+        "references_in_body": [
+          0
+        ],
+        "name": "limite_cinq_profils",
+        "sql": "CREATE TRIGGER limite_cinq_profils BEFORE INSERT ON profils\n  WHEN (SELECT COUNT(*) FROM profils) >= 5\nBEGIN\n  SELECT RAISE(ABORT, 'limite_profils');\nEND;"
+      }
+    },
+    {
+      "id": 5,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "resultats_exercices",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY AUTOINCREMENT",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "profil_id",
+            "getter_name": "profilId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL REFERENCES profils(id)ON DELETE CASCADE",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "profils",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "cascade"
+                }
+              }
+            ]
+          },
+          {
+            "name": "etape_id",
+            "getter_name": "etapeId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sequence_id",
+            "getter_name": "sequenceId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "exercice_id",
+            "getter_name": "exerciceId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "essais",
+            "getter_name": "essais",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL CHECK (essais >= 0)",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reussi",
+            "getter_name": "reussi",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "revele",
+            "getter_name": "revele",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "joue_le",
+            "getter_name": "joueLe",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 6,
+      "references": [
+        5
+      ],
+      "type": "index",
+      "data": {
+        "on": 5,
+        "name": "resultats_exercices_unique",
+        "sql": "CREATE UNIQUE INDEX resultats_exercices_unique\n  ON resultats_exercices (profil_id, exercice_id);",
+        "unique": true,
+        "columns": []
+      }
+    },
+    {
+      "id": 7,
+      "references": [
+        5
+      ],
+      "type": "index",
+      "data": {
+        "on": 5,
+        "name": "resultats_exercices_etape",
+        "sql": "CREATE INDEX resultats_exercices_etape\n  ON resultats_exercices (profil_id, etape_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 8,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "etats_etapes",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY AUTOINCREMENT",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "profil_id",
+            "getter_name": "profilId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL REFERENCES profils(id)ON DELETE CASCADE",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "profils",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "cascade"
+                }
+              }
+            ]
+          },
+          {
+            "name": "etape_id",
+            "getter_name": "etapeId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "faite",
+            "getter_name": "faite",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT FALSE",
+            "default_dart": "const CustomExpression('FALSE')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "index_reprise",
+            "getter_name": "indexReprise",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0 CHECK (index_reprise >= 0)",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reussis",
+            "getter_name": "reussis",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0 CHECK (reussis >= 0)",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "total",
+            "getter_name": "total",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0 CHECK (total >= 0)",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "meilleurs_reussis",
+            "getter_name": "meilleursReussis",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0 CHECK (meilleurs_reussis >= 0)",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "commence_le",
+            "getter_name": "commenceLe",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "termine_le",
+            "getter_name": "termineLe",
+            "moor_type": "dateTime",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "modifie_le",
+            "getter_name": "modifieLe",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 9,
+      "references": [
+        8
+      ],
+      "type": "index",
+      "data": {
+        "on": 8,
+        "name": "etats_etapes_unique",
+        "sql": "CREATE UNIQUE INDEX etats_etapes_unique ON etats_etapes (profil_id, etape_id);",
+        "unique": true,
+        "columns": []
+      }
+    }
+  ],
+  "fixed_sql": [
+    {
+      "name": "profils",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"profils\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"prenom\" TEXT NOT NULL COLLATE NOCASE UNIQUE CHECK (length(prenom) BETWEEN 1 AND 20 AND prenom = trim(prenom)), \"niveau\" INTEGER NOT NULL CHECK (niveau BETWEEN 1 AND 6), \"avatar\" TEXT NOT NULL, \"forme_adresse\" TEXT NOT NULL, \"cree_le\" TEXT NOT NULL, \"modifie_le\" TEXT NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "historique_niveaux",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"historique_niveaux\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"profil_id\" INTEGER NOT NULL REFERENCES profils(id)ON DELETE CASCADE, \"niveau\" INTEGER NOT NULL CHECK (niveau BETWEEN 1 AND 6), \"debut\" TEXT NOT NULL, \"fin\" TEXT);"
+        }
+      ]
+    },
+    {
+      "name": "historique_profil",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX historique_profil ON historique_niveaux (profil_id)"
+        }
+      ]
+    },
+    {
+      "name": "historique_un_seul_en_cours",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE UNIQUE INDEX historique_un_seul_en_cours ON historique_niveaux (profil_id) WHERE fin IS NULL"
+        }
+      ]
+    },
+    {
+      "name": "limite_cinq_profils",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER limite_cinq_profils BEFORE INSERT ON profils WHEN (SELECT COUNT(*) FROM profils) >= 5 BEGIN SELECT RAISE (ABORT, 'limite_profils');END"
+        }
+      ]
+    },
+    {
+      "name": "resultats_exercices",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"resultats_exercices\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"profil_id\" INTEGER NOT NULL REFERENCES profils(id)ON DELETE CASCADE, \"etape_id\" TEXT NOT NULL, \"sequence_id\" TEXT NOT NULL, \"exercice_id\" TEXT NOT NULL, \"essais\" INTEGER NOT NULL CHECK (essais >= 0), \"reussi\" INTEGER NOT NULL, \"revele\" INTEGER NOT NULL, \"joue_le\" TEXT NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "resultats_exercices_unique",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE UNIQUE INDEX resultats_exercices_unique ON resultats_exercices (profil_id, exercice_id)"
+        }
+      ]
+    },
+    {
+      "name": "resultats_exercices_etape",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX resultats_exercices_etape ON resultats_exercices (profil_id, etape_id)"
+        }
+      ]
+    },
+    {
+      "name": "etats_etapes",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"etats_etapes\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"profil_id\" INTEGER NOT NULL REFERENCES profils(id)ON DELETE CASCADE, \"etape_id\" TEXT NOT NULL, \"faite\" INTEGER NOT NULL DEFAULT FALSE, \"index_reprise\" INTEGER NOT NULL DEFAULT 0 CHECK (index_reprise >= 0), \"reussis\" INTEGER NOT NULL DEFAULT 0 CHECK (reussis >= 0), \"total\" INTEGER NOT NULL DEFAULT 0 CHECK (total >= 0), \"meilleurs_reussis\" INTEGER NOT NULL DEFAULT 0 CHECK (meilleurs_reussis >= 0), \"commence_le\" TEXT NOT NULL, \"termine_le\" TEXT, \"modifie_le\" TEXT NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "etats_etapes_unique",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE UNIQUE INDEX etats_etapes_unique ON etats_etapes (profil_id, etape_id)"
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 //
 import 'package:drift/drift.dart';
 
-class Profils extends Table with TableInfo {
+class Profils extends Table with TableInfo<Profils, ProfilsData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -84,8 +84,38 @@ class Profils extends Table with TableInfo {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
-    throw UnsupportedError('TableInfo.map in schema verification code');
+  ProfilsData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProfilsData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      prenom: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}prenom'],
+      )!,
+      niveau: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}niveau'],
+      )!,
+      avatar: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}avatar'],
+      )!,
+      formeAdresse: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}forme_adresse'],
+      )!,
+      creeLe: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}cree_le'],
+      )!,
+      modifieLe: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}modifie_le'],
+      )!,
+    );
   }
 
   @override
@@ -97,7 +127,253 @@ class Profils extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
-class HistoriqueNiveaux extends Table with TableInfo {
+class ProfilsData extends DataClass implements Insertable<ProfilsData> {
+  final int id;
+  final String prenom;
+  final int niveau;
+  final String avatar;
+  final String formeAdresse;
+  final String creeLe;
+  final String modifieLe;
+  const ProfilsData({
+    required this.id,
+    required this.prenom,
+    required this.niveau,
+    required this.avatar,
+    required this.formeAdresse,
+    required this.creeLe,
+    required this.modifieLe,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['prenom'] = Variable<String>(prenom);
+    map['niveau'] = Variable<int>(niveau);
+    map['avatar'] = Variable<String>(avatar);
+    map['forme_adresse'] = Variable<String>(formeAdresse);
+    map['cree_le'] = Variable<String>(creeLe);
+    map['modifie_le'] = Variable<String>(modifieLe);
+    return map;
+  }
+
+  ProfilsCompanion toCompanion(bool nullToAbsent) {
+    return ProfilsCompanion(
+      id: Value(id),
+      prenom: Value(prenom),
+      niveau: Value(niveau),
+      avatar: Value(avatar),
+      formeAdresse: Value(formeAdresse),
+      creeLe: Value(creeLe),
+      modifieLe: Value(modifieLe),
+    );
+  }
+
+  factory ProfilsData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProfilsData(
+      id: serializer.fromJson<int>(json['id']),
+      prenom: serializer.fromJson<String>(json['prenom']),
+      niveau: serializer.fromJson<int>(json['niveau']),
+      avatar: serializer.fromJson<String>(json['avatar']),
+      formeAdresse: serializer.fromJson<String>(json['formeAdresse']),
+      creeLe: serializer.fromJson<String>(json['creeLe']),
+      modifieLe: serializer.fromJson<String>(json['modifieLe']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'prenom': serializer.toJson<String>(prenom),
+      'niveau': serializer.toJson<int>(niveau),
+      'avatar': serializer.toJson<String>(avatar),
+      'formeAdresse': serializer.toJson<String>(formeAdresse),
+      'creeLe': serializer.toJson<String>(creeLe),
+      'modifieLe': serializer.toJson<String>(modifieLe),
+    };
+  }
+
+  ProfilsData copyWith({
+    int? id,
+    String? prenom,
+    int? niveau,
+    String? avatar,
+    String? formeAdresse,
+    String? creeLe,
+    String? modifieLe,
+  }) => ProfilsData(
+    id: id ?? this.id,
+    prenom: prenom ?? this.prenom,
+    niveau: niveau ?? this.niveau,
+    avatar: avatar ?? this.avatar,
+    formeAdresse: formeAdresse ?? this.formeAdresse,
+    creeLe: creeLe ?? this.creeLe,
+    modifieLe: modifieLe ?? this.modifieLe,
+  );
+  ProfilsData copyWithCompanion(ProfilsCompanion data) {
+    return ProfilsData(
+      id: data.id.present ? data.id.value : this.id,
+      prenom: data.prenom.present ? data.prenom.value : this.prenom,
+      niveau: data.niveau.present ? data.niveau.value : this.niveau,
+      avatar: data.avatar.present ? data.avatar.value : this.avatar,
+      formeAdresse: data.formeAdresse.present
+          ? data.formeAdresse.value
+          : this.formeAdresse,
+      creeLe: data.creeLe.present ? data.creeLe.value : this.creeLe,
+      modifieLe: data.modifieLe.present ? data.modifieLe.value : this.modifieLe,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProfilsData(')
+          ..write('id: $id, ')
+          ..write('prenom: $prenom, ')
+          ..write('niveau: $niveau, ')
+          ..write('avatar: $avatar, ')
+          ..write('formeAdresse: $formeAdresse, ')
+          ..write('creeLe: $creeLe, ')
+          ..write('modifieLe: $modifieLe')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, prenom, niveau, avatar, formeAdresse, creeLe, modifieLe);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProfilsData &&
+          other.id == this.id &&
+          other.prenom == this.prenom &&
+          other.niveau == this.niveau &&
+          other.avatar == this.avatar &&
+          other.formeAdresse == this.formeAdresse &&
+          other.creeLe == this.creeLe &&
+          other.modifieLe == this.modifieLe);
+}
+
+class ProfilsCompanion extends UpdateCompanion<ProfilsData> {
+  final Value<int> id;
+  final Value<String> prenom;
+  final Value<int> niveau;
+  final Value<String> avatar;
+  final Value<String> formeAdresse;
+  final Value<String> creeLe;
+  final Value<String> modifieLe;
+  const ProfilsCompanion({
+    this.id = const Value.absent(),
+    this.prenom = const Value.absent(),
+    this.niveau = const Value.absent(),
+    this.avatar = const Value.absent(),
+    this.formeAdresse = const Value.absent(),
+    this.creeLe = const Value.absent(),
+    this.modifieLe = const Value.absent(),
+  });
+  ProfilsCompanion.insert({
+    this.id = const Value.absent(),
+    required String prenom,
+    required int niveau,
+    required String avatar,
+    required String formeAdresse,
+    required String creeLe,
+    required String modifieLe,
+  }) : prenom = Value(prenom),
+       niveau = Value(niveau),
+       avatar = Value(avatar),
+       formeAdresse = Value(formeAdresse),
+       creeLe = Value(creeLe),
+       modifieLe = Value(modifieLe);
+  static Insertable<ProfilsData> custom({
+    Expression<int>? id,
+    Expression<String>? prenom,
+    Expression<int>? niveau,
+    Expression<String>? avatar,
+    Expression<String>? formeAdresse,
+    Expression<String>? creeLe,
+    Expression<String>? modifieLe,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (prenom != null) 'prenom': prenom,
+      if (niveau != null) 'niveau': niveau,
+      if (avatar != null) 'avatar': avatar,
+      if (formeAdresse != null) 'forme_adresse': formeAdresse,
+      if (creeLe != null) 'cree_le': creeLe,
+      if (modifieLe != null) 'modifie_le': modifieLe,
+    });
+  }
+
+  ProfilsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? prenom,
+    Value<int>? niveau,
+    Value<String>? avatar,
+    Value<String>? formeAdresse,
+    Value<String>? creeLe,
+    Value<String>? modifieLe,
+  }) {
+    return ProfilsCompanion(
+      id: id ?? this.id,
+      prenom: prenom ?? this.prenom,
+      niveau: niveau ?? this.niveau,
+      avatar: avatar ?? this.avatar,
+      formeAdresse: formeAdresse ?? this.formeAdresse,
+      creeLe: creeLe ?? this.creeLe,
+      modifieLe: modifieLe ?? this.modifieLe,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (prenom.present) {
+      map['prenom'] = Variable<String>(prenom.value);
+    }
+    if (niveau.present) {
+      map['niveau'] = Variable<int>(niveau.value);
+    }
+    if (avatar.present) {
+      map['avatar'] = Variable<String>(avatar.value);
+    }
+    if (formeAdresse.present) {
+      map['forme_adresse'] = Variable<String>(formeAdresse.value);
+    }
+    if (creeLe.present) {
+      map['cree_le'] = Variable<String>(creeLe.value);
+    }
+    if (modifieLe.present) {
+      map['modifie_le'] = Variable<String>(modifieLe.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProfilsCompanion(')
+          ..write('id: $id, ')
+          ..write('prenom: $prenom, ')
+          ..write('niveau: $niveau, ')
+          ..write('avatar: $avatar, ')
+          ..write('formeAdresse: $formeAdresse, ')
+          ..write('creeLe: $creeLe, ')
+          ..write('modifieLe: $modifieLe')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class HistoriqueNiveaux extends Table
+    with TableInfo<HistoriqueNiveaux, HistoriqueNiveauxData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -153,8 +429,30 @@ class HistoriqueNiveaux extends Table with TableInfo {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
-    throw UnsupportedError('TableInfo.map in schema verification code');
+  HistoriqueNiveauxData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return HistoriqueNiveauxData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      profilId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}profil_id'],
+      )!,
+      niveau: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}niveau'],
+      )!,
+      debut: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}debut'],
+      )!,
+      fin: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}fin'],
+      ),
+    );
   }
 
   @override
@@ -164,6 +462,205 @@ class HistoriqueNiveaux extends Table with TableInfo {
 
   @override
   bool get dontWriteConstraints => true;
+}
+
+class HistoriqueNiveauxData extends DataClass
+    implements Insertable<HistoriqueNiveauxData> {
+  final int id;
+  final int profilId;
+  final int niveau;
+  final String debut;
+  final String? fin;
+  const HistoriqueNiveauxData({
+    required this.id,
+    required this.profilId,
+    required this.niveau,
+    required this.debut,
+    this.fin,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['profil_id'] = Variable<int>(profilId);
+    map['niveau'] = Variable<int>(niveau);
+    map['debut'] = Variable<String>(debut);
+    if (!nullToAbsent || fin != null) {
+      map['fin'] = Variable<String>(fin);
+    }
+    return map;
+  }
+
+  HistoriqueNiveauxCompanion toCompanion(bool nullToAbsent) {
+    return HistoriqueNiveauxCompanion(
+      id: Value(id),
+      profilId: Value(profilId),
+      niveau: Value(niveau),
+      debut: Value(debut),
+      fin: fin == null && nullToAbsent ? const Value.absent() : Value(fin),
+    );
+  }
+
+  factory HistoriqueNiveauxData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return HistoriqueNiveauxData(
+      id: serializer.fromJson<int>(json['id']),
+      profilId: serializer.fromJson<int>(json['profilId']),
+      niveau: serializer.fromJson<int>(json['niveau']),
+      debut: serializer.fromJson<String>(json['debut']),
+      fin: serializer.fromJson<String?>(json['fin']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'profilId': serializer.toJson<int>(profilId),
+      'niveau': serializer.toJson<int>(niveau),
+      'debut': serializer.toJson<String>(debut),
+      'fin': serializer.toJson<String?>(fin),
+    };
+  }
+
+  HistoriqueNiveauxData copyWith({
+    int? id,
+    int? profilId,
+    int? niveau,
+    String? debut,
+    Value<String?> fin = const Value.absent(),
+  }) => HistoriqueNiveauxData(
+    id: id ?? this.id,
+    profilId: profilId ?? this.profilId,
+    niveau: niveau ?? this.niveau,
+    debut: debut ?? this.debut,
+    fin: fin.present ? fin.value : this.fin,
+  );
+  HistoriqueNiveauxData copyWithCompanion(HistoriqueNiveauxCompanion data) {
+    return HistoriqueNiveauxData(
+      id: data.id.present ? data.id.value : this.id,
+      profilId: data.profilId.present ? data.profilId.value : this.profilId,
+      niveau: data.niveau.present ? data.niveau.value : this.niveau,
+      debut: data.debut.present ? data.debut.value : this.debut,
+      fin: data.fin.present ? data.fin.value : this.fin,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HistoriqueNiveauxData(')
+          ..write('id: $id, ')
+          ..write('profilId: $profilId, ')
+          ..write('niveau: $niveau, ')
+          ..write('debut: $debut, ')
+          ..write('fin: $fin')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, profilId, niveau, debut, fin);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HistoriqueNiveauxData &&
+          other.id == this.id &&
+          other.profilId == this.profilId &&
+          other.niveau == this.niveau &&
+          other.debut == this.debut &&
+          other.fin == this.fin);
+}
+
+class HistoriqueNiveauxCompanion
+    extends UpdateCompanion<HistoriqueNiveauxData> {
+  final Value<int> id;
+  final Value<int> profilId;
+  final Value<int> niveau;
+  final Value<String> debut;
+  final Value<String?> fin;
+  const HistoriqueNiveauxCompanion({
+    this.id = const Value.absent(),
+    this.profilId = const Value.absent(),
+    this.niveau = const Value.absent(),
+    this.debut = const Value.absent(),
+    this.fin = const Value.absent(),
+  });
+  HistoriqueNiveauxCompanion.insert({
+    this.id = const Value.absent(),
+    required int profilId,
+    required int niveau,
+    required String debut,
+    this.fin = const Value.absent(),
+  }) : profilId = Value(profilId),
+       niveau = Value(niveau),
+       debut = Value(debut);
+  static Insertable<HistoriqueNiveauxData> custom({
+    Expression<int>? id,
+    Expression<int>? profilId,
+    Expression<int>? niveau,
+    Expression<String>? debut,
+    Expression<String>? fin,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (profilId != null) 'profil_id': profilId,
+      if (niveau != null) 'niveau': niveau,
+      if (debut != null) 'debut': debut,
+      if (fin != null) 'fin': fin,
+    });
+  }
+
+  HistoriqueNiveauxCompanion copyWith({
+    Value<int>? id,
+    Value<int>? profilId,
+    Value<int>? niveau,
+    Value<String>? debut,
+    Value<String?>? fin,
+  }) {
+    return HistoriqueNiveauxCompanion(
+      id: id ?? this.id,
+      profilId: profilId ?? this.profilId,
+      niveau: niveau ?? this.niveau,
+      debut: debut ?? this.debut,
+      fin: fin ?? this.fin,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (profilId.present) {
+      map['profil_id'] = Variable<int>(profilId.value);
+    }
+    if (niveau.present) {
+      map['niveau'] = Variable<int>(niveau.value);
+    }
+    if (debut.present) {
+      map['debut'] = Variable<String>(debut.value);
+    }
+    if (fin.present) {
+      map['fin'] = Variable<String>(fin.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HistoriqueNiveauxCompanion(')
+          ..write('id: $id, ')
+          ..write('profilId: $profilId, ')
+          ..write('niveau: $niveau, ')
+          ..write('debut: $debut, ')
+          ..write('fin: $fin')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class DatabaseAtV1 extends GeneratedDatabase {

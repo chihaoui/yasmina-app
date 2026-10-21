@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moteur_exercices/moteur_exercices.dart';
 
+import '../parcours/parcours.dart';
 import '../parcours/progression.dart';
 import '../profils/depot_profils.dart';
 import '../profils/profil_actif.dart';
@@ -16,7 +17,11 @@ class MenuDevEcran extends ConsumerWidget {
   const MenuDevEcran({super.key});
 
   Future<void> _creerProfils(BuildContext context, WidgetRef ref) async {
-    final bilan = await creerProfilsDeTest(ref.read(depotProfilsProvider));
+    final bilan = await creerProfilsDeTest(
+      ref.read(depotProfilsProvider),
+      progression: ref.read(depotProgressionProvider),
+      catalogue: await ref.read(catalogueParcoursProvider.future),
+    );
     if (!context.mounted) return;
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -102,8 +107,9 @@ class MenuDevEcran extends ConsumerWidget {
                   leading: const Icon(Icons.group_add_rounded),
                   title: const Text('Créer les profils de test'),
                   subtitle: const Text(
-                    'Lina (fille) et Yassine (garçon), 1re année. '
-                    'Un profil déjà présent est gardé.',
+                    'Lina (fille, progression d\'exemple en arabe) et '
+                    'Yassine (garçon, vierge), 1re année. Un profil déjà '
+                    'présent est gardé.',
                   ),
                   onTap: () => _creerProfils(context, ref),
                 ),

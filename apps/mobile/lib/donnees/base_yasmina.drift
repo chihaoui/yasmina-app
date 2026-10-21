@@ -35,3 +35,44 @@ CREATE TRIGGER limite_cinq_profils BEFORE INSERT ON profils
 BEGIN
   SELECT RAISE(ABORT, 'limite_profils');
 END;
+
+-- Progression locale (A3-03). Résultat du dernier passage sur un exercice,
+-- par profil : essais, réussi (juste au 1er ou au 2e essai, ou sans note),
+-- révélé (réponse montrée après deux essais faux). Supprimé avec le profil.
+CREATE TABLE resultats_exercices (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  profil_id INTEGER NOT NULL REFERENCES profils (id) ON DELETE CASCADE,
+  etape_id TEXT NOT NULL,
+  sequence_id TEXT NOT NULL,
+  exercice_id TEXT NOT NULL,
+  essais INTEGER NOT NULL CHECK (essais >= 0),
+  reussi BOOLEAN NOT NULL,
+  revele BOOLEAN NOT NULL,
+  joue_le DATETIME NOT NULL
+) AS ResultatExercice;
+
+-- Un seul résultat par exercice et par profil (le dernier passage).
+CREATE UNIQUE INDEX resultats_exercices_unique
+  ON resultats_exercices (profil_id, exercice_id);
+
+CREATE INDEX resultats_exercices_etape
+  ON resultats_exercices (profil_id, etape_id);
+
+-- État d'une étape pour un profil : en cours (index_reprise est le prochain
+-- exercice à jouer, reussis le compte de la partie en cours) ou faite
+-- (meilleurs_reussis garde la meilleure partie). Supprimé avec le profil.
+CREATE TABLE etats_etapes (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  profil_id INTEGER NOT NULL REFERENCES profils (id) ON DELETE CASCADE,
+  etape_id TEXT NOT NULL,
+  faite BOOLEAN NOT NULL DEFAULT FALSE,
+  index_reprise INTEGER NOT NULL DEFAULT 0 CHECK (index_reprise >= 0),
+  reussis INTEGER NOT NULL DEFAULT 0 CHECK (reussis >= 0),
+  total INTEGER NOT NULL DEFAULT 0 CHECK (total >= 0),
+  meilleurs_reussis INTEGER NOT NULL DEFAULT 0 CHECK (meilleurs_reussis >= 0),
+  commence_le DATETIME NOT NULL,
+  termine_le DATETIME,
+  modifie_le DATETIME NOT NULL
+) AS EtatEtapeProfil;
+
+CREATE UNIQUE INDEX etats_etapes_unique ON etats_etapes (profil_id, etape_id);

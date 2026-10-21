@@ -16,7 +16,8 @@ import 'commun.dart';
 
 /// Une étape jouée (A3-02) : ses séquences s'enchaînent dans le lecteur
 /// (mode enfant, forme d'adresse du profil, services réels), avec la barre
-/// des séquences en haut. À la fin, l'étape est enregistrée comme faite,
+/// des séquences en haut. Chaque exercice fini est enregistré (A3-03) : une
+/// partie quittée reprend au même exercice. À la fin, l'étape est faite,
 /// Yasmina fait le bilan et renvoie à la carte.
 class EtapeJeuEcran extends ConsumerStatefulWidget {
   const EtapeJeuEcran({super.key, required this.code, required this.etapeId});
@@ -29,46 +30,72 @@ class EtapeJeuEcran extends ConsumerStatefulWidget {
 }
 
 class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
-  /// Index de l'exercice en cours (égal au nombre d'exercices à la fin).
-  var _index = 0;
+  /// Index de l'exercice en cours (égal au nombre d'exercices à la fin),
+  /// `null` tant que la partie n'est pas ouverte dans la base.
+  int? _index;
 
-  /// Issue de chaque exercice fini, dans l'ordre.
-  final _issues = <IssueExercice>[];
+  /// Exercices réussis dans cette partie (repris de la base à l'ouverture).
+  var _reussis = 0;
+
+  /// Dernier résultat émis par le lecteur pour l'exercice en cours.
+  Resultat? _resultat;
 
   /// L'étape suivante vient de s'ouvrir grâce à cette partie.
   var _suivanteDebloquee = false;
 
-  int get _reussis => _issues.where((i) => i != IssueExercice.explique).length;
+  /// Ouvre (ou reprend) la partie dans la base, une seule fois.
+  Future<void> _ouvrir(ProfilEnfant profil, Etape etape) async {
+    final etat = await ref
+        .read(depotProgressionProvider)
+        .commencerEtape(profil.id, etape.id, total: etape.nombreExercices);
+    if (!mounted) return;
+    setState(() {
+      _index = etat.indexReprise;
+      _reussis = etat.reussis;
+    });
+  }
 
   void _surEvenement(EvenementExercice e) {
-    if (e is Resultat) _issues.add(e.issue);
+    if (e is Resultat) _resultat = e;
   }
 
   Future<void> _suivant(
     ProfilEnfant profil,
     Parcours parcours,
     Etape etape,
+    ExerciceAJouer courant,
   ) async {
-    final fini = _index + 1 >= etape.nombreExercices;
-    if (fini) {
+    final depot = ref.read(depotProgressionProvider);
+    final index = _index!;
+    final resultat = _resultat;
+    _resultat = null;
+    final reussi = resultat != null && resultat.issue != IssueExercice.explique;
+    if (reussi) _reussis++;
+    await depot.enregistrerExercice(
+      profil.id,
+      etapeId: etape.id,
+      sequenceId: etape.sequences[courant.sequence].id,
+      exerciceId: courant.id,
+      essais: resultat?.essais ?? 0,
+      reussi: reussi,
+      revele: resultat?.issue == IssueExercice.explique,
+      indexSuivant: index + 1,
+    );
+    if (index + 1 >= etape.nombreExercices) {
       final faites = ref.read(etapesFaitesProvider(profil.id)).value ?? {};
       final suivante = parcours.suivante(etape.id);
       _suivanteDebloquee =
           !faites.contains(etape.id) &&
           suivante != null &&
           !faites.contains(suivante.id);
-      await ref
-          .read(depotProgressionProvider)
-          .terminerEtape(
-            profil.id,
-            ResultatEtape(
-              etapeId: etape.id,
-              reussis: _reussis,
-              total: etape.nombreExercices,
-            ),
-          );
+      await depot.terminerEtape(
+        profil.id,
+        etape.id,
+        reussis: _reussis,
+        total: etape.nombreExercices,
+      );
     }
-    if (mounted) setState(() => _index++);
+    if (mounted) setState(() => _index = index + 1);
   }
 
   @override
@@ -88,6 +115,13 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
     );
     final etape = parcours?.etape(widget.etapeId);
     if (parcours == null || etape == null) return const EcranChargement();
+    final index = _index;
+    if (index == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _index == null) _ouvrir(profil, etape);
+      });
+      return const EcranChargement();
+    }
     final deroule = etape.deroule;
     final n = deroule.length;
     return Scaffold(
@@ -98,9 +132,9 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
           textDirection: LangueExercice.directionDe(etape.langue),
         ),
       ),
-      body: n == 0 || _index >= n
-          ? _resultat(context, textes, parcours, etape, n)
-          : _exercice(context, textes, profil, parcours, etape, deroule, n),
+      body: n == 0 || index >= n
+          ? _fin(context, textes, n)
+          : _exercice(context, textes, profil, parcours, etape, deroule, index),
     );
   }
 
@@ -111,11 +145,12 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
     Parcours parcours,
     Etape etape,
     List<ExerciceAJouer> deroule,
-    int n,
+    int index,
   ) {
     final c = context.couleurs;
     final theme = Theme.of(context).textTheme;
-    final courant = deroule[_index];
+    final n = deroule.length;
+    final courant = deroule[index];
     final sens = LangueExercice.directionDe(etape.langue);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -134,9 +169,9 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
               ProgressionSequences(
                 key: const ValueKey('jeu_progression'),
                 sequences: [for (final e in deroule) e.sequence],
-                courant: _index,
+                courant: index,
                 defi: etape.estDefi,
-                libelle: textes.sequenceProgression(_index + 1, n),
+                libelle: textes.sequenceProgression(index + 1, n),
               ),
               Row(
                 children: [
@@ -152,7 +187,7 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
                     ),
                   ),
                   Text(
-                    textes.sequenceProgression(_index + 1, n),
+                    textes.sequenceProgression(index + 1, n),
                     key: const ValueKey('jeu_compteur'),
                     style: theme.bodySmall,
                   ),
@@ -164,7 +199,7 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
         Expanded(
           child: LecteurExercice(
             // Un lecteur neuf par exercice.
-            key: ValueKey('jeu_exercice_$_index'),
+            key: ValueKey('jeu_exercice_$index'),
             exercice: courant.exercice,
             config: ConfigExercice(
               langue: etape.langue,
@@ -172,20 +207,14 @@ class _EtapeJeuEcranState extends ConsumerState<EtapeJeuEcran> {
             ),
             services: ref.watch(servicesExerciceProvider),
             onEvenement: _surEvenement,
-            onContinuer: () => _suivant(profil, parcours, etape),
+            onContinuer: () => _suivant(profil, parcours, etape, courant),
           ),
         ),
       ],
     );
   }
 
-  Widget _resultat(
-    BuildContext context,
-    AppLocalizations textes,
-    Parcours parcours,
-    Etape etape,
-    int n,
-  ) {
+  Widget _fin(BuildContext context, AppLocalizations textes, int n) {
     final c = context.couleurs;
     final theme = Theme.of(context).textTheme;
     return ListView(

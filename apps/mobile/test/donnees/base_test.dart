@@ -83,11 +83,58 @@ void main() {
     expect(await base.select(base.historiqueNiveaux).get(), isEmpty);
   });
 
+  Future<void> progression(int profilId) async {
+    await base
+        .into(base.etatsEtapes)
+        .insert(
+          EtatsEtapesCompanion.insert(
+            profilId: profilId,
+            etapeId: 'ar-1-t1-u1-e01',
+            commenceLe: t,
+            modifieLe: t,
+          ),
+        );
+    await base
+        .into(base.resultatsExercices)
+        .insert(
+          ResultatsExercicesCompanion.insert(
+            profilId: profilId,
+            etapeId: 'ar-1-t1-u1-e01',
+            sequenceId: 'ar-1-t1-u1-e01-s1',
+            exerciceId: 'ar-1-t1-u1-e01-x01',
+            essais: 1,
+            reussi: true,
+            revele: false,
+            joueLe: t,
+          ),
+        );
+  }
+
+  test('supprimer un profil supprime sa progression', () async {
+    final id = await profil('Lina');
+    await progression(id);
+    await (base.delete(base.profils)..where((p) => p.id.equals(id))).go();
+    expect(await base.select(base.etatsEtapes).get(), isEmpty);
+    expect(await base.select(base.resultatsExercices).get(), isEmpty);
+  });
+
+  test(
+    'un seul résultat par exercice et par profil, un seul état par étape',
+    () async {
+      final id = await profil('Lina');
+      await progression(id);
+      await expectLater(progression(id), echoueAvec('UNIQUE'));
+    },
+  );
+
   test('toutEffacer vide toutes les tables', () async {
     final id = await profil('Lina');
     await periode(id);
+    await progression(id);
     await base.toutEffacer();
     expect(await base.select(base.profils).get(), isEmpty);
     expect(await base.select(base.historiqueNiveaux).get(), isEmpty);
+    expect(await base.select(base.etatsEtapes).get(), isEmpty);
+    expect(await base.select(base.resultatsExercices).get(), isEmpty);
   });
 }
