@@ -1,0 +1,850 @@
+{
+  "generation": {
+    "id": "gen-ar-1-t1-u1-e03-20261021-01",
+    "schema": "edu-content/1.0",
+    "date": "2026-10-21",
+    "modele": "manuel",
+    "version_prompt": "aucun",
+    "auteur": "Lamjed CHIHAOUI, converti par tool/convertir_contenu.dart"
+  },
+  "etape": {
+    "id": "ar-1-t1-u1-e03",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 3,
+    "langue": "ar",
+    "titre": "حَرْفُ الْمِيمِ",
+    "sequences": [
+      {
+        "id": "ar-1-t1-u1-e03-s1",
+        "titre": "أَكْتَشِفُ",
+        "exercices": [
+          "ar-1-t1-u1-e03-x01",
+          "ar-1-t1-u1-e03-x02",
+          "ar-1-t1-u1-e03-x03"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e03-s2",
+        "titre": "أُلَاحِظُ",
+        "exercices": [
+          "ar-1-t1-u1-e03-x04",
+          "ar-1-t1-u1-e03-x05",
+          "ar-1-t1-u1-e03-x06",
+          "ar-1-t1-u1-e03-x07"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e03-s3",
+        "titre": "أُرَكِّبُ",
+        "exercices": [
+          "ar-1-t1-u1-e03-x08",
+          "ar-1-t1-u1-e03-x09",
+          "ar-1-t1-u1-e03-x10",
+          "ar-1-t1-u1-e03-x11"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e03-s4",
+        "titre": "أَكْتُبُ",
+        "exercices": [
+          "ar-1-t1-u1-e03-x15",
+          "ar-1-t1-u1-e03-x13",
+          "ar-1-t1-u1-e03-x14"
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": "ar-1-t1-u1-e03-x01",
+      "type": "T01",
+      "gabarit": "qcm-scene",
+      "competence": "ar-comprehension-ecoute",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "مَاذَا تَأْكُلُ مَرْيَمُ؟"
+      },
+      "donnees": {
+        "support": {
+          "texte": "مَرْيَمُ جَائِعَةٌ.\nمَرْيَمُ تَأْكُلُ مَوْزَةً.",
+          "emoji": "👧🍌"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "مَوْزَةً",
+            "emoji": "🍌"
+          },
+          {
+            "id": "c2",
+            "texte": "تُفَّاحَةً",
+            "emoji": "🍎"
+          },
+          {
+            "id": "c3",
+            "texte": "عِنَبًا",
+            "emoji": "🍇"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مَرْيَمُ تَأْكُلُ مَوْزَةً.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مَرْيَمُ تَأْكُلُ مَوْزَةً."
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+        },
+        "explication": "مَرْيَمُ تَأْكُلُ مَوْزَةً."
+      },
+      "empreinte": "sha256:52cfabcf045036d62a984fdbabe68251f42e7882509866b1be9095e51be2beb7",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x02",
+      "type": "T03",
+      "gabarit": "ecoute-image",
+      "competence": "ar-ecoute-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+          "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "مِفْتَاحٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "emoji": "🔑"
+          },
+          {
+            "id": "c2",
+            "emoji": "💧"
+          },
+          {
+            "id": "c3",
+            "emoji": "🐜"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «مِفْتَاحٌ» 🔑",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «مِفْتَاحٌ» 🔑"
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+        },
+        "explication": "الْكَلِمَةُ هِيَ «مِفْتَاحٌ»."
+      },
+      "empreinte": "sha256:5692df708cbd4071ad4a287f7a6927fa714afafa0cfd45b2bfbba452c7344252",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x03",
+      "type": "T09",
+      "gabarit": "association-mot-image",
+      "competence": "ar-lecture-mot-image",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+          "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+        }
+      },
+      "donnees": {
+        "gauche": [
+          {
+            "id": "g1",
+            "texte": "مَوْزٌ"
+          },
+          {
+            "id": "g2",
+            "texte": "سَمَكَةٌ"
+          },
+          {
+            "id": "g3",
+            "texte": "قَمَرٌ"
+          },
+          {
+            "id": "g4",
+            "texte": "فَمٌ"
+          }
+        ],
+        "droite": [
+          {
+            "id": "d1",
+            "emoji": "🍌"
+          },
+          {
+            "id": "d2",
+            "emoji": "🐟"
+          },
+          {
+            "id": "d3",
+            "emoji": "🌙"
+          },
+          {
+            "id": "d4",
+            "emoji": "👄"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "paires": [
+          {
+            "gauche": "g1",
+            "droite": "d1"
+          },
+          {
+            "gauche": "g2",
+            "droite": "d2"
+          },
+          {
+            "gauche": "g3",
+            "droite": "d3"
+          },
+          {
+            "gauche": "g4",
+            "droite": "d4"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+        },
+        "indice": {
+          "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+          "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+        },
+        "explication": "مَوْزٌ 🍌، سَمَكَةٌ 🐟، قَمَرٌ 🌙، فَمٌ 👄"
+      },
+      "empreinte": "sha256:a9e0e6c95093455c9d299b6f52d3d0b3a9078ac75c48597872dc36b51a1c1eb7",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x04",
+      "type": "T02",
+      "gabarit": "vrai-faux-texte",
+      "competence": "ar-identification-son",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
+      },
+      "donnees": {
+        "affirmation": "فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ."
+      },
+      "reponse": {
+        "valeur": false
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ."
+        },
+        "indice": {
+          "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+          "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+        },
+        "explication": "لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ."
+      },
+      "empreinte": "sha256:19d5b45cfdd8f6e580e1fa8aefcd9efd3b9f38b6a4a05af4fd0bfc52f9612bd3",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x05",
+      "type": "T07",
+      "gabarit": "toucher-mots",
+      "competence": "ar-reperer-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْمِيمِ.",
+          "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْمِيمِ."
+        }
+      },
+      "donnees": {
+        "texte": "يَشْرَبُ عُمَرُ الْمَاءَ",
+        "plusieurs": true
+      },
+      "reponse": {
+        "mots": [
+          1,
+          2
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «عُمَرُ» وَ«الْمَاءَ» حَرْفُ الْمِيمِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «عُمَرُ» وَ«الْمَاءَ» حَرْفُ الْمِيمِ."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "الْكَلِمَتَانِ هُمَا «عُمَرُ» وَ«الْمَاءَ»."
+      },
+      "empreinte": "sha256:fc6227f5e5511e79013e33ec16ca341998af0109c474290372671608d4f41168",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x06",
+      "type": "T18",
+      "gabarit": "forme-lettre",
+      "competence": "ar-forme-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «سَمَكَةٌ».",
+          "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «سَمَكَةٌ»."
+        }
+      },
+      "donnees": {
+        "lettre": "م",
+        "position": "milieu",
+        "mot": "سَمَكَةٌ",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "م"
+          },
+          {
+            "id": "c2",
+            "texte": "مـ"
+          },
+          {
+            "id": "c3",
+            "texte": "ـمـ"
+          },
+          {
+            "id": "c4",
+            "texte": "ـم"
+          }
+        ],
+        "melanger": false
+      },
+      "reponse": {
+        "choix": [
+          "c3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «سَمَكَةٌ» نَكْتُبُ ـمـ",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «سَمَكَةٌ» نَكْتُبُ ـمـ"
+        },
+        "indice": "الْحَرْفُ فِي وَسَطِ الْكَلِمَةِ.",
+        "explication": "فِي كَلِمَةِ «سَمَكَةٌ» نَكْتُبُ: ـمـ"
+      },
+      "empreinte": "sha256:75975b181fa0d2cf12d6f9f37b91db0db51b8ae6e22f63a82d7044ecb3175f01",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x07",
+      "type": "T19",
+      "gabarit": "lettre-vocalisee",
+      "competence": "ar-harakat",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "أَيُّ حَرْفٍ عَلَيْهِ كَسْرَةٌ؟"
+      },
+      "donnees": {
+        "haraka": "kasra",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "مَ"
+          },
+          {
+            "id": "c2",
+            "texte": "مُ"
+          },
+          {
+            "id": "c3",
+            "texte": "مِ"
+          },
+          {
+            "id": "c4",
+            "texte": "مْ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مِ",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مِ"
+        },
+        "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+        "explication": "الْحَرْفُ الَّذِي عَلَيْهِ كَسْرَةٌ هُوَ مِ"
+      },
+      "empreinte": "sha256:433bf4668f043b0656a6e0c99d08a1e198335d2db29727e294ac06eb11b5367b",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x08",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "فَ"
+          },
+          {
+            "id": "e2",
+            "texte": "مٌ"
+          },
+          {
+            "id": "e3",
+            "texte": "بِ"
+          },
+          {
+            "id": "e4",
+            "texte": "لُ"
+          }
+        ],
+        "ecoute": {
+          "texte": "فَمٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فَمٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فَمٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «فَ».",
+        "explication": "فَمٌ = فَ + مٌ"
+      },
+      "empreinte": "sha256:b40738229c6dbf9fcea78c7c0c198ddc553ad98421040eb8a459f10d343c0c76",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x09",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "قَ"
+          },
+          {
+            "id": "e2",
+            "texte": "مَ"
+          },
+          {
+            "id": "e3",
+            "texte": "رٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "بِ"
+          },
+          {
+            "id": "e5",
+            "texte": "لُ"
+          }
+        ],
+        "ecoute": {
+          "texte": "قَمَرٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «قَمَرٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «قَمَرٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «قَ».",
+        "explication": "قَمَرٌ = قَ + مَ + رٌ"
+      },
+      "empreinte": "sha256:b3c1b846cc504e444ef927f1decb4faa947df0c539e1b3b0073473c5dd604671",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x10",
+      "type": "T13",
+      "gabarit": "ordre-mots",
+      "competence": "ar-ordre-phrase",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+          "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "مَرْيَمُ"
+          },
+          {
+            "id": "e2",
+            "texte": "تَفْتَحُ"
+          },
+          {
+            "id": "e3",
+            "texte": "الْمِظَلَّةَ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ."
+        },
+        "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «مَرْيَمُ».",
+        "explication": "مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ."
+      },
+      "empreinte": "sha256:39277f67706b6efbb1ecd4912ce956189f48ffc5466622c08484c01ba8bca4e2",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x11",
+      "type": "T11",
+      "gabarit": "tri-bacs",
+      "competence": "ar-tri-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+          "feminin": "صَنِّفِي الْكَلِمَاتِ."
+        }
+      },
+      "donnees": {
+        "categories": [
+          {
+            "id": "k1",
+            "titre": "فِيهَا حَرْفُ الْمِيمِ"
+          },
+          {
+            "id": "k2",
+            "titre": "لَيْسَ فِيهَا حَرْفُ الْمِيمِ"
+          }
+        ],
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "مِفْتَاحٌ"
+          },
+          {
+            "id": "e2",
+            "texte": "نَمْلَةٌ"
+          },
+          {
+            "id": "e3",
+            "texte": "شَمْسٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "بَيْتٌ"
+          },
+          {
+            "id": "e5",
+            "texte": "دِيكٌ"
+          },
+          {
+            "id": "e6",
+            "texte": "وَرْدَةٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "classement": [
+          {
+            "element": "e1",
+            "categorie": "k1"
+          },
+          {
+            "element": "e2",
+            "categorie": "k1"
+          },
+          {
+            "element": "e3",
+            "categorie": "k1"
+          },
+          {
+            "element": "e4",
+            "categorie": "k2"
+          },
+          {
+            "element": "e5",
+            "categorie": "k2"
+          },
+          {
+            "element": "e6",
+            "categorie": "k2"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "فِيهَا حَرْفُ الْمِيمِ: مِفْتَاحٌ، نَمْلَةٌ، شَمْسٌ. لَيْسَ فِيهَا حَرْفُ الْمِيمِ: بَيْتٌ، دِيكٌ، وَرْدَةٌ."
+      },
+      "empreinte": "sha256:2c836d6a9eb6dbb99c617eddea38cbc9000019083f3d575e6bc4aa39c9b04124",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x15",
+      "type": "T17",
+      "gabarit": "dictee-mot",
+      "competence": "ar-ecriture-dictee",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْتَمِعْ وَاكْتُبِ الْكَلِمَةَ.",
+          "feminin": "اِسْتَمِعِي وَاكْتُبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "مَوْزٌ"
+        },
+        "emoji": "🍌",
+        "harakat": false,
+        "clavier": "reduit",
+        "lettres": "بدرزفلمو"
+      },
+      "reponse": {
+        "texte": "مَوْزٌ"
+      },
+      "normalisation": [
+        "harakat_ignorees"
+      ],
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مَوْزٌ تُكْتَبُ م ثُمَّ و ثُمَّ ز.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مَوْزٌ تُكْتَبُ م ثُمَّ و ثُمَّ ز."
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ الْمِيمِ.",
+        "explication": "مَوْزٌ: م ثُمَّ و ثُمَّ ز."
+      },
+      "empreinte": "sha256:3e5c8466346b4e3466de27fb7de0e54d018f65d496db40a3337073c2fb11790a",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x13",
+      "type": "T01",
+      "gabarit": "qcm-orthographe",
+      "competence": "ar-orthographe",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+          "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+        }
+      },
+      "donnees": {
+        "support": {
+          "emoji": "🍌",
+          "ecoute": {
+            "texte": "مَوْزٌ"
+          }
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "مَوْزٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "نَوْزٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "مَوْرٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «مَوْزٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «مَوْزٌ»."
+        },
+        "indice": {
+          "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+          "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+        },
+        "explication": "نَكْتُبُ «مَوْزٌ»."
+      },
+      "empreinte": "sha256:dc8f46b36a3bc12e688fe5314f282948e1bebc614bd0f2ce1a20a9306e70c143",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e03-x14",
+      "type": "T01",
+      "gabarit": "qcm-contraire",
+      "competence": "ar-vocabulaire",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «مَفْتُوحٌ».",
+          "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «مَفْتُوحٌ»."
+        }
+      },
+      "donnees": {
+        "support": {
+          "texte": "مَفْتُوحٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "مُغْلَقٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "كَبِيرٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "جَدِيدٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ»."
+        },
+        "indice": {
+          "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+          "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+        },
+        "explication": "عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ»."
+      },
+      "empreinte": "sha256:77597c2db1842dd4f9243c1bd1ecda20636f5a464f50a19ae458f6740b287071",
+      "statut": "brouillon",
+      "version": 1
+    }
+  ]
+}

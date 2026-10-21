@@ -1,0 +1,4496 @@
+{
+ "format": "brouillon-contenu",
+ "parcours": "ar-1-t1 (démo)",
+ "etapes": [
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u1-e01",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 1,
+    "langue": "ar",
+    "titre": "حَرْفُ الْبَاءِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u1-e01-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u1-e01-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u1-e01-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u1-e01-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "id": "ar-1-t1-u1-e01-x01",
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-lecture-son-initial",
+     "statut": "valide",
+     "consigne": "أَيُّ كَلِمَةٍ تَبْدَأُ بِحَرْفِ الْبَاءِ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بَابٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "قَمَرٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "شَمْسٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كَلِمَةُ «بَابٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كَلِمَةُ «بَابٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى أَوَّلِ صَوْتٍ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِسْتَمِعِي إِلَى أَوَّلِ صَوْتٍ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَةُ الصَّحِيحَةُ هِيَ «بَابٌ»: أَوَّلُ حَرْفٍ فِيهَا الْبَاءُ."
+     }
+    },
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "مَا لَوْنُ الْبَابِ؟",
+     "donnees": {
+      "image": "🏠🚪👦",
+      "texte": [
+       "هَذَا بَيْتُ بِلَالٍ.",
+       "بَابُ الْبَيْتِ أَزْرَقُ."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "أَزْرَقُ",
+        "image": "🔵"
+       },
+       {
+        "id": "c2",
+        "texte": "أَحْمَرُ",
+        "image": "🔴"
+       },
+       {
+        "id": "c3",
+        "texte": "أَخْضَرُ",
+        "image": "🟢"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: بَابُ الْبَيْتِ أَزْرَقُ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: بَابُ الْبَيْتِ أَزْرَقُ."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "بَابُ الْبَيْتِ أَزْرَقُ."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u1-e01-x03"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "بَقَرَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🐄"
+       },
+       {
+        "id": "c2",
+        "image": "🧸"
+       },
+       {
+        "id": "c3",
+        "image": "🐻"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «بَقَرَةٌ» 🐄",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «بَقَرَةٌ» 🐄"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «بَقَرَةٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u1-e01-x04"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "بَيْتٌ",
+        "image": "🏠"
+       },
+       {
+        "id": "p2",
+        "texte": "كَلْبٌ",
+        "image": "🐕"
+       },
+       {
+        "id": "p3",
+        "texte": "أَرْنَبٌ",
+        "image": "🐇"
+       },
+       {
+        "id": "p4",
+        "texte": "دُبٌّ",
+        "image": "🐻"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "بَيْتٌ 🏠، كَلْبٌ 🐕، أَرْنَبٌ 🐇، دُبٌّ 🐻"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u1-e01-x05"
+    },
+    {
+     "id": "ar-1-t1-u1-e01-x02",
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-lecture-son-initial",
+     "statut": "valide",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "كَلِمَةُ «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+     },
+     "reponse": {
+      "valeur": true
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "الْجُمْلَةُ صَحِيحَةٌ: «بَطَّةٌ» تَبْدَأُ بِحَرْفِ الْبَاءِ."
+     }
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْبَاءِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْبَاءِ."
+     },
+     "donnees": {
+      "mots": [
+       "فِي",
+       "الْبَيْتِ",
+       "قِطٌّ",
+       "وَكَلْبٌ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       1,
+       3
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «الْبَيْتِ» وَ«وَكَلْبٌ» حَرْفُ الْبَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «الْبَيْتِ» وَ«وَكَلْبٌ» حَرْفُ الْبَاءِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْبَاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْبَاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «الْبَيْتِ» وَ«وَكَلْبٌ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u1-e01-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْبَاءِ فِي كَلِمَةِ «بَطَّةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْبَاءِ فِي كَلِمَةِ «بَطَّةٌ»."
+     },
+     "donnees": {
+      "mot": "بَطَّةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ب"
+       },
+       {
+        "id": "c2",
+        "texte": "بـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـبـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـب"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «بَطَّةٌ» نَكْتُبُ بـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «بَطَّةٌ» نَكْتُبُ بـ"
+      },
+      "indice": "الْحَرْفُ فِي أَوَّلِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «بَطَّةٌ» نَكْتُبُ: بـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e01-x07"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بَ"
+       },
+       {
+        "id": "c2",
+        "texte": "بُ"
+       },
+       {
+        "id": "c3",
+        "texte": "بِ"
+       },
+       {
+        "id": "c4",
+        "texte": "بْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: بَ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: بَ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ فَتْحَةٌ هُوَ بَ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u1-e01-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "بَيْتٌ",
+      "image": "🏠",
+      "tuiles": [
+       "بَ",
+       "يْ",
+       "تٌ",
+       "مَ",
+       "رُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "بَ",
+       "يْ",
+       "تٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «بَيْتٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «بَيْتٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «بَ».",
+      "explication": "بَيْتٌ = بَ + يْ + تٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e01-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "كَلْبٌ",
+      "image": "🐕",
+      "tuiles": [
+       "كَ",
+       "لْ",
+       "بٌ",
+       "مَ",
+       "رُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "كَ",
+       "لْ",
+       "بٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «كَلْبٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «كَلْبٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «كَ».",
+      "explication": "كَلْبٌ = كَ + لْ + بٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e01-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "بِلَالٌ",
+       "يَفْتَحُ",
+       "الْبَابَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "بِلَالٌ",
+       "يَفْتَحُ",
+       "الْبَابَ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: بِلَالٌ يَفْتَحُ الْبَابَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: بِلَالٌ يَفْتَحُ الْبَابَ."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «بِلَالٌ».",
+      "explication": "بِلَالٌ يَفْتَحُ الْبَابَ."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u1-e01-x11"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ الْبَاءِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ الْبَاءِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "بَابٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "بَقَرَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "عِنَبٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "قَمَرٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "شَمْسٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "وَرْدَةٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْبَاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْبَاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ الْبَاءِ: بَابٌ، بَقَرَةٌ، عِنَبٌ. لَيْسَ فِيهَا حَرْفُ الْبَاءِ: قَمَرٌ، شَمْسٌ، وَرْدَةٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e01-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ الْبَاءِ.",
+      "feminin": "اُكْتُبِي حَرْفَ الْبَاءِ."
+     },
+     "donnees": {
+      "lettre": "ب"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ الْبَاءِ.",
+       "feminin": "كَتَبْتِ حَرْفَ الْبَاءِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u1-e01-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🦆",
+      "audio": "بَطَّةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بَطَّةٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "تَطَّةٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "نَطَّةٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «بَطَّةٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «بَطَّةٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «بَطَّةٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u1-e01-x14"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «كَبِيرٌ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «كَبِيرٌ»."
+     },
+     "donnees": {
+      "mot": "كَبِيرٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "صَغِيرٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "طَوِيلٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "جَمِيلٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «كَبِيرٌ» هُوَ «صَغِيرٌ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u1-e01-x15"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u1-e02",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 2,
+    "langue": "ar",
+    "titre": "حَرْفُ اللَّامِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u1-e02-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u1-e02-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u1-e02-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u1-e02-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "مَاذَا تَشْرَبُ لَيْلَى؟",
+     "donnees": {
+      "image": "👧🥛",
+      "texte": [
+       "لَيْلَى فِي الْمَطْبَخِ.",
+       "لَيْلَى تَشْرَبُ اللَّبَنَ."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "اللَّبَنَ",
+        "image": "🥛"
+       },
+       {
+        "id": "c2",
+        "texte": "الْمَاءَ",
+        "image": "💧"
+       },
+       {
+        "id": "c3",
+        "texte": "الْعَصِيرَ",
+        "image": "🧃"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْلَى تَشْرَبُ اللَّبَنَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْلَى تَشْرَبُ اللَّبَنَ."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "لَيْلَى تَشْرَبُ اللَّبَنَ."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u1-e02-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "لَيْمُونٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🍋"
+       },
+       {
+        "id": "c2",
+        "image": "🥛"
+       },
+       {
+        "id": "c3",
+        "image": "🐪"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «لَيْمُونٌ» 🍋",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «لَيْمُونٌ» 🍋"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «لَيْمُونٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u1-e02-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "لَبَنٌ",
+        "image": "🥛"
+       },
+       {
+        "id": "p2",
+        "texte": "قَلَمٌ",
+        "image": "✏️"
+       },
+       {
+        "id": "p3",
+        "texte": "جَمَلٌ",
+        "image": "🐪"
+       },
+       {
+        "id": "p4",
+        "texte": "فِيلٌ",
+        "image": "🐘"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "لَبَنٌ 🥛، قَلَمٌ ✏️، جَمَلٌ 🐪، فِيلٌ 🐘"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u1-e02-x03"
+    },
+    {
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ.",
+      "audio": "نَخْلَةٌ"
+     },
+     "reponse": {
+      "valeur": true
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ."
+     },
+     "gabarit": "vrai-faux-son",
+     "id": "ar-1-t1-u1-e02-x04"
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ اللَّامِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ اللَّامِ."
+     },
+     "donnees": {
+      "mots": [
+       "عِنْدَ",
+       "لَيْلَى",
+       "قَلَمٌ",
+       "جَدِيدٌ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       1,
+       2
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «لَيْلَى» وَ«قَلَمٌ» حَرْفُ اللَّامِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «لَيْلَى» وَ«قَلَمٌ» حَرْفُ اللَّامِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «لَيْلَى» وَ«قَلَمٌ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u1-e02-x05"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «جَمَلٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «جَمَلٌ»."
+     },
+     "donnees": {
+      "mot": "جَمَلٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ل"
+       },
+       {
+        "id": "c2",
+        "texte": "لـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـلـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـل"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c4"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «جَمَلٌ» نَكْتُبُ ـل",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «جَمَلٌ» نَكْتُبُ ـل"
+      },
+      "indice": "الْحَرْفُ فِي آخِرِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «جَمَلٌ» نَكْتُبُ: ـل"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e02-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ ضَمَّةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "لَ"
+       },
+       {
+        "id": "c2",
+        "texte": "لُ"
+       },
+       {
+        "id": "c3",
+        "texte": "لِ"
+       },
+       {
+        "id": "c4",
+        "texte": "لْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لُ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لُ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ ضَمَّةٌ هُوَ لُ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u1-e02-x07"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "لَبَنٌ",
+      "image": "🥛",
+      "tuiles": [
+       "لَ",
+       "بَ",
+       "نٌ",
+       "سَ",
+       "دُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "لَ",
+       "بَ",
+       "نٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «لَبَنٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «لَبَنٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «لَ».",
+      "explication": "لَبَنٌ = لَ + بَ + نٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e02-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "فِيلٌ",
+      "image": "🐘",
+      "tuiles": [
+       "فِ",
+       "ي",
+       "لٌ",
+       "سَ",
+       "دُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "فِ",
+       "ي",
+       "لٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فِيلٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فِيلٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «فِ».",
+      "explication": "فِيلٌ = فِ + ي + لٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e02-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "لَيْلَى",
+       "تَرْسُمُ",
+       "جَمَلًا"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "لَيْلَى",
+       "تَرْسُمُ",
+       "جَمَلًا"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْلَى تَرْسُمُ جَمَلًا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْلَى تَرْسُمُ جَمَلًا."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «لَيْلَى».",
+      "explication": "لَيْلَى تَرْسُمُ جَمَلًا."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u1-e02-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ اللَّامِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ اللَّامِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "لَيْمُونٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "جَمَلٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "نَخْلَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "سَمَكَةٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "قِرْدٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "مَوْزٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ اللَّامِ: لَيْمُونٌ، جَمَلٌ، نَخْلَةٌ. لَيْسَ فِيهَا حَرْفُ اللَّامِ: سَمَكَةٌ، قِرْدٌ، مَوْزٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e02-x11"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ اللَّامِ.",
+      "feminin": "اُكْتُبِي حَرْفَ اللَّامِ."
+     },
+     "donnees": {
+      "lettre": "ل"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ اللَّامِ.",
+       "feminin": "كَتَبْتِ حَرْفَ اللَّامِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u1-e02-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "✏️",
+      "audio": "قَلَمٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "قَلَمٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "قَكَمٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "قَنَمٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «قَلَمٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «قَلَمٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «قَلَمٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u1-e02-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «لَيْلٌ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «لَيْلٌ»."
+     },
+     "donnees": {
+      "mot": "لَيْلٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "نَهَارٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "قَمَرٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "نَوْمٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u1-e02-x14"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u1-e03",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 3,
+    "langue": "ar",
+    "titre": "حَرْفُ الْمِيمِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u1-e03-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u1-e03-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u1-e03-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u1-e03-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "مَاذَا تَأْكُلُ مَرْيَمُ؟",
+     "donnees": {
+      "image": "👧🍌",
+      "texte": [
+       "مَرْيَمُ جَائِعَةٌ.",
+       "مَرْيَمُ تَأْكُلُ مَوْزَةً."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مَوْزَةً",
+        "image": "🍌"
+       },
+       {
+        "id": "c2",
+        "texte": "تُفَّاحَةً",
+        "image": "🍎"
+       },
+       {
+        "id": "c3",
+        "texte": "عِنَبًا",
+        "image": "🍇"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مَرْيَمُ تَأْكُلُ مَوْزَةً.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مَرْيَمُ تَأْكُلُ مَوْزَةً."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "مَرْيَمُ تَأْكُلُ مَوْزَةً."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u1-e03-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "مِفْتَاحٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🔑"
+       },
+       {
+        "id": "c2",
+        "image": "💧"
+       },
+       {
+        "id": "c3",
+        "image": "🐜"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «مِفْتَاحٌ» 🔑",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «مِفْتَاحٌ» 🔑"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «مِفْتَاحٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u1-e03-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "مَوْزٌ",
+        "image": "🍌"
+       },
+       {
+        "id": "p2",
+        "texte": "سَمَكَةٌ",
+        "image": "🐟"
+       },
+       {
+        "id": "p3",
+        "texte": "قَمَرٌ",
+        "image": "🌙"
+       },
+       {
+        "id": "p4",
+        "texte": "فَمٌ",
+        "image": "👄"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "مَوْزٌ 🍌، سَمَكَةٌ 🐟، قَمَرٌ 🌙، فَمٌ 👄"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u1-e03-x03"
+    },
+    {
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ.",
+      "audio": "دِيكٌ"
+     },
+     "reponse": {
+      "valeur": false
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "لَيْسَ فِي كَلِمَةِ «دِيكٌ» حَرْفُ الْمِيمِ."
+     },
+     "gabarit": "vrai-faux-son",
+     "id": "ar-1-t1-u1-e03-x04"
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْمِيمِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْمِيمِ."
+     },
+     "donnees": {
+      "mots": [
+       "يَشْرَبُ",
+       "عُمَرُ",
+       "الْمَاءَ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       1,
+       2
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «عُمَرُ» وَ«الْمَاءَ» حَرْفُ الْمِيمِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «عُمَرُ» وَ«الْمَاءَ» حَرْفُ الْمِيمِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «عُمَرُ» وَ«الْمَاءَ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u1-e03-x05"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «سَمَكَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «سَمَكَةٌ»."
+     },
+     "donnees": {
+      "mot": "سَمَكَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "م"
+       },
+       {
+        "id": "c2",
+        "texte": "مـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـمـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـم"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c3"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «سَمَكَةٌ» نَكْتُبُ ـمـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «سَمَكَةٌ» نَكْتُبُ ـمـ"
+      },
+      "indice": "الْحَرْفُ فِي وَسَطِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «سَمَكَةٌ» نَكْتُبُ: ـمـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e03-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ كَسْرَةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مَ"
+       },
+       {
+        "id": "c2",
+        "texte": "مُ"
+       },
+       {
+        "id": "c3",
+        "texte": "مِ"
+       },
+       {
+        "id": "c4",
+        "texte": "مْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c3"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مِ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مِ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ كَسْرَةٌ هُوَ مِ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u1-e03-x07"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "فَمٌ",
+      "image": "👄",
+      "tuiles": [
+       "فَ",
+       "مٌ",
+       "بِ",
+       "لُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "فَ",
+       "مٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فَمٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فَمٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «فَ».",
+      "explication": "فَمٌ = فَ + مٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e03-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "قَمَرٌ",
+      "image": "🌙",
+      "tuiles": [
+       "قَ",
+       "مَ",
+       "رٌ",
+       "بِ",
+       "لُ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "قَ",
+       "مَ",
+       "رٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «قَمَرٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «قَمَرٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «قَ».",
+      "explication": "قَمَرٌ = قَ + مَ + رٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e03-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "مَرْيَمُ",
+       "تَفْتَحُ",
+       "الْمِظَلَّةَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "مَرْيَمُ",
+       "تَفْتَحُ",
+       "الْمِظَلَّةَ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «مَرْيَمُ».",
+      "explication": "مَرْيَمُ تَفْتَحُ الْمِظَلَّةَ."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u1-e03-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ الْمِيمِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ الْمِيمِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "مِفْتَاحٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "نَمْلَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "شَمْسٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "بَيْتٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "دِيكٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "وَرْدَةٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْمِيمِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ الْمِيمِ: مِفْتَاحٌ، نَمْلَةٌ، شَمْسٌ. لَيْسَ فِيهَا حَرْفُ الْمِيمِ: بَيْتٌ، دِيكٌ، وَرْدَةٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e03-x11"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ الْمِيمِ.",
+      "feminin": "اُكْتُبِي حَرْفَ الْمِيمِ."
+     },
+     "donnees": {
+      "lettre": "م"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ الْمِيمِ.",
+       "feminin": "كَتَبْتِ حَرْفَ الْمِيمِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u1-e03-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🍌",
+      "audio": "مَوْزٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مَوْزٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "نَوْزٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "مَوْرٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «مَوْزٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «مَوْزٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «مَوْزٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u1-e03-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «مَفْتُوحٌ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «مَفْتُوحٌ»."
+     },
+     "donnees": {
+      "mot": "مَفْتُوحٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مُغْلَقٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "كَبِيرٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "جَدِيدٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «مَفْتُوحٌ» هُوَ «مُغْلَقٌ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u1-e03-x14"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u1-e04",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 4,
+    "langue": "ar",
+    "titre": "حَرْفُ الرَّاءِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u1-e04-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u1-e04-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u1-e04-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u1-e04-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "بِمَاذَا تَلْعَبُ رِيمُ؟",
+     "donnees": {
+      "image": "👧⚽🌳",
+      "texte": [
+       "رِيمُ فِي الْحَدِيقَةِ.",
+       "رِيمُ تَلْعَبُ بِالْكُرَةِ."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بِالْكُرَةِ",
+        "image": "⚽"
+       },
+       {
+        "id": "c2",
+        "texte": "بِالْقِطِّ",
+        "image": "🐱"
+       },
+       {
+        "id": "c3",
+        "texte": "بِالْقَلَمِ",
+        "image": "✏️"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: رِيمُ تَلْعَبُ بِالْكُرَةِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: رِيمُ تَلْعَبُ بِالْكُرَةِ."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "رِيمُ تَلْعَبُ بِالْكُرَةِ."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u1-e04-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "زَرَافَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🦒"
+       },
+       {
+        "id": "c2",
+        "image": "🐅"
+       },
+       {
+        "id": "c3",
+        "image": "🌹"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «زَرَافَةٌ» 🦒",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «زَرَافَةٌ» 🦒"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «زَرَافَةٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u1-e04-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "رُزٌّ",
+        "image": "🍚"
+       },
+       {
+        "id": "p2",
+        "texte": "قِرْدٌ",
+        "image": "🐒"
+       },
+       {
+        "id": "p3",
+        "texte": "بَقَرَةٌ",
+        "image": "🐄"
+       },
+       {
+        "id": "p4",
+        "texte": "وَرْدَةٌ",
+        "image": "🌹"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "رُزٌّ 🍚، قِرْدٌ 🐒، بَقَرَةٌ 🐄، وَرْدَةٌ 🌹"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u1-e04-x03"
+    },
+    {
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "فِي كَلِمَةِ «نَمِرٌ» حَرْفُ الرَّاءِ.",
+      "audio": "نَمِرٌ"
+     },
+     "reponse": {
+      "valeur": true
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «نَمِرٌ» حَرْفُ الرَّاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «نَمِرٌ» حَرْفُ الرَّاءِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «نَمِرٌ» حَرْفُ الرَّاءِ."
+     },
+     "gabarit": "vrai-faux-son",
+     "id": "ar-1-t1-u1-e04-x04"
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الرَّاءِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الرَّاءِ."
+     },
+     "donnees": {
+      "mots": [
+       "فِي",
+       "الْحَدِيقَةِ",
+       "شَجَرَةٌ",
+       "كَبِيرَةٌ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       2,
+       3
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «شَجَرَةٌ» وَ«كَبِيرَةٌ» حَرْفُ الرَّاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «شَجَرَةٌ» وَ«كَبِيرَةٌ» حَرْفُ الرَّاءِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الرَّاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الرَّاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «شَجَرَةٌ» وَ«كَبِيرَةٌ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u1-e04-x05"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الرَّاءِ فِي كَلِمَةِ «شَجَرَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الرَّاءِ فِي كَلِمَةِ «شَجَرَةٌ»."
+     },
+     "donnees": {
+      "mot": "شَجَرَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ر"
+       },
+       {
+        "id": "c2",
+        "texte": "ـر"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «شَجَرَةٌ» نَكْتُبُ ـر",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «شَجَرَةٌ» نَكْتُبُ ـر"
+      },
+      "indice": "هَذَا الْحَرْفُ يَتَّصِلُ بِمَا قَبْلَهُ وَلَا يَتَّصِلُ بِمَا بَعْدَهُ.",
+      "explication": "فِي كَلِمَةِ «شَجَرَةٌ» نَكْتُبُ: ـر"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e04-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ سُكُونٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "رَ"
+       },
+       {
+        "id": "c2",
+        "texte": "رُ"
+       },
+       {
+        "id": "c3",
+        "texte": "رِ"
+       },
+       {
+        "id": "c4",
+        "texte": "رْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c4"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: رْ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: رْ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ سُكُونٌ هُوَ رْ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u1-e04-x07"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "رُزٌّ",
+      "image": "🍚",
+      "tuiles": [
+       "رُ",
+       "زٌّ",
+       "مَ",
+       "دِ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "رُ",
+       "زٌّ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «رُزٌّ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «رُزٌّ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «رُ».",
+      "explication": "رُزٌّ = رُ + زٌّ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e04-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "كُرَةٌ",
+      "image": "⚽",
+      "tuiles": [
+       "كُ",
+       "رَ",
+       "ةٌ",
+       "مَ",
+       "دِ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "كُ",
+       "رَ",
+       "ةٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «كُرَةٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «كُرَةٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «كُ».",
+      "explication": "كُرَةٌ = كُ + رَ + ةٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u1-e04-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "رِيمُ",
+       "تَسْقِي",
+       "الْوَرْدَةَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "رِيمُ",
+       "تَسْقِي",
+       "الْوَرْدَةَ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: رِيمُ تَسْقِي الْوَرْدَةَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: رِيمُ تَسْقِي الْوَرْدَةَ."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «رِيمُ».",
+      "explication": "رِيمُ تَسْقِي الْوَرْدَةَ."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u1-e04-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ الرَّاءِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ الرَّاءِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "رِيشَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "نَمِرٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "زَرَافَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "فِيلٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "سَمَكَةٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "بَيْتٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الرَّاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الرَّاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ الرَّاءِ: رِيشَةٌ، نَمِرٌ، زَرَافَةٌ. لَيْسَ فِيهَا حَرْفُ الرَّاءِ: فِيلٌ، سَمَكَةٌ، بَيْتٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e04-x11"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ الرَّاءِ.",
+      "feminin": "اُكْتُبِي حَرْفَ الرَّاءِ."
+     },
+     "donnees": {
+      "lettre": "ر"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ الرَّاءِ.",
+       "feminin": "كَتَبْتِ حَرْفَ الرَّاءِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u1-e04-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🐒",
+      "audio": "قِرْدٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "قِرْدٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "قِزْدٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "قِدْدٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «قِرْدٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «قِرْدٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «قِرْدٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u1-e04-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «حَارٌّ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «حَارٌّ»."
+     },
+     "donnees": {
+      "mot": "حَارٌّ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بَارِدٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "كَبِيرٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "سَرِيعٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «حَارٌّ» هُوَ «بَارِدٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «حَارٌّ» هُوَ «بَارِدٌ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «حَارٌّ» هُوَ «بَارِدٌ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u1-e04-x14"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u1-e05",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 5,
+    "langue": "ar",
+    "titre": "تَحَدِّي الْوَحْدَةِ الْأُولَى",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u1-e05-s1",
+      "titre": "التَّحَدِّي",
+      "titre_fr": "Défi"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "أَيُّ كَلِمَةٍ فِيهَا حَرْفُ الْبَاءِ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "لُعْبَةٌ",
+        "image": "🧸"
+       },
+       {
+        "id": "c2",
+        "texte": "قَمَرٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "سَمَكَةٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «لُعْبَةٌ» حَرْفُ الْبَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «لُعْبَةٌ» حَرْفُ الْبَاءِ."
+      },
+      "indice": {
+       "masculin": "قُلْ كُلَّ كَلِمَةٍ بِبُطْءٍ.",
+       "feminin": "قُولِي كُلَّ كَلِمَةٍ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «لُعْبَةٌ» حَرْفُ الْبَاءِ."
+     },
+     "gabarit": "qcm-lettre",
+     "id": "ar-1-t1-u1-e05-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "أَيُّ كَلِمَةٍ فِيهَا حَرْفُ اللَّامِ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "لَحْمٌ",
+        "image": "🥩"
+       },
+       {
+        "id": "c2",
+        "texte": "مَوْزٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "بَيْتٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «لَحْمٌ» حَرْفُ اللَّامِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «لَحْمٌ» حَرْفُ اللَّامِ."
+      },
+      "indice": {
+       "masculin": "قُلْ كُلَّ كَلِمَةٍ بِبُطْءٍ.",
+       "feminin": "قُولِي كُلَّ كَلِمَةٍ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «لَحْمٌ» حَرْفُ اللَّامِ."
+     },
+     "gabarit": "qcm-lettre",
+     "id": "ar-1-t1-u1-e05-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "أَيُّ كَلِمَةٍ فِيهَا حَرْفُ الْمِيمِ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مَاءٌ",
+        "image": "💧"
+       },
+       {
+        "id": "c2",
+        "texte": "وَرْدَةٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "دُبٌّ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «مَاءٌ» حَرْفُ الْمِيمِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «مَاءٌ» حَرْفُ الْمِيمِ."
+      },
+      "indice": {
+       "masculin": "قُلْ كُلَّ كَلِمَةٍ بِبُطْءٍ.",
+       "feminin": "قُولِي كُلَّ كَلِمَةٍ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «مَاءٌ» حَرْفُ الْمِيمِ."
+     },
+     "gabarit": "qcm-lettre",
+     "id": "ar-1-t1-u1-e05-x03"
+    },
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "أَيُّ كَلِمَةٍ فِيهَا حَرْفُ الرَّاءِ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "رَجُلٌ",
+        "image": "👨"
+       },
+       {
+        "id": "c2",
+        "texte": "فَمٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "لَبَنٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «رَجُلٌ» حَرْفُ الرَّاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «رَجُلٌ» حَرْفُ الرَّاءِ."
+      },
+      "indice": {
+       "masculin": "قُلْ كُلَّ كَلِمَةٍ بِبُطْءٍ.",
+       "feminin": "قُولِي كُلَّ كَلِمَةٍ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «رَجُلٌ» حَرْفُ الرَّاءِ."
+     },
+     "gabarit": "qcm-lettre",
+     "id": "ar-1-t1-u1-e05-x04"
+    },
+    {
+     "seq": "s1",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْبَاءِ فِي كَلِمَةِ «لُعْبَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْبَاءِ فِي كَلِمَةِ «لُعْبَةٌ»."
+     },
+     "donnees": {
+      "mot": "لُعْبَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ب"
+       },
+       {
+        "id": "c2",
+        "texte": "بـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـبـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـب"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c3"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «لُعْبَةٌ» نَكْتُبُ ـبـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «لُعْبَةٌ» نَكْتُبُ ـبـ"
+      },
+      "indice": "الْحَرْفُ فِي وَسَطِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «لُعْبَةٌ» نَكْتُبُ: ـبـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e05-x05"
+    },
+    {
+     "seq": "s1",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «نَخْلَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «نَخْلَةٌ»."
+     },
+     "donnees": {
+      "mot": "نَخْلَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ل"
+       },
+       {
+        "id": "c2",
+        "texte": "لـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـلـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـل"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c3"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «نَخْلَةٌ» نَكْتُبُ ـلـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «نَخْلَةٌ» نَكْتُبُ ـلـ"
+      },
+      "indice": "الْحَرْفُ فِي وَسَطِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «نَخْلَةٌ» نَكْتُبُ: ـلـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e05-x06"
+    },
+    {
+     "seq": "s1",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «مِظَلَّةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْمِيمِ فِي كَلِمَةِ «مِظَلَّةٌ»."
+     },
+     "donnees": {
+      "mot": "مِظَلَّةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "م"
+       },
+       {
+        "id": "c2",
+        "texte": "مـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـمـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـم"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «مِظَلَّةٌ» نَكْتُبُ مـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «مِظَلَّةٌ» نَكْتُبُ مـ"
+      },
+      "indice": "الْحَرْفُ فِي أَوَّلِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «مِظَلَّةٌ» نَكْتُبُ: مـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e05-x07"
+    },
+    {
+     "seq": "s1",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الرَّاءِ فِي كَلِمَةِ «بَقَرَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الرَّاءِ فِي كَلِمَةِ «بَقَرَةٌ»."
+     },
+     "donnees": {
+      "mot": "بَقَرَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ر"
+       },
+       {
+        "id": "c2",
+        "texte": "ـر"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «بَقَرَةٌ» نَكْتُبُ ـر",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «بَقَرَةٌ» نَكْتُبُ ـر"
+      },
+      "indice": "هَذَا الْحَرْفُ يَتَّصِلُ بِمَا قَبْلَهُ وَلَا يَتَّصِلُ بِمَا بَعْدَهُ.",
+      "explication": "فِي كَلِمَةِ «بَقَرَةٌ» نَكْتُبُ: ـر"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u1-e05-x08"
+    },
+    {
+     "seq": "s1",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ حَسَبَ الْحَرْفِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ حَسَبَ الْحَرْفِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "ب",
+        "texte": "حَرْفُ الْبَاءِ"
+       },
+       {
+        "id": "م",
+        "texte": "حَرْفُ الْمِيمِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "بَطَّةٌ",
+        "categorie": "ب"
+       },
+       {
+        "texte": "عِنَبٌ",
+        "categorie": "ب"
+       },
+       {
+        "texte": "حَبْلٌ",
+        "categorie": "ب"
+       },
+       {
+        "texte": "مَوْزٌ",
+        "categorie": "م"
+       },
+       {
+        "texte": "سَمَكَةٌ",
+        "categorie": "م"
+       },
+       {
+        "texte": "فَمٌ",
+        "categorie": "م"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنِ الْحَرْفِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنِ الْحَرْفِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "حَرْفُ الْبَاءِ: بَطَّةٌ، عِنَبٌ، حَبْلٌ. حَرْفُ الْمِيمِ: مَوْزٌ، سَمَكَةٌ، فَمٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e05-x09"
+    },
+    {
+     "seq": "s1",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ حَسَبَ الْحَرْفِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ حَسَبَ الْحَرْفِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "ل",
+        "texte": "حَرْفُ اللَّامِ"
+       },
+       {
+        "id": "ر",
+        "texte": "حَرْفُ الرَّاءِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "لَيْمُونٌ",
+        "categorie": "ل"
+       },
+       {
+        "texte": "جَمَلٌ",
+        "categorie": "ل"
+       },
+       {
+        "texte": "فِيلٌ",
+        "categorie": "ل"
+       },
+       {
+        "texte": "رِيشَةٌ",
+        "categorie": "ر"
+       },
+       {
+        "texte": "نَمِرٌ",
+        "categorie": "ر"
+       },
+       {
+        "texte": "زَرَافَةٌ",
+        "categorie": "ر"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنِ الْحَرْفِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنِ الْحَرْفِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "حَرْفُ اللَّامِ: لَيْمُونٌ، جَمَلٌ، فِيلٌ. حَرْفُ الرَّاءِ: رِيشَةٌ، نَمِرٌ، زَرَافَةٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u1-e05-x10"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "بَابٌ",
+        "image": "🚪"
+       },
+       {
+        "id": "p2",
+        "texte": "لَبَنٌ",
+        "image": "🥛"
+       },
+       {
+        "id": "p3",
+        "texte": "قَمَرٌ",
+        "image": "🌙"
+       },
+       {
+        "id": "p4",
+        "texte": "كُرَةٌ",
+        "image": "⚽"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "بَابٌ 🚪، لَبَنٌ 🥛، قَمَرٌ 🌙، كُرَةٌ ⚽"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u1-e05-x11"
+    },
+    {
+     "seq": "s1",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "رِيمُ",
+       "تَرْسُمُ",
+       "قَمَرًا"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "رِيمُ",
+       "تَرْسُمُ",
+       "قَمَرًا"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: رِيمُ تَرْسُمُ قَمَرًا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: رِيمُ تَرْسُمُ قَمَرًا."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «رِيمُ».",
+      "explication": "رِيمُ تَرْسُمُ قَمَرًا."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u1-e05-x12"
+    },
+    {
+     "seq": "s1",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ ضَمَّةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "مَ"
+       },
+       {
+        "id": "c2",
+        "texte": "مُ"
+       },
+       {
+        "id": "c3",
+        "texte": "مِ"
+       },
+       {
+        "id": "c4",
+        "texte": "مْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: مُ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: مُ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ ضَمَّةٌ هُوَ مُ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u1-e05-x13"
+    },
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🐄",
+      "audio": "بَقَرَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "بَقَرَةٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "تَقَرَةٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "بَفَرَةٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «بَقَرَةٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «بَقَرَةٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «بَقَرَةٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u1-e05-x14"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "أَرْنَبٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🐇"
+       },
+       {
+        "id": "c2",
+        "image": "🐄"
+       },
+       {
+        "id": "c3",
+        "image": "🐟"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «أَرْنَبٌ» 🐇",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «أَرْنَبٌ» 🐇"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «أَرْنَبٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u1-e05-x15"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u2-e01",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 2,
+    "ordre": 1,
+    "langue": "ar",
+    "titre": "حَرْفُ الدَّالِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u2-e01-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u2-e01-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u2-e01-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u2-e01-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "مَاذَا تَرْكَبُ دَانَةُ؟",
+     "donnees": {
+      "image": "👧🚲",
+      "texte": [
+       "دَانَةُ فِي السَّاحَةِ.",
+       "دَانَةُ تَرْكَبُ الدَّرَّاجَةَ."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "الدَّرَّاجَةَ",
+        "image": "🚲"
+       },
+       {
+        "id": "c2",
+        "texte": "السَّيَّارَةَ",
+        "image": "🚗"
+       },
+       {
+        "id": "c3",
+        "texte": "الْحِصَانَ",
+        "image": "🐎"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَانَةُ تَرْكَبُ الدَّرَّاجَةَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَانَةُ تَرْكَبُ الدَّرَّاجَةَ."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "دَانَةُ تَرْكَبُ الدَّرَّاجَةَ."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u2-e01-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "دَجَاجَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🐔"
+       },
+       {
+        "id": "c2",
+        "image": "🦁"
+       },
+       {
+        "id": "c3",
+        "image": "🐓"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «دَجَاجَةٌ» 🐔",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «دَجَاجَةٌ» 🐔"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «دَجَاجَةٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u2-e01-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "دُبٌّ",
+        "image": "🐻"
+       },
+       {
+        "id": "p2",
+        "texte": "يَدٌ",
+        "image": "✋"
+       },
+       {
+        "id": "p3",
+        "texte": "أَسَدٌ",
+        "image": "🦁"
+       },
+       {
+        "id": "p4",
+        "texte": "وَلَدٌ",
+        "image": "👦"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "دُبٌّ 🐻، يَدٌ ✋، أَسَدٌ 🦁، وَلَدٌ 👦"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u2-e01-x03"
+    },
+    {
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ.",
+      "audio": "فِيلٌ"
+     },
+     "reponse": {
+      "valeur": false
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ."
+     },
+     "gabarit": "vrai-faux-son",
+     "id": "ar-1-t1-u2-e01-x04"
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الدَّالِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الدَّالِ."
+     },
+     "donnees": {
+      "mots": [
+       "فِي",
+       "الْغَابَةِ",
+       "أَسَدٌ",
+       "وَقِرْدٌ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       2,
+       3
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «أَسَدٌ» وَ«وَقِرْدٌ» حَرْفُ الدَّالِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «أَسَدٌ» وَ«وَقِرْدٌ» حَرْفُ الدَّالِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «أَسَدٌ» وَ«وَقِرْدٌ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u2-e01-x05"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الدَّالِ فِي كَلِمَةِ «وَلَدٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الدَّالِ فِي كَلِمَةِ «وَلَدٌ»."
+     },
+     "donnees": {
+      "mot": "وَلَدٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "د"
+       },
+       {
+        "id": "c2",
+        "texte": "ـد"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «وَلَدٌ» نَكْتُبُ ـد",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «وَلَدٌ» نَكْتُبُ ـد"
+      },
+      "indice": "الْحَرْفُ فِي آخِرِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «وَلَدٌ» نَكْتُبُ: ـد"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u2-e01-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "دَ"
+       },
+       {
+        "id": "c2",
+        "texte": "دُ"
+       },
+       {
+        "id": "c3",
+        "texte": "دِ"
+       },
+       {
+        "id": "c4",
+        "texte": "دْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ فَتْحَةٌ هُوَ دَ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u2-e01-x07"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "يَدٌ",
+      "image": "✋",
+      "tuiles": [
+       "يَ",
+       "دٌ",
+       "بُ",
+       "رَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "يَ",
+       "دٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «يَدٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «يَدٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «يَ».",
+      "explication": "يَدٌ = يَ + دٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u2-e01-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "دِيكٌ",
+      "image": "🐓",
+      "tuiles": [
+       "دِ",
+       "ي",
+       "كٌ",
+       "بُ",
+       "رَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "دِ",
+       "ي",
+       "كٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «دِيكٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «دِيكٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «دِ».",
+      "explication": "دِيكٌ = دِ + ي + كٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u2-e01-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "دَانَةُ",
+       "تُطْعِمُ",
+       "الدَّجَاجَةَ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "دَانَةُ",
+       "تُطْعِمُ",
+       "الدَّجَاجَةَ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَانَةُ تُطْعِمُ الدَّجَاجَةَ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَانَةُ تُطْعِمُ الدَّجَاجَةَ."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «دَانَةُ».",
+      "explication": "دَانَةُ تُطْعِمُ الدَّجَاجَةَ."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u2-e01-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ الدَّالِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ الدَّالِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "دَجَاجَةٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "أَسَدٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "وَلَدٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "فِيلٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "قَمَرٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "سَمَكَةٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ الدَّالِ: دَجَاجَةٌ، أَسَدٌ، وَلَدٌ. لَيْسَ فِيهَا حَرْفُ الدَّالِ: فِيلٌ، قَمَرٌ، سَمَكَةٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u2-e01-x11"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ الدَّالِ.",
+      "feminin": "اُكْتُبِي حَرْفَ الدَّالِ."
+     },
+     "donnees": {
+      "lettre": "د"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ الدَّالِ.",
+       "feminin": "كَتَبْتِ حَرْفَ الدَّالِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u2-e01-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🐓",
+      "audio": "دِيكٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "دِيكٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "ذِيكٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "زِيكٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «دِيكٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «دِيكٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «دِيكٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u2-e01-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «جَدِيدٌ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «جَدِيدٌ»."
+     },
+     "donnees": {
+      "mot": "جَدِيدٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "قَدِيمٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "بَعِيدٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "سَعِيدٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u2-e01-x14"
+    }
+   ]
+  },
+  {
+   "format": "brouillon-contenu (à convertir en edu-content/1.0 quand les schémas des types seront validés)",
+   "etape": {
+    "id": "ar-1-t1-u3-e01",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 3,
+    "ordre": 1,
+    "langue": "ar",
+    "titre": "حَرْفُ الْفَاءِ",
+    "sequences": [
+     {
+      "id": "ar-1-t1-u3-e01-s1",
+      "titre": "أَكْتَشِفُ",
+      "titre_fr": "Découvrir"
+     },
+     {
+      "id": "ar-1-t1-u3-e01-s2",
+      "titre": "أُلَاحِظُ",
+      "titre_fr": "Observer"
+     },
+     {
+      "id": "ar-1-t1-u3-e01-s3",
+      "titre": "أُرَكِّبُ",
+      "titre_fr": "Construire"
+     },
+     {
+      "id": "ar-1-t1-u3-e01-s4",
+      "titre": "أَكْتُبُ",
+      "titre_fr": "Écrire"
+     }
+    ]
+   },
+   "exercices": [
+    {
+     "seq": "s1",
+     "type": "T01",
+     "competence": "ar-comprehension-ecoute",
+     "statut": "brouillon",
+     "consigne": "مَاذَا تَرَى فَرَحُ؟",
+     "donnees": {
+      "image": "👧🦋🌼",
+      "texte": [
+       "فَرَحُ فِي الْبُسْتَانِ.",
+       "فَرَحُ تَرَى فَرَاشَةً جَمِيلَةً."
+      ],
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "فَرَاشَةً",
+        "image": "🦋"
+       },
+       {
+        "id": "c2",
+        "texte": "فِيلًا",
+        "image": "🐘"
+       },
+       {
+        "id": "c3",
+        "texte": "فَأْرًا",
+        "image": "🐭"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فَرَحُ تَرَى فَرَاشَةً جَمِيلَةً.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فَرَحُ تَرَى فَرَاشَةً جَمِيلَةً."
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+      },
+      "explication": "فَرَحُ تَرَى فَرَاشَةً جَمِيلَةً."
+     },
+     "gabarit": "qcm-scene",
+     "id": "ar-1-t1-u3-e01-x01"
+    },
+    {
+     "seq": "s1",
+     "type": "T03",
+     "competence": "ar-ecoute-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+      "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+     },
+     "donnees": {
+      "audio": "فَرَاشَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "image": "🦋"
+       },
+       {
+        "id": "c2",
+        "image": "🐭"
+       },
+       {
+        "id": "c3",
+        "image": "🍄"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فَرَاشَةٌ» 🦋",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فَرَاشَةٌ» 🦋"
+      },
+      "indice": {
+       "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+       "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+      },
+      "explication": "الْكَلِمَةُ هِيَ «فَرَاشَةٌ»."
+     },
+     "gabarit": "ecoute-image",
+     "id": "ar-1-t1-u3-e01-x02"
+    },
+    {
+     "seq": "s1",
+     "type": "T09",
+     "competence": "ar-lecture-mot-image",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+      "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+     },
+     "donnees": {
+      "paires": [
+       {
+        "id": "p1",
+        "texte": "فِيلٌ",
+        "image": "🐘"
+       },
+       {
+        "id": "p2",
+        "texte": "فَأْرٌ",
+        "image": "🐭"
+       },
+       {
+        "id": "p3",
+        "texte": "خَرُوفٌ",
+        "image": "🐑"
+       },
+       {
+        "id": "p4",
+        "texte": "هَاتِفٌ",
+        "image": "📱"
+       }
+      ]
+     },
+     "reponse": {
+      "paires": "chaque texte avec son image"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+      },
+      "indice": {
+       "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+       "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+      },
+      "explication": "فِيلٌ 🐘، فَأْرٌ 🐭، خَرُوفٌ 🐑، هَاتِفٌ 📱"
+     },
+     "gabarit": "paires-mot-image",
+     "id": "ar-1-t1-u3-e01-x03"
+    },
+    {
+     "seq": "s2",
+     "type": "T02",
+     "competence": "ar-identification-son",
+     "statut": "brouillon",
+     "consigne": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟",
+     "donnees": {
+      "affirmation": "فِي كَلِمَةِ «هَاتِفٌ» حَرْفُ الْفَاءِ.",
+      "audio": "هَاتِفٌ"
+     },
+     "reponse": {
+      "valeur": true
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «هَاتِفٌ» حَرْفُ الْفَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «هَاتِفٌ» حَرْفُ الْفَاءِ."
+      },
+      "indice": {
+       "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+       "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+      },
+      "explication": "فِي كَلِمَةِ «هَاتِفٌ» حَرْفُ الْفَاءِ."
+     },
+     "gabarit": "vrai-faux-son",
+     "id": "ar-1-t1-u3-e01-x04"
+    },
+    {
+     "seq": "s2",
+     "type": "T07",
+     "competence": "ar-reperer-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْفَاءِ.",
+      "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الْفَاءِ."
+     },
+     "donnees": {
+      "mots": [
+       "فِي",
+       "الْبُسْتَانِ",
+       "تُفَّاحٌ",
+       "كَثِيرٌ"
+      ]
+     },
+     "reponse": {
+      "indices": [
+       0,
+       2
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «فِي» وَ«تُفَّاحٌ» حَرْفُ الْفَاءِ.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «فِي» وَ«تُفَّاحٌ» حَرْفُ الْفَاءِ."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْفَاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْفَاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "الْكَلِمَتَانِ هُمَا «فِي» وَ«تُفَّاحٌ»."
+     },
+     "gabarit": "toucher-mots",
+     "id": "ar-1-t1-u3-e01-x05"
+    },
+    {
+     "seq": "s2",
+     "type": "T18",
+     "competence": "ar-forme-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الْفَاءِ فِي كَلِمَةِ «تُفَّاحَةٌ».",
+      "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الْفَاءِ فِي كَلِمَةِ «تُفَّاحَةٌ»."
+     },
+     "donnees": {
+      "mot": "تُفَّاحَةٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "ف"
+       },
+       {
+        "id": "c2",
+        "texte": "فـ"
+       },
+       {
+        "id": "c3",
+        "texte": "ـفـ"
+       },
+       {
+        "id": "c4",
+        "texte": "ـف"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c3"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «تُفَّاحَةٌ» نَكْتُبُ ـفـ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «تُفَّاحَةٌ» نَكْتُبُ ـفـ"
+      },
+      "indice": "الْحَرْفُ فِي وَسَطِ الْكَلِمَةِ.",
+      "explication": "فِي كَلِمَةِ «تُفَّاحَةٌ» نَكْتُبُ: ـفـ"
+     },
+     "gabarit": "forme-lettre",
+     "id": "ar-1-t1-u3-e01-x06"
+    },
+    {
+     "seq": "s2",
+     "type": "T19",
+     "competence": "ar-harakat",
+     "statut": "brouillon",
+     "consigne": "أَيُّ حَرْفٍ عَلَيْهِ ضَمَّةٌ؟",
+     "donnees": {
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "فَ"
+       },
+       {
+        "id": "c2",
+        "texte": "فُ"
+       },
+       {
+        "id": "c3",
+        "texte": "فِ"
+       },
+       {
+        "id": "c4",
+        "texte": "فْ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c2"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فُ",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فُ"
+      },
+      "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+      "explication": "الْحَرْفُ الَّذِي عَلَيْهِ ضَمَّةٌ هُوَ فُ"
+     },
+     "gabarit": "choisir-haraka",
+     "id": "ar-1-t1-u3-e01-x07"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "فَرَسٌ",
+      "image": "🐎",
+      "tuiles": [
+       "فَ",
+       "رَ",
+       "سٌ",
+       "لَ",
+       "مِ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "فَ",
+       "رَ",
+       "سٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فَرَسٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فَرَسٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «فَ».",
+      "explication": "فَرَسٌ = فَ + رَ + سٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u3-e01-x08"
+    },
+    {
+     "seq": "s3",
+     "type": "T15",
+     "competence": "ar-construire-mot",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+      "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+     },
+     "donnees": {
+      "audio": "خَرُوفٌ",
+      "image": "🐑",
+      "tuiles": [
+       "خَ",
+       "رُ",
+       "و",
+       "فٌ",
+       "لَ",
+       "مِ"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "خَ",
+       "رُ",
+       "و",
+       "فٌ"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «خَرُوفٌ»",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «خَرُوفٌ»"
+      },
+      "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «خَ».",
+      "explication": "خَرُوفٌ = خَ + رُ + و + فٌ"
+     },
+     "gabarit": "construire-lettres",
+     "id": "ar-1-t1-u3-e01-x09"
+    },
+    {
+     "seq": "s3",
+     "type": "T13",
+     "competence": "ar-ordre-phrase",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+      "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+     },
+     "donnees": {
+      "mots": [
+       "فَرَحُ",
+       "تَأْكُلُ",
+       "تُفَّاحَةً"
+      ]
+     },
+     "reponse": {
+      "ordre": [
+       "فَرَحُ",
+       "تَأْكُلُ",
+       "تُفَّاحَةً"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فَرَحُ تَأْكُلُ تُفَّاحَةً.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فَرَحُ تَأْكُلُ تُفَّاحَةً."
+      },
+      "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «فَرَحُ».",
+      "explication": "فَرَحُ تَأْكُلُ تُفَّاحَةً."
+     },
+     "gabarit": "ordre-mots",
+     "id": "ar-1-t1-u3-e01-x10"
+    },
+    {
+     "seq": "s3",
+     "type": "T11",
+     "competence": "ar-tri-lettre",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+      "feminin": "صَنِّفِي الْكَلِمَاتِ."
+     },
+     "donnees": {
+      "categories": [
+       {
+        "id": "oui",
+        "texte": "فِيهَا حَرْفُ الْفَاءِ"
+       },
+       {
+        "id": "non",
+        "texte": "لَيْسَ فِيهَا حَرْفُ الْفَاءِ"
+       }
+      ],
+      "elements": [
+       {
+        "texte": "فُطْرٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "هَاتِفٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "فَأْرٌ",
+        "categorie": "oui"
+       },
+       {
+        "texte": "بَيْتٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "قَمَرٌ",
+        "categorie": "non"
+       },
+       {
+        "texte": "وَرْدَةٌ",
+        "categorie": "non"
+       }
+      ]
+     },
+     "reponse": {
+      "selon": "categorie de chaque element"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+      },
+      "indice": {
+       "masculin": "اِبْحَثْ عَنْ حَرْفِ الْفَاءِ فِي كُلِّ كَلِمَةٍ.",
+       "feminin": "اِبْحَثِي عَنْ حَرْفِ الْفَاءِ فِي كُلِّ كَلِمَةٍ."
+      },
+      "explication": "فِيهَا حَرْفُ الْفَاءِ: فُطْرٌ، هَاتِفٌ، فَأْرٌ. لَيْسَ فِيهَا حَرْفُ الْفَاءِ: بَيْتٌ، قَمَرٌ، وَرْدَةٌ."
+     },
+     "gabarit": "tri-deux-bacs",
+     "id": "ar-1-t1-u3-e01-x11"
+    },
+    {
+     "seq": "s4",
+     "type": "T20",
+     "competence": "ar-trace",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اُكْتُبْ حَرْفَ الْفَاءِ.",
+      "feminin": "اُكْتُبِي حَرْفَ الْفَاءِ."
+     },
+     "donnees": {
+      "lettre": "ف"
+     },
+     "reponse": {
+      "note": "non noté"
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "كَتَبْتَ حَرْفَ الْفَاءِ.",
+       "feminin": "كَتَبْتِ حَرْفَ الْفَاءِ."
+      },
+      "indice": {
+       "masculin": "اُكْتُبْ فَوْقَ الْحَرْفِ الرَّمَادِيِّ.",
+       "feminin": "اُكْتُبِي فَوْقَ الْحَرْفِ الرَّمَادِيِّ."
+      },
+      "explication": null
+     },
+     "gabarit": "trace-lettre",
+     "id": "ar-1-t1-u3-e01-x12"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-orthographe",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+      "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+     },
+     "donnees": {
+      "image": "🐘",
+      "audio": "فِيلٌ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "فِيلٌ"
+       },
+       {
+        "id": "c2",
+        "texte": "قِيلٌ"
+       },
+       {
+        "id": "c3",
+        "texte": "غِيلٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «فِيلٌ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «فِيلٌ»."
+      },
+      "indice": {
+       "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+       "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+      },
+      "explication": "نَكْتُبُ «فِيلٌ»."
+     },
+     "gabarit": "qcm-orthographe",
+     "id": "ar-1-t1-u3-e01-x13"
+    },
+    {
+     "seq": "s4",
+     "type": "T01",
+     "competence": "ar-vocabulaire",
+     "statut": "brouillon",
+     "consigne": {
+      "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «فَوْقَ».",
+      "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «فَوْقَ»."
+     },
+     "donnees": {
+      "mot": "فَوْقَ",
+      "choix": [
+       {
+        "id": "c1",
+        "texte": "تَحْتَ"
+       },
+       {
+        "id": "c2",
+        "texte": "أَمَامَ"
+       },
+       {
+        "id": "c3",
+        "texte": "بَعِيدٌ"
+       }
+      ]
+     },
+     "reponse": {
+      "choix": [
+       "c1"
+      ]
+     },
+     "feedbacks": {
+      "reussite": {
+       "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «فَوْقَ» هُوَ «تَحْتَ».",
+       "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «فَوْقَ» هُوَ «تَحْتَ»."
+      },
+      "indice": {
+       "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+       "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+      },
+      "explication": "عَكْسُ «فَوْقَ» هُوَ «تَحْتَ»."
+     },
+     "gabarit": "qcm-contraire",
+     "id": "ar-1-t1-u3-e01-x14"
+    }
+   ]
+  }
+ ]
+}

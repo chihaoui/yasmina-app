@@ -86,7 +86,7 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `classement_incomplet`, `categorie_vide` | T11, T12 : chaque élément classé une fois, chaque catégorie utilisée | erreur |
 | `element_sans_texte` | T12 : des mots seulement | erreur |
 | `ordre_incomplet` | T13, T14, T62 : l'ordre cite chaque élément une fois. T56 : une lettre par emplacement | erreur |
-| `mot_different_ecoute` | T15, T16 : le mot construit par l'ordre est le mot entendu sans ses harakat | erreur |
+| `mot_different_ecoute` | T15, T16 : le mot construit par l'ordre est le mot entendu sans ses harakat (tuiles nues) ou avec toutes ses harakat (tuiles vocalisées, parcours d'arabe 1re) | erreur |
 | `type_langue` (suite) | T12, T15 et T56 en arabe, T16 jamais en arabe | erreur |
 | `lettre_invalide` | T56 : chaque tuile porte une seule lettre arabe nue | erreur |
 | `haraka_hors_scheme` | T56 forme racine : aucun emplacement ne porte de haraka | erreur |
@@ -137,7 +137,7 @@ Trois étapes : lecture du JSON, schéma (messages traduits en français, chemin
 | `elements_trop_nombreux` | moteur Glisser-déposer : plus de 6 éléments en 1re ou 2e année (niveau lu dans l'id) | avertissement |
 | `exercice_orphelin` | exercice cité dans aucune séquence | avertissement |
 | `sequences_nombre` | l'étape n'a pas 4 séquences | avertissement |
-| `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année (sauf une lettre seule, avec ou sans tatweel : formes de T18, lettre de T19) | avertissement |
+| `harakat_manquantes` | texte arabe sans harakat en 1re ou 2e année (sauf une lettre seule, avec ou sans tatweel : formes de T18, lettre de T19, et les touches `lettres` du clavier réduit de T17) | avertissement |
 | `lam_sans_soukoun` | texte vocalisé avec un lam d'article sans soukoun devant une lettre lunaire (convention C) | avertissement |
 | `alif_suscrit` | texte avec un alif suscrit U+0670 (convention B de `docs/conventions-arabe.md`) | avertissement |
 

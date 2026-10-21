@@ -1,0 +1,855 @@
+{
+  "generation": {
+    "id": "gen-ar-1-t1-u1-e02-20261021-01",
+    "schema": "edu-content/1.0",
+    "date": "2026-10-21",
+    "modele": "manuel",
+    "version_prompt": "aucun",
+    "auteur": "Lamjed CHIHAOUI, converti par tool/convertir_contenu.dart"
+  },
+  "etape": {
+    "id": "ar-1-t1-u1-e02",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 1,
+    "ordre": 2,
+    "langue": "ar",
+    "titre": "حَرْفُ اللَّامِ",
+    "sequences": [
+      {
+        "id": "ar-1-t1-u1-e02-s1",
+        "titre": "أَكْتَشِفُ",
+        "exercices": [
+          "ar-1-t1-u1-e02-x01",
+          "ar-1-t1-u1-e02-x02",
+          "ar-1-t1-u1-e02-x03"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e02-s2",
+        "titre": "أُلَاحِظُ",
+        "exercices": [
+          "ar-1-t1-u1-e02-x04",
+          "ar-1-t1-u1-e02-x05",
+          "ar-1-t1-u1-e02-x06",
+          "ar-1-t1-u1-e02-x07"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e02-s3",
+        "titre": "أُرَكِّبُ",
+        "exercices": [
+          "ar-1-t1-u1-e02-x08",
+          "ar-1-t1-u1-e02-x09",
+          "ar-1-t1-u1-e02-x10",
+          "ar-1-t1-u1-e02-x11"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u1-e02-s4",
+        "titre": "أَكْتُبُ",
+        "exercices": [
+          "ar-1-t1-u1-e02-x15",
+          "ar-1-t1-u1-e02-x13",
+          "ar-1-t1-u1-e02-x14"
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": "ar-1-t1-u1-e02-x01",
+      "type": "T01",
+      "gabarit": "qcm-scene",
+      "competence": "ar-comprehension-ecoute",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "مَاذَا تَشْرَبُ لَيْلَى؟"
+      },
+      "donnees": {
+        "support": {
+          "texte": "لَيْلَى فِي الْمَطْبَخِ.\nلَيْلَى تَشْرَبُ اللَّبَنَ.",
+          "emoji": "👧🥛"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "اللَّبَنَ",
+            "emoji": "🥛"
+          },
+          {
+            "id": "c2",
+            "texte": "الْمَاءَ",
+            "emoji": "💧"
+          },
+          {
+            "id": "c3",
+            "texte": "الْعَصِيرَ",
+            "emoji": "🧃"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْلَى تَشْرَبُ اللَّبَنَ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْلَى تَشْرَبُ اللَّبَنَ."
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+        },
+        "explication": "لَيْلَى تَشْرَبُ اللَّبَنَ."
+      },
+      "empreinte": "sha256:dbf634ab51ab29cfe4098455c27f16f8605762ae5bb36eb9cf1cbd281a511d4f",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x02",
+      "type": "T03",
+      "gabarit": "ecoute-image",
+      "competence": "ar-ecoute-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+          "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "لَيْمُونٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "emoji": "🍋"
+          },
+          {
+            "id": "c2",
+            "emoji": "🥛"
+          },
+          {
+            "id": "c3",
+            "emoji": "🐪"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «لَيْمُونٌ» 🍋",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «لَيْمُونٌ» 🍋"
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+        },
+        "explication": "الْكَلِمَةُ هِيَ «لَيْمُونٌ»."
+      },
+      "empreinte": "sha256:eadb9e6f0816913f687cfb283c56eccba77df2e86d77a9e69862ac30b240c3f4",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x03",
+      "type": "T09",
+      "gabarit": "association-mot-image",
+      "competence": "ar-lecture-mot-image",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+          "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+        }
+      },
+      "donnees": {
+        "gauche": [
+          {
+            "id": "g1",
+            "texte": "لَبَنٌ"
+          },
+          {
+            "id": "g2",
+            "texte": "قَلَمٌ"
+          },
+          {
+            "id": "g3",
+            "texte": "جَمَلٌ"
+          },
+          {
+            "id": "g4",
+            "texte": "فِيلٌ"
+          }
+        ],
+        "droite": [
+          {
+            "id": "d1",
+            "emoji": "🥛"
+          },
+          {
+            "id": "d2",
+            "emoji": "✏️"
+          },
+          {
+            "id": "d3",
+            "emoji": "🐪"
+          },
+          {
+            "id": "d4",
+            "emoji": "🐘"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "paires": [
+          {
+            "gauche": "g1",
+            "droite": "d1"
+          },
+          {
+            "gauche": "g2",
+            "droite": "d2"
+          },
+          {
+            "gauche": "g3",
+            "droite": "d3"
+          },
+          {
+            "gauche": "g4",
+            "droite": "d4"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+        },
+        "indice": {
+          "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+          "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+        },
+        "explication": "لَبَنٌ 🥛، قَلَمٌ ✏️، جَمَلٌ 🐪، فِيلٌ 🐘"
+      },
+      "empreinte": "sha256:095c04e0e9ab1e21692f3dc232bb03a8ab092163c81aa60fe5febe14792cc9bb",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x04",
+      "type": "T02",
+      "gabarit": "vrai-faux-texte",
+      "competence": "ar-identification-son",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
+      },
+      "donnees": {
+        "affirmation": "فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ."
+      },
+      "reponse": {
+        "valeur": true
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ."
+        },
+        "indice": {
+          "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+          "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+        },
+        "explication": "فِي كَلِمَةِ «نَخْلَةٌ» حَرْفُ اللَّامِ."
+      },
+      "empreinte": "sha256:2c589b34cdc5a50962f674f4ee43bf038bbd8921e403c9df62a4202d5fbe1570",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x05",
+      "type": "T07",
+      "gabarit": "toucher-mots",
+      "competence": "ar-reperer-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ اللَّامِ.",
+          "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ اللَّامِ."
+        }
+      },
+      "donnees": {
+        "texte": "عِنْدَ لَيْلَى قَلَمٌ جَدِيدٌ",
+        "plusieurs": true
+      },
+      "reponse": {
+        "mots": [
+          1,
+          2
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «لَيْلَى» وَ«قَلَمٌ» حَرْفُ اللَّامِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «لَيْلَى» وَ«قَلَمٌ» حَرْفُ اللَّامِ."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "الْكَلِمَتَانِ هُمَا «لَيْلَى» وَ«قَلَمٌ»."
+      },
+      "empreinte": "sha256:1514ebb061dac5a3c9ffb6745e2b04fe1332ba8151b29c272ac93361728a237b",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x06",
+      "type": "T18",
+      "gabarit": "forme-lettre",
+      "competence": "ar-forme-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «جَمَلٌ».",
+          "feminin": "اِخْتَارِي شَكْلَ حَرْفِ اللَّامِ فِي كَلِمَةِ «جَمَلٌ»."
+        }
+      },
+      "donnees": {
+        "lettre": "ل",
+        "position": "fin",
+        "mot": "جَمَلٌ",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "ل"
+          },
+          {
+            "id": "c2",
+            "texte": "لـ"
+          },
+          {
+            "id": "c3",
+            "texte": "ـلـ"
+          },
+          {
+            "id": "c4",
+            "texte": "ـل"
+          }
+        ],
+        "melanger": false
+      },
+      "reponse": {
+        "choix": [
+          "c4"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «جَمَلٌ» نَكْتُبُ ـل",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «جَمَلٌ» نَكْتُبُ ـل"
+        },
+        "indice": "الْحَرْفُ فِي آخِرِ الْكَلِمَةِ.",
+        "explication": "فِي كَلِمَةِ «جَمَلٌ» نَكْتُبُ: ـل"
+      },
+      "empreinte": "sha256:b28ed322003ea1c2ab45defefb480a205a8af633c1ab57aa902646299d08f85a",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x07",
+      "type": "T19",
+      "gabarit": "lettre-vocalisee",
+      "competence": "ar-harakat",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "أَيُّ حَرْفٍ عَلَيْهِ ضَمَّةٌ؟"
+      },
+      "donnees": {
+        "haraka": "damma",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "لَ"
+          },
+          {
+            "id": "c2",
+            "texte": "لُ"
+          },
+          {
+            "id": "c3",
+            "texte": "لِ"
+          },
+          {
+            "id": "c4",
+            "texte": "لْ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c2"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لُ",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لُ"
+        },
+        "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+        "explication": "الْحَرْفُ الَّذِي عَلَيْهِ ضَمَّةٌ هُوَ لُ"
+      },
+      "empreinte": "sha256:0578afaac330dbf7289d0c584b16c202f26fff873736540373bab465618a2883",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x08",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "لَ"
+          },
+          {
+            "id": "e2",
+            "texte": "بَ"
+          },
+          {
+            "id": "e3",
+            "texte": "نٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "سَ"
+          },
+          {
+            "id": "e5",
+            "texte": "دُ"
+          }
+        ],
+        "ecoute": {
+          "texte": "لَبَنٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «لَبَنٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «لَبَنٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «لَ».",
+        "explication": "لَبَنٌ = لَ + بَ + نٌ"
+      },
+      "empreinte": "sha256:f2ca5adeeb3365ba4e618113344089a9a899bb560e2f0c35ffb8bd0f6e636b17",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x09",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "فِ"
+          },
+          {
+            "id": "e2",
+            "texte": "ي"
+          },
+          {
+            "id": "e3",
+            "texte": "لٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "سَ"
+          },
+          {
+            "id": "e5",
+            "texte": "دُ"
+          }
+        ],
+        "ecoute": {
+          "texte": "فِيلٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «فِيلٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «فِيلٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «فِ».",
+        "explication": "فِيلٌ = فِ + ي + لٌ"
+      },
+      "empreinte": "sha256:2d7f9d26e7929a27bcf00854d09a3655165fa888ecad1070b1e8b495807e1729",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x10",
+      "type": "T13",
+      "gabarit": "ordre-mots",
+      "competence": "ar-ordre-phrase",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+          "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "لَيْلَى"
+          },
+          {
+            "id": "e2",
+            "texte": "تَرْسُمُ"
+          },
+          {
+            "id": "e3",
+            "texte": "جَمَلًا"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْلَى تَرْسُمُ جَمَلًا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْلَى تَرْسُمُ جَمَلًا."
+        },
+        "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «لَيْلَى».",
+        "explication": "لَيْلَى تَرْسُمُ جَمَلًا."
+      },
+      "empreinte": "sha256:12457988d112fc78e80c34cd0ecbb611dc2a3086118d251d8516f08af0dbb341",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x11",
+      "type": "T11",
+      "gabarit": "tri-bacs",
+      "competence": "ar-tri-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+          "feminin": "صَنِّفِي الْكَلِمَاتِ."
+        }
+      },
+      "donnees": {
+        "categories": [
+          {
+            "id": "k1",
+            "titre": "فِيهَا حَرْفُ اللَّامِ"
+          },
+          {
+            "id": "k2",
+            "titre": "لَيْسَ فِيهَا حَرْفُ اللَّامِ"
+          }
+        ],
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "لَيْمُونٌ"
+          },
+          {
+            "id": "e2",
+            "texte": "جَمَلٌ"
+          },
+          {
+            "id": "e3",
+            "texte": "نَخْلَةٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "سَمَكَةٌ"
+          },
+          {
+            "id": "e5",
+            "texte": "قِرْدٌ"
+          },
+          {
+            "id": "e6",
+            "texte": "مَوْزٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "classement": [
+          {
+            "element": "e1",
+            "categorie": "k1"
+          },
+          {
+            "element": "e2",
+            "categorie": "k1"
+          },
+          {
+            "element": "e3",
+            "categorie": "k1"
+          },
+          {
+            "element": "e4",
+            "categorie": "k2"
+          },
+          {
+            "element": "e5",
+            "categorie": "k2"
+          },
+          {
+            "element": "e6",
+            "categorie": "k2"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ اللَّامِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "فِيهَا حَرْفُ اللَّامِ: لَيْمُونٌ، جَمَلٌ، نَخْلَةٌ. لَيْسَ فِيهَا حَرْفُ اللَّامِ: سَمَكَةٌ، قِرْدٌ، مَوْزٌ."
+      },
+      "empreinte": "sha256:2ae669d5cdc1d6e253adfd35fbd4fe7718b04fae31d7afb0bc2896190a0a99ff",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x15",
+      "type": "T17",
+      "gabarit": "dictee-mot",
+      "competence": "ar-ecriture-dictee",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْتَمِعْ وَاكْتُبِ الْكَلِمَةَ.",
+          "feminin": "اِسْتَمِعِي وَاكْتُبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "لَبَنٌ"
+        },
+        "emoji": "🥛",
+        "harakat": false,
+        "clavier": "reduit",
+        "lettres": "بتدرفلمن"
+      },
+      "reponse": {
+        "texte": "لَبَنٌ"
+      },
+      "normalisation": [
+        "harakat_ignorees"
+      ],
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَبَنٌ تُكْتَبُ ل ثُمَّ ب ثُمَّ ن.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَبَنٌ تُكْتَبُ ل ثُمَّ ب ثُمَّ ن."
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ اللَّامِ.",
+        "explication": "لَبَنٌ: ل ثُمَّ ب ثُمَّ ن."
+      },
+      "empreinte": "sha256:e2420aabe3b91c8fa2e696f81753dac05e44177576998608dbc13940db624665",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x13",
+      "type": "T01",
+      "gabarit": "qcm-orthographe",
+      "competence": "ar-orthographe",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+          "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+        }
+      },
+      "donnees": {
+        "support": {
+          "emoji": "✏️",
+          "ecoute": {
+            "texte": "قَلَمٌ"
+          }
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "قَلَمٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "قَكَمٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "قَنَمٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «قَلَمٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «قَلَمٌ»."
+        },
+        "indice": {
+          "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+          "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+        },
+        "explication": "نَكْتُبُ «قَلَمٌ»."
+      },
+      "empreinte": "sha256:98ba61cb75eb51811632780f4be36a1064153900725c6370b8b08a2a9a44caca",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u1-e02-x14",
+      "type": "T01",
+      "gabarit": "qcm-contraire",
+      "competence": "ar-vocabulaire",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «لَيْلٌ».",
+          "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «لَيْلٌ»."
+        }
+      },
+      "donnees": {
+        "support": {
+          "texte": "لَيْلٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "نَهَارٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "قَمَرٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "نَوْمٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ»."
+        },
+        "indice": {
+          "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+          "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+        },
+        "explication": "عَكْسُ «لَيْلٌ» هُوَ «نَهَارٌ»."
+      },
+      "empreinte": "sha256:e934b06712d2df99906986d7a4d80e28a54c4ee4511876eb7b0642563aa6db45",
+      "statut": "brouillon",
+      "version": 1
+    }
+  ]
+}

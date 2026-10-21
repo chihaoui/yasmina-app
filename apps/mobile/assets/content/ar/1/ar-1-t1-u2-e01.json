@@ -1,0 +1,842 @@
+{
+  "generation": {
+    "id": "gen-ar-1-t1-u2-e01-20261021-01",
+    "schema": "edu-content/1.0",
+    "date": "2026-10-21",
+    "modele": "manuel",
+    "version_prompt": "aucun",
+    "auteur": "Lamjed CHIHAOUI, converti par tool/convertir_contenu.dart"
+  },
+  "etape": {
+    "id": "ar-1-t1-u2-e01",
+    "matiere": "arabe",
+    "niveau": 1,
+    "trimestre": 1,
+    "unite": 2,
+    "ordre": 1,
+    "langue": "ar",
+    "titre": "حَرْفُ الدَّالِ",
+    "sequences": [
+      {
+        "id": "ar-1-t1-u2-e01-s1",
+        "titre": "أَكْتَشِفُ",
+        "exercices": [
+          "ar-1-t1-u2-e01-x01",
+          "ar-1-t1-u2-e01-x02",
+          "ar-1-t1-u2-e01-x03"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u2-e01-s2",
+        "titre": "أُلَاحِظُ",
+        "exercices": [
+          "ar-1-t1-u2-e01-x04",
+          "ar-1-t1-u2-e01-x05",
+          "ar-1-t1-u2-e01-x06",
+          "ar-1-t1-u2-e01-x07"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u2-e01-s3",
+        "titre": "أُرَكِّبُ",
+        "exercices": [
+          "ar-1-t1-u2-e01-x08",
+          "ar-1-t1-u2-e01-x09",
+          "ar-1-t1-u2-e01-x10",
+          "ar-1-t1-u2-e01-x11"
+        ]
+      },
+      {
+        "id": "ar-1-t1-u2-e01-s4",
+        "titre": "أَكْتُبُ",
+        "exercices": [
+          "ar-1-t1-u2-e01-x15",
+          "ar-1-t1-u2-e01-x13",
+          "ar-1-t1-u2-e01-x14"
+        ]
+      }
+    ]
+  },
+  "exercices": [
+    {
+      "id": "ar-1-t1-u2-e01-x01",
+      "type": "T01",
+      "gabarit": "qcm-scene",
+      "competence": "ar-comprehension-ecoute",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "مَاذَا تَرْكَبُ دَانَةُ؟"
+      },
+      "donnees": {
+        "support": {
+          "texte": "دَانَةُ فِي السَّاحَةِ.\nدَانَةُ تَرْكَبُ الدَّرَّاجَةَ.",
+          "emoji": "👧🚲"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "الدَّرَّاجَةَ",
+            "emoji": "🚲"
+          },
+          {
+            "id": "c2",
+            "texte": "السَّيَّارَةَ",
+            "emoji": "🚗"
+          },
+          {
+            "id": "c3",
+            "texte": "الْحِصَانَ",
+            "emoji": "🐎"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَانَةُ تَرْكَبُ الدَّرَّاجَةَ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَانَةُ تَرْكَبُ الدَّرَّاجَةَ."
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى النَّصِّ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى النَّصِّ مَرَّةً أُخْرَى."
+        },
+        "explication": "دَانَةُ تَرْكَبُ الدَّرَّاجَةَ."
+      },
+      "empreinte": "sha256:dd496a4f077a4f80f4ffeca9a87d515495ca30ebd06e4a373bec416637e190e1",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x02",
+      "type": "T03",
+      "gabarit": "ecoute-image",
+      "competence": "ar-ecoute-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَالْمِسِ الصُّورَةَ.",
+          "feminin": "اِسْمَعِي وَالْمِسِي الصُّورَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "دَجَاجَةٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "emoji": "🐔"
+          },
+          {
+            "id": "c2",
+            "emoji": "🦁"
+          },
+          {
+            "id": "c3",
+            "emoji": "🐓"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «دَجَاجَةٌ» 🐔",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «دَجَاجَةٌ» 🐔"
+        },
+        "indice": {
+          "masculin": "اِسْتَمِعْ إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى.",
+          "feminin": "اِسْتَمِعِي إِلَى الْكَلِمَةِ مَرَّةً أُخْرَى."
+        },
+        "explication": "الْكَلِمَةُ هِيَ «دَجَاجَةٌ»."
+      },
+      "empreinte": "sha256:6a663a769c187f7b58eab025b4b4323180d5ecb62f0d4c59a6768eb89ed392cd",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x03",
+      "type": "T09",
+      "gabarit": "association-mot-image",
+      "competence": "ar-lecture-mot-image",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صِلْ كُلَّ كَلِمَةٍ بِصُورَتِهَا.",
+          "feminin": "صِلِي كُلَّ كَلِمَةٍ بِصُورَتِهَا."
+        }
+      },
+      "donnees": {
+        "gauche": [
+          {
+            "id": "g1",
+            "texte": "دُبٌّ"
+          },
+          {
+            "id": "g2",
+            "texte": "يَدٌ"
+          },
+          {
+            "id": "g3",
+            "texte": "أَسَدٌ"
+          },
+          {
+            "id": "g4",
+            "texte": "وَلَدٌ"
+          }
+        ],
+        "droite": [
+          {
+            "id": "d1",
+            "emoji": "🐻"
+          },
+          {
+            "id": "d2",
+            "emoji": "✋"
+          },
+          {
+            "id": "d3",
+            "emoji": "🦁"
+          },
+          {
+            "id": "d4",
+            "emoji": "👦"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "paires": [
+          {
+            "gauche": "g1",
+            "droite": "d1"
+          },
+          {
+            "gauche": "g2",
+            "droite": "d2"
+          },
+          {
+            "gauche": "g3",
+            "droite": "d3"
+          },
+          {
+            "gauche": "g4",
+            "droite": "d4"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ مَعَ صُورَتِهَا."
+        },
+        "indice": {
+          "masculin": "اِقْرَأْ كُلَّ كَلِمَةٍ ثُمَّ انْظُرْ إِلَى الصُّوَرِ.",
+          "feminin": "اِقْرَئِي كُلَّ كَلِمَةٍ ثُمَّ انْظُرِي إِلَى الصُّوَرِ."
+        },
+        "explication": "دُبٌّ 🐻، يَدٌ ✋، أَسَدٌ 🦁، وَلَدٌ 👦"
+      },
+      "empreinte": "sha256:c140fbf8e54324e002142a7304b3d4d5442225dbabb15d93eca7c09494e42790",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x04",
+      "type": "T02",
+      "gabarit": "vrai-faux-texte",
+      "competence": "ar-identification-son",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "هَلْ هَذِهِ الْجُمْلَةُ صَحِيحَةٌ؟"
+      },
+      "donnees": {
+        "affirmation": "فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ."
+      },
+      "reponse": {
+        "valeur": false
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ."
+        },
+        "indice": {
+          "masculin": "رَدِّدِ الْكَلِمَةَ بِبُطْءٍ.",
+          "feminin": "رَدِّدِي الْكَلِمَةَ بِبُطْءٍ."
+        },
+        "explication": "لَيْسَ فِي كَلِمَةِ «فِيلٌ» حَرْفُ الدَّالِ."
+      },
+      "empreinte": "sha256:81861aa04c7c00ff354e027efee8ff552458d95e5a6dc8dd3d0c5811fc21c8a5",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x05",
+      "type": "T07",
+      "gabarit": "toucher-mots",
+      "competence": "ar-reperer-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِلْمِسِ الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الدَّالِ.",
+          "feminin": "اِلْمِسِي الْكَلِمَاتِ الَّتِي فِيهَا حَرْفُ الدَّالِ."
+        }
+      },
+      "donnees": {
+        "texte": "فِي الْغَابَةِ أَسَدٌ وَقِرْدٌ",
+        "plusieurs": true
+      },
+      "reponse": {
+        "mots": [
+          2,
+          3
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «أَسَدٌ» وَ«وَقِرْدٌ» حَرْفُ الدَّالِ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «أَسَدٌ» وَ«وَقِرْدٌ» حَرْفُ الدَّالِ."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "الْكَلِمَتَانِ هُمَا «أَسَدٌ» وَ«وَقِرْدٌ»."
+      },
+      "empreinte": "sha256:75997a71f9b5aa97a3945d64f5a508c82fc0898e8c6465c714be175ff33006ab",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x06",
+      "type": "T18",
+      "gabarit": "forme-lettre",
+      "competence": "ar-forme-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ شَكْلَ حَرْفِ الدَّالِ فِي كَلِمَةِ «وَلَدٌ».",
+          "feminin": "اِخْتَارِي شَكْلَ حَرْفِ الدَّالِ فِي كَلِمَةِ «وَلَدٌ»."
+        }
+      },
+      "donnees": {
+        "lettre": "د",
+        "position": "fin",
+        "mot": "وَلَدٌ",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "د"
+          },
+          {
+            "id": "c2",
+            "texte": "ـد"
+          }
+        ],
+        "melanger": false
+      },
+      "reponse": {
+        "choix": [
+          "c2"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: فِي «وَلَدٌ» نَكْتُبُ ـد",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: فِي «وَلَدٌ» نَكْتُبُ ـد"
+        },
+        "indice": "الْحَرْفُ فِي آخِرِ الْكَلِمَةِ.",
+        "explication": "فِي كَلِمَةِ «وَلَدٌ» نَكْتُبُ: ـد"
+      },
+      "empreinte": "sha256:01d03f27ec7edac687c6d264df8222cc182f430872464df53a7a22ff300c26d4",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x07",
+      "type": "T19",
+      "gabarit": "lettre-vocalisee",
+      "competence": "ar-harakat",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": "أَيُّ حَرْفٍ عَلَيْهِ فَتْحَةٌ؟"
+      },
+      "donnees": {
+        "haraka": "fatha",
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "دَ"
+          },
+          {
+            "id": "c2",
+            "texte": "دُ"
+          },
+          {
+            "id": "c3",
+            "texte": "دِ"
+          },
+          {
+            "id": "c4",
+            "texte": "دْ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَ",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَ"
+        },
+        "indice": "الْفَتْحَةُ فَوْقَ الْحَرْفِ، وَالْكَسْرَةُ تَحْتَهُ، وَالضَّمَّةُ وَاوٌ صَغِيرَةٌ فَوْقَهُ، وَالسُّكُونُ دَائِرَةٌ صَغِيرَةٌ.",
+        "explication": "الْحَرْفُ الَّذِي عَلَيْهِ فَتْحَةٌ هُوَ دَ"
+      },
+      "empreinte": "sha256:4a7636648f6a438a80e7eaf1f8c25c24c1a3073367c44da3cf245c13f9e4842d",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x08",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "يَ"
+          },
+          {
+            "id": "e2",
+            "texte": "دٌ"
+          },
+          {
+            "id": "e3",
+            "texte": "بُ"
+          },
+          {
+            "id": "e4",
+            "texte": "رَ"
+          }
+        ],
+        "ecoute": {
+          "texte": "يَدٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «يَدٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «يَدٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «يَ».",
+        "explication": "يَدٌ = يَ + دٌ"
+      },
+      "empreinte": "sha256:0b79cb72a69d36c30dcc54020229d7032969a781ca33133ccaaccf878534c1d0",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x09",
+      "type": "T15",
+      "gabarit": "mot-lettres",
+      "competence": "ar-construire-mot",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْمَعْ وَرَكِّبِ الْكَلِمَةَ.",
+          "feminin": "اِسْمَعِي وَرَكِّبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "دِ"
+          },
+          {
+            "id": "e2",
+            "texte": "ي"
+          },
+          {
+            "id": "e3",
+            "texte": "كٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "بُ"
+          },
+          {
+            "id": "e5",
+            "texte": "رَ"
+          }
+        ],
+        "ecoute": {
+          "texte": "دِيكٌ"
+        },
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: «دِيكٌ»",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: «دِيكٌ»"
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِـ «دِ».",
+        "explication": "دِيكٌ = دِ + ي + كٌ"
+      },
+      "empreinte": "sha256:2bf11ed5ee11c4330500e63fc13d1f57bd863a888a64fee78480bacf2fe446ab",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x10",
+      "type": "T13",
+      "gabarit": "ordre-mots",
+      "competence": "ar-ordre-phrase",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "رَتِّبِ الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ.",
+          "feminin": "رَتِّبِي الْكَلِمَاتِ لِتَكْوِينِ جُمْلَةٍ."
+        }
+      },
+      "donnees": {
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "دَانَةُ"
+          },
+          {
+            "id": "e2",
+            "texte": "تُطْعِمُ"
+          },
+          {
+            "id": "e3",
+            "texte": "الدَّجَاجَةَ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "ordre": [
+          "e1",
+          "e2",
+          "e3"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دَانَةُ تُطْعِمُ الدَّجَاجَةَ.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دَانَةُ تُطْعِمُ الدَّجَاجَةَ."
+        },
+        "indice": "الْجُمْلَةُ تَبْدَأُ بِكَلِمَةِ «دَانَةُ».",
+        "explication": "دَانَةُ تُطْعِمُ الدَّجَاجَةَ."
+      },
+      "empreinte": "sha256:9f7fbcbd2b43362577f789c95e356025bda86c9cdb12d9d48eae0be26ce3b562",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x11",
+      "type": "T11",
+      "gabarit": "tri-bacs",
+      "competence": "ar-tri-lettre",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "صَنِّفِ الْكَلِمَاتِ.",
+          "feminin": "صَنِّفِي الْكَلِمَاتِ."
+        }
+      },
+      "donnees": {
+        "categories": [
+          {
+            "id": "k1",
+            "titre": "فِيهَا حَرْفُ الدَّالِ"
+          },
+          {
+            "id": "k2",
+            "titre": "لَيْسَ فِيهَا حَرْفُ الدَّالِ"
+          }
+        ],
+        "elements": [
+          {
+            "id": "e1",
+            "texte": "دَجَاجَةٌ"
+          },
+          {
+            "id": "e2",
+            "texte": "أَسَدٌ"
+          },
+          {
+            "id": "e3",
+            "texte": "وَلَدٌ"
+          },
+          {
+            "id": "e4",
+            "texte": "فِيلٌ"
+          },
+          {
+            "id": "e5",
+            "texte": "قَمَرٌ"
+          },
+          {
+            "id": "e6",
+            "texte": "سَمَكَةٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "classement": [
+          {
+            "element": "e1",
+            "categorie": "k1"
+          },
+          {
+            "element": "e2",
+            "categorie": "k1"
+          },
+          {
+            "element": "e3",
+            "categorie": "k1"
+          },
+          {
+            "element": "e4",
+            "categorie": "k2"
+          },
+          {
+            "element": "e5",
+            "categorie": "k2"
+          },
+          {
+            "element": "e6",
+            "categorie": "k2"
+          }
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: كُلُّ كَلِمَةٍ فِي مَكَانِهَا."
+        },
+        "indice": {
+          "masculin": "اِبْحَثْ عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ.",
+          "feminin": "اِبْحَثِي عَنْ حَرْفِ الدَّالِ فِي كُلِّ كَلِمَةٍ."
+        },
+        "explication": "فِيهَا حَرْفُ الدَّالِ: دَجَاجَةٌ، أَسَدٌ، وَلَدٌ. لَيْسَ فِيهَا حَرْفُ الدَّالِ: فِيلٌ، قَمَرٌ، سَمَكَةٌ."
+      },
+      "empreinte": "sha256:aa6188c9fd68b766a3a682398e5b8cc0da2d5cdd7dda7eb9ab7a2de5bf58fad3",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x15",
+      "type": "T17",
+      "gabarit": "dictee-mot",
+      "competence": "ar-ecriture-dictee",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِسْتَمِعْ وَاكْتُبِ الْكَلِمَةَ.",
+          "feminin": "اِسْتَمِعِي وَاكْتُبِي الْكَلِمَةَ."
+        }
+      },
+      "donnees": {
+        "ecoute": {
+          "texte": "دِيكٌ"
+        },
+        "emoji": "🐓",
+        "harakat": false,
+        "clavier": "reduit",
+        "lettres": "بدرفكلمي"
+      },
+      "reponse": {
+        "texte": "دِيكٌ"
+      },
+      "normalisation": [
+        "harakat_ignorees"
+      ],
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: دِيكٌ تُكْتَبُ د ثُمَّ ي ثُمَّ ك.",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: دِيكٌ تُكْتَبُ د ثُمَّ ي ثُمَّ ك."
+        },
+        "indice": "الْكَلِمَةُ تَبْدَأُ بِحَرْفِ الدَّالِ.",
+        "explication": "دِيكٌ: د ثُمَّ ي ثُمَّ ك."
+      },
+      "empreinte": "sha256:e38fc421202e77f37d3173be89db923b2dc0df10f39d1673043acc58b959e7de",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x13",
+      "type": "T01",
+      "gabarit": "qcm-orthographe",
+      "competence": "ar-orthographe",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرِ الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ.",
+          "feminin": "اِخْتَارِي الْكَلِمَةَ الْمَكْتُوبَةَ بِشَكْلٍ صَحِيحٍ."
+        }
+      },
+      "donnees": {
+        "support": {
+          "emoji": "🐓",
+          "ecoute": {
+            "texte": "دِيكٌ"
+          }
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "دِيكٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "ذِيكٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "زِيكٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: نَكْتُبُ «دِيكٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: نَكْتُبُ «دِيكٌ»."
+        },
+        "indice": {
+          "masculin": "اُنْظُرْ جَيِّدًا إِلَى النِّقَاطِ.",
+          "feminin": "اُنْظُرِي جَيِّدًا إِلَى النِّقَاطِ."
+        },
+        "explication": "نَكْتُبُ «دِيكٌ»."
+      },
+      "empreinte": "sha256:c66e3ea38444176233acb7061ea9aeceb3e7ac66e486320a978041a10613c6d0",
+      "statut": "brouillon",
+      "version": 1
+    },
+    {
+      "id": "ar-1-t1-u2-e01-x14",
+      "type": "T01",
+      "gabarit": "qcm-contraire",
+      "competence": "ar-vocabulaire",
+      "critere": "C1",
+      "niveau_critere": "minimal",
+      "langue": "ar",
+      "consigne": {
+        "texte": {
+          "masculin": "اِخْتَرْ عَكْسَ كَلِمَةِ «جَدِيدٌ».",
+          "feminin": "اِخْتَارِي عَكْسَ كَلِمَةِ «جَدِيدٌ»."
+        }
+      },
+      "donnees": {
+        "support": {
+          "texte": "جَدِيدٌ"
+        },
+        "choix": [
+          {
+            "id": "c1",
+            "texte": "قَدِيمٌ"
+          },
+          {
+            "id": "c2",
+            "texte": "بَعِيدٌ"
+          },
+          {
+            "id": "c3",
+            "texte": "سَعِيدٌ"
+          }
+        ],
+        "melanger": true
+      },
+      "reponse": {
+        "choix": [
+          "c1"
+        ]
+      },
+      "feedbacks": {
+        "reussite": {
+          "masculin": "إِجَابَتُكَ صَحِيحَةٌ: عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ».",
+          "feminin": "إِجَابَتُكِ صَحِيحَةٌ: عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ»."
+        },
+        "indice": {
+          "masculin": "فَكِّرْ فِي الْمَعْنَى الْمُعَاكِسِ.",
+          "feminin": "فَكِّرِي فِي الْمَعْنَى الْمُعَاكِسِ."
+        },
+        "explication": "عَكْسُ «جَدِيدٌ» هُوَ «قَدِيمٌ»."
+      },
+      "empreinte": "sha256:f33e61ac66380853b878c0a441ca2811e86129f6355bc2cb8ca79b0ae3920121",
+      "statut": "brouillon",
+      "version": 1
+    }
+  ]
+}

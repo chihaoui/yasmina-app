@@ -161,6 +161,49 @@ void main() {
     });
   });
 
+  group('T17 dans une étape de 1re année', () {
+    test('les touches du clavier réduit (lettres nues) ne demandent pas de '
+        'harakat', () {
+      final ex = valides['T17']!()..['id'] = 'ar-1-t1-u1-e01-x01';
+      ex['competence'] = 'ar-ecriture-dictee';
+      final etape = {
+        'generation': {
+          'id': 'gen-ar-1-t1-u1-e01-20261021-01',
+          'schema': 'edu-content/1.0',
+          'date': '2026-10-21',
+          'modele': 'manuel',
+          'version_prompt': 'aucun',
+          'auteur': 'test',
+        },
+        'etape': {
+          'id': 'ar-1-t1-u1-e01',
+          'matiere': 'arabe',
+          'niveau': 1,
+          'trimestre': 1,
+          'unite': 1,
+          'ordre': 1,
+          'langue': 'ar',
+          'titre': 'حَرْفُ الْقَافِ',
+          'sequences': [
+            {
+              'id': 'ar-1-t1-u1-e01-s1',
+              'titre': 'أَكْتُبُ',
+              'exercices': ['ar-1-t1-u1-e01-x01'],
+            },
+          ],
+        },
+        'exercices': [ex],
+      };
+      final r = validerEtapeDecodee(etape);
+      expect(r.erreurs, isEmpty, reason: '$r');
+      expect(
+        r.avertissements.where((a) => a.code == 'harakat_manquantes'),
+        isEmpty,
+        reason: '$r',
+      );
+    });
+  });
+
   group('T17', () {
     test('le texte attendu est le mot entendu', () {
       expect(

@@ -236,6 +236,8 @@ List<ProblemeValidation> reglesEtape(Map<String, dynamic> racine) {
   if (langue == 'ar' && niveau <= 2) {
     final annee = niveau == 1 ? '1re' : '${niveau}e';
     for (final (chemin, texte) in textes) {
+      // Les touches du clavier réduit de T17 sont des lettres nues.
+      if (chemin.endsWith('/donnees/lettres')) continue;
       if (_contientLettreArabe(texte) &&
           !_contientHaraka(texte) &&
           !_formeDeLettre(texte)) {
@@ -1008,13 +1010,18 @@ List<ProblemeValidation> _reglesGlisser(
           for (final id in ordre)
             liste.where((e) => e['id'] == id).firstOrNull?['texte'] ?? '',
         ].join();
-        final entendu = _sansHarakat(ecoute['texte'] as String);
-        if (mot != entendu) {
+        // Tuiles nues (ق ل م) ou tuiles vocalisées (بَ يْ تٌ, parcours
+        // d'arabe 1re) : le mot construit est le mot entendu, sans ses
+        // harakat ou avec toutes.
+        final entenduVocalise = ecoute['texte'] as String;
+        final entendu = _sansHarakat(entenduVocalise);
+        if (mot != entendu && mot != entenduVocalise) {
           erreur(
             '$chemin/donnees/ecoute/texte',
             'mot_different_ecoute',
             'le mot construit « $mot » doit être le mot entendu sans ses '
-                'harakat « $entendu ».',
+                'harakat « $entendu » (tuiles nues) ou avec toutes '
+                '« $entenduVocalise » (tuiles vocalisées).',
           );
         }
       }

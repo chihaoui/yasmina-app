@@ -505,6 +505,28 @@ void main() {
       );
     });
 
+    test('T15 : tuiles vocalisées acceptées si leur suite est le mot entendu '
+        'tel quel', () {
+      expect(
+        erreurs('T15', (ex) {
+          ex['donnees']['elements'] = elements(['بَ', 'يْ', 'تٌ', 'مَ', 'رُ']);
+          ex['donnees']['ecoute'] = {'texte': 'بَيْتٌ'};
+          ex['reponse']['ordre'] = ['e1', 'e2', 'e3'];
+        }),
+        isEmpty,
+      );
+      // Une haraka différente de celle du mot entendu : refusé.
+      final r = erreurs('T15', (ex) {
+        ex['donnees']['elements'] = elements(['بُ', 'يْ', 'تٌ', 'مَ', 'رُ']);
+        ex['donnees']['ecoute'] = {'texte': 'بَيْتٌ'};
+        ex['reponse']['ordre'] = ['e1', 'e2', 'e3'];
+      });
+      expect(
+        r.single,
+        probleme('/donnees/ecoute/texte', 'mot_different_ecoute'),
+      );
+    });
+
     test('T15 en arabe seulement, T16 jamais en arabe', () {
       expect(
         erreurs('T15', (ex) {
