@@ -7,15 +7,15 @@ Au 20 oct. 2026. Bloc calculé par `dart run tool/avancement.dart`, ne pas modif
 | Phase | j-h faits | j-h total | % |
 |---|---|---|---|
 | A0 | 18,5 | 21,75 | 85 % |
-| A1 | 23,75 | 36,25 | 66 % |
+| A1 | 24,75 | 36,25 | 68 % |
 | A2 | 17 | 30,5 | 56 % |
 | A3 | 0 | 8,25 | 0 % |
 | B | 0 | 39,25 | 0 % |
 | C | 0 | 29,75 | 0 % |
 | D | 0 | 16,5 | 0 % |
-| **Total** | **59,25** | **182,25** | **32,5 %** |
+| **Total** | **60,25** | **182,25** | **33,1 %** |
 
-- **Avancement global : 32,5 %** (59,25 j-h faits sur 182,25)
+- **Avancement global : 33,1 %** (60,25 j-h faits sur 182,25)
 - **Types jouables : 52 sur 52**
 - Méthode : une tâche compte seulement quand sa case de premier niveau est cochée (une tâche en cours compte 0). % d'une phase = j-h des cases cochées ÷ j-h de la phase. % global = j-h cochés ÷ total, contrôlé par rapport à `docs/estimations-taches.md`. Types jouables = codes Txx des cases cochées des phases A1 et A2. Les sous-cases détaillent une tâche et ne portent pas d'estimation.
 <!-- avancement:fin -->
@@ -82,7 +82,7 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
 - [x] A1-01b Moteur Choix (13 types), moteur : T01, T02, T03, T04, T05, T18, T19, T23, T24, T45, T46, T55, T61 (3,5 j-h)
   - [x] T02 Vrai ou faux jouable dans l'atelier (preuve du lecteur, 19 oct. 2026)
   - [x] Les 12 autres types jouables dans l'atelier, un test de widget par type (arabe et latin), parité mobile et web (20 oct. 2026)
-  - [ ] Goldens du moteur Choix (T01 en arabe, T45 en français, clair et sombre) : reportés à A1-15
+  - [x] Goldens du moteur Choix (T01 en arabe, T45 en français, clair et sombre) : faits en A1-15 (nuit du 20 au 21 oct. 2026)
 - [x] A1-02 Moteur Glisser-déposer (10 types) : T06, T09, T11, T12, T13, T14, T15, T16, T56, T62 (6 j-h)
   - [x] Fiche en brouillon `docs/moteurs/glisser-deposer.md` et questions (décision 39, 20 oct. 2026)
   - [x] Schéma, validateur et 9 exemples pour T06, T09, T11, T12, T13, T14, T15, T16 (20 oct. 2026)
@@ -115,7 +115,10 @@ Le parcours (choix de la matière, carte du trimestre, intro d'étape, résultat
   - [x] T36 flashcards sans note, T37 memory automatique noté par les essais, T38 mots mêlés (lettres isolées, lecture de droite à gauche en arabe), tests, parité (20 oct. 2026)
   - [ ] Validation par Lamjed de la fiche et test sur l'iPhone
 - [ ] A1-09 Vérification du framework sur le prototype (glisser-déposer arabe, harakat, Rive, Android 2 Go) (2 j-h)
-- [ ] A1-15 Tests de parité et golden (1 j-h)
+- [x] A1-15 Tests de parité et golden (1 j-h)
+  - [x] `test/lecteur/parite_types_test.dart` : 52 types jouables avec au moins un exemple valide, chaque exemple du catalogue joué dans le lecteur en test de widget, le même catalogue joué par l'aperçu web et la séquence de test (nuit du 20 au 21 oct. 2026)
+  - [x] `test/lecteur/lecteur_golden_test.dart` : 4 goldens du lecteur (T01 arabe, T45 français, clair et sombre), générés sur macOS
+  - [ ] Contrôle visuel des goldens par Lamjed
 - [ ] A1-16 Build distribué aux familles (TestFlight, Play) (0,5 j-h)
 - [ ] A1-17 Grille d'observation et questionnaire parent (0,5 j-h)
 - [ ] A1-18 Synthèse des retours, tour 1 (0,5 j-h)
